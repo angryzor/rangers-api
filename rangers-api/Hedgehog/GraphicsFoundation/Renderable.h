@@ -1,9 +1,16 @@
 #pragma once
 
 namespace hh::gfnd {
+    class RenderableContainer;
+
+    class RenderableParameter {
+        char unk1[136];
+        needle::RenderingDeviceContext* renderingContext;
+    };
+
     class Renderable : public fnd::ReferencedObject {
     public:
-        uint64_t unk1;
+        RenderableContainer* renderableContainer;
         csl::ut::LinkListNode renderableContainerNode;
         char preferredContainer;
         char unk4b;
@@ -16,8 +23,8 @@ namespace hh::gfnd {
         void SetUnk4(bool unkParam);
         void SetUnk5(uint16_t unkParam);
 
-        virtual void UnkFunc1() = 0;
-        virtual uint64_t UnkFunc2() {}
+        virtual void Render(const RenderableParameter* renderableParameter) = 0;
+        virtual void UnkFunc2() {}
         virtual bool UnkFunc3() { return true; }
     };
 }

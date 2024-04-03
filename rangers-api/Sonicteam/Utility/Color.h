@@ -17,4 +17,6 @@ namespace csl::ut {
             return !operator==(other);
         }
     };
+
+    typedef Color<uint8_t> Color8;
 }

@@ -59,7 +59,7 @@ namespace hh::game
 		char flags38; // seen 0, 1, 2
 		uint16_t unk49;
 		char unk50;
-		uint32_t unk51;
+		uint32_t nameHash;
 		uint32_t messageMask;
 		GOComponentClass* pStaticClass{};
 		Unk1 unknown43[3];
@@ -91,5 +91,7 @@ namespace hh::game
 		GOComponent* GetComponent() const {
 			GetComponentByClass(T::GetClass());
 		}
+
+		void SetNameHash(const char* name);
 	};
 }

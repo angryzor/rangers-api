@@ -2,8 +2,8 @@
 
 namespace hh::cri {
     class CriSystem : public fnd::BaseObject {
-        fnd::ThreadSafeTlsfHeapAllocator hedgehogAllocator;
     public:
-        static CriSystem instance;
+        fnd::ThreadSafeTlsfHeapAllocator* hedgehogAllocator;
+        static CriSystem* instance;
     };
 }

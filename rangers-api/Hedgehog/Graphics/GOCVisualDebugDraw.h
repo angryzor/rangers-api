@@ -3,17 +3,10 @@
 namespace hh::gfx {
     class GOCVisualDebugDraw : public GOCVisualTransformed {
     public:
-        struct DebugGeometryDefinition {
-            csl::ut::MoveArray<csl::math::Vector3> vertices;
-            csl::ut::MoveArray<fnd::Triangle> triangles;
-        public:
-            DebugGeometryDefinition(csl::fnd::IAllocator* allocator) : vertices{ allocator }, triangles{ allocator } {}
-        };
-
         struct SetupInfo {
             void* unk1;
             uint16_t unk2;
-            DebugGeometryDefinition* geomDef;
+            fnd::Geometry* geometry;
             uint64_t unk3;
             uint64_t unk4;
             csl::ut::Color<uint8_t> color;

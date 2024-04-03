@@ -39,7 +39,7 @@ namespace hh::gfx {
         virtual uint64_t UnkFunc5() override;
         virtual uint64_t Startup() override;
         virtual uint64_t Shutdown() override;
-        virtual void* GetSomethingInSupportFX1();
+        virtual void* GetRenderingDevice();
         virtual void* GetSomethingInSupportFX2();
         virtual void SetSupportFX(needle::SupportFX* supportFX);
         virtual needle::SupportFX* GetSupportFX();

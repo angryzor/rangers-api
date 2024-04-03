@@ -1,0 +1,129 @@
+#pragma once
+
+#define NEEDLE_RESOURCE_RENDERING_DEVICE_CONTEXT_DX11 0x5F43313156454452ui64
+
+namespace hh::needle::ImplDX11 {
+    class RenderingDeviceContextDX11 : public RenderingDeviceContext {
+    public:
+        RenderingDeviceContextDX11();
+        virtual ~RenderingDeviceContextDX11();
+        virtual void* QueryResource(size_t id) override;
+        virtual const void* QueryResource(size_t id) const override;
+        virtual void BeginRendering() override;
+        virtual void* EndRendering() override;
+        virtual bool ExecuteRendering() override;
+        virtual bool UnkFunc1() override { return true; }
+        virtual bool UnkFunc2() override { return true; }
+        virtual uint32_t UnkFunc3() override;
+        virtual uint64_t UnkFunc4() override;
+        virtual uint64_t UnkFunc5() override;
+        virtual uint64_t UnkFunc6() override;
+        virtual uint64_t UnkFunc7b() override;
+        virtual uint64_t UnkFunc8() override;
+        virtual uint64_t UnkFunc9() override;
+        virtual uint64_t UnkFunc10() override;
+        virtual uint64_t UnkFunc11() override;
+        virtual uint64_t UnkFunc12() override;
+        virtual uint64_t UnkFunc13() override;
+        virtual uint64_t UnkFunc14() override;
+        virtual void DrawIndexedVerticesUP(const unsigned short* indices, unsigned int indexCount, const void* vertices, unsigned int vertexCount, unsigned int vertexStride) override;
+        virtual uint64_t UnkFunc16() override;
+        virtual uint64_t UnkFunc17() override;
+        virtual uint64_t UnkFunc18() override;
+        virtual uint64_t UnkFunc19() override;
+        virtual uint64_t UnkFunc20() override;
+        virtual uint64_t UnkFunc21() override;
+        virtual void SetShaderObject(const ShaderObject* shaderObject, const InstanceParameterContainerData** ipcd, unsigned int unkParam1, const unsigned char* unkParam2, unsigned int unkParam3) override;
+        virtual void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) override;
+        virtual uint64_t UnkFunc24() override;
+        virtual uint64_t UnkFunc25() override;
+        virtual uint64_t UnkFunc26() override;
+        virtual uint64_t UnkFunc27() override;
+        virtual uint64_t UnkFunc28() override;
+        virtual uint64_t UnkFunc29() override;
+        virtual uint64_t UnkFunc30() override;
+        virtual uint64_t UnkFunc31() override;
+        virtual uint64_t UnkFunc32() override;
+        virtual uint64_t UnkFunc33() override;
+        virtual uint64_t UnkFunc34() override;
+        virtual uint64_t UnkFunc35() override;
+        virtual uint64_t UnkFunc36() override;
+        virtual uint64_t UnkFunc37() override;
+        virtual void UnkFunc37b() override {}
+        virtual uint64_t UnkFunc38() override;
+        virtual uint64_t UnkFunc39() override;
+        virtual uint64_t UnkFunc40() override;
+        virtual uint64_t UnkFunc41() override;
+        virtual uint64_t UnkFunc42() override;
+        virtual uint64_t UnkFunc43() override;
+        virtual uint64_t UnkFunc44() override;
+        virtual uint64_t UnkFunc45() override;
+        virtual uint64_t UnkFunc46() override;
+        virtual uint64_t UnkFunc47() override;
+        virtual uint64_t UnkFunc48() override;
+        virtual uint64_t UnkFunc49() override;
+        virtual uint64_t UnkFunc50() override;
+        virtual uint64_t SetCullMode(CullMode cullMode) override;
+        virtual uint64_t SetFillMode(FillMode fillMode) override;
+        virtual uint64_t SetScissorEnable(bool enabled) override;
+        virtual uint64_t UnkFunc54() override;
+        virtual uint64_t SetDepthEnable(bool enabled) override;
+        virtual uint64_t SetDepthWriteEnable(bool enabled) override;
+        virtual uint64_t SetDepthComparisonFunc(ComparisonFunc comparisonFunc) override;
+        virtual uint64_t SetTwoSidedStencil(bool unkParam1, ComparisonFunc comparisonFunc1, int unkParam21, unsigned int unkParam31, StencilOp stencilOp11, StencilOp stencilOp12, StencilOp stencilOp13, unsigned int unkParam41, ComparisonFunc comparisonFunc2, int unkParam22, unsigned int unkParam32, StencilOp stencilOp21, StencilOp stencilOp22, StencilOp stencilOp23, unsigned int unkParam42) override;
+        virtual uint64_t SetStencil(bool unkParam1, ComparisonFunc comparisonFunc, int unkParam2, unsigned int unkParam3, StencilOp stencilOp1, StencilOp stencilOp2, StencilOp stencilOp3, unsigned int unkParam4) override;
+        virtual uint64_t SetColorWriteEnable(bool unkParam1) override;
+        virtual uint64_t UnkFunc61() override;
+        virtual uint64_t SetBlendDescSetting() override;
+        virtual uint64_t SetBlendMode(bool unkParam1, BlendMode mode1, BlendMode mode2, BlendOp operation) override;
+        virtual uint64_t SetBlendMode(bool unkParam1, BlendMode mode11, BlendMode mode12, BlendOp operation1, BlendMode mode21, BlendMode mode22, BlendOp operation2) override;
+        virtual uint64_t SetViewport(const ViewportSetting* viewportSetting, unsigned int unkParam1) override;
+        virtual uint64_t MaybeSetScissor(Rectangle* scissorRect, unsigned int unkParam1) override;
+        virtual uint64_t UnkFunc67() override;
+        virtual uint64_t UnkFunc68() override;
+        virtual uint64_t UnkFunc69() override;
+        virtual uint64_t UnkFunc70() override;
+        virtual uint64_t UnkFunc71() override;
+        virtual uint64_t UnkFunc72() override;
+        virtual uint64_t UnkFunc73() override;
+        virtual uint64_t UnkFunc74() override;
+        virtual uint64_t UnkFunc75() override;
+        virtual uint64_t UnkFunc76() override;
+        virtual uint64_t UnkFunc77() override;
+        virtual uint64_t UnkFunc78() override;
+        virtual uint64_t UnkFunc79() override;
+        virtual uint64_t UnkFunc80() override;
+        virtual uint64_t UnkFunc81() override;
+        virtual uint64_t UnkFunc82() override;
+        virtual uint64_t UnkFunc83() override;
+        virtual bool UnkFunc84() override { return true; }
+        virtual uint64_t UnkFunc85() override;
+        virtual uint64_t UnkFunc86() override;
+        virtual uint64_t UnkFunc87() override;
+        virtual uint64_t UnkFunc88() override;
+        virtual uint64_t UnkFunc89() override;
+        virtual uint64_t UnkFunc90() override;
+        virtual uint64_t UnkFunc91() override;
+        virtual uint64_t UnkFunc92() override;
+        virtual uint64_t UnkFunc93() override;
+        virtual uint64_t UnkFunc94() override;
+        virtual uint64_t UnkFunc95() override;
+        virtual uint64_t UnkFunc96() override;
+        virtual uint64_t UnkFunc97() override;
+        virtual uint64_t UnkFunc98() override;
+        virtual uint64_t UnkFunc99() override;
+        virtual uint64_t UnkFunc100() override;
+        virtual uint64_t UnkFunc101() override;
+        virtual uint64_t UnkFunc102() override;
+        virtual uint64_t UnkFunc103() override;
+        virtual uint64_t UnkFunc104() override;
+        virtual uint32_t UnkFunc105() override { return 0; }
+        virtual uint64_t UnkFunc106() override;
+        virtual uint64_t UnkFunc107() override;
+        virtual bool UnkFunc108() override { return false; }
+        virtual uint64_t UnkFunc109() override;
+        virtual bool UnkFunc110() override { return false; }
+        virtual void UnkFunc110b() override {}
+        virtual uint64_t UnkFunc111() override;
+    };
+}

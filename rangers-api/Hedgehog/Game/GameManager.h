@@ -193,5 +193,6 @@ namespace hh::game
 		void ReloadInputSettings(bool unkParam1);
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();
+		void SendMessageToLayer(int layer, const fnd::Message& message);
 	};
 }

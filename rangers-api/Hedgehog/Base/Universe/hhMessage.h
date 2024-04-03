@@ -2,18 +2,27 @@
 
 namespace hh::fnd
 {
+	enum class MessageID : uint32_t {
+		UPDATE_SET_EDITOR = 768,
+		UPDATE_ACTIVE_OBJECT_IN_EDITOR = 769,
+		START_ACTIVE_OBJECT_IN_EDITOR = 770,
+		FINISH_ACTIVE_OBJECT_IN_EDITOR = 771,
+		PARAM_CHANGED_IN_EDITOR = 772,
+		GET_DEBUG_COMMENT_IN_EDITOR = 773,
+	};
+
 	class Messenger;
 	class Message
 	{
 	public:
-		uint32_t ID{};
+		MessageID ID{};
 		Handle<Messenger> Sender{};
 		Handle<Messenger> Receiver{};
 		char Handled{};
 		bool Broadcasted{};
 		const uint32_t Mask{ (uint32_t)-1 };
 
-		Message(uint32_t in_id)
+		Message(MessageID in_id)
 		{
 			ID = in_id;
 		}
@@ -48,7 +57,7 @@ namespace app::fnd
 	class AppMessage : public hh::fnd::Message
 	{
 	public:
-		AppMessage(uint32_t in_id) : Message(in_id)
+		AppMessage(hh::fnd::MessageID in_id) : Message(in_id)
 		{
 			
 		}

@@ -2,7 +2,8 @@
 
 namespace hh::fnd {
     class MemoryRouterAllocator : public csl::fnd::IAllocator {
-        csl::fnd::TlsfHeapTemplate<csl::fnd::Mutex> heap;
+    public:
+        csl::fnd::TlsfHeapTemplate<csl::fnd::Mutex>* heap;
         uint64_t unk1;
     };
 
@@ -15,14 +16,15 @@ namespace hh::fnd {
     csl::fnd::IAllocator* GetTempAllocator();
 
     class MemoryRouter {
-        csl::fnd::IAllocator* allocators[2]; // 0: module allocator, 1: debug allocator
-        static MemoryRouter* instance;
     public:
+        MemoryRouterAllocator* moduleAllocator;
+        MemoryRouterAllocator* debugAllocator;
+        static MemoryRouter* instance;
         static MemoryRouter* GetInstance();
         static void SetInstance(MemoryRouter* router);
         inline csl::fnd::IAllocator* GetTemp() { return fnd::GetTempAllocator(); }
-        inline csl::fnd::IAllocator* GetModule() { return allocators[0]; }
-        inline csl::fnd::IAllocator* GetDebug() { return allocators[1]; }
+        inline csl::fnd::IAllocator* GetModule() { return moduleAllocator; }
+        inline csl::fnd::IAllocator* GetDebug() { return debugAllocator; }
         static csl::fnd::IAllocator* GetTempAllocator();
         inline static csl::fnd::IAllocator* GetModuleAllocator() { return GetInstance()->GetModule(); }
         inline static csl::fnd::IAllocator* GetDebugAllocator() { return GetInstance()->GetDebug(); }
