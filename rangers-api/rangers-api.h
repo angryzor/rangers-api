@@ -244,6 +244,7 @@
 #include "Hedgehog/Game/CameraComponent.h"
 #include "Hedgehog/Game/CameraManager.h"
 #include "Hedgehog/Game/ObjInfo.h"
+#include "Hedgehog/Game/ObjInfoContainer.h"
 #include "Hedgehog/Game/GameObjectRegistry.h"
 #include "Hedgehog/Game/GOComponentRegistry.h"
 #include "Hedgehog/Game/ObjInfoRegistry.h"

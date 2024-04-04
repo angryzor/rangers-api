@@ -31,7 +31,7 @@ namespace hh::game
         uint64_t unk17;
         uint32_t memberValueCount;
         const hh::fnd::RflClassMember::Value* attributes;
-        const hh::fnd::RflClass* rflClass;
+        const hh::fnd::RflClass* spawnerDataRflClass;
 	private:
 		GameObject* Create(csl::fnd::IAllocator* pAllocator) const;
 	public:
@@ -170,6 +170,7 @@ namespace hh::game
 		void SetLayer(char layer);
 
 		void LinkActionToUIKey(ui::LayerController* layerController, const char* uiPath, const char* actionName, void* unkParam);
+		void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
 	public:
 		template<typename T>
 		T* GetComponent() {
@@ -179,6 +180,11 @@ namespace hh::game
 		void AddListener(GameObjectListener* listener);
 		void RemoveListener(GameObjectListener* listener);
 		void SetEditorStatus(bool status);
+		
+		template<typename T>
+		T* GetWorldDataByClass() const {
+			return static_cast<T*>(GetWorldDataByClass(T::rflClass));
+		}
 
 		void Kill();
 		inline WorldObjectStatus* GetWorldObjectStatus() const {

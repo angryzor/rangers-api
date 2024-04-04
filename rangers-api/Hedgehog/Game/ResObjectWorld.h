@@ -27,7 +27,7 @@ namespace hh::game {
     struct ObjectData {
         enum class Flag : uint32_t {
             NEEDS_TERMINATION,
-            OBJINFO_NEEDS_TERMINATION,
+            SPAWNER_DATA_NEEDS_TERMINATION,
         };
         csl::ut::Bitset<Flag> flags;
         const char* gameObjectClass;
@@ -37,7 +37,7 @@ namespace hh::game {
         ObjectTransformData transform;
         ObjectTransformData localTransform;
         csl::ut::MoveArray<ComponentData*> componentData;
-        void* objInfo;
+        void* spawnerData;
 
         ObjectData(csl::fnd::IAllocator* allocator, const GameObjectClass* gameObjectClass, ObjectId id, const char* name, ObjectData* parent, const ObjectTransformData& localTransform)
             : name{ name, allocator }
@@ -53,7 +53,7 @@ namespace hh::game {
                 transform = localTransform;
             }
 
-            objInfo = hh::fnd::RflTypeInfoRegistry::GetInstance()->ConstructObject(allocator, gameObjectClass->rflClass->GetName());
+            spawnerData = hh::fnd::RflTypeInfoRegistry::GetInstance()->ConstructObject(allocator, gameObjectClass->spawnerDataRflClass->GetName());
         }
     };
 

@@ -2,6 +2,7 @@
 
 namespace hh::game {
     class ObjInfo;
+    class ObjInfoContainer;
 
     class ObjInfoClass {
     public:
@@ -11,15 +12,15 @@ namespace hh::game {
 
     class ObjInfo : public fnd::ReferencedObject {
         void* unk5;
-        void* resourceLoader;
+        fnd::ResourceLoader* resourceLoader;
         void* unk7;
-        void* unk8;
+        GameManager* gameManager;
     public:
         ObjInfo(csl::fnd::IAllocator* pAllocator);
-        virtual void Unk1() {}
-        virtual void Unk2() {}
-        virtual void Unk3() {}
-        virtual const char* GetName() { return ""; }
-        virtual void Unk5() {}
+        virtual void Load() {}
+        virtual void Initialize() {}
+        virtual void Finalize() {}
+        virtual const char* GetInfoName() { return ""; }
+        virtual void RegistCallback(ObjInfoContainer* container) {}
     };
 }
