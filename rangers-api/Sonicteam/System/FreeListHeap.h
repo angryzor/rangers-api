@@ -1,32 +1,24 @@
 #pragma once
 
 namespace csl::fnd {
-    class alignas(8) TlsfHeapBase : public HeapBase {
-        struct BlockHead {
-            uint64_t unk1;
-            uint64_t unk2;
-            uint64_t unk3;
-            uint64_t unk4;
-            uint32_t unk5;
-            uint32_t unk6[25];
-            void* unk7[25][32];
-        };
-
-        void* bufferBegin;
-        void* bufferEnd;
-    public:
-        uint32_t liveAllocations;
-        uint32_t totalAllocations;
-        uint64_t unk102;
+    class FreeListHeapBase : public HeapBase {
+        size_t bufferStart;
+        size_t bufferEnd;
         uint64_t unk103;
-        uint32_t blockCount;
-        uint64_t block;
+        uint64_t unk104;
+        uint64_t unk105;
+        size_t unused;
+        size_t unallocated;
+        unsigned int liveAllocations;
+        unsigned int totalAllocations;
+        uint32_t unk109;
+        uint32_t unk110;
         bool initialized;
-        TlsfHeapBase(const char* name);
-        
+    public:
+        FreeListHeapBase(const char* name);
+
         virtual void* Alloc(size_t in_size, size_t in_alignment) override;
         virtual void* AllocBottom(size_t in_size, size_t in_alignment) override;
-        virtual void Free(void* in_pMemory) override;
         virtual int64_t UnkFunc1() override;
         virtual int64_t UnkFunc2() override;
         virtual int64_t UnkFunc3() override;
@@ -41,16 +33,18 @@ namespace csl::fnd {
         virtual bool UnkFunc18() override;
         virtual int UnkFunc19() override;
         virtual int64_t UnkFunc20() override;
+
+        void Initialize(void* unkParam1, void* unkParam2, size_t unkParam3);
     };
 
     template<typename TLock>
-    class alignas(8) TlsfHeapTemplate : public TlsfHeapBase {
+    class alignas(8) FreeListHeapTemplate : public FreeListHeapBase {
         TLock m_Lock;
 
 		void* Alloc(size_t in_size, size_t in_alignment) override
 		{
 			m_Lock.Lock();
-			void* pMemory = TlsfHeapBase::Alloc(in_size, in_alignment);
+			void* pMemory = FreeListHeapBase::Alloc(in_size, in_alignment);
 			m_Lock.Unlock();
 
 			return pMemory;
@@ -59,7 +53,7 @@ namespace csl::fnd {
 		void* AllocBottom(size_t in_size, size_t in_alignment) override
 		{
 			m_Lock.Lock();
-			void* pMemory = TlsfHeapBase::AllocBottom(in_size, in_alignment);
+			void* pMemory = FreeListHeapBase::AllocBottom(in_size, in_alignment);
 			m_Lock.Unlock();
 
 			return pMemory;
@@ -68,12 +62,14 @@ namespace csl::fnd {
 		void Free(void* in_pMemory) override
 		{
 			m_Lock.Lock();
-			TlsfHeapBase::Free(in_pMemory);
+			FreeListHeapBase::Free(in_pMemory);
 			m_Lock.Unlock();
 		}
 
         virtual int64_t UnkFunc1() override;
         virtual void UnkFunc5() override;
         virtual int64_t UnkFunc13() override;
+        virtual void UnkFunc22() override;
+        virtual void UnkFunc23() override;
     };
 }

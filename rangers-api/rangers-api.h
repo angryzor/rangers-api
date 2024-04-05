@@ -35,7 +35,7 @@
 #include "Sonicteam/System/Singleton.h"
 #include "Sonicteam/System/Mutex.h"
 #include "Sonicteam/System/HeapBase.h"
-#include "Sonicteam/System/FreeListHeapBase.h"
+#include "Sonicteam/System/FreeListHeap.h"
 #include "Sonicteam/System/TlsfHeap.h"
 #include "Sonicteam/System/Delegate.h"
 
@@ -96,6 +96,7 @@
 #include "Hedgehog/Resource/ResourceManagerRelatedUnk1.h"
 #include "Hedgehog/Resource/ResourceManager.h"
 #include "Hedgehog/Resource/FilePathResolverUtil.h"
+#include "Hedgehog/Resource/FileCache.h"
 #include "Hedgehog/Resource/FileLoader.h"
 
 #include "Hedgehog/Rsdx/rsdx_noncopyable.h"
@@ -131,6 +132,7 @@
 #include "Hedgehog/Needle/Renderable.h"
 #include "Hedgehog/Needle/RenderTexture.h"
 #include "Hedgehog/Needle/SupportFX.h"
+#include "Hedgehog/Needle/FxCamera.h"
 #include "Hedgehog/Needle/ImplDX11/NeedleResourceContainer.h"
 #include "Hedgehog/Needle/ImplDX11/TextureDX11Impl.h"
 #include "Hedgehog/Needle/ImplDX11/BufferDX11Impl.h"
@@ -153,17 +155,6 @@
 #include "Hedgehog/GraphicsFoundation/GraphicsContext.h"
 #include "Hedgehog/GraphicsFoundation/DrawSystem.h"
 #include "Hedgehog/GraphicsFoundation/DrawSystemNeedle.h"
-
-#include "Hedgehog/Graphics/NeedleRenderer.h"
-#include "Hedgehog/Graphics/RenderingWorld.h"
-#include "Hedgehog/Graphics/RenderingComponent.h"
-#include "Hedgehog/Graphics/Components/CriComponent.h"
-#include "Hedgehog/Graphics/Components/LightComponent.h"
-#include "Hedgehog/Graphics/Components/CaptureComponent.h"
-#include "Hedgehog/Graphics/Components/ScreenShotComponent.h"
-#include "Hedgehog/Graphics/RenderingEngine.h"
-#include "Hedgehog/Graphics/RenderingEngineNeedle.h"
-#include "Hedgehog/Graphics/RenderManager.h"
 
 #include "Hedgehog/Font/ResBitmapFont.h"
 #include "Hedgehog/Font/TextListener.h"
@@ -225,6 +216,7 @@
 #include "Hedgehog/Reflection/hhDataValue.h"
 // #include "Hedgehog/Reflection/hhVariantDataUtil.h"
 // #include "Hedgehog/Reflection/hhRflSerializeUtil.h"
+#include "Application/Reflection/Types.h"
 
 #include "Hedgehog/Debug/ViewerContext.h"
 #include "Hedgehog/Debug/Viewer.h"
@@ -270,6 +262,18 @@
 #include "Hedgehog/Game/DevMenu/Menu.h"
 #include "Hedgehog/Game/FreeCamera.h"
 
+#include "Hedgehog/GraphicsFoundation/RenderManagerBase.h"
+
+#include "Hedgehog/Graphics/NeedleRenderer.h"
+#include "Hedgehog/Graphics/RenderingWorld.h"
+#include "Hedgehog/Graphics/RenderingComponent.h"
+#include "Hedgehog/Graphics/Components/CriComponent.h"
+#include "Hedgehog/Graphics/Components/LightComponent.h"
+#include "Hedgehog/Graphics/Components/CaptureComponent.h"
+#include "Hedgehog/Graphics/Components/ScreenShotComponent.h"
+#include "Hedgehog/Graphics/RenderingEngine.h"
+#include "Hedgehog/Graphics/RenderingEngineNeedle.h"
+#include "Hedgehog/Graphics/RenderManager.h"
 #include "Hedgehog/Graphics/ResMaterial.h"
 #include "Hedgehog/Graphics/GOCVisual.h"
 #include "Hedgehog/Graphics/GOCVisualTransformed.h"
@@ -286,6 +290,7 @@
 #include "Hedgehog/Physics/PhysicsViewerBase.h"
 #include "Hedgehog/Physics/PhysicsMousePickingViewer.h"
 #include "Hedgehog/Physics/PhysicsPickedObjectViewer.h"
+#include "Hedgehog/Physics/BulletPhysicsModule.h"
 
 #include "Hedgehog/Sound/GOCSound.h"
 
@@ -387,8 +392,6 @@
 #include "ApplicationCommon/FSM/GOCHsm2.h"
 
 #include "Application/Foundation/AppHeapManager.h"
-
-#include "Application/Reflection/Types.h"
 
 #include "Application/FSM/StateContext.h"
 

@@ -43,9 +43,9 @@ namespace hh::gfx {
         virtual void* GetSomethingInSupportFX2();
         virtual void SetSupportFX(needle::SupportFX* supportFX);
         virtual needle::SupportFX* GetSupportFX();
-        virtual void UnkFunc13() {}
+        virtual void SetFXParameter(app::rfl::NeedleFxParameter* parameter, unsigned int unkParam1) {}
         virtual void UnkFunc14() {}
-        virtual void UnkFunc15() {}
+        virtual void SetSceneConfig(app::rfl::NeedleFxSceneConfig* sceneConfig) {}
         virtual void UnkFunc16() {}
         virtual uint64_t CreateRenderTextureHandle(const needle::RenderTextureCreateArgs& createArgs, csl::fnd::IAllocator* allocator);
         virtual uint64_t DestroyRenderTextureHandle(needle::RenderTextureHandle* handle);

@@ -182,6 +182,7 @@ namespace hh::game
 		}
 
 		void RegisterService(GameService* service);
+		void UnregisterService(GameService* service);
 		void RegisterObject(GameObject* object, fnd::WorldPosition* transform, GameObject* parent, const WorldObjectCInfo& cInfo);
 		void RegisterNamedObject(GameObject* object, const char* name, bool copyName, fnd::WorldPosition* transform, GameObject* parent);
 		void RegisterGameStepListener(GameStepListener& listener);

@@ -20,18 +20,19 @@ namespace hh::fw::heap {
         uint64_t heapSize;
     };
 
-    class LocalHeap : public csl::fnd::FreeListHeapBase {
-        csl::fnd::Mutex mutex;
-        csl::ut::InplaceMoveArray<csl::ut::Pair<unsigned int, HeapBase*>, 8> heaps;
+    class LocalHeap {
+    public:
+        csl::fnd::FreeListHeapTemplate<csl::fnd::Mutex> baseHeap;
+        csl::ut::InplaceMoveArray<csl::ut::Pair<unsigned int, csl::fnd::HeapBase*>, 8> heaps;
         fnd::MemoryRouter* memoryRouter;
         const SystemMemoryParam* systemMemoryParam;
         const MemoryParam* memoryParam;
         size_t unkParam;
         static HeapDefinition heapDefs[3];
-    public:
+
         LocalHeap(void* unkParam1, size_t unkParam2);
         void setup(const SystemMemoryParam* systemMemoryParam, const MemoryParam* memoryParam, size_t unkParam);
-        void* GetBottomBlock();
+        fnd::MemoryRouter* GetMemoryRouter();
         static LocalHeap* instance;
     };
 

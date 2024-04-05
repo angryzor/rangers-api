@@ -65,6 +65,7 @@ namespace app::gfx {
     public:
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
+		virtual void Step(const hh::fnd::SUpdateInfo& updateInfo) override;
 
 		GAMESERVICE_CLASS_DECLARATION(FxParamManager)
     };

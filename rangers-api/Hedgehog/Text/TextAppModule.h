@@ -26,5 +26,7 @@ namespace hh::text {
     public:
         static const ConverseData* Translate(const char* tag, int localeIdx);
         const ConverseData* GetTranslation(const char* tag, int localeIdx);
+        virtual void UnkFunc1() override;
+        virtual void UnkFunc2() override;
     };
 }

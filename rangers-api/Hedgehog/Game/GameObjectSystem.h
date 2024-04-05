@@ -8,9 +8,9 @@ namespace hh::game {
             fnd::RflClass* reflectionClass;
         };
 
-        csl::fnd::IAllocator* pHeapAllocator;
-        fnd::ThreadSafeTlsfHeapAllocator heapAllocator;
     public:
+        csl::fnd::IAllocator* pObjectAllocator;
+        fnd::ThreadSafeTlsfHeapAllocator objectAllocator;
         GameObjectRegistry* gameObjectRegistry;
         GOComponentRegistry* goComponentRegistry;
 
