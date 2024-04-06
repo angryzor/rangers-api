@@ -56,8 +56,8 @@ namespace csl::fnd {
         virtual int UnkFunc19() { return -1; }
         virtual int64_t UnkFunc20();
         virtual bool UnkFunc21() { return false; }
-        virtual void UnkFunc22() {}
-        virtual void UnkFunc23() {}
+        virtual void UnkFunc22();// {}
+        virtual void UnkFunc23();// {}
         virtual bool UnkFunc24() { return false; }
         virtual void UnkFunc25() {}
 

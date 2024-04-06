@@ -1,8 +1,20 @@
 #pragma once
 
 namespace app::gfx {
+    class FxParamManager;
     class FxParamExtension : public hh::fnd::BaseObject {
+        FxParamManager* fxParamManager;
 
+    public:
+        FxParamExtension(csl::fnd::IAllocator* allocator);
+        virtual void* GetRuntimeTypeInfo() = 0;
+        virtual void Initialize() = 0;
+        virtual void Destroy() = 0;
+        virtual void UnkFunc1() {}
+        virtual void UnkFunc2() {}
+        virtual void UnkFunc3() {}
+        virtual void UnkFunc4() {}
+        virtual void UnkFunc5() {}
     };
 
     class FxParamManager
@@ -13,27 +25,38 @@ namespace app::gfx {
         class InterpolatorBase : public hh::fnd::ReferencedObject {
         public:
             InterpolatorBase(csl::fnd::IAllocator* allocator);
+            virtual void AddJob(uint64_t ownerId, const void* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime, uint32_t unk6Param) = 0;
+            virtual void UpdateJob(uint64_t ownerId, const void* value) = 0;
+            virtual void ReverseJob(uint64_t ownerId, float interpolationTime) = 0;
+            virtual void Update(float deltaTime) = 0;
+            virtual void SetTweenPosition(uint64_t ownerId, float position) = 0;
+            virtual void UnkFunc1() {}
         };
 
         template<typename T>
         class Interpolator : public InterpolatorBase {
             struct Unk1 {
                 T parameters;
-                uint64_t owner;
-                uint32_t wantsToInterpolateGroupBits;
-                float unk3;
-                float delta;
-                float unk5;
+                uint64_t ownerId;
+                unsigned int interpolationGroupMemberBits;
+                unsigned int priority;
+                float currentTweenPosition;
+                float tweenPositionIncrementPerSecond;
                 uint32_t unk6;
-                uint32_t unk7; // not sure if exists
             };
         public:
             T* target;
             void (*interpolationFunction)(T* target, T* lower, T* upper, unsigned int flags, float delta);
-            csl::ut::InplaceMoveArray<Unk1, 4> interpolationActors;
-            uint32_t interpolationGroupEnabledBits; // bit nr = index of group
-            uint32_t interpolationGroupCount;
+            csl::ut::InplaceMoveArray<Unk1, 4> interpolationJobs;
+            unsigned int interpolationGroupEnabledBits; // bit nr = index of group
+            unsigned int interpolationGroupCount;
+
             Interpolator(csl::fnd::IAllocator* allocator, T* target);
+            virtual void AddJob(uint64_t ownerId, const void* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime, uint32_t unk6Param) override;
+            virtual void UpdateJob(uint64_t ownerId, const void* value) override;
+            virtual void ReverseJob(uint64_t ownerId, float interpolationTime) override;
+            virtual void Update(float deltaTime) override;
+            virtual void SetTweenPosition(uint64_t ownerId, float position) override;
         };
 
         struct NeedleFXSceneConfigInterpolators {
@@ -46,18 +69,13 @@ namespace app::gfx {
             Interpolator<app::rfl::StageCommonTimeProgressParameter>* stageCommonTimeProgressParameterInterpolator;
         };
 
-        struct Unk3 {
-            uint64_t unk1;
-            uint64_t unk2;
-        };
-
         app::rfl::NeedleFxParameter parameters;
         app::rfl::NeedleFxSceneConfig sceneConfig;
-        InterpolatorBase* interpolators[40];
-        NeedleFXSceneConfigInterpolators unk103;
-        Unk3 unk104;
+        InterpolatorBase* paramInterpolators[40];
+        NeedleFXSceneConfigInterpolators sceneConfigInterpolators;
+        SceneParameters* sceneParameters[2];
         csl::ut::MoveArray<FxParamExtension*> extensions;
-        uint32_t unk106;
+        int currentSceneParameters;
         csl::fnd::Mutex mutex;
         uint16_t unk107;
         uint8_t unk108;
@@ -66,6 +84,8 @@ namespace app::gfx {
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
 		virtual void Step(const hh::fnd::SUpdateInfo& updateInfo) override;
+
+        void SetSceneParameters(SceneParameters* parameters, int idx);
 
 		GAMESERVICE_CLASS_DECLARATION(FxParamManager)
     };

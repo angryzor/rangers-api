@@ -45,33 +45,13 @@ namespace csl::fnd {
 
     template<typename TLock>
     class alignas(8) TlsfHeapTemplate : public TlsfHeapBase {
-        TLock m_Lock;
+        TLock m_Lock{};
+    public:
+        TlsfHeapTemplate(const char* name) : TlsfHeapBase{ name } {}
 
-		void* Alloc(size_t in_size, size_t in_alignment) override
-		{
-			m_Lock.Lock();
-			void* pMemory = TlsfHeapBase::Alloc(in_size, in_alignment);
-			m_Lock.Unlock();
-
-			return pMemory;
-		}
-
-		void* AllocBottom(size_t in_size, size_t in_alignment) override
-		{
-			m_Lock.Lock();
-			void* pMemory = TlsfHeapBase::AllocBottom(in_size, in_alignment);
-			m_Lock.Unlock();
-
-			return pMemory;
-		}
-
-		void Free(void* in_pMemory) override
-		{
-			m_Lock.Lock();
-			TlsfHeapBase::Free(in_pMemory);
-			m_Lock.Unlock();
-		}
-
+		virtual void* Alloc(size_t in_size, size_t in_alignment) override;
+		virtual void* AllocBottom(size_t in_size, size_t in_alignment) override;
+		virtual void Free(void* in_pMemory) override;
         virtual int64_t UnkFunc1() override;
         virtual void UnkFunc5() override;
         virtual int64_t UnkFunc13() override;

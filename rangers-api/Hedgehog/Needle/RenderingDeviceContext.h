@@ -95,10 +95,10 @@ namespace hh::needle {
         virtual uint64_t UnkFunc82() = 0;
         virtual uint64_t UnkFunc83() = 0;
         virtual bool UnkFunc84() = 0;
-        virtual uint64_t UnkFunc85() = 0;
-        virtual uint64_t UnkFunc86() = 0;
-        virtual uint64_t UnkFunc87() = 0;
-        virtual uint64_t UnkFunc88() = 0;
+        virtual bool Maybe_IsCapturingNow() = 0;
+        virtual void PushMarker(const char* id) = 0;
+        virtual void PopMarker() = 0;
+        virtual void SetMarker(const char* id) = 0;
         virtual uint64_t UnkFunc89() = 0;
         virtual uint64_t UnkFunc90() = 0;
         virtual uint64_t UnkFunc91() = 0;

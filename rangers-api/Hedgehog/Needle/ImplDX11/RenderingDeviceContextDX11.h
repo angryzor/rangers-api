@@ -4,6 +4,10 @@
 
 namespace hh::needle::ImplDX11 {
     class RenderingDeviceContextDX11 : public RenderingDeviceContext {
+        uint64_t unk1;
+        void* renderingDeviceDispatch;
+        uint64_t unk2;
+        DeviceObjectDX11* deviceObject;
     public:
         RenderingDeviceContextDX11();
         virtual ~RenderingDeviceContextDX11();
@@ -97,10 +101,10 @@ namespace hh::needle::ImplDX11 {
         virtual uint64_t UnkFunc82() override;
         virtual uint64_t UnkFunc83() override;
         virtual bool UnkFunc84() override { return true; }
-        virtual uint64_t UnkFunc85() override;
-        virtual uint64_t UnkFunc86() override;
-        virtual uint64_t UnkFunc87() override;
-        virtual uint64_t UnkFunc88() override;
+        virtual bool Maybe_IsCapturingNow() override;
+        virtual void PushMarker(const char* id) override;
+        virtual void PopMarker() override;
+        virtual void SetMarker(const char* id) override;
         virtual uint64_t UnkFunc89() override;
         virtual uint64_t UnkFunc90() override;
         virtual uint64_t UnkFunc91() override;

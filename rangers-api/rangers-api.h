@@ -35,8 +35,8 @@
 #include "Sonicteam/System/Singleton.h"
 #include "Sonicteam/System/Mutex.h"
 #include "Sonicteam/System/HeapBase.h"
-#include "Sonicteam/System/FreeListHeap.h"
 #include "Sonicteam/System/TlsfHeap.h"
+#include "Sonicteam/System/FreeListHeap.h"
 #include "Sonicteam/System/Delegate.h"
 
 #include "Hedgehog/System/hhAllocator.h"
@@ -280,6 +280,7 @@
 #include "Hedgehog/Graphics/GOCVisualModel.h"
 #include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
 #include "Hedgehog/Graphics/VisualManager.h"
+#include "Hedgehog/Graphics/FxParamEditor.h"
 
 #include "Hedgehog/Physics/ShapeHolder.h"
 #include "Hedgehog/Physics/EventQueue.h"
@@ -419,11 +420,17 @@
 #include "Application/Game/GameCondition.h"
 #include "Application/Game/GameMode.h"
 #include "Application/Game/GameModeStage.h"
+#include "Application/Game/TimeService.h"
 #include "Application/Game/ApplicationExtension.h"
 #include "Application/Game/ApplicationSequenceExtension.h"
-
 #include "Application/Game/MenuSelect.h"
+
+#include "Application/Event/EventPlayer.h"
+
+#include "Application/Graphics/SceneParameters.h"
 #include "Application/Graphics/FxParamManager.h"
+#include "Application/Graphics/FxParamTimeProgressExtension.h"
+#include "Application/Graphics/FxColManager.h"
 
 #include "Application/Player/CharacterId.h"
 #include "Application/Player/PlayerCounterTimer.h"

@@ -20,13 +20,12 @@ namespace hh::fnd
 			size_t memorySize;
 			bool unk;
 		};
-	private:
-	public:
+
         csl::fnd::TlsfHeapTemplate<csl::fnd::Mutex> heap;
 
-		ThreadSafeTlsfHeapAllocator(const char* name);
+		ThreadSafeTlsfHeapAllocator(const char* name) : TlsfHeapAllocatorBase{ &heap }, heap{ name } { }
 		void Setup(csl::fnd::IAllocator* memoryRouterAllocator, const SetupInfo& setupInfo);
-		void* Alloc(size_t in_size, size_t in_alignment) override;
-		void Free(void* in_pMemory) override;
+		virtual void* Alloc(size_t in_size, size_t in_alignment) override;
+		virtual void Free(void* in_pMemory) override;
 	};
 }

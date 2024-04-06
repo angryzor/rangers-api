@@ -8,9 +8,10 @@ namespace hh::game {
     public:
         static GameApplication* instance;
 
-        inline static GameApplication* GetInstance() {
-            return RESOLVE_STATIC_VARIABLE(instance);
-        }
+        // inline static GameApplication* GetInstance() {
+        //     return RESOLVE_STATIC_VARIABLE(instance);
+        // }
+        static GameApplication* GetInstance();
 
         GameApplication(csl::fnd::IAllocator* pAllocator, fw::FrameworkEnvironment* frameworkEnvironment);
         

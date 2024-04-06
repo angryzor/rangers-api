@@ -33,11 +33,7 @@ namespace csl::ut
 		VariableString(const VariableString& other);
 		VariableString(VariableString&& other);
 		
-		~VariableString()
-		{
-			m_pStr = nullptr;
-			m_pAllocator = nullptr;
-		}
+		~VariableString();
 
 		csl::fnd::IAllocator* GetAllocator() const
 		{
