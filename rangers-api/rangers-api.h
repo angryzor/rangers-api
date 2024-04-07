@@ -219,6 +219,7 @@
 // #include "Hedgehog/Reflection/hhRflSerializeUtil.h"
 #include "Application/Reflection/Types.h"
 
+#include "Hedgehog/Debug/Messages.h"
 #include "Hedgehog/Debug/ViewerContext.h"
 #include "Hedgehog/Debug/Viewer.h"
 #include "Hedgehog/Debug/ViewerContextManager.h"
@@ -281,6 +282,7 @@
 #include "Hedgehog/Graphics/GOCVisualModel.h"
 #include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
 #include "Hedgehog/Graphics/VisualManager.h"
+#include "Hedgehog/Graphics/VisibilityManager.h"
 #include "Hedgehog/Graphics/FxParamEditor.h"
 
 #include "Hedgehog/Physics/ShapeHolder.h"

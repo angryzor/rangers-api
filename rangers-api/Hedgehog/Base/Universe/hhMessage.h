@@ -27,10 +27,7 @@ namespace hh::fnd
 			ID = in_id;
 		}
 
-		virtual Message* Clone()
-		{
-			return new Message(ID);
-		}
+		virtual Message* Clone();
 
 		virtual ~Message() = default;
 	};
@@ -62,9 +59,9 @@ namespace app::fnd
 			
 		}
 		
-		AppMessage<T>* Clone() override
-		{
-			return new AppMessage<T>(ID);
-		}
+		// AppMessage<T>* Clone() override
+		// {
+		// 	return new AppMessage<T>(ID);
+		// }
 	};
 }

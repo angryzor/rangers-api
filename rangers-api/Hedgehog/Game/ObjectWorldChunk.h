@@ -4,6 +4,7 @@ namespace hh::game {
 	struct WorldObjectCInfo {
 		csl::ut::InplaceMoveArray<hh::game::GOComponentConfiguration, 5> componentConfig;
 		uint64_t unk1; // see 1.40 0x140D48348 -- Packfile*??? see 0x140CFC8C5
+                       //     1.41 0x140D4B1F7
 	};
 
     class ObjectWorldChunkListener {

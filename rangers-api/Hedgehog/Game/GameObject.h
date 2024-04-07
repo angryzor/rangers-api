@@ -99,6 +99,7 @@ namespace hh::game
 		Unk2 unk71;
 		Unk2 unk72;
 		
+	public:
 		virtual void* GetClassId();
 		virtual bool fUnk2(fnd::Message& message);
 		virtual bool ProcessMessage(fnd::Message& message);
@@ -110,6 +111,7 @@ namespace hh::game
 		virtual void UnkFunc10() {}
 		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4);
 
+	private:
 		// template <typename T>
 		// T* GetGOC()
 		// {
@@ -180,6 +182,7 @@ namespace hh::game
 		void AddListener(GameObjectListener* listener);
 		void RemoveListener(GameObjectListener* listener);
 		void SetEditorStatus(bool status);
+		bool GetEditorStatus() const;
 		
 		template<typename T>
 		T* GetWorldDataByClass() const {
