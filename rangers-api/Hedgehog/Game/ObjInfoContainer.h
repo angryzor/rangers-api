@@ -1,6 +1,11 @@
 #pragma once
 
 namespace hh::game {
+    /*
+     * Holds ObjInfos. You can pre-load and pre-init all ObjInfos contained.
+     * Unloaded ObjInfos are loaded and initialized the first time GetInfo is called on them.
+     * The ObjInfo's flags attribute is used to track this.
+     */
     class ObjInfoContainer : public GameService {
     public:
         csl::ut::StringMap<ObjInfo*> objInfosByName;

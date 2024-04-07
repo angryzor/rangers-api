@@ -30,6 +30,7 @@
 #include "Sonicteam/Utility/Color.h"
 #include "Sonicteam/Utility/NonCopyable.h"
 #include "Sonicteam/Utility/Pair.h"
+#include "Sonicteam/Utility/String.h"
 #include "Sonicteam/Utility/VariableString.h"
 
 #include "Sonicteam/System/Singleton.h"
@@ -404,6 +405,8 @@
 
 
 #include "Application/Level/PlayerInformation.h"
+#include "Application/Level/StageData.h"
+#include "Application/Level/StageInfo.h"
 #include "Application/Level/LevelInfo.h"
 #include "Application/Level/ResLevel.h"
 #include "Application/Level/ResMasterLevel.h"

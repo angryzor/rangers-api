@@ -11,14 +11,18 @@ namespace hh::game {
     };
 
     class ObjInfo : public fnd::ReferencedObject {
-        void* unk5;
+        enum class Flags {
+            LOADED = 0,
+            INITIALIZED = 1,
+        };
+        csl::ut::Bitset<Flags> flags;
         fnd::ResourceLoader* resourceLoader;
         void* unk7;
         GameManager* gameManager;
     public:
         ObjInfo(csl::fnd::IAllocator* pAllocator);
         virtual void Load() {}
-        virtual void Initialize() {}
+        virtual void Initialize(GameManager* gameManager) {}
         virtual void Finalize() {}
         virtual const char* GetInfoName() { return ""; }
         virtual void RegistCallback(ObjInfoContainer* container) {}
