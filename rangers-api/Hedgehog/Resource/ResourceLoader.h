@@ -10,9 +10,9 @@ namespace hh::fnd {
 
         class Unk2 : public BaseObject {
             class Unk1 : public ReferencedObject {
-                csl::ut::MoveArray<ManagedResource*> unk1;
-                csl::ut::MoveArray<ManagedResource*> unk2;
-                csl::ut::StringMap<ManagedResource*> unk3;
+                csl::ut::MoveArray<ManagedResource*> onceAddedResources; // I don't quite get it yet -- see AddResource
+                csl::ut::MoveArray<ManagedResource*> twiceAddedResources;
+                csl::ut::StringMap<ManagedResource*> addedResourcesByName;
             public:
                 Unk1(csl::fnd::IAllocator* allocator);
             };
@@ -23,7 +23,9 @@ namespace hh::fnd {
         public:
             Unk2(csl::fnd::IAllocator* allocator);
             Unk1* LoadTypeInfo(const ResourceTypeInfo* typeInfo);
+            const csl::ut::MoveArray<ManagedResource*>& GetResourcesByTypeInfo(const ResourceTypeInfo* typeInfo);
             void SetSimpleResourceContainer(SimpleResourceContainer* simpleResourceContainer); 
+            void Clear();
         };
 
         struct Unk3 {

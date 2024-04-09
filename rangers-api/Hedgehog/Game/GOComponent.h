@@ -34,6 +34,7 @@ namespace hh::game
 		enum class GOCEventMask : uint16_t {
 			WANT_DEACTIVATE_EVENT = 2,
 			WANT_UPDATE_SET_EDITOR = 0x200,
+			WANT_RELOAD_EVENTS = 0x4000,
 		};
 
 		enum class GOCEvent {
@@ -44,6 +45,8 @@ namespace hh::game
 			UNK4,
 			UNK5,
 			OBJECT_LAYER_CHANGED,
+			UNKNOWN_THING_RELOADED, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::UnknownThingReloadedCallback is called
+			RESOURCE_RELOADED,      // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::ResourceReloadedCallback is called
 		};
 
 		struct Unk1 {
@@ -75,7 +78,11 @@ namespace hh::game
 		virtual void LoadReflection(const fnd::RflClass& rflClass) {}
 
 		/*
-		 * When event is OBJECT_LAYER_CHANGED, data contains previous layer id.
+		 * data contains data dependent on the event:
+		 * Event                      | Data
+		 * OBJECT_LAYER_CHANGED       | previous layer id
+		 * UNKNOWN_THING_RELOADED     | the unknown thing that was reloaded
+		 * RESOURCE_RELOADED          | the ManagedResource that was reloaded
 		 */
 		virtual void OnGOCEvent(GOCEvent event, GameObject& ownerGameObject, void* data) {}
 

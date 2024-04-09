@@ -66,6 +66,7 @@
 #include "Hedgehog/Utility/FSM/StateDesc.h"
 #include "Hedgehog/Utility/FSM/State.h"
 #include "Hedgehog/Utility/FSM/Hsm.h"
+#include "Hedgehog/Utility/BinaryFile.h"
 
 #include "Hedgehog/Base/Type/hhBaseTypes.h"
 #include "Hedgehog/Base/Type/WorldPosition.h"
@@ -83,6 +84,7 @@
 #include "Hedgehog/Resource/Uri.h"
 #include "Hedgehog/Resource/InplaceUri.h"
 #include "Hedgehog/Resource/InplaceTempUri.h"
+#include "Hedgehog/Resource/File.h"
 #include "Hedgehog/Resource/ResourceNameResolver.h"
 #include "Hedgehog/Resource/FilePathResolver.h"
 #include "Hedgehog/Resource/ResourceResolver.h"
@@ -255,6 +257,7 @@
 #include "Hedgehog/Game/WorldObjectStatus.h"
 #include "Hedgehog/Game/ObjectWorldChunk.h"
 #include "Hedgehog/Game/ObjectWorldChunkLayer.h"
+#include "Hedgehog/Game/ObjectWorldChunk.def.h"
 #include "Hedgehog/Game/ObjectWorldExtension.h"
 #include "Hedgehog/Game/ObjectWorld.h"
 

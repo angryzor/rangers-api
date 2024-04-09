@@ -1,6 +1,7 @@
 #pragma once
 
 namespace hh::fnd {
+    // This is NOT SimpleResourceContainer, it's some kind of synchronization object.
     class SimpleResourceContainer : public ReferencedObject {
         class Unk1 : public ReferencedObject {
             const ResourceTypeInfo* typeInfo;

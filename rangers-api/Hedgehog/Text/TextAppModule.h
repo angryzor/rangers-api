@@ -16,8 +16,8 @@ namespace hh::text {
         TextLanguageDataCollection* textLanguageDataCollection;
         TagReplaceableCollection* tagReplaceableCollection;
 
-        virtual void RL_UnkFunc1(fnd::ManagedResource* resource) override;
-        virtual void RL_UnkFunc2(void* unkParam1) override;
+        virtual void ResourceLoadedCallback(fnd::ManagedResource* resource) override;
+        virtual void ResourceUnloadedCallback(fnd::ManagedResource* resource) override;
         virtual void FCL_UnkFunc1(uint64_t unkParam1, uint64_t unkParam2, uint64_t unkParam3) override;
 
         TextAppModule(csl::fnd::IAllocator* pAllocator);

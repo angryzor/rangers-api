@@ -14,28 +14,26 @@ namespace hh::fnd {
         const char *pName;
         const char *pScopedName;
         uint32_t objectSize;
-        uint32_t unk1;
+        bool isInBinaContainer;
         ManagedResource* (*instantiator)(csl::fnd::IAllocator* pAllocator);
     };
 
     class StaticResourceContainer;
     class ManagedResource : public ReferencedObject, private csl::ut::NonCopyable {
-        csl::ut::VariableString name;
-        csl::ut::VariableString unk2;
-        csl::ut::VariableString unk3;
-        const ResourceTypeInfo* resourceTypeInfo;
-        void* unk5;
-        void* unk6;
-        void* binaryData;
-        size_t size;
-        void* unk8;
-
     public:
+        csl::ut::VariableString name;
+        csl::ut::VariableString unkStrPrefix; // before hyphen
+        csl::ut::VariableString unkStrPostfix; // after hyphen
+        const ResourceTypeInfo* resourceTypeInfo;
+        csl::fnd::IAllocator* resourceAllocator;
+        void* originalBinaryData;
+        void* unpackedBinaryData;
+        size_t size;
+        File* structContainingFileData;
+
         ManagedResource(csl::fnd::IAllocator* pAllocator);
 
-        inline const char* GetName() const {
-            return name.c_str();
-        }
+        inline const char* GetName() const;
 
         inline const ResourceTypeInfo& GetClass() const {
             return *resourceTypeInfo;
@@ -44,6 +42,13 @@ namespace hh::fnd {
         inline size_t GetSize() const {
             return size;
         }
+
+        inline csl::fnd::IAllocator* GetResourceAllocator() {
+            return resourceAllocator;
+        }
+
+        static ManagedResource* Create(csl::fnd::IAllocator* allocator, File* file, const char* name, ResourceTypeInfo* resourceTypeInfo);
+        static ManagedResource* Create(csl::fnd::IAllocator* allocator, csl::fnd::IAllocator* resourceAllocator, const char* unkStrParam, const char* name, void* data, size_t size, ResourceTypeInfo* resourceTypeInfo);
 
         // This is only guessed from a similar function in rio, but there this and the following function are swapped.
         // I haven't actually seen this be overridden anywhere.

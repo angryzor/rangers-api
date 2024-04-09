@@ -17,8 +17,8 @@ namespace app::text {
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
 
-        virtual void RL_UnkFunc1(hh::fnd::ManagedResource* resource) override;
-        virtual void RL_UnkFunc2(void* unkParam1) override;
+        virtual void ResourceLoadedCallback(hh::fnd::ManagedResource* resource) override;
+        virtual void ResourceUnloadedCallback(hh::fnd::ManagedResource* resource) override;
         virtual void EVL_UnkFunc2(int unkParam1, int unkParam2, int& unkParam3) override;
         virtual void ARML_UnkFunc1(int unkParam1) override;
 

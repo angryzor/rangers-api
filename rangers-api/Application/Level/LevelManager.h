@@ -17,8 +17,8 @@ namespace app::level {
         virtual void FCL_UnkFunc1(uint64_t unkParam1, uint64_t unkParam2, uint64_t unkParam3);
         virtual void FCL_UnkFunc2();
         virtual void FCL_UnkFunc3();
-        virtual void RL_UnkFunc1(hh::fnd::ManagedResource* resource);
-        virtual void RL_UnkFunc2(void* unkParam1);
+        virtual void ResourceLoadedCallback(hh::fnd::ManagedResource* resource);
+        virtual void ResourceUnloadedCallback(hh::fnd::ManagedResource* resource);
         virtual void FFL_UnkFunc1();
 
         GAMESERVICE_CLASS_DECLARATION(LevelManager)

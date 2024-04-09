@@ -43,7 +43,7 @@ namespace hh::game {
         ObjectWorldChunk(csl::fnd::IAllocator* allocator, GameManager* gameManager);
 		virtual void GameObjectRemovedCallback(GameManager* gameManager, GameObject* gameObject);
         void AddLayer(ObjectWorldChunkLayer* layer);
-        void RemoveLayer(ObjectWorldChunkLayer* layer);
+        inline void RemoveLayer(ObjectWorldChunkLayer* layer);
         void RemoveLayerAll();
         const csl::ut::MoveArray<ObjectWorldChunkLayer*>& GetLayers() const;
         void SetLayerEnabled(const char* name, bool enabled);

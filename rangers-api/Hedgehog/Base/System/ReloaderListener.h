@@ -1,10 +1,11 @@
 #pragma once
 
 namespace hh::fnd {
+    class ManagedResource;
     class ReloaderListener {
     public:
-        virtual ~ReloaderListener();
-        virtual void Unk1() {}
-        virtual void Unk2() {}
+        virtual ~ReloaderListener() = default;
+        virtual void UnknownThingReloadedCallback(void* thing) {}
+        virtual void ResourceReloadedCallback(ManagedResource* resource) {}
     };
 }

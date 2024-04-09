@@ -22,6 +22,7 @@ namespace hh::fnd {
         virtual void RMRU1L_UnkFunc1(uint64_t unkParam1, uint64_t unkParam2) override;
         virtual void RMRU1L_UnkFunc2(uint64_t unkParam1, uint64_t unkParam2) override;
 
+        const csl::ut::MoveArray<ManagedResource*>& GetResourcesByTypeInfo(const ResourceTypeInfo* typeInfo);
         csl::ut::MoveArray<DynamicResourceContainer*>& GetResourceContainers() {
             return resourceContainers;
         }
@@ -34,8 +35,8 @@ namespace hh::fnd {
         class ResourceListener {
         public:
             virtual ~ResourceListener();
-            virtual void RL_UnkFunc1(ManagedResource* resource) {}
-            virtual void RL_UnkFunc2(void* unkParam1) {}
+            virtual void ResourceLoadedCallback(ManagedResource* resource) {}
+            virtual void ResourceUnloadedCallback(ManagedResource* resource) {}
         };
     };
 }

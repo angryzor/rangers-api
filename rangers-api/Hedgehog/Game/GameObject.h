@@ -76,7 +76,7 @@ namespace hh::game
 		uint32_t m_VisualComponentsLengthWithUnk48InHiWord;
 		uint32_t m_PhysicsComponentsLengthWithUnk48InHiWord;
 		uint32_t m_AudibleComponentsLengthWithUnk48InHiWord;
-		GameManager* pOwnerDocument{};
+		GameManager* gameManager{};
 
 		void* unk54;
 		//??GameObjectClass* pStaticClass{};
