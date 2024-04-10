@@ -25,7 +25,7 @@ namespace hh::gfx {
 		virtual void* GetClassId() override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
-		virtual void Step(const fnd::SUpdateInfo& updateInfo) override;
+		virtual void PostStepCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
 
         void AddModel(GOCVisualModel* model);
         void RemoveModel(GOCVisualModel* model);

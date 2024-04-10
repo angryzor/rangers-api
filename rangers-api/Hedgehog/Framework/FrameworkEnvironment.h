@@ -18,7 +18,8 @@ namespace hh::fw {
         Window* window;
         uint64_t unk6;
         uint64_t unk7;
-        int64_t unk8;
+        uint32_t unk8;
+        uint32_t unk8b;
         uint64_t unk9;
         uint64_t unk10;
         uint64_t unk11;

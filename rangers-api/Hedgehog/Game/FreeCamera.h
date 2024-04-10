@@ -38,7 +38,7 @@ namespace hh::game {
         void Initialize(csl::fnd::IAllocator* allocator);
         bool HasCamera();
 		virtual void GameServiceRemovedCallback(GameService* gameService) override;
-		virtual void GUL_UnkFunc2() override;
+		virtual void PostObjectUpdateCallback(GameManager* gameManager, void* unkParam) override;
 
         inline void SetLocked(bool value) {
             inputComponent->SetListening(!value);

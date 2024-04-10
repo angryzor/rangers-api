@@ -58,13 +58,17 @@ namespace hh::game {
     };
 
     struct ObjectWorldData {
+        enum class Flag : uint8_t {
+            NEEDS_TERMINATION,
+        };
         uint32_t unk1;
         uint32_t unk2;
-        uint64_t unk3;
+        csl::ut::Bitset<Flag> flags;
         csl::ut::MoveArray<ObjectData*> objects;
     };
 
     void TerminateObjectData(csl::fnd::IAllocator* allocator, ObjectData* objData);
+    void TerminateObjectWorldData(csl::fnd::IAllocator* allocator, ObjectWorldData* objData);
 
     class ResObjectWorld : public fnd::ManagedResource {
     public:

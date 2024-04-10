@@ -2,26 +2,13 @@
 
 namespace hh::game
 {
-	class GameManagerUnk1 {
-		class Unk2 {
-			void* unk10;
-			void* unk11;
-			void* unk12;
-		};
-
-		void* unk15;
-		Unk2 unk16;
-		Unk2 unk17;
-		uint32_t unk18;
-	};
-
 	class alignas(8) GameStepListener
 	{
 	public:
 		virtual ~GameStepListener() = default;
-		virtual void OnGameStep(float timestep) {}
-		virtual void Step(const fnd::SUpdateInfo& updateInfo) {}
-		virtual void Update(const fnd::SUpdateInfo& updateInfo) {}
+		virtual void PreStepCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+		virtual void PostStepCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+		virtual void UpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
 	};
 	
     class alignas(8) GamePauseListener {
@@ -35,8 +22,8 @@ namespace hh::game
 	{
 	public:
 		virtual ~GameUpdateListener() = default;
-		virtual void GUL_UnkFunc1() {}
-		virtual void GUL_UnkFunc2() {}
+		virtual void PreObjectUpdateCallback(GameManager* gameManager, void* unkParam) {}
+		virtual void PostObjectUpdateCallback(GameManager* gameManager, void* unkParam) {}
 	};
 
 	class alignas(8) GameManagerListener
@@ -47,22 +34,54 @@ namespace hh::game
 		virtual void GameObjectRemovedCallback(GameManager* gameManager, GameObject* gameObject) {}
 		virtual void GameServiceAddedCallback(GameService* gameService) {}
 		virtual void GameServiceRemovedCallback(GameService* gameService) {}
-		virtual void GML_UnkFunc5() {}
-		virtual void GML_UnkFunc6() {}
-		virtual void GML_UnkFunc7() {}
+		virtual void MessageProcessedCallback(GameManager* gameManager, const fnd::Message& msg) {}
+		virtual void PreShutdownObjectCallback(GameManager* gameManager) {}
+		virtual void PostShutdownObjectCallback(GameManager* gameManager) {}
 		virtual void GML_UnkFunc8() {}
 	};
 
 	class GameManager;
 
+	struct GameManagerOperation {
+		enum class OperationId : uint8_t {
+			SET_OBJECT_LAYER = 1,
+			MAYBE_RELEASE_OBJECT = 4,
+		};
+
+		OperationId id;
+		GameObject* gameObject;
+		uint32_t layerId; // could be variable based on operation id, don't know yet
+		uint32_t unk1;
+		uint64_t unk2;
+		uint64_t unk3; // unsure, just based off of array stride
+	};
 	class GameManagerOperationQueue : public fnd::ReferencedObject {
 		GameManager* pGameManager;
 		csl::ut::MoveArray<void*> unk1;
-		csl::ut::MoveArray<void*> unk2;
-		GameManagerUnk1 unk3;
+		csl::ut::MoveArray<GameManagerOperation> pendingOperations; // or maybe specifically layer operations
+		fnd::MessageQueue messageQueue;
 		csl::fnd::Mutex mutex;
 	public:
 		GameManagerOperationQueue(csl::fnd::IAllocator* pAllocator, GameManager* pGameManager);
+		void ExecuteAllPendingLayerOperations();
+	};
+
+	class GameManagerCallbackUtil {
+		static void FirePreShutdownObject(GameManager* gameManager);
+		static void FirePostShutdownObject(GameManager* gameManager);
+		static void FireGameObjectAdded(GameManager* gameManager, GameObject* gameObject);
+		static void FireGameObjectRemoved(GameManager* gameManager, GameObject* gameObject);
+		static void FireObjectLayerSet(GameManager* gameManager, GameObject* gameObject);
+		static void FireMessageProcessed(GameManager* gameManager, const fnd::Message& message);
+		static void FirePreObjectUpdate(GameManager* gameManager, void* unkParam); // probably GameStepInfo or UpdatingPhase
+		static void FirePostObjectUpdate(GameManager* gameManager, void* unkParam); // probably GameStepInfo or UpdatingPhase
+		static void FirePreStep(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+		static void FirePostStep(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+		static void FireUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+	};
+
+	class GameObjectCallbackUtil {
+		static void FireObjectLayerSet(GameObject* gameObject);
 	};
 
 	class GameApplication;
@@ -72,6 +91,8 @@ namespace hh::game
 	class GameManager : public fnd::ReferencedObject, public fnd::ReloaderListener, private csl::ut::NonCopyable
 	{
 		GameService* CreateService(GameServiceClass* gameServiceClass, csl::fnd::IAllocator* residentAllocator);
+		static bool DispatchFunc(const fnd::Message& message, void* userData);
+		void RiseMessageProcessed(const fnd::Message& message);
 	public:
 		uint32_t unk33;
 		uint32_t unk34;
@@ -80,7 +101,7 @@ namespace hh::game
 		csl::ut::MoveArray<GameObject*> m_Objects{ pAllocator };
 		csl::ut::MoveArray<GameService*> m_Services{ pAllocator };
 		csl::ut::PointerMap<GameServiceClass*, GameService*> m_ServicesByClass{ pAllocator };
-		csl::ut::MoveArray<void*> unk40;
+		csl::ut::MoveArray<GameObject*> shutdownObjects;
 		csl::ut::MoveArray<GameManagerListener*> m_ManagerListeners{ pAllocator };
 		csl::ut::MoveArray<void*> unk42; // csl::ut::MoveArray<GameObjectListener> m_ObjectListeners{ pAllocator };
 		csl::ut::MoveArray<void*> unk43; // csl::ut::MoveArray<ComponentListener> m_ComponentListeners{ pAllocator };
@@ -90,10 +111,11 @@ namespace hh::game
 		csl::ut::MoveArray<GameStepListener*> m_StepListeners{ pAllocator };
 		csl::ut::MoveArray<GameUpdateListener*> m_UpdateListeners{ pAllocator };
 		csl::ut::MoveArray<void*> unk49;
-		void* unk50;
+		uint32_t unk50; // See GameManagerCallbackUtil::FirePostShutdownObject
+		uint32_t unk50b;
 		uint32_t unk51;
 		csl::ut::MoveArray<void*> unk52;
-		GameManagerUnk1 unk53;
+		fnd::MessageQueue messageQueue;
 		GameManagerOperationQueue* pOperationQueue;
 		uint32_t unk55;
 		GameApplication* pApplication;
@@ -197,5 +219,7 @@ namespace hh::game
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();
 		void SendMessageToLayer(int layer, const fnd::Message& message);
+		void SetObjectLayer(GameObject* gameObject, int layerId);
+		void PerformMessages();
 	};
 }

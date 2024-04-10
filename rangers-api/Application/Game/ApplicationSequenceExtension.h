@@ -21,7 +21,7 @@ namespace app::game {
         virtual uint64_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
         virtual uint64_t UnkFunc5() override {}
-		virtual void GML_UnkFunc5() override;
+		virtual void MessageProcessedCallback(hh::game::GameManager* gameManager, const hh::fnd::Message& msg) override;
         virtual void UIEL_UnkFunc1() override;
         virtual void FNL_UnkFunc4() override;
 

@@ -91,7 +91,7 @@ namespace hh::game
 		csl::ut::MoveArray<GOComponent*> m_VisualComponents;
 		csl::ut::MoveArray<GOComponent*> m_PhysicsComponents;
 		csl::ut::MoveArray<GOComponent*> m_AudibleComponents;
-		csl::ut::MoveArray<void*> unk66;
+		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
 		Unk1 unk67;
 		WorldObjectStatus* status;
 		GameObjectClass* pClass;
@@ -105,7 +105,7 @@ namespace hh::game
 		virtual bool ProcessMessage(fnd::Message& message);
 		virtual bool IsAcceptingMessages();
 		virtual void Initialize(GameManager* gameManager) {}
-		virtual void Dispose() {}
+		virtual void RemovedFromGameManager(GameManager* gameManager) {}
 		virtual void Update(uint64_t unkParam, uint64_t unkParam2) {}
 		virtual void UnkFunc9() {}
 		virtual void UnkFunc10() {}
@@ -173,6 +173,7 @@ namespace hh::game
 
 		void LinkActionToUIKey(ui::LayerController* layerController, const char* uiPath, const char* actionName, void* unkParam);
 		void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
+		void KillChildren();
 	public:
 		template<typename T>
 		T* GetComponent() {
@@ -183,6 +184,7 @@ namespace hh::game
 		void RemoveListener(GameObjectListener* listener);
 		void SetEditorStatus(bool status);
 		bool GetEditorStatus() const;
+		void NotifyDestroy();
 		
 		template<typename T>
 		T* GetWorldDataByClass() const {
@@ -193,5 +195,7 @@ namespace hh::game
 		inline WorldObjectStatus* GetWorldObjectStatus() const {
 			return status;
 		}
+
+		const csl::ut::MoveArray<fnd::Handle<GameObject>>& GetChildren();
 	};
 }

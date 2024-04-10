@@ -32,7 +32,7 @@ namespace app::ui {
 
         virtual bool fUnk2(hh::fnd::Message& message) override;
         virtual void Initialize(hh::game::GameManager* gameManager) override;
-        virtual void Dispose() override;
+        virtual void RemovedFromGameManager(hh::game::GameManager* gameManager) override;
         virtual void Update(uint64_t unkParam, uint64_t unkParam2) override;
         virtual void OnDeviceChange() override;
     };

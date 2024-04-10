@@ -59,6 +59,7 @@
 // Hedgehog Universe Library
 #include "Hedgehog/Base/Universe/hhMessage.h"
 #include "Hedgehog/Base/Universe/hhMessenger.h"
+#include "Hedgehog/Base/Universe/MessageQueue.h"
 
 #include "Hedgehog/Utility/TempString.h"
 #include "Hedgehog/Utility/TempMoveArray.h"

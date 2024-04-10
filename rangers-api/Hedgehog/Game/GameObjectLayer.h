@@ -9,5 +9,7 @@ namespace hh::game {
         uint32_t unk25;
 
         GameObjectLayer(csl::fnd::IAllocator* pAllocator, const char* name);
+        void RemoveObject(GameObject* gameObject);
+        void AddObject(GameObject* gameObject);
     };
 }

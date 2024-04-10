@@ -23,7 +23,7 @@ namespace hh::physics {
         virtual uint64_t UnkFunc11() override;
         virtual uint64_t UnkFunc12() override;
         virtual uint64_t UnkFunc13() override;
-        virtual void GML_UnkFunc7() override;
+        virtual void PostShutdownObjectCallback(game::GameManager* gameManager) override;
 
         GAMESERVICE_CLASS_DECLARATION(PhysicsWorldBullet)
     };
