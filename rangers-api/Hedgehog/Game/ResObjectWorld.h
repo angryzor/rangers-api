@@ -55,6 +55,8 @@ namespace hh::game {
 
             spawnerData = hh::fnd::RflTypeInfoRegistry::GetInstance()->ConstructObject(allocator, gameObjectClass->spawnerDataRflClass->GetName());
         }
+
+        ComponentData* GetComponentDataByType(const char* type);
     };
 
     struct ObjectWorldData {

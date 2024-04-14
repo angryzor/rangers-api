@@ -4,6 +4,7 @@ namespace hh::gfnd {
     class RenderableContainer;
 
     class RenderableParameter {
+    public:
         char unk1[136];
         needle::RenderingDeviceContext* renderingContext;
     };
@@ -12,7 +13,7 @@ namespace hh::gfnd {
     public:
         RenderableContainer* renderableContainer;
         csl::ut::LinkListNode renderableContainerNode;
-        char preferredContainer;
+        uint8_t preferredContainer;
         char unk4b;
         uint16_t unk5;
         const char* name;

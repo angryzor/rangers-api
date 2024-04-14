@@ -107,7 +107,7 @@ namespace hh::gfx {
 		virtual void GetDebugInfoMaybe() override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
-        virtual void OnGOCVisualEvent(int unkParam1, unsigned int unkParam2, void* unkParam3) override;
+        virtual void OnGOCVisualEvent(GOCVisualEvent unkParam1, unsigned int unkParam2, void* unkParam3) override;
         void SetMasterPoseComponent(GOCVisualModel* component);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCVisualModel)

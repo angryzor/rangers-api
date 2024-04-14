@@ -12,21 +12,23 @@ namespace hh::needle {
         TRIANGLE_STRIP,
     };
 
-    enum class CullMode {
-        UNK1,
-        UNK2,
+    enum class CullMode : uint32_t {
+        NONE,
+        FRONT,
+        BACK,
     };
 
     enum class FillMode {
 
     };
 
-    enum class BlendMode {
-
+    enum class BlendMode : uint32_t {
+        ZERO,
+        ONE,
     };
 
-    enum class BlendOp {
-
+    enum class BlendOp : uint32_t {
+        ADD,
     };
 
     enum class ComparisonFunc {

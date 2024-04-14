@@ -20,7 +20,7 @@ namespace hh::gfx {
         void Setup(const SetupInfo& setupInfo);
 
 		virtual void* GetClassId() override;
-        virtual void OnGOCVisualEvent(int unkParam1, unsigned int unkParam2, void* unkParam3) override {}
+        virtual void OnGOCVisualEvent(GOCVisualEvent unkParam1, unsigned int unkParam2, void* unkParam3) override {}
         
         GOCOMPONENT_CLASS_DECLARATION(GOCVisualDebugDraw)
     };

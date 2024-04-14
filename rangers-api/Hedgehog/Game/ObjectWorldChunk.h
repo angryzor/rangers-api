@@ -7,9 +7,15 @@ namespace hh::game {
                        //     1.41 0x140D4B1F7
 	};
 
+    class ObjectWorldChunk;
     class ObjectWorldChunkListener {
     public:
         virtual ~ObjectWorldChunkListener() = default;
+        virtual void ObjectDataAddedCallback(const ObjectWorldChunk* chunk, const ObjectData* objectData) {}
+        virtual void ObjectDataRemovedCallback(const ObjectWorldChunk* chunk, const ObjectData* objectData) {}
+        virtual void ObjectDataChangedCallback(const ObjectWorldChunk* chunk, const ObjectData* objectData) {}
+        virtual void FinishEditorCallback() {}
+        virtual void OWC_UnkFunc1() {}
     };
 
 	// If spawntype is ETERNAL or EXTRINSIC, then don't spawn, otherwise spawn.

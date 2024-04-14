@@ -35,7 +35,7 @@ namespace hh::physics {
     
         virtual uint64_t UnkFunc4() override;
         virtual uint64_t UnkFunc5() override;
-        virtual void PWL_UnkFunc2() override;
+        virtual void ColliderRemovedCallback(GOCCollider* collider) override;
 
         void AddListener(PhysicsViewerContextListener* listener);
         void RemoveListener(PhysicsViewerContextListener* listener);

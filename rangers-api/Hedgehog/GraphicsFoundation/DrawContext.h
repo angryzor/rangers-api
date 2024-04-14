@@ -42,7 +42,7 @@ namespace hh::gfnd {
         virtual int64_t SetWireframeMode();
         virtual int64_t SetZTestEnable(bool enabled);
         virtual int64_t SetZWriteEnable(bool enabled);
-        virtual int64_t SetUnk1(unsigned int idx);
+        virtual int64_t SetCullingMode(unsigned int idx);
         virtual int64_t SetUnk2(int a2, int a3, unsigned int* a4);
     };
 }

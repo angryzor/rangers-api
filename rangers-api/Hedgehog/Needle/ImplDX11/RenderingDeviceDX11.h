@@ -26,9 +26,9 @@ namespace hh::needle::ImplDX11 {
         virtual void UnkFunc16() override;
         virtual void UnkFunc17() override;
         virtual void UnkFunc18() override;
-        virtual void UnkFunc19() override;
+        virtual void CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) override;
         virtual void UnkFunc20() override {}
-        virtual void UnkFunc21() override {}
+        virtual void UnkFunc21() override;
         virtual VertexShader* CreateVertexShader(const void* data, size_t size) override;
         virtual PixelShader* CreatePixelShader(const void* data, size_t size) override;
         virtual void UnkFunc24() override;

@@ -23,7 +23,7 @@ namespace hh::needle {
         virtual void UnkFunc16() = 0;
         virtual void UnkFunc17() = 0;
         virtual void UnkFunc18() = 0;
-        virtual void UnkFunc19() = 0;
+        virtual void CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) = 0;
         virtual void UnkFunc20() = 0;
         virtual void UnkFunc21() = 0;
         virtual VertexShader* CreateVertexShader(const void* data, size_t size) = 0;

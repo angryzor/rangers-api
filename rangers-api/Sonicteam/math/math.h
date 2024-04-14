@@ -6,6 +6,10 @@
 #define MATHF_RADTODEG(X) (X * ((float)(180.0f / MATHF_PI)))
 #define MATHF_DEGTORAD(X) (X * ((float)(MATHF_PI / 180.0f)))
 
+namespace csl::geom {
+	class Aabb;
+}
+
 namespace csl::math 
 {
 	class Vector2 : public Eigen::Vector2f
@@ -321,6 +325,7 @@ namespace csl::math
 			m_Min = { m_Min.cwiseMin(point) };
 			m_Max = { m_Max.cwiseMax(point) };
 		}
+		Vector3 Center() const;
 	};
 
 	class Transform
@@ -392,6 +397,8 @@ namespace csl::math
 
 		return min;
 	}
+
+	bool Intersection(const Vector3& point, geom::Aabb aabb);
 	
 	class Constants
 	{
@@ -413,5 +420,7 @@ namespace csl::geom {
 		math::Vector3 m_Min{};
 		math::Vector3 m_Max{};
 		static Aabb Transform(const math::Matrix34& matrix, const Aabb& aabb);
+		math::Vector3 Center() const;
+		bool Intersect(const Aabb& aabb) const;
 	};
 }

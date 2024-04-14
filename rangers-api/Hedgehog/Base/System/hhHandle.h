@@ -2,6 +2,7 @@
 
 namespace hh::fnd
 {
+	class HandleManager;
 	class HandleBase
 	{
 	protected:
@@ -27,10 +28,7 @@ namespace hh::fnd
 		}
 
         // TODO: fix
-		RefByHandleObject* Get(void* handleManager) const
-		{
-			return nullptr;
-		}
+		RefByHandleObject* Get(HandleManager* handleManager) const;
 
 		bool operator==(const RefByHandleObject* pObj)
 		{
@@ -69,9 +67,9 @@ namespace hh::fnd
 			
 		}
 
-		T* Get(void* handleManager) const
+		T* Get(HandleManager* handleManager) const
 		{
-			return reinterpret_cast<T*>(HandleBase::Get());
+			return reinterpret_cast<T*>(HandleBase::Get(handleManager));
 		}
 
 		Handle<T>& operator=(T* pObj)

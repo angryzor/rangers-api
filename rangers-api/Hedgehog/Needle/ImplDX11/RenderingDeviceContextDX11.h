@@ -21,7 +21,7 @@ namespace hh::needle::ImplDX11 {
         virtual uint32_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
         virtual uint64_t UnkFunc5() override;
-        virtual uint64_t UnkFunc6() override;
+        virtual uint64_t UnkFunc6b() override;
         virtual uint64_t UnkFunc7b() override;
         virtual uint64_t UnkFunc8() override;
         virtual uint64_t UnkFunc9() override;
@@ -79,8 +79,8 @@ namespace hh::needle::ImplDX11 {
         virtual uint64_t SetColorWriteEnable(bool unkParam1) override;
         virtual uint64_t UnkFunc61() override;
         virtual uint64_t SetBlendDescSetting() override;
-        virtual uint64_t SetBlendMode(bool unkParam1, BlendMode mode1, BlendMode mode2, BlendOp operation) override;
-        virtual uint64_t SetBlendMode(bool unkParam1, BlendMode mode11, BlendMode mode12, BlendOp operation1, BlendMode mode21, BlendMode mode22, BlendOp operation2) override;
+        virtual void SetBlendModeWithAlpha(bool enabled, BlendMode src, BlendMode dst, BlendOp op, BlendMode alphaSrc, BlendMode alphaDst, BlendOp alphaOp) override;
+        virtual void SetBlendMode(bool enabled, BlendMode src, BlendMode dst, BlendOp op) override;
         virtual uint64_t SetViewport(const ViewportSetting* viewportSetting, unsigned int unkParam1) override;
         virtual uint64_t MaybeSetScissor(Rectangle* scissorRect, unsigned int unkParam1) override;
         virtual uint64_t UnkFunc67() override;

@@ -29,7 +29,7 @@ namespace hh::physics {
         virtual int OnLifeCycleChange(bool created) override;
         virtual void PhysicsWorldAdded(PhysicsWorld* physicsWorld) override;
         virtual void PhysicsWorldRemoved(PhysicsWorld* physicsWorld) override;
-        virtual void PWL_UnkFunc2() override;
+        virtual void ColliderRemovedCallback(GOCCollider* collider) override;
         virtual bool MEH_Unk1() override;
         virtual bool MEH_Unk2() override;
         virtual bool MEH_Unk3() override;

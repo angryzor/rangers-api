@@ -16,8 +16,8 @@ namespace hh::physics {
         virtual uint64_t UnkFunc4() override;
         virtual uint64_t UnkFunc5() override;
         virtual uint64_t UnkFunc6() override;
-        virtual uint64_t PerformRayCastClosest() override;
-        virtual uint64_t PerformRayCastAllHits() override;
+        virtual bool PerformRayCastClosest(const csl::math::Vector3& from, const csl::math::Vector3& to, uint32_t filterMask, PhysicsQueryResult& result, uint64_t unkParam) override;
+        virtual bool PerformRayCastAllHits(const csl::math::Vector3& from, const csl::math::Vector3& to, uint32_t filterMask, csl::ut::MoveArray<PhysicsQueryResult>& result, uint64_t unkParam) override;
         virtual uint64_t UnkFunc9() override;
         virtual uint64_t UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
