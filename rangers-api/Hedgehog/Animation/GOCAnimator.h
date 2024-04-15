@@ -2,6 +2,7 @@
 
 namespace hh::anim {
     class GOCAnimator : public GOCAnimationSingle, public TriggerListener, public AnimationStateListener {
+    public:
         AnimationStateMachine* animationStateMachine;
         AsmResourceManager* asmResourceManager;
         uint32_t unk203;
@@ -9,14 +10,11 @@ namespace hh::anim {
         char unk204b;
         uint64_t unk205;
     
-    public:
-        struct Config {
-            uint16_t unk1;
-            uint8_t unk2;
-            uint32_t unk3;
-            uint32_t unk4;
-            void* unk5;
-            uint64_t unk6;
+        struct SetupInfo : public GOCAnimationSingle::SetupInfo {
+            AsmResourceManager* asmResourceManager;
+            uint8_t unk102;
+            uint8_t unk103; // This isn't referenced in Setup(), I don't understand...
+            bool setUnk2Flag;
         };
 
         virtual void* GetClassId() override;
@@ -29,7 +27,10 @@ namespace hh::anim {
         virtual void TL_MaybeOnTrigger() override;
         virtual void ASL_MaybeOnStateChange() override;
 
-        void SetAnimation(const char* animationName);
+        void Setup(const SetupInfo& setupInfo);
+        bool ChangeState(const char* stateName);
+        bool ChangeStateWithoutTransition(const char* stateName);
+        bool ChangeToNull(int unkParam);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCAnimator)
     };

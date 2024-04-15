@@ -45,8 +45,8 @@ namespace hh::game
 			UNK4,
 			UNK5,
 			OBJECT_LAYER_CHANGED,
-			UNKNOWN_THING_RELOADED, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::UnknownThingReloadedCallback is called
-			RESOURCE_RELOADED,      // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::ResourceReloadedCallback is called
+			PRE_RESOURCE_RELOAD, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::PreResourceReloadCallback is called
+			POST_RESOURCE_RELOAD, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::PostResourceReloadCallback is called
 		};
 
 		struct Unk1 {

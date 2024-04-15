@@ -1,5 +1,13 @@
 #pragma once
 
+#define DEFAULT_CREATE_FUNC(ClassName) private:\
+		ClassName(csl::fnd::IAllocator* allocator);\
+		static ClassName* Create(csl::fnd::IAllocator* allocator);
+
+#define CREATE_FUNC(ClassName, ...) private:\
+		ClassName(csl::fnd::IAllocator* allocator, __VA_ARGS__);\
+		static ClassName* Create(csl::fnd::IAllocator* allocator, __VA_ARGS__);
+
 namespace hh::fnd
 {
 	class alignas(8) BaseObject

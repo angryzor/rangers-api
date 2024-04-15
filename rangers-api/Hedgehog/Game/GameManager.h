@@ -121,8 +121,8 @@ namespace hh::game
 		GameApplication* pApplication;
 
 		GameManager(csl::fnd::IAllocator* pAllocator, GameApplication* pApplication);
-		virtual void UnknownThingReloadedCallback(void* thing) override;
-		virtual void ResourceReloadedCallback(fnd::ManagedResource* resource) override;
+		virtual void PreResourceReloadCallback(fnd::ManagedResource* resource) override;
+		virtual void PostResourceReloadCallback(fnd::ManagedResource* resource) override;
 
 		static GameManager* instance;
 		static GameManager* GetInstance();

@@ -5,7 +5,7 @@ namespace hh::fnd {
     class ReloaderListener {
     public:
         virtual ~ReloaderListener() = default;
-        virtual void UnknownThingReloadedCallback(void* thing) {}
-        virtual void ResourceReloadedCallback(ManagedResource* resource) {}
+        virtual void PreResourceReloadCallback(ManagedResource* resource) {}
+        virtual void PostResourceReloadCallback(ManagedResource* resource) {}
     };
 }
