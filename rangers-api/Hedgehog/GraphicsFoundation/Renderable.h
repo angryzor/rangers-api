@@ -14,7 +14,7 @@ namespace hh::gfnd {
         RenderableContainer* renderableContainer;
         csl::ut::LinkListNode renderableContainerNode;
         uint8_t preferredContainer;
-        char unk4b;
+        uint8_t priority;
         uint16_t unk5;
         const char* name;
         uint32_t unk6;

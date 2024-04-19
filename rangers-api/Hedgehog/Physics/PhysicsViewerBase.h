@@ -15,6 +15,6 @@ namespace hh::physics {
         virtual int64_t UnkFunc6();
         virtual void GVCL_UnkFunc1() override;
         virtual void GVCL_UnkFunc2() override;
-		virtual void PostObjectUpdateCallback(game::GameManager* gameManager, void* unkParam) override;
+		virtual void PostGameUpdateCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
     };
 }

@@ -13,7 +13,7 @@ namespace hh::fnd {
         static ManagedResource* Create(csl::fnd::IAllocator* pAllocator);
     public:
         virtual void Load(void* data, size_t size) override;
-        virtual void Unload(void* data, size_t size) override;
+        virtual void Unload() override;
         virtual void UnkFunc6(void* unkParam) {}
 
         static const ResourceTypeInfo* GetTypeInfo();

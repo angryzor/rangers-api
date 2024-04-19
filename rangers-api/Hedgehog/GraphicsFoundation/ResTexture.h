@@ -16,7 +16,7 @@ namespace hh::gfnd {
         inline hh::needle::Texture* GetTexture() const { return texture; }
 
         virtual void Load(void* data, size_t size) override;
-        virtual void Unload(void* data, size_t size) override;
+        virtual void Unload() override;
         virtual void Reload(void* data, size_t size) override;
     };
 }

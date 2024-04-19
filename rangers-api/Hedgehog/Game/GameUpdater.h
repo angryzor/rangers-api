@@ -53,6 +53,11 @@ namespace hh::game {
     public:
         GameUpdater(csl::fnd::IAllocator* allocator, const GameUpdaterConfig& config);
 
+        virtual void* GetRuntimeTypeInfo();
+        virtual void* DoStep(const GameStepInfo& stepInfo);
+
+        void Update(const fnd::SUpdateInfo& updateInfo, GameApplication* application);
+
         // inline bool GetRunning() const {
         //     return flags.test(Flags::RUNNING);
         // }

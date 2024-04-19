@@ -10,9 +10,11 @@ namespace hh::fnd
         void* field_50;
         void* current;
         void* pAllocator2;
-        void* field_68;
+        volatile int spinlock;
     public:
         HandleManager(csl::fnd::IAllocator* pAllocator, size_t size);
         static HandleManager* Create(csl::fnd::IAllocator* pAllocator, size_t size);
+        void AddObject(RefByHandleObject* obj);
+        void RemoveObject(RefByHandleObject* obj);
     };
 }

@@ -113,6 +113,6 @@ namespace app
 			ms_fpPlayLipAnimation(this, in_pCaptionName);
 		}
 		
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
 	};
 }

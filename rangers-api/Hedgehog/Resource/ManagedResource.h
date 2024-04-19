@@ -18,6 +18,7 @@ namespace hh::fnd {
         ManagedResource* (*instantiator)(csl::fnd::IAllocator* pAllocator);
     };
 
+    class ResourceResolver;
     class StaticResourceContainer;
     class ManagedResource : public ReferencedObject, private csl::ut::NonCopyable {
     public:
@@ -54,8 +55,8 @@ namespace hh::fnd {
         // I haven't actually seen this be overridden anywhere.
         virtual void Load(void* data, size_t size, StaticResourceContainer* container) { this->Load(data, size); }
         virtual void Load(void* data, size_t size) = 0;
-        virtual void Unload(void* data, size_t size) = 0;
-        virtual void Resolve(ResourceResolver* resolver) {}
+        virtual void Unload() = 0;
+        virtual void Resolve(ResourceResolver& resolver) {}
         virtual void Reload(void* data, size_t size) {}
     };
 }

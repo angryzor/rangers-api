@@ -10,7 +10,7 @@ namespace hh::fnd {
 
     class ResourceManagerRelatedUnk1 : public fnd::ReferencedObject {
         csl::ut::MoveArray<void*> unk1;
-        csl::ut::PointerMap<void*, void*> unk2;
+        csl::ut::StringMap<void*> unk2;
         csl::ut::MoveArray<void*> unk3;
         csl::ut::PointerMap<void*, void*> unk4;
         csl::ut::MoveArray<void*> unk5;

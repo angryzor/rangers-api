@@ -25,11 +25,11 @@ namespace hh::anim {
         virtual bool Accept() { return true; }
         virtual bool always_false() { return false; }
         virtual uint64_t UnkFunc4();
-        virtual uint64_t UnkFunc5() = 0;
-        virtual uint64_t UnkFunc6() = 0;
-        virtual uint64_t UnkFunc7() = 0;
-        virtual void UnkFunc8() {}
-        virtual uint64_t UnkFunc9();
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
+        virtual uint64_t GetLocalBlendMaskImpl() const = 0;
+        virtual unsigned int SyncLocalBlendMask() const {}
+        virtual void ResetBlendMask(const char* mask);
         virtual uint64_t UnkFunc10() { return false; }
         virtual uint64_t UnkFunc11();
         virtual void UnkFunc12() {}
@@ -45,8 +45,7 @@ namespace hh::anim {
         uint64_t MarkBlendMaskDirty();
         uint64_t ResetBlendMask(const uint8_t* unkParam);
         uint64_t SetWeight(float weight);
-        // uint64_t SyncAll(BlendTreeSyncContext& syncContext);
-        uint64_t SyncLocalBlendMask() const;
+        void SyncAll(BlendTreeSyncContext& syncContext);
         void AddChild(BlendNodeBase* child);
         void RemoveChild(BlendNodeBase* child);
     };

@@ -9,9 +9,6 @@ namespace hh::needle {
     };
 
     class VertexLayout : public TNeedleRefcountUniqueObjectBase<NeedleRefcountResource> {
-        uint64_t unk101;
-        uint64_t unk102;
-        uint64_t unk103;
     public:
         static size_t constexpr resourceId = NEEDLE_RESOURCE_VERTEX_LAYOUT;
 

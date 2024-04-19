@@ -83,7 +83,7 @@ namespace app::gfx {
     public:
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
-		virtual void PostStepCallback(hh::game::GameManager* gameManager, const hh::fnd::SUpdateInfo& updateInfo) override;
+		virtual void PostStepCallback(hh::game::GameManager* gameManager, const hh::game::GameStepInfo& gameStepInfo) override;
 
         void SetSceneParameters(SceneParameters* parameters, int idx);
 

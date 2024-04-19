@@ -13,19 +13,23 @@ namespace hh::fnd
 		/*
 		 * Sends a message to one particular receiver.
 		 */
-		bool SendMessage(Handle<Messenger>& receiver, Message& message);
+		Message* SendMessage(Handle<Messenger>& receiver, Message& message);
+		bool SendMessageImm(Handle<Messenger>& receiver, Message& message);
+		bool ForwardMessageImm(Handle<Messenger>& receiver, Message& message);
 
 	public:
-		void* pMessageManager; // hh::fnd::MessageManager*
+		MessageManager* messageManager;
 		uint32_t messageMask;
-		uint32_t pUnk3;
+		uint32_t unk3;
 
 		Messenger(csl::fnd::IAllocator* pAllocator);
 
-		virtual void* GetClassId();
-		virtual bool fUnk2(Message& message) { return !fUnk3(); }
+		virtual void* GetRuntimeTypeInfo();
+		virtual bool ProcessMessage(Message& message) { return !fUnk3(); }
 		virtual bool fUnk3() { return false; }
-		virtual bool ProcessMessage(Message& message);
+		virtual bool ReceiveMessage(Message& message);
 		virtual bool IsAcceptingMessages() { return 1; }
+		
+		bool SendMessageImm(Message& message);
 	};
 }

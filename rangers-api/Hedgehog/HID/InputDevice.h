@@ -5,7 +5,7 @@ namespace hh::hid {
     public:
         InputDevice(csl::fnd::IAllocator* pAllocator);
 
-        virtual void* GetClassId();
+        virtual void* GetRuntimeTypeInfo();
         virtual uint64_t UnkFunc1();
         virtual float UnkFunc2();
         virtual csl::math::Vector4 UnkFunc3(); // most probably not a vector, but don't know what it really is

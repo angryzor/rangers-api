@@ -12,7 +12,7 @@ namespace hh::hid {
         csl::ut::InplaceMoveArray<uint32_t, 13> unk8;
     public:
         Mouse(csl::fnd::IAllocator* pAllocator);
-        virtual void* GetClassId() override;
+        virtual void* GetRuntimeTypeInfo() override;
         virtual uint64_t UnkFunc1() override;
         virtual float UnkFunc2() override;
         virtual void UnkFunc5() override;

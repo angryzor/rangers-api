@@ -21,8 +21,8 @@ namespace app::game {
             };
         };
 
-		virtual void* GetClassId() override;
-		virtual bool fUnk2(hh::fnd::Message& message) override;
+		virtual void* GetRuntimeTypeInfo() override;
+		virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual bool fUnk3() override;
         virtual bool UnkFunc5() override;
         virtual bool UnkFunc6() override;

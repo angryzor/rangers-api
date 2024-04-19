@@ -16,10 +16,10 @@ namespace hh::game {
         uint8_t unk105; //flags? 0 = LEVEL_STARTED, 1 = EDITOR_STARTED
 
     public:
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
-		virtual void UpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
+		virtual void UpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 
         csl::ut::MoveArray<ObjectWorldChunk*>& GetWorldChunks() const;
         void AddWorldChunk(ObjectWorldChunk* chunk);

@@ -28,7 +28,9 @@ namespace hh::game
 		uint32_t unk20;
 		csl::fnd::Mutex mutex;
 
-		virtual void* GetClassId();
+		GameService(csl::fnd::IAllocator* allocator);
+
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void OnAddedToGame() {}
 		virtual void OnRemovedFromGame() {}
 	};

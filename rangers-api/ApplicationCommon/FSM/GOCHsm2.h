@@ -16,7 +16,7 @@ namespace app_cmn::fsm {
         };
 
         GOCHsm2(csl::fnd::IAllocator* pAllocator);
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual bool ProcessMessage(hh::fnd::Message& msg) override;

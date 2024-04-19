@@ -17,7 +17,7 @@ namespace app::level {
         csl::ut::MoveArray<void*> unk19;
         uint16_t unk20;
         uint8_t unk21;
-        virtual void* GetClassId();
+        virtual void* GetRuntimeTypeInfo();
 		virtual void OnAddedToGame();
 		virtual void OnRemovedFromGame();
         virtual void SML_UnkFunc1();

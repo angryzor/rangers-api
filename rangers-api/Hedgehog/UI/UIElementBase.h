@@ -26,7 +26,7 @@ namespace hh::ui {
         GOCUIComposition* GetGOCUIComposition();
         // This is a strange interface. The this pointer doesn't seem to be used in the function. Instead it uses parent.
         UIElementBase* FindDescendant(const char*& name, UIElementBase* parent);
-        virtual void GetClassId();
+        virtual void GetRuntimeTypeInfo();
         virtual void UnkFunc2() {}
         virtual void UnkFunc3() {}
         virtual void UnkFunc4() {}

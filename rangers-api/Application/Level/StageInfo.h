@@ -7,6 +7,8 @@ namespace app::level {
 		csl::ut::MoveArray<hh::fnd::Reference<StageData>> stages;
 		csl::ut::MoveArray<void*> unk1;
 
+		StageData* GetStageData(const char* stageName);
+
         GAMESERVICE_CLASS_DECLARATION(StageInfo)
 	};
 }

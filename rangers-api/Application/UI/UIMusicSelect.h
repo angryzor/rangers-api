@@ -30,10 +30,10 @@ namespace app::ui {
     public:
         static UIMusicSelect* Create(csl::fnd::IAllocator* pAllocator);
 
-        virtual bool fUnk2(hh::fnd::Message& message) override;
-        virtual void Initialize(hh::game::GameManager* gameManager) override;
-        virtual void RemovedFromGameManager(hh::game::GameManager* gameManager) override;
-        virtual void Update(uint64_t unkParam, uint64_t unkParam2) override;
+        virtual bool ProcessMessage(hh::fnd::Message& message) override;
+        virtual void AddCallback(hh::game::GameManager* gameManager) override;
+        virtual void RemoveCallback(hh::game::GameManager* gameManager) override;
+        virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
         virtual void OnDeviceChange() override;
     };
 }

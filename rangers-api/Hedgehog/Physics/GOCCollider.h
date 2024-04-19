@@ -97,7 +97,7 @@ namespace hh::physics {
 
         GOCCollider(csl::fnd::IAllocator* allocator);
 
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual bool fUnk5() override { return true; }
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
 		virtual void SetScale(const csl::math::Vector3& scale);

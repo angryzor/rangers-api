@@ -21,6 +21,6 @@ namespace app::game
 		{
 			return ms_pServiceName;
 		}
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
 	};
 }

@@ -28,7 +28,7 @@ namespace hh::game {
         static GOCInput* Create(csl::fnd::IAllocator* pAllocator);
         static GOComponentClass* GetClass();
         void Initialize(const Config& config);
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
 		virtual bool fUnk5() { return true; }
 		virtual void OnGOCEvent(GOCEvent event, GameObject& ownerGameObject, void* data);
         

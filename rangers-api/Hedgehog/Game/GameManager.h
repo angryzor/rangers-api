@@ -2,13 +2,18 @@
 
 namespace hh::game
 {
+    struct GameStepInfo {
+        uint32_t layerUpdateMask;
+        fnd::SUpdateInfo updateInfo;
+    };
+
 	class alignas(8) GameStepListener
 	{
 	public:
 		virtual ~GameStepListener() = default;
-		virtual void PreStepCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
-		virtual void PostStepCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
-		virtual void UpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+		virtual void PreStepCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) {}
+		virtual void PostStepCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) {}
+		virtual void UpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) {}
 	};
 	
     class alignas(8) GamePauseListener {
@@ -22,8 +27,24 @@ namespace hh::game
 	{
 	public:
 		virtual ~GameUpdateListener() = default;
-		virtual void PreObjectUpdateCallback(GameManager* gameManager, void* unkParam) {}
-		virtual void PostObjectUpdateCallback(GameManager* gameManager, void* unkParam) {}
+		virtual void PreGameUpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+		virtual void PostGameUpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+	};
+    
+	class alignas(8) ObjectUpdateListener
+	{
+	public:
+		virtual ~ObjectUpdateListener() = default;
+		virtual void PreObjectUpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+		virtual void PostObjectUpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
+	};
+
+	class alignas(8) ComponentListener
+	{
+	public:
+		virtual ~ComponentListener() = default;
+		virtual void ComponentAddedCallback(GOComponent* component) {}
+		virtual void ComponentRemovedCallback(GOComponent* component) {}
 	};
 
 	class alignas(8) GameManagerListener
@@ -67,21 +88,22 @@ namespace hh::game
 	};
 
 	class GameManagerCallbackUtil {
+		friend class GameManager;
 		static void FirePreShutdownObject(GameManager* gameManager);
 		static void FirePostShutdownObject(GameManager* gameManager);
 		static void FireGameObjectAdded(GameManager* gameManager, GameObject* gameObject);
 		static void FireGameObjectRemoved(GameManager* gameManager, GameObject* gameObject);
+		static void FireComponentAdded(GameManager* gameManager, GOComponent* component);
+		static void FireComponentRemoved(GameManager* gameManager, GOComponent* component);
 		static void FireObjectLayerSet(GameManager* gameManager, GameObject* gameObject);
 		static void FireMessageProcessed(GameManager* gameManager, const fnd::Message& message);
-		static void FirePreObjectUpdate(GameManager* gameManager, void* unkParam); // probably GameStepInfo or UpdatingPhase
-		static void FirePostObjectUpdate(GameManager* gameManager, void* unkParam); // probably GameStepInfo or UpdatingPhase
-		static void FirePreStep(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
-		static void FirePostStep(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
-		static void FireUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
-	};
-
-	class GameObjectCallbackUtil {
-		static void FireObjectLayerSet(GameObject* gameObject);
+        static void FirePreGameUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+        static void FirePostGameUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+		static void FirePreObjectUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+		static void FirePostObjectUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
+		static void FirePreStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
+		static void FirePostStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
+		static void FireUpdate(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
 	};
 
 	class GameApplication;
@@ -97,20 +119,21 @@ namespace hh::game
 		uint32_t unk33;
 		uint32_t unk34;
 		void* unk35;
-		csl::ut::FixedArray<GameObjectLayer*, 32> m_GameObjectLayers{};
-		csl::ut::MoveArray<GameObject*> m_Objects{ pAllocator };
-		csl::ut::MoveArray<GameService*> m_Services{ pAllocator };
-		csl::ut::PointerMap<GameServiceClass*, GameService*> m_ServicesByClass{ pAllocator };
+		csl::ut::FixedArray<GameObjectLayer*, 32> gameObjectLayers{};
+		csl::ut::MoveArray<GameObject*> objects{ pAllocator };
+		csl::ut::MoveArray<GameService*> services{ pAllocator };
+		csl::ut::PointerMap<GameServiceClass*, GameService*> servicesByClass{ pAllocator };
 		csl::ut::MoveArray<GameObject*> shutdownObjects;
-		csl::ut::MoveArray<GameManagerListener*> m_ManagerListeners{ pAllocator };
-		csl::ut::MoveArray<void*> unk42; // csl::ut::MoveArray<GameObjectListener> m_ObjectListeners{ pAllocator };
-		csl::ut::MoveArray<void*> unk43; // csl::ut::MoveArray<ComponentListener> m_ComponentListeners{ pAllocator };
+		csl::ut::MoveArray<GameManagerListener*> managerListeners{ pAllocator };
+		// not sure if this is a layer listener or a gameobject listener, but 0x20 is called when object added to layer
+		csl::ut::MoveArray<GameObjectListener*> gameObjectListeners; // csl::ut::MoveArray<GameObjectListener> objectListeners{ pAllocator };
+		csl::ut::MoveArray<ComponentListener*> componentListeners; // csl::ut::MoveArray<ComponentListener> componentListeners{ pAllocator };
 		csl::ut::MoveArray<void*> unk44;
-		csl::ut::MoveArray<void*> unk45;
-		csl::ut::MoveArray<GamePauseListener*> m_PauseListeners{ pAllocator };
-		csl::ut::MoveArray<GameStepListener*> m_StepListeners{ pAllocator };
-		csl::ut::MoveArray<GameUpdateListener*> m_UpdateListeners{ pAllocator };
-		csl::ut::MoveArray<void*> unk49;
+		csl::ut::MoveArray<ObjectUpdateListener*> objectUpdateListeners{ pAllocator };
+		csl::ut::MoveArray<GamePauseListener*> gamePauseListeners{ pAllocator };
+		csl::ut::MoveArray<GameStepListener*> gameStepListeners{ pAllocator };
+		csl::ut::MoveArray<GameUpdateListener*> gameUpdateListeners{ pAllocator };
+		csl::ut::MoveArray<void*> unk49{ pAllocator };
 		uint32_t unk50; // See GameManagerCallbackUtil::FirePostShutdownObject
 		uint32_t unk50b;
 		uint32_t unk51;
@@ -207,8 +230,12 @@ namespace hh::game
 
 		void RegisterService(GameService* service);
 		void UnregisterService(GameService* service);
-		void RegisterObject(GameObject* object, fnd::WorldPosition* transform, GameObject* parent, const WorldObjectCInfo& cInfo);
-		void RegisterNamedObject(GameObject* object, const char* name, bool copyName, fnd::WorldPosition* transform, GameObject* parent);
+		void AddGameObject(GameObject* object, fnd::WorldPosition* transform, GameObject* parent, const WorldObjectCInfo& cInfo);
+		void AddGameObject(GameObject* object, const char* name, bool copyName, fnd::WorldPosition* transform, GameObject* parent);
+		inline void RemoveGameObject(GameObject* object) {
+			m_GameObjectLayers[object->layer]->RemoveObject(object);
+			GameManagerCallbackUtil::FireGameObjectRemoved(this, object);
+		}
 		void RegisterGameStepListener(GameStepListener& listener);
 		void UnregisterGameStepListener(GameStepListener& listener);
 		void RegisterGamePauseListener(GamePauseListener& listener);
@@ -218,7 +245,10 @@ namespace hh::game
 		void ReloadInputSettings(bool unkParam1);
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();
-		void SendMessageToLayer(int layer, const fnd::Message& message);
+		fnd::Message* SendMessage(fnd::Message& message);
+		void SendMessageImm(fnd::Message& message);
+		void SendMessageImmToLayer(int layer, fnd::Message& message);
+		void SendMessageImmToService(fnd::Message& message);
 		void SetObjectLayer(GameObject* gameObject, int layerId);
 		void PerformMessages();
 	};

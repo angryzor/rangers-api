@@ -17,7 +17,7 @@ namespace hh::anim {
             bool setUnk2Flag;
         };
 
-        virtual void* GetClassId() override;
+        virtual void* GetRuntimeTypeInfo() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual bool UnkFunc1(csl::math::Transform& transform) override;

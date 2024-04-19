@@ -42,7 +42,7 @@ namespace hh::gfx {
             uint64_t unk20;
             uint64_t unk21;
             uint8_t unk22;
-            RenderingEngine* renderingEngine;
+            RenderingEngineNeedle* renderingEngine;
             uint64_t unk24;
             csl::math::Vector4 unk25;
             RenderManager* renderManager;

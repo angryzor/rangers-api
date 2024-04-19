@@ -103,7 +103,7 @@ namespace hh::gfx {
         uint64_t unk332;
 
     public:
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;

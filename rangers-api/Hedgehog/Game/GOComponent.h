@@ -32,21 +32,30 @@ namespace hh::game
 	{
 	public:
 		enum class GOCEventMask : uint16_t {
-			WANT_DEACTIVATE_EVENT = 2,
-			WANT_UPDATE_SET_EDITOR = 0x200,
-			WANT_RELOAD_EVENTS = 0x4000,
+			ADDED_TO_OBJECT = 0,
+			ADDED_TO_OBJECT_2 = 1,
+			REMOVED_FROM_OBJECT = 2,
+			UPDATE_SET_EDITOR = 9,
+			OTHER_COMPONENT_ADDED_OR_REMOVED = 13,
+			RESOURCE_RELOADS = 14,
 		};
 
 		enum class GOCEvent {
-			ACTIVATE = 0,
-			DEACTIVATE,
-			MESSAGE_768,
+			ADDED_TO_OBJECT,
+			REMOVED_FROM_OBJECT,
+			UPDATE_SET_EDITOR,
 			UNK3,
-			UNK4,
-			UNK5,
+			COMPONENT_ADDED,
+			COMPONENT_REMOVED,
 			OBJECT_LAYER_CHANGED,
 			PRE_RESOURCE_RELOAD, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::PreResourceReloadCallback is called
 			POST_RESOURCE_RELOAD, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::PostResourceReloadCallback is called
+		};
+
+		enum class Type : uint8_t {
+			VISUAL,
+			PHYSICS,
+			AUDIBLE,
 		};
 
 		struct Unk1 {
@@ -56,10 +65,11 @@ namespace hh::game
 
 		uint32_t flags;
 		int32_t unk45;
-		GameObject* pOwnerGameObject{};
+		GameObject* owner{};
 		csl::ut::Bitset<GOCEventMask> gocEventMask;
-		uint16_t unk47;
-		char flags38; // seen 0, 1, 2
+		uint16_t index; // index in GameObject's list
+		csl::ut::Bitset<Type> componentTypes;
+		char flags39;
 		uint16_t unk49;
 		char unk50;
 		uint32_t nameHash;
@@ -70,7 +80,7 @@ namespace hh::game
 		GOComponent(csl::fnd::IAllocator* pAllocator);
 		virtual ~GOComponent();
 
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
 		virtual void Update() {}
 		virtual void GetDebugInfoMaybe();
 		virtual bool ProcessMessage(fnd::Message& msg) { return false; }
@@ -85,6 +95,9 @@ namespace hh::game
 		 * RESOURCE_RELOADED          | the ManagedResource that was reloaded
 		 */
 		virtual void OnGOCEvent(GOCEvent event, GameObject& ownerGameObject, void* data) {}
+
+		void AddedToObject(GameObject* gameObject);
+		void RemovedFromObject(GameObject* gameObject);
 
 		static GOComponent* Create(GameObject& ownerGameObject, const GOComponentClass& componentClass);
 

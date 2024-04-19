@@ -22,10 +22,10 @@ namespace hh::gfx {
         static VisualManager* instance;
         static VisualManager* GetInstance();
 
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
-		virtual void PostStepCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
+		virtual void PostStepCallback(game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 
         void AddModel(GOCVisualModel* model);
         void RemoveModel(GOCVisualModel* model);

@@ -53,7 +53,7 @@ namespace hh::ui {
             uint32_t unk6;
             uint32_t unk7;
         };
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;

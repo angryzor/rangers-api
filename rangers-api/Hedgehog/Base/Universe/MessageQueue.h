@@ -15,17 +15,21 @@ namespace hh::fnd {
             Flags flags;
         };
 		struct Buffer {
-			void* unk10;
+			csl::fnd::IAllocator* allocator;
 			Entry** results;
 			uint32_t messageCount;
 			uint32_t bufferSize;
+
+            Buffer();
 		};
 
-		void* unk15;
+		csl::fnd::IAllocator* allocator;
 		Buffer messageBuffers[2];
 		int currentBuffer;
     
-        void EnqueueMessage(const Message& message);
+        MessageQueue();
+        void Reserve(csl::fnd::IAllocator* allocator, size_t size);
+        Message* EnqueueMessage(const Message& message);
         void Dispatch(bool (*func)(const Message& message, void* userData), void* userData);
     };
 }

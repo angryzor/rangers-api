@@ -6,6 +6,6 @@ namespace app::player
 	{
 	public:
 		INSERT_PADDING(136);
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
 	};
 }

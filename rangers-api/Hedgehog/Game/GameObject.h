@@ -12,11 +12,17 @@ namespace hh::game
 	class GameObjectListener {
 	public:
 		virtual ~GameObjectListener() = default;
-		virtual void GOL_UnkFunc1() {}
-		virtual void GOL_UnkFunc2() {}
-		virtual void GOL_UnkFunc3() {}
+		virtual void ComponentAddedCallback(GameObject* gameObject, GOComponent* component) {}
+		virtual void ComponentRemovedCallback(GameObject* gameObject, GOComponent* component) {}
+		virtual void ObjectLayerSetCallback(GameObject* gameObject) {}
 		virtual void GOL_UnkFunc4() {}
 		virtual void GOL_UnkFunc5() {}
+	};
+
+	class GameObjectCallbackUtil {
+		static void FireComponentAdded(GameObject* gameObject, GOComponent* component);
+		static void FireComponentRemoved(GameObject* gameObject, GOComponent* component);
+		static void FireObjectLayerSet(GameObject* gameObject);
 	};
 
     class GameObjectClass {
@@ -46,7 +52,7 @@ namespace hh::game
 	{
 		class Unk1 {
 			GameObject* pGameObject;
-			csl::ut::MoveArray<void*> unk27;
+			csl::ut::MoveArray<GOComponent*> componentsToAdd;
 		};
 
 		struct Unk2 {
@@ -57,61 +63,54 @@ namespace hh::game
 		};
 
 	public:
-		enum class ComponentType : char {
-			VISIBLE,
-			PHYSICS,
-			AUDIBLE,
-		};
-
 		enum class StatusFlags : char {
 			KILLED,
 			EDITOR = 2,
+			UNK4 = 4,
 		};
 
 		csl::ut::Bitset<StatusFlags> statusFlags;
 		char layer{ 6 };
-		csl::ut::Bitset<ComponentType> forceComponentsFlags;
-		csl::ut::Bitset<ComponentType> componentsAreForcedOrNonEmptyFlags;
+		csl::ut::Bitset<GOComponent::Type> forcedUpdateFlags;
+		csl::ut::Bitset<GOComponent::Type> updateFlags;
 		char unk48;
-		uint32_t m_VisualComponentsLengthWithUnk48InHiWord;
-		uint32_t m_PhysicsComponentsLengthWithUnk48InHiWord;
-		uint32_t m_AudibleComponentsLengthWithUnk48InHiWord;
+		uint32_t componentsLengthWithUnk48InHiWordByType[3];
 		GameManager* gameManager{};
 
-		void* unk54;
+		uint32_t numComponentsCurrentlyBeingAdded;
+		uint32_t nextComponentIndex;
 		//??GameObjectClass* pStaticClass{};
 
-		GameObject(csl::fnd::IAllocator* pAllocator);
-		csl::ut::InplaceMoveArray<GOComponent*, 8> m_Components;
-		csl::ut::VariableString pObjectName;
+		GameObject(csl::fnd::IAllocator* allocator);
+		csl::ut::InplaceMoveArray<GOComponent*, 8> components;
+		csl::ut::VariableString name;
 	private:
-		csl::ut::InplaceMoveArray<hh::fnd::Property, 2> m_Properties;
-		csl::ut::MoveArray<void*> unk61;
-		uint32_t m_ComponentFlags{};
-		csl::ut::MoveArray<GOComponent*> m_VisualComponents;
-		csl::ut::MoveArray<GOComponent*> m_PhysicsComponents;
-		csl::ut::MoveArray<GOComponent*> m_AudibleComponents;
+		csl::ut::InplaceMoveArray<hh::fnd::Property, 2> properties;
+		csl::ut::MoveArray<GameObjectListener*> listeners;
+		uint32_t componentsMessageMask{};
+		csl::ut::MoveArray<GOComponent*> componentsByType[3];
 		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
-		Unk1 unk67;
+		Unk1 deferredComponentAdditions;
 		WorldObjectStatus* status;
-		GameObjectClass* pClass;
+		GameObjectClass* objectClass;
 		Unk2 unk70;
 		Unk2 unk71;
 		Unk2 unk72;
 		
 	public:
-		virtual void* GetClassId();
-		virtual bool fUnk2(fnd::Message& message);
-		virtual bool ProcessMessage(fnd::Message& message);
-		virtual bool IsAcceptingMessages();
-		virtual void Initialize(GameManager* gameManager) {}
-		virtual void RemovedFromGameManager(GameManager* gameManager) {}
-		virtual void Update(uint64_t unkParam, uint64_t unkParam2) {}
+		virtual void* GetRuntimeTypeInfo() override;
+		virtual bool ProcessMessage(fnd::Message& message) override;
+		virtual bool ReceiveMessage(fnd::Message& message) override;
+		virtual bool IsAcceptingMessages() override;
+		virtual void AddCallback(GameManager* gameManager) {}
+		virtual void RemoveCallback(GameManager* gameManager) {}
+		virtual void Update(fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) {}
 		virtual void UnkFunc9() {}
 		virtual void UnkFunc10() {}
 		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4);
 
 	private:
+		void SetUpdateFlags(GOComponent::Type componentType);
 		// template <typename T>
 		// T* GetGOC()
 		// {
@@ -129,7 +128,7 @@ namespace hh::game
 
 		hh::game::GOComponent* GetGOC(const char* in_pComponentName)
 		{
-			for (auto* pComponent : m_Components)
+			for (auto* pComponent : components)
 			{
 				if (pComponent == nullptr)
 					continue;
@@ -161,9 +160,15 @@ namespace hh::game
 			return GetGOC(in_pComponentName);
 		}
 
-		void AttachComponent(GOComponent& component);
-		void SetForceComponentsFlag(ComponentType type, bool enabled);
+		void AddComponent(GOComponent* component);
+		void RemoveComponent(GOComponent* component);
+		void SetUpdateFlag(GOComponent::Type type, bool enabled);
 
+		
+		fnd::Message* SendMessageToGame(fnd::Message& message);
+		bool SendMessageImmToGame(fnd::Message& message);
+		fnd::Message* SendMessageToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
+		bool SendMessageImmToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
 		/*
 		 * Broadcasts a message to all the messengers registered in the associated LevelInfo.
 		 */

@@ -8,9 +8,11 @@ namespace hh::needle {
         size_t allocatedSize;
         size_t unk2;
         size_t unk3;
-        size_t unk4;
+        uint32_t unk4;
+        uint32_t flags;
 
         CScratchMemoryContext(bool empty);
+        CScratchMemoryContext(CScratchMemoryContext& other, bool unkParam);
         ~CScratchMemoryContext();
         void PreAllocInside(size_t size);
 

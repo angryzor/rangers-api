@@ -13,7 +13,7 @@ namespace app::level {
         csl::ut::InplaceMoveArray<void*, 1> unk103;
         bool unk104;
 
-		virtual void* GetClassId();
+		virtual void* GetRuntimeTypeInfo();
         virtual void FCL_UnkFunc1(uint64_t unkParam1, uint64_t unkParam2, uint64_t unkParam3);
         virtual void FCL_UnkFunc2();
         virtual void FCL_UnkFunc3();

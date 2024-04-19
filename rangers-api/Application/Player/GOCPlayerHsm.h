@@ -23,7 +23,7 @@ namespace app::player {
         };
 
         GOCPlayerHsm(csl::fnd::IAllocator* pAllocator);
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual bool ProcessMessage(hh::fnd::Message& msg) override;

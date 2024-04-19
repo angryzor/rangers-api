@@ -17,7 +17,7 @@ namespace hh::gfx {
         uint8_t unk102;
     public:
         GOCVisual(csl::fnd::IAllocator* allocator);
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
         virtual void OnGOCVisualEvent(GOCVisualEvent event, unsigned int unkParam2, void* unkParam3) = 0;
         void SetVisible(bool visible);
         bool IsVisible() const;

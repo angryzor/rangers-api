@@ -17,7 +17,7 @@ namespace hh::game {
         virtual void GVCL_UnkFunc1() override;
         virtual void GVCL_UnkFunc2() override;
 		virtual void GameObjectRemovedCallback(GameManager* gameManager, GameObject* gameObject) override;
-		virtual void GOL_UnkFunc2() override;
+		virtual void ComponentRemovedCallback(GameObject* gameObject, GOComponent* component) override;
 
         VIEWER_CONTEXT_CLASS_DECLARATION(ObjectViewerContext)
     };

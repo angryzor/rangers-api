@@ -31,7 +31,7 @@ namespace hh::ui {
             uint32_t unk3;
         };
 
-		virtual void* GetClassId() override;
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual bool ProcessMessage(fnd::Message& msg) override;

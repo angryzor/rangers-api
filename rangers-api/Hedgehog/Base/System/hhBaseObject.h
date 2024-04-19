@@ -1,10 +1,10 @@
 #pragma once
 
-#define DEFAULT_CREATE_FUNC(ClassName) private:\
+#define DEFAULT_CREATE_FUNC(ClassName) public:\
 		ClassName(csl::fnd::IAllocator* allocator);\
 		static ClassName* Create(csl::fnd::IAllocator* allocator);
 
-#define CREATE_FUNC(ClassName, ...) private:\
+#define CREATE_FUNC(ClassName, ...) public:\
 		ClassName(csl::fnd::IAllocator* allocator, __VA_ARGS__);\
 		static ClassName* Create(csl::fnd::IAllocator* allocator, __VA_ARGS__);
 

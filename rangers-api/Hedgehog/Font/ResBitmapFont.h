@@ -15,7 +15,7 @@ namespace hh::font {
     public:
         static const fnd::ResourceTypeInfo* GetTypeInfo();
         virtual void Load(void* data, size_t size);
-        virtual void Unload(void* data, size_t size);
-        virtual void Resolve(fnd::ResourceResolver* resolver);
+        virtual void Unload();
+        virtual void Resolve(fnd::ResourceResolver& resolver);
     };
 }

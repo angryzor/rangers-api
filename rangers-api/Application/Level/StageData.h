@@ -96,5 +96,8 @@ namespace app::level {
     
         static StageData* Create(csl::fnd::IAllocator* allocator);
         StageData(csl::fnd::IAllocator* allocator);
+
+        // returns value of `stage` if cyber stage, `name` if other stage
+        const char* GetStageName() const;
     };
 }

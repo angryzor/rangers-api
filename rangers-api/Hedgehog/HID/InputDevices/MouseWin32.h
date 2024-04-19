@@ -18,7 +18,7 @@ namespace hh::hid {
         uint64_t unk113;
         MouseWin32(csl::fnd::IAllocator* pAllocator);
         static MouseWin32* CreateDevice(unsigned int deviceIndex, csl::fnd::IAllocator* pAllocator);
-        virtual void* GetClassId() override;
+        virtual void* GetRuntimeTypeInfo() override;
         virtual void UnkFunc5() override;
         virtual uint64_t UnkFunc8() override;
         virtual void UnkFunc9() override;

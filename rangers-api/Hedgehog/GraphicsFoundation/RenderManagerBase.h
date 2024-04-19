@@ -11,6 +11,6 @@ namespace hh::gfnd {
         virtual void UnkFunc4() {}
         virtual uint64_t UnkFunc5() = 0;
 
-		virtual void PostObjectUpdateCallback(game::GameManager* gameManager, void* unkParam) override;
+		virtual void PostGameUpdateCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
     };
 }
