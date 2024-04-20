@@ -203,12 +203,12 @@ namespace hh::game
 
 		GameObject* GetGameObject(const char* in_pObjectName)
 		{
-			for (auto* pObject : m_Objects)
+			for (auto* pObject : objects)
 			{
 				if (pObject == nullptr)
 					continue;
 
-				if (strcmp(pObject->pObjectName, in_pObjectName) == 0)
+				if (strcmp(pObject->name, in_pObjectName) == 0)
 					return pObject;
 			}
 
@@ -221,7 +221,7 @@ namespace hh::game
 		}
 
 		csl::ut::MoveArray<GameService*>& GetServices() {
-			return m_Services;
+			return services;
 		}
 
 		inline GameApplication* GetApplication() const {
@@ -233,7 +233,7 @@ namespace hh::game
 		void AddGameObject(GameObject* object, fnd::WorldPosition* transform, GameObject* parent, const WorldObjectCInfo& cInfo);
 		void AddGameObject(GameObject* object, const char* name, bool copyName, fnd::WorldPosition* transform, GameObject* parent);
 		inline void RemoveGameObject(GameObject* object) {
-			m_GameObjectLayers[object->layer]->RemoveObject(object);
+			gameObjectLayers[object->layer]->RemoveObject(object);
 			GameManagerCallbackUtil::FireGameObjectRemoved(this, object);
 		}
 		void RegisterGameStepListener(GameStepListener& listener);

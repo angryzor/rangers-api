@@ -27,17 +27,17 @@ namespace hh::game
 
     class GameObjectClass {
     public:
-        const char *pName;
-        const char *pScopedName;
-        uint64_t unk12;
-        size_t objectSize;
-        GameObject* (*instantiator)(csl::fnd::IAllocator* pAllocator);
-        uint64_t unk15;
-        uint64_t unk16;
-        uint64_t unk17;
-        uint32_t memberValueCount;
-        const hh::fnd::RflClassMember::Value* attributes;
-        const hh::fnd::RflClass* spawnerDataRflClass;
+        const char *pName{};
+        const char *pScopedName{};
+        uint64_t unk12{};
+        size_t objectSize{};
+        GameObject* (*instantiator)(csl::fnd::IAllocator* pAllocator){};
+        uint64_t unk15{};
+        uint64_t unk16{};
+        uint64_t unk17{};
+        uint32_t memberValueCount{};
+        const hh::fnd::RflClassMember::Value* attributes{};
+        const hh::fnd::RflClass* spawnerDataRflClass{};
 	private:
 		GameObject* Create(csl::fnd::IAllocator* pAllocator) const;
 	public:

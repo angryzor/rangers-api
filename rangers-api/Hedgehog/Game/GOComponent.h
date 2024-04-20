@@ -102,7 +102,7 @@ namespace hh::game
 		static GOComponent* Create(GameObject& ownerGameObject, const GOComponentClass& componentClass);
 
 		inline GameObject* GetOwnerGameObject() {
-			return pOwnerGameObject;
+			return owner;
 		}
 
 		GOComponent* GetComponentByClass(const GOComponentClass& componentClass) const;

@@ -28,23 +28,30 @@ namespace hh::fnd
 		}
 
 		virtual Message* Clone();
-
 		virtual ~Message() = default;
 	};
 
 	class MessageAsyncHandler : ReferencedObject
 	{
-	public:
-		void* pUnk1{};
-		char Unk2{};
+		Message* message{};
+		uint8_t unk1{};
 
+	public:
 		virtual ~MessageAsyncHandler() = default;
+		inline Message& GetMessage() const {
+			return *message;
+		}
+
+		template<typename T>
+		T& GetMessage() const {
+			return static_cast<T&>(GetMessage());
+		}
 	};
 
 	template <typename T>
 	class MessageAsyncHandlerInplace : public MessageAsyncHandler
 	{
-		
+		T messageInPlace;
 	};
 }
 
