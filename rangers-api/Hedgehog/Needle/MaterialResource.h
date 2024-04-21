@@ -89,7 +89,7 @@ namespace hh::needle {
 
         CScratchMemoryContext* memCtx;
         ParameterData parameters;
-        MaterialResource* materialResource;
+        intrusive_ptr<MaterialResource> materialResource;
         ParameterInfo* parameterInfos;
         void* parameterValues;
         uint32_t currentParameterIdx;
@@ -131,14 +131,29 @@ namespace hh::needle {
             uint32_t instanceParameterCount;
             uint32_t unk3;
             MaterialResource* elementData;
+
+            // Actual data block starts here.
+            // Layout is
+            // - 0x0 : this small header
+            // - 0x8 : parameter infos
+            // - 0x8 + ((2 * parameterCount + 7) & 0xFFFFFFFFFFFFFFF8ui64) : parameter values
+
             uint32_t dataBufferSize;
             uint32_t parameterCount;
         };
         MaterialResourceData* data;
         MaterialResourceData dataBuffer;
         static MaterialResource* Create(unsigned int parameterCount, size_t dataSize);
-        void RefreshInstanceParameter() const;
+        void RefreshInstanceParameter();
         void* GetMaterialData() const;
+        inline uint32_t GetMaterialDataSize() { return data->dataBufferSize; }
+        inline uint32_t GetMaterialParameterCount() { return data->parameterCount; }
+        inline MaterialChunkBuilder::ParameterInfo* GetMaterialParameterInfos() {
+            return reinterpret_cast<MaterialChunkBuilder::ParameterInfo*>(reinterpret_cast<size_t>(GetMaterialData()) + 8);
+        }
+        inline void* GetMaterialParameterValues() {
+            return reinterpret_cast<void*>(reinterpret_cast<size_t>(GetMaterialData()) + 8 + ((2 * GetMaterialParameterCount() + 7) & 0xFFFFFFFFFFFFFFF8ui64));
+        }
         void* GetMaterialInstanceParameter() const;
         uint32_t GetMaterialInstanceParameterCount() const;
         void* GetElementData() const;
@@ -149,4 +164,13 @@ namespace hh::needle {
 
     //template<typename T>
     void BuildMaterialResourceFromResolvedMemoryImage(RenderingDevice* device, const void* image, MaterialResource** resource, bool unkParam);
+    
+    // ParameterInfo here is actually just unsigned short, I'm just using a struct for ease of reading
+    template<typename E, typename D>
+    void ExecuteChunk(E& check, const MaterialChunkBuilder::ParameterInfo* parameterInfos, unsigned int parameterCount, D* data, bool unk);
+    
+    struct SCheckexec {
+        bool unk1;
+    };
+    void ExecuteChunk(SCheckexec& check, const MaterialChunkBuilder::ParameterInfo* parameterInfos, unsigned int parameterCount, void* data, bool unk);
 }

@@ -7,6 +7,7 @@ namespace hh::fnd
 	protected:
     public:
 		const char* m_pName{};
+		RflEntity() {}
 		RflEntity(const char* name) : m_pName{ name } {}
 
         const char* GetName() const

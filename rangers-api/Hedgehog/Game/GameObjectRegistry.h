@@ -7,7 +7,7 @@ namespace hh::game
         csl::ut::StringMap<const GameObjectClass*> gameObjectClassesByName;
     public:
         GameObjectRegistry(csl::fnd::IAllocator* pAllocator);
-        void AddObject(const GameObjectClass* gameObjectClass);
+        void AddObject(const GameObjectClass** gameObjectClass);
         const GameObjectClass* GetGameObjectClassByName(const char* name);
         inline const csl::ut::MoveArray<const GameObjectClass*>& GetGameObjectClasses() {
             return gameObjectClasses;

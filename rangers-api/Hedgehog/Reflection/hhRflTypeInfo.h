@@ -9,12 +9,11 @@ namespace hh::fnd
 		typedef void TypeFinisher(void* pInstance);
 		typedef void TypeCleaner(void* pInstance);
 		
-	protected:
-		const char* m_pScopedName; // Assuming they're copying havok
-		TypeConstructor* m_fpConstruct;
-		TypeFinisher* m_fpFinisher;
-		TypeCleaner* m_fpCleaner;
-		size_t m_Size;
+		const char* m_pScopedName{}; // Assuming they're copying havok
+		TypeConstructor* m_fpConstruct{};
+		TypeFinisher* m_fpFinisher{};
+		TypeCleaner* m_fpCleaner{};
+		size_t m_Size{};
 
 	public:
 		const char* GetScopedName() const

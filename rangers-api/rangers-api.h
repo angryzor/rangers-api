@@ -114,6 +114,7 @@
 #include "Hedgehog/Needle/CScratchMemoryContext.h"
 #include "Hedgehog/Needle/NeedleObject.h"
 #include "Hedgehog/Needle/NeedleRefcountObject.h"
+#include "Hedgehog/Needle/Utility/intrusive_ptr.h"
 #include "Hedgehog/Needle/NeedleSStr.h"
 #include "Hedgehog/Needle/NeedleRefcountResource.h"
 #include "Hedgehog/Needle/TNeedleRefcountResource.h"

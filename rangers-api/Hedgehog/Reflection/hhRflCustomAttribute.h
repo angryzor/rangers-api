@@ -37,6 +37,7 @@ namespace hh::fnd
 	class RflCustomAttributes : public RflArray<RflCustomAttribute>
 	{
 	public:
+		RflCustomAttributes(RflCustomAttribute* attributes, uint32_t count) : RflArray<RflCustomAttribute>{ attributes, count } {}
 		[[nodiscard]] const RflCustomAttribute* GetAttribute(const char* name) const
 		{
 			for (size_t i = 0; i < count; i++)

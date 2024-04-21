@@ -25,22 +25,22 @@ namespace hh::needle {
     };
 
     struct ParameterFloatValue {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         float_vector4 values;
     };
 
     struct ParameterBoolValue {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         unsigned int value;
     };
 
     struct ParameterIntValue {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         uint_vector4 uintVector;
     };
 
     struct ParameterShaderValue {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         ShaderResourceSetting shaderResourceSetting;
     };
 
@@ -50,15 +50,15 @@ namespace hh::needle {
 
     class Texture;
     struct ParameterTextureValue {
-        CNameIDObject* type;
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> type;
+        intrusive_ptr<CNameIDObject> name;
         Texture* texture;
     };
 
     struct ParameterSamplerValue {
-        CNameIDObject* name;
-        CNameIDObject* texCoordIndexName;
-        CNameIDObject* texCoordMtxName;
+        intrusive_ptr<CNameIDObject> name;
+        intrusive_ptr<CNameIDObject> texCoordIndexName;
+        intrusive_ptr<CNameIDObject> texCoordMtxName;
         TextureWrapMode wrapModeU;
         TextureWrapMode wrapModeV;
         uint8_t texCoordIndex;
@@ -67,12 +67,12 @@ namespace hh::needle {
     };
 
     struct ParameterShaderNameValue {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
     };
 
     struct ParameterTextureNameValue {
-        CNameIDObject* type;
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> type;
+        intrusive_ptr<CNameIDObject> name;
     };
 
     struct ParameterRsFlagMaskValue {
@@ -81,13 +81,13 @@ namespace hh::needle {
     };
 
     union ParameterHintData {
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         uint_vector4 uintVector;
     };
 
     struct ParameterHintValue {
         void* type;
-        CNameIDObject* name;
+        intrusive_ptr<CNameIDObject> name;
         ParameterHintData data;
         unsigned int unk1;
     };

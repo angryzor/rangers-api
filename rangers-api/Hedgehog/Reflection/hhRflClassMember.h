@@ -121,49 +121,49 @@ namespace hh::fnd
 		static const RflClassMember::Metadata& GetTypeMetadata();
 	};
 
+#ifndef __CLR_VER
 #define DEFINE_METADATA_FULL(id, type, size, align) Metadata { id, type, (unsigned char)(size), (unsigned char)(align) }
 #define DEFINE_METADATA_WITH_NAME(id, name, type) Metadata { id, name, sizeof(type), alignof(type) }
 #define DEFINE_METADATA(id, type) Metadata { id, #type, sizeof(type), alignof(type) }
 #define DEFINE_DUMMY_METADATA(id, type) Metadata { id, #type, (unsigned char)-1, (unsigned char)-1 }
-	
-	//const RflClassMember::Metadata RflClassMember::ms_typeMetadata[]
-	// = 
-	//{
-	//	DEFINE_DUMMY_METADATA(TYPE_VOID, void),
-	//	DEFINE_METADATA(TYPE_BOOL, bool),
-	//	DEFINE_METADATA(TYPE_SINT8, int8_t),
-	//	DEFINE_METADATA(TYPE_UINT8, uint8_t),
-	//	DEFINE_METADATA(TYPE_SINT16, int16_t),
-	//	DEFINE_METADATA(TYPE_UINT16, uint16_t),
-	//	DEFINE_METADATA(TYPE_SINT32, int32_t),
-	//	DEFINE_METADATA(TYPE_UINT32, uint32_t),
-	//	DEFINE_METADATA(TYPE_SINT64, int64_t),
-	//	DEFINE_METADATA(TYPE_UINT64, uint64_t),
-	//	DEFINE_METADATA(TYPE_FLOAT, float),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_VECTOR2, "vector2", csl::math::Vector2),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_VECTOR3, "vector3", csl::math::Vector3),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_VECTOR4, "vector4", csl::math::Vector4),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_QUATERNION, "quaternion", csl::math::Quaternion),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_MATRIX34, "matrix34", csl::math::Matrix34),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_MATRIX44, "matrix44", csl::math::Matrix44),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_POINTER, "pointer", void*),
-	//	DEFINE_METADATA_FULL(TYPE_ARRAY, "array", sizeof(csl::ut::MoveArray<void*>), -1),
-	//	DEFINE_METADATA_FULL(TYPE_SIMPLE_ARRAY, "simplearray", 16, -1),
-	//	DEFINE_METADATA_FULL(TYPE_ENUM, "enum", -1, -1),
-	//	DEFINE_METADATA_FULL(TYPE_STRUCT, "struct", -1, -1),
-	//	DEFINE_METADATA_FULL(TYPE_FLAGS, "flags", -1, -1),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_CSTRING, "cstring", char*),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_STRING, "string", csl::ut::VariableString),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_OBJECT_ID, "csetobjectid", hh::game::ObjectId),
-	//	DEFINE_METADATA_FULL(TYPE_POSITION, "position", 0xC, 4),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_COLOR_BYTE, "color8", csl::ut::Color<uint8_t>),
-	//	DEFINE_METADATA_WITH_NAME(TYPE_COLOR_FLOAT, "colorf", csl::ut::Color<float>),
-	//};
+
+	inline const RflClassMember::Metadata RflClassMember::ms_typeMetadata[] = {
+		DEFINE_DUMMY_METADATA(TYPE_VOID, void),
+		DEFINE_METADATA(TYPE_BOOL, bool),
+		DEFINE_METADATA(TYPE_SINT8, int8_t),
+		DEFINE_METADATA(TYPE_UINT8, uint8_t),
+		DEFINE_METADATA(TYPE_SINT16, int16_t),
+		DEFINE_METADATA(TYPE_UINT16, uint16_t),
+		DEFINE_METADATA(TYPE_SINT32, int32_t),
+		DEFINE_METADATA(TYPE_UINT32, uint32_t),
+		DEFINE_METADATA(TYPE_SINT64, int64_t),
+		DEFINE_METADATA(TYPE_UINT64, uint64_t),
+		DEFINE_METADATA(TYPE_FLOAT, float),
+		DEFINE_METADATA_WITH_NAME(TYPE_VECTOR2, "vector2", csl::math::Vector2),
+		DEFINE_METADATA_WITH_NAME(TYPE_VECTOR3, "vector3", csl::math::Vector3),
+		DEFINE_METADATA_WITH_NAME(TYPE_VECTOR4, "vector4", csl::math::Vector4),
+		DEFINE_METADATA_WITH_NAME(TYPE_QUATERNION, "quaternion", csl::math::Quaternion),
+		DEFINE_METADATA_WITH_NAME(TYPE_MATRIX34, "matrix34", csl::math::Matrix34),
+		DEFINE_METADATA_WITH_NAME(TYPE_MATRIX44, "matrix44", csl::math::Matrix44),
+		DEFINE_METADATA_WITH_NAME(TYPE_POINTER, "pointer", void*),
+		DEFINE_METADATA_FULL(TYPE_ARRAY, "array", sizeof(csl::ut::MoveArray<void*>), -1),
+		DEFINE_METADATA_FULL(TYPE_SIMPLE_ARRAY, "simplearray", 16, -1),
+		DEFINE_METADATA_FULL(TYPE_ENUM, "enum", -1, -1),
+		DEFINE_METADATA_FULL(TYPE_STRUCT, "struct", -1, -1),
+		DEFINE_METADATA_FULL(TYPE_FLAGS, "flags", -1, -1),
+		DEFINE_METADATA_WITH_NAME(TYPE_CSTRING, "cstring", char*),
+		DEFINE_METADATA_WITH_NAME(TYPE_STRING, "string", csl::ut::VariableString),
+		DEFINE_METADATA_WITH_NAME(TYPE_OBJECT_ID, "csetobjectid", hh::game::ObjectId),
+		DEFINE_METADATA_FULL(TYPE_POSITION, "position", 0xC, 4),
+		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_BYTE, "color8", csl::ut::Color<uint8_t>),
+		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_FLOAT, "colorf", csl::ut::Color<float>),
+	};
 
 #undef DEFINE_METADATA_WITH_NAME
 #undef DEFINE_DUMMY_METADATA
 #undef DEFINE_METADATA_FULL
 #undef DEFINE_METADATA
+#endif
 }
 
 #include "hhRflClass.h"

@@ -44,12 +44,12 @@ namespace hh::fnd
 		
 		inline void Register(const T* pInfo)
 		{
-			Register(pInfo);
+			RflRegistryBase::Register(pInfo);
 		}
 
 		inline void RegisterList(const T** pInfoList)
 		{
-			RegisterList(pInfoList);
+			RflRegistryBase::RegisterList(pInfoList);
 		}
 
 		inline const csl::ut::StringMap<const T*>& GetItems() const {

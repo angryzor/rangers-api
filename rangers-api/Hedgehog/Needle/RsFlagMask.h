@@ -42,11 +42,11 @@ namespace hh::needle {
         };
 
 // IDA doesn't understand the uint64_t sized enum?
-#ifdef EXPORTING_TYPES
+// #ifdef EXPORTING_TYPES
         uint64_t flags;
-#else
-        Flags flags;
-#endif
+// #else
+        // Flags flags;
+// #endif
         uint64_t unk1;
         void SetBlendMode(unsigned int mode1, unsigned int mode2, unsigned int op);
     };
