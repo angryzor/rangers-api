@@ -59,6 +59,49 @@ namespace app::gfx {
             virtual void SetTweenPosition(uint64_t ownerId, float position) override;
         };
 
+        struct NeedleFXParameterInterpolators {
+            Interpolator<app::rfl::FxBloomParameter>* bloomInterpolator;
+            Interpolator<app::rfl::FxDOFParameter>* dofInterpolator;
+            Interpolator<app::rfl::FxColorContrastParameter>* colorContrastInterpolator;
+            Interpolator<app::rfl::FxToneMapParameter>* tonemapInterpolator;
+            Interpolator<app::rfl::FxCameraControlParameter>* cameraControlInterpolator;
+            Interpolator<app::rfl::FxShadowMapParameter>* shadowmapInterpolator;
+            Interpolator<app::rfl::FxShadowHeightMapParameter>* shadowHeightMapInterpolator;
+            Interpolator<app::rfl::FxVolumetricShadowParameter>* volShadowInterpolator;
+            Interpolator<app::rfl::FxScreenBlurParameter>* blurInterpolator;
+            Interpolator<app::rfl::FxSSAOParameter>* ssaoInterpolator;
+            Interpolator<app::rfl::FxSHLightFieldParameter>* shlightfieldInterpolator;
+            Interpolator<app::rfl::FxLightScatteringParameter>* lightscatteringInterpolator;
+            Interpolator<app::rfl::FxRLRParameter>* rlrInterpolator;
+            Interpolator<app::rfl::FxSSGIParameter>* ssgiInterpolator;
+            Interpolator<app::rfl::FxPlanarReflectionParameter>* planarReflectionInterpolator;
+            Interpolator<app::rfl::FxOcclusionCapsuleParameter>* occlusionCapsuleInterpolator;
+            Interpolator<app::rfl::FxGodrayParameter>* godrayInterpolator;
+            Interpolator<app::rfl::FxScreenSpaceGodrayParameter>* ssGodrayInterpolator;
+            Interpolator<app::rfl::FxHeatHazeParameter>* heatHazeInterpolator;
+            Interpolator<app::rfl::FxSceneEnvironmentParameter>* sceneEnvInterpolator;
+            Interpolator<app::rfl::FxRenderOption>* renderOptionInterpolator;
+            Interpolator<app::rfl::FxSGGIParameter>* sggiInterpolator;
+            Interpolator<app::rfl::FxTAAParameter>* taaInterpolator;
+            Interpolator<app::rfl::FxEffectParameter>* effectInterpolator;
+            Interpolator<app::rfl::FxAtmosphereParameter>* atmosphereInterpolator;
+            Interpolator<app::rfl::FxDensityParameter>* densityInterpolator;
+            Interpolator<app::rfl::FxWindComputeParameter>* windInterpolator;
+            Interpolator<app::rfl::FxGpuEnvironmentParameter>* gpuEnvironmentInterpolator;
+            Interpolator<app::rfl::FxInteractiveWaveParameter>* interactiveWaveInterpolator;
+            Interpolator<app::rfl::FxChromaticAberrationParameter>* chromaticAberrationInterpolator;
+            Interpolator<app::rfl::FxVignetteParameter>* vignetteInterpolator;
+            Interpolator<app::rfl::FxTerrainMaterialBlendingParameter>* terrainBlendInterpolator;
+            Interpolator<app::rfl::FxWeatherParameter>* weatherInterpolator;
+            Interpolator<app::rfl::FxColorAccessibilityFilterParameter>* colorAccessibilityInterpolator;
+            Interpolator<app::rfl::FxCyberNoiseEffectParameter>* cyberNoiseInterpolator;
+            Interpolator<app::rfl::FxCyberSpaceStartNoiseParameter>* cyberStartNoiseInterpolator;
+            Interpolator<app::rfl::FxCyberNPCSSEffectRenderParameter>* cyberNPCSSInterpolator;
+            Interpolator<app::rfl::FxDentParameter>* dentInterpolator;
+            Interpolator<app::rfl::FxFieldScanEffectRenderParameter>* fieldScanInterpolator;
+            Interpolator<app::rfl::FxSeparableSSSParameter>* ssssInterpolator;
+        };
+
         struct NeedleFXSceneConfigInterpolators {
             Interpolator<app::rfl::FxRenderTargetSetting>* fxRenderTargetSettingInterpolator;
             Interpolator<app::rfl::FxAntiAliasing>* fxAntiAliasingInterpolator;
@@ -71,7 +114,7 @@ namespace app::gfx {
 
         app::rfl::NeedleFxParameter parameters;
         app::rfl::NeedleFxSceneConfig sceneConfig;
-        InterpolatorBase* paramInterpolators[40];
+        NeedleFXParameterInterpolators paramInterpolators;
         NeedleFXSceneConfigInterpolators sceneConfigInterpolators;
         SceneParameters* sceneParameters[2];
         csl::ut::MoveArray<FxParamExtension*> extensions;
@@ -117,11 +160,68 @@ namespace app::gfx {
             updated |= UpdateNeedleFxSceneConfigInterpolators();
         }
         void UpdateDefaultNeedleFxSceneConfigInterpolationJob(app::rfl::NeedleFxSceneConfig* needleFxParameter);
+        inline void RemoveNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, float interpolationTime) {
+            this->mutex.Lock();
+            sceneConfigInterpolators.fxRenderTargetSettingInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.fxAntiAliasingInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.stageCommonAtmosphereParameterInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.fxLODParameterInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.fxDetailParameterInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.fxDynamicResolutionParameterInterpolator->ReverseJob(ownerId, interpolationTime);
+            sceneConfigInterpolators.stageCommonTimeProgressParameterInterpolator->ReverseJob(ownerId, interpolationTime);
+            this->mutex.Unlock();
+            // updated |= UpdateNeedleFxSceneConfigInterpolators();
+        }
     
         void AddNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority, float interpolationTime);
         void AddDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority);
         void UpdateDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter);
         void UpdateNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter);
+        inline void RemoveNeedleFxParameterInterpolationJob(uint64_t ownerId, float interpolationTime) {
+            this->mutex.Lock();
+            paramInterpolators.bloomInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.dofInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.colorContrastInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.tonemapInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.cameraControlInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.shadowmapInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.shadowHeightMapInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.volShadowInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.blurInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.ssaoInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.shlightfieldInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.lightscatteringInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.rlrInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.ssgiInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.planarReflectionInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.occlusionCapsuleInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.godrayInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.ssGodrayInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.heatHazeInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.sceneEnvInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.renderOptionInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.sggiInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.taaInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.effectInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.atmosphereInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.densityInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.windInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.gpuEnvironmentInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.interactiveWaveInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.chromaticAberrationInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.vignetteInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.terrainBlendInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.weatherInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.colorAccessibilityInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.cyberNoiseInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.cyberStartNoiseInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.cyberNPCSSInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.dentInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.fieldScanInterpolator->ReverseJob(ownerId, interpolationTime);
+            paramInterpolators.ssssInterpolator->ReverseJob(ownerId, interpolationTime);
+            this->mutex.Unlock();
+            // updated |= UpdateNeedleFxParameterInterpolators();
+        }
 
 		GAMESERVICE_CLASS_DECLARATION(FxParamManager)
     };
