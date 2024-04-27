@@ -1,7 +1,7 @@
 #pragma once
 
 namespace hh::fnd {
-    class MessageManager : public BaseObject, csl::fnd::Singleton<MessageManager> {
+    class MessageManager : public BaseObject, public csl::fnd::Singleton<MessageManager> {
 		static bool DispatchCallback(Message& message, void* userData);
     public:
         MessageQueue queue;
@@ -11,5 +11,7 @@ namespace hh::fnd {
         void AddObject(Messenger* messenger);
         void RemoveObject(Messenger* messenger);
         void Dispatch();
+        static HandleManager* handleManager;
+        static Messenger* GetMessengerByHandle(const Handle<Messenger>& messenger);
     };
 }

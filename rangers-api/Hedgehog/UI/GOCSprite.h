@@ -54,7 +54,7 @@ namespace hh::ui {
             uint32_t unk7;
         };
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void Update() override;
+		virtual void Update(fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
 

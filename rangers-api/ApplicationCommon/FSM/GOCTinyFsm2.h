@@ -91,7 +91,7 @@ namespace app_cmn::fsm {
         }
 
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void Update() override;
+		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual bool ProcessMessage(hh::fnd::Message& msg) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;

@@ -41,7 +41,7 @@ namespace hh::game {
 
         ObjectData(csl::fnd::IAllocator* allocator, const GameObjectClass* gameObjectClass, ObjectId id, const char* name, ObjectData* parent, const ObjectTransformData& localTransform)
             : name{ name, allocator }
-            , gameObjectClass{ gameObjectClass->pName }
+            , gameObjectClass{ gameObjectClass->name }
             , localTransform { localTransform }
             , componentData{ allocator }
             , id{ id } {
@@ -53,7 +53,7 @@ namespace hh::game {
                 transform = localTransform;
             }
 
-            spawnerData = hh::fnd::RflTypeInfoRegistry::GetInstance()->ConstructObject(allocator, gameObjectClass->spawnerDataRflClass->GetName());
+            spawnerData = gameObjectClass->spawnerDataRflClass == nullptr ? nullptr : hh::fnd::RflTypeInfoRegistry::GetInstance()->ConstructObject(allocator, gameObjectClass->spawnerDataRflClass->GetName());
         }
 
         ComponentData* GetComponentDataByType(const char* type);

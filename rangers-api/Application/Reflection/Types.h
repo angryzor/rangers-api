@@ -1797,7 +1797,7 @@ namespace app::rfl {
         float noiseScaleXZ;
         float noiseScaleY;
         float noiseThreshold;
-        float noiseAttenu;
+        float noiseAttenuationRange;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2998,7 +2998,7 @@ namespace app::rfl {
 
     struct ActionNotification {
         enum class Type : int8_t {
-            Start = 0,
+            S = 0,
             On = 1,
             Off = 2,
             Finish = 3,
@@ -4725,7 +4725,7 @@ namespace app::rfl {
     struct ObjBlockColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            Sphere = 1,
+            S = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -4772,7 +4772,7 @@ namespace app::rfl {
             Num = 3,
         };
 
-        Visual visual;
+        Visual v;
         float timeTilExplode;
         float timeFlickerGetFasterAt;
         float flickerInterval;
@@ -4950,9 +4950,17 @@ namespace app::rfl {
             SIZE_NUM = 3,
         };
 
+        enum class RespawnType : int8_t {
+            None = 0,
+            Time = 1,
+            TimeAndRangeOut = 2,
+        };
+
         WallSize size;
         bool isHATarget;
         int32_t maxHits;
+        RespawnType respawn;
+        float respawnTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5058,7 +5066,7 @@ namespace app::rfl {
     struct ObjCannonTypeSpawner {
         enum class AimingType : int8_t {
             Direction = 0,
-            Player = 1,
+            P = 1,
         };
 
         AimingType aimingType;
@@ -5249,7 +5257,7 @@ namespace app::rfl {
             ObjectDir = 1,
         };
 
-        Visual visual;
+        Visual v;
         csl::ut::MoveArray<hh::game::ObjectId> objAmyList;
         csl::ut::MoveArray<hh::game::ObjectId> objKnucklesList;
         csl::ut::MoveArray<hh::game::ObjectId> objTailsList;
@@ -5386,7 +5394,7 @@ namespace app::rfl {
             NUM_VISUALS = 3,
         };
 
-        Visual visual;
+        Visual v;
         bool isCyloopOn;
         float cyloopSignDistance;
         float cyloopSignTolerance;
@@ -5448,7 +5456,7 @@ namespace app::rfl {
             Num = 4,
         };
 
-        Visual visual;
+        Visual v;
         float OutOfControl;
         float KeepVelocity;
         float Speed;
@@ -6430,7 +6438,7 @@ namespace app::rfl {
             Num = 1,
         };
 
-        Visual visual;
+        Visual v;
         csl::ut::VariableString headerLabel;
         csl::ut::VariableString bodyLabel;
         float animSpeed;
@@ -6660,7 +6668,7 @@ namespace app::rfl {
         };
 
         int32_t no;
-        Visual visual;
+        Visual v;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -6895,7 +6903,7 @@ namespace app::rfl {
             NumVisualTypes = 1,
         };
 
-        VisualType visual;
+        VisualType v;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6911,7 +6919,7 @@ namespace app::rfl {
             NumVisualTypes = 1,
         };
 
-        VisualType visual;
+        VisualType v;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6932,7 +6940,7 @@ namespace app::rfl {
             Guard = 1,
         };
 
-        VisualType visual;
+        VisualType v;
         SeedType type;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -7410,7 +7418,7 @@ namespace app::rfl {
 
         enum class RestartType : int8_t {
             Standard = 0,
-            Boarding = 1,
+            B = 1,
         };
 
         float Width;
@@ -8303,7 +8311,7 @@ namespace app::rfl {
     struct ObjSequenceColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            Sphere = 1,
+            S = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -8865,7 +8873,7 @@ namespace app::rfl {
             Sky = 1,
         };
 
-        Visual visual;
+        Visual v;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -10180,7 +10188,7 @@ namespace app::rfl {
             NumActionsOnEvent = 2,
         };
 
-        Visual visual;
+        Visual v;
         bool eventDriven;
         ActionOnEvent actionOnEvent;
         float timeTilDisappear;
@@ -10648,7 +10656,7 @@ namespace app::rfl {
     struct ObjJumpSelectorSpawner {
         enum class JumpSelectorType : uint8_t {
             JUMP = 0,
-            ATTACK = 1,
+            A = 1,
             SELECT = 2,
         };
 
@@ -10793,7 +10801,7 @@ namespace app::rfl {
             NumVisuals = 4,
         };
 
-        Visual visual;
+        Visual v;
         bool canGoThrough;
         bool doesRespawn;
         float respawnTime;
@@ -10856,7 +10864,7 @@ namespace app::rfl {
     struct ObjOperationGuideVolumeSpawner {
         enum class GuideType : int32_t {
             SideStep = 0,
-            Boarding = 1,
+            B = 1,
             Diving = 2,
             Drift = 3,
         };
@@ -11215,7 +11223,7 @@ namespace app::rfl {
             Sky = 1,
         };
 
-        Visual visual;
+        Visual v;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -11238,7 +11246,7 @@ namespace app::rfl {
             Yellow = 1,
         };
 
-        Visual visual;
+        Visual v;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -11560,7 +11568,7 @@ namespace app::rfl {
             NumVisuals = 2,
         };
 
-        Visual visual;
+        Visual v;
         float distance;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -11578,7 +11586,7 @@ namespace app::rfl {
             NumVisuals = 2,
         };
 
-        Visual visual;
+        Visual v;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13451,7 +13459,7 @@ namespace app::rfl {
         enum class AttachmentType : int8_t {
             Normal = 0,
             HA = 1,
-            Spring = 2,
+            S = 2,
         };
 
         TimerTrigger trigger;
@@ -14347,7 +14355,7 @@ namespace app::rfl {
             Num = 3,
         };
 
-        Visual visual;
+        Visual v;
         float OutOfControl;
         float KeepVelocity;
         float Speed;
@@ -14683,7 +14691,7 @@ namespace app::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            Sphere = 2,
+            S = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -14783,7 +14791,7 @@ namespace app::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            Sphere = 2,
+            S = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -15250,7 +15258,7 @@ namespace app::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            Sphere = 2,
+            S = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -15986,7 +15994,7 @@ namespace app::rfl {
     struct ObjBossNestColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            Sphere = 1,
+            S = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -16508,7 +16516,7 @@ namespace app::rfl {
 
     struct OrbMountParam {
         CraneGrid pos;
-        float rotate;
+        float r;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16682,7 +16690,7 @@ namespace app::rfl {
 
     struct ObjDrawBridgeSpawner {
         int32_t no;
-        float rotate;
+        float r;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18446,7 +18454,7 @@ namespace app::rfl {
 
     struct ObjLevitateTestSpawner {
         enum class Shape : int8_t {
-            Sphere = 0,
+            S = 0,
             Box = 1,
         };
 
@@ -18713,7 +18721,7 @@ namespace app::rfl {
             ToastOrderPositive = 2,
             ToastOrderNegative = 3,
             ToastOrderFeed = 4,
-            ToastOrderPos = 5,
+            ToastOrderPositiveFeed = 5,
             ToastOrderNegativeFeed = 6,
             Window = 7,
             HeaderWindow = 8,
@@ -19133,7 +19141,7 @@ namespace app::rfl {
 
     struct ObjSearchPathSpawner {
         enum class Shape : int8_t {
-            Sphere = 0,
+            S = 0,
             Aabb = 1,
             Raycast = 2,
             Plane = 3,
@@ -19267,7 +19275,7 @@ namespace app::rfl {
 
     struct ObjTargetSearchTestSpawner {
         enum class ViewShapeType : int8_t {
-            Sphere = 0,
+            S = 0,
             Frustum = 1,
             Cone = 2,
         };
@@ -20153,6 +20161,8 @@ namespace app::rfl {
         uint32_t hour;
         uint32_t minute;
         uint32_t healthPoint;
+        uint32_t recoveryRing;
+        uint8_t powerLevel;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20176,7 +20186,9 @@ namespace app::rfl {
 
     struct BossRushParameter {
         BossRushParameterElement element[3];
+        BossRushParameterElement elementEasy[3];
         uint32_t defaultRing;
+        uint32_t defaultRingEasy;
         float defaultCyloopGauge;
         float readyTime;
         float clearTime;
@@ -20220,6 +20232,7 @@ namespace app::rfl {
         uint32_t recoveryHpPoint;
         uint32_t limitMistake;
         int32_t damagePoint;
+        uint8_t powerLevel;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20253,6 +20266,7 @@ namespace app::rfl {
         float kodamaFightTextTime;
         float kodamaSplendidTextTime;
         MasterTrialParameterElement element[3];
+        MasterTrialParameterElement elementEasy[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20731,6 +20745,7 @@ namespace app::rfl {
             AutoCombo = 14,
             NumUsed = 15,
             Dummy0 = 15,
+            CrossSlash2 = 15,
             Dummy1 = 16,
             Dummy2 = 17,
             Dummy3 = 18,
@@ -24278,7 +24293,7 @@ namespace app::rfl {
         csl::ut::VariableString landingVibrationName;
         csl::math::Vector3 landingPlayerOffSet;
         BossRifleBeastBattleCyloopBlowOffCamera camera;
-        BossRifleBeastBattleCyloopBlowOffLaser laser;
+        BossRifleBeastBattleCyloopBlowOffLaser l;
         BossRifleBeastBattleCyloopEffectPos EffectPos;
         BossRifleBeastParrySlowParam slowSetting;
 
@@ -25783,7 +25798,7 @@ namespace app::rfl {
 
     struct ObjHackingPlayerMachineConfig {
         PlayerMachineConfig machine;
-        HomingLaserConfig laser;
+        HomingLaserConfig l;
         ElementBulletConfig bullet;
         HackingConfig hacking;
 
@@ -25810,7 +25825,7 @@ namespace app::rfl {
 
     struct ObjTheEndPlayerMachineConfig {
         PlayerMachineConfig machine;
-        HomingLaserConfig laser;
+        HomingLaserConfig l;
         ElementBulletConfig bullet;
         TheEndConfig TheEnd;
 
@@ -28743,7 +28758,7 @@ namespace app::rfl {
     struct ObjCGGRootConfig {
         float radius;
         csl::math::Vector3 offset;
-        csl::ut::Color<uint8_t> colorAc;
+        csl::ut::Color<uint8_t> colorActive;
         csl::ut::Color<uint8_t> colorDeactive;
         float timerHeightOffset;
         RailCameraParam twoRailCamera;
@@ -28787,7 +28802,7 @@ namespace app::rfl {
         ObjCGGRootConfig root;
         ObjCGGBulletNormalConfig bulletNormal;
         ObjCGGResetBindConfig resetBind;
-        ObjCGGLaserConfig laser;
+        ObjCGGLaserConfig l;
         ObjCGGAttachmentConfig attachment;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -30622,7 +30637,7 @@ namespace app::rfl {
         int32_t mineVerticalNum;
         int32_t shotCount;
         float chainLifeTime;
-        float chainT;
+        float chainTraceTime;
         float chainSpeed;
         float chainWaitTime;
         float chainRotateSpeed;
@@ -31228,7 +31243,7 @@ namespace app::rfl {
         MiniBossSumoColliderParam simpleBody;
         float moveRadius;
         float moveHeight;
-        csl::math::Vector3 targetMar;
+        csl::math::Vector3 targetMarkerOffset;
         float comboRadiusMin;
         float comboRadiusMax;
         float comboHeight;
@@ -31919,7 +31934,7 @@ namespace app::rfl {
         MiniBossTyrantAttackSpinParam spin;
         MiniBossTyrantAttackAirSpinParam airSpin;
         MiniBossTyrantAttackRouletteParam roulette;
-        MiniBossTyrantAttackLaserParam laser;
+        MiniBossTyrantAttackLaserParam l;
         float rotSpeed;
         MiniBossTyrantBarrageParam barrage[16];
         MiniBossTyrantShotgunBullet shotgunBullet;
@@ -34199,6 +34214,8 @@ namespace app::rfl {
 
         float damageRate;
         float damageRateSS;
+        uint16_t pointMin;
+        uint16_t pointMax;
         float damageRateAcceleMode;
         float damageRateManual;
         float stunPoint;
@@ -34292,6 +34309,7 @@ namespace app::rfl {
         PlayerParamAttackData amyTarotAttack2;
         PlayerParamAttackData amyTarotRolling;
         PlayerParamAttackData amyCharmAttack;
+        PlayerParamAttackData amyTarotBoost;
         PlayerParamAttackData tailsSpanner;
         PlayerParamAttackData tailsSpannerFloat;
         PlayerParamAttackData tailsPowerBoost;
@@ -34538,7 +34556,7 @@ namespace app::rfl {
         };
 
         enum class Shape : int8_t {
-            Sphere = 0,
+            S = 0,
             Cylinder = 1,
             Box = 2,
         };
@@ -35927,6 +35945,9 @@ namespace app::rfl {
         PlayerParamAttackCollider hit;
         float motionScale;
         float motionSpeedRate;
+        int32_t fallSpeedBaseCount;
+        float fallSpeedStep;
+        float fallSpeedMax;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35940,6 +35961,9 @@ namespace app::rfl {
         PlayerParamAttackCollider hit;
         float motionScale;
         float motionSpeedRate;
+        int32_t fallSpeedBaseCount;
+        float fallSpeedStep;
+        float fallSpeedMax;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36689,8 +36713,15 @@ namespace app::rfl {
         float maxSteerSpeed;
         float rollSpeed;
         float neutralRollSpeed;
+        float rollSpeedRingMax;
+        float neutralRollSpeedRingMax;
         float yawSpeed;
+        float yawSpeedRingMax;
         float maxRollAngle;
+        float rollAngleRatioMin;
+        float rollAngleRatioMax;
+        float rollAngleRatioMinRingMax;
+        float rollAngleRatioMaxRingMax;
         float height;
         float startHeight;
         KnucklesParamGlidingCamera camera;

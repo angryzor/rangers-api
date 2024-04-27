@@ -10,7 +10,7 @@ namespace hh::fw {
     class Application : public hh::fnd::ReferencedObject, hh::fw::KeyEventHandler, hh::fw::MouseEventHandler {
     public:
         FrameworkEnvironment* frameworkEnvironment;
-        csl::ut::MoveArray<void*> unk2;
+        csl::ut::MoveArray<ApplicationListener*> listeners;
         csl::ut::MoveArray<void*> unk3;
 
         static Application* instance;
@@ -22,6 +22,12 @@ namespace hh::fw {
 
         void AddListener(ApplicationListener* listener);
         void RemoveListener(ApplicationListener* listener);
+        inline void AddKeyEventHandler(KeyEventHandler* handler, uint32_t unkParam2) {
+            this->frameworkEnvironment->eventStack->AddKeyEventHandler(handler, 0, unkParam2);
+        }
+        inline void RemoveKeyEventHandler(KeyEventHandler* handler) {
+            this->frameworkEnvironment->eventStack->RemoveKeyEventHandler(handler);
+        }
         void AddMouseEventHandler(MouseEventHandler* handler, uint32_t unkParam1);
         void RemoveMouseEventHandler(MouseEventHandler* handler);
 

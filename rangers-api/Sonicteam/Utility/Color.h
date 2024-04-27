@@ -9,11 +9,11 @@ namespace csl::ut {
         T g;
         T r;
 
-        inline bool operator==(const Color<T>& other) {
+        inline bool operator==(const Color<T>& other) const {
             return r == other.r && g == other.g && b == other.b && a == other.a;
         }
 
-        inline bool operator!=(const Color<T>& other) {
+        inline bool operator!=(const Color<T>& other) const {
             return !operator==(other);
         }
     };

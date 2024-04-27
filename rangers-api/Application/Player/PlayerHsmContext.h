@@ -1,6 +1,10 @@
 #pragma once
 
 namespace app::player {
+    class GOCPlayerHsm;
+    class GOCPlayerPosture;
+    class GOCPlayerKinematicParams;
+    class GOCPlayerBlackboard;
     class PlayerHsmContext : public hh::fnd::ReferencedObject, public app::save::SaveManagerListener {
         class OutOfControlTimerList : public PlayerCounterTimer {
             PlayerHsmContext* pPlayerHsmContext;
@@ -14,18 +18,20 @@ namespace app::player {
             DamagedObjects(csl::fnd::IAllocator* pAllocator);
         };
 
-        uint64_t unk1;
-        uint64_t unk2;
+        hh::game::GameObject* playerObject;
+        uint64_t unk2; // need to reverse blackboard first, see setup
         uint64_t unk3;
-        uint64_t unk4;
-        uint64_t unk5;
-        uint64_t unk6;
-        uint64_t unk7;
+        GOCPlayerHsm* gocPlayerHsm;
+        GOCPlayerPosture* gocPlayerPosture;
+        GOCPlayerKinematicParams* gocPlayerKinematicParams;
+        GOCPlayerBlackboard* gocPlayerBlackboard;
         csl::ut::MoveArray<void*> unk8;
         OutOfControlTimerList* pOutOfControlTimerList;
         DamagedObjects* pDamagedObjects;
     public:
         PlayerHsmContext(csl::fnd::IAllocator* pAllocator);
         ~PlayerHsmContext();
+
+        void Setup(GOCPlayerHsm* gocPlayerHsm);
     };
 }

@@ -7,13 +7,15 @@ namespace hh::game {
         bool unk101;
         csl::math::Vector3 z;
         float unk103;
-        bool unk104;
     public:
+        bool enabled;
+
         GOCActivator(csl::fnd::IAllocator* allocator);
-        static GOCActivator* Create(csl::fnd::IAllocator* allocator);
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;
 		virtual void OnGOCEvent(GOCEvent event, GameObject& ownerGameObject, void* data) override;
         virtual void HFrameUpdatedCallback(const fnd::HFrame* frame, bool unkParam) override;
+
+        GOCOMPONENT_CLASS_DECLARATION(GOCActivator)
     };
 }

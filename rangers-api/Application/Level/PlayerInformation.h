@@ -1,5 +1,8 @@
 #pragma once
 
 namespace app::level {
-    class PlayerInformation;
+    class PlayerInformation : public hh::fnd::BaseObject {
+    public:
+        hh::fnd::Handle<hh::fnd::Messenger> playerObject;
+    };
 }

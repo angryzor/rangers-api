@@ -118,7 +118,8 @@ namespace hh::game
 	public:
 		uint32_t unk33;
 		uint32_t unk34;
-		void* unk35;
+		float unitOrGlobalScale;
+		uint32_t unk36;
 		csl::ut::FixedArray<GameObjectLayer*, 32> gameObjectLayers{};
 		csl::ut::MoveArray<GameObject*> objects{ pAllocator };
 		csl::ut::MoveArray<GameService*> services{ pAllocator };
@@ -251,5 +252,6 @@ namespace hh::game
 		void SendMessageImmToService(fnd::Message& message);
 		void SetObjectLayer(GameObject* gameObject, int layerId);
 		void PerformMessages();
+		void KillPlayerCharacter(uint8_t playerId);
 	};
 }

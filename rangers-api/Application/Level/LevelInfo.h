@@ -26,6 +26,8 @@ namespace app::level {
             return stageData;
         }
 
+        PlayerInformation* GetPlayerInformation(uint8_t playerId);
+
         GAMESERVICE_CLASS_DECLARATION(LevelInfo)
     };
 }

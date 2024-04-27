@@ -179,8 +179,6 @@
 
 // Hedgehog Framework
 #include "Hedgehog/Framework/LocalHeap.h"
-#include "Hedgehog/Framework/KeyEventHandler.h"
-#include "Hedgehog/Framework/MouseEventHandler.h"
 #include "Hedgehog/Framework/EventStack.h"
 #include "Hedgehog/Framework/Window.h"
 #include "Hedgehog/Framework/WindowD3D11.h"
@@ -424,6 +422,7 @@
 #include "ApplicationCommon/FSM/GOCHsm2.h"
 
 #include "Application/Foundation/AppHeapManager.h"
+#include "Application/Foundation/AppMessage.h"
 
 #include "Application/FSM/StateContext.h"
 
@@ -461,6 +460,9 @@
 #include "Application/Game/ApplicationExtension.h"
 #include "Application/Game/ApplicationSequenceExtension.h"
 #include "Application/Game/MenuSelect.h"
+#include "Application/Game/GOCEvent.h"
+#include "Application/Game/GOCEventCollision.h"
+#include "Application/Game/GOCActionNotifier.h"
 
 #include "Application/Event/EventPlayer.h"
 
@@ -474,6 +476,11 @@
 #include "Application/Player/CharacterId.h"
 #include "Application/Player/PlayerCounterTimer.h"
 #include "Application/Player/PlayerHsmContext.h"
+#include "Application/Player/StateParameter.h"
+#include "Application/Player/RelayedFlagsParameter.h"
+#include "Application/Player/PlayerStateParameter.h"
+#include "Application/Player/StatePlugin.h"
+#include "Application/Player/GravityController.h"
 #include "Application/Player/GOCPlayerHsm.h"
 #include "Application/Player/GOCPlayerState.h"
 #include "Application/Player/GOCPlayerParameter.h"
@@ -485,4 +492,12 @@
 #include "Application/Player/PlayerStateBase.h"
 #include "Application/Player/States.h"
 
+#include "Application/Player/Characters/Sonic.h"
+#include "Application/Player/Characters/Tails.h"
+#include "Application/Player/Characters/Amy.h"
+#include "Application/Player/Characters/Knuckles.h"
+
+#include "Application/VolumeTrigger.h"
 #include "Application/MyApplication.h"
+#include "Application/IslandObjInfo.h"
+#include "Application/ObjSwitchVolume.h"

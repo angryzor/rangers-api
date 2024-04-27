@@ -77,8 +77,12 @@ namespace app::gfx {
         csl::ut::MoveArray<FxParamExtension*> extensions;
         int currentSceneParameters;
         csl::fnd::Mutex mutex;
-        uint16_t unk107;
+        uint8_t unk107;
+        bool updated;
         uint8_t unk108;
+    protected:
+        bool UpdateNeedleFxSceneConfigInterpolators();
+        bool UpdateNeedleFxParameterInterpolators();
 
     public:
         virtual void OnAddedToGame() override;
@@ -86,6 +90,38 @@ namespace app::gfx {
 		virtual void PostStepCallback(hh::game::GameManager* gameManager, const hh::game::GameStepInfo& gameStepInfo) override;
 
         void SetSceneParameters(SceneParameters* parameters, int idx);
+
+        inline void AddNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxSceneConfig* needleFxSceneConfig, unsigned int priority, float interpolationTime) {
+            this->mutex.Lock();
+            sceneConfigInterpolators.fxRenderTargetSettingInterpolator->AddJob(ownerId, &needleFxSceneConfig->rendertarget, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.fxAntiAliasingInterpolator->AddJob(ownerId, &needleFxSceneConfig->antialiasing, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.stageCommonAtmosphereParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->atmosphere, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.fxLODParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->lod, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.fxDetailParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->detail, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.fxDynamicResolutionParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->dynamicResolution, -1, priority, interpolationTime, -1);
+            sceneConfigInterpolators.stageCommonTimeProgressParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->timeProgress, -1, priority, interpolationTime, -1);
+            this->mutex.Unlock();
+            updated |= UpdateNeedleFxSceneConfigInterpolators();
+        }
+        void AddDefaultNeedleFxSceneConfigInterpolationJob(app::rfl::NeedleFxSceneConfig* needleFxParameter, unsigned int priority);
+        inline void UpdateNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxSceneConfig* needleFxSceneConfig) {
+            this->mutex.Lock();
+            sceneConfigInterpolators.fxRenderTargetSettingInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->rendertarget);
+            sceneConfigInterpolators.fxAntiAliasingInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->antialiasing);
+            sceneConfigInterpolators.stageCommonAtmosphereParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->atmosphere);
+            sceneConfigInterpolators.fxLODParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->lod);
+            sceneConfigInterpolators.fxDetailParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->detail);
+            sceneConfigInterpolators.fxDynamicResolutionParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->dynamicResolution);
+            sceneConfigInterpolators.stageCommonTimeProgressParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->timeProgress);
+            this->mutex.Unlock();
+            updated |= UpdateNeedleFxSceneConfigInterpolators();
+        }
+        void UpdateDefaultNeedleFxSceneConfigInterpolationJob(app::rfl::NeedleFxSceneConfig* needleFxParameter);
+    
+        void AddNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority, float interpolationTime);
+        void AddDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority);
+        void UpdateDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter);
+        void UpdateNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter);
 
 		GAMESERVICE_CLASS_DECLARATION(FxParamManager)
     };

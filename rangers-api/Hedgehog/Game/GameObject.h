@@ -1,5 +1,12 @@
 #pragma once
 
+#define GAMEOBJECT_CLASS_DECLARATION(ClassName) private:\
+		static const hh::game::GameObjectClass staticGameObjectClass;\
+		static GameObject* Create(csl::fnd::IAllocator* allocator);\
+		ClassName(csl::fnd::IAllocator* allocator);\
+	public:\
+		static const hh::game::GameObjectClass* GetClass();
+
 namespace hh::ui {
 	class LayerController;
 }
@@ -25,22 +32,24 @@ namespace hh::game
 		static void FireObjectLayerSet(GameObject* gameObject);
 	};
 
-    class GameObjectClass {
-    public:
-        const char *pName{};
-        const char *pScopedName{};
-        uint64_t unk12{};
-        size_t objectSize{};
-        GameObject* (*instantiator)(csl::fnd::IAllocator* pAllocator){};
-        uint64_t unk15{};
-        uint64_t unk16{};
-        uint64_t unk17{};
-        uint32_t memberValueCount{};
-        const hh::fnd::RflClassMember::Value* attributes{};
-        const hh::fnd::RflClass* spawnerDataRflClass{};
+	class GameObjectClass {
+	public:
+		const char* name{};
+		const char* scopedName{};
+		uint64_t unk12{};
+		size_t objectSize{};
+		GameObject* (*instantiator)(csl::fnd::IAllocator* allocator) {};
+		uint64_t unk15{};
+		uint64_t unk16{};
+		uint64_t unk17{};
+		uint32_t attributeCount{};
+		const hh::fnd::RflClassMember::Value* attributes{};
+		const hh::fnd::RflClass* spawnerDataRflClass{};
 	private:
 		GameObject* Create(csl::fnd::IAllocator* pAllocator) const;
 	public:
+		GameObjectClass(const char* name, const char* scopedName, size_t objectSize, GameObject* (*instantiator)(csl::fnd::IAllocator* allocator), uint32_t attributeCount, const hh::fnd::RflClassMember::Value* attributes, const hh::fnd::RflClass* spawnerDataRflClass)
+			: name{ name }, scopedName{ scopedName }, objectSize{ objectSize }, instantiator{ instantiator }, attributeCount{ attributeCount }, attributes{ attributes }, spawnerDataRflClass{ spawnerDataRflClass } {}
 		template<typename T>
 		T* Create(csl::fnd::IAllocator* pAllocator) const { return static_cast<T*>(Create(pAllocator)); }
 		const fnd::RflClassMember::Value* GetAttribute(const char* name) const;
@@ -91,6 +100,7 @@ namespace hh::game
 		csl::ut::MoveArray<GOComponent*> componentsByType[3];
 		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
 		Unk1 deferredComponentAdditions;
+	protected:
 		WorldObjectStatus* status;
 		GameObjectClass* objectClass;
 		Unk2 unk70;
@@ -177,7 +187,7 @@ namespace hh::game
 		void SetLayer(char layer);
 
 		void LinkActionToUIKey(ui::LayerController* layerController, const char* uiPath, const char* actionName, void* unkParam);
-		void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
+		const void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
 		void KillChildren();
 	public:
 		template<typename T>
@@ -192,8 +202,8 @@ namespace hh::game
 		void NotifyDestroy();
 		
 		template<typename T>
-		T* GetWorldDataByClass() const {
-			return static_cast<T*>(GetWorldDataByClass(T::rflClass));
+		const T* GetWorldDataByClass() const {
+			return static_cast<const T*>(GetWorldDataByClass(T::rflClass));
 		}
 
 		void Kill();

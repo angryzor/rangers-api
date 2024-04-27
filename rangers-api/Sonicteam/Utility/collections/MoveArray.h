@@ -24,5 +24,9 @@ namespace csl::ut
 		MoveArray(MoveArray<T>&& other) : Array<T, size_t>{ std::move(other) }
 		{
 		}
+
+		MoveArray<T>& operator=(MoveArray<T>&& other) {
+			return static_cast<MoveArray<T>&>(Array<T, size_t>::operator=(std::move(other)));
+		}
 	};
 }

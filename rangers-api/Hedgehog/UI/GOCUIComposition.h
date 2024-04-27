@@ -32,7 +32,7 @@ namespace hh::ui {
         };
 
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void Update() override;
+		virtual void Update(fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual bool ProcessMessage(fnd::Message& msg) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;

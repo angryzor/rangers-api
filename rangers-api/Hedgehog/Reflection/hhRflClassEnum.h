@@ -11,6 +11,7 @@ namespace hh::fnd
 		const uint64_t m_Flags{};
 
 	public:
+		RflClassEnumMember(int32_t idx, const char* englishName, const char* japaneseName, uint64_t flags) : m_Idx{ idx }, m_pEnglishName{ englishName }, m_pJapaneseName{ japaneseName }, m_Flags{ flags } {}
 		[[nodiscard]] const char* GetEnglishName() const
 		{
 			return m_pEnglishName;
@@ -38,6 +39,7 @@ namespace hh::fnd
 		const RflArray<RflClassEnumMember> m_pValues{ nullptr, 0 };
 
 	public:
+		RflClassEnum(const char* name, const RflClassEnumMember* values, uint32_t valueCount) : RflEntity{ name }, m_pValues{ values, valueCount } {}
 		const RflClassEnumMember* GetValues() const
 		{
 			return m_pValues.items;

@@ -13,7 +13,7 @@ namespace hh::game {
 
         ObjectData* objectData;
         csl::ut::Bitset<Flag> flags;
-        uint32_t unk3;
+        uint32_t state;
         int spawnPriority;
         virtual ~WorldObjectStatus() = default;
 
@@ -28,5 +28,8 @@ namespace hh::game {
         inline void Restart() {
             flags.reset(Flag::STARTED);
         }
+
+        uint16_t GetObjectState(unsigned int stateId);
+        void SetObjectState(unsigned int stateId, uint16_t state);
     };
 }

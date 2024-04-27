@@ -19,7 +19,7 @@ namespace hh::game
 	{
 	public:
 		const char* pName;
-		void* inheritanceChain{};
+		void* runtimeTypeInfo{};
 		GOComponentClass* parent{};
 		const char* dynamicName;
 		size_t size;
@@ -81,7 +81,7 @@ namespace hh::game
 		virtual ~GOComponent();
 
 		virtual void* GetRuntimeTypeInfo();
-		virtual void Update() {}
+		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) {}
 		virtual void GetDebugInfoMaybe();
 		virtual bool ProcessMessage(fnd::Message& msg) { return false; }
 		virtual bool fUnk5() { return false; }
@@ -113,5 +113,6 @@ namespace hh::game
 		}
 
 		void SetNameHash(const char* name);
+		void SetComponentTypeFlag(Type type, bool enabled);
 	};
 }

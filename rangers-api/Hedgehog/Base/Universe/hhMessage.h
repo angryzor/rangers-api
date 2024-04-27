@@ -9,6 +9,8 @@ namespace hh::fnd
 		FINISH_ACTIVE_OBJECT_IN_EDITOR = 771,
 		PARAM_CHANGED_IN_EDITOR = 772,
 		GET_DEBUG_COMMENT_IN_EDITOR = 773,
+		CAMERA_OFF = 8353,
+		NOTIFY_ACTION = 8748,
 	};
 
 	class Messenger;
@@ -52,23 +54,5 @@ namespace hh::fnd
 	class MessageAsyncHandlerInplace : public MessageAsyncHandler
 	{
 		T messageInPlace;
-	};
-}
-
-namespace app::fnd
-{
-	template <typename T>
-	class AppMessage : public hh::fnd::Message
-	{
-	public:
-		AppMessage(hh::fnd::MessageID in_id) : Message(in_id)
-		{
-			
-		}
-		
-		// AppMessage<T>* Clone() override
-		// {
-		// 	return new AppMessage<T>(ID);
-		// }
 	};
 }

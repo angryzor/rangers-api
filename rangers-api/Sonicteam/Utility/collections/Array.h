@@ -133,6 +133,17 @@ namespace csl::ut
 				m_pAllocator->Free(this->m_pBuffer);
 		}
 
+		Array<T, S>& operator=(Array<T, S>&& other) {
+			this->m_pAllocator = other.m_pAllocator;
+			this->m_pBuffer = other.m_pBuffer;
+			this->m_length = other.m_length;
+			this->m_capacity = other.m_capacity;
+			other.m_pBuffer = nullptr;
+			other.m_length = 0;
+			other.m_capacity = csl::ut::SIGN_BIT;
+			return *this;
+		}
+
 		csl::fnd::IAllocator* get_allocator()
 		{
 			return m_pAllocator;

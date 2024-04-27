@@ -61,8 +61,8 @@ namespace hh::fnd
 		
 	protected:
 	public:
-		RflClass* m_pClass{};
-		RflClassEnum* m_pEnum{};
+		const RflClass* m_pClass{};
+		const RflClassEnum* m_pEnum{};
 		Type m_Type{};
 		Type m_SubType{};
 		uint32_t m_ArrayLength{};
@@ -92,7 +92,7 @@ namespace hh::fnd
 
 		[[nodiscard]] const RflCustomAttribute* GetAttribute(const char* name) const
 		{
-			return m_pAttributes->GetAttribute(name);
+			return m_pAttributes == nullptr ? nullptr : m_pAttributes->GetAttribute(name);
 		}
 
 		[[nodiscard]] Type GetType() const

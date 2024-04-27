@@ -27,7 +27,7 @@ namespace hh::fnd {
             return static_cast<T*>(reinterpret_cast<ResReflection<void>>(this)->GetData());
         }
 
-        inline static ResourceTypeInfo* GetTypeInfo() {
+        inline static const ResourceTypeInfo* GetTypeInfo() {
             return ResReflection<void>::GetTypeInfo();
         }
 

@@ -7,7 +7,7 @@ namespace hh::ut {
             int32_t unk2;
             int32_t unk3;
             int32_t unk3b;
-            uint64_t unk4;
+            StateDescImpl** stateDescImpls;
             csl::ut::InplaceMoveArray<void*, 5> unk6;
             uint32_t unk7;
         public:
@@ -19,5 +19,7 @@ namespace hh::ut {
     class HsmBase : public internal::HsmImpl {
     public:
         HsmBase(csl::fnd::IAllocator* pAllocator);
+
+        void AddStateDesc(int stateId, StateDesc* stateDesc);
     };
 }

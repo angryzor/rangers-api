@@ -40,6 +40,15 @@ namespace hh::physics {
         ColliShapeParameters parameters;
     };
 
+    class GOCCollider;
+    class GOCColliderListener {
+    public:
+        virtual ~GOCColliderListener() = default;
+        virtual void GOCCL_UnkFunc1(GOCCollider* collider) {}
+        virtual void GOCCL_UnkFunc2(GOCCollider* collider) {}
+        virtual void GOCCL_UnkFunc3(GOCCollider* collider) {}
+    };
+
     class GOCCollider : public game::GOComponent, public fnd::HFrame::Listener {
     public:
         struct SetupInfo {
@@ -105,6 +114,9 @@ namespace hh::physics {
         virtual void HFrameUpdatedCallback(const fnd::HFrame* frame, bool unkParam) override;
 
         void Setup(const SetupInfo& setupInfo);
+        void AddListener(GOCColliderListener* listener);
+        void RemoveListener(GOCColliderListener* listener);
+        void SetEnabled(bool enabled);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCCollider);
     };

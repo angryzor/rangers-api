@@ -3,6 +3,19 @@
 namespace app::player {
     class GOCPlayerParameter : public hh::game::GOComponent {
     public:
+        enum class Mode : uint32_t {
+            NORMAL,
+            WATER,
+            CYBERSPACE_FORWARD_VIEW,
+            CYBERSPACE_SIDE_VIEW,
+        };
+
+        enum class SuperState : uint32_t {
+            NORMAL_SONIC,
+            SUPER_SONIC,
+            SUPER_SONIC_2,
+        };
+
         union CharacterParameters {
             hh::fnd::ResReflection<app::rfl::SonicParameters> sonic;
             hh::fnd::ResReflection<app::rfl::AmyParameters> amy;
@@ -28,15 +41,18 @@ namespace app::player {
 
         hh::fnd::Reference<CharacterParameters> characterParameters;
         hh::fnd::Reference<hh::fnd::ResReflection<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
-        uint64_t unk3;
-        uint64_t unk4;
-        uint64_t unk5;
-        uint64_t unk6;
-        uint64_t unk7;
-        uint32_t mode;
-        uint32_t unk9;
+        app::rfl::ModePackage* modePackages[4];
+        app::rfl::WaterModePackage* waterModePackage;
+        Mode mode;
+        SuperState superState;
         CharacterId characterId;
-        uint64_t unk10[28];
+        app::rfl::PlayerParamCommon* commonParameters[4];
+        app::rfl::PlayerParamSpeed* speedParameters[4];
+        app::rfl::PlayerParamJump* jumpParameters[4];
+        app::rfl::PlayerParamJumpSpeed* jumpSpeedParameters[4];
+        app::rfl::PlayerParamDoubleJump* doubleJumpParameters[4];
+        app::rfl::PlayerParamBoost* boostParameters[4];
+        app::rfl::PlayerParamAirBoost* airBoostParameters[4];
 
     private:
         void* GetPlayerParameter(const hh::fnd::RflClass& rflClass);
@@ -51,7 +67,28 @@ namespace app::player {
         GOCPlayerParameter(csl::fnd::IAllocator* allocator);
         void Initialize(const Config& config);
 
-        app::rfl::PlayerParamSpeed& GetSpeedParameters();
+        app::rfl::PlayerParamCommon& GetCommonParameters() const;
+        app::rfl::PlayerParamSpeed& GetSpeedParameters() const;
+        app::rfl::PlayerParamJump& GetJumpParameters() const;
+        app::rfl::PlayerParamJumpSpeed& GetJumpSpeedParameters() const;
+        app::rfl::PlayerParamDoubleJump& GetDoubleJumpParameters() const;
+        app::rfl::PlayerParamBoost& GetBoostParameters() const;
+        app::rfl::PlayerParamAirBoost& GetAirBoostParameters() const;
+
+        app::rfl::PlayerParamAcceleCombo& GetAcceleComboParameters() const;
+        app::rfl::PlayerParamLoopKick& GetLoopKickParameters() const;
+        app::rfl::PlayerParamCrasher& GetCrasherParameters() const;
+        app::rfl::PlayerParamSpinSlash& GetSpinSlashParameters() const;
+        app::rfl::PlayerParamChargeAttack& GetChargeAttackParameters() const;
+        app::rfl::PlayerParamStompingAttack& GetStompingAttackParameters() const;
+        app::rfl::PlayerParamComboFinish& GetComboFinishParameters() const;
+        app::rfl::PlayerParamSonicBoom& GetSonicBoomParameters() const;
+        app::rfl::PlayerParamCrossSlash& GetCrossSlashParameters() const;
+        app::rfl::PlayerParamHomingShot& GetHomingShotParameters() const;
+        app::rfl::PlayerParamSmash& GetSmashParameters() const;
+
+        void SetMode(Mode mode);
+        void SetSuperState(SuperState state);
 
         template<typename T>
         T* GetPlayerParameter() {
