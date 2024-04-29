@@ -8,6 +8,11 @@ namespace hh::ui {
         uint32_t bottom;
     };
 
+    struct ViewportDimensions {
+        float width;
+        float height;
+    };
+
     struct Dimensions {
         uint16_t width;
         uint16_t height;

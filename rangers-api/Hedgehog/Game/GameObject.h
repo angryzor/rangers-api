@@ -22,14 +22,16 @@ namespace hh::game
 		virtual void ComponentAddedCallback(GameObject* gameObject, GOComponent* component) {}
 		virtual void ComponentRemovedCallback(GameObject* gameObject, GOComponent* component) {}
 		virtual void ObjectLayerSetCallback(GameObject* gameObject) {}
-		virtual void GOL_UnkFunc4() {}
-		virtual void GOL_UnkFunc5() {}
+		virtual void ObjectAddedToLayerCallback(GameObject* gameObject, int layer) {}
+		virtual void ObjectRemovedFromLayerCallback(GameObject* gameObject, int layer) {}
 	};
 
 	class GameObjectCallbackUtil {
 		static void FireComponentAdded(GameObject* gameObject, GOComponent* component);
 		static void FireComponentRemoved(GameObject* gameObject, GOComponent* component);
 		static void FireObjectLayerSet(GameObject* gameObject);
+		static void FireObjectAddedToLayer(GameObject* gameObject, int layer);
+		static void FireObjectRemovedFromLayer(GameObject* gameObject, int layer);
 	};
 
 	class GameObjectClass {
@@ -80,10 +82,10 @@ namespace hh::game
 
 		csl::ut::Bitset<StatusFlags> statusFlags;
 		char layer{ 6 };
-		csl::ut::Bitset<GOComponent::Type> forcedUpdateFlags;
-		csl::ut::Bitset<GOComponent::Type> updateFlags;
+		csl::ut::Bitset<fnd::UpdatingPhase, uint8_t> forcedUpdateFlags;
+		csl::ut::Bitset<fnd::UpdatingPhase, uint8_t> updateFlags;
 		char unk48;
-		uint32_t componentsLengthWithUnk48InHiWordByType[3];
+		uint32_t componentsLengthWithUnk48InHiWordByUpdatingPhase[3];
 		GameManager* gameManager{};
 
 		uint32_t numComponentsCurrentlyBeingAdded;
@@ -93,14 +95,14 @@ namespace hh::game
 		GameObject(csl::fnd::IAllocator* allocator);
 		csl::ut::InplaceMoveArray<GOComponent*, 8> components;
 		csl::ut::VariableString name;
-	private:
+
 		csl::ut::InplaceMoveArray<hh::fnd::Property, 2> properties;
 		csl::ut::MoveArray<GameObjectListener*> listeners;
 		uint32_t componentsMessageMask{};
-		csl::ut::MoveArray<GOComponent*> componentsByType[3];
+		csl::ut::MoveArray<GOComponent*> componentsByUpdatingPhase[3];
 		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
 		Unk1 deferredComponentAdditions;
-	protected:
+
 		WorldObjectStatus* status;
 		GameObjectClass* objectClass;
 		Unk2 unk70;
@@ -120,7 +122,7 @@ namespace hh::game
 		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4);
 
 	private:
-		void SetUpdateFlags(GOComponent::Type componentType);
+		void SetUpdateFlags(fnd::UpdatingPhase phase);
 		// template <typename T>
 		// T* GetGOC()
 		// {
@@ -172,7 +174,8 @@ namespace hh::game
 
 		void AddComponent(GOComponent* component);
 		void RemoveComponent(GOComponent* component);
-		void SetUpdateFlag(GOComponent::Type type, bool enabled);
+		void SetUpdateFlag(fnd::UpdatingPhase phase, bool enabled);
+		void SetComponentLengths(fnd::UpdatingPhase phase);
 
 		
 		fnd::Message* SendMessageToGame(fnd::Message& message);
@@ -190,6 +193,18 @@ namespace hh::game
 		const void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
 		void KillChildren();
 	public:
+		inline void UNSAFE_SetUpdateFlags(fnd::UpdatingPhase phase) {
+			SetUpdateFlags(phase);
+		}
+		inline void UNSAFE_AddComponent(GOComponent* component) {
+			AddComponent(component);
+		}
+		inline void UNSAFE_RemoveComponent(GOComponent* component) {
+			RemoveComponent(component);
+		}
+		inline void UNSAFE_SetComponentLengths(fnd::UpdatingPhase phase) {
+			SetComponentLengths(phase);
+		}
 		template<typename T>
 		T* GetComponent() {
 			return static_cast<T*>(GetComponent(T::GetClass()));

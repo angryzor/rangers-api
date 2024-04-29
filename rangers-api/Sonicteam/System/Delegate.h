@@ -39,9 +39,9 @@ namespace csl::fnd {
             }
         };
         
+    public:
         csl::ut::MoveArray<DelegateItem> functors;
         
-    public:
         template<typename T> void Add(T& t) {
             DelegateItem item;
             DelegateFunctor<T> d(t);

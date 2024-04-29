@@ -52,12 +52,6 @@ namespace hh::game
 			POST_RESOURCE_RELOAD, // Sent to all GameObjects' GOCs when GameManager's ReloaderListener::PostResourceReloadCallback is called
 		};
 
-		enum class Type : uint8_t {
-			VISUAL,
-			PHYSICS,
-			AUDIBLE,
-		};
-
 		struct Unk1 {
 			int64_t unk39;
 			int64_t unk40;
@@ -68,10 +62,9 @@ namespace hh::game
 		GameObject* owner{};
 		csl::ut::Bitset<GOCEventMask> gocEventMask;
 		uint16_t index; // index in GameObject's list
-		csl::ut::Bitset<Type> componentTypes;
+		csl::ut::Bitset<fnd::UpdatingPhase, uint8_t> updateFlags;
 		char flags39;
-		uint16_t unk49;
-		char unk50;
+		uint8_t updatePriorityByPhase[3];
 		uint32_t nameHash;
 		uint32_t messageMask;
 		GOComponentClass* pStaticClass{};
@@ -113,6 +106,7 @@ namespace hh::game
 		}
 
 		void SetNameHash(const char* name);
-		void SetComponentTypeFlag(Type type, bool enabled);
+		void SetUpdateFlag(hh::fnd::UpdatingPhase updatingPhase, bool enabled);
+		void SetUpdatePriority(hh::fnd::UpdatingPhase updatingPhase, uint8_t priority);
 	};
 }

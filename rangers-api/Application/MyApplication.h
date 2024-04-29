@@ -30,4 +30,6 @@ namespace app {
             return static_cast<T*>(GetExtension(T::name));
         }
     };
+
+    hh::fw::Application* CreateMyApp(hh::fw::FrameworkEnvironment frameworkEnvironment, csl::fnd::IAllocator* allocator);
 }

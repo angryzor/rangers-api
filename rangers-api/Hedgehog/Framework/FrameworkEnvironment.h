@@ -12,9 +12,7 @@ namespace hh::fw {
         };
 
         bool unk1;
-        uint64_t unk2;
-        uint16_t unk3;
-        uint32_t unk4;
+        fnd::SUpdateInfo updateInfo;
         Window* window;
         uint64_t unk6;
         uint64_t unk7;

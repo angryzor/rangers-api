@@ -1,16 +1,20 @@
 #pragma once
 
-namespace hh::game {
-    struct GameUpdaterConfig {
-        GameManager* gameManager;
-        int unk1;
-        uint32_t unk2;
-        uint32_t unk3;
-        uint32_t unk4;
-    };
+namespace hh::anim {
+    class AnimationInterface;
+};
 
+namespace hh::game {
     class GameUpdater : public fnd::ReferencedObject {
     public:
+        struct SetupInfo {
+            GameManager* gameManager;
+            uint32_t layersActiveDuringNormalOperation;
+            uint32_t layersActiveDuringIngamePause;
+            uint32_t layersActiveDuringDebugPause;
+            uint32_t layersActiveDuringObjectPause;
+        };
+
         enum class Flags : uint8_t {
             INGAME_PAUSE = 0,
             DEBUG_PAUSE = 1,
@@ -39,11 +43,11 @@ namespace hh::game {
         uint32_t layersActiveDuringIngamePause;
         uint32_t layersActiveDuringDebugPause;
         uint32_t layersActiveDuringObjectPause;
-        float unk5;
-        float maybeFrameTimes[32];
+        float timeScale; // 1.0f = normal
+        float layerTimeScale[32];
         float unk6;
         GameManager* gameManager;
-        uint64_t unk6b;
+        fnd::Reference<anim::AnimationInterface> animationInterface;
         uint64_t unk6c;
         Unk1 unk7;
         fnd::SUpdateInfo updateInfos[32];
@@ -51,12 +55,16 @@ namespace hh::game {
         uint32_t unk10;
     
     public:
-        GameUpdater(csl::fnd::IAllocator* allocator, const GameUpdaterConfig& config);
+        GameUpdater(csl::fnd::IAllocator* allocator, const SetupInfo& setupInfo);
 
         virtual void* GetRuntimeTypeInfo();
         virtual void* DoStep(const GameStepInfo& stepInfo);
 
         void Update(const fnd::SUpdateInfo& updateInfo, GameApplication* application);
+        void UpdateGlobalTime(const GameStepInfo& gameStepInfo);
+        void SetGlobalTimeScale(float timeScale);
+        void SetLayerTimeScale(uint32_t layerMask, float timeScale);
+        void ResetTimeScale(uint32_t layerMask, float timeScale);
 
         // inline bool GetRunning() const {
         //     return flags.test(Flags::RUNNING);

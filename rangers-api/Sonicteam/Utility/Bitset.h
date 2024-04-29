@@ -6,18 +6,27 @@
 
 namespace csl::ut
 {
-	template <typename T>
+#ifdef EXPORTING_TYPES
+	template <typename T, typename U = T>
+#else
+	template <typename T, bool isenum> class bitset_type {};
+	template <typename T> class bitset_type<T, true> { public: typedef std::underlying_type_t<T> type;  };
+	template <typename T> class bitset_type<T, false> { public: typedef T type; };
+
+	template <typename T, typename U = typename bitset_type<T, std::is_enum<T>::value>::type>
+#endif
 	class Bitset
 	{
 	public:
-		T m_dummy;
+		typedef U underlying_type;
+		U m_dummy;
 		
 		Bitset()
 		{
 			reset();
 		}
 
-		Bitset(T value) : m_dummy(value){}
+		Bitset(U value) : m_dummy(value){}
 
 #ifndef EXPORTING_TYPES
 		// This doesn't actually exist, i just want to make bits easily
@@ -30,12 +39,12 @@ namespace csl::ut
 		
 		constexpr void reset()
 		{
-			m_dummy = T();
+			m_dummy = U{};
 		}
 
 		constexpr void reset(T bit)
 		{
-			m_dummy = T{ static_cast<std::underlying_type_t<T>>(static_cast<std::underlying_type_t<T>>(m_dummy) & ~static_cast<std::underlying_type_t<T>>(1 << static_cast<std::underlying_type_t<T>>(bit))) };
+			m_dummy = m_dummy & ~(1 << static_cast<U>(bit));
 		}
 
 		constexpr void flip(T bit)
@@ -45,7 +54,7 @@ namespace csl::ut
 		
 		constexpr void set(T bit)
 		{
-			m_dummy = T{ static_cast<std::underlying_type_t<T>>(static_cast<std::underlying_type_t<T>>(m_dummy) | static_cast<std::underlying_type_t<T>>(1 << static_cast<std::underlying_type_t<T>>(bit)))};
+			m_dummy = m_dummy | (1 << static_cast<U>(bit));
 		}
 
 		void set(T bit, bool flag)
@@ -56,17 +65,17 @@ namespace csl::ut
 				reset(bit);
 		}
 
-		constexpr T value() const
+		constexpr U value() const
 		{
 			return m_dummy;
 		}
 		
 		constexpr bool test(T bit) const
 		{
-			return static_cast<std::underlying_type_t<T>>(m_dummy) & (1 << static_cast<std::underlying_type_t<T>>(bit));
+			return m_dummy & (1 << static_cast<U>(bit));
 		}
 		
-		operator T() const { return m_dummy; }
+		operator U() const { return m_dummy; }
 #endif
 	};
 }

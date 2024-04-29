@@ -96,6 +96,8 @@ namespace hh::game
 		static void FireComponentAdded(GameManager* gameManager, GOComponent* component);
 		static void FireComponentRemoved(GameManager* gameManager, GOComponent* component);
 		static void FireObjectLayerSet(GameManager* gameManager, GameObject* gameObject);
+		static void FireObjectAddedToLayer(GameManager* gameManager, GameObject* gameObject, int layer);
+		static void FireObjectRemovedFromLayer(GameManager* gameManager, GameObject* gameObject, int layer);
 		static void FireMessageProcessed(GameManager* gameManager, const fnd::Message& message);
         static void FirePreGameUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
         static void FirePostGameUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
@@ -118,7 +120,7 @@ namespace hh::game
 	public:
 		uint32_t unk33;
 		uint32_t unk34;
-		float unitOrGlobalScale;
+		float globalTime;
 		uint32_t unk36;
 		csl::ut::FixedArray<GameObjectLayer*, 32> gameObjectLayers{};
 		csl::ut::MoveArray<GameObject*> objects{ pAllocator };
@@ -127,8 +129,8 @@ namespace hh::game
 		csl::ut::MoveArray<GameObject*> shutdownObjects;
 		csl::ut::MoveArray<GameManagerListener*> managerListeners{ pAllocator };
 		// not sure if this is a layer listener or a gameobject listener, but 0x20 is called when object added to layer
-		csl::ut::MoveArray<GameObjectListener*> gameObjectListeners; // csl::ut::MoveArray<GameObjectListener> objectListeners{ pAllocator };
-		csl::ut::MoveArray<ComponentListener*> componentListeners; // csl::ut::MoveArray<ComponentListener> componentListeners{ pAllocator };
+		csl::ut::MoveArray<GameObjectListener*> gameObjectListeners;
+		csl::ut::MoveArray<ComponentListener*> componentListeners;
 		csl::ut::MoveArray<void*> unk44;
 		csl::ut::MoveArray<ObjectUpdateListener*> objectUpdateListeners{ pAllocator };
 		csl::ut::MoveArray<GamePauseListener*> gamePauseListeners{ pAllocator };
@@ -243,6 +245,8 @@ namespace hh::game
 		void UnregisterGamePauseListener(GamePauseListener& listener);
 		void AddListener(GameManagerListener* listener);
 		void RemoveListener(GameManagerListener* listener);
+		void AddGameObjectListener(GameObjectListener* listener);
+		void RemoveGameObjectListener(GameObjectListener* listener);
 		void ReloadInputSettings(bool unkParam1);
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();
@@ -253,5 +257,6 @@ namespace hh::game
 		void SetObjectLayer(GameObject* gameObject, int layerId);
 		void PerformMessages();
 		void KillPlayerCharacter(uint8_t playerId);
+		void UpdateGlobalTime(const fnd::SUpdateInfo& updateInfo);
 	};
 }

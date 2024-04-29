@@ -1,6 +1,25 @@
 #pragma once
 
 namespace hh::ui {
+    class UIManagerExtension : public fnd::ReferencedObject {
+    public:
+        UIManagerExtension(csl::fnd::IAllocator* allocator);
+        virtual void* GetRuntimeTypeInfo();
+        virtual void* AddedToUIManager() {}
+        virtual void* RemovedFromUIManager() {}
+    };
+
+    class UIManagerListener {
+    public:
+        virtual ~UIManagerListener() = default;
+        virtual void ExtensionAddedCallback(UIManagerExtension* extension);
+        virtual void ExtensionRemovedCallback(UIManagerExtension* extension);
+        virtual void GOCSpriteAddedCallback(GOCSprite* gocSprite);
+        virtual void GOCSpriteRemovedCallback(GOCSprite* gocSprite);
+        virtual void TextObjectUpdaterAddedCallback(TextObjectUpdater* textObjectUpdater);
+        virtual void TextObjectUpdaterRemovedCallback(TextObjectUpdater* textObjectUpdater);
+    };
+
     class UIManager : public game::GameService, public game::GameStepListener {
     public:
         // struct UIActions {
@@ -35,22 +54,32 @@ namespace hh::ui {
         UITextInterface* textInterface;
         uint32_t unk105;
         const char* uiActions[8];
-        csl::ut::MoveArray<void*> unk114;
-        csl::ut::MoveArray<TextObjectUpdater*> textObjectUpdaters;
+        void* unk106[1];
+        csl::ut::MoveArray<fnd::Reference<UIManagerExtension>> extensions;
+        csl::ut::MoveArray<UIManagerListener*> listeners;
         csl::ut::VariableString unk116[8];
-        uint64_t unk117;
-        uint64_t unk118;
+        csl::ut::VariableString unk117[1];
         int unk119;
         uint32_t unk120;
 
     public:
         void Initialize(const Config& config);
 
-        void RegisterTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
-        void UnregisterTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
-        
-        virtual void OnAddedToGame() override;
-        virtual void OnRemovedFromGame() override;
+		virtual void* GetRuntimeTypeInfo() override;
+		virtual void OnAddedToGame() override;
+		virtual void OnRemovedFromGame() override;
+		virtual void PreStepCallback(game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
+
+        void AddExtension(UIManagerExtension* extension);
+        void RemoveExtension(UIManagerExtension* extension);
+
+        void AddGOCSprite(GOCSprite* gocSprite);
+        void RemoveGOCSprite(GOCSprite* gocSprite);
+
+        void AddTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
+        void RemoveTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
+
+        void RenderSurfRideProject(gfnd::RenderableParameter* renderableParameter, SurfRide::Project* project, const ViewportDimensions& viewportDimensions);
 
         GAMESERVICE_CLASS_DECLARATION(UIManager)
     };

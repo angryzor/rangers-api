@@ -2,31 +2,42 @@
 
 namespace hh::ui {
     class LayerController;
+    class UIManager;
     class GOCSprite : public game::GOComponent {
+    public:
+        enum class Flag : uint8_t{
+            HAS_RENDERABLE_MAYBE,
+            ENABLED,  
+        };
+
+        struct Unk1 {
+
+        };
+
+    private:
         class Renderable : public gfnd::Renderable {
             GOCSprite* gocSprite;
         public:
             Renderable(csl::fnd::IAllocator* pAllocator);
-            virtual void UnkFunc1();
+            virtual void Render(const gfnd::RenderableParameter* renderableParameter) override;
         };
 
-        hh::fnd::LogData log1;
-        hh::fnd::LogData log2;
+        csl::fnd::Delegate<void (GOCSprite*)> OnProjectUnloaded;
+        csl::fnd::Delegate<void (GOCSprite*)> OnProjectLoaded;
         csl::fnd::Delegate<void (GOCSprite*)> OnLayerControllerCreated;
-        uint64_t field_E0;
-        SurfRide::Project* project;
+        UIManager* uiManager;
+        fnd::Reference<SurfRide::Project> project;
         hh::ui::ResSurfRideProject* projectResource;
         csl::ut::VariableString projectName;
         bool initialized;
-        SurfRideProjectContext* projectContext;
+        fnd::Reference<SurfRideProjectContext> projectContext;
         csl::ut::MoveArray<LayerController*> layerControllers;
         csl::ut::MoveArray<void*> field_138;
         csl::ut::MoveArray<void*> field_158;
         uint64_t renderable;
-        bool field_180;
+        csl::ut::Bitset<Flag> field_180;
         uint16_t nextId;
-        uint32_t field_184;
-        uint32_t field_188;
+        ViewportDimensions viewportDimensions;
         uint64_t field_190;
         uint64_t field_198;
         uint64_t field_1A0;
@@ -42,16 +53,15 @@ namespace hh::ui {
         fnd::Handle<SurfRideCastHandle> GetCastHandle(SurfRide::Cast* cast);
         fnd::Handle<SurfRideLayerHandle> GetLayerHandle(SurfRide::Layer* layer);
     public:
-        struct alignas(8) Config {
+        struct alignas(8) SetupInfo {
             hh::ui::ResSurfRideProject* projectResource;
             const char* name;
-            uint32_t unk1;
-            uint8_t unk2;
-            uint32_t unk3;
-            uint32_t unk4;
+            uint32_t renderPass;
+            uint8_t renderPriority;
+            uint32_t renderableUnk5;
+            uint32_t layerControllerCount;
             uint32_t unk5;
-            uint32_t unk6;
-            uint32_t unk7;
+            ViewportDimensions viewportDimensions;
         };
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update(fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) override;
@@ -59,7 +69,7 @@ namespace hh::ui {
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
 
         static game::GOComponentClass* GetClass();
-        void Initialize(const Config& config);
+        void Setup(const SetupInfo& config);
         LayerController* GetLayerController(const char* sceneName, const char* layerName, uint16_t id);
         LayerController* GetLayerControllerWithNextId(SurfRide::Layer* layer);
         SurfRide::Project* GetProject();
