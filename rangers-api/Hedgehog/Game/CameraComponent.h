@@ -12,12 +12,13 @@ namespace hh::game {
 
         char viewportId;
         char priority;
-        char unk3;
+        bool enabled;
         CameraManager* cameraManager;
         gfnd::ViewportData viewportData;
         csl::ut::VariableString name;
 
         CameraComponent(csl::fnd::IAllocator* allocator, const CreateInfo& createInfo, CameraManager* cameraManager);
         static CameraComponent* Create(csl::fnd::IAllocator* allocator, const CreateInfo& createInfo, CameraManager* cameraManager);
+        void SetEnabled(bool enabled);
     };
 }

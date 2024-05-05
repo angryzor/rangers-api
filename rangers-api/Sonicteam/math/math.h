@@ -199,7 +199,10 @@ namespace csl::math
 
 	class alignas(16) Matrix44 : public Eigen::Matrix4f
 	{
-		
+	public:
+		static Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
+		static Matrix44 CreatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClip, float farClip);
+
 	};
 
 	class Sphere

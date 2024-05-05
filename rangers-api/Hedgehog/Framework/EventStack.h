@@ -4,7 +4,8 @@ namespace hh::fw {
     struct KeyEventArgs {
         uint16_t scanCode; // USB HID scancode
         uint8_t unk2;
-        uint32_t unk3;
+        uint16_t modifier;
+        uint16_t unk4;
     };
 
     class KeyEventHandler {

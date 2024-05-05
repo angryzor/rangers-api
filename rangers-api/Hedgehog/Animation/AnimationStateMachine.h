@@ -40,8 +40,8 @@ namespace hh::anim {
         csl::ut::MoveArray<csl::ut::MoveArray<void*>> unk11; // from u17 in resanimator
         uint32_t unk12;
         float unk13;
-        csl::math::Transform transform;
-        uint8_t unk14;
+        csl::math::Transform deltaMotion;
+        bool hasDeltaMotion;
         bool initialized;
         uint8_t unk15;
 
@@ -59,6 +59,11 @@ namespace hh::anim {
         int GetActiveInternalState(int layer) const;
         int GetActiveState(int layer) const;
         int GetCurrentState(int layer) const;
+        bool GetDeltaMotion(csl::math::Transform* transform) const;
+        bool GetFloat(const char* variableId, float* value) const;
+        bool SetFloat(const char* variableId, float value);
+        void GetInternalState(AnimationInternalState* internalState) const;
+
         BlendNodeBase* BuildLayerBlendTree(const BlendNodeData& blendNodeData);
     };
 }

@@ -49,7 +49,6 @@ namespace hh::anim {
         void ReleaseModel();
         void CreateBlender();
         void DestroyBlender();
-        int64_t GetDeltaMotion(csl::math::Transform* transform) const;
         void SetBlenderUpdateFlag(bool enabled);
         void SetStateUpdateFlag(bool enabled);
     };

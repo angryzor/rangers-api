@@ -26,7 +26,7 @@ namespace hh::game {
 
     struct ObjectData {
         enum class Flag : uint32_t {
-            NEEDS_TERMINATION,
+            COMPONENT_DATA_NEEDS_TERMINATION,
             SPAWNER_DATA_NEEDS_TERMINATION,
         };
         csl::ut::Bitset<Flag> flags;

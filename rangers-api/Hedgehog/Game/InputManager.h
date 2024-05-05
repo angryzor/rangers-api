@@ -20,12 +20,21 @@ namespace hh::game {
         char activeInternalPlayerInputs; // bitmask
         int32_t unk6;
     public:
+        struct SetupInfo {
+            uint32_t internalPlayerInputCount;
+            uint32_t inputMapSettingsCount;
+            hid::InputMapSettings* settings;
+        };
+        void Setup(const SetupInfo& setupInfo);
+
         void RegisterInputComponent(InputComponent& inputComponent);
         void UnregisterInputComponent(InputComponent& inputComponent);
         void CreateInputMaps(hid::InputMapSettings* settings);
 
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
+        virtual void GPL_UnkFunc2() override;
+        virtual void PreStepCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 
         GAMESERVICE_CLASS_DECLARATION(InputManager)
     };

@@ -23,6 +23,7 @@ namespace SurfRide
 	class Project;
 	class Scene : public ReferencedObject
 	{
+	public:
 		SRS_SCENE* sceneData;
 		Project* project;
 		Camera camera;
@@ -30,7 +31,6 @@ namespace SurfRide
 		uint32_t unk1;
 		uint32_t flags;
 
-	public:
 		Scene(const SRS_SCENE& sceneData, Project* project);
 
 		Layer* GetLayer(const char* layers);

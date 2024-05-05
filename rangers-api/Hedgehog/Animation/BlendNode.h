@@ -12,7 +12,7 @@ namespace hh::anim {
     public:
 
         BlendNodeType type;
-        bool unk2; // hasTargetNode? see SetTargetNode
+        bool hasTargetNodeInTree; // hasTargetNode? see SetTargetNode
         csl::ut::Bitset<Flag> flags; // unsure if exists
         uint32_t unk3; // unsure if exists
         BlendNodeBase* parent;

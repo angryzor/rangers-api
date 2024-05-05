@@ -20,7 +20,7 @@ namespace hh::anim {
         virtual void* GetRuntimeTypeInfo() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
-        virtual bool UnkFunc1(csl::math::Transform& transform) override;
+        virtual bool GetDeltaMotion(csl::math::Transform* transform) override;
         virtual void UnkFunc2() override;
         virtual void UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;

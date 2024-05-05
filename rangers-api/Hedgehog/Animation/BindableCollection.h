@@ -2,7 +2,7 @@
 
 namespace hh::anim {
     class BindableCollection {
-        uint32_t unk1;
+        float collectionFloat;
         csl::ut::LinkList<Bindable> items;
     };
 }

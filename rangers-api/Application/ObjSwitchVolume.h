@@ -8,7 +8,6 @@ namespace app {
         app::rfl::ObjSwitchVolumeSpawner::Condition condition;
         app::VolumeTrigger volumeTrigger;
     public:
-        virtual void* GetRuntimeTypeInfo() override;
 		virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void AddCallback(hh::game::GameManager* gameManager) override;
         virtual void EventCallback(unsigned int event) override;

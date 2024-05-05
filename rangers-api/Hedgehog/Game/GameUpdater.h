@@ -48,7 +48,7 @@ namespace hh::game {
         float unk6;
         GameManager* gameManager;
         fnd::Reference<anim::AnimationInterface> animationInterface;
-        uint64_t unk6c;
+        GameJobQueue* jobQueue;
         Unk1 unk7;
         fnd::SUpdateInfo updateInfos[32];
         csl::ut::MoveArray<void*> unk9;

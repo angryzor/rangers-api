@@ -1,5 +1,9 @@
 #pragma once
 
+namespace app::gfx {
+    class SceneParameters;
+}
+
 namespace app::player {
     class StatePluginBase : public hh::fnd::ReferencedObject {
         // I currently don't have a way to know where in the hierarchy these belong...

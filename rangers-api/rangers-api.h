@@ -40,6 +40,9 @@
 #include "Sonicteam/System/FreeListHeap.h"
 #include "Sonicteam/System/Delegate.h"
 
+#include "Hedgehog/Rsdx/hhMTSimpleJobJoint.h"
+#include "Hedgehog/Rsdx/hhmtjobdispatchfunctions.h"
+
 #include "Hedgehog/System/hhAllocator.h"
 #include "Hedgehog/System/SingletonInitNode.h"
 
@@ -245,6 +248,7 @@
 #include "Hedgehog/Game/GameObject.h"
 #include "Hedgehog/Game/GameObjectLayer.h"
 #include "Hedgehog/Game/GameManager.h"
+#include "Hedgehog/Game/GameJobQueue.h"
 #include "Hedgehog/Game/GameUpdater.h"
 #include "Hedgehog/Game/BucketedGameUpdater.h"
 #include "Hedgehog/Game/GameApplication.h"
@@ -329,6 +333,7 @@
 #include "Hedgehog/Animation/AsmResourceManager.h"
 #include "Hedgehog/Animation/BlendTreeSyncContext.h"
 #include "Hedgehog/Animation/BlendNode.h"
+#include "Hedgehog/Animation/AnimationInternalState.h"
 #include "Hedgehog/Animation/AnimationStateMachine.h"
 #include "Hedgehog/Animation/GOCAnimation.h"
 #include "Hedgehog/Animation/GOCAnimationSingle.h"
@@ -336,6 +341,7 @@
 #include "Hedgehog/Animation/AnimationManager.h"
 #include "Hedgehog/Animation/AnimationInterface.h"
 
+#include "SurfRide/Color.h"
 #include "SurfRide/Base.h"
 #include "SurfRide/ReferencedObject.h"
 #include "SurfRide/BinaryData.h"
@@ -348,6 +354,7 @@
 #include "SurfRide/Cast.h"
 #include "SurfRide/ImageCast.h"
 #include "SurfRide/ReferenceCast.h"
+#include "SurfRide/Calc.h"
 
 #include "Hedgehog/Text/ConverseTextListener.h"
 #include "Hedgehog/Text/ConverseData.h"
@@ -423,6 +430,14 @@
 #include "ApplicationCommon/FSM/GOCTinyFsm2.h"
 #include "ApplicationCommon/FSM/GOCHsm2.h"
 
+#include "ApplicationCommon/Camera/Types.h"
+#include "ApplicationCommon/Camera/CameraExtension.h"
+#include "ApplicationCommon/Camera/CameraController.h"
+#include "ApplicationCommon/Camera/CameraInterpolator.h"
+#include "ApplicationCommon/Camera/CameraFrame.h"
+#include "ApplicationCommon/Camera/GOCCamera.h"
+#include "ApplicationCommon/Camera/Messages.h"
+
 #include "Application/Foundation/AppHeapManager.h"
 #include "Application/Foundation/AppMessage.h"
 
@@ -434,6 +449,33 @@
 #include "Application/Save/SaveManager.h"
 #include "Application/Save/Accessors/OptionData.h"
 
+#include "Application/Camera/CameraBridge.h"
+#include "Application/Camera/CameraService.h"
+
+#include "Application/Player/CharacterId.h"
+#include "Application/Player/PlayerCounterTimer.h"
+#include "Application/Player/PlayerHsmContext.h"
+#include "Application/Player/StateParameter.h"
+#include "Application/Player/RelayedFlagsParameter.h"
+#include "Application/Player/PlayerStateParameter.h"
+#include "Application/Player/StatePlugin.h"
+#include "Application/Player/GravityController.h"
+#include "Application/Player/GOCPlayerHsm.h"
+#include "Application/Player/GOCPlayerState.h"
+#include "Application/Player/GOCPlayerParameter.h"
+#include "Application/Player/GOCPlayerKinematicParams.h"
+#include "Application/Player/ComponentCollector.h"
+#include "Application/Player/VisualLocatorManager.h"
+#include "Application/Player/PlayerVisual.h"
+#include "Application/Player/GOCPlayerVisual.h"
+#include "Application/Player/PlayerStateBase.h"
+#include "Application/Player/States.h"
+
+#include "Application/Player/Player.h"
+#include "Application/Player/Characters/Sonic.h"
+#include "Application/Player/Characters/Tails.h"
+#include "Application/Player/Characters/Amy.h"
+#include "Application/Player/Characters/Knuckles.h"
 
 #include "Application/Level/PlayerInformation.h"
 #include "Application/Level/StageData.h"
@@ -455,6 +497,7 @@
 #include "Application/Game/GameModeResourceCollection.h"
 #include "Application/Game/GameModeResourceModule.h"
 #include "Application/Game/StageTerrainModule.h"
+#include "Application/Game/StageObjectModule.h"
 #include "Application/Game/GameModeResourceManager.h"
 #include "Application/Game/GameMode.h"
 #include "Application/Game/GameModeStage.h"
@@ -467,6 +510,7 @@
 #include "Application/Game/GOCEvent.h"
 #include "Application/Game/GOCEventCollision.h"
 #include "Application/Game/GOCActionNotifier.h"
+#include "Application/Game/Messages.h"
 
 #include "Application/Event/EventPlayer.h"
 
@@ -476,30 +520,6 @@
 #include "Application/Graphics/FxColManager.h"
 
 #include "Application/Terrain/TerrainManager.h"
-
-#include "Application/Player/CharacterId.h"
-#include "Application/Player/PlayerCounterTimer.h"
-#include "Application/Player/PlayerHsmContext.h"
-#include "Application/Player/StateParameter.h"
-#include "Application/Player/RelayedFlagsParameter.h"
-#include "Application/Player/PlayerStateParameter.h"
-#include "Application/Player/StatePlugin.h"
-#include "Application/Player/GravityController.h"
-#include "Application/Player/GOCPlayerHsm.h"
-#include "Application/Player/GOCPlayerState.h"
-#include "Application/Player/GOCPlayerParameter.h"
-#include "Application/Player/GOCPlayerKinematicParams.h"
-#include "Application/Player/ComponentCollector.h"
-#include "Application/Player/VisualLocatorManager.h"
-#include "Application/Player/PlayerVisual.h"
-#include "Application/Player/GOCPlayerVisual.h"
-#include "Application/Player/PlayerStateBase.h"
-#include "Application/Player/States.h"
-
-#include "Application/Player/Characters/Sonic.h"
-#include "Application/Player/Characters/Tails.h"
-#include "Application/Player/Characters/Amy.h"
-#include "Application/Player/Characters/Knuckles.h"
 
 #include "Application/VolumeTrigger.h"
 #include "Application/MyApplication.h"

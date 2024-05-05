@@ -13,9 +13,9 @@ namespace app::player {
             uint32_t unk1;
             uint32_t unk105bConfig;
             PlayerHsmContext* hsmContext;
-            bool enableVisual;
-            bool enablePhysics;
-            bool enableAudible;
+            bool enablePreAnimUpdates;
+            bool enablePostAnimUpdates;
+            bool enableFinalUpdates;
         };
         enum class Flag : uint8_t {
 

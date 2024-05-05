@@ -114,7 +114,7 @@ namespace hh::game
 
 	class GameManager : public fnd::ReferencedObject, public fnd::ReloaderListener, private csl::ut::NonCopyable
 	{
-		GameService* CreateService(GameServiceClass* gameServiceClass, csl::fnd::IAllocator* residentAllocator);
+		GameService* CreateService(const GameServiceClass* gameServiceClass, csl::fnd::IAllocator* residentAllocator);
 		static bool DispatchFunc(const fnd::Message& message, void* userData);
 		void RiseMessageProcessed(const fnd::Message& message);
 	public:
@@ -256,7 +256,7 @@ namespace hh::game
 		void SendMessageImmToService(fnd::Message& message);
 		void SetObjectLayer(GameObject* gameObject, int layerId);
 		void PerformMessages();
-		void KillPlayerCharacter(uint8_t playerId);
 		void UpdateGlobalTime(const fnd::SUpdateInfo& updateInfo);
+		void GetViewportData(int viewportId);
 	};
 }

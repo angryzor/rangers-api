@@ -117,11 +117,11 @@ namespace SurfRide
 	{
 	public:
 		struct Unk2 {
-			csl::math::Vector4 translation;
-			uint32_t rotationX;
-			uint32_t rotationY;
-			uint32_t rotationZ;
-			csl::math::Vector4 scale;
+			csl::math::Vector3 translation;
+			float rotationX;
+			float rotationY;
+			float rotationZ;
+			csl::math::Vector3 scale;
 			csl::ut::Color<uint8_t> materialColor;
 			csl::ut::Color<uint8_t> illuminationColor;
 			int32_t unk7;

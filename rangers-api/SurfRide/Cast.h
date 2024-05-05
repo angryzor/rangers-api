@@ -27,6 +27,7 @@ namespace SurfRide {
 	};
 
     class Cast : public ReferencedObject {
+    public:
         uint64_t unk1;
         uint64_t unk2;
         uint64_t unk3;
@@ -51,7 +52,6 @@ namespace SurfRide {
 
         Cast* self;
         bool unk14;
-    public:
 
         Cast(const SRS_CASTNODE& castData, Cast* parentCast, Layer* layer);
         UserData GetUserData();

@@ -8,4 +8,12 @@ namespace app::player {
         TAILS,
         NONE,
     };
+
+    enum class CharacterIdU8 : uint8_t {
+        SONIC,
+        AMY,
+        KNUCKLES,
+        TAILS,
+        NONE,
+    };
 }

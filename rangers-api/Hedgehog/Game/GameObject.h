@@ -2,7 +2,7 @@
 
 #define GAMEOBJECT_CLASS_DECLARATION(ClassName) private:\
 		static const hh::game::GameObjectClass staticGameObjectClass;\
-		static GameObject* Create(csl::fnd::IAllocator* allocator);\
+		static hh::game::GameObject* Create(csl::fnd::IAllocator* allocator);\
 		ClassName(csl::fnd::IAllocator* allocator);\
 	public:\
 		static const hh::game::GameObjectClass* GetClass();

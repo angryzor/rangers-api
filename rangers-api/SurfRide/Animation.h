@@ -2,77 +2,111 @@
 
 namespace SurfRide
 {
-	enum SRE_CURVE_TYPE : uint16_t
+	enum class SRE_CURVE_TYPE : uint16_t
 	{
-		eCurveType_TranslationX,
-		eCurveType_TranslationY,
-		eCurveType_TranslationZ,
-		eCurveType_RotationX,
-		eCurveType_RotationY,
-		eCurveType_RotationZ,
-		eCurveType_ScaleX,
-		eCurveType_ScaleY,
-		eCurveType_ScaleZ,
-		eCurveType_MaterialColor,
-		eCurveType_Display,
-		eCurveType_Width,
-		eCurveType_Height,
-		eCurveType_VertexColorTopLeft,
-		eCurveType_VertexColorTopRight,
-		eCurveType_VertexColorBottomLeft,
-		eCurveType_VertexColorBottomRight,
-		eCurveType_CropIndex0,
-		eCurveType_CropIndex1,
-		eCurveType_Unknown,
-		eCurveType_IlluminationColor,
-		eCurveType_MaterialColorR,
-		eCurveType_MaterialColorG,
-		eCurveType_MaterialColorB,
-		eCurveType_MaterialColorA,
-		eCurveType_VertexColorTopLeftR,
-		eCurveType_VertexColorTopLeftG,
-		eCurveType_VertexColorTopLeftB,
-		eCurveType_VertexColorTopLeftA,
-		eCurveType_VertexColorTopRightR,
-		eCurveType_VertexColorTopRightG,
-		eCurveType_VertexColorTopRightB,
-		eCurveType_VertexColorTopRightA,
-		eCurveType_VertexColorBottomLeftR,
-		eCurveType_VertexColorBottomLeftG,
-		eCurveType_VertexColorBottomLeftB,
-		eCurveType_VertexColorBottomLeftA,
-		eCurveType_VertexColorBottomRightR,
-		eCurveType_VertexColorBottomRightG,
-		eCurveType_VertexColorBottomRightB,
-		eCurveType_VertexColorBottomRightA,
-		eCurveType_IlluminationColorR,
-		eCurveType_IlluminationColorG,
-		eCurveType_IlluminationColorB,
-		eCurveType_IlluminationColorA,
+		TranslationX,
+		TranslationY,
+		TranslationZ,
+		RotationX,
+		RotationY,
+		RotationZ,
+		ScaleX,
+		ScaleY,
+		ScaleZ,
+		MaterialColor,
+		Display,
+		Width,
+		Height,
+		VertexColorTopLeft,
+		VertexColorTopRight,
+		VertexColorBottomLeft,
+		VertexColorBottomRight,
+		CropIndex0,
+		CropIndex1,
+		Unknown,
+		IlluminationColor,
+		MaterialColorR,
+		MaterialColorG,
+		MaterialColorB,
+		MaterialColorA,
+		VertexColorTopLeftR,
+		VertexColorTopLeftG,
+		VertexColorTopLeftB,
+		VertexColorTopLeftA,
+		VertexColorTopRightR,
+		VertexColorTopRightG,
+		VertexColorTopRightB,
+		VertexColorTopRightA,
+		VertexColorBottomLeftR,
+		VertexColorBottomLeftG,
+		VertexColorBottomLeftB,
+		VertexColorBottomLeftA,
+		VertexColorBottomRightR,
+		VertexColorBottomRightG,
+		VertexColorBottomRightB,
+		VertexColorBottomRightA,
+		IlluminationColorR,
+		IlluminationColorG,
+		IlluminationColorB,
+		IlluminationColorA,
 	};
 
-	// TODO: parser doesn't understand unions yet
-	// union SRU_FRAME_TYPE
-	// {
-	// 	int Int;
-	// 	bool Boolean;
-	// 	char Character;
-	// 	float Float;
-	// 	csl::ut::Color<uint8_t> Color;
-	// };
+	enum class SRE_TRACK_FLAG : uint16_t {
+		CONSTANT = 0x0,
+		LINEAR = 0x1,
+		HERMITE = 0x2,
+		INDIVIDUAL = 0x3,
+
+		FLOAT = 0x10,
+		INDEX = 0x20,
+		BOOL = 0x30,
+		INT = 0x40,
+		COLOR = 0x50,
+
+		// These are uncertain
+		UNK_FLOAT = 0x60,
+		UNK_DOUBLE = 0x70, // Types say double, but used for what? Won't interpolate linearly.
+		UNK_CHAR = 0x80, // Char? doubt
+	};
+
+	enum class SRE_INTERPOLATION_TYPE : uint32_t {
+		CONSTANT,
+		LINEAR,
+		HERMITE,
+	};
 
 	struct SRS_KEYFRAME
 	{
 		uint32_t Frame{};
-		// SRU_FRAME_TYPE Value{};
-		uint32_t Value{};
 	};
+
+	template<typename T>
+	struct Key : public SRS_KEYFRAME {
+		T value;
+	};
+
+    template<typename T>
+    struct KeyLinear : public Key<T> {
+    };
+
+    template<typename T>
+    struct KeyHermite : public Key<T> {
+		T derivativeIn;
+		T derivativeOut;
+    };
+
+    template<typename T>
+    struct KeyIndividual : public Key<T> {
+		T derivativeIn;
+		T derivativeOut;
+		SRE_INTERPOLATION_TYPE interpolationType;
+    };
 
 	struct SRS_TRACK
 	{
 		SRE_CURVE_TYPE TrackType{};
 		uint16_t KeyCount{};
-		uint32_t Flags{};
+		SRE_TRACK_FLAG Flags{};
 		uint32_t FirstFrame{};
 		uint32_t LastFrame{};
 		SRS_KEYFRAME* pKeyFrame{};
