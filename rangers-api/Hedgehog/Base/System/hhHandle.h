@@ -53,6 +53,7 @@ namespace hh::fnd
 		}
 	};
 
+    //hh::fnd::Handle<hh::fnd::Messenger,hh::fnd::HandleManager<hh::fnd::Messenger>>
 	template<class T>
 	class Handle : public HandleBase
 	{

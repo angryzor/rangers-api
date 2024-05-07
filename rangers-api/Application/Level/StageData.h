@@ -42,7 +42,7 @@ namespace app::level {
             SPECIAL_PARRY_EFFECT = 32,
         };
 
-        enum class CyberMode
+        enum class CyberMode : uint8_t
         {
             UNKNOWN = 0,
             LOW_GRAVITY = 1,

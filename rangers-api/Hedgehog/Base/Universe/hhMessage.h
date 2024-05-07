@@ -11,17 +11,22 @@ namespace hh::fnd
 		GET_DEBUG_COMMENT_IN_EDITOR = 773,
 		PUSH_CAMERA_CONTROLLER = 4097,
 		CAMERA_OFF = 8353,
+		CHANGE_GLOBAL_TIME_SCALE = 8387,
+		CHANGE_LAYER_TIME_SCALE = 8388,
 		IS_TAKE_RED_RING = 8676,
 		NOTIFY_ACTION = 8748,
 		NOTIFY_END_FALL_CYBERSPACE = 8765,
 		NOTIFY_LEVEL_STATUS = 8779,
 		NOTIFY_RETRY = 8788,
 		PASS_POINT_MARKER = 8823,
+		REVERT_GLOBAL_TIME_SCALE = 8915,
+		REVERT_LAYER_TIME_SCALE = 8916,
 		SET_MENU_ENABLED = 8947,
 		UI_PAUSE_RESULT = 9198,
 	};
 
 	class Messenger;
+	class MessageAsyncHandler;
 	class Message
 	{
 	public:
@@ -37,7 +42,7 @@ namespace hh::fnd
 			ID = in_id;
 		}
 
-		virtual Message* Clone();
+		virtual MessageAsyncHandler* CreateAsyncHandler();
 		virtual ~Message() = default;
 	};
 

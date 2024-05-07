@@ -21,7 +21,7 @@ namespace app::player {
 
         };
 
-    private:
+    public:
         hh::ut::HsmBase* hsm;
         hh::ut::HsmBase hsm2;
         hh::fnd::Reference<PlayerHsmContext> hsmContext;
@@ -34,7 +34,6 @@ namespace app::player {
         csl::ut::InplaceMoveArray<void*, 1> unk108;
         SetupInfo setupInfo;
 
-    public:
 
         GOCPlayerHsm(csl::fnd::IAllocator* pAllocator);
 		virtual void* GetRuntimeTypeInfo() override;

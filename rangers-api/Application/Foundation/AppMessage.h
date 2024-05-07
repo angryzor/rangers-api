@@ -11,9 +11,6 @@ namespace app::fnd
 			
 		}
 		
-		// AppMessage<T>* Clone() override
-		// {
-		// 	return new AppMessage<T>(ID);
-		// }
+		virtual uint32_t UnkFunc1() { return 0; }
 	};
 }

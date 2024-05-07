@@ -2,6 +2,7 @@
 
 namespace hh::fnd
 {
+    //hh::fnd::Handle<hh::fnd::Messenger,hh::fnd::HandleManager<hh::fnd::Messenger>>
 	class HandleManager : public ReferencedObject {
         csl::ut::MoveArray<RefByHandleObject*> objects;
         void* begin;

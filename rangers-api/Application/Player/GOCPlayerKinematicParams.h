@@ -116,6 +116,7 @@ namespace app::player {
         csl::math::Vector4& GetPosition();
         void SetPosition(const csl::math::Vector4& position);
         void SetVelocity(const csl::math::Vector4& velocity);
+        void SetGravityScale(float gravityScale);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCPlayerKinematicParams)
     };

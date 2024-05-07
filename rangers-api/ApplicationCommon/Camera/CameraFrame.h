@@ -25,7 +25,7 @@ namespace app_cmn::camera {
 
         struct ControllerUnit {
             CameraController* controller;
-            unsigned int unk1;
+            unsigned int priority;
         };
 
         struct SetupInfo {

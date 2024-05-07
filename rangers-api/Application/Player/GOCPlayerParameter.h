@@ -31,14 +31,6 @@ namespace app::player {
             app::rfl::ModePackage unknown;
         };
 
-        union CharacterCommonModePackage {
-            app::rfl::CommonPackageSonic sonic;
-            app::rfl::CommonPackageAmy amy;
-            app::rfl::CommonPackageKnuckles knuckles;
-            app::rfl::CommonPackageTails tails;
-            app::rfl::CommonPackage unknown;
-        };
-
         hh::fnd::Reference<CharacterParameters> characterParameters;
         hh::fnd::Reference<hh::fnd::ResReflection<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
         app::rfl::ModePackage* modePackages[4];
@@ -92,7 +84,7 @@ namespace app::player {
 
         template<typename T>
         T* GetPlayerParameter() {
-            return reinterpret_cast<T*>(GetPlayerParameter(RESOLVE_STATIC_VARIABLE(T::staticClass)));
+            return reinterpret_cast<T*>(GetPlayerParameter(RESOLVE_STATIC_VARIABLE(T::rflClass)));
         }
 
         // template<typename T>

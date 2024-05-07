@@ -7,4 +7,61 @@ namespace app::game {
         uint16_t unk1;
         uint8_t unk2;
     };
+
+    // Recipients: Game
+    class MsgChangeLayerTimeScale : public app::fnd::AppMessage<MsgChangeLayerTimeScale> {
+    public:
+        char interpolatorId[16];
+        float timeScale;
+        uint32_t layerMask;
+        uint32_t unk1{};
+        bool unk2{};
+
+        virtual hh::fnd::MessageAsyncHandler* CreateAsyncHandler() override;
+
+        inline MsgChangeLayerTimeScale(const char* interpolatorId, uint32_t layerMask, float timeScale) : fnd::AppMessage<MsgChangeLayerTimeScale>{ hh::fnd::MessageID::CHANGE_LAYER_TIME_SCALE }, layerMask{ layerMask }, timeScale{ timeScale } {
+            strncpy(this->interpolatorId, interpolatorId, sizeof(this->interpolatorId));
+        }
+    };
+
+    // Recipients: Game
+    class MsgChangeGlobalTimeScale : public app::fnd::AppMessage<MsgChangeGlobalTimeScale> {
+    public:
+        char interpolatorId[16];
+        float timeScale;
+        uint32_t unk1{};
+
+        virtual hh::fnd::MessageAsyncHandler* CreateAsyncHandler() override;
+
+        inline MsgChangeGlobalTimeScale(const char* interpolatorId, float timeScale) : fnd::AppMessage<MsgChangeGlobalTimeScale>{ hh::fnd::MessageID::CHANGE_GLOBAL_TIME_SCALE }, timeScale{ timeScale } {
+            strncpy(this->interpolatorId, interpolatorId, sizeof(this->interpolatorId));
+        }
+    };
+
+    // Recipients: Game
+    class MsgRevertLayerTimeScale : public app::fnd::AppMessage<MsgRevertLayerTimeScale> {
+    public:
+        char interpolatorId[16];
+        uint32_t layerMask;
+        int unk2{};
+
+        virtual hh::fnd::MessageAsyncHandler* CreateAsyncHandler() override;
+
+        inline MsgRevertLayerTimeScale(const char* interpolatorId, uint32_t layerMask) : fnd::AppMessage<MsgRevertLayerTimeScale>{ hh::fnd::MessageID::REVERT_LAYER_TIME_SCALE }, layerMask{ layerMask } {
+            strncpy(this->interpolatorId, interpolatorId, sizeof(this->interpolatorId));
+        }
+    };
+
+    // Recipients: Game
+    class MsgRevertGlobalTimeScale : public app::fnd::AppMessage<MsgRevertGlobalTimeScale> {
+    public:
+        char interpolatorId[16];
+        int unk2{};
+
+        virtual hh::fnd::MessageAsyncHandler* CreateAsyncHandler() override;
+
+        inline MsgRevertGlobalTimeScale(const char* interpolatorId) : fnd::AppMessage<MsgRevertGlobalTimeScale>{ hh::fnd::MessageID::REVERT_GLOBAL_TIME_SCALE } {
+            strncpy(this->interpolatorId, interpolatorId, sizeof(this->interpolatorId));
+        }
+    };
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 namespace app::player {
-    class Knuckles {
+    class Knuckles : public Player {
     public:
         static constexpr size_t stateDescCount = 216;
         static const GOCPlayerHsm::StateDescRef stateDescs[stateDescCount];
