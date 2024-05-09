@@ -18,7 +18,7 @@ namespace app::player {
         uint32_t comboCount;
         float phantomRushAmount;
         float unk9;
-        uint32_t unk10;
+        float unk10;
         float quickCyloopAmount;
         void* unkself12;
         uint64_t unk12;

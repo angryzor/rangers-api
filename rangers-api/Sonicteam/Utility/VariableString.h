@@ -37,7 +37,7 @@ namespace csl::ut
 
 		csl::fnd::IAllocator* GetAllocator() const
 		{
-			return m_pAllocator;
+			return reinterpret_cast<csl::fnd::IAllocator*>(reinterpret_cast<size_t>(m_pAllocator) & ~1ui64);
 		}
 		VariableString& operator=(VariableString&& other);
 

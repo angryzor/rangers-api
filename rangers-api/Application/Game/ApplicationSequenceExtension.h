@@ -14,7 +14,7 @@ namespace app::game {
         // uint8_t unk1;
 
     public:
-        inline static const char* name = "ApplicationSequenceExtension";
+        inline static const char name[] = "ApplicationSequenceExtension";
         ApplicationSequenceExtension(csl::fnd::IAllocator* allocator);
         virtual uint64_t GetNameHash() override;
         virtual uint64_t UnkFunc2() override;

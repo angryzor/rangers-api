@@ -85,8 +85,9 @@ namespace app::player {
         uint32_t dword24;
         csl::ut::Bitset<CombatFlag, uint64_t> combatFlags[2];
         csl::ut::Bitset<StateFlag, uint64_t> stateFlags;
-        csl::ut::Bitset<WorldFlag, uint64_t> worldFlag[2];
-        uint64_t qword50;
+        csl::ut::Bitset<WorldFlag, uint64_t> worldFlags[2];
+        float outOfControlTime;
+        float inControlTime;
         uint64_t qword58;
         uint64_t qword60;
         ut::PriorityList<bool, hh::fnd::Handle<hh::fnd::Messenger>> qword68;

@@ -1,8 +1,8 @@
 #pragma once
 
 namespace csl::ut {
-    constexpr int HashString(const char* str) {
-        int hash{ 0 };
+    constexpr unsigned int HashString(const char* str) {
+        unsigned int hash{ 0 };
 
         while ( *str )
             hash = *str++ + 31 * hash;

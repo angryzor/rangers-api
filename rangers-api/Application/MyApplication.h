@@ -16,7 +16,8 @@ namespace app {
         virtual void UnkFunc5() override;
         virtual uint64_t UnkFunc9() override;
 
-        inline game::ApplicationExtension* GetExtension(const char* name) {
+        template<size_t Len>
+        inline game::ApplicationExtension* GetExtension(const char (&name)[Len]) {
             for (auto* extension : extensions) {
                 if (extension->GetNameHash() == csl::ut::HashString(name)) {
                     return extension;
