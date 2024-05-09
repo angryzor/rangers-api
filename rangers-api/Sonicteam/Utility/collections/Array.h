@@ -134,6 +134,13 @@ namespace csl::ut
 		}
 
 		Array<T, S>& operator=(Array<T, S>&& other) {
+			for (S i = 0; i < this->m_length; i++) {
+				this->m_pBuffer[i].~T();
+			}
+
+			if (m_pAllocator && !isUninitialized())
+				m_pAllocator->Free(this->m_pBuffer);
+
 			this->m_pAllocator = other.m_pAllocator;
 			this->m_pBuffer = other.m_pBuffer;
 			this->m_length = other.m_length;
@@ -141,6 +148,7 @@ namespace csl::ut
 			other.m_pBuffer = nullptr;
 			other.m_length = 0;
 			other.m_capacity = csl::ut::SIGN_BIT;
+
 			return *this;
 		}
 
