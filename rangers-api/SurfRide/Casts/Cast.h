@@ -17,20 +17,35 @@ namespace SurfRide {
 
 	struct SRS_CASTNODE
 	{
-		const char* m_pName{};
-		int m_ID{};
-		int m_Flags{};
-		void* m_pData{};
-		short m_ChildIndex{};
-		short m_SiblingIndex{};
-		SRS_USERDATA* m_pUserData{};
+        enum class Type {
+            NORMAL,
+            IMAGE,
+            SLICE,
+            REFERENCE,
+        };
+
+		const char* name{};
+		int id{};
+		int flags{}; // 0xF mask -> Type
+		void* data{};
+		short childIndex{};
+		short siblingIndex{};
+		SRS_USERDATA* userData{};
 	};
 
+    class Scene;
     class Cast : public ReferencedObject {
     public:
-        uint64_t unk1;
-        uint64_t unk2;
-        uint64_t unk3;
+		struct Unk1 {
+			// This is actually an unknown structure containing this movearray, it's used in multiple resources.
+			csl::ut::MoveArray<void*> unk1;
+			Cast* cast;
+			Unk1(csl::fnd::IAllocator* allocator);
+		};
+
+        Transform* transform;
+        RefPtr<Blur> blurEffect;
+        RefPtr<Reflect> reflectEffect;
         uint32_t unk4;
         uint64_t unk5;
         const SRS_CASTNODE* castData;
@@ -40,22 +55,22 @@ namespace SurfRide {
         SRS_MOTION* motion;
         uint32_t flags;
         bool unk8;
-        bool unk8a; // set in constructor to a flag of the layer
+        bool is3D;
         uint16_t unk9;
         uint16_t unk9a;
         uint64_t unk10;
-        uint64_t unk11;
-        uint64_t unk11a;
-
-        // This is actually an as of yet unknown subobject (sub_141128CF0)
-        csl::ut::MoveArray<void*> unk12;
-
-        Cast* self;
+        Vector3 position;
+        Unk1 unk12;
         bool unk14;
 
-        Cast(const SRS_CASTNODE& castData, Cast* parentCast, Layer* layer);
+        Cast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
         UserData GetUserData();
         void SetFlag1000(bool enabled);
+        void InitializeTransform2D(Transform* transform, SRS_TRS2D* cell);
+        void InitializeTransform3D(Transform* transform, SRS_TRS3D* cell);
+        Scene* GetScene();
+        void CreateEffectCast(void* effectData);
+        void* GetTextureListData(int id) const;
 
         virtual void UnkFunc1();
         virtual void UnkFunc2();
@@ -66,8 +81,8 @@ namespace SurfRide {
         virtual void UnkFunc7() {}
         virtual uint32_t UnkFunc8() { return 0; }
         virtual void UnkFunc9() {}
-        virtual uint32_t UnkFunc10() { return 0; }
-        virtual void UnkFunc11();
+        virtual unsigned int GetCellCount() { return 0; }
+        virtual void UpdateParentsAndThisTransformRecursively(Cast* parent);
         virtual void UnkFunc12();
     };
 }

@@ -2,9 +2,6 @@
 
 namespace SurfRide
 {
-	// struct SRS_LAYER;
-	// class Layer;
-
 	struct SRS_SCENE
 	{
 		const char* pName{};
@@ -34,53 +31,5 @@ namespace SurfRide
 		Scene(const SRS_SCENE& sceneData, Project* project);
 
 		Layer* GetLayer(const char* layers);
-		// SRS_SCENE* pBinaryScene{};
-		// int RefCount{};
-		// Camera Camera{};
-		// int CurrentCameraIndex{};
-		// Project* pOwner{};
-		// ReferenceCount<Layer>* prcLayers{};
-		// int LayerCount{};
-		// int Priority{};
-		// Math::Vector2 Resolution{ 1.0f, 1.0f };
-		// INSERT_PADDING(4) {};
-		// bool IsMultiResolutionProcess{};
-		// int Flags{};
-		// ReferenceCount<BinaryData> rcBinaryData{};
-		// bool OwnsBinaryData{};
-		// INSERT_PADDING(7);
-
-		// void IncrementReferenceCount()
-		// {
-		// 	RefCount++;
-		// }
-
-		// void DecrementReferenceCount()
-		// {
-		// 	RefCount--;
-		// }
-
-		// int GetReferenceCount()
-		// {
-		// 	return RefCount;
-		// }
-
-		// void DeleteData()
-		// {
-
-		// }
-
-		// void Cleanup()
-		// {
-		// 	if (OwnsBinaryData)
-		// 		DeleteData();
-		// }
-
-		const char* GetName() const
-		{
-			return sceneData->pName;
-		}
-
-		// const ReferenceCount<Layer> GetLayer(const char* in_pLayerName) const;
 	};
 }

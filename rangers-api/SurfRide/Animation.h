@@ -77,7 +77,7 @@ namespace SurfRide
 
 	struct SRS_KEYFRAME
 	{
-		uint32_t Frame{};
+		uint32_t frame{};
 	};
 
 	template<typename T>
@@ -104,29 +104,29 @@ namespace SurfRide
 
 	struct SRS_TRACK
 	{
-		SRE_CURVE_TYPE TrackType{};
-		uint16_t KeyCount{};
-		SRE_TRACK_FLAG Flags{};
-		uint32_t FirstFrame{};
-		uint32_t LastFrame{};
-		SRS_KEYFRAME* pKeyFrame{};
+		SRE_CURVE_TYPE trackType{};
+		uint16_t keyCount{};
+		SRE_TRACK_FLAG flags{};
+		uint32_t firstFrame{};
+		uint32_t lastFrame{};
+		SRS_KEYFRAME* keyFrame{};
 	};
 
 	struct SRS_MOTION
 	{
-		uint16_t CastId{};
-		uint16_t TrackCount{};
-		SRS_TRACK* pTracks{};
+		uint16_t castId{};
+		uint16_t trackCount{};
+		SRS_TRACK* tracks{};
 	};
 
 	struct SRS_ANIMATION
 	{
-		const char* pName{};
-		uint32_t ID{};
-		uint32_t LinkCount{};
-		uint32_t FrameCount{};
-		SRS_MOTION* pLinks{};
-		void* pUserData{};
-		bool IsLooping{};
+		const char* name{};
+		uint32_t id{};
+		uint32_t linkCount{};
+		uint32_t frameCount{};
+		SRS_MOTION* links{};
+		void* userData{};
+		bool isLooping{};
 	};
 }
