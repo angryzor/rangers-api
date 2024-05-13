@@ -72,17 +72,17 @@ namespace SurfRide {
         void CreateEffectCast(void* effectData);
         void* GetTextureListData(int id) const;
 
-        virtual void UnkFunc1();
-        virtual void UnkFunc2();
-        virtual void UnkFunc3() {}
-        virtual void UnkFunc4() {}
-        virtual void UnkFunc5() {}
-        virtual void UnkFunc6() {}
-        virtual void UnkFunc7() {}
-        virtual uint32_t UnkFunc8() { return 0; }
-        virtual void UnkFunc9() {}
-        virtual unsigned int GetCellCount() { return 0; }
-        virtual void UpdateParentsAndThisTransformRecursively(Cast* parent);
-        virtual void UnkFunc12();
+        virtual void* GetRuntimeTypeInfo() const;
+        virtual bool UnkFunc2();
+        virtual uint64_t UnkFunc3() {}
+        virtual void CalcTrackTypeWidth(float time, const SRS_TRACK* track) {}
+        virtual void CalcTrackTypeHeight(float time, const SRS_TRACK* track) {}
+        virtual void CalcTrackTypeCropIndex0(float time, const SRS_TRACK* track) {}
+        virtual void CalcTrackTypeCropIndex1(float time, const SRS_TRACK* track) {}
+        virtual void* GetCellProbably() const { return nullptr; }
+        virtual void SetCellProbably(void* cell) {}
+        virtual unsigned int GetCellCount() const { return 0; }
+        virtual void UpdateThis(float time, const Cast* parentCast);
+        virtual uint64_t UnkFunc12();
     };
 }

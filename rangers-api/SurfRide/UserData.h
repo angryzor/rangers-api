@@ -2,8 +2,17 @@
 
 namespace SurfRide {
     struct SRS_DATA {
+        enum class Type {
+            BOOL,
+            INT,
+            UINT,
+            FLOAT,
+            UNK,
+            STRING,
+        };
+
         const char* name;
-        uint32_t type;
+        Type type;
         uint64_t value;
     };
 

@@ -5,7 +5,7 @@ namespace SurfRide {
 	{
 		Color materialColor{};
 		Color illuminationColor{};
-		bool visible{};
+		bool display{};
 	};
 
 	struct SRS_TRS2D : public SRS_TRS_BASE
@@ -24,6 +24,40 @@ namespace SurfRide {
 		Vector3 scale{};
 	};
 
+    struct DirtyFlag {
+		enum Flag : uint32_t {
+			TRANSFORM_MATRIX = 0,
+			TRANSFORM_MATERIAL_COLOR = 1,
+			TRANSFORM_ILLUMINATION_COLOR = 2,
+			TRANSFORM_DISPLAY_FLAG = 3,
+			CELL_VERTICES = 8,
+			CELL_VERTEX_COLOR = 9,
+			CELL_MATERIAL_COLOR = 10,
+			CELL_ILLUMINATION_COLOR = 11,
+			CELL_CROP_UV = 12,
+
+			// Think this is no longer in Frontiers version of SurfRide.
+			// TRANSFORM_MULTIRESOLUTION_POSITION = 0x10,
+			// TRANSFORM_MULTIRESOLUTION_SIZE = 0x20,
+			// TRANSFORM_ANY = 0x3F,
+			// ANY = 0x3F3F,
+		};
+		
+		csl::ut::Bitset<Flag> transformMatrix;
+		csl::ut::Bitset<Flag> transformMaterialColor;
+		csl::ut::Bitset<Flag> transformIlluminationColor;
+		csl::ut::Bitset<Flag> transformDisplayFlag;
+		csl::ut::Bitset<Flag> transformAny;
+		csl::ut::Bitset<Flag> cellVertices;
+		csl::ut::Bitset<Flag> cellVertexColor;
+		csl::ut::Bitset<Flag> cellMaterialColor;
+		csl::ut::Bitset<Flag> cellIlluminationColor;
+		csl::ut::Bitset<Flag> cellCropUV;
+		csl::ut::Bitset<Flag> cellUnk;
+		csl::ut::Bitset<Flag> cellAny;
+		csl::ut::Bitset<Flag> flags;
+    };
+
 	class Layer;
 	class Cast;
 	class Transform {
@@ -35,10 +69,9 @@ namespace SurfRide {
 		int32_t unk7;
 		Color illuminationColor;
 		int32_t unk8;
-		bool visible;
+		bool display;
 		uint8_t unk9;
-		uint32_t prefabFlags[12];
-		uint32_t flags;
+		DirtyFlag dirtyFlag;
 		Layer* layer;
 		Cast* cast;
 		uint64_t unk17;

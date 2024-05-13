@@ -425,5 +425,10 @@ namespace csl::geom {
 		static Aabb Transform(const math::Matrix34& matrix, const Aabb& aabb);
 		math::Vector3 Center() const;
 		bool Intersect(const Aabb& aabb) const;
+
+		inline void AddPoint(const csl::math::Vector3& point) {
+			m_Min = { std::fminf(m_Min.x(), point.x()), std::fminf(m_Min.y(), point.y()), std::fminf(m_Min.z(), point.z()) };
+			m_Max = { std::fmaxf(m_Max.x(), point.x()), std::fmaxf(m_Max.y(), point.y()), std::fmaxf(m_Max.z(), point.z()) };
+		}
 	};
 }

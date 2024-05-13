@@ -123,9 +123,9 @@ namespace SurfRide
 	{
 		const char* name{};
 		uint32_t id{};
-		uint32_t linkCount{};
+		uint32_t motionCount{};
 		uint32_t frameCount{};
-		SRS_MOTION* links{};
+		SRS_MOTION* motions{};
 		void* userData{};
 		bool isLooping{};
 	};

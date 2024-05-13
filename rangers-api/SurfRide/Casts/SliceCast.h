@@ -60,5 +60,15 @@ namespace SurfRide {
         csl::ut::MoveArray<Slice> slices;
 
         SliceCast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual bool UnkFunc2() override;
+        virtual uint64_t UnkFunc3() override;
+        virtual void CalcTrackTypeWidth(float time, const SRS_TRACK* track) override;
+        virtual void CalcTrackTypeHeight(float time, const SRS_TRACK* track) override;
+        virtual void* GetCellProbably() const override;
+        virtual void SetCellProbably(void* cell) override;
+        virtual unsigned int GetCellCount() const override;
+        virtual uint64_t UnkFunc12() override;
     };
 }

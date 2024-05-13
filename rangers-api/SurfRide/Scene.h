@@ -4,17 +4,17 @@ namespace SurfRide
 {
 	struct SRS_SCENE
 	{
-		const char* pName{};
-		int ID{};
-		int Flags{};
-		int LayerCount{};
-		SRS_LAYER* pLayers{};
-		short CameraCount;
-		short CurrentCameraIndex{};
-		SRS_CAMERA* pCameras{};
-		int BackgroundColor{};
-		csl::math::Vector2 Resolution{};
-		void* pUserData{};
+		const char* name{};
+		int id{};
+		int flags{};
+		int layerCount{};
+		SRS_LAYER* layers{};
+		short cameraCount;
+		short currentCameraIndex{};
+		SRS_CAMERA* cameras{};
+		int backgroundColor{};
+		csl::math::Vector2 resolution{};
+		SRS_USERDATA* userData{};
 	};
 
 	class Project;
