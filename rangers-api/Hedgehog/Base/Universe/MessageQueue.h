@@ -29,7 +29,7 @@ namespace hh::fnd {
     
         MessageQueue();
         void Reserve(csl::fnd::IAllocator* allocator, size_t size);
-        Message* EnqueueMessage(const Message& message);
+        MessageAsyncHandler* EnqueueMessage(const Message& message);
         void Dispatch(bool (*func)(const Message& message, void* userData), void* userData);
     };
 }

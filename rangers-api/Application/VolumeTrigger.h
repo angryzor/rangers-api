@@ -3,9 +3,9 @@
 namespace app {
     class VolumeListener {
     public:
-        virtual void VL_UnkFunc1();
+        virtual void VL_UnkFunc1(); // Enter, MsgTriggerEnter&
         virtual void VL_UnkFunc2();
-        virtual void VL_UnkFunc3();
+        virtual void VL_UnkFunc3(); // Leave, MsgTriggerLeave&
     };
 
     class VolumeTrigger : public hh::physics::GOCColliderListener {

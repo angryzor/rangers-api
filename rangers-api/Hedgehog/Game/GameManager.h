@@ -250,7 +250,7 @@ namespace hh::game
 		void ReloadInputSettings(bool unkParam1);
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();
-		fnd::Message* SendMessage(fnd::Message& message);
+		fnd::MessageAsyncHandler* SendMessage(fnd::Message& message);
 		void SendMessageImm(fnd::Message& message);
 		void SendMessageImmToLayer(int layer, fnd::Message& message);
 		void SendMessageImmToService(fnd::Message& message);

@@ -108,5 +108,7 @@ namespace hh::game
 		void SetNameHash(const char* name);
 		void SetUpdateFlag(hh::fnd::UpdatingPhase updatingPhase, bool enabled);
 		void SetUpdatePriority(hh::fnd::UpdatingPhase updatingPhase, uint8_t priority);
+		fnd::MessageAsyncHandler* SendMessageToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
+		bool SendMessageImmToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
 	};
 }

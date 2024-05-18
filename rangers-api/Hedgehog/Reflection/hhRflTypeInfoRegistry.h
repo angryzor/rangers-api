@@ -4,6 +4,7 @@ namespace hh::fnd
 {
 	class RflTypeInfoRegistry : public RflRegistryTemplate<RflTypeInfo>, public csl::fnd::Singleton<RflTypeInfoRegistry>
 	{
+		static RflTypeInfo* staticRflTypeInfos[2081];
 	public:
 		void* ConstructObject(csl::fnd::IAllocator* pAllocator, const char* pName) const
 		{

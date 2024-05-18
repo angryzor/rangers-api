@@ -30,3 +30,6 @@ namespace hh::fnd {
         inline static csl::fnd::IAllocator* GetDebugAllocator() { return GetInstance()->GetDebug(); }
     };
 }
+
+void* AllocateObjectGlobalMemory(size_t size);
+void FreeObjectGlobalMemory(void* ptr);

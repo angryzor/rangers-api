@@ -6,6 +6,7 @@ namespace hh::fnd
 {
 	class RflClassNameRegistry : public RflRegistryTemplate<RflClass>, public csl::fnd::Singleton<RflClassNameRegistry>
 	{
+		static RflClass* staticRflClasses[2081];
 	};
 }
 

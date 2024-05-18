@@ -13,6 +13,8 @@ namespace hh::game
     private:
         csl::ut::MoveArray<GOComponentRegistryItem*> components;
         csl::ut::StringMap<GOComponentRegistryItem*> componentsByName;
+
+        static GOComponentRegistryItem* staticGOComponentRegistryItems[3];
     public:
         GOComponentRegistry(csl::fnd::IAllocator* pAllocator);
         void LoadComponents(GOComponentRegistryItem** components);

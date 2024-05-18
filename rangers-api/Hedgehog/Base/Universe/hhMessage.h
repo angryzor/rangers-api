@@ -10,7 +10,10 @@ namespace hh::fnd
 		PARAM_CHANGED_IN_EDITOR = 772,
 		GET_DEBUG_COMMENT_IN_EDITOR = 773,
 		PUSH_CAMERA_CONTROLLER = 4097,
+		POP_CAMERA_CONTROLLER = 4098,
+		ADD_NOTIFY_PRE_DEAD_LISTENER = 8201,
 		CAMERA_OFF = 8353,
+		CAMERA_ON = 8354,
 		CHANGE_GLOBAL_TIME_SCALE = 8387,
 		CHANGE_LAYER_TIME_SCALE = 8388,
 		IS_TAKE_RED_RING = 8676,
@@ -22,6 +25,7 @@ namespace hh::fnd
 		REVERT_GLOBAL_TIME_SCALE = 8915,
 		REVERT_LAYER_TIME_SCALE = 8916,
 		SET_MENU_ENABLED = 8947,
+		UI_CHANGE_PLAYER_CHARACTER = 9120,
 		UI_PAUSE_RESULT = 9198,
 	};
 
@@ -35,15 +39,20 @@ namespace hh::fnd
 		Handle<Messenger> Receiver{};
 		char Handled{};
 		bool Broadcasted{};
-		const uint32_t Mask{ (uint32_t)-1 };
+		uint32_t Mask{ (uint32_t)-1 };
 
-		Message(MessageID in_id)
-		{
-			ID = in_id;
-		}
+		Message(MessageID in_id);
 
 		virtual MessageAsyncHandler* CreateAsyncHandler();
 		virtual ~Message() = default;
+
+		inline static void* operator new(size_t count) {
+			AllocateObjectGlobalMemory(count);
+		}
+		
+		inline static void operator delete(void* ptr) noexcept {
+			FreeObjectGlobalMemory(ptr);
+		}
 	};
 
 	class MessageAsyncHandler : ReferencedObject

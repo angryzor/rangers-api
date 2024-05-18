@@ -13,7 +13,7 @@ namespace hh::fnd
 		/*
 		 * Sends a message to one particular receiver.
 		 */
-		Message* SendMessage(Handle<Messenger>& receiver, Message& message);
+		MessageAsyncHandler* SendMessage(Handle<Messenger>& receiver, Message& message);
 		bool SendMessageImm(Handle<Messenger>& receiver, Message& message);
 		bool ForwardMessageImm(Handle<Messenger>& receiver, Message& message);
 

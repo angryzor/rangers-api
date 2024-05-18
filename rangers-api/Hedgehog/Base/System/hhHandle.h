@@ -6,7 +6,7 @@ namespace hh::fnd
 	class HandleBase
 	{
 	protected:
-		uint32_t handle;
+		uint32_t handle{};
 
 		void Set(const RefByHandleObject* pObj)
 		{

@@ -36,9 +36,9 @@ namespace app::level {
 
         Unk1<hh::fnd::Handle<hh::fnd::Messenger>> playerObject;
         Unk1<player::CharacterIdU8> characterId;
-        Unk1<csl::math::Vector4> vector420;
+        Unk1<csl::math::Vector3> position;
         Unk1<csl::math::Vector4> vector440;
-        Unk1<csl::math::Quaternion> quat460;
+        Unk1<csl::math::Quaternion> rotation;
         Unk1<uint32_t> dword80;
         Unk1<csl::math::Vector4> vector490;
         Unk1<csl::math::Vector4> vector4B0;

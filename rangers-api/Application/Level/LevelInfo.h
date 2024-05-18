@@ -14,7 +14,7 @@ namespace app::level {
         uint32_t unk18b;
         uint32_t unk18c;
         uint32_t unk18d;
-        csl::ut::MoveArray<void*> unk19;
+        csl::ut::MoveArray<hh::fnd::Handle<hh::fnd::Messenger>> uiObjects;
         uint16_t unk20;
         uint8_t unk21;
         virtual void* GetRuntimeTypeInfo();
@@ -26,7 +26,10 @@ namespace app::level {
             return stageData;
         }
 
-        PlayerInformation* GetPlayerInformation(uint8_t playerId);
+        PlayerInformation* GetPlayerInformation(char playerId);
+        char GetPlayerIdFromPlayerObject(const hh::fnd::Handle<hh::fnd::Messenger>& playerObj);
+        hh::fnd::Handle<hh::fnd::Messenger> GetPlayerObject(char playerId);
+        csl::ut::MoveArray<hh::fnd::Handle<hh::fnd::Messenger>>& GetUIObjects();
 
         GAMESERVICE_CLASS_DECLARATION(LevelInfo)
     };

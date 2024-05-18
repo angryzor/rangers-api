@@ -9,4 +9,12 @@ namespace app_cmn::camera {
 
         MsgPushCameraController();
     };
+
+    class MsgPopCameraController : public hh::fnd::Message {
+    public:
+        hh::fnd::Reference<CameraController> controller;
+        CameraInterpolator* interpolator;
+
+        MsgPopCameraController();
+    };
 }

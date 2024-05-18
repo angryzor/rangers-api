@@ -11,6 +11,7 @@ namespace app::fnd
 			
 		}
 		
-		virtual uint32_t UnkFunc1() { return 0; }
+		virtual hh::fnd::MessageAsyncHandler* CreateAsyncHandler() override;
+		virtual uint32_t UnkFunc1();
 	};
 }

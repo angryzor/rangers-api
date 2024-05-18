@@ -31,7 +31,7 @@ namespace hh::game {
         void RemoveWorldExtension(ObjectWorldExtension* chunk);
         void RemoveWorldExtensionAll();
         void GetObjectDataByObjectId(ObjectId objectId) const;
-        void GetGameObjectHandleByObjectId(ObjectId objectId) const;
+        fnd::Handle<Messenger> GetGameObjectHandleByObjectId(ObjectId objectId) const;
         // void SendObjectMessageImm(ObjectId objectId, fnd::Message& msg, const GameObjectHandleBase& handle, bool unkParam);
         void SpawnObjectBySetObjectID(ObjectId objectId) const;
         void LevelStarted();

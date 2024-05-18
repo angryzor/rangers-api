@@ -1,11 +1,19 @@
 #pragma once
 
-#define GAMEOBJECT_CLASS_DECLARATION(ClassName) private:\
-		static const hh::game::GameObjectClass staticGameObjectClass;\
+#define GAMEOBJECT_CLASS_DECLARATION_BASE(ClassName) private:\
+		static const hh::game::GameObjectClass gameObjectClass;\
 		static hh::game::GameObject* Create(csl::fnd::IAllocator* allocator);\
-		ClassName(csl::fnd::IAllocator* allocator);\
+		ClassName(csl::fnd::IAllocator* allocator);
+
+#define GAMEOBJECT_CLASS_DECLARATION(ClassName) GAMEOBJECT_CLASS_DECLARATION_BASE(ClassName)\
 	public:\
 		static const hh::game::GameObjectClass* GetClass();
+
+#define GAMEOBJECT_CLASS_DECLARATION_INLINE_GET_CLASS(ClassName) GAMEOBJECT_CLASS_DECLARATION_BASE(ClassName)\
+	public:\
+		static inline const hh::game::GameObjectClass* GetClass() {\
+			return &RESOLVE_STATIC_VARIABLE(gameObjectClass);\
+		}
 
 namespace hh::ui {
 	class LayerController;
@@ -178,14 +186,10 @@ namespace hh::game
 		void SetComponentLengths(fnd::UpdatingPhase phase);
 
 		
-		fnd::Message* SendMessageToGame(fnd::Message& message);
+		fnd::MessageAsyncHandler* SendMessageToGame(fnd::Message& message);
 		bool SendMessageImmToGame(fnd::Message& message);
-		fnd::Message* SendMessageToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
+		fnd::MessageAsyncHandler* SendMessageToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
 		bool SendMessageImmToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
-		/*
-		 * Broadcasts a message to all the messengers registered in the associated LevelInfo.
-		 */
-		bool BroadcastMessage(fnd::Message& message);
 
 		void SetLayer(char layer);
 

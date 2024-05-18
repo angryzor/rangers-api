@@ -448,6 +448,7 @@
 #include "ApplicationCommon/Camera/Messages.h"
 
 #include "Application/Utilities/PriorityList.h"
+#include "Application/Utilities/SendMessage.h"
 
 #include "Application/Foundation/AppHeapManager.h"
 #include "Application/Foundation/AppMessage.h"
@@ -493,6 +494,8 @@
 #include "Application/Player/GOCPlayerVisual.h"
 #include "Application/Player/PlayerStateBase.h"
 #include "Application/Player/States.h"
+#include "Application/Player/PlayerStateBase.h"
+#include "Application/Player/Messages.h"
 
 #include "Application/Player/Player.h"
 #include "Application/Player/Characters/Sonic.h"
@@ -515,6 +518,7 @@
 
 #include "Application/UI/AppUITextInterface.h"
 #include "Application/UI/UIMusicSelect.h"
+#include "Application/UI/Messages.h"
 
 #include "Application/Game/GameCondition.h"
 #include "Application/Game/GameModeResourceCollection.h"
@@ -548,3 +552,4 @@
 #include "Application/MyApplication.h"
 #include "Application/IslandObjInfo.h"
 #include "Application/ObjSwitchVolume.h"
+#include "Application/ObjCameraVolume.h"

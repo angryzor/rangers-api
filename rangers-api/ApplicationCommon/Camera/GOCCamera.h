@@ -5,12 +5,12 @@ namespace app_cmn::camera {
     public:
         struct ControllerUnit {
             enum class Flag : uint8_t {
-                MAYBE_DISABLED,
+                PUSHED,
             };
             hh::fnd::Reference<CameraController> controller;
             hh::fnd::Handle<hh::fnd::Messenger> cameraFrame;
             unsigned int id;
-            csl::ut::Bitset<Flag> unk3;
+            csl::ut::Bitset<Flag> flags;
         };
         csl::ut::MoveArray<ControllerUnit> controllerUnits;
 
@@ -19,6 +19,9 @@ namespace app_cmn::camera {
         void DestroyControllerAll(CameraInterpolator* interpolator);
         bool PushController(hh::fnd::Handle<hh::fnd::Messenger>& cameraFrame, unsigned int controllerId, unsigned int unkParam1, CameraInterpolator* interpolator);
         bool PopController(unsigned int controllerId, CameraInterpolator* interpolator);
+
+    private:
+        void PopCameraController(ControllerUnit& controllerUnit, CameraInterpolator* interpolator);
         
         // bool PushCameraController(hh::fnd::Handle<hh::fnd::Messenger>& cameraFrame, ControllerUnit& unit, unsigned int unkParam1, CameraInterpolator* interpolator);
 

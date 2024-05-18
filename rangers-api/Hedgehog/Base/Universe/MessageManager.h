@@ -7,7 +7,7 @@ namespace hh::fnd {
         MessageQueue queue;
         MessageManager(csl::fnd::IAllocator* allocator);
         static MessageManager* Create();
-        Message* AddMessage(Message& message);
+        MessageAsyncHandler* AddMessage(Message& message);
         void AddObject(Messenger* messenger);
         void RemoveObject(Messenger* messenger);
         void Dispatch();
