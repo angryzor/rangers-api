@@ -3,7 +3,11 @@
 namespace hh::needle {
     class PBRModelInstanceRenderer;
     class CopyColor;
+    class RenderUnit;
+    class RenderTextureHandle;
+    class RenderTextureCreateArgs;
     class SupportFX {
+    public:
         uint32_t unk1Count;
         void* unk1[128];
         void* unk1a[128];
@@ -27,7 +31,7 @@ namespace hh::needle {
         PBRModelInstanceRenderer* modelInstanceRenderer;
         uint64_t unk10_4;
         uint64_t unk10_5;
-        csl::ut::MoveArray<void*> unk10_6;
+        csl::ut::MoveArray<intrusive_ptr<SceneContextManager>> sceneContextManagers;
         float unk11;
         Texture* textures[13];
         uint64_t unk13_0;
@@ -53,8 +57,8 @@ namespace hh::needle {
         uint64_t unk22;
         int32_t unk23;
         uint64_t unk24;
-        uint64_t unk25;
-        RenderingDeviceContext* renderingDeviceContext;
+        RenderingDeviceContext* renderingDeviceContext1;
+        RenderingDeviceContext* renderingDeviceContext2;
         uint64_t unk27;
         PrimitiveRenderer* primitiveRenderer;
         SupportFX* unkBackRef;
@@ -62,7 +66,6 @@ namespace hh::needle {
         uint64_t unk30;
         uint32_t unk31;
 
-    public:
         class CaptureIBLListener {
         public:
             virtual ~CaptureIBLListener() = default;
@@ -72,11 +75,42 @@ namespace hh::needle {
 
         RenderingDevice* GetRenderingDevice() const;
         RenderingDeviceContext* GetRenderingContext() const;
+        RenderingDeviceContext* GetRenderingContext2() const;
+        SceneContextManager* GetSceneContextManager(const char* name) const;
+        void AddSceneContextManager(SceneContextManager* sceneContextManager);
 
         static SupportFX* instance;
 
         SupportFX();
         virtual ~SupportFX();
+        virtual uint64_t UnkFunc1() = 0;
+        virtual bool UnkFunc2() { return true; }
+        virtual bool UnkFunc3();
+        virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras);
     };
-    class SupportFXAll : public SupportFX {};
+
+    class SupportFXAll : public SupportFX {
+    public:
+        uint64_t unk101;
+        uint64_t unk102;
+        uint64_t unk103;
+        uint64_t unk104;
+        uint64_t unk105;
+        uint64_t unk106;
+        uint8_t unk109;
+        csl::ut::LinkList<RenderUnit> renderUnits;
+        const char* mainSceneName;
+        csl::ut::MoveArray<void*> unk112;
+        uint32_t globalUserParams[4][4];
+        NeedleRefcountObject* unk114[3];
+
+        SupportFXAll();
+
+        virtual uint64_t UnkFunc1() override;
+        virtual bool UnkFunc2() override;
+        virtual bool UnkFunc3() override;
+        virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras) override;
+
+        RenderTextureHandle* CreateRenderTextureHandle(const RenderTextureCreateArgs& createArgs);
+    };
 }

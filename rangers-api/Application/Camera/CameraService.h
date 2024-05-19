@@ -7,19 +7,19 @@ namespace app::camera {
         , public hh::game::GameStepListener
     {
     public:
-        struct Unk1 {
+        struct CameraBridgeUnit {
             hh::fnd::Handle<Messenger> cameraFrame;
             CameraBridge cameraBridge;
             hh::fnd::Reference<hh::game::CameraComponent> cameraComponent;
-            Unk1();
+            CameraBridgeUnit();
         };
 
         csl::fnd::Mutex mutex1;
         csl::fnd::Mutex mutex2;
-        Unk1 cameraBridges[3];
-        uint64_t unk1;
+        CameraBridgeUnit cameraBridges[3];
+        hh::fnd::Reference<hh::fnd::ResReflection<app::rfl::CameraShakeTable>> cameraShakeTable;
         uint64_t unk2;
-        uint32_t unk3;
+        float timeLeftInZoom;
         csl::ut::LinkList<CameraBridge> unk4; // This CameraBridge is a dummy, I don't yet know what's inside.
         hh::physics::PhysicsWorld* physicsWorld;
         hh::game::CameraManager* cameraManager;

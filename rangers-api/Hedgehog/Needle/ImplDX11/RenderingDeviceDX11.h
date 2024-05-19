@@ -54,5 +54,7 @@ namespace hh::needle::ImplDX11 {
         virtual void UnkFunc44() override;
         virtual void UnkFunc45() override;
         virtual void UnkFunc46() override;
+
+        ID3D11Device* GetNativeDevice() const;
     };
 }

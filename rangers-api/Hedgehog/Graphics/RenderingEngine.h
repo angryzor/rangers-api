@@ -11,7 +11,7 @@ namespace hh::gfx {
         virtual void UnkFunc2() = 0;
         virtual uint64_t UnkFunc3(uint64_t unkParam1) = 0;
         virtual uint64_t UnkFunc4() = 0;
-        virtual uint64_t UnkFunc5() = 0;
+        virtual ID3D11Device* GetNativeDevice() = 0;
         virtual uint64_t Startup() = 0;
         virtual uint64_t Shutdown() = 0;
         virtual uint64_t UnkFunc8();

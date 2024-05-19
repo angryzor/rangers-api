@@ -14,6 +14,8 @@ namespace hh::fnd
 			{
 				handle = pObj->handle;
 			}
+			else
+				handle = 0;
 		}
 		
 	public:
@@ -29,6 +31,16 @@ namespace hh::fnd
 
         // TODO: fix
 		RefByHandleObject* Get(HandleManager* handleManager) const;
+
+		inline bool operator==(const HandleBase& other)
+		{
+			return handle == other.handle;
+		}
+
+		inline bool operator!=(const HandleBase& other)
+		{
+			return handle != other.handle;
+		}
 
 		bool operator==(const RefByHandleObject* pObj)
 		{

@@ -2,41 +2,60 @@
 
 namespace hh::gfx {
     class RenderManager : public gfnd::RenderManagerBase {
+    public:
         class Impl : public fnd::ReferencedObject {
+        public:
             class LocalFxCamera : public needle::FxCamera {
-                uint64_t vtbl1;
-                uint64_t unk1;
-                uint32_t unk2;
-            // public:
-            //     virtual int64_t UnkFunc1() override;
-            //     virtual int64_t UnkFunc2() override;
-            //     virtual int64_t UnkFunc3() override;
-            //     virtual int64_t UnkFunc4() override;
-            //     virtual int64_t UnkFunc5() override;
-            //     virtual int64_t UnkFunc6() override;
-            //     virtual int64_t UnkFunc7() override;
-            //     virtual int64_t UnkFunc8() override;
-            //     virtual int64_t UnkFunc9() override;
-            //     virtual int64_t UnkFunc10() override;
+            public:
+                Impl* renderManagerImplementation;
+                uint32_t id;
+
+                LocalFxCamera();
+
+                virtual int64_t UnkFunc1() override;
+                virtual int64_t UnkFunc2() override;
+                virtual int64_t UnkFunc3() override;
+                virtual int64_t UnkFunc4() override;
+                virtual int64_t UnkFunc5() override;
+                virtual int64_t UnkFunc6() override;
+                virtual int64_t UnkFunc7() override;
+                virtual int64_t UnkFunc8() override;
+                virtual int64_t UnkFunc10() override;
             };
-            void* unk1[24];
+            struct Unk1 {
+                LocalFxCamera* fxCamera;
+                uint32_t x;
+                uint32_t y;
+                uint32_t width;
+                uint32_t height;
+                uint32_t prevRenderWidth;
+                uint32_t prevRenderHeight;
+                uint32_t renderWidth;
+                uint32_t renderHeight;
+                uint32_t unk7;
+            };
+            Unk1 unk1[4];
             LocalFxCamera fxCameras[4];
             uint64_t unk2;
-            uint64_t unk3;
+            uint32_t numMainViewports;
+            uint32_t unk3;
             float unk4;
             float unk5;
             uint32_t unk6;
-            void* unk7[30];
+            Unk1 unk7[5];
             uint32_t unk8;
             uint64_t unk9;
             uint64_t unk10;
-            uint64_t unk11;
+            uint32_t maybeSupportFXWidth;
+            uint32_t maybeSupportFXHeight;
             uint64_t unk12;
             uint64_t unk13;
             float unk14;
             uint64_t unk15;
-            uint64_t unk16;
-            uint64_t unk17;
+            uint32_t width;
+            uint32_t height;
+            uint32_t maybeRenderWidth;
+            uint32_t maybeRenderHeight;
             uint64_t unk18;
             uint64_t unk19;
             uint64_t unk20;
@@ -47,20 +66,18 @@ namespace hh::gfx {
             csl::math::Vector4 unk25;
             RenderManager* renderManager;
             uint64_t unk26;
-            fnd::ResourceLoader resourceLoader;
+            fnd::Reference<fnd::ResourceLoader> resourceLoader;
             uint8_t unk28;
             csl::ut::MoveArray<void*> unk29;
             uint8_t unk30[128];
             bool unk31;
 
-        public:
             static Impl* Create(csl::fnd::IAllocator* allocator);
             Impl(csl::fnd::IAllocator* allocator, RenderManager* renderManager);
         };
 
         Impl* implementation;
 
-    public:
         struct SModelCreationInfo {
             // Check GOCVisualModelImpl::Setup
             fnd::ManagedResource* unk325; // suspected
@@ -69,7 +86,6 @@ namespace hh::gfx {
             void* unk1;
         };
 
-    public:
         static RenderManager* instance;
 
         static RenderManager* Create(csl::fnd::IAllocator* allocator);

@@ -3,7 +3,7 @@
 namespace hh::needle {
     class CNameIDObject : public TNeedleRefcountUniqueObjectBase<NeedleRefcountObject> {
     public:
-        const char* nameProbably;
+        const char* name;
         uint32_t length;
 
         CNameIDObject();

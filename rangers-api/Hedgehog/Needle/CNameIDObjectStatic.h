@@ -3,6 +3,8 @@
 namespace hh::needle {
     class CNameIDObjectStatic : public CNameIDObject {
     public:
-        CNameIDObjectStatic();
+        CNameIDObject* uniqueObject;
+
+        CNameIDObjectStatic(const char* name);
     };
 }

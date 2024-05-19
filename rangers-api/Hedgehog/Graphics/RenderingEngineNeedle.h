@@ -36,11 +36,11 @@ namespace hh::gfx {
         virtual void UnkFunc2() override {}
         virtual uint64_t UnkFunc3(uint64_t unkParam1) override;
         virtual uint64_t UnkFunc4() override {}
-        virtual uint64_t UnkFunc5() override;
+        virtual ID3D11Device* GetNativeDevice() override;
         virtual uint64_t Startup() override;
         virtual uint64_t Shutdown() override;
         virtual needle::RenderingDevice* GetRenderingDevice();
-        virtual void* GetSomethingInSupportFX2();
+        virtual needle::RenderingDeviceContext* GetRenderingDeviceContext();
         virtual void SetSupportFX(needle::SupportFX* supportFX);
         virtual needle::SupportFX* GetSupportFX();
         virtual void SetFXParameter(app::rfl::NeedleFxParameter* parameter, unsigned int unkParam1) {}
@@ -49,14 +49,14 @@ namespace hh::gfx {
         virtual void GetSceneConfig(app::rfl::NeedleFxSceneConfig* sceneConfig) {}
         virtual uint64_t CreateRenderTextureHandle(const needle::RenderTextureCreateArgs& createArgs, csl::fnd::IAllocator* allocator);
         virtual uint64_t DestroyRenderTextureHandle(needle::RenderTextureHandle* handle);
-        virtual void UnkFunc17() {}
+        virtual void AddRenderableToRenderTextureHandle(needle::RenderTextureHandle* handle, gfnd::Renderable* renderable) {}
         virtual unsigned int UnkFunc18() { return 0; }
         virtual void UnkFunc19() {}
         virtual uint64_t UnkFunc20();
         virtual void UnkFunc21() {}
         virtual void UnkFunc22() {}
         virtual unsigned int UnkFunc23() { return 0; }
-        virtual void UnkFunc24() {}
+        virtual void SetupMainRenderUnit() {}
 
         void AddComponent(RenderingComponent* component);
     };
