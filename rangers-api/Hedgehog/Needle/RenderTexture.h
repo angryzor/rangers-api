@@ -9,14 +9,14 @@ namespace hh::needle {
 
         FxRenderTextureCamera();
 
-        virtual int64_t UnkFunc1() override;
-        virtual int64_t UnkFunc2() override;
-        virtual int64_t UnkFunc3() override;
-        virtual int64_t UnkFunc4() override {}
-        virtual int64_t UnkFunc5() override;
-        virtual int64_t UnkFunc6() override;
-        virtual int64_t UnkFunc7() override;
-        virtual int64_t UnkFunc8() override;
+        virtual csl::math::Vector3 GetEyePos() const override;
+        virtual void GetEyePosF(float* eyePos) const override;
+        virtual csl::math::Vector3 GetLookAtPos() const override;
+        virtual void GetLookAtPosF(float* lookAtPos) const override {}
+        virtual csl::math::Matrix44 GetViewMatrix() const override;
+        virtual void GetViewMatrixF(float* viewMatrix) const override;
+        virtual csl::math::Matrix44 GetProjectionMatrix() const override;
+        virtual void GetProjectionMatrixF(float* projectionMatrix) const override;
     };
 
     struct RenderTextureCreateArgs {

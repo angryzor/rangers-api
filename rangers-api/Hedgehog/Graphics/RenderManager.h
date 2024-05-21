@@ -5,6 +5,7 @@ namespace hh::gfx {
     public:
         class Impl : public fnd::ReferencedObject {
         public:
+            // Returns camera info based on viewportdata. id = viewport id
             class LocalFxCamera : public needle::FxCamera {
             public:
                 Impl* renderManagerImplementation;
@@ -12,29 +13,17 @@ namespace hh::gfx {
 
                 LocalFxCamera();
 
-                virtual int64_t UnkFunc1() override;
-                virtual int64_t UnkFunc2() override;
-                virtual int64_t UnkFunc3() override;
-                virtual int64_t UnkFunc4() override;
-                virtual int64_t UnkFunc5() override;
-                virtual int64_t UnkFunc6() override;
-                virtual int64_t UnkFunc7() override;
-                virtual int64_t UnkFunc8() override;
-                virtual int64_t UnkFunc10() override;
+                virtual csl::math::Vector3 GetEyePos() const override;
+                virtual void GetEyePosF(float* eyePos) const override;
+                virtual csl::math::Vector3 GetLookAtPos() const override;
+                virtual void GetLookAtPosF(float* lookAtPos) const override;
+                virtual csl::math::Matrix44 GetViewMatrix() const override;
+                virtual void GetViewMatrixF(float* viewMatrix) const override;
+                virtual csl::math::Matrix44 GetProjectionMatrix() const override;
+                virtual void GetProjectionMatrixF(float* projectionMatrix) const override;
+                virtual void GetClipPlanes(float* near, float* far) const override;
             };
-            struct Unk1 {
-                LocalFxCamera* fxCamera;
-                uint32_t x;
-                uint32_t y;
-                uint32_t width;
-                uint32_t height;
-                uint32_t prevRenderWidth;
-                uint32_t prevRenderHeight;
-                uint32_t renderWidth;
-                uint32_t renderHeight;
-                uint32_t unk7;
-            };
-            Unk1 unk1[4];
+            needle::SupportFX::FxViewport viewports[4];
             LocalFxCamera fxCameras[4];
             uint64_t unk2;
             uint32_t numMainViewports;
@@ -42,10 +31,7 @@ namespace hh::gfx {
             float unk4;
             float unk5;
             uint32_t unk6;
-            Unk1 unk7[5];
-            uint32_t unk8;
-            uint64_t unk9;
-            uint64_t unk10;
+            needle::SupportFX::FxRenderParam renderParam;
             uint32_t maybeSupportFXWidth;
             uint32_t maybeSupportFXHeight;
             uint64_t unk12;

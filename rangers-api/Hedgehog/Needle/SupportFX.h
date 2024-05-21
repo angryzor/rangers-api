@@ -8,6 +8,34 @@ namespace hh::needle {
     class RenderTextureCreateArgs;
     class SupportFX {
     public:
+        struct FxViewport {
+            FxCamera* camera;
+            uint32_t x;
+            uint32_t y;
+            uint32_t width;
+            uint32_t height;
+            uint32_t prevRenderWidth;
+            uint32_t prevRenderHeight;
+            uint32_t renderWidth;
+            uint32_t renderHeight;
+            uint32_t unk7;
+        };
+
+        struct FxRenderParam {
+            // uint8_t unk1[240];
+            // uint32_t unk2;
+            // uint32_t unk3;
+            // uint32_t unk4;
+            // uint32_t unk5;
+            // uint32_t unk6;
+            FxViewport viewports[5];
+            uint32_t numViewports;
+            uint32_t unk32;
+            uint32_t unk33;
+            uint32_t unk34;
+            float unk35;
+        };
+    
         uint32_t unk1Count;
         void* unk1[128];
         void* unk1a[128];

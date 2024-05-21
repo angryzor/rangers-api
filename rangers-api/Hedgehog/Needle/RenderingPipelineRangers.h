@@ -3,6 +3,7 @@
 namespace hh::needle {
     class PBRModelInstanceRenderer;
     class RenderingPipelineRangers : public WorldRenderingPipeline {
+    public:
         const char* name;
         uint64_t qword118;
         uint64_t qword120;

@@ -1,8 +1,32 @@
 #pragma once
 
 namespace hh::needle {
-    class PipelineInfo {
+    class PipelineInfo : public NeedleObject {
+    public:
+        uint32_t dword8;
+        uint64_t qword10;
+        uint64_t qword18;
+        uint64_t qword20;
+        SupportFX::FxRenderParam renderParam;
+        SupportFXAll* supportFX;
+        uint64_t qword138;
+        uint64_t qword140;
+        uint64_t qword148;
+        uint64_t qword150;
+        CNameIDObject* renderUnitNameId;
+        CNameIDObject* sceneNameId;
+        uint32_t cameraId;
+        SceneParamContainer* sceneParamContainer;
+        uint64_t qword178;
+        uint64_t qword180;
+        uint32_t dword188;
+        RenderUnit* renderUnit;
+        uint64_t qword198;
+        uint64_t qword1A0;
 
+        PipelineInfo(CNameIDObject* renderUnitNameId);
+
+        virtual uint64_t UnkFunc1();
     };
 
     class RenderingPipeline : public NeedleRefcountObject {

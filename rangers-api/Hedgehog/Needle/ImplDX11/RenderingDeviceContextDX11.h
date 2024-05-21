@@ -4,7 +4,6 @@
 
 namespace hh::needle::ImplDX11 {
     class RenderingDeviceContextDX11 : public RenderingDeviceContext {
-        uint64_t unk1;
         void* renderingDeviceDispatch;
         uint64_t unk2;
         DeviceObjectDX11* deviceObject;

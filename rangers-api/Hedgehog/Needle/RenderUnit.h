@@ -4,9 +4,11 @@ namespace hh::needle {
     class RenderUnit : public NeedleRefcountObject {
     public:
         struct Unk1 {
-            uint16_t unk1;
-            csl::math::Matrix44 unk2[2];
-            csl::math::Matrix44 unk3[2];
+            uint8_t unk1;
+            uint8_t unk2;
+            uint32_t unk3;
+            csl::math::Matrix44 viewMatrices[2];
+            csl::math::Matrix44 projectionMatrices[2];
             uint64_t unk4;
             uint64_t unk5;
 
@@ -18,7 +20,7 @@ namespace hh::needle {
         SupportFXAll* supportFX;
         CNameIDObject* nameId;
         CNameIDObject* sceneNameId;
-        RenderingPipeline* pipeline;
+        WorldRenderingPipeline* pipeline;
         PipelineInfo* pipelineInfo;
         uint64_t unk6;
         uint64_t unk7;

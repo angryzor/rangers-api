@@ -15,13 +15,14 @@ namespace hh::gfnd {
         csl::math::Matrix44 inverseViewMatrix;
         ViewportDimensions viewportDimensions;
         csl::math::Matrix44 projMatrix;
-        uint32_t unk5;
-        csl::math::Vector3 unk6;
+        uint32_t clipPlanesToUse; // probably more involved. 0 = near/farClip, 1 & 2 = near/farClip2
+        csl::math::Vector3 lookAtPos;
         float fov;
         float aspectRatio;
         float nearClip;
         float farClip;
-        uint64_t unk7;
+        float nearClip2;
+        float farClip2;
         uint64_t unk8;
 
         ViewportData();

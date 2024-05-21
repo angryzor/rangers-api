@@ -3,15 +3,15 @@
 namespace hh::needle {
     class FxCamera {
     public:
-        virtual int64_t UnkFunc1() = 0;
-        virtual int64_t UnkFunc2() = 0;
-        virtual int64_t UnkFunc3() = 0;
-        virtual int64_t UnkFunc4() = 0;
-        virtual int64_t UnkFunc5() = 0;
-        virtual int64_t UnkFunc6() = 0;
-        virtual int64_t UnkFunc7() = 0;
-        virtual int64_t UnkFunc8() = 0;
-        virtual int64_t UnkFunc9();
-        virtual int64_t UnkFunc10();
+        virtual csl::math::Vector3 GetEyePos() const = 0;
+        virtual void GetEyePosF(float* eyePos) const = 0;
+        virtual csl::math::Vector3 GetLookAtPos() const = 0;
+        virtual void GetLookAtPosF(float* lookAtPos) const = 0;
+        virtual csl::math::Matrix44 GetViewMatrix() const = 0;
+        virtual void GetViewMatrixF(float* viewMatrix) const = 0;
+        virtual csl::math::Matrix44 GetProjectionMatrix() const = 0;
+        virtual void GetProjectionMatrixF(float* projectionMatrix) const = 0;
+        virtual float GetFieldOfView() const;
+        virtual void GetClipPlanes(float* near, float* far) const;
     };
 }
