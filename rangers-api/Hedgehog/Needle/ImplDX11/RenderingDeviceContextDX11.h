@@ -4,7 +4,7 @@
 
 namespace hh::needle::ImplDX11 {
     class RenderingDeviceContextDX11 : public RenderingDeviceContext {
-        void* renderingDeviceDispatch;
+        RenderingDeviceDispatchDX11Impl* renderingDeviceDispatch;
         uint64_t unk2;
         DeviceObjectDX11* deviceObject;
     public:
@@ -14,31 +14,31 @@ namespace hh::needle::ImplDX11 {
         virtual const void* QueryResource(size_t id) const override;
         virtual void BeginRendering() override;
         virtual void* EndRendering() override;
-        virtual bool ExecuteRendering() override;
+        virtual bool ExecuteRendering(RenderingCommandList* commandList) override;
         virtual bool UnkFunc1() override { return true; }
         virtual bool UnkFunc2() override { return true; }
         virtual uint32_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
         virtual uint64_t UnkFunc5() override;
         virtual uint64_t UnkFunc6b() override;
-        virtual uint64_t UnkFunc7b() override;
+        virtual void SetVertexBuffer(unsigned int bufferSize, SourceBufferSetting* unused, unsigned int totalSize) override;
         virtual uint64_t UnkFunc8() override;
         virtual uint64_t UnkFunc9() override;
         virtual uint64_t UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
         virtual uint64_t UnkFunc12() override;
         virtual uint64_t UnkFunc13() override;
-        virtual uint64_t UnkFunc14() override;
+        virtual void DrawVerticesUP(const void* vertices, unsigned int vertexCount, unsigned int vertexStride) override;
         virtual void DrawIndexedVerticesUP(const unsigned short* indices, unsigned int indexCount, const void* vertices, unsigned int vertexCount, unsigned int vertexStride) override;
-        virtual uint64_t UnkFunc16() override;
-        virtual uint64_t UnkFunc17() override;
-        virtual uint64_t UnkFunc18() override;
-        virtual uint64_t UnkFunc19() override;
-        virtual uint64_t UnkFunc20() override;
-        virtual uint64_t UnkFunc21() override;
+        virtual void DrawIndexed(unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation) override;
+        virtual void DrawIndexedInstanced(unsigned int indexCountPerInstance, unsigned int instanceCount, unsigned int startIndexLocation, int baseVertexLocation, unsigned int startInstanceLocation) override;
+        virtual void DrawIndexedInstancedIndirect(NeedleRefcountResource* bufferForArgs, unsigned int alignedByteOffsetForArgs) override;
+        virtual void Draw(unsigned int vertexCount, unsigned int startVertexLocation) override;
+        virtual void Dispatch(unsigned int threadGroupCountX, unsigned int threadGroupCountY, unsigned int threadGroupCountZ) override;
+        virtual void DispatchIndirect(NeedleRefcountResource* bufferForArgs, unsigned int alignedByteOffsetForArgs) override;
         virtual void SetShaderObject(const ShaderObject* shaderObject, const InstanceParameterContainerData** ipcd, unsigned int unkParam1, const unsigned char* unkParam2, unsigned int unkParam3) override;
         virtual void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) override;
-        virtual uint64_t UnkFunc24() override;
+        virtual void ResetShaderResource() override;
         virtual uint64_t UnkFunc25() override;
         virtual uint64_t UnkFunc26() override;
         virtual uint64_t UnkFunc27() override;
@@ -53,10 +53,10 @@ namespace hh::needle::ImplDX11 {
         virtual uint64_t UnkFunc36() override;
         virtual uint64_t UnkFunc37() override;
         virtual void UnkFunc37b() override {}
-        virtual uint64_t UnkFunc38() override;
-        virtual uint64_t UnkFunc39() override;
-        virtual uint64_t UnkFunc40() override;
-        virtual uint64_t UnkFunc41() override;
+        virtual uint64_t SetVertexBufferDirect() override;
+        virtual uint64_t SetIndexBufferDirect() override;
+        virtual uint64_t SetConstantBufferDirect() override;
+        virtual uint64_t SetRegularBufferDirect() override;
         virtual uint64_t UnkFunc42() override;
         virtual uint64_t UnkFunc43() override;
         virtual uint64_t UnkFunc44() override;
@@ -128,5 +128,7 @@ namespace hh::needle::ImplDX11 {
         virtual bool UnkFunc110() override { return false; }
         virtual void UnkFunc110b() override {}
         virtual uint64_t UnkFunc111() override;
+
+        void SetDeviceObjectAndDispatch(DeviceObjectDX11* deviceObject, RenderingDeviceDispatchDX11Impl* dispatch);
     };
 }

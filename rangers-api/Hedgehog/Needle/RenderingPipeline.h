@@ -31,7 +31,7 @@ namespace hh::needle {
 
     class RenderingPipeline : public NeedleRefcountObject {
     public:
-        csl::ut::MoveArray<void*> unk1;
+        csl::ut::MoveArray<void*> renderJobs;
         csl::fnd::IAllocator* allocator;
         const char* name;
         uint16_t unk2;

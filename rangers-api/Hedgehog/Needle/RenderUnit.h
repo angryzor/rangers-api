@@ -35,7 +35,7 @@ namespace hh::needle {
         bool paramsInitialized;
         bool createSceneParamListeners;
         Unk1 unk14;
-        uint32_t unk15;
+        uint32_t cameraId;
         WorldRenderingPipelineExecContext* renderingPipelineExecContext;
         uint8_t unk17;
         uint32_t unk18;

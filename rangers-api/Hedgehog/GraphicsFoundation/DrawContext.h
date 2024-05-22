@@ -1,6 +1,20 @@
 #pragma once
 
 namespace hh::gfnd {
+    enum class PrimitiveType {
+        POINT_LIST,
+        LINE_LIST,
+        TRIANGLE_LIST,
+        TRIANGLE_STRIP,
+    };
+
+    struct DrawVertex {
+        float x;
+        float y;
+        float z;
+        uint32_t color;
+    };
+
     class DrawContext {
         uint32_t unk1;
         csl::fnd::IAllocator* allocator;
@@ -31,7 +45,7 @@ namespace hh::gfnd {
         virtual int64_t BeginDraw2d();
         virtual int64_t EndDraw2d();
         virtual int64_t UnkFunc8();
-        virtual int64_t UnkFunc9();
+        virtual int64_t DrawPrimitive(PrimitiveType primitiveType, const DrawVertex* vertices, const unsigned short* indices, unsigned int count);
         virtual int64_t DrawSphere(const csl::math::Matrix34& transform, float radius, const csl::ut::Color8& color);
         virtual int64_t DrawCapsule(const csl::math::Matrix34& transform, float height, float radius, const csl::ut::Color8& color);
         virtual int64_t DrawAABB(const csl::math::Vector3& minPos, const csl::math::Vector3& maxPos, const csl::ut::Color8& color);

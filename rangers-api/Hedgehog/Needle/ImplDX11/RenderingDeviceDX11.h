@@ -14,7 +14,7 @@ namespace hh::needle::ImplDX11 {
 
         virtual void* QueryResource(size_t id) override;
         virtual const void* QueryResource(size_t id) const override;
-        virtual RenderingDeviceContextDX11* CreateDeviceContext() override;
+        virtual RenderingDeviceContextDX11* CreateDeviceContext(unsigned int maybeId) override;
         virtual void* UnkFunc9() override;
         virtual void OtherCreateDeviceContext() override; // CreateDeviceDispatch?
         virtual Texture* CreateTexture(const TextureCreationInfo& creationInfo) override;

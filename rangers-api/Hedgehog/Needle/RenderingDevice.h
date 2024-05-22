@@ -11,7 +11,7 @@ namespace hh::needle {
 
     class RenderingDevice : public TNeedleRefcountResource<NEEDLE_RESOURCE_RENDERING_DEVICE, NeedleRefcountResource> {
     public:
-        virtual RenderingDeviceContext* CreateDeviceContext() = 0;
+        virtual RenderingDeviceContext* CreateDeviceContext(unsigned int maybeId) = 0;
         virtual void* UnkFunc9() = 0;
         virtual void OtherCreateDeviceContext() = 0; // CreateDeviceDispatch?
         virtual Texture* CreateTexture(const TextureCreationInfo& creationInfo) = 0;

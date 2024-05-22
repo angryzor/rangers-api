@@ -49,5 +49,6 @@ namespace hh::needle {
 // #endif
         uint64_t unk1;
         void SetBlendMode(unsigned int mode1, unsigned int mode2, unsigned int op);
+        void Invalidate();
     };
 }

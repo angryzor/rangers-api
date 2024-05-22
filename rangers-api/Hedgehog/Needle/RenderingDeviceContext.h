@@ -3,37 +3,38 @@
 #define NEEDLE_RESOURCE_RENDERING_DEVICE_CONTEXT 0x43564452444E4552ui64
 
 namespace hh::needle {
+    struct SourceBufferSetting;
     class ShaderObject;
     class InstanceParameterContainerData;
     class RenderingDeviceContext : public TNeedleRefcountResource<NEEDLE_RESOURCE_RENDERING_DEVICE_CONTEXT, NeedleRefcountResource> {
     public:
         virtual void BeginRendering() = 0;
         virtual void* EndRendering() = 0;
-        virtual bool ExecuteRendering() = 0;
+        virtual bool ExecuteRendering(RenderingCommandList* commandList) = 0;
         virtual bool UnkFunc1() = 0;
         virtual bool UnkFunc2() = 0;
         virtual uint32_t UnkFunc3() = 0;
         virtual uint64_t UnkFunc4() = 0;
         virtual uint64_t UnkFunc5() = 0;
         virtual uint64_t UnkFunc6b() = 0;
-        virtual uint64_t UnkFunc7b() = 0;
+        virtual void SetVertexBuffer(unsigned int bufferSize, SourceBufferSetting* unused, unsigned int totalSize) = 0;
         virtual uint64_t UnkFunc8() = 0;
         virtual uint64_t UnkFunc9() = 0;
         virtual uint64_t UnkFunc10() = 0;
         virtual uint64_t UnkFunc11() = 0;
         virtual uint64_t UnkFunc12() = 0;
         virtual uint64_t UnkFunc13() = 0;
-        virtual uint64_t UnkFunc14() = 0;
+        virtual void DrawVerticesUP(const void* vertices, unsigned int vertexCount, unsigned int vertexStride) = 0;
         virtual void DrawIndexedVerticesUP(const unsigned short* indices, unsigned int indexCount, const void* vertices, unsigned int vertexCount, unsigned int vertexStride) = 0;
-        virtual uint64_t UnkFunc16() = 0;
-        virtual uint64_t UnkFunc17() = 0;
-        virtual uint64_t UnkFunc18() = 0;
-        virtual uint64_t UnkFunc19() = 0;
-        virtual uint64_t UnkFunc20() = 0;
-        virtual uint64_t UnkFunc21() = 0;
+        virtual void DrawIndexed(unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation) = 0;
+        virtual void DrawIndexedInstanced(unsigned int indexCountPerInstance, unsigned int instanceCount, unsigned int startIndexLocation, int baseVertexLocation, unsigned int startInstanceLocation) = 0;
+        virtual void DrawIndexedInstancedIndirect(NeedleRefcountResource* bufferForArgs, unsigned int alignedByteOffsetForArgs) = 0;
+        virtual void Draw(unsigned int vertexCount, unsigned int startVertexLocation) = 0;
+        virtual void Dispatch(unsigned int threadGroupCountX, unsigned int threadGroupCountY, unsigned int threadGroupCountZ) = 0;
+        virtual void DispatchIndirect(NeedleRefcountResource* bufferForArgs, unsigned int alignedByteOffsetForArgs) = 0;
         virtual void SetShaderObject(const ShaderObject* shaderObject, const InstanceParameterContainerData** ipcd, unsigned int unkParam1, const unsigned char* unkParam2, unsigned int unkParam3) = 0;
         virtual void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) = 0;
-        virtual uint64_t UnkFunc24() = 0;
+        virtual void ResetShaderResource() = 0;
         virtual uint64_t UnkFunc25() = 0;
         virtual uint64_t UnkFunc26() = 0;
         virtual uint64_t UnkFunc27() = 0;
@@ -48,10 +49,10 @@ namespace hh::needle {
         virtual uint64_t UnkFunc36() = 0;
         virtual uint64_t UnkFunc37() = 0;
         virtual void UnkFunc37b() = 0;
-        virtual uint64_t UnkFunc38() = 0;
-        virtual uint64_t UnkFunc39() = 0;
-        virtual uint64_t UnkFunc40() = 0;
-        virtual uint64_t UnkFunc41() = 0;
+        virtual uint64_t SetVertexBufferDirect() = 0;
+        virtual uint64_t SetIndexBufferDirect() = 0;
+        virtual uint64_t SetConstantBufferDirect() = 0;
+        virtual uint64_t SetRegularBufferDirect() = 0;
         virtual uint64_t UnkFunc42() = 0;
         virtual uint64_t UnkFunc43() = 0;
         virtual uint64_t UnkFunc44() = 0;
