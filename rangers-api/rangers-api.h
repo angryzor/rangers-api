@@ -13,6 +13,11 @@
 #include <functional>
 #endif
 
+// Why does the Win32 API do this...
+#ifdef UpdateResource
+#undef UpdateResource
+#endif
+
 #include "Sonicteam/System/IAllocator.h"
 
 #include "Sonicteam/Utility/collections/Array.h"
@@ -112,6 +117,8 @@
 #include "Hedgehog/Rsdx/rsdx_noncopyable.h"
 #include "Hedgehog/Needle/Utility/Binhash.h"
 #include "Hedgehog/Needle/Types.h"
+#include "Hedgehog/Needle/Rectangle.h"
+#include "Hedgehog/Needle/Box.h"
 #include "Hedgehog/Needle/EntryLink.h"
 #include "Hedgehog/Needle/RsFlagMask.h"
 #include "Hedgehog/Needle/CScratchMemoryContext.h"
@@ -124,6 +131,7 @@
 #include "Hedgehog/Needle/TNeedleRefcountUniqueObjectBase.h"
 #include "Hedgehog/Needle/CNameIDObject.h"
 #include "Hedgehog/Needle/CNameIDObjectStatic.h"
+#include "Hedgehog/Needle/SRawImageInfo.h"
 #include "Hedgehog/Needle/ParameterValue.h"
 #include "Hedgehog/Needle/MirageResource.h"
 #include "Hedgehog/Needle/SurfaceBase.h"
@@ -141,10 +149,14 @@
 #include "Hedgehog/Needle/MeshResource.h"
 #include "Hedgehog/Needle/Model.h"
 #include "Hedgehog/Needle/ModelInstance.h"
-#include "Hedgehog/Needle/RenderingCommandList.h"
-#include "Hedgehog/Needle/Rectangle.h"
-#include "Hedgehog/Needle/ViewportSetting.h"
 #include "Hedgehog/Needle/PBRModelInstance.h"
+#include "Hedgehog/Needle/RenderingCommandList.h"
+
+#include "Hedgehog/Needle/ViewportSetting.h"
+#include "Hedgehog/Needle/UnorderedAccessViewsSetting.h"
+#include "Hedgehog/Needle/RenderTargetsSetting.h"
+#include "Hedgehog/Needle/SamplerStateSetting.h"
+
 #include "Hedgehog/Needle/RenderingDeviceContext.h"
 #include "Hedgehog/Needle/RenderingDevice.h"
 #include "Hedgehog/Needle/ParameterValueObjectContainer.h"
@@ -156,19 +168,29 @@
 #include "Hedgehog/Needle/SupportFX.h"
 #include "Hedgehog/Needle/SceneParamContainer.h"
 #include "Hedgehog/Needle/RenderingPipeline.h"
+#include "Hedgehog/Needle/GatherRenderingPassContext.h"
+#include "Hedgehog/Needle/WorldRenderingPipelineExecContext.h"
 #include "Hedgehog/Needle/WorldRenderingPipeline.h"
 #include "Hedgehog/Needle/RenderTexturePipeline.h"
 #include "Hedgehog/Needle/RenderingPipelineRangers.h"
 #include "Hedgehog/Needle/RenderUnit.h"
 #include "Hedgehog/Needle/RenderTexture.h"
+
+#include "Hedgehog/Needle/ImplDX11/Types.h"
 #include "Hedgehog/Needle/ImplDX11/NeedleResourceContainer.h"
-#include "Hedgehog/Needle/ImplDX11/SParameterBuffer.h"
+// #include "Hedgehog/Needle/ImplDX11/SDevStatus.h"
 #include "Hedgehog/Needle/ImplDX11/CmdNeedleRefcountObject.h"
 #include "Hedgehog/Needle/ImplDX11/TextureDX11Impl.h"
 #include "Hedgehog/Needle/ImplDX11/BufferDX11Impl.h"
 #include "Hedgehog/Needle/ImplDX11/ShaderDX11Impl.h"
 #include "Hedgehog/Needle/ImplDX11/VertexLayoutImpl.h"
+#include "Hedgehog/Needle/ImplDX11/SResourceInfo.h"
+#include "Hedgehog/Needle/ImplDX11/SResourceContext.h"
+#include "Hedgehog/Needle/ImplDX11/SShaderContext.h"
 #include "Hedgehog/Needle/ImplDX11/DevicUniqueObjectContainerDX11.h"
+#include "Hedgehog/Needle/ImplDX11/SFlushParameterContext.h"
+#include "Hedgehog/Needle/ImplDX11/SParameterQueue.h"
+#include "Hedgehog/Needle/ImplDX11/SParameterBuffer.h"
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceDispatchDX11.h"
 #include "Hedgehog/Needle/ImplDX11/DeviceObjectDX11.h"
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceContextDX11.h"

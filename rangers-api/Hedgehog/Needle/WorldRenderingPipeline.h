@@ -23,6 +23,8 @@ namespace hh::needle {
 
         WorldRenderingPipeline(csl::fnd::IAllocator* allocator);
 
+        WorldRenderingPipelineExecContext* CreateExecContext(unsigned int unkParam);
+
         virtual uint64_t UnkFunc1() override;
         virtual uint64_t UnkFunc2() override;
         virtual uint64_t UnkFunc8() override;

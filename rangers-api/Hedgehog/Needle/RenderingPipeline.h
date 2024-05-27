@@ -1,6 +1,7 @@
 #pragma once
 
 namespace hh::needle {
+    class GlobalParameterBuilder;
     class PipelineInfo : public NeedleObject {
     public:
         uint32_t dword8;
@@ -10,7 +11,7 @@ namespace hh::needle {
         SupportFX::FxRenderParam renderParam;
         SupportFXAll* supportFX;
         uint64_t qword138;
-        uint64_t qword140;
+        GlobalParameterBuilder* globalParameterBuilder;
         uint64_t qword148;
         uint64_t qword150;
         CNameIDObject* renderUnitNameId;

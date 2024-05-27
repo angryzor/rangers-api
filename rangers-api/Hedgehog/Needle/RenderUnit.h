@@ -6,7 +6,7 @@ namespace hh::needle {
         struct Unk1 {
             uint8_t unk1;
             uint8_t unk2;
-            uint32_t unk3;
+            uint32_t frameCounter;
             csl::math::Matrix44 viewMatrices[2];
             csl::math::Matrix44 projectionMatrices[2];
             uint64_t unk4;

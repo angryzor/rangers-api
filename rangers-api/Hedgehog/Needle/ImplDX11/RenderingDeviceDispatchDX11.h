@@ -21,7 +21,7 @@ namespace hh::needle::ImplDX11 {
             Unk5();
         };
         struct Unk4 {
-            int unk1;
+            uint32_t flags;
             char unk2[60];
             RsFlagMask rsFlagMask;
             uint64_t unk4;
@@ -45,15 +45,14 @@ namespace hh::needle::ImplDX11 {
 
             Unk4();
         };
+
         struct Unk2 {
             DeviceObjectDX11* deviceObject;
             SParameterBuffer* parameterBuffer;
-            uint64_t unk1;
-            uint64_t unk2[49];
-            uint64_t unk2a[132];
-            DeviceObjectDX11* deviceObject2;
-            uint64_t unk2b;
-            uint64_t unk2c[38];
+            ID3D11InputLayout* inputLayout;
+            SResourceContext resourceContexts[3];
+            SShaderContext shaderContext;
+            SFlushParameterContext flushParameterContexts[3];
             Unk4 unk3;
             uint32_t qword7AC;
             uint32_t qword7B0;
@@ -64,11 +63,11 @@ namespace hh::needle::ImplDX11 {
             uint64_t unk7;
             void* unk8;
             void* unk9;
-            uint64_t qword860[10];
-            uint64_t qword8B0[24];
-            uint32_t qword970;
-            uint32_t qword974[32];
-            uint32_t qword9F4;
+            RenderTargetsSetting renderTargetsSetting;
+            ViewportSetting viewports[8];
+            uint32_t viewportCount;
+            Rectangle scissors[8];
+            uint32_t scissorCount;
 
             Unk2();
 
@@ -88,7 +87,7 @@ namespace hh::needle::ImplDX11 {
         uint64_t qword760;
         uint64_t qword768;
         char gap770[276];
-        UINT vertexCount; 
+        unsigned int vertexCount; 
         char gap770a[792];
         uint64_t qwordBA0;
         uint32_t dwordBA8;

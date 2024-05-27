@@ -63,4 +63,18 @@ namespace hh::needle {
     enum class StencilOp {
 
     };
+
+    enum class ShaderStage : uint32_t {
+        VERTEX_SHADER,
+        PIXEL_SHADER,
+        COMPUTE_SHADER,
+    };
+
+    enum class MapType : uint32_t {
+        READ,
+        WRITE,
+        READ_WRITE,
+        WRITE_DISCARD,
+        WRITE_NO_OVERWRITE,
+    };
 }

@@ -24,5 +24,8 @@ namespace hh::needle {
         uint64_t qword1B0;
 
         RenderingPipelineRangers(csl::fnd::IAllocator* allocator, PBRModelInstanceRenderer* renderer);
+
+        virtual uint64_t UnkFunc11() override;
+        virtual uint64_t UnkFunc12() override;
     };
 }
