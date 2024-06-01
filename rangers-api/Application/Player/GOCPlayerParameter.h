@@ -17,10 +17,10 @@ namespace app::player {
         };
 
         union CharacterParameters {
-            hh::fnd::ResReflection<app::rfl::SonicParameters> sonic;
-            hh::fnd::ResReflection<app::rfl::AmyParameters> amy;
-            hh::fnd::ResReflection<app::rfl::KnucklesParameters> knuckles;
-            hh::fnd::ResReflection<app::rfl::TailsParameters> tails;
+            hh::fnd::ResReflectionT<app::rfl::SonicParameters> sonic;
+            hh::fnd::ResReflectionT<app::rfl::AmyParameters> amy;
+            hh::fnd::ResReflectionT<app::rfl::KnucklesParameters> knuckles;
+            hh::fnd::ResReflectionT<app::rfl::TailsParameters> tails;
         };
 
         union CharacterModePackage {
@@ -32,7 +32,7 @@ namespace app::player {
         };
 
         hh::fnd::Reference<CharacterParameters> characterParameters;
-        hh::fnd::Reference<hh::fnd::ResReflection<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
         app::rfl::ModePackage* modePackages[4];
         app::rfl::WaterModePackage* waterModePackage;
         Mode mode;
@@ -51,8 +51,8 @@ namespace app::player {
     public:
         struct Config {
             uint32_t flags;
-            hh::fnd::Reference<hh::fnd::ResReflection<CharacterParameters>> characterParameters;
-            hh::fnd::Reference<hh::fnd::ResReflection<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
+            hh::fnd::Reference<hh::fnd::ResReflectionT<CharacterParameters>> characterParameters;
+            hh::fnd::Reference<hh::fnd::ResReflectionT<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
             CharacterId characterId;
         };
 

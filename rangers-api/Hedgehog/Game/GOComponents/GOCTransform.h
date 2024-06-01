@@ -42,6 +42,14 @@ namespace hh::game {
         inline const csl::ut::LinkList<GOCTransform>& GetChildren() {
             return children;
         }
+
+        inline csl::math::Transform& GetTransform() {
+            return transform;
+        }
+
+        inline fnd::HFrame& GetFrame() {
+            return *frame;
+        }
         
         GOCOMPONENT_CLASS_DECLARATION(GOCTransform)
     };

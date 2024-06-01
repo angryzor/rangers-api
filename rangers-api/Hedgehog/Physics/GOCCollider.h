@@ -118,6 +118,17 @@ namespace hh::physics {
         void RemoveListener(GOCColliderListener* listener);
         void SetEnabled(bool enabled);
 
+        inline csl::math::Matrix34 GetWorldTransform() const {
+            Eigen::Affine3f affine;
+            affine.fromPositionOrientationScale(transformedWorldPosition.m_Position, transformedWorldPosition.m_Rotation, scale);
+            return { affine };
+        };
+        inline csl::math::Matrix34 GetLocalTransform() const {
+            Eigen::Affine3f affine;
+            affine.fromPositionOrientationScale(localWorldPosition.m_Position, localWorldPosition.m_Rotation, scale);
+            return { affine };
+        };
+
         GOCOMPONENT_CLASS_DECLARATION(GOCCollider);
     };
 }

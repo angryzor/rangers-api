@@ -57,6 +57,10 @@ namespace hh::game {
         }
 
         ComponentData* GetComponentDataByType(const char* type);
+
+        const char* GetName() {
+            return name.c_str();
+        }
     };
 
     struct ObjectWorldData {

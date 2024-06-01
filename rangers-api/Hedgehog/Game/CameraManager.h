@@ -29,7 +29,7 @@ namespace hh::game {
 		void AddComponentToStack(CameraComponent* component);
 		void RemoveComponentFromStack(CameraComponent* component);
 
-		void SetComponentViewportDataUnk6(CameraComponent* component, const csl::math::Vector4& newUnk6);
+		void SetComponentLookAtPos(CameraComponent* component, const csl::math::Vector3& lookAtPos);
 		void SetComponentViewMatrix(CameraComponent* component, csl::math::Matrix44& viewMatrix);
 		void SetComponentPerspectiveProjectionMatrix(CameraComponent* component, float fov, float aspectRatio, float nearClip, float farClip);
 

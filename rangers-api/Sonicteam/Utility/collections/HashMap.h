@@ -50,6 +50,11 @@ namespace csl::ut
 			return m_Capacity & ~csl::ut::SIGN_BIT;
 		}
 
+		size_t GetHashMask() const
+		{
+			return GetCapacity() - 1;
+		}
+
 		void ResizeTbl(size_t capacity)
 		{
 			size_t oldCap = GetCapacity();
@@ -138,7 +143,7 @@ namespace csl::ut
 	protected:
 		size_t GetBegin() const
 		{
-			for (size_t i = 0; i < GetCapacity() - 1; i++)
+			for (size_t i = 0; i < GetCapacity(); i++)
 			{
 				if (m_pElements[i].m_Hash != INVALID_KEY)
 					return i;
@@ -149,7 +154,7 @@ namespace csl::ut
 
 		size_t GetNext(size_t idx) const
 		{
-			for (size_t i = idx + 1; i < GetCapacity() - 1; i++)
+			for (size_t i = idx + 1; i < GetCapacity(); i++)
 			{
 				if (m_pElements[i].m_Hash != INVALID_KEY)
 					return i;
@@ -230,7 +235,7 @@ namespace csl::ut
 				ResizeTbl(CalcResize(GetCapacity()));
 			}
 
-			size_t idx = hash & (GetCapacity() - 1);
+			size_t idx = hash & GetHashMask();
 			Elem* pElem = &m_pElements[idx];
 
 			if (pElem->m_Hash == INVALID_KEY)
@@ -243,7 +248,7 @@ namespace csl::ut
 			{
 				while (pElem->m_Hash != hash || pElem->m_Key != key)
 				{
-					idx = (GetCapacity() - 1) & (idx + 1);
+					idx = (idx + 1) & GetHashMask();
 					pElem = &m_pElements[idx];
 
 					if (pElem->m_Hash == INVALID_KEY)
@@ -276,7 +281,7 @@ namespace csl::ut
 				return end();
 			
 			const size_t hash = TOp::hash(key) & 0x7FFFFFFFFFFFFFFF;
-			size_t idx = hash & (GetCapacity() - 1);
+			size_t idx = hash & GetHashMask();
 			const Elem* pElem = &m_pElements[idx];
 			
 			if (pElem->m_Hash == INVALID_KEY)
@@ -284,7 +289,7 @@ namespace csl::ut
 			
 			while (pElem->m_Hash != hash || !TOp::compare(key, pElem->m_Key))
 			{
-				idx = (GetCapacity() - 1) & (idx + 1);
+				idx = (idx + 1) & GetHashMask();
 				pElem = &m_pElements[idx];
 
 				if (pElem->m_Hash == INVALID_KEY)
@@ -306,16 +311,7 @@ namespace csl::ut
 		
 		void Erase(const TKey& key)
 		{
-			auto result = Find(key);
-
-			if (result == end())
-				return;
-
-			Elem* pElem = &m_pElements[result.m_CurIdx];
-			pElem->m_Hash = INVALID_KEY;
-			m_Length--;
-
-			pElem->m_Value.~TValue();
+			Erase(Find(key));
 		}
 
 		void Erase(const iterator& iter)

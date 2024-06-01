@@ -82,6 +82,10 @@ namespace hh::game {
             return objectIndicesByObjectId.GetValueOrFallback(id, -1);
         }
 
+        inline int GetObjectIndexByObjectData(const ObjectData* objData) {
+            return GetObjectIndexById(objData->id);
+        }
+
         inline GameObject* GetObjectByIndex(int i) const {
             return objects[i];
         }

@@ -99,28 +99,28 @@ namespace csl::math
 		}
 	};
 
-	class alignas(16) Matrix34 : public Eigen::Matrix4f
+	class alignas(16) Matrix34 : public Eigen::Affine3f
 	{
 	public:
-		Vector3& GetColumn(uint32_t column) const
-		{
-			return *(Vector3*)col(column).data();
-		}
+		// Vector3& GetColumn(uint32_t column) const
+		// {
+		// 	return *(Vector3*)col(column).data();
+		// }
 
-		void SetColumn(uint32_t column, const Vector3& data)
-		{
-			*(Vector3*)col(column).data() = data;
-		}
+		// void SetColumn(uint32_t column, const Vector3& data)
+		// {
+		// 	*(Vector3*)col(column).data() = data;
+		// }
 
-		Vector3& GetTransVector() const
-		{
-			return reinterpret_cast<Vector3&>(GetColumn(3));
-		}
+		// Vector3& GetTransVector() const
+		// {
+		// 	return reinterpret_cast<Vector3&>(GetColumn(3));
+		// }
 
-		void SetTransVector(const Vector3& translation)
-		{
-			SetColumn(3, translation);
-		}
+		// void SetTransVector(const Vector3& translation)
+		// {
+		// 	SetColumn(3, translation);
+		// }
 	};
 	
 	class alignas(16) Quaternion : public Eigen::Quaternionf
@@ -138,7 +138,7 @@ namespace csl::math
 			
 		}
 
-		Quaternion(const Matrix34& matrix) : Eigen::Quaternionf(matrix.topLeftCorner<3, 3>())
+		Quaternion(const Matrix34& transform) : Eigen::Quaternionf(transform.rotation())
 		{
 			
 		}
@@ -354,21 +354,21 @@ namespace csl::math
 		Vector3 m_Scale;
 		size_t m_Flags;
 
-		Vector3 GetTranslation() const
-		{
-			return m_Mtx.GetTransVector();
-		}
+		// Vector3 GetTranslation() const
+		// {
+		// 	return m_Mtx.GetTransVector();
+		// }
 
-		void SetTranslation(const Vector3& translation)
-		{
-			m_Mtx.SetTransVector(translation);
-			SetFlag(1);
-		}
+		// void SetTranslation(const Vector3& translation)
+		// {
+		// 	m_Mtx.SetTransVector(translation);
+		// 	SetFlag(1);
+		// }
 
-		void SetFlag(size_t value)
-		{
-			m_Flags |= value;
-		}
+		// void SetFlag(size_t value)
+		// {
+		// 	m_Flags |= value;
+		// }
 	};
 
 	template<typename T>

@@ -9,6 +9,8 @@ namespace csl::ut {
         T g;
         T r;
 
+        Color(T r, T g, T b, T a) : r{ r }, g{ g }, b{ b }, a{ a } {}
+
         inline bool operator==(const Color<T>& other) const {
             return r == other.r && g == other.g && b == other.b && a == other.a;
         }

@@ -46,6 +46,18 @@ namespace hh::hid {
         int FindActionMappingId(const char* name);
         int FindAxisMappingId(const char* name);
 
+        inline void BindActionMapping(const char* mappingName, uint32_t inputId) {
+            return BindActionMapping(mappingName, inputId, -1);
+        }
+        
+        inline void BindAxisMapping(const char* mappingName, uint32_t inputId, float limit) {
+            return BindAxisMapping(mappingName, inputId, limit, -1);
+        }
+
+        inline void BindAxisMappingEx(const char* mappingName, uint32_t inputId, float limit, float threshold) {
+            return BindAxisMappingEx(mappingName, inputId, limit, threshold, -1);
+        }
+        
         void BindActionMapping(const char* mappingName, uint32_t inputId, int unkParam);
         void BindAxisMapping(const char* mappingName, uint32_t inputId, float limit, int unkParam2);
         void BindAxisMappingEx(const char* mappingName, uint32_t inputId, float limit, float threshold, int unkParam2);

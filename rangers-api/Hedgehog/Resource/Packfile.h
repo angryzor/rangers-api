@@ -23,6 +23,10 @@ namespace hh::fnd {
         }
 
         ManagedResource* GetResourceByName(const char* name, const ResourceTypeInfo* typeInfo);
+        template<typename T>
+        T* GetResourceByName(const char* name) {
+            return static_cast<T*>(GetResourceByName(name, T::GetTypeInfo()));
+        }
         const char* GetResourceIDName(int resourceId, const ResourceTypeInfo* typeInfo);
     };
 }

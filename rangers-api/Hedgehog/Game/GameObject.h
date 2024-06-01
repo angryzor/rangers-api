@@ -63,7 +63,7 @@ namespace hh::game
 		template<typename T>
 		T* Create(csl::fnd::IAllocator* pAllocator) const { return static_cast<T*>(Create(pAllocator)); }
 		const fnd::RflClassMember::Value* GetAttribute(const char* name) const;
-		// const fnd::RflClassMember::Value* GetAttributeValue(const char* name) const;
+		const void* GetAttributeValue(const char* name) const;
     };
 
 	class WorldObjectStatus;

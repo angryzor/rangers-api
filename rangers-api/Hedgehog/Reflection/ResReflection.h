@@ -1,37 +1,29 @@
 #pragma once
 
 namespace hh::fnd {
-    template<typename T>
-    class ResReflection;
-
-    template<>
-    class ResReflection<void> : public ManagedResource {
+    class ResReflection : public ManagedResource {
     public:
         void* reflectionData;
         uint64_t unk1;
         uint64_t unk2;
 
-        static const ResourceTypeInfo* GetTypeInfo();
+        virtual void Load(void* data, size_t size) override;
+        virtual void Unload() override;
 
         void* GetData();
+
+        MANAGED_RESOURCE_CLASS_DECLARATION(ResReflection)
     };
 
     template<typename T>
-    class ResReflection : public ManagedResource {
+    class ResReflectionT : public ResReflection {
     public:
-        T* reflectionData;
-        uint64_t unk1;
-        uint64_t unk2;
-
         T* GetData() {
-            return static_cast<T*>(reinterpret_cast<ResReflection<void>>(this)->GetData());
+            return static_cast<T*>(GetData());
         }
 
         inline static const ResourceTypeInfo* GetTypeInfo() {
-            return ResReflection<void>::GetTypeInfo();
+            return ResReflection::GetTypeInfo();
         }
-
-        virtual void Load(void* data, size_t size) override;
-        virtual void Unload() override;
     };
 }
