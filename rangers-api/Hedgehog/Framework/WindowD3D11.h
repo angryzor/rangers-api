@@ -48,5 +48,7 @@ namespace hh::fw {
         virtual void UnkFunc15() override;
         virtual bool UnkFunc16() override;
         virtual void UnkFunc17() override;
+
+        static LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
     };
 }

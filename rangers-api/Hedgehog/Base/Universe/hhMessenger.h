@@ -7,8 +7,14 @@ namespace app
 
 namespace hh::fnd
 {
+	class Message;
+	class MessageAsyncHandler;
+	class MessageManager;
 	class Messenger : public RefByHandleObject
 	{
+	public:
+		typedef HandleManager<Messenger> HandleManager;
+
 	protected:
 		/*
 		 * Sends a message to one particular receiver.

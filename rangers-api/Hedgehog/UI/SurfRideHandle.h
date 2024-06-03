@@ -5,6 +5,7 @@ namespace hh::ui {
     protected:
         void* surfRideObject;
     public:
+        typedef fnd::HandleManager<SurfRideHandleBase> HandleManager;
         SurfRideHandleBase(csl::fnd::IAllocator* pAllocator, void* surfRideObject);
     };
 

@@ -61,5 +61,7 @@ namespace hh::physics {
         void RemoveCollider(GOCCollider* collider);
         bool RayCastClosest(const csl::math::Vector3& from, const csl::math::Vector3& to, uint32_t filterMask, PhysicsQueryResult& result);
         bool RayCastAllHits(const csl::math::Vector3& from, const csl::math::Vector3& to, uint32_t filterMask, csl::ut::MoveArray<PhysicsQueryResult>& result);
+        
+        inline static const hh::game::GameServiceClass* GetClass();
     };
 }

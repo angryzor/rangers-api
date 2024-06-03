@@ -22,7 +22,6 @@ namespace app::player
 namespace hh::game
 {
 	class GOComponent;
-	class GameObject;
 	class GOComponentClass
 	{
 	public:
@@ -39,6 +38,8 @@ namespace hh::game
 	class GOComponent : public fnd::RefByHandleObject
 	{
 	public:
+		typedef fnd::HandleManager<GOComponent> HandleManager;
+
 		enum class GOCEventMask : uint16_t {
 			ADDED_TO_OBJECT = 0,
 			ADDED_TO_OBJECT_2 = 1,

@@ -59,17 +59,17 @@
 #include "Hedgehog/Base/System/hhProperty.h"
 #include "Hedgehog/Base/System/hhCollection.h"
 #include "Hedgehog/Base/System/HFrame.h"
-#include "Hedgehog/Base/System/hhHandle.h"
 #include "Hedgehog/Base/System/HandleManager.h"
+#include "Hedgehog/Base/System/hhHandle.h"
 #include "Hedgehog/Base/System/ReloaderListener.h"
 #include "Hedgehog/Base/System/SUpdateInfo.h"
 #include "Hedgehog/Base/System/UpdatingPhase.h"
 
 // Hedgehog Universe Library
+#include "Hedgehog/Base/Universe/hhMessenger.h"
 #include "Hedgehog/Base/Universe/hhMessage.h"
 #include "Hedgehog/Base/Universe/MessageQueue.h"
 #include "Hedgehog/Base/Universe/MessageManager.h"
-#include "Hedgehog/Base/Universe/hhMessenger.h"
 
 #include "Hedgehog/Utility/TempString.h"
 #include "Hedgehog/Utility/TempMoveArray.h"
@@ -278,9 +278,9 @@
 
 // Hedgehog Game Library
 #include "Hedgehog/Game/GameService.h"
-#include "Hedgehog/Game/GOComponent.h"
 #include "Hedgehog/Game/GameObject.h"
 #include "Hedgehog/Game/GameObjectLayer.h"
+#include "Hedgehog/Game/GOComponent.h"
 #include "Hedgehog/Game/GameManager.h"
 #include "Hedgehog/Game/GameJobQueue.h"
 #include "Hedgehog/Game/GameUpdater.h"

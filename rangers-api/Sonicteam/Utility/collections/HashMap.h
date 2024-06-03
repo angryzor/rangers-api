@@ -220,7 +220,7 @@ namespace csl::ut
 			}
 		}
 
-		iterator Insert(TKey key, TValue value)
+		iterator InsertAndGet(TKey key, TValue value)
 		{
 			size_t hash = TOp::hash(key) & 0x7FFFFFFFFFFFFFFF;
 			if (m_Length || GetCapacity())
@@ -264,6 +264,10 @@ namespace csl::ut
 			new (&pElem->m_Value) TValue(value);
 
 			return { this, idx };
+		}
+		
+		void Insert(TKey key, TValue value) {
+			InsertAndGet(key, value);
 		}
 
 		TValue& GetValueOrFallback(const TKey& key, TValue&& fallback) const {

@@ -99,5 +99,9 @@ namespace app::level {
 
         // returns value of `stage` if cyber stage, `name` if other stage
         const char* GetStageName() const;
+
+        inline const char* GetName() const {
+            return name.c_str();
+        }
     };
 }

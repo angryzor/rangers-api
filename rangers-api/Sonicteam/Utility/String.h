@@ -10,7 +10,7 @@ namespace csl::ut {
             m_capacity = len;
         }
 
-        char* c_str() {
+        char* c_str() const {
             return m_pBuffer;
         }
 

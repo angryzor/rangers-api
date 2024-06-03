@@ -12,8 +12,8 @@ namespace hh::ui {
         csl::fnd::Delegate<void ()> unk8;
         csl::ut::VariableString name;
         csl::ut::VariableString type;
-        fnd::Handle<fnd::RefByHandleObject> hLayer;
-        fnd::Handle<fnd::RefByHandleObject> hCast;
+        fnd::Handle<SurfRideLayerHandle> hLayer;
+        fnd::Handle<SurfRideCastHandle> hCast;
         void* unk12;
         csl::ut::MoveArray<fnd::Reference<UIElementBase>> children;
         bool maybeHasCast;

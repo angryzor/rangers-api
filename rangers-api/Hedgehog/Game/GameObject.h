@@ -23,6 +23,8 @@ namespace hh::game
 {
 	class GameManager;
 	class GameObject;
+	class GOComponent;
+	class GOComponentClass;
 
 	class GameObjectListener {
 	public:
@@ -146,20 +148,6 @@ namespace hh::game
 		// 	return { nullptr };
 		// }
 
-		hh::game::GOComponent* GetGOC(const char* in_pComponentName)
-		{
-			for (auto* pComponent : components)
-			{
-				if (pComponent == nullptr)
-					continue;
-
-				if (strcmp(pComponent->pStaticClass->pName, in_pComponentName) == 0)
-					return pComponent;
-			}
-
-			return { nullptr };
-		}
-
 		// template <typename T>
 		// T* GetComponent()
 		// {
@@ -173,11 +161,6 @@ namespace hh::game
 		template<typename T>
 		T* CreateComponent() {
 			return static_cast<T*>(CreateComponent(T::GetClass()));
-		}
-
-		hh::game::GOComponent* GetComponent(const char* in_pComponentName)
-		{
-			return GetGOC(in_pComponentName);
 		}
 
 		void AddComponent(GOComponent* component);

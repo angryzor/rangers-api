@@ -58,6 +58,10 @@ namespace hh::game {
 
         void AddWorldObjectStatus(ObjectData* objectData, bool enabled, int spawnPriority);
         void RemoveWorldObjectStatus(ObjectData* objectData);
+        
+        inline void AddWorldObjectStatus(ObjectData* objectData, bool enabled) {
+            AddWorldObjectStatus(objectData, enabled, 0);
+        }
 
         void AddListener(ObjectWorldChunkListener* listener);
         void RemoveListener(ObjectWorldChunkListener* listener);

@@ -27,4 +27,8 @@ namespace hh::physics {
 
         GAMESERVICE_CLASS_DECLARATION(PhysicsWorldBullet)
     };
+
+    const hh::game::GameServiceClass* PhysicsWorld::GetClass() {
+        return PhysicsWorldBullet::GetClass();
+    }
 }
