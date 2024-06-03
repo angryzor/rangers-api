@@ -1,4 +1,6 @@
-namespace app::rfl {
+#pragma once
+
+namespace heur::rfl {
     struct DecoConfigParam {
         csl::ut::Color<uint8_t> clientColor;
         uint8_t windowAlpha;
@@ -12,7 +14,9 @@ namespace app::rfl {
         static void Finish(DecoConfigParam* pInstance);
         static void Clean(DecoConfigParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoBlurParam {
         int32_t radius;
 
@@ -23,7 +27,9 @@ namespace app::rfl {
         static void Finish(DecoBlurParam* pInstance);
         static void Clean(DecoBlurParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoGradationParam {
         enum class Orientation : int8_t {
             ORIENTATION_NONE = 0,
@@ -47,7 +53,9 @@ namespace app::rfl {
         static void Finish(DecoGradationParam* pInstance);
         static void Clean(DecoGradationParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoDropShadowParam {
         csl::ut::Color<uint8_t> color;
         uint8_t size;
@@ -62,7 +70,9 @@ namespace app::rfl {
         static void Finish(DecoDropShadowParam* pInstance);
         static void Clean(DecoDropShadowParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoRimParam {
         csl::ut::Color<uint8_t> color;
         int32_t thickness;
@@ -76,12 +86,14 @@ namespace app::rfl {
         static void Finish(DecoRimParam* pInstance);
         static void Clean(DecoRimParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoPassParam {
-        DecoDropShadowParam dropShadow;
-        DecoRimParam rim;
-        DecoGradationParam gradation;
-        DecoBlurParam blur;
+        heur::rfl::DecoDropShadowParam dropShadow;
+        heur::rfl::DecoRimParam rim;
+        heur::rfl::DecoGradationParam gradation;
+        heur::rfl::DecoBlurParam blur;
         bool avoidEdgeArtifact;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -91,7 +103,9 @@ namespace app::rfl {
         static void Finish(DecoPassParam* pInstance);
         static void Clean(DecoPassParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoTechParam {
         enum class DecoLayerBlendOp : int8_t {
             DECO_LAYER_BLEND_OP_BLEND = 0,
@@ -100,10 +114,10 @@ namespace app::rfl {
 
         csl::ut::VariableString name;
         csl::ut::Color<uint8_t> fontColor;
-        DecoGradationParam fontGradParam;
+        heur::rfl::DecoGradationParam fontGradParam;
         DecoLayerBlendOp layerBlendOp;
         int32_t numPasses;
-        DecoPassParam passParams[5];
+        heur::rfl::DecoPassParam passParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -112,9 +126,11 @@ namespace app::rfl {
         static void Finish(DecoTechParam* pInstance);
         static void Clean(DecoTechParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DecoTechParams {
-        DecoTechParam params[512];
+        heur::rfl::DecoTechParam params[512];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -123,7 +139,9 @@ namespace app::rfl {
         static void Finish(DecoTechParams* pInstance);
         static void Clean(DecoTechParams* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Agent {
         float radius;
         float height;
@@ -137,7 +155,9 @@ namespace app::rfl {
         static void Finish(Agent* pInstance);
         static void Clean(Agent* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DetailMesh {
         float sampleDistance;
         float sampleMaxError;
@@ -149,7 +169,9 @@ namespace app::rfl {
         static void Finish(DetailMesh* pInstance);
         static void Clean(DetailMesh* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OffMeshLinkElement {
         enum class OffMeshLinkDirection : uint8_t {
             OffMeshLinkUnidirectional = 0,
@@ -171,9 +193,11 @@ namespace app::rfl {
         static void Finish(OffMeshLinkElement* pInstance);
         static void Clean(OffMeshLinkElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OffMeshLinkParameter {
-        csl::ut::MoveArray<OffMeshLinkElement> elements;
+        csl::ut::MoveArray<heur::rfl::OffMeshLinkElement> elements;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -182,7 +206,9 @@ namespace app::rfl {
         static void Finish(OffMeshLinkParameter* pInstance);
         static void Clean(OffMeshLinkParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Filtering {
         bool lowHangingObstacles;
         bool ledgeSpans;
@@ -195,7 +221,9 @@ namespace app::rfl {
         static void Finish(Filtering* pInstance);
         static void Clean(Filtering* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct World {
         csl::math::Vector3 aabbMin;
         csl::math::Vector3 aabbMax;
@@ -207,7 +235,9 @@ namespace app::rfl {
         static void Finish(World* pInstance);
         static void Clean(World* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Rasterization {
         float voxelSize;
         float voxelHeight;
@@ -219,7 +249,9 @@ namespace app::rfl {
         static void Finish(Rasterization* pInstance);
         static void Clean(Rasterization* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Region {
         int32_t minArea;
         int32_t mergeArea;
@@ -231,7 +263,9 @@ namespace app::rfl {
         static void Finish(Region* pInstance);
         static void Clean(Region* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Partitioning {
         enum class Partition : uint8_t {
             Watershed = 0,
@@ -248,7 +282,9 @@ namespace app::rfl {
         static void Finish(Partitioning* pInstance);
         static void Clean(Partitioning* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Polygonization {
         float edgeMaxLength;
         float maxSimplificationError;
@@ -261,7 +297,9 @@ namespace app::rfl {
         static void Finish(Polygonization* pInstance);
         static void Clean(Polygonization* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Tiling {
         float size;
         int32_t maxTiles;
@@ -274,17 +312,19 @@ namespace app::rfl {
         static void Finish(Tiling* pInstance);
         static void Clean(Tiling* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NavMeshParameter {
-        World world;
-        Rasterization rasterization;
-        Agent agent;
-        Region region;
-        Partitioning partitioning;
-        Filtering filtering;
-        Polygonization polygonization;
-        DetailMesh detailMesh;
-        Tiling tiling;
+        heur::rfl::World world;
+        heur::rfl::Rasterization rasterization;
+        heur::rfl::Agent agent;
+        heur::rfl::Region region;
+        heur::rfl::Partitioning partitioning;
+        heur::rfl::Filtering filtering;
+        heur::rfl::Polygonization polygonization;
+        heur::rfl::DetailMesh detailMesh;
+        heur::rfl::Tiling tiling;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -293,7 +333,9 @@ namespace app::rfl {
         static void Finish(NavMeshParameter* pInstance);
         static void Clean(NavMeshParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StatsDataValue {
         enum class StatsType : int32_t {
             TYPE_INVALID = 0,
@@ -313,9 +355,11 @@ namespace app::rfl {
         static void Finish(StatsDataValue* pInstance);
         static void Clean(StatsDataValue* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StatsDataContainer {
-        csl::ut::MoveArray<StatsDataValue> data;
+        csl::ut::MoveArray<heur::rfl::StatsDataValue> data;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -324,7 +368,9 @@ namespace app::rfl {
         static void Finish(StatsDataContainer* pInstance);
         static void Clean(StatsDataContainer* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSunPosAngle {
         float azimuthAngle;
         float elevationAngle;
@@ -336,7 +382,9 @@ namespace app::rfl {
         static void Finish(FxSunPosAngle* pInstance);
         static void Clean(FxSunPosAngle* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSunPosEarth {
         float azimuthAngle;
         float latitude;
@@ -354,7 +402,9 @@ namespace app::rfl {
         static void Finish(FxSunPosEarth* pInstance);
         static void Clean(FxSunPosEarth* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSun {
         enum class SunPosType : int8_t {
             SUN_POS_TYPE_NONE = 0,
@@ -364,8 +414,8 @@ namespace app::rfl {
 
         float solarRadiusScale;
         SunPosType sunPosType;
-        FxSunPosAngle posTypeAngle;
-        FxSunPosEarth posTypeEarth;
+        hh::needle::FxSunPosAngle posTypeAngle;
+        hh::needle::FxSunPosEarth posTypeEarth;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -374,7 +424,9 @@ namespace app::rfl {
         static void Finish(FxSun* pInstance);
         static void Clean(FxSun* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxMoon {
         enum class MoonPosType : int8_t {
             MOON_POS_TYPE_NONE = 0,
@@ -391,7 +443,9 @@ namespace app::rfl {
         static void Finish(FxMoon* pInstance);
         static void Clean(FxMoon* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSkyCommon {
         enum class SkyModel : int8_t {
             BRUNETON = 0,
@@ -410,7 +464,9 @@ namespace app::rfl {
         static void Finish(FxSkyCommon* pInstance);
         static void Clean(FxSkyCommon* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxBrunetonSkyNight {
         float lunarIntensityInSky;
         float starIntensityInSky;
@@ -428,7 +484,9 @@ namespace app::rfl {
         static void Finish(FxBrunetonSkyNight* pInstance);
         static void Clean(FxBrunetonSkyNight* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxBrunetonSky {
         float illuminanceScale;
         csl::ut::Color<uint8_t> rayleighColor;
@@ -446,7 +504,7 @@ namespace app::rfl {
         float cubemapColorAngleRatio;
         bool enableScattering;
         float scatteringRatio;
-        FxBrunetonSkyNight night;
+        hh::needle::FxBrunetonSkyNight night;
         bool enableLimitY;
         float debugSkyCubeIntensity;
 
@@ -457,7 +515,9 @@ namespace app::rfl {
         static void Finish(FxBrunetonSky* pInstance);
         static void Clean(FxBrunetonSky* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSebastienSky {
         float miePhaseFunctionG;
         csl::ut::Color<uint8_t> mieScatteringColor;
@@ -483,7 +543,9 @@ namespace app::rfl {
         static void Finish(FxSebastienSky* pInstance);
         static void Clean(FxSebastienSky* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCloudProcedural {
         csl::math::Vector3 uvScale;
         csl::math::Vector3 colorGamma;
@@ -497,12 +559,14 @@ namespace app::rfl {
         static void Finish(FxCloudProcedural* pInstance);
         static void Clean(FxCloudProcedural* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCloudBlendParameter {
         bool enable;
         float probability;
         float cloudiness;
-        FxCloudProcedural proceduralCloud;
+        hh::needle::FxCloudProcedural proceduralCloud;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -511,7 +575,9 @@ namespace app::rfl {
         static void Finish(FxCloudBlendParameter* pInstance);
         static void Clean(FxCloudBlendParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FxCloudParameter {
         bool enable;
         bool enableAnimation;
@@ -541,7 +607,7 @@ namespace app::rfl {
         bool enableShadow;
         int32_t shadowCoverage;
         float shadowValueMin;
-        FxCloudBlendParameter blendParam;
+        hh::needle::FxCloudBlendParameter blendParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -550,7 +616,9 @@ namespace app::rfl {
         static void Finish(FxCloudParameter* pInstance);
         static void Clean(FxCloudParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCrepuscularRay {
         bool enable;
         float density;
@@ -564,7 +632,9 @@ namespace app::rfl {
         static void Finish(FxCrepuscularRay* pInstance);
         static void Clean(FxCrepuscularRay* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxManualHeightFog {
         csl::math::Vector3 sunColor;
         csl::math::Vector3 ambColor;
@@ -576,7 +646,9 @@ namespace app::rfl {
         static void Finish(FxManualHeightFog* pInstance);
         static void Clean(FxManualHeightFog* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxHeightFog {
         bool enable;
         bool enableFogMap;
@@ -591,7 +663,7 @@ namespace app::rfl {
         float animationSpeed;
         float animationAngle;
         bool isAtmospheric;
-        FxManualHeightFog manualFog;
+        hh::needle::FxManualHeightFog manualFog;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -600,17 +672,19 @@ namespace app::rfl {
         static void Finish(FxHeightFog* pInstance);
         static void Clean(FxHeightFog* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxAtmosphereParameter {
         bool enable;
-        FxSun sunParam;
-        FxMoon moonParam;
-        FxSkyCommon commonSkyParam;
-        FxBrunetonSky brunetonSkyParam;
-        FxSebastienSky sebastienSkyParam;
-        FxCloudParameter cloudParam;
-        FxCrepuscularRay crepuscularRayParam;
-        FxHeightFog heightFogParam;
+        hh::needle::FxSun sunParam;
+        hh::needle::FxMoon moonParam;
+        hh::needle::FxSkyCommon commonSkyParam;
+        hh::needle::FxBrunetonSky brunetonSkyParam;
+        hh::needle::FxSebastienSky sebastienSkyParam;
+        heur::rfl::FxCloudParameter cloudParam;
+        hh::needle::FxCrepuscularRay crepuscularRayParam;
+        hh::needle::FxHeightFog heightFogParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -619,7 +693,9 @@ namespace app::rfl {
         static void Finish(FxAtmosphereParameter* pInstance);
         static void Clean(FxAtmosphereParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCloudShadowParameter {
         bool enableShadow;
         int32_t shadowCoverage;
@@ -632,7 +708,9 @@ namespace app::rfl {
         static void Finish(FxCloudShadowParameter* pInstance);
         static void Clean(FxCloudShadowParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDensityDebugParameter {
         bool underSelect;
         float factor;
@@ -656,7 +734,9 @@ namespace app::rfl {
         static void Finish(FxDensityDebugParameter* pInstance);
         static void Clean(FxDensityDebugParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDensityLodParameter {
         float lodRatio;
         float lodRise;
@@ -671,7 +751,9 @@ namespace app::rfl {
         static void Finish(FxDensityLodParameter* pInstance);
         static void Clean(FxDensityLodParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDensityParameter {
         enum class PlacementType : int8_t {
             CirclePacking = 0,
@@ -700,10 +782,10 @@ namespace app::rfl {
         float occlusionSize;
         float occlusionShadowSize;
         float occlusionBias;
-        FxDensityLodParameter lodParam;
+        hh::needle::FxDensityLodParameter lodParam;
         bool angleCulling;
         float angleCullingParam;
-        FxDensityDebugParameter debugParam;
+        hh::needle::FxDensityDebugParameter debugParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -712,7 +794,9 @@ namespace app::rfl {
         static void Finish(FxDensityParameter* pInstance);
         static void Clean(FxDensityParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDensityWindParameter {
         float windDir;
         float windPower;
@@ -730,7 +814,9 @@ namespace app::rfl {
         static void Finish(FxDensityWindParameter* pInstance);
         static void Clean(FxDensityWindParameter* pInstance);
     };
+}
 
+namespace hh::gfx {
     struct FxDentParameter {
         bool enable;
         float simRadius;
@@ -746,7 +832,9 @@ namespace app::rfl {
         static void Finish(FxDentParameter* pInstance);
         static void Clean(FxDentParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxLightScatteringParameter {
         bool enable;
         csl::math::Vector3 color;
@@ -765,7 +853,9 @@ namespace app::rfl {
         static void Finish(FxLightScatteringParameter* pInstance);
         static void Clean(FxLightScatteringParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCyberNoiseEffectParameter {
         bool enable;
         float tileX;
@@ -790,7 +880,9 @@ namespace app::rfl {
         static void Finish(FxCyberNoiseEffectParameter* pInstance);
         static void Clean(FxCyberNoiseEffectParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCyberNPCSSEffectRenderParameter {
         bool enable;
 
@@ -801,7 +893,9 @@ namespace app::rfl {
         static void Finish(FxCyberNPCSSEffectRenderParameter* pInstance);
         static void Clean(FxCyberNPCSSEffectRenderParameter* pInstance);
     };
+}
 
+namespace hh::gfx {
     struct FxRenderTargetSetting {
         enum class DOFRenderTargetSize : int32_t {
             DOF_RTSIZE_FULL_SCALE = 0,
@@ -822,7 +916,9 @@ namespace app::rfl {
         static void Finish(FxRenderTargetSetting* pInstance);
         static void Clean(FxRenderTargetSetting* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HourMinuteData {
         uint8_t hour;
         uint8_t minute;
@@ -834,7 +930,9 @@ namespace app::rfl {
         static void Finish(HourMinuteData* pInstance);
         static void Clean(HourMinuteData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GlobalLightAngleLimit {
         enum class Type : int8_t {
             NONE = 0,
@@ -852,10 +950,12 @@ namespace app::rfl {
         static void Finish(GlobalLightAngleLimit* pInstance);
         static void Clean(GlobalLightAngleLimit* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GlobalLightParameter {
         bool enable;
-        GlobalLightAngleLimit limit;
+        heur::rfl::GlobalLightAngleLimit limit;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -864,7 +964,9 @@ namespace app::rfl {
         static void Finish(GlobalLightParameter* pInstance);
         static void Clean(GlobalLightParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct DebugScreenOption {
         enum class ChannelMode : int8_t {
             CHANNELMODE_RGB = 0,
@@ -938,7 +1040,9 @@ namespace app::rfl {
         static void Finish(DebugScreenOption* pInstance);
         static void Clean(DebugScreenOption* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GlobalUserParamOption {
         bool enable;
         csl::math::Vector4 value;
@@ -950,7 +1054,9 @@ namespace app::rfl {
         static void Finish(GlobalUserParamOption* pInstance);
         static void Clean(GlobalUserParamOption* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxRenderOption {
         enum class DebugViewType : int8_t {
             DEBUG_VIEW_DEFAULT = 0,
@@ -1032,7 +1138,7 @@ namespace app::rfl {
         DebugViewType debugViewType;
         bool clearRenderTarget;
         bool enableDrawCubeProbe;
-        GlobalLightParameter globalLight;
+        heur::rfl::GlobalLightParameter globalLight;
         bool enablePointLight;
         bool enableEffectDeformation;
         bool enablePreMergeIBL;
@@ -1050,7 +1156,7 @@ namespace app::rfl {
         AmbientSpecularType debugAmbientSpecularType;
         bool debugEnableSGGIVer2nd;
         bool debugEnableAOGI;
-        DebugScreenOption debugScreen[16];
+        hh::needle::DebugScreenOption debugScreen[16];
         DebugScreenView debugScreenView;
         bool enableMSAA;
         bool debugEnableDrawFrustumCullFrustum;
@@ -1058,7 +1164,7 @@ namespace app::rfl {
         int32_t debugDrawFrustumCullGroupSettingIndex;
         bool debugEnableOcclusionCullingView;
         int32_t debugOccluderVertThreshold;
-        GlobalUserParamOption globalUserParam[4];
+        heur::rfl::GlobalUserParamOption globalUserParam[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1067,7 +1173,9 @@ namespace app::rfl {
         static void Finish(FxRenderOption* pInstance);
         static void Clean(FxRenderOption* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSGGIParameter {
         float sgStartSmoothness;
         float sgEndSmoothness;
@@ -1083,7 +1191,9 @@ namespace app::rfl {
         static void Finish(FxSGGIParameter* pInstance);
         static void Clean(FxSGGIParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxRLRParameter {
         bool enable;
         bool traceSky;
@@ -1107,7 +1217,9 @@ namespace app::rfl {
         static void Finish(FxRLRParameter* pInstance);
         static void Clean(FxRLRParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSSGIDebugParameter {
         bool useDenoise;
         float rayLength;
@@ -1119,13 +1231,15 @@ namespace app::rfl {
         static void Finish(FxSSGIDebugParameter* pInstance);
         static void Clean(FxSSGIDebugParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSSGIParameter {
         bool enable;
         float intensity;
         bool useAlbedo;
         bool useParameter;
-        FxSSGIDebugParameter debugParam;
+        hh::needle::FxSSGIDebugParameter debugParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1134,7 +1248,9 @@ namespace app::rfl {
         static void Finish(FxSSGIParameter* pInstance);
         static void Clean(FxSSGIParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxPlanarReflectionParameter {
         bool enable;
         csl::math::Vector4 plane;
@@ -1148,7 +1264,9 @@ namespace app::rfl {
         static void Finish(FxPlanarReflectionParameter* pInstance);
         static void Clean(FxPlanarReflectionParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxBloomParameter {
         bool enable;
         bool fast;
@@ -1163,7 +1281,9 @@ namespace app::rfl {
         static void Finish(FxBloomParameter* pInstance);
         static void Clean(FxBloomParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxManualExposureParameter {
         float exposureValue;
 
@@ -1174,7 +1294,9 @@ namespace app::rfl {
         static void Finish(FxManualExposureParameter* pInstance);
         static void Clean(FxManualExposureParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxAutoExposureParameter {
         enum class LUMINANCE_RANGE : int8_t {
             LUMINANCE_RANGE_CLAMP = 0,
@@ -1200,7 +1322,9 @@ namespace app::rfl {
         static void Finish(FxAutoExposureParameter* pInstance);
         static void Clean(FxAutoExposureParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCameraControlParameter {
         enum class Exposure : int8_t {
             EXPOSURE_MANUAL = 0,
@@ -1208,8 +1332,8 @@ namespace app::rfl {
         };
 
         Exposure exposureType;
-        FxManualExposureParameter manualExposure;
-        FxAutoExposureParameter autoExposure;
+        hh::needle::FxManualExposureParameter manualExposure;
+        hh::needle::FxAutoExposureParameter autoExposure;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1218,7 +1342,9 @@ namespace app::rfl {
         static void Finish(FxCameraControlParameter* pInstance);
         static void Clean(FxCameraControlParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxToneMapParameterFilmic {
         float whitePoint;
         float toeStrength;
@@ -1233,7 +1359,9 @@ namespace app::rfl {
         static void Finish(FxToneMapParameterFilmic* pInstance);
         static void Clean(FxToneMapParameterFilmic* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxToneMapParameterGT {
         float maxDisplayBrightness;
         float contrast;
@@ -1248,7 +1376,9 @@ namespace app::rfl {
         static void Finish(FxToneMapParameterGT* pInstance);
         static void Clean(FxToneMapParameterGT* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxToneMapParameter {
         enum class Tonemap : int8_t {
             TONEMAP_DISNEY = 0,
@@ -1258,8 +1388,8 @@ namespace app::rfl {
         };
 
         Tonemap tonemapType;
-        FxToneMapParameterFilmic tonemapParamFilmic;
-        FxToneMapParameterGT tonemapParamGT;
+        hh::needle::FxToneMapParameterFilmic tonemapParamFilmic;
+        hh::needle::FxToneMapParameterGT tonemapParamGT;
         bool updateLuminance;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -1269,7 +1399,9 @@ namespace app::rfl {
         static void Finish(FxToneMapParameter* pInstance);
         static void Clean(FxToneMapParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxColorContrastParameter {
         enum class LutIndex : int32_t {
             LUT_INDEX_DEFAULT = 0,
@@ -1308,7 +1440,9 @@ namespace app::rfl {
         static void Finish(FxColorContrastParameter* pInstance);
         static void Clean(FxColorContrastParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDOFParameter {
         enum class RenderTargetSize : int32_t {
             RTSIZE_FULL_SCALE = 0,
@@ -1348,7 +1482,9 @@ namespace app::rfl {
         static void Finish(FxDOFParameter* pInstance);
         static void Clean(FxDOFParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxShadowMapParameter {
         enum class ShadowRenderingType : int8_t {
             SHADOW_RENDERING_TYPE_SHADOW_MAP = 0,
@@ -1458,7 +1594,9 @@ namespace app::rfl {
         static void Finish(FxShadowMapParameter* pInstance);
         static void Clean(FxShadowMapParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxShadowHeightMapParameter {
         bool enable;
         float bias;
@@ -1473,7 +1611,9 @@ namespace app::rfl {
         static void Finish(FxShadowHeightMapParameter* pInstance);
         static void Clean(FxShadowHeightMapParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxVolumetricShadowParameter {
         bool enable;
         bool isForceUseShadowmap;
@@ -1487,7 +1627,9 @@ namespace app::rfl {
         static void Finish(FxVolumetricShadowParameter* pInstance);
         static void Clean(FxVolumetricShadowParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSSAO_Parameter {
         float intensity;
         float radius;
@@ -1505,7 +1647,9 @@ namespace app::rfl {
         static void Finish(FxSSAO_Parameter* pInstance);
         static void Clean(FxSSAO_Parameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxHBAO_Parameter {
         float hbaoPower;
         float hbaoBias;
@@ -1523,7 +1667,9 @@ namespace app::rfl {
         static void Finish(FxHBAO_Parameter* pInstance);
         static void Clean(FxHBAO_Parameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSSS_Parameter {
         float sssRayLength;
         int8_t sssRaycount;
@@ -1544,7 +1690,9 @@ namespace app::rfl {
         static void Finish(FxSSS_Parameter* pInstance);
         static void Clean(FxSSS_Parameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSSAOParameter {
         enum class SSAOType : int8_t {
             SSAO = 0,
@@ -1580,9 +1728,9 @@ namespace app::rfl {
         RenderTargetSize renderTargetSize;
         BLURType blurStep;
         float bilateralThreshold;
-        FxSSAO_Parameter ssaoParam;
-        FxHBAO_Parameter hbaoParam;
-        FxSSS_Parameter sssParam;
+        hh::needle::FxSSAO_Parameter ssaoParam;
+        hh::needle::FxHBAO_Parameter hbaoParam;
+        hh::needle::FxSSS_Parameter sssParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1591,7 +1739,9 @@ namespace app::rfl {
         static void Finish(FxSSAOParameter* pInstance);
         static void Clean(FxSSAOParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxLightFieldMergeParameter {
         bool enable;
         float blendRatio;
@@ -1603,7 +1753,9 @@ namespace app::rfl {
         static void Finish(FxLightFieldMergeParameter* pInstance);
         static void Clean(FxLightFieldMergeParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSHLightFieldParameter {
         enum class DebugDrawType : int8_t {
             DEBUG_DRAW_NONE = 0,
@@ -1618,7 +1770,7 @@ namespace app::rfl {
         csl::math::Vector3 multiplyColorUp;
         csl::math::Vector3 multiplyColorDown;
         float normalBias;
-        FxLightFieldMergeParameter lfMerge;
+        hh::needle::FxLightFieldMergeParameter lfMerge;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1627,7 +1779,9 @@ namespace app::rfl {
         static void Finish(FxSHLightFieldParameter* pInstance);
         static void Clean(FxSHLightFieldParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxScreenBlurParameter {
         enum class BlurType : int8_t {
             BLURTYPE_PREV_SURFACE = 0,
@@ -1660,7 +1814,9 @@ namespace app::rfl {
         static void Finish(FxScreenBlurParameter* pInstance);
         static void Clean(FxScreenBlurParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxOcclusionCapsuleParameter {
         bool enable;
         bool enableOcclusion;
@@ -1687,7 +1843,9 @@ namespace app::rfl {
         static void Finish(FxOcclusionCapsuleParameter* pInstance);
         static void Clean(FxOcclusionCapsuleParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxEffectParameter {
         float lightFieldColorCoefficient;
         float invTonemapCoefficient;
@@ -1708,7 +1866,9 @@ namespace app::rfl {
         static void Finish(FxEffectParameter* pInstance);
         static void Clean(FxEffectParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxScreenSpaceGodrayParameter {
         bool enable;
         float rayMarchingCount;
@@ -1728,7 +1888,9 @@ namespace app::rfl {
         static void Finish(FxScreenSpaceGodrayParameter* pInstance);
         static void Clean(FxScreenSpaceGodrayParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxGodrayVolumeTexture {
         bool enableVolumeTexture;
         float uvScale;
@@ -1742,7 +1904,9 @@ namespace app::rfl {
         static void Finish(FxGodrayVolumeTexture* pInstance);
         static void Clean(FxGodrayVolumeTexture* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxGodrayParameter {
         bool enable;
         bool isUseShadowmap;
@@ -1759,7 +1923,7 @@ namespace app::rfl {
         bool isScanFromBack;
         int32_t boxCount;
         bool isNewMode;
-        FxGodrayVolumeTexture volumeTexture;
+        hh::needle::FxGodrayVolumeTexture volumeTexture;
         float transparency;
         bool enable3d;
         float reProject3d;
@@ -1772,7 +1936,9 @@ namespace app::rfl {
         static void Finish(FxGodrayParameter* pInstance);
         static void Clean(FxGodrayParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxHeatHazeParameter {
         bool enable;
         float speed;
@@ -1790,7 +1956,9 @@ namespace app::rfl {
         static void Finish(FxHeatHazeParameter* pInstance);
         static void Clean(FxHeatHazeParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxPuddleParameter {
         float heightThreshold;
         float slopeThreshold;
@@ -1806,7 +1974,9 @@ namespace app::rfl {
         static void Finish(FxPuddleParameter* pInstance);
         static void Clean(FxPuddleParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxRippleParameter {
         float intensity;
         float uvScale;
@@ -1820,7 +1990,9 @@ namespace app::rfl {
         static void Finish(FxRippleParameter* pInstance);
         static void Clean(FxRippleParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDropParameter {
         float uvScale;
         float timeScale;
@@ -1833,7 +2005,9 @@ namespace app::rfl {
         static void Finish(FxDropParameter* pInstance);
         static void Clean(FxDropParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxRainParameter {
         bool enableDrop;
         bool enableFilter;
@@ -1853,8 +2027,8 @@ namespace app::rfl {
         float filterRange;
         float filterEdge;
         float filterAngle;
-        FxRippleParameter ripple;
-        FxDropParameter drop;
+        hh::needle::FxRippleParameter ripple;
+        hh::needle::FxDropParameter drop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1863,11 +2037,13 @@ namespace app::rfl {
         static void Finish(FxRainParameter* pInstance);
         static void Clean(FxRainParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxWeatherParameter {
         float wetness;
-        FxPuddleParameter puddle;
-        FxRainParameter rain;
+        hh::needle::FxPuddleParameter puddle;
+        hh::needle::FxRainParameter rain;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -1876,7 +2052,9 @@ namespace app::rfl {
         static void Finish(FxWeatherParameter* pInstance);
         static void Clean(FxWeatherParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSceneEnvironmentParameter {
         float windRotationY;
         float windStrength;
@@ -1900,7 +2078,9 @@ namespace app::rfl {
         static void Finish(FxSceneEnvironmentParameter* pInstance);
         static void Clean(FxSceneEnvironmentParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxTAAParameter {
         bool enableUpscaling;
         float jitterScale;
@@ -1925,7 +2105,9 @@ namespace app::rfl {
         static void Finish(FxTAAParameter* pInstance);
         static void Clean(FxTAAParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxChromaticAberrationParameter {
         bool enable;
         float offsetR;
@@ -1944,7 +2126,9 @@ namespace app::rfl {
         static void Finish(FxChromaticAberrationParameter* pInstance);
         static void Clean(FxChromaticAberrationParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxVfImageCircleParameter {
         float centerX;
         float centerY;
@@ -1960,7 +2144,9 @@ namespace app::rfl {
         static void Finish(FxVfImageCircleParameter* pInstance);
         static void Clean(FxVfImageCircleParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxVfLineParameter {
         float centerX;
         float centerY;
@@ -1975,7 +2161,9 @@ namespace app::rfl {
         static void Finish(FxVfLineParameter* pInstance);
         static void Clean(FxVfLineParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxVfDepthParameter {
         bool enable;
         float minPenumbraScale;
@@ -1995,7 +2183,9 @@ namespace app::rfl {
         static void Finish(FxVfDepthParameter* pInstance);
         static void Clean(FxVfDepthParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxVignetteParameter {
         enum class GradationMode : int8_t {
             GRADATION_MODE_CIRCLE = 0,
@@ -2015,11 +2205,11 @@ namespace app::rfl {
         BlendMode blendMode;
         csl::math::Vector3 color;
         float opacity;
-        FxVfImageCircleParameter imageCircle;
-        FxVfLineParameter line;
+        hh::needle::FxVfImageCircleParameter imageCircle;
+        hh::needle::FxVfLineParameter line;
         float penumbraScale;
         float intensity;
-        FxVfDepthParameter depth;
+        hh::needle::FxVfDepthParameter depth;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2028,7 +2218,9 @@ namespace app::rfl {
         static void Finish(FxVignetteParameter* pInstance);
         static void Clean(FxVignetteParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxWindComputeDebugParameter {
         bool debugEnable;
         bool debugSpace;
@@ -2047,7 +2239,9 @@ namespace app::rfl {
         static void Finish(FxWindComputeDebugParameter* pInstance);
         static void Clean(FxWindComputeDebugParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxWindComputeParameter {
         bool enableAll;
         bool enableDynamicWind;
@@ -2067,7 +2261,7 @@ namespace app::rfl {
         csl::math::Vector3 globalWindMapOffset;
         float globalWindMapPower;
         float globalWindMapTimeScale;
-        FxWindComputeDebugParameter debugParam;
+        hh::needle::FxWindComputeDebugParameter debugParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2076,7 +2270,9 @@ namespace app::rfl {
         static void Finish(FxWindComputeParameter* pInstance);
         static void Clean(FxWindComputeParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxTerrainMaterialBlendingParameter {
         bool enable;
         float blendPower;
@@ -2090,7 +2286,9 @@ namespace app::rfl {
         static void Finish(FxTerrainMaterialBlendingParameter* pInstance);
         static void Clean(FxTerrainMaterialBlendingParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxInteractionDebugParameter {
         bool enable;
         bool collisionEnable;
@@ -2103,13 +2301,15 @@ namespace app::rfl {
         static void Finish(FxInteractionDebugParameter* pInstance);
         static void Clean(FxInteractionDebugParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxInteractionParameter {
         bool enable;
         float power;
         float decrease;
         float timeScale;
-        FxInteractionDebugParameter debug;
+        hh::needle::FxInteractionDebugParameter debug;
         float tremorPower;
         float tremorSpeed;
         float tremorScaleCriterion;
@@ -2122,11 +2322,13 @@ namespace app::rfl {
         static void Finish(FxInteractionParameter* pInstance);
         static void Clean(FxInteractionParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxGpuEnvironmentParameter {
         float grassDitherStart;
         float grassDitherEnd;
-        FxInteractionParameter interaction;
+        hh::needle::FxInteractionParameter interaction;
         bool enableZoomBias;
         float zoomBias;
 
@@ -2137,7 +2339,9 @@ namespace app::rfl {
         static void Finish(FxGpuEnvironmentParameter* pInstance);
         static void Clean(FxGpuEnvironmentParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxInteractiveWaveParameter {
         bool enable;
         bool enableDebugDisplay;
@@ -2155,7 +2359,9 @@ namespace app::rfl {
         static void Finish(FxInteractiveWaveParameter* pInstance);
         static void Clean(FxInteractiveWaveParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UVShift {
         float blockLNoiseSizeX;
         float blockLNoiseSizeY;
@@ -2172,7 +2378,9 @@ namespace app::rfl {
         static void Finish(UVShift* pInstance);
         static void Clean(UVShift* pInstance);
     };
+}
 
+namespace hh::needle {
     struct ColorShift {
         float blockLNoiseSize;
         float blockHNoiseSize;
@@ -2186,7 +2394,9 @@ namespace app::rfl {
         static void Finish(ColorShift* pInstance);
         static void Clean(ColorShift* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct InterlaceNoise {
         float blockLNoiseSize;
         float blockHNoiseSize;
@@ -2201,7 +2411,9 @@ namespace app::rfl {
         static void Finish(InterlaceNoise* pInstance);
         static void Clean(InterlaceNoise* pInstance);
     };
+}
 
+namespace hh::needle {
     struct ColorDropout {
         float blockLNoiseSizeX;
         float blockLNoiseSizeY;
@@ -2217,7 +2429,9 @@ namespace app::rfl {
         static void Finish(ColorDropout* pInstance);
         static void Clean(ColorDropout* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct InvertColor {
         float blockLNoiseSizeX;
         float blockLNoiseSizeY;
@@ -2234,7 +2448,9 @@ namespace app::rfl {
         static void Finish(InvertColor* pInstance);
         static void Clean(InvertColor* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GlayScaleColor {
         float blockLNoiseSizeX;
         float blockLNoiseSizeY;
@@ -2251,15 +2467,17 @@ namespace app::rfl {
         static void Finish(GlayScaleColor* pInstance);
         static void Clean(GlayScaleColor* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxCyberSpaceStartNoiseParameter {
         bool enable;
-        UVShift uvShift;
-        ColorShift colorShift;
-        InterlaceNoise interlaceNoise;
-        ColorDropout colorDrop;
-        InvertColor invertColor;
-        GlayScaleColor glayscaleColor;
+        heur::rfl::UVShift uvShift;
+        hh::needle::ColorShift colorShift;
+        heur::rfl::InterlaceNoise interlaceNoise;
+        hh::needle::ColorDropout colorDrop;
+        heur::rfl::InvertColor invertColor;
+        heur::rfl::GlayScaleColor glayscaleColor;
         float noiseSpeed;
         float noiseBias;
         float noiseWaveAmplitude;
@@ -2272,7 +2490,9 @@ namespace app::rfl {
         static void Finish(FxCyberSpaceStartNoiseParameter* pInstance);
         static void Clean(FxCyberSpaceStartNoiseParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxFieldScanEffectRenderParameter {
         bool enable;
         csl::math::Vector3 centerPos;
@@ -2295,7 +2515,9 @@ namespace app::rfl {
         static void Finish(FxFieldScanEffectRenderParameter* pInstance);
         static void Clean(FxFieldScanEffectRenderParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxColorAccessibilityFilterParameter {
         enum class ColorblinidSimulationType : int8_t {
             COLORBLIND_SIM_NONE = 0,
@@ -2322,7 +2544,9 @@ namespace app::rfl {
         static void Finish(FxColorAccessibilityFilterParameter* pInstance);
         static void Clean(FxColorAccessibilityFilterParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSeparableSSSParameter {
         bool enable;
         float width;
@@ -2337,48 +2561,50 @@ namespace app::rfl {
         static void Finish(FxSeparableSSSParameter* pInstance);
         static void Clean(FxSeparableSSSParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct NeedleFxParameter {
-        FxRenderOption renderOption;
-        FxSGGIParameter sggi;
-        FxRLRParameter rlr;
-        FxSSGIParameter ssgi;
-        FxPlanarReflectionParameter planarReflection;
-        FxBloomParameter bloom;
-        FxCameraControlParameter cameraControl;
-        FxToneMapParameter tonemap;
-        FxColorContrastParameter colorContrast;
-        FxLightScatteringParameter lightscattering;
-        FxDOFParameter dof;
-        FxShadowMapParameter shadowmap;
-        FxShadowHeightMapParameter shadowHeightMap;
-        FxVolumetricShadowParameter volShadow;
-        FxSSAOParameter ssao;
-        FxSHLightFieldParameter shlightfield;
-        FxScreenBlurParameter blur;
-        FxOcclusionCapsuleParameter occlusionCapsule;
-        FxEffectParameter effect;
-        FxScreenSpaceGodrayParameter ssGodray;
-        FxGodrayParameter godray;
-        FxHeatHazeParameter heatHaze;
-        FxAtmosphereParameter atmosphere;
-        FxWeatherParameter weather;
-        FxSceneEnvironmentParameter sceneEnv;
-        FxTAAParameter taa;
-        FxDensityParameter density;
-        FxChromaticAberrationParameter chromaticAberration;
-        FxVignetteParameter vignette;
-        FxWindComputeParameter wind;
-        FxTerrainMaterialBlendingParameter terrainBlend;
-        FxGpuEnvironmentParameter gpuEnvironment;
-        FxInteractiveWaveParameter interactiveWave;
-        FxCyberNoiseEffectParameter cyberNoise;
-        FxCyberSpaceStartNoiseParameter cyberStartNoise;
-        FxCyberNPCSSEffectRenderParameter cyberNPCSS;
-        FxFieldScanEffectRenderParameter fieldScan;
-        FxColorAccessibilityFilterParameter colorAccessibility;
-        FxDentParameter dent;
-        FxSeparableSSSParameter ssss;
+        hh::needle::FxRenderOption renderOption;
+        hh::needle::FxSGGIParameter sggi;
+        hh::needle::FxRLRParameter rlr;
+        hh::needle::FxSSGIParameter ssgi;
+        hh::needle::FxPlanarReflectionParameter planarReflection;
+        hh::needle::FxBloomParameter bloom;
+        hh::needle::FxCameraControlParameter cameraControl;
+        hh::needle::FxToneMapParameter tonemap;
+        hh::needle::FxColorContrastParameter colorContrast;
+        hh::needle::FxLightScatteringParameter lightscattering;
+        hh::needle::FxDOFParameter dof;
+        hh::needle::FxShadowMapParameter shadowmap;
+        hh::needle::FxShadowHeightMapParameter shadowHeightMap;
+        hh::needle::FxVolumetricShadowParameter volShadow;
+        hh::needle::FxSSAOParameter ssao;
+        hh::needle::FxSHLightFieldParameter shlightfield;
+        hh::needle::FxScreenBlurParameter blur;
+        hh::needle::FxOcclusionCapsuleParameter occlusionCapsule;
+        hh::needle::FxEffectParameter effect;
+        hh::needle::FxScreenSpaceGodrayParameter ssGodray;
+        hh::needle::FxGodrayParameter godray;
+        hh::needle::FxHeatHazeParameter heatHaze;
+        hh::needle::FxAtmosphereParameter atmosphere;
+        hh::needle::FxWeatherParameter weather;
+        hh::needle::FxSceneEnvironmentParameter sceneEnv;
+        hh::needle::FxTAAParameter taa;
+        hh::needle::FxDensityParameter density;
+        hh::needle::FxChromaticAberrationParameter chromaticAberration;
+        hh::needle::FxVignetteParameter vignette;
+        hh::needle::FxWindComputeParameter wind;
+        hh::needle::FxTerrainMaterialBlendingParameter terrainBlend;
+        hh::needle::FxGpuEnvironmentParameter gpuEnvironment;
+        hh::needle::FxInteractiveWaveParameter interactiveWave;
+        hh::needle::FxCyberNoiseEffectParameter cyberNoise;
+        hh::needle::FxCyberSpaceStartNoiseParameter cyberStartNoise;
+        hh::needle::FxCyberNPCSSEffectRenderParameter cyberNPCSS;
+        hh::needle::FxFieldScanEffectRenderParameter fieldScan;
+        hh::needle::FxColorAccessibilityFilterParameter colorAccessibility;
+        hh::gfx::FxDentParameter dent;
+        hh::needle::FxSeparableSSSParameter ssss;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2387,7 +2613,9 @@ namespace app::rfl {
         static void Finish(NeedleFxParameter* pInstance);
         static void Clean(NeedleFxParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxAntiAliasing {
         enum class AntiAliasingType : int8_t {
             AATYPE_NONE = 0,
@@ -2415,7 +2643,9 @@ namespace app::rfl {
         static void Finish(FxAntiAliasing* pInstance);
         static void Clean(FxAntiAliasing* pInstance);
     };
+}
 
+namespace hh::gfx {
     struct StageCommonAtmosphereParameter {
         float illuminanceScale;
 
@@ -2426,7 +2656,9 @@ namespace app::rfl {
         static void Finish(StageCommonAtmosphereParameter* pInstance);
         static void Clean(StageCommonAtmosphereParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxLODParameter {
         bool enableDebugDrawLayerRange;
         float layerRange[32];
@@ -2438,7 +2670,9 @@ namespace app::rfl {
         static void Finish(FxLODParameter* pInstance);
         static void Clean(FxLODParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDetailParameter {
         float detailDistance;
         float detailFadeRange;
@@ -2450,7 +2684,9 @@ namespace app::rfl {
         static void Finish(FxDetailParameter* pInstance);
         static void Clean(FxDetailParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDynamicResolutionParameter {
         enum class Mode : int8_t {
             DISABLE = 0,
@@ -2476,10 +2712,12 @@ namespace app::rfl {
         static void Finish(FxDynamicResolutionParameter* pInstance);
         static void Clean(FxDynamicResolutionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TimeIntervalData {
-        HourMinuteData beginTime;
-        HourMinuteData endTime;
+        heur::rfl::HourMinuteData beginTime;
+        heur::rfl::HourMinuteData endTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2488,8 +2726,10 @@ namespace app::rfl {
         static void Finish(TimeIntervalData* pInstance);
         static void Clean(TimeIntervalData* pInstance);
     };
+}
 
-    struct ProgressTimePairData : TimeIntervalData {
+namespace heur::rfl {
+    struct ProgressTimePairData : heur::rfl::TimeIntervalData {
         float hourlyTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -2499,7 +2739,9 @@ namespace app::rfl {
         static void Finish(ProgressTimePairData* pInstance);
         static void Clean(ProgressTimePairData* pInstance);
     };
+}
 
+namespace hh::gfx {
     struct StageCommonTimeProgressParameter {
         bool enable;
         float solarRadiusScale;
@@ -2510,8 +2752,8 @@ namespace app::rfl {
         int32_t day;
         float time;
         float hourlyTime;
-        ProgressTimePairData overrideSpeeds[8];
-        TimeIntervalData night;
+        heur::rfl::ProgressTimePairData overrideSpeeds[8];
+        heur::rfl::TimeIntervalData night;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2520,7 +2762,9 @@ namespace app::rfl {
         static void Finish(StageCommonTimeProgressParameter* pInstance);
         static void Clean(StageCommonTimeProgressParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageCommonWeatherProgressParameter {
         bool enable;
 
@@ -2531,7 +2775,9 @@ namespace app::rfl {
         static void Finish(StageCommonWeatherProgressParameter* pInstance);
         static void Clean(StageCommonWeatherProgressParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxTerrainParameter {
         bool enableDrawGrid;
 
@@ -2542,7 +2788,9 @@ namespace app::rfl {
         static void Finish(FxTerrainParameter* pInstance);
         static void Clean(FxTerrainParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxModelParameter {
         bool zprepass;
         bool ditherAsBlueNoize;
@@ -2554,7 +2802,9 @@ namespace app::rfl {
         static void Finish(FxModelParameter* pInstance);
         static void Clean(FxModelParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageCommonDecalModelParameter {
         float cullingRange;
 
@@ -2565,7 +2815,9 @@ namespace app::rfl {
         static void Finish(StageCommonDecalModelParameter* pInstance);
         static void Clean(StageCommonDecalModelParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PerformanceSetting {
         float smallCullingThreshold;
 
@@ -2576,20 +2828,22 @@ namespace app::rfl {
         static void Finish(PerformanceSetting* pInstance);
         static void Clean(PerformanceSetting* pInstance);
     };
+}
 
+namespace hh::needle {
     struct NeedleFxSceneConfig {
-        FxRenderTargetSetting rendertarget;
-        FxAntiAliasing antialiasing;
-        StageCommonAtmosphereParameter atmosphere;
-        FxLODParameter lod;
-        FxDetailParameter detail;
-        FxDynamicResolutionParameter dynamicResolution;
-        StageCommonTimeProgressParameter timeProgress;
-        StageCommonWeatherProgressParameter weatherProgress;
-        FxTerrainParameter terrain;
-        FxModelParameter modelParam;
-        StageCommonDecalModelParameter decalModelParam;
-        PerformanceSetting performance;
+        hh::gfx::FxRenderTargetSetting rendertarget;
+        hh::needle::FxAntiAliasing antialiasing;
+        hh::gfx::StageCommonAtmosphereParameter atmosphere;
+        hh::needle::FxLODParameter lod;
+        hh::needle::FxDetailParameter detail;
+        hh::needle::FxDynamicResolutionParameter dynamicResolution;
+        hh::gfx::StageCommonTimeProgressParameter timeProgress;
+        heur::rfl::StageCommonWeatherProgressParameter weatherProgress;
+        hh::needle::FxTerrainParameter terrain;
+        hh::needle::FxModelParameter modelParam;
+        heur::rfl::StageCommonDecalModelParameter decalModelParam;
+        heur::rfl::PerformanceSetting performance;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2598,14 +2852,16 @@ namespace app::rfl {
         static void Finish(NeedleFxSceneConfig* pInstance);
         static void Clean(NeedleFxSceneConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TimeProgressAtmosphereParameter {
-        FxSkyCommon commonSkyParam;
-        FxBrunetonSky brunetonSkyParam;
-        FxSebastienSky sebastienSkyParam;
-        FxCloudParameter cloudParam;
-        FxCrepuscularRay crepuscularRayParam;
-        FxHeightFog heightFogParam;
+        hh::needle::FxSkyCommon commonSkyParam;
+        hh::needle::FxBrunetonSky brunetonSkyParam;
+        hh::needle::FxSebastienSky sebastienSkyParam;
+        heur::rfl::FxCloudParameter cloudParam;
+        hh::needle::FxCrepuscularRay crepuscularRayParam;
+        hh::needle::FxHeightFog heightFogParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2614,22 +2870,24 @@ namespace app::rfl {
         static void Finish(TimeProgressAtmosphereParameter* pInstance);
         static void Clean(TimeProgressAtmosphereParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TimeProgressNeedleFxParam {
         bool enable;
         float time;
-        FxBloomParameter bloom;
-        FxCameraControlParameter cameraControl;
-        FxCameraControlParameter cameraControlEvent;
-        FxToneMapParameter tonemap;
-        FxColorContrastParameter colorContrast;
-        FxLightScatteringParameter lightscattering;
-        FxEffectParameter effect;
-        FxScreenSpaceGodrayParameter ssGodray;
-        FxGodrayParameter godray;
-        FxHeatHazeParameter heatHaze;
-        TimeProgressAtmosphereParameter atmosphere;
-        FxWeatherParameter weather;
+        hh::needle::FxBloomParameter bloom;
+        hh::needle::FxCameraControlParameter cameraControl;
+        hh::needle::FxCameraControlParameter cameraControlEvent;
+        hh::needle::FxToneMapParameter tonemap;
+        hh::needle::FxColorContrastParameter colorContrast;
+        hh::needle::FxLightScatteringParameter lightscattering;
+        hh::needle::FxEffectParameter effect;
+        hh::needle::FxScreenSpaceGodrayParameter ssGodray;
+        hh::needle::FxGodrayParameter godray;
+        hh::needle::FxHeatHazeParameter heatHaze;
+        heur::rfl::TimeProgressAtmosphereParameter atmosphere;
+        hh::needle::FxWeatherParameter weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2638,22 +2896,24 @@ namespace app::rfl {
         static void Finish(TimeProgressNeedleFxParam* pInstance);
         static void Clean(TimeProgressNeedleFxParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherFxParameter {
         bool enable;
-        FxBloomParameter bloom;
-        FxCameraControlParameter cameraControl;
-        FxCameraControlParameter cameraControlEvent;
-        FxToneMapParameter tonemap;
-        FxColorContrastParameter colorContrast;
-        FxLightScatteringParameter lightscattering;
-        FxEffectParameter effect;
-        FxScreenSpaceGodrayParameter ssGodray;
-        FxGodrayParameter godray;
-        FxHeatHazeParameter heatHaze;
-        TimeProgressAtmosphereParameter atmosphere;
-        FxWeatherParameter weather;
-        FxWindComputeParameter wind;
+        hh::needle::FxBloomParameter bloom;
+        hh::needle::FxCameraControlParameter cameraControl;
+        hh::needle::FxCameraControlParameter cameraControlEvent;
+        hh::needle::FxToneMapParameter tonemap;
+        hh::needle::FxColorContrastParameter colorContrast;
+        hh::needle::FxLightScatteringParameter lightscattering;
+        hh::needle::FxEffectParameter effect;
+        hh::needle::FxScreenSpaceGodrayParameter ssGodray;
+        hh::needle::FxGodrayParameter godray;
+        hh::needle::FxHeatHazeParameter heatHaze;
+        heur::rfl::TimeProgressAtmosphereParameter atmosphere;
+        hh::needle::FxWeatherParameter weather;
+        hh::needle::FxWindComputeParameter wind;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2662,7 +2922,9 @@ namespace app::rfl {
         static void Finish(WeatherFxParameter* pInstance);
         static void Clean(WeatherFxParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageCommonParameter {
         float deadline;
         float oceanSurface;
@@ -2675,7 +2937,9 @@ namespace app::rfl {
         static void Finish(StageCommonParameter* pInstance);
         static void Clean(StageCommonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageCameraParameter {
         float zNear;
         float zFar;
@@ -2688,7 +2952,9 @@ namespace app::rfl {
         static void Finish(StageCameraParameter* pInstance);
         static void Clean(StageCameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageTerrainPrecisionParameter {
         float heightRange;
 
@@ -2699,7 +2965,9 @@ namespace app::rfl {
         static void Finish(StageTerrainPrecisionParameter* pInstance);
         static void Clean(StageTerrainPrecisionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageTerrainMaterialParameter {
         float uvScaleDetail;
         float uvScaleBase;
@@ -2713,11 +2981,13 @@ namespace app::rfl {
         static void Finish(StageTerrainMaterialParameter* pInstance);
         static void Clean(StageTerrainMaterialParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageTerrainParameter {
         bool useHeightMapTerrain;
         bool useHalfPrecision;
-        StageTerrainPrecisionParameter precision;
+        heur::rfl::StageTerrainPrecisionParameter precision;
         int32_t worldSize;
         int32_t heightMapTexelDensity;
         float heightScale;
@@ -2725,7 +2995,7 @@ namespace app::rfl {
         float slopeClipThrethold;
         csl::math::Vector2 aabbMin;
         csl::math::Vector2 aabbMax;
-        StageTerrainMaterialParameter material;
+        heur::rfl::StageTerrainMaterialParameter material;
         bool enableGbufferBlending;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -2735,11 +3005,13 @@ namespace app::rfl {
         static void Finish(StageTerrainParameter* pInstance);
         static void Clean(StageTerrainParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StageConfig {
-        StageCommonParameter common;
-        StageCameraParameter camera;
-        StageTerrainParameter terrain;
+        heur::rfl::StageCommonParameter common;
+        heur::rfl::StageCameraParameter camera;
+        heur::rfl::StageTerrainParameter terrain;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2748,13 +3020,15 @@ namespace app::rfl {
         static void Finish(StageConfig* pInstance);
         static void Clean(StageConfig* pInstance);
     };
+}
 
+namespace hh::needle {
     struct NeedleFxSceneData {
-        NeedleFxSceneConfig config;
-        NeedleFxParameter items[16];
-        TimeProgressNeedleFxParam timeItems[24];
-        WeatherFxParameter weatherItems[7];
-        StageConfig stageConfig;
+        hh::needle::NeedleFxSceneConfig config;
+        hh::needle::NeedleFxParameter items[16];
+        heur::rfl::TimeProgressNeedleFxParam timeItems[24];
+        heur::rfl::WeatherFxParameter weatherItems[7];
+        heur::rfl::StageConfig stageConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2763,7 +3037,9 @@ namespace app::rfl {
         static void Finish(NeedleFxSceneData* pInstance);
         static void Clean(NeedleFxSceneData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CapsuleParam {
         enum class VolumeType : int8_t {
             VOLUME_SPHERE = 0,
@@ -2793,7 +3069,9 @@ namespace app::rfl {
         static void Finish(CapsuleParam* pInstance);
         static void Clean(CapsuleParam* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDistanceFogParameter {
         bool enable;
         csl::math::Vector3 color;
@@ -2809,7 +3087,9 @@ namespace app::rfl {
         static void Finish(FxDistanceFogParameter* pInstance);
         static void Clean(FxDistanceFogParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxHeightFogParameter {
         bool enable;
         csl::math::Vector3 color;
@@ -2827,10 +3107,12 @@ namespace app::rfl {
         static void Finish(FxHeightFogParameter* pInstance);
         static void Clean(FxHeightFogParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxFogParameter {
-        FxDistanceFogParameter distanceFogParam;
-        FxHeightFogParameter heightFogParam;
+        hh::needle::FxDistanceFogParameter distanceFogParam;
+        hh::needle::FxHeightFogParameter heightFogParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2839,9 +3121,11 @@ namespace app::rfl {
         static void Finish(FxFogParameter* pInstance);
         static void Clean(FxFogParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OcclusionCapsuleList {
-        CapsuleParam capsules[64];
+        heur::rfl::CapsuleParam capsules[64];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -2850,7 +3134,9 @@ namespace app::rfl {
         static void Finish(OcclusionCapsuleList* pInstance);
         static void Clean(OcclusionCapsuleList* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxDirectionalRadialBlurParameter {
         bool enable;
         csl::math::Vector3 center;
@@ -2868,7 +3154,9 @@ namespace app::rfl {
         static void Finish(FxDirectionalRadialBlurParameter* pInstance);
         static void Clean(FxDirectionalRadialBlurParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxFXAAParameter {
         enum class QualityType : int8_t {
             QUALITY_LOW = 0,
@@ -2886,7 +3174,9 @@ namespace app::rfl {
         static void Finish(FxFXAAParameter* pInstance);
         static void Clean(FxFXAAParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxHeightMapParameter {
         bool enable;
         bool enableMultiHeightmap;
@@ -2908,7 +3198,9 @@ namespace app::rfl {
         static void Finish(FxHeightMapParameter* pInstance);
         static void Clean(FxHeightMapParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxPlanarProjectionShadowParameter {
         bool enable;
         csl::math::Vector4 projectionPlane;
@@ -2927,7 +3219,9 @@ namespace app::rfl {
         static void Finish(FxPlanarProjectionShadowParameter* pInstance);
         static void Clean(FxPlanarProjectionShadowParameter* pInstance);
     };
+}
 
+namespace hh::needle {
     struct FxSMAAParameter {
         enum class Preset : int8_t {
             PRESET_SPEED = 0,
@@ -2950,7 +3244,9 @@ namespace app::rfl {
         static void Finish(FxSMAAParameter* pInstance);
         static void Clean(FxSMAAParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ViewSpaceOffsetRflParam {
         csl::math::Vector3 targetOffset;
         csl::math::Vector3 eyeOffset;
@@ -2962,7 +3258,9 @@ namespace app::rfl {
         static void Finish(ViewSpaceOffsetRflParam* pInstance);
         static void Clean(ViewSpaceOffsetRflParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SwayParamCollision {
         enum class CollisionType : int8_t {
             SWAY_COLLISTION_TYPE_NONE = 0,
@@ -2983,7 +3281,9 @@ namespace app::rfl {
         static void Finish(SwayParamCollision* pInstance);
         static void Clean(SwayParamCollision* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDarumaDropSpawner {
         int8_t partCount;
         bool isEnableHoming;
@@ -2995,10 +3295,12 @@ namespace app::rfl {
         static void Finish(ObjDarumaDropSpawner* pInstance);
         static void Clean(ObjDarumaDropSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionNotification {
         enum class Type : int8_t {
-            S = 0,
+            Start = 0,
             On = 1,
             Off = 2,
             Finish = 3,
@@ -3017,7 +3319,9 @@ namespace app::rfl {
         static void Finish(ActionNotification* pInstance);
         static void Clean(ActionNotification* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlashSwitchSpawner {
         int32_t no;
         bool eventDriven;
@@ -3027,7 +3331,7 @@ namespace app::rfl {
         int8_t timeStopGroupID;
         bool isHomingAttack;
         bool isConstrain;
-        ActionNotification actions[5];
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3036,7 +3340,9 @@ namespace app::rfl {
         static void Finish(ObjFlashSwitchSpawner* pInstance);
         static void Clean(ObjFlashSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossItemBoxSpawner {
         int32_t dummy;
 
@@ -3047,7 +3353,9 @@ namespace app::rfl {
         static void Finish(ObjBossItemBoxSpawner* pInstance);
         static void Clean(ObjBossItemBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossSpringSpawner {
         float firstSpeed;
         float outOfControl;
@@ -3060,7 +3368,9 @@ namespace app::rfl {
         static void Finish(ObjBossSpringSpawner* pInstance);
         static void Clean(ObjBossSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonChasePathInfo {
         csl::ut::VariableString bossPathName;
         csl::ut::VariableString playerPathName;
@@ -3072,7 +3382,9 @@ namespace app::rfl {
         static void Finish(BossDragonChasePathInfo* pInstance);
         static void Clean(BossDragonChasePathInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonSpawner {
         csl::ut::VariableString cruisePathName;
         csl::ut::VariableString patrolPathName;
@@ -3085,7 +3397,7 @@ namespace app::rfl {
         csl::ut::VariableString playerPathName;
         bool eventDriven;
         csl::ut::MoveArray<hh::game::ObjectId> releaseMapPos;
-        BossDragonChasePathInfo chasePathInfos[16];
+        heur::rfl::BossDragonChasePathInfo chasePathInfos[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3094,7 +3406,9 @@ namespace app::rfl {
         static void Finish(BossDragonSpawner* pInstance);
         static void Clean(BossDragonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantSpawner {
         csl::ut::VariableString guidePathName;
         csl::ut::MoveArray<hh::game::ObjectId> objectIds;
@@ -3110,7 +3424,9 @@ namespace app::rfl {
         static void Finish(BossGiantSpawner* pInstance);
         static void Clean(BossGiantSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossGiantDollSpawner {
         int32_t dummy;
 
@@ -3121,7 +3437,9 @@ namespace app::rfl {
         static void Finish(ObjBossGiantDollSpawner* pInstance);
         static void Clean(ObjBossGiantDollSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightGrindTrapInfo {
         enum class Lane : uint8_t {
             LaneA = 0,
@@ -3140,11 +3458,13 @@ namespace app::rfl {
         static void Finish(KnightGrindTrapInfo* pInstance);
         static void Clean(KnightGrindTrapInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossKnightSpawner {
         csl::ut::VariableString pathNameClimb;
         hh::game::ObjectId locatorClimb;
-        KnightGrindTrapInfo traps[16];
+        heur::rfl::KnightGrindTrapInfo traps[16];
         csl::ut::VariableString pathNameBattle2;
         hh::game::ObjectId locatorBattle2Start;
         csl::ut::MoveArray<hh::game::ObjectId> locatorBattle2CyFloatWarp;
@@ -3158,7 +3478,9 @@ namespace app::rfl {
         static void Finish(BossKnightSpawner* pInstance);
         static void Clean(BossKnightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleSpawner {
         csl::ut::VariableString guidePathName;
         csl::ut::MoveArray<hh::game::ObjectId> objectIds;
@@ -3177,7 +3499,9 @@ namespace app::rfl {
         static void Finish(BossRifleSpawner* pInstance);
         static void Clean(BossRifleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastSpawner {
         csl::ut::VariableString guidePathName;
         hh::game::ObjectId barrier;
@@ -3192,7 +3516,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastSpawner* pInstance);
         static void Clean(BossRifleBeastSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBarrierSpawner {
         float size;
         csl::ut::MoveArray<hh::game::ObjectId> friendsList;
@@ -3205,7 +3531,9 @@ namespace app::rfl {
         static void Finish(ObjBarrierSpawner* pInstance);
         static void Clean(ObjBarrierSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBarrierNPCSpawner {
         enum class NPCType : int8_t {
             Amy = 0,
@@ -3226,7 +3554,9 @@ namespace app::rfl {
         static void Finish(ObjBarrierNPCSpawner* pInstance);
         static void Clean(ObjBarrierNPCSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossTheEndSpawner {
         bool isEvent;
         csl::math::Vector3 blockCollisionPos;
@@ -3243,7 +3573,9 @@ namespace app::rfl {
         static void Finish(BossTheEndSpawner* pInstance);
         static void Clean(BossTheEndSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossTheEndTargetSpawner {
         int32_t dummy;
 
@@ -3254,7 +3586,9 @@ namespace app::rfl {
         static void Finish(ObjBossTheEndTargetSpawner* pInstance);
         static void Clean(ObjBossTheEndTargetSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMoonSpawner {
         int32_t dummy;
 
@@ -3265,7 +3599,9 @@ namespace app::rfl {
         static void Finish(ObjMoonSpawner* pInstance);
         static void Clean(ObjMoonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRingSupplyBaseSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> children;
         bool isUpdateTransform;
@@ -3277,7 +3613,9 @@ namespace app::rfl {
         static void Finish(BossRingSupplyBaseSpawner* pInstance);
         static void Clean(BossRingSupplyBaseSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRingSupplyStartPosSpawner {
         int32_t dummy;
 
@@ -3288,7 +3626,9 @@ namespace app::rfl {
         static void Finish(BossRingSupplyStartPosSpawner* pInstance);
         static void Clean(BossRingSupplyStartPosSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraSpawner {
         bool IsCameraView;
 
@@ -3299,8 +3639,10 @@ namespace app::rfl {
         static void Finish(ObjCameraSpawner* pInstance);
         static void Clean(ObjCameraSpawner* pInstance);
     };
+}
 
-    struct ObjCamera3DSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCamera3DSpawner : heur::rfl::ObjCameraSpawner {
         float offsetUp;
         float distanceMin;
         float distanceMax;
@@ -3315,8 +3657,10 @@ namespace app::rfl {
         static void Finish(ObjCamera3DSpawner* pInstance);
         static void Clean(ObjCamera3DSpawner* pInstance);
     };
+}
 
-    struct ObjCameraClassicSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraClassicSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float distance;
         float screenUpLimit;
@@ -3334,7 +3678,9 @@ namespace app::rfl {
         static void Finish(ObjCameraClassicSpawner* pInstance);
         static void Clean(ObjCameraClassicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct VolumeTriggerSpawner {
         enum class Shape : int8_t {
             SHAPE_BOX = 0,
@@ -3372,12 +3718,14 @@ namespace app::rfl {
         static void Finish(VolumeTriggerSpawner* pInstance);
         static void Clean(VolumeTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraClassicChangeParamVolumeSpawner {
         hh::game::ObjectId target;
         int32_t priority;
         float viewFieldBottom;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3386,8 +3734,10 @@ namespace app::rfl {
         static void Finish(ObjCameraClassicChangeParamVolumeSpawner* pInstance);
         static void Clean(ObjCameraClassicChangeParamVolumeSpawner* pInstance);
     };
+}
 
-    struct ObjCameraClassicLimitSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraClassicLimitSpawner : heur::rfl::ObjCameraSpawner {
         csl::ut::VariableString pathName;
         hh::game::ObjectId limitPointA;
         hh::game::ObjectId limitPointB;
@@ -3408,8 +3758,10 @@ namespace app::rfl {
         static void Finish(ObjCameraClassicLimitSpawner* pInstance);
         static void Clean(ObjCameraClassicLimitSpawner* pInstance);
     };
+}
 
-    struct ObjCameraCyberPrototypeSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraCyberPrototypeSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float zRot;
         float distance;
@@ -3430,8 +3782,10 @@ namespace app::rfl {
         static void Finish(ObjCameraCyberPrototypeSpawner* pInstance);
         static void Clean(ObjCameraCyberPrototypeSpawner* pInstance);
     };
+}
 
-    struct ObjCameraCyberStandardSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraCyberStandardSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float zRot;
         float distance;
@@ -3452,8 +3806,10 @@ namespace app::rfl {
         static void Finish(ObjCameraCyberStandardSpawner* pInstance);
         static void Clean(ObjCameraCyberStandardSpawner* pInstance);
     };
+}
 
-    struct ObjCameraCylindricalInnerSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraCylindricalInnerSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         csl::ut::VariableString gravityPathName;
         float distance;
@@ -3470,8 +3826,10 @@ namespace app::rfl {
         static void Finish(ObjCameraCylindricalInnerSpawner* pInstance);
         static void Clean(ObjCameraCylindricalInnerSpawner* pInstance);
     };
+}
 
-    struct ObjCameraCylindricalOuterSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraCylindricalOuterSpawner : heur::rfl::ObjCameraSpawner {
         csl::ut::VariableString gravityPathName;
         float pitch;
         float dist;
@@ -3484,8 +3842,10 @@ namespace app::rfl {
         static void Finish(ObjCameraCylindricalOuterSpawner* pInstance);
         static void Clean(ObjCameraCylindricalOuterSpawner* pInstance);
     };
+}
 
-    struct ObjCameraFixSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraFixSpawner : heur::rfl::ObjCameraSpawner {
         enum class TargetType : int8_t {
             TARGETTYPE_ABS_COORD = 0,
             TARGETTYPE_LOCATOR = 1,
@@ -3506,8 +3866,10 @@ namespace app::rfl {
         static void Finish(ObjCameraFixSpawner* pInstance);
         static void Clean(ObjCameraFixSpawner* pInstance);
     };
+}
 
-    struct ObjCameraFollowSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraFollowSpawner : heur::rfl::ObjCameraSpawner {
         float Fovy;
         float ZRot;
         float Distance;
@@ -3524,8 +3886,10 @@ namespace app::rfl {
         static void Finish(ObjCameraFollowSpawner* pInstance);
         static void Clean(ObjCameraFollowSpawner* pInstance);
     };
+}
 
-    struct ObjCameraObjectPanSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraObjectPanSpawner : heur::rfl::ObjCameraSpawner {
         csl::math::Vector3 target;
         float fovy;
         bool enableLimitAngle;
@@ -3543,8 +3907,10 @@ namespace app::rfl {
         static void Finish(ObjCameraObjectPanSpawner* pInstance);
         static void Clean(ObjCameraObjectPanSpawner* pInstance);
     };
+}
 
-    struct ObjCameraPanSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraPanSpawner : heur::rfl::ObjCameraSpawner {
         enum class PositionMode : int8_t {
             POS_MODE_FIX = 0,
             POS_MODE_MAINTAIN_DISTANCE = 1,
@@ -3567,8 +3933,10 @@ namespace app::rfl {
         static void Finish(ObjCameraPanSpawner* pInstance);
         static void Clean(ObjCameraPanSpawner* pInstance);
     };
+}
 
-    struct ObjCameraPointSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraPointSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float distance;
         float gravityOffset;
@@ -3582,8 +3950,10 @@ namespace app::rfl {
         static void Finish(ObjCameraPointSpawner* pInstance);
         static void Clean(ObjCameraPointSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         csl::ut::VariableString pathName;
         float pathOffset;
@@ -3597,8 +3967,10 @@ namespace app::rfl {
         static void Finish(ObjCameraRailSpawner* pInstance);
         static void Clean(ObjCameraRailSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailAnimationSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailAnimationSpawner : heur::rfl::ObjCameraSpawner {
         enum class UpDirectionType : int8_t {
             UPDIR_Y_UP = 0,
             UPDIR_OBJ_TRANSFORM = 1,
@@ -3630,8 +4002,10 @@ namespace app::rfl {
         static void Finish(ObjCameraRailAnimationSpawner* pInstance);
         static void Clean(ObjCameraRailAnimationSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailDivingSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailDivingSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         csl::ut::VariableString pathName;
         float distance;
@@ -3645,8 +4019,10 @@ namespace app::rfl {
         static void Finish(ObjCameraRailDivingSpawner* pInstance);
         static void Clean(ObjCameraRailDivingSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailForwardViewSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailForwardViewSpawner : heur::rfl::ObjCameraSpawner {
         enum class PlayerOffsetType : int8_t {
             PLAYER_OFFSET_NORMAL = 0,
             PLAYER_OFFSET_ABSOLUTE = 1,
@@ -3676,8 +4052,10 @@ namespace app::rfl {
         static void Finish(ObjCameraRailForwardViewSpawner* pInstance);
         static void Clean(ObjCameraRailForwardViewSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailLookSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailLookSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float distance;
         csl::ut::VariableString pathName;
@@ -3693,8 +4071,10 @@ namespace app::rfl {
         static void Finish(ObjCameraRailLookSpawner* pInstance);
         static void Clean(ObjCameraRailLookSpawner* pInstance);
     };
+}
 
-    struct ObjCameraRailSideViewSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraRailSideViewSpawner : heur::rfl::ObjCameraSpawner {
         enum class OrientationMode : int8_t {
             GRAVITY = 0,
             PATH_NORMAL = 1,
@@ -3724,7 +4104,9 @@ namespace app::rfl {
         static void Finish(ObjCameraRailSideViewSpawner* pInstance);
         static void Clean(ObjCameraRailSideViewSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraShakeTriggerSpawner {
         enum class Type : int8_t {
             TYPE_ONESHOT = 0,
@@ -3765,8 +4147,10 @@ namespace app::rfl {
         static void Finish(ObjCameraShakeTriggerSpawner* pInstance);
         static void Clean(ObjCameraShakeTriggerSpawner* pInstance);
     };
+}
 
-    struct ObjCameraSliderSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraSliderSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float distance;
         float distanceAir;
@@ -3783,7 +4167,9 @@ namespace app::rfl {
         static void Finish(ObjCameraSliderSpawner* pInstance);
         static void Clean(ObjCameraSliderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraStandardCommonParameter {
         float distance;
         float azimuthSensitivity;
@@ -3798,7 +4184,9 @@ namespace app::rfl {
         static void Finish(ObjCameraStandardCommonParameter* pInstance);
         static void Clean(ObjCameraStandardCommonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraStandardDashParameter {
         float minDistance;
         float maxDistance;
@@ -3812,7 +4200,9 @@ namespace app::rfl {
         static void Finish(ObjCameraStandardDashParameter* pInstance);
         static void Clean(ObjCameraStandardDashParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraStandardLockonParameter {
         float distance;
         float elevationOffset;
@@ -3825,11 +4215,13 @@ namespace app::rfl {
         static void Finish(ObjCameraStandardLockonParameter* pInstance);
         static void Clean(ObjCameraStandardLockonParameter* pInstance);
     };
+}
 
-    struct ObjCameraStandardSpawner : ObjCameraSpawner {
-        ObjCameraStandardCommonParameter common;
-        ObjCameraStandardDashParameter dash;
-        ObjCameraStandardLockonParameter lockon;
+namespace heur::rfl {
+    struct ObjCameraStandardSpawner : heur::rfl::ObjCameraSpawner {
+        heur::rfl::ObjCameraStandardCommonParameter common;
+        heur::rfl::ObjCameraStandardDashParameter dash;
+        heur::rfl::ObjCameraStandardLockonParameter lockon;
         bool disabledBattleState;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -3839,10 +4231,12 @@ namespace app::rfl {
         static void Finish(ObjCameraStandardSpawner* pInstance);
         static void Clean(ObjCameraStandardSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraSubVolumeSpawner {
         hh::game::ObjectId target;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3851,8 +4245,10 @@ namespace app::rfl {
         static void Finish(ObjCameraSubVolumeSpawner* pInstance);
         static void Clean(ObjCameraSubVolumeSpawner* pInstance);
     };
+}
 
-    struct ObjCameraTiltSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraTiltSpawner : heur::rfl::ObjCameraSpawner {
         enum class PositionMode : int8_t {
             POS_MODE_FIX = 0,
             POS_MODE_MAINTAIN_DISTANCE = 1,
@@ -3874,8 +4270,10 @@ namespace app::rfl {
         static void Finish(ObjCameraTiltSpawner* pInstance);
         static void Clean(ObjCameraTiltSpawner* pInstance);
     };
+}
 
-    struct ObjCameraVerticalSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraVerticalSpawner : heur::rfl::ObjCameraSpawner {
         float fovy;
         float distance;
         float elevationOffsetDeg;
@@ -3889,7 +4287,9 @@ namespace app::rfl {
         static void Finish(ObjCameraVerticalSpawner* pInstance);
         static void Clean(ObjCameraVerticalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraVolumeSpawner {
         enum class InterpolateType : int8_t {
             INTERPOLATE_RELATIVE = 0,
@@ -3918,7 +4318,7 @@ namespace app::rfl {
         StateType state;
         ActionType action;
         bool disableFreeMode;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3927,7 +4327,9 @@ namespace app::rfl {
         static void Finish(ObjCameraVolumeSpawner* pInstance);
         static void Clean(ObjCameraVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraVolumeOnceSpawner {
         enum class InterpolateType : int8_t {
             INTERPOLATE_RELATIVE = 0,
@@ -3944,7 +4346,7 @@ namespace app::rfl {
         InterpolateType interpolateTypeEnter;
         InterpolateType interpolateTypeLeave;
         bool disableFreeMode;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3953,7 +4355,9 @@ namespace app::rfl {
         static void Finish(ObjCameraVolumeOnceSpawner* pInstance);
         static void Clean(ObjCameraVolumeOnceSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDefaultCameraSettingSpawner {
         hh::game::ObjectId cameraObjectID;
 
@@ -3964,11 +4368,13 @@ namespace app::rfl {
         static void Finish(ObjDefaultCameraSettingSpawner* pInstance);
         static void Clean(ObjDefaultCameraSettingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFarChangeVolumeSpawner {
         float farDist;
         uint32_t priority;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -3977,7 +4383,9 @@ namespace app::rfl {
         static void Finish(ObjFarChangeVolumeSpawner* pInstance);
         static void Clean(ObjFarChangeVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PuzzleSize {
         uint8_t numRows;
         uint8_t numColumns;
@@ -3990,7 +4398,9 @@ namespace app::rfl {
         static void Finish(PuzzleSize* pInstance);
         static void Clean(PuzzleSize* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CSRow {
         enum class Color : uint8_t {
             Blue = 0,
@@ -4013,9 +4423,11 @@ namespace app::rfl {
         static void Finish(CSRow* pInstance);
         static void Clean(CSRow* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CSLayer {
-        CSRow rows[15];
+        heur::rfl::CSRow rows[15];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4024,9 +4436,11 @@ namespace app::rfl {
         static void Finish(CSLayer* pInstance);
         static void Clean(CSLayer* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CorrectShape {
-        CSLayer layers[15];
+        heur::rfl::CSLayer layers[15];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4035,7 +4449,9 @@ namespace app::rfl {
         static void Finish(CorrectShape* pInstance);
         static void Clean(CorrectShape* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Obj3DPuzzleSpawner {
         enum class CorrectModelType : uint8_t {
             isl_obj_3DpuzzleA = 0,
@@ -4087,7 +4503,7 @@ namespace app::rfl {
         csl::math::Vector3 modelOffset;
         hh::game::ObjectId locator;
         ModelType correctModelOrder[5];
-        PuzzleSize maxPossiblePuzzleSize;
+        heur::rfl::PuzzleSize maxPossiblePuzzleSize;
         uint8_t totalNumBlocksAvailable;
         uint8_t numVerticalCellsOfCorrectAnswer;
         uint8_t numCellsFromBlockPosForWarpEffect;
@@ -4095,7 +4511,7 @@ namespace app::rfl {
         uint8_t numCellsToLevitate;
         float effectScaleOnRewind;
         float effectSpeedOnRewind;
-        CorrectShape correctShape;
+        heur::rfl::CorrectShape correctShape;
         csl::ut::MoveArray<hh::game::ObjectId> blockList;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -4105,7 +4521,9 @@ namespace app::rfl {
         static void Finish(Obj3DPuzzleSpawner* pInstance);
         static void Clean(Obj3DPuzzleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarpInfo {
         uint8_t row;
         uint8_t column;
@@ -4117,7 +4535,9 @@ namespace app::rfl {
         static void Finish(WarpInfo* pInstance);
         static void Clean(WarpInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RotationInfo {
         enum class Rotation : uint8_t {
             Rotate_0 = 0,
@@ -4136,7 +4556,9 @@ namespace app::rfl {
         static void Finish(RotationInfo* pInstance);
         static void Clean(RotationInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Obj3DPuzzleBlockSpawner {
         enum class ModelType : int8_t {
             None = -1,
@@ -4199,11 +4621,11 @@ namespace app::rfl {
         float cameraSwitchDistance;
         float warpEffectScale;
         float numCellsFromOrigBaseToTop;
-        WarpInfo warpInfo;
+        heur::rfl::WarpInfo warpInfo;
         Color color;
         PresetShape presetShape;
         bool usePreset;
-        RotationInfo rotationInfo;
+        heur::rfl::RotationInfo rotationInfo;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4212,7 +4634,9 @@ namespace app::rfl {
         static void Finish(Obj3DPuzzleBlockSpawner* pInstance);
         static void Clean(Obj3DPuzzleBlockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjActionChainSpawner {
         int32_t no;
         hh::game::ObjectId cameraUUID;
@@ -4230,7 +4654,9 @@ namespace app::rfl {
         static void Finish(ObjActionChainSpawner* pInstance);
         static void Clean(ObjActionChainSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChainBoosterSpawner {
         int32_t dummy;
 
@@ -4241,7 +4667,9 @@ namespace app::rfl {
         static void Finish(ObjChainBoosterSpawner* pInstance);
         static void Clean(ObjChainBoosterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirFloorSpawner {
         enum class SizeType : int8_t {
             SMALL = 0,
@@ -4312,7 +4740,9 @@ namespace app::rfl {
         static void Finish(ObjAirFloorSpawner* pInstance);
         static void Clean(ObjAirFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AirOneWayPanelStart {
         bool eventDriven;
         bool keepLightOnFail;
@@ -4324,7 +4754,9 @@ namespace app::rfl {
         static void Finish(AirOneWayPanelStart* pInstance);
         static void Clean(AirOneWayPanelStart* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirOneWayPanelSpawner {
         enum class MoveType : int8_t {
             MOVE_NONE = 0,
@@ -4349,7 +4781,7 @@ namespace app::rfl {
         };
 
         bool isStart;
-        AirOneWayPanelStart startParam;
+        heur::rfl::AirOneWayPanelStart startParam;
         MoveType moveType;
         MoveStartType moveStartType;
         PatrolType patrolType;
@@ -4372,7 +4804,9 @@ namespace app::rfl {
         static void Finish(ObjAirOneWayPanelSpawner* pInstance);
         static void Clean(ObjAirOneWayPanelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirOneWayPanelManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> panelList;
@@ -4390,7 +4824,9 @@ namespace app::rfl {
         static void Finish(ObjAirOneWayPanelManagerSpawner* pInstance);
         static void Clean(ObjAirOneWayPanelManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirWallSpawner {
         enum class SizeType : int8_t {
             SMALL = 0,
@@ -4457,7 +4893,9 @@ namespace app::rfl {
         static void Finish(ObjAirWallSpawner* pInstance);
         static void Clean(ObjAirWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjApproachStatueSpawner {
         float noticeDistance;
         float gravity;
@@ -4476,7 +4914,9 @@ namespace app::rfl {
         static void Finish(ObjApproachStatueSpawner* pInstance);
         static void Clean(ObjApproachStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PassPlaneTriggerSpawner {
         float width;
         float height;
@@ -4489,7 +4929,9 @@ namespace app::rfl {
         static void Finish(PassPlaneTriggerSpawner* pInstance);
         static void Clean(PassPlaneTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AutorunTriggerSpawner {
         enum class ActionType : int8_t {
             ACT_START = 0,
@@ -4517,7 +4959,7 @@ namespace app::rfl {
         JumpMode jumpMode;
         bool forceFall;
         bool endByAir;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4526,7 +4968,9 @@ namespace app::rfl {
         static void Finish(AutorunTriggerSpawner* pInstance);
         static void Clean(AutorunTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AutorunVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -4565,7 +5009,7 @@ namespace app::rfl {
         MoveMode moveMode;
         bool forceFall;
         bool endByAir;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4574,13 +5018,15 @@ namespace app::rfl {
         static void Finish(AutorunVolumeSpawner* pInstance);
         static void Clean(AutorunVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBallLaunchTriggerSpawner {
         csl::ut::VariableString pathName;
         float minSpeed;
         float maxSpeed;
         bool reverse;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4589,9 +5035,11 @@ namespace app::rfl {
         static void Finish(ObjBallLaunchTriggerSpawner* pInstance);
         static void Clean(ObjBallLaunchTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBallMoveTriggerSpawner {
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4600,7 +5048,9 @@ namespace app::rfl {
         static void Finish(ObjBallMoveTriggerSpawner* pInstance);
         static void Clean(ObjBallMoveTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBatterBoxSpawner {
         int32_t no;
 
@@ -4611,7 +5061,9 @@ namespace app::rfl {
         static void Finish(ObjBatterBoxSpawner* pInstance);
         static void Clean(ObjBatterBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GimmickCameraOptionalParam {
         bool useCameraParam;
         float interoplateTimeActivate;
@@ -4626,14 +5078,16 @@ namespace app::rfl {
         static void Finish(GimmickCameraOptionalParam* pInstance);
         static void Clean(GimmickCameraOptionalParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBattingMachineManagerSpawner {
         int32_t no;
         float limitTime;
         int32_t boundingTotalNum;
         hh::game::ObjectId batterBox;
         hh::game::ObjectId pitchingMachine;
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4642,7 +5096,9 @@ namespace app::rfl {
         static void Finish(ObjBattingMachineManagerSpawner* pInstance);
         static void Clean(ObjBattingMachineManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPitchingMachineSpawner {
         int32_t no;
         float coolDown;
@@ -4658,7 +5114,9 @@ namespace app::rfl {
         static void Finish(ObjPitchingMachineSpawner* pInstance);
         static void Clean(ObjPitchingMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BeetonIMoveParam {
         enum class BeetonMoveType : int8_t {
             FIXED = 0,
@@ -4678,7 +5136,9 @@ namespace app::rfl {
         static void Finish(BeetonIMoveParam* pInstance);
         static void Clean(BeetonIMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BeetonIAttackParam {
         bool isAttack;
         float bulletSpeed;
@@ -4697,11 +5157,13 @@ namespace app::rfl {
         static void Finish(BeetonIAttackParam* pInstance);
         static void Clean(BeetonIAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBeetonISpawner {
         bool isFV;
-        BeetonIMoveParam moveParam;
-        BeetonIAttackParam attackParam;
+        heur::rfl::BeetonIMoveParam moveParam;
+        heur::rfl::BeetonIAttackParam attackParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4710,9 +5172,11 @@ namespace app::rfl {
         static void Finish(ObjBeetonISpawner* pInstance);
         static void Clean(ObjBeetonISpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBlockageVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -4721,7 +5185,9 @@ namespace app::rfl {
         static void Finish(ObjBlockageVolumeSpawner* pInstance);
         static void Clean(ObjBlockageVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBlockColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
@@ -4744,7 +5210,9 @@ namespace app::rfl {
         static void Finish(ObjBlockColliderSpawner* pInstance);
         static void Clean(ObjBlockColliderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBlockObjectSpawner {
         enum class ActionType : int8_t {
             ACT_TERRAIN = 0,
@@ -4763,7 +5231,9 @@ namespace app::rfl {
         static void Finish(ObjBlockObjectSpawner* pInstance);
         static void Clean(ObjBlockObjectSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBombSpawner {
         enum class Visual : int8_t {
             ContactBomb = 0,
@@ -4772,7 +5242,7 @@ namespace app::rfl {
             Num = 3,
         };
 
-        Visual v;
+        Visual visual;
         float timeTilExplode;
         float timeFlickerGetFasterAt;
         float flickerInterval;
@@ -4793,7 +5263,9 @@ namespace app::rfl {
         static void Finish(ObjBombSpawner* pInstance);
         static void Clean(ObjBombSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBombBoxSpawner {
         bool isTimer;
         float detectionRange;
@@ -4815,7 +5287,9 @@ namespace app::rfl {
         static void Finish(ObjBombBoxSpawner* pInstance);
         static void Clean(ObjBombBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBombBreakBoxSpawner {
         enum class BoxSize : int8_t {
             SIZE_S = 0,
@@ -4836,7 +5310,9 @@ namespace app::rfl {
         static void Finish(ObjBombBreakBoxSpawner* pInstance);
         static void Clean(ObjBombBreakBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBombBreakWallSpawner {
         enum class WallSize : int8_t {
             SIZE_S = 0,
@@ -4857,7 +5333,9 @@ namespace app::rfl {
         static void Finish(ObjBombBreakWallSpawner* pInstance);
         static void Clean(ObjBombBreakWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossBitManagerSpawner {
         bool use;
         csl::ut::MoveArray<hh::game::ObjectId> bitIds;
@@ -4871,7 +5349,9 @@ namespace app::rfl {
         static void Finish(ObjBossBitManagerSpawner* pInstance);
         static void Clean(ObjBossBitManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossLargeBitSpawner {
         float offsetHeight;
 
@@ -4882,7 +5362,9 @@ namespace app::rfl {
         static void Finish(ObjBossLargeBitSpawner* pInstance);
         static void Clean(ObjBossLargeBitSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossSmallBitSpawner {
         int32_t patternIndexs[64];
         float offsetHeight;
@@ -4895,7 +5377,9 @@ namespace app::rfl {
         static void Finish(ObjBossSmallBitSpawner* pInstance);
         static void Clean(ObjBossSmallBitSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossMinionSpawner {
         float speed;
         float liveTime;
@@ -4907,7 +5391,9 @@ namespace app::rfl {
         static void Finish(ObjBossMinionSpawner* pInstance);
         static void Clean(ObjBossMinionSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakableColumnSpawner {
         int32_t no;
         bool alreadyBroken;
@@ -4921,7 +5407,9 @@ namespace app::rfl {
         static void Finish(ObjBreakableColumnSpawner* pInstance);
         static void Clean(ObjBreakableColumnSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakBoxSpawner {
         enum class BoxSize : int8_t {
             SIZE_S = 0,
@@ -4941,7 +5429,9 @@ namespace app::rfl {
         static void Finish(ObjBreakBoxSpawner* pInstance);
         static void Clean(ObjBreakBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakWallSpawner {
         enum class WallSize : int8_t {
             SIZE_S = 0,
@@ -4969,7 +5459,9 @@ namespace app::rfl {
         static void Finish(ObjBreakWallSpawner* pInstance);
         static void Clean(ObjBreakWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct InterpolateSettings {
         enum class InterpolateType : int8_t {
             INTERPOLATE_RELATIVE = 0,
@@ -4993,7 +5485,9 @@ namespace app::rfl {
         static void Finish(InterpolateSettings* pInstance);
         static void Clean(InterpolateSettings* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FadeSettings {
         float fadeOutTimeOn;
         float fadeStayTimeOn;
@@ -5011,7 +5505,9 @@ namespace app::rfl {
         static void Finish(FadeSettings* pInstance);
         static void Clean(FadeSettings* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraActivatorSpawner {
         enum class ActivateType : int8_t {
             INTERPOLATE = 0,
@@ -5050,8 +5546,8 @@ namespace app::rfl {
         bool disableControl;
         PlayerDisableType disableType;
         bool isPause;
-        InterpolateSettings interpolate;
-        FadeSettings fade;
+        heur::rfl::InterpolateSettings interpolate;
+        heur::rfl::FadeSettings fade;
         PurposeOfUseCameraActivator purposeOfUse;
         Value questType;
 
@@ -5062,7 +5558,9 @@ namespace app::rfl {
         static void Finish(ObjCameraActivatorSpawner* pInstance);
         static void Clean(ObjCameraActivatorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCannonTypeSpawner {
         enum class AimingType : int8_t {
             Direction = 0,
@@ -5088,7 +5586,9 @@ namespace app::rfl {
         static void Finish(ObjCannonTypeSpawner* pInstance);
         static void Clean(ObjCannonTypeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCannonTypeCannonballSpawner {
         int8_t dummy;
 
@@ -5099,7 +5599,9 @@ namespace app::rfl {
         static void Finish(ObjCannonTypeCannonballSpawner* pInstance);
         static void Clean(ObjCannonTypeCannonballSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCautionVolumeSpawner {
         enum class CautionType : int8_t {
             CAUTIONTYPE_NONE = -1,
@@ -5128,7 +5630,7 @@ namespace app::rfl {
         CautionType cautionType;
         NaviType naviType;
         bool isSwitch;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5137,7 +5639,9 @@ namespace app::rfl {
         static void Finish(ObjCautionVolumeSpawner* pInstance);
         static void Clean(ObjCautionVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDropChaosEmeraldSpawner {
         int32_t no;
         int32_t chaosEmeraldType;
@@ -5153,7 +5657,9 @@ namespace app::rfl {
         static void Finish(ObjDropChaosEmeraldSpawner* pInstance);
         static void Clean(ObjDropChaosEmeraldSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChaosEmeraldPillarSpawner {
         enum class Value : int8_t {
             Blue = 0,
@@ -5183,7 +5689,9 @@ namespace app::rfl {
         static void Finish(ObjChaosEmeraldPillarSpawner* pInstance);
         static void Clean(ObjChaosEmeraldPillarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakChaosEmeraldStorageSpawner {
         enum class Value : int8_t {
             Blue = 0,
@@ -5209,7 +5717,9 @@ namespace app::rfl {
         static void Finish(ObjBreakChaosEmeraldStorageSpawner* pInstance);
         static void Clean(ObjBreakChaosEmeraldStorageSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChaosEmeraldStorageSpawner {
         enum class Value : int8_t {
             Blue = 0,
@@ -5233,7 +5743,9 @@ namespace app::rfl {
         static void Finish(ObjChaosEmeraldStorageSpawner* pInstance);
         static void Clean(ObjChaosEmeraldStorageSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjClimbingPointSpawner {
         float radius;
         bool terminal;
@@ -5245,7 +5757,9 @@ namespace app::rfl {
         static void Finish(ObjClimbingPointSpawner* pInstance);
         static void Clean(ObjClimbingPointSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyActionSignSpawner {
         enum class Visual : int8_t {
             Normal = 0,
@@ -5257,7 +5771,7 @@ namespace app::rfl {
             ObjectDir = 1,
         };
 
-        Visual v;
+        Visual visual;
         csl::ut::MoveArray<hh::game::ObjectId> objAmyList;
         csl::ut::MoveArray<hh::game::ObjectId> objKnucklesList;
         csl::ut::MoveArray<hh::game::ObjectId> objTailsList;
@@ -5270,7 +5784,9 @@ namespace app::rfl {
         static void Finish(ObjCyActionSignSpawner* pInstance);
         static void Clean(ObjCyActionSignSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyloopTraceManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> volumeList;
@@ -5283,7 +5799,9 @@ namespace app::rfl {
         static void Finish(ObjCyloopTraceManagerSpawner* pInstance);
         static void Clean(ObjCyloopTraceManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyloopTracePointSpawner {
         int32_t dummy;
 
@@ -5294,7 +5812,9 @@ namespace app::rfl {
         static void Finish(ObjCyloopTracePointSpawner* pInstance);
         static void Clean(ObjCyloopTracePointSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyloopTraceVolumeSpawner {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
@@ -5315,7 +5835,9 @@ namespace app::rfl {
         static void Finish(ObjCyloopTraceVolumeSpawner* pInstance);
         static void Clean(ObjCyloopTraceVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DamegeVolumeTarget {
         csl::ut::MoveArray<hh::game::ObjectId> objects;
         int32_t damagePoint;
@@ -5327,7 +5849,9 @@ namespace app::rfl {
         static void Finish(DamegeVolumeTarget* pInstance);
         static void Clean(DamegeVolumeTarget* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDamageVolumeSpawner {
         enum class Type : int8_t {
             TypeOnce = 0,
@@ -5336,8 +5860,8 @@ namespace app::rfl {
 
         Type type;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        DamegeVolumeTarget targets[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::DamegeVolumeTarget targets[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5346,7 +5870,9 @@ namespace app::rfl {
         static void Finish(ObjDamageVolumeSpawner* pInstance);
         static void Clean(ObjDamageVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DashPanelPathAdjustParameter {
         csl::ut::VariableString pathname;
         float adjustSpeed;
@@ -5359,7 +5885,9 @@ namespace app::rfl {
         static void Finish(DashPanelPathAdjustParameter* pInstance);
         static void Clean(DashPanelPathAdjustParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDashPanelSpawner {
         enum class ChangeType : int8_t {
             CHANGE_NONE = 0,
@@ -5370,8 +5898,8 @@ namespace app::rfl {
         float ocTime;
         float speed;
         bool isVisible;
-        ActionNotification actions[3];
-        DashPanelPathAdjustParameter adjustPath;
+        heur::rfl::ActionNotification actions[3];
+        heur::rfl::DashPanelPathAdjustParameter adjustPath;
         bool isCyloopOn;
         float cyloopSignDistance;
         float cyloopSignTolerance;
@@ -5385,8 +5913,10 @@ namespace app::rfl {
         static void Finish(ObjDashPanelSpawner* pInstance);
         static void Clean(ObjDashPanelSpawner* pInstance);
     };
+}
 
-    struct ObjDashRollerSpawner : ObjDashPanelSpawner {
+namespace heur::rfl {
+    struct ObjDashRollerSpawner : heur::rfl::ObjDashPanelSpawner {
         enum class Visual : int8_t {
             NORMAL = 0,
             GR = 1,
@@ -5394,7 +5924,7 @@ namespace app::rfl {
             NUM_VISUALS = 3,
         };
 
-        Visual v;
+        Visual visual;
         bool isCyloopOn;
         float cyloopSignDistance;
         float cyloopSignTolerance;
@@ -5406,7 +5936,9 @@ namespace app::rfl {
         static void Finish(ObjDashRollerSpawner* pInstance);
         static void Clean(ObjDashRollerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PathMovement {
         enum class MoveType : int8_t {
             FIXED = 0,
@@ -5446,7 +5978,9 @@ namespace app::rfl {
         static void Finish(PathMovement* pInstance);
         static void Clean(PathMovement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDashRingSpawner {
         enum class Visual : int8_t {
             DashRing = 0,
@@ -5456,7 +5990,7 @@ namespace app::rfl {
             Num = 4,
         };
 
-        Visual v;
+        Visual visual;
         float OutOfControl;
         float KeepVelocity;
         float Speed;
@@ -5464,8 +5998,8 @@ namespace app::rfl {
         bool VeloConst;
         bool Spin;
         bool AirTrick;
-        ActionNotification actions[3];
-        PathMovement pathMovement;
+        heur::rfl::ActionNotification actions[3];
+        heur::rfl::PathMovement pathMovement;
         csl::math::Vector3 collisionScale;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -5475,9 +6009,11 @@ namespace app::rfl {
         static void Finish(ObjDashRingSpawner* pInstance);
         static void Clean(ObjDashRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIgnoreDeadlineSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5486,7 +6022,9 @@ namespace app::rfl {
         static void Finish(ObjIgnoreDeadlineSpawner* pInstance);
         static void Clean(ObjIgnoreDeadlineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDebugNoteSpawner {
         enum class ColorType : int8_t {
             TYPE_WHITE = 0,
@@ -5508,7 +6046,9 @@ namespace app::rfl {
         static void Finish(ObjDebugNoteSpawner* pInstance);
         static void Clean(ObjDebugNoteSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDimensionVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -5525,7 +6065,7 @@ namespace app::rfl {
         csl::ut::VariableString pathName;
         StateType state;
         ActionType action;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5534,7 +6074,9 @@ namespace app::rfl {
         static void Finish(ObjDimensionVolumeSpawner* pInstance);
         static void Clean(ObjDimensionVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDivingVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -5554,7 +6096,7 @@ namespace app::rfl {
         bool velocityReset;
         StateType state;
         ActionType action;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         bool isEnableHomingAttack;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -5564,7 +6106,9 @@ namespace app::rfl {
         static void Finish(ObjDivingVolumeSpawner* pInstance);
         static void Clean(ObjDivingVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDoveSpawner {
         int32_t no;
         bool enableEscape;
@@ -5580,7 +6124,9 @@ namespace app::rfl {
         static void Finish(ObjDoveSpawner* pInstance);
         static void Clean(ObjDoveSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RingParameter {
         float suckedTime;
         float launchAngle;
@@ -5597,7 +6143,9 @@ namespace app::rfl {
         static void Finish(RingParameter* pInstance);
         static void Clean(RingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDroppedItemSpawner {
         enum class ItemType : int8_t {
             RING = 0,
@@ -5615,7 +6163,7 @@ namespace app::rfl {
         bool cyloopDriven;
         float cyloopSignDistance;
         float cyloopSignTolerance;
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5624,7 +6172,9 @@ namespace app::rfl {
         static void Finish(ObjDroppedItemSpawner* pInstance);
         static void Clean(ObjDroppedItemSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEffectFlowDustSpawner {
         bool wind;
         float emitInterval;
@@ -5636,7 +6186,9 @@ namespace app::rfl {
         static void Finish(ObjEffectFlowDustSpawner* pInstance);
         static void Clean(ObjEffectFlowDustSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjElectricLineSpawner {
         int32_t no;
         csl::ut::VariableString pathName;
@@ -5648,7 +6200,9 @@ namespace app::rfl {
         static void Finish(ObjElectricLineSpawner* pInstance);
         static void Clean(ObjElectricLineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEscapeLightSpawner {
         int32_t no;
         bool eventDriven;
@@ -5666,7 +6220,9 @@ namespace app::rfl {
         static void Finish(ObjEscapeLightSpawner* pInstance);
         static void Clean(ObjEscapeLightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EventCameraParam {
         float camInterpolateTimeOnStart;
         float camInterpolateTimeOnFinish;
@@ -5681,7 +6237,9 @@ namespace app::rfl {
         static void Finish(EventCameraParam* pInstance);
         static void Clean(EventCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEventSpawner {
         int32_t no;
         csl::ut::VariableString eventID;
@@ -5692,7 +6250,7 @@ namespace app::rfl {
         bool playerAfterIdle;
         bool isSkipDisable;
         bool isFrozen;
-        EventCameraParam camera;
+        heur::rfl::EventCameraParam camera;
         hh::game::ObjectId playerTrans;
         bool limitFps30;
 
@@ -5703,7 +6261,9 @@ namespace app::rfl {
         static void Finish(ObjEventSpawner* pInstance);
         static void Clean(ObjEventSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EventOrder {
         enum class ConditionType : int8_t {
             CONDITION_ALL = 0,
@@ -5720,14 +6280,16 @@ namespace app::rfl {
         static void Finish(EventOrder* pInstance);
         static void Clean(EventOrder* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEventOrderHubSpawner {
         csl::ut::VariableString puzzleID;
-        EventOrder orders[8];
+        heur::rfl::EventOrder orders[8];
         csl::ut::VariableString correctLuaName;
         csl::ut::VariableString incorrectLuaName;
-        ActionNotification correctActions[5];
-        ActionNotification incorrectActions[5];
+        heur::rfl::ActionNotification correctActions[5];
+        heur::rfl::ActionNotification incorrectActions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5736,7 +6298,9 @@ namespace app::rfl {
         static void Finish(ObjEventOrderHubSpawner* pInstance);
         static void Clean(ObjEventOrderHubSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEventSetterSpawner {
         enum class TriggerType : int8_t {
             TRIGERTYPE_DEAD = 0,
@@ -5763,7 +6327,7 @@ namespace app::rfl {
         ConditionType Condition;
         Time TimesType;
         csl::ut::VariableString luaName;
-        ActionNotification actions[8];
+        heur::rfl::ActionNotification actions[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5772,10 +6336,12 @@ namespace app::rfl {
         static void Finish(ObjEventSetterSpawner* pInstance);
         static void Clean(ObjEventSetterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEventVolumeSpawner {
         int32_t no;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         csl::ut::VariableString enterEvent;
         csl::ut::VariableString leaveEvent;
 
@@ -5786,7 +6352,9 @@ namespace app::rfl {
         static void Finish(ObjEventVolumeSpawner* pInstance);
         static void Clean(ObjEventVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PassPlaneCylinderTriggerSpawner {
         float radius;
         csl::math::Vector3 offset;
@@ -5798,7 +6366,9 @@ namespace app::rfl {
         static void Finish(PassPlaneCylinderTriggerSpawner* pInstance);
         static void Clean(PassPlaneCylinderTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjExDashRingSpawner {
         float OutOfControl;
         float KeepVelocity;
@@ -5806,8 +6376,8 @@ namespace app::rfl {
         bool VeloConst;
         csl::math::Vector3 collisionScale;
         bool eventDriven;
-        ActionNotification actions[3];
-        PassPlaneCylinderTriggerSpawner passPlane;
+        heur::rfl::ActionNotification actions[3];
+        heur::rfl::PassPlaneCylinderTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5816,14 +6386,16 @@ namespace app::rfl {
         static void Finish(ObjExDashRingSpawner* pInstance);
         static void Clean(ObjExDashRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjExtendPillarSpawner {
         int32_t no;
         float minHeight;
         float maxHeight;
         bool isUseTime;
         float extendTime;
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
         bool isUpdPlayerHold;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -5833,7 +6405,9 @@ namespace app::rfl {
         static void Finish(ObjExtendPillarSpawner* pInstance);
         static void Clean(ObjExtendPillarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFallDeadTriggerSpawner {
         enum class DrivenType : int8_t {
             DRIVE_RANGE = 0,
@@ -5842,7 +6416,7 @@ namespace app::rfl {
 
         DrivenType drive;
         float distance;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5851,10 +6425,12 @@ namespace app::rfl {
         static void Finish(ObjFallDeadTriggerSpawner* pInstance);
         static void Clean(ObjFallDeadTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFallReturnVolumeSpawner {
         hh::game::ObjectId returnPoint;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5863,7 +6439,9 @@ namespace app::rfl {
         static void Finish(ObjFallReturnVolumeSpawner* pInstance);
         static void Clean(ObjFallReturnVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFanSpawner {
         enum class Type : int8_t {
             TYPE_ON = 0,
@@ -5893,7 +6471,9 @@ namespace app::rfl {
         static void Finish(ObjFanSpawner* pInstance);
         static void Clean(ObjFanSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFireworkCactusSpawner {
         int32_t no;
         hh::game::ObjectId cactusManager;
@@ -5906,7 +6486,9 @@ namespace app::rfl {
         static void Finish(ObjFireworkCactusSpawner* pInstance);
         static void Clean(ObjFireworkCactusSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFireworkCactusManagerSpawner {
         enum class CameraType : uint8_t {
             CHARA = 0,
@@ -5919,10 +6501,10 @@ namespace app::rfl {
         CameraType cameraType;
         csl::math::Vector3 cameraPos;
         hh::game::ObjectId cameraLocator;
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
         int32_t dropRingNum[5];
         float dropRingHeight;
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5931,7 +6513,9 @@ namespace app::rfl {
         static void Finish(ObjFireworkCactusManagerSpawner* pInstance);
         static void Clean(ObjFireworkCactusManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishCASpawner {
         enum class FishKind : int8_t {
             Salmon = 0,
@@ -5951,7 +6535,9 @@ namespace app::rfl {
         static void Finish(ObjFishCASpawner* pInstance);
         static void Clean(ObjFishCASpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishingPortalSpawner {
         int32_t no;
         int32_t spotId;
@@ -5964,7 +6550,9 @@ namespace app::rfl {
         static void Finish(ObjFishingPortalSpawner* pInstance);
         static void Clean(ObjFishingPortalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlaggedSwitchVolumeSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -5978,8 +6566,8 @@ namespace app::rfl {
         Condition condition;
         float lifetime;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        ActionNotification actions[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -5988,7 +6576,9 @@ namespace app::rfl {
         static void Finish(ObjFlaggedSwitchVolumeSpawner* pInstance);
         static void Clean(ObjFlaggedSwitchVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFloatIslandSpawner {
         enum class SizeType : int8_t {
             SMALL = 0,
@@ -6006,14 +6596,16 @@ namespace app::rfl {
         static void Finish(ObjFloatIslandSpawner* pInstance);
         static void Clean(ObjFloatIslandSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFloatTopSpawner {
         float moveSpeed;
         float driveTime;
         float widthLimit;
         float depthLimit;
         hh::game::ObjectId cameraActivator;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6022,7 +6614,9 @@ namespace app::rfl {
         static void Finish(ObjFloatTopSpawner* pInstance);
         static void Clean(ObjFloatTopSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFloorPuzzleSwitchSpawner {
         enum class Condition : int8_t {
             COND_ENTER = 0,
@@ -6051,7 +6645,9 @@ namespace app::rfl {
         static void Finish(ObjFloorPuzzleSwitchSpawner* pInstance);
         static void Clean(ObjFloorPuzzleSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFriendsEmeraldEngineSpawner {
         enum class ChaosEmeraldColor : int8_t {
             Blue = 0,
@@ -6087,9 +6683,11 @@ namespace app::rfl {
         static void Finish(ObjFriendsEmeraldEngineSpawner* pInstance);
         static void Clean(ObjFriendsEmeraldEngineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGameEndVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         bool isReleaseOnly;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -6099,7 +6697,9 @@ namespace app::rfl {
         static void Finish(ObjGameEndVolumeSpawner* pInstance);
         static void Clean(ObjGameEndVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GateDefaultCamera {
         csl::math::Vector3 camEyeOffset;
         float easeTimeOn;
@@ -6112,11 +6712,13 @@ namespace app::rfl {
         static void Finish(GateDefaultCamera* pInstance);
         static void Clean(GateDefaultCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGateSpawner {
         int32_t no;
         bool useExternalCam;
-        GateDefaultCamera defaultCam;
+        heur::rfl::GateDefaultCamera defaultCam;
         float scale;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -6126,7 +6728,9 @@ namespace app::rfl {
         static void Finish(ObjGateSpawner* pInstance);
         static void Clean(ObjGateSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGaugePuzzleSwitchSpawner {
         enum class Condition : int8_t {
             COND_ONCE = 0,
@@ -6146,7 +6750,9 @@ namespace app::rfl {
         static void Finish(ObjGaugePuzzleSwitchSpawner* pInstance);
         static void Clean(ObjGaugePuzzleSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantCannonSpawner_Camera {
         enum class OffsetSpace : int32_t {
             Base = 0,
@@ -6167,11 +6773,13 @@ namespace app::rfl {
         static void Finish(ObjGiantCannonSpawner_Camera* pInstance);
         static void Clean(ObjGiantCannonSpawner_Camera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantCannonSpawner {
-        ObjGiantCannonSpawner_Camera loadingCamera;
-        ObjGiantCannonSpawner_Camera aimCamera;
-        ObjGiantCannonSpawner_Camera shootCamera;
+        heur::rfl::ObjGiantCannonSpawner_Camera loadingCamera;
+        heur::rfl::ObjGiantCannonSpawner_Camera aimCamera;
+        heur::rfl::ObjGiantCannonSpawner_Camera shootCamera;
         float loadingTriggerRadius;
         hh::game::ObjectId loadingPlayerPosition;
         float loadingWaitTime;
@@ -6187,7 +6795,9 @@ namespace app::rfl {
         static void Finish(ObjGiantCannonSpawner* pInstance);
         static void Clean(ObjGiantCannonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantDrainPlugSpawner {
         float eventWaitTime;
         csl::ut::MoveArray<hh::game::ObjectId> eventHiddenList;
@@ -6201,7 +6811,9 @@ namespace app::rfl {
         static void Finish(ObjGiantDrainPlugSpawner* pInstance);
         static void Clean(ObjGiantDrainPlugSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantIncidentPillarSpawner {
         int32_t dummy;
 
@@ -6212,7 +6824,9 @@ namespace app::rfl {
         static void Finish(ObjGiantIncidentPillarSpawner* pInstance);
         static void Clean(ObjGiantIncidentPillarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGimmickInfoSpawner {
         enum class PlayType : int8_t {
             TYPE_ANYTIME = 0,
@@ -6239,7 +6853,9 @@ namespace app::rfl {
         static void Finish(ObjGimmickInfoSpawner* pInstance);
         static void Clean(ObjGimmickInfoSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGimmickScriptSpawner {
         int32_t no;
         csl::ut::VariableString luaName;
@@ -6251,7 +6867,9 @@ namespace app::rfl {
         static void Finish(ObjGimmickScriptSpawner* pInstance);
         static void Clean(ObjGimmickScriptSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DropItemParam {
         enum class ItemType : int8_t {
             NONE = 0,
@@ -6277,7 +6895,9 @@ namespace app::rfl {
         static void Finish(DropItemParam* pInstance);
         static void Clean(DropItemParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGismoSpawner {
         int32_t no;
         csl::ut::VariableString name;
@@ -6285,7 +6905,7 @@ namespace app::rfl {
         bool enableInstance;
         csl::ut::VariableString giTextureName;
         csl::ut::VariableString giOcclusionTextureName;
-        DropItemParam dropItemParam;
+        heur::rfl::DropItemParam dropItemParam;
         bool isMovable;
         bool respawnableByMeteorShower;
 
@@ -6296,14 +6916,16 @@ namespace app::rfl {
         static void Finish(ObjGismoSpawner* pInstance);
         static void Clean(ObjGismoSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrindBoosterSpawner {
         float ocTime;
         float speed;
         float keepVelocityTime;
         bool isVisible;
         bool reverse;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6312,7 +6934,9 @@ namespace app::rfl {
         static void Finish(ObjGrindBoosterSpawner* pInstance);
         static void Clean(ObjGrindBoosterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrindLaserSpawner {
         enum class LaserType : int8_t {
             Permanent = 0,
@@ -6331,7 +6955,9 @@ namespace app::rfl {
         static void Finish(ObjGrindLaserSpawner* pInstance);
         static void Clean(ObjGrindLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrowFlowerSpawner {
         int32_t no;
         bool isFlower;
@@ -6346,7 +6972,9 @@ namespace app::rfl {
         static void Finish(ObjGrowFlowerSpawner* pInstance);
         static void Clean(ObjGrowFlowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGuideLightSpawner {
         enum class SetType : int8_t {
             EquallySpaced = 0,
@@ -6372,7 +7000,9 @@ namespace app::rfl {
         static void Finish(ObjGuideLightSpawner* pInstance);
         static void Clean(ObjGuideLightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHackingConsoleSpawner {
         int32_t no;
         bool eventDriven;
@@ -6385,7 +7015,9 @@ namespace app::rfl {
         static void Finish(ObjHackingConsoleSpawner* pInstance);
         static void Clean(ObjHackingConsoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHackingPlayerMachineSpawner {
         float rightLimit;
         float leftLimit;
@@ -6401,7 +7033,9 @@ namespace app::rfl {
         static void Finish(ObjHackingPlayerMachineSpawner* pInstance);
         static void Clean(ObjHackingPlayerMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTheEndPlayerMachineSpawner {
         float rightLimit;
         float leftLimit;
@@ -6418,7 +7052,9 @@ namespace app::rfl {
         static void Finish(ObjTheEndPlayerMachineSpawner* pInstance);
         static void Clean(ObjTheEndPlayerMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHeroSagePointSpawner {
         float accessDistance;
         csl::math::Vector3 offsetPos;
@@ -6431,14 +7067,16 @@ namespace app::rfl {
         static void Finish(ObjHeroSagePointSpawner* pInstance);
         static void Clean(ObjHeroSagePointSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHintRingSpawner {
         enum class Visual : int8_t {
             HintRing = 0,
             Num = 1,
         };
 
-        Visual v;
+        Visual visual;
         csl::ut::VariableString headerLabel;
         csl::ut::VariableString bodyLabel;
         float animSpeed;
@@ -6453,7 +7091,9 @@ namespace app::rfl {
         static void Finish(ObjHintRingSpawner* pInstance);
         static void Clean(ObjHintRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHoverStoneSpawner {
         bool withBase;
         bool hoverOnStart;
@@ -6471,7 +7111,9 @@ namespace app::rfl {
         static void Finish(ObjHoverStoneSpawner* pInstance);
         static void Clean(ObjHoverStoneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjImpactPuzzleSwitchSpawner {
         enum class Condition : int8_t {
             COND_ONCE = 0,
@@ -6493,7 +7135,9 @@ namespace app::rfl {
         static void Finish(ObjImpactPuzzleSwitchSpawner* pInstance);
         static void Clean(ObjImpactPuzzleSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ClrearCameraParam {
         float interoplateTimeActivate;
         float interoplateTimeDeactivate;
@@ -6507,13 +7151,15 @@ namespace app::rfl {
         static void Finish(ClrearCameraParam* pInstance);
         static void Clean(ClrearCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjImpactTargetSpawner {
         int32_t no;
         float activateTime;
         float cancelDistance;
         int32_t impact;
-        ClrearCameraParam cameraParam;
+        heur::rfl::ClrearCameraParam cameraParam;
         float extreamRatio;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -6523,7 +7169,9 @@ namespace app::rfl {
         static void Finish(ObjImpactTargetSpawner* pInstance);
         static void Clean(ObjImpactTargetSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIronBoxSpawner {
         int32_t BoxNumX;
         int32_t BoxNumY;
@@ -6537,7 +7185,9 @@ namespace app::rfl {
         static void Finish(ObjIronBoxSpawner* pInstance);
         static void Clean(ObjIronBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandCannonLaunch {
         csl::math::Vector3 direction;
         float firstSpeed;
@@ -6551,7 +7201,9 @@ namespace app::rfl {
         static void Finish(IslandCannonLaunch* pInstance);
         static void Clean(IslandCannonLaunch* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIslandCannonSpawner {
         enum class ModelType : int8_t {
             FV = 0,
@@ -6574,8 +7226,8 @@ namespace app::rfl {
         float rotateSpeed;
         float verticalAngle;
         int32_t numOfDirections;
-        IslandCannonLaunch launchParam[5];
-        ActionNotification actions[3];
+        heur::rfl::IslandCannonLaunch launchParam[5];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6584,7 +7236,9 @@ namespace app::rfl {
         static void Finish(ObjIslandCannonSpawner* pInstance);
         static void Clean(ObjIslandCannonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIslandJumpBoardPathSpawner {
         enum class SizeType : int8_t {
             SIZE_S = 0,
@@ -6606,7 +7260,7 @@ namespace app::rfl {
         bool isEventOn;
         bool airtrick;
         SizeType size;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6615,7 +7269,9 @@ namespace app::rfl {
         static void Finish(ObjIslandJumpBoardPathSpawner* pInstance);
         static void Clean(ObjIslandJumpBoardPathSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIslandNormalFloorSpawner {
         enum class MoveType : int8_t {
             MOVE_NONE = 0,
@@ -6660,7 +7316,9 @@ namespace app::rfl {
         static void Finish(ObjIslandNormalFloorSpawner* pInstance);
         static void Clean(ObjIslandNormalFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIslandSpringSpawner {
         enum class Visual : int8_t {
             Normal = 0,
@@ -6668,14 +7326,14 @@ namespace app::rfl {
         };
 
         int32_t no;
-        Visual v;
+        Visual visual;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
         bool isEventOn;
         bool isHorizon;
         bool isVisible;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6684,7 +7342,9 @@ namespace app::rfl {
         static void Finish(ObjIslandSpringSpawner* pInstance);
         static void Clean(ObjIslandSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjIslandUpReelSpawner {
         int32_t no;
         float length;
@@ -6693,7 +7353,7 @@ namespace app::rfl {
         float outOfControl;
         bool isOneTimeUp;
         bool eventDriven;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6702,7 +7362,9 @@ namespace app::rfl {
         static void Finish(ObjIslandUpReelSpawner* pInstance);
         static void Clean(ObjIslandUpReelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjJingleSpawner {
         int32_t no;
 
@@ -6713,7 +7375,9 @@ namespace app::rfl {
         static void Finish(ObjJingleSpawner* pInstance);
         static void Clean(ObjJingleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjJumpBoardPathSpawner {
         enum class SizeType : int8_t {
             SIZE_S = 0,
@@ -6733,7 +7397,7 @@ namespace app::rfl {
         float motionTime;
         bool airtrick;
         SizeType size;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
         bool isCyloopOn;
         float cyloopSignDistance;
         float cyloopSignTolerance;
@@ -6746,7 +7410,9 @@ namespace app::rfl {
         static void Finish(ObjJumpBoardPathSpawner* pInstance);
         static void Clean(ObjJumpBoardPathSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaBombSpawner {
         int8_t dummy;
 
@@ -6757,7 +7423,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaBombSpawner* pInstance);
         static void Clean(ObjKodamaBombSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLaserClearEffectSpawner {
         int32_t dummy;
 
@@ -6768,7 +7436,9 @@ namespace app::rfl {
         static void Finish(ObjLaserClearEffectSpawner* pInstance);
         static void Clean(ObjLaserClearEffectSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLaserRecieverSpawner {
         int32_t no;
         bool eventDriven;
@@ -6780,7 +7450,9 @@ namespace app::rfl {
         static void Finish(ObjLaserRecieverSpawner* pInstance);
         static void Clean(ObjLaserRecieverSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLaserRelicSpawner {
         int32_t no;
         bool eventDriven;
@@ -6792,7 +7464,9 @@ namespace app::rfl {
         static void Finish(ObjLaserRelicSpawner* pInstance);
         static void Clean(ObjLaserRelicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLightPoleSpawner {
         enum class Color : int8_t {
             COLOR_LIGHTBLUE = 0,
@@ -6818,7 +7492,9 @@ namespace app::rfl {
         static void Finish(ObjLightPoleSpawner* pInstance);
         static void Clean(ObjLightPoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLimitedTimeGateSpawner {
         enum class SetType : int8_t {
             EquallySpaced = 0,
@@ -6842,7 +7518,9 @@ namespace app::rfl {
         static void Finish(ObjLimitedTimeGateSpawner* pInstance);
         static void Clean(ObjLimitedTimeGateSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLineFlowerSpawner {
         enum class SetType : int8_t {
             EquallySpaced = 0,
@@ -6862,7 +7540,9 @@ namespace app::rfl {
         static void Finish(ObjLineFlowerSpawner* pInstance);
         static void Clean(ObjLineFlowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLocatorSpawner {
         int32_t dummy;
 
@@ -6873,10 +7553,12 @@ namespace app::rfl {
         static void Finish(ObjLocatorSpawner* pInstance);
         static void Clean(ObjLocatorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLoopAreaVolumeSpawner {
         csl::ut::VariableString pathName;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6885,7 +7567,9 @@ namespace app::rfl {
         static void Finish(ObjLoopAreaVolumeSpawner* pInstance);
         static void Clean(ObjLoopAreaVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMagneticVolumeSpawner {
         float radius;
 
@@ -6896,14 +7580,16 @@ namespace app::rfl {
         static void Finish(ObjMagneticVolumeSpawner* pInstance);
         static void Clean(ObjMagneticVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSlotStarSpawner {
         enum class VisualType : uint8_t {
             Normal = 0,
             NumVisualTypes = 1,
         };
 
-        VisualType v;
+        VisualType visual;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6912,14 +7598,16 @@ namespace app::rfl {
         static void Finish(ObjSlotStarSpawner* pInstance);
         static void Clean(ObjSlotStarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMeteorShowerKodamaSpawner {
         enum class VisualType : uint8_t {
             Normal = 0,
             NumVisualTypes = 1,
         };
 
-        VisualType v;
+        VisualType visual;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -6928,7 +7616,9 @@ namespace app::rfl {
         static void Finish(ObjMeteorShowerKodamaSpawner* pInstance);
         static void Clean(ObjMeteorShowerKodamaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMeteorShowerPowerupSeedSpawner {
         enum class VisualType : uint8_t {
             Normal = 0,
@@ -6940,7 +7630,7 @@ namespace app::rfl {
             Guard = 1,
         };
 
-        VisualType v;
+        VisualType visual;
         SeedType type;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -6950,7 +7640,9 @@ namespace app::rfl {
         static void Finish(ObjMeteorShowerPowerupSeedSpawner* pInstance);
         static void Clean(ObjMeteorShowerPowerupSeedSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMineSpawner {
         float scale;
 
@@ -6961,7 +7653,9 @@ namespace app::rfl {
         static void Finish(ObjMineSpawner* pInstance);
         static void Clean(ObjMineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMonologueVolumeSpawner {
         enum class InterpolateType : int8_t {
             INTERPOLATE_RELATIVE = 0,
@@ -6991,7 +7685,7 @@ namespace app::rfl {
         bool endByCaption;
         HoldType hold;
         bool useLetterBox;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         float margin;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -7001,7 +7695,9 @@ namespace app::rfl {
         static void Finish(ObjMonologueVolumeSpawner* pInstance);
         static void Clean(ObjMonologueVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMotoraISpawner {
         enum class Placement : uint8_t {
             WhereItsSet = 0,
@@ -7044,7 +7740,9 @@ namespace app::rfl {
         static void Finish(ObjMotoraISpawner* pInstance);
         static void Clean(ObjMotoraISpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMusicBoxSpawner {
         int32_t no;
         bool eventDriven;
@@ -7056,7 +7754,9 @@ namespace app::rfl {
         static void Finish(ObjMusicBoxSpawner* pInstance);
         static void Clean(ObjMusicBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMusicMemorySpawner {
         int32_t no;
 
@@ -7067,7 +7767,9 @@ namespace app::rfl {
         static void Finish(ObjMusicMemorySpawner* pInstance);
         static void Clean(ObjMusicMemorySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNumberObjectSpawner {
         enum class NumberType : int8_t {
             TYPE_ONE = 0,
@@ -7088,7 +7790,9 @@ namespace app::rfl {
         static void Finish(ObjNumberObjectSpawner* pInstance);
         static void Clean(ObjNumberObjectSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirCubeSpawner {
         enum class Type : int32_t {
             CubeA = 0,
@@ -7114,11 +7818,13 @@ namespace app::rfl {
         static void Finish(ObjAirCubeSpawner* pInstance);
         static void Clean(ObjAirCubeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjObjectLayerTriggerSpawner {
         csl::ut::VariableString layerName;
         bool enabled;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7127,7 +7833,9 @@ namespace app::rfl {
         static void Finish(ObjObjectLayerTriggerSpawner* pInstance);
         static void Clean(ObjObjectLayerTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OneWayPanelStart {
         bool eventDriven;
         bool keepLightOnFail;
@@ -7141,10 +7849,12 @@ namespace app::rfl {
         static void Finish(OneWayPanelStart* pInstance);
         static void Clean(OneWayPanelStart* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOneWayPanelSpawner {
         bool isStart;
-        OneWayPanelStart startParam;
+        heur::rfl::OneWayPanelStart startParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7153,7 +7863,9 @@ namespace app::rfl {
         static void Finish(ObjOneWayPanelSpawner* pInstance);
         static void Clean(ObjOneWayPanelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOneWayPanelManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> panelList;
@@ -7170,11 +7882,13 @@ namespace app::rfl {
         static void Finish(ObjOneWayPanelManagerSpawner* pInstance);
         static void Clean(ObjOneWayPanelManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOutOfControlTriggerSpawner {
         float outOfControlTime;
         bool releaseByGround;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7183,10 +7897,12 @@ namespace app::rfl {
         static void Finish(ObjOutOfControlTriggerSpawner* pInstance);
         static void Clean(ObjOutOfControlTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOutOfControlVolumeSpawner {
         bool releaseByGround;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7195,7 +7911,9 @@ namespace app::rfl {
         static void Finish(ObjOutOfControlVolumeSpawner* pInstance);
         static void Clean(ObjOutOfControlVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjParticleBaseSoundParam {
         csl::ut::VariableString name;
         bool is3D;
@@ -7208,7 +7926,9 @@ namespace app::rfl {
         static void Finish(ObjParticleBaseSoundParam* pInstance);
         static void Clean(ObjParticleBaseSoundParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjParticleBaseRumbleParam {
         csl::ut::VariableString name;
 
@@ -7219,7 +7939,9 @@ namespace app::rfl {
         static void Finish(ObjParticleBaseRumbleParam* pInstance);
         static void Clean(ObjParticleBaseRumbleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjParticleBaseSpawner {
         csl::ut::VariableString effectName;
         float scale;
@@ -7227,8 +7949,8 @@ namespace app::rfl {
         uint8_t colorG;
         uint8_t colorB;
         uint8_t colorA;
-        ObjParticleBaseSoundParam sound;
-        ObjParticleBaseRumbleParam rumble;
+        heur::rfl::ObjParticleBaseSoundParam sound;
+        heur::rfl::ObjParticleBaseRumbleParam rumble;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7237,8 +7959,10 @@ namespace app::rfl {
         static void Finish(ObjParticleBaseSpawner* pInstance);
         static void Clean(ObjParticleBaseSpawner* pInstance);
     };
+}
 
-    struct ObjParticleSpawner : ObjParticleBaseSpawner {
+namespace heur::rfl {
+    struct ObjParticleSpawner : heur::rfl::ObjParticleBaseSpawner {
         enum class TriggerType : int8_t {
             RANGE = 0,
             MESSAGE = 1,
@@ -7254,7 +7978,9 @@ namespace app::rfl {
         static void Finish(ObjParticleSpawner* pInstance);
         static void Clean(ObjParticleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjParticleExtentSpawner {
         enum class Shape : int8_t {
             SHAPE_SPHERE = 0,
@@ -7301,8 +8027,10 @@ namespace app::rfl {
         static void Finish(ObjParticleExtentSpawner* pInstance);
         static void Clean(ObjParticleExtentSpawner* pInstance);
     };
+}
 
-    struct ObjParticleVolumeSpawner : ObjParticleBaseSpawner {
+namespace heur::rfl {
+    struct ObjParticleVolumeSpawner : heur::rfl::ObjParticleBaseSpawner {
         enum class Shape : int8_t {
             SHAPE_BOX = 0,
             SHAPE_SPHERE = 1,
@@ -7336,7 +8064,9 @@ namespace app::rfl {
         static void Finish(ObjParticleVolumeSpawner* pInstance);
         static void Clean(ObjParticleVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPipeMoveTriggerSpawner {
         enum class SpeedType : int8_t {
             SPEED_FIX = 0,
@@ -7350,7 +8080,7 @@ namespace app::rfl {
         float launchSpeed;
         float attackTime;
         bool isPoseToReverseGravity;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7359,7 +8089,9 @@ namespace app::rfl {
         static void Finish(ObjPipeMoveTriggerSpawner* pInstance);
         static void Clean(ObjPipeMoveTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPlayerNavigateInfoSpawner {
         float moveSpeed;
         float maxMoveTime;
@@ -7371,7 +8103,9 @@ namespace app::rfl {
         static void Finish(ObjPlayerNavigateInfoSpawner* pInstance);
         static void Clean(ObjPlayerNavigateInfoSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MoveParameter {
         enum class MoveType : int8_t {
             MOVE_NONE = 0,
@@ -7390,7 +8124,9 @@ namespace app::rfl {
         static void Finish(MoveParameter* pInstance);
         static void Clean(MoveParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPointLightSpawner {
         float colorR;
         float colorG;
@@ -7399,7 +8135,7 @@ namespace app::rfl {
         float halfLength;
         float attenuationRadius;
         bool enableShadow;
-        MoveParameter move;
+        heur::rfl::MoveParameter move;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7408,7 +8144,9 @@ namespace app::rfl {
         static void Finish(ObjPointLightSpawner* pInstance);
         static void Clean(ObjPointLightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPointMarkerSpawner {
         enum class ViewType : int8_t {
             FORWARDVIEW = 0,
@@ -7423,7 +8161,7 @@ namespace app::rfl {
 
         float Width;
         ViewType StageType;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
         RestartType restartType;
         hh::game::ObjectId camera;
         float cameraLimit;
@@ -7435,7 +8173,9 @@ namespace app::rfl {
         static void Finish(ObjPointMarkerSpawner* pInstance);
         static void Clean(ObjPointMarkerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPopupSpringSpawner {
         float FirstSpeed;
         float OutOfControl;
@@ -7449,7 +8189,9 @@ namespace app::rfl {
         static void Finish(ObjPopupSpringSpawner* pInstance);
         static void Clean(ObjPopupSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPortalSpawner {
         int32_t no;
         bool eventDriven;
@@ -7464,7 +8206,9 @@ namespace app::rfl {
         static void Finish(ObjPortalSpawner* pInstance);
         static void Clean(ObjPortalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PortalBitParameter {
         enum class PortalBitType : uint8_t {
             PortalBitSensor = 0,
@@ -7481,10 +8225,12 @@ namespace app::rfl {
         static void Finish(PortalBitParameter* pInstance);
         static void Clean(PortalBitParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPortalBitSpawner {
         int32_t no;
-        PortalBitParameter portalBitPrameter;
+        heur::rfl::PortalBitParameter portalBitPrameter;
         uint8_t bounceTime;
         csl::math::Vector3 velocity;
         float horzDamp;
@@ -7502,7 +8248,9 @@ namespace app::rfl {
         static void Finish(ObjPortalBitSpawner* pInstance);
         static void Clean(ObjPortalBitSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPortalGateSpawner {
         bool eventDriven;
         uint32_t saveFlag;
@@ -7516,7 +8264,9 @@ namespace app::rfl {
         static void Finish(ObjPortalGateSpawner* pInstance);
         static void Clean(ObjPortalGateSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPortalGateSecretSpawner {
         bool eventDriven;
         uint32_t saveFlag;
@@ -7530,7 +8280,9 @@ namespace app::rfl {
         static void Finish(ObjPortalGateSecretSpawner* pInstance);
         static void Clean(ObjPortalGateSecretSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PICameraParameter {
         float azimuth;
         float elevation;
@@ -7546,7 +8298,9 @@ namespace app::rfl {
         static void Finish(PICameraParameter* pInstance);
         static void Clean(PICameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPositionIndicatorSpawner {
         enum class PurposeOfUse : uint8_t {
             QuestKodamaCollection01 = 0,
@@ -7558,7 +8312,7 @@ namespace app::rfl {
 
         PurposeOfUse purposeOfUse;
         bool useCamera;
-        PICameraParameter cameraParam;
+        heur::rfl::PICameraParameter cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7567,7 +8321,9 @@ namespace app::rfl {
         static void Finish(ObjPositionIndicatorSpawner* pInstance);
         static void Clean(ObjPositionIndicatorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPowerupSeedSpawner {
         enum class SeedType : int8_t {
             POWER = 0,
@@ -7585,7 +8341,9 @@ namespace app::rfl {
         static void Finish(ObjPowerupSeedSpawner* pInstance);
         static void Clean(ObjPowerupSeedSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPracticeNotifyVolumeSpawner {
         enum class UnlockStatus : int8_t {
             UNLOCK_NOT_LOCK = 0,
@@ -7595,7 +8353,7 @@ namespace app::rfl {
         int32_t gimmickNo;
         int32_t practiceNo;
         int32_t tipsNo;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         float margin;
         UnlockStatus unlockStatus;
 
@@ -7606,7 +8364,9 @@ namespace app::rfl {
         static void Finish(ObjPracticeNotifyVolumeSpawner* pInstance);
         static void Clean(ObjPracticeNotifyVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPropellerSpawner {
         enum class Type : int8_t {
             TYPE_ON = 0,
@@ -7638,7 +8398,9 @@ namespace app::rfl {
         static void Finish(ObjPropellerSpawner* pInstance);
         static void Clean(ObjPropellerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPropellerSpringSpawner {
         float firstSpeedHA;
         float outOfControlHA;
@@ -7653,7 +8415,7 @@ namespace app::rfl {
         float maxHeight;
         float fallSpeed;
         float fallWaitTime;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7662,7 +8424,9 @@ namespace app::rfl {
         static void Finish(ObjPropellerSpringSpawner* pInstance);
         static void Clean(ObjPropellerSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPulleySpawner {
         csl::ut::VariableString pathName;
         float startPosition1D;
@@ -7673,7 +8437,7 @@ namespace app::rfl {
         float maxSpeed;
         float waitToReturnSec;
         float returnSpeed;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7682,7 +8446,9 @@ namespace app::rfl {
         static void Finish(ObjPulleySpawner* pInstance);
         static void Clean(ObjPulleySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPulleyColumnSpawner {
         uint32_t height;
 
@@ -7693,7 +8459,9 @@ namespace app::rfl {
         static void Finish(ObjPulleyColumnSpawner* pInstance);
         static void Clean(ObjPulleyColumnSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPulley2Spawner {
         enum class ColumnType : int8_t {
             COLUMN_TYPE_SHORT = 0,
@@ -7708,7 +8476,7 @@ namespace app::rfl {
         float minSpeed;
         float maxSpeed;
         ColumnType columnType;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7717,7 +8485,9 @@ namespace app::rfl {
         static void Finish(ObjPulley2Spawner* pInstance);
         static void Clean(ObjPulley2Spawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPulley2NodeSpawner {
         enum class ColumnType : int8_t {
             COLUMN_TYPE_SHORT = 0,
@@ -7734,7 +8504,9 @@ namespace app::rfl {
         static void Finish(ObjPulley2NodeSpawner* pInstance);
         static void Clean(ObjPulley2NodeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPushFloorSwitchSpawner {
         enum class Condition : int8_t {
             COND_ENTER = 0,
@@ -7754,7 +8526,9 @@ namespace app::rfl {
         static void Finish(ObjPushFloorSwitchSpawner* pInstance);
         static void Clean(ObjPushFloorSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPuzzleBarrierSpawner {
         enum class InitialState : int8_t {
             STATE_ON = 0,
@@ -7783,7 +8557,9 @@ namespace app::rfl {
         static void Finish(ObjPuzzleBarrierSpawner* pInstance);
         static void Clean(ObjPuzzleBarrierSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPuzzleBarrierOpacitySpawner {
         int32_t no;
         uint8_t numSides;
@@ -7799,7 +8575,9 @@ namespace app::rfl {
         static void Finish(ObjPuzzleBarrierOpacitySpawner* pInstance);
         static void Clean(ObjPuzzleBarrierOpacitySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuickStepSpawner {
         enum class LineType : int8_t {
             LINE2_LEFT = 0,
@@ -7834,15 +8612,17 @@ namespace app::rfl {
         static void Finish(ObjQuickStepSpawner* pInstance);
         static void Clean(ObjQuickStepSpawner* pInstance);
     };
+}
 
-    struct ObjQuickStepTriggerSpawner : ObjQuickStepSpawner {
+namespace heur::rfl {
+    struct ObjQuickStepTriggerSpawner : heur::rfl::ObjQuickStepSpawner {
         enum class ActionType : int8_t {
             ACT_START = 0,
             ACT_END = 1,
         };
 
         ActionType type;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7851,9 +8631,11 @@ namespace app::rfl {
         static void Finish(ObjQuickStepTriggerSpawner* pInstance);
         static void Clean(ObjQuickStepTriggerSpawner* pInstance);
     };
+}
 
-    struct ObjQuickStepVolumeSpawner : ObjQuickStepSpawner {
-        VolumeTriggerSpawner volume;
+namespace heur::rfl {
+    struct ObjQuickStepVolumeSpawner : heur::rfl::ObjQuickStepSpawner {
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7862,7 +8644,9 @@ namespace app::rfl {
         static void Finish(ObjQuickStepVolumeSpawner* pInstance);
         static void Clean(ObjQuickStepVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRedRingSpawner {
         enum class ModelType : int8_t {
             NORMAL = 0,
@@ -7885,7 +8669,7 @@ namespace app::rfl {
         Event EventType;
         Rotate RotateType;
         bool SeparateTranslucent;
-        PathMovement pathMovement;
+        heur::rfl::PathMovement pathMovement;
         float collisionRadius;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -7895,7 +8679,9 @@ namespace app::rfl {
         static void Finish(ObjRedRingSpawner* pInstance);
         static void Clean(ObjRedRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjReflexesPanelSpawner {
         int32_t dummy;
 
@@ -7906,7 +8692,9 @@ namespace app::rfl {
         static void Finish(ObjReflexesPanelSpawner* pInstance);
         static void Clean(ObjReflexesPanelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReflexesPanelCamera {
         csl::math::Vector3 targetOffset;
         float distance;
@@ -7919,7 +8707,9 @@ namespace app::rfl {
         static void Finish(ReflexesPanelCamera* pInstance);
         static void Clean(ReflexesPanelCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjReflexesPanelManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> panelIds;
@@ -7930,7 +8720,7 @@ namespace app::rfl {
         float createPanelMaxTime;
         float lightPanelMinTime;
         float lightPanelMaxTime;
-        ReflexesPanelCamera cameraParam;
+        heur::rfl::ReflexesPanelCamera cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -7939,7 +8729,9 @@ namespace app::rfl {
         static void Finish(ObjReflexesPanelManagerSpawner* pInstance);
         static void Clean(ObjReflexesPanelManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjReleaseMapSpawner {
         int32_t no;
         int32_t gimmickInfoNo;
@@ -7956,7 +8748,9 @@ namespace app::rfl {
         static void Finish(ObjReleaseMapSpawner* pInstance);
         static void Clean(ObjReleaseMapSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjResonatorSpawner {
         enum class Condition : int8_t {
             COND_ENTER = 0,
@@ -7984,7 +8778,9 @@ namespace app::rfl {
         static void Finish(ObjResonatorSpawner* pInstance);
         static void Clean(ObjResonatorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRingSpawner {
         enum class Visibility : int8_t {
             Visible = 0,
@@ -7993,7 +8789,7 @@ namespace app::rfl {
 
         Visibility visibility;
         float respawnTime;
-        PathMovement pathMovement;
+        heur::rfl::PathMovement pathMovement;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8002,8 +8798,10 @@ namespace app::rfl {
         static void Finish(ObjRingSpawner* pInstance);
         static void Clean(ObjRingSpawner* pInstance);
     };
+}
 
-    struct ObjSuperRingSpawner : ObjRingSpawner {
+namespace heur::rfl {
+    struct ObjSuperRingSpawner : heur::rfl::ObjRingSpawner {
         enum class RotateAxis : int8_t {
             WorldAxisY = 0,
             LocalAxisY = 1,
@@ -8018,7 +8816,9 @@ namespace app::rfl {
         static void Finish(ObjSuperRingSpawner* pInstance);
         static void Clean(ObjSuperRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRingGateSpawner {
         int32_t dummy;
 
@@ -8029,7 +8829,9 @@ namespace app::rfl {
         static void Finish(ObjRingGateSpawner* pInstance);
         static void Clean(ObjRingGateSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CameraParam {
         float interoplateTimeActivate;
         float interoplateTimeDeactivate;
@@ -8043,7 +8845,9 @@ namespace app::rfl {
         static void Finish(CameraParam* pInstance);
         static void Clean(CameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRopeMachineSpawner {
         int32_t no;
         float maxSpeed;
@@ -8056,7 +8860,7 @@ namespace app::rfl {
         bool randomJump;
         int32_t doubleJumpNumerator;
         int32_t doubleJumpDenominator;
-        CameraParam cameraParam;
+        heur::rfl::CameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8065,7 +8869,9 @@ namespace app::rfl {
         static void Finish(ObjRopeMachineSpawner* pInstance);
         static void Clean(ObjRopeMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotatableMirrorSpawner {
         enum class RotateType : int32_t {
             HORIZANTAL = 0,
@@ -8078,7 +8884,7 @@ namespace app::rfl {
         RotateType rotateType;
         float angularVelocity;
         int32_t initVerticalID;
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8087,7 +8893,9 @@ namespace app::rfl {
         static void Finish(ObjRotatableMirrorSpawner* pInstance);
         static void Clean(ObjRotatableMirrorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotatableStatueSpawner {
         enum class ModelType : int8_t {
             TYPE_NORMAL = 0,
@@ -8123,7 +8931,7 @@ namespace app::rfl {
         csl::ut::MoveArray<hh::game::ObjectId> targetList;
         bool isUseEyeSightTarget;
         csl::ut::MoveArray<hh::game::ObjectId> eyeSightTargetList;
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8132,7 +8940,9 @@ namespace app::rfl {
         static void Finish(ObjRotatableStatueSpawner* pInstance);
         static void Clean(ObjRotatableStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotatableTombStoneSpawner {
         enum class RotatePositionType : int32_t {
             COLLECT_TYPE_45 = 1,
@@ -8161,7 +8971,9 @@ namespace app::rfl {
         static void Finish(ObjRotatableTombStoneSpawner* pInstance);
         static void Clean(ObjRotatableTombStoneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RunningMachineMileage {
         float length;
 
@@ -8172,7 +8984,9 @@ namespace app::rfl {
         static void Finish(RunningMachineMileage* pInstance);
         static void Clean(RunningMachineMileage* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RunningMachineKeepFixedParam {
         float targetSpeed;
 
@@ -8183,7 +8997,9 @@ namespace app::rfl {
         static void Finish(RunningMachineKeepFixedParam* pInstance);
         static void Clean(RunningMachineKeepFixedParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RunningMachineKeepSinParam {
         float offset;
         float amplitude;
@@ -8196,7 +9012,9 @@ namespace app::rfl {
         static void Finish(RunningMachineKeepSinParam* pInstance);
         static void Clean(RunningMachineKeepSinParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RunningMachineKeepRandomParam {
         float min;
         float max;
@@ -8209,7 +9027,9 @@ namespace app::rfl {
         static void Finish(RunningMachineKeepRandomParam* pInstance);
         static void Clean(RunningMachineKeepRandomParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RunningMachineKeep {
         enum class TargetSpeedType : uint8_t {
             TypeFixed = 0,
@@ -8218,9 +9038,9 @@ namespace app::rfl {
         };
 
         TargetSpeedType targetSpeedType;
-        RunningMachineKeepFixedParam fixed;
-        RunningMachineKeepSinParam sin;
-        RunningMachineKeepRandomParam random;
+        heur::rfl::RunningMachineKeepFixedParam fixed;
+        heur::rfl::RunningMachineKeepSinParam sin;
+        heur::rfl::RunningMachineKeepRandomParam random;
         float speedThreshold;
         float speedTime;
 
@@ -8231,7 +9051,9 @@ namespace app::rfl {
         static void Finish(RunningMachineKeep* pInstance);
         static void Clean(RunningMachineKeep* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRunningMachineSpawner {
         enum class ClearType : uint8_t {
             ClearTypeMileage = 0,
@@ -8240,8 +9062,8 @@ namespace app::rfl {
 
         int32_t no;
         ClearType clearType;
-        RunningMachineMileage mileage;
-        RunningMachineKeep keep;
+        heur::rfl::RunningMachineMileage mileage;
+        heur::rfl::RunningMachineKeep keep;
         bool useTimer;
         float activateTime;
         float startWaitTime;
@@ -8257,9 +9079,11 @@ namespace app::rfl {
         static void Finish(ObjRunningMachineSpawner* pInstance);
         static void Clean(ObjRunningMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SaveDenyVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8268,7 +9092,9 @@ namespace app::rfl {
         static void Finish(SaveDenyVolumeSpawner* pInstance);
         static void Clean(SaveDenyVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjScrapeBallSpawner {
         int32_t no;
 
@@ -8279,7 +9105,9 @@ namespace app::rfl {
         static void Finish(ObjScrapeBallSpawner* pInstance);
         static void Clean(ObjScrapeBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SelectCannonLaunch {
         csl::math::Vector3 direction;
         float firstSpeed;
@@ -8293,12 +9121,14 @@ namespace app::rfl {
         static void Finish(SelectCannonLaunch* pInstance);
         static void Clean(SelectCannonLaunch* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSelectCannonSpawner {
         bool isLimitOn;
         float limitTime;
         int32_t selectNum;
-        SelectCannonLaunch launchParam[4];
+        heur::rfl::SelectCannonLaunch launchParam[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8307,7 +9137,9 @@ namespace app::rfl {
         static void Finish(ObjSelectCannonSpawner* pInstance);
         static void Clean(ObjSelectCannonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSequenceColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
@@ -8331,7 +9163,9 @@ namespace app::rfl {
         static void Finish(ObjSequenceColliderSpawner* pInstance);
         static void Clean(ObjSequenceColliderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSequenceItemSpawner {
         int32_t no;
         bool cyloopDriven;
@@ -8345,11 +9179,13 @@ namespace app::rfl {
         static void Finish(ObjSequenceItemSpawner* pInstance);
         static void Clean(ObjSequenceItemSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSequenceSwitchVolumeSpawner {
         int32_t no;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         bool menuDisabled;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -8359,7 +9195,9 @@ namespace app::rfl {
         static void Finish(ObjSequenceSwitchVolumeSpawner* pInstance);
         static void Clean(ObjSequenceSwitchVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathNodeSpawner {
         enum class LineType : int8_t {
             LINETYPE_SNS = 0,
@@ -8377,7 +9215,9 @@ namespace app::rfl {
         static void Finish(ObjSetPathNodeSpawner* pInstance);
         static void Clean(ObjSetPathNodeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ConnectParameter {
         enum class ConnectType : int8_t {
             CONNECT_SNS = 0,
@@ -8395,7 +9235,9 @@ namespace app::rfl {
         static void Finish(ConnectParameter* pInstance);
         static void Clean(ConnectParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PathParameterCommon {
         enum class PathType : int8_t {
             OBJ_PATH = 0,
@@ -8434,8 +9276,10 @@ namespace app::rfl {
         static void Finish(PathParameterCommon* pInstance);
         static void Clean(PathParameterCommon* pInstance);
     };
+}
 
-    struct PathSetPathParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathSetPathParameter : heur::rfl::PathParameterCommon {
         enum class LineType : int8_t {
             LINETYPE_SNS = 0,
             LINETYPE_STRAIGHT = 1,
@@ -8445,7 +9289,7 @@ namespace app::rfl {
         bool isLoopPath;
         LineType startLineType;
         float divideLength;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8454,9 +9298,11 @@ namespace app::rfl {
         static void Finish(PathSetPathParameter* pInstance);
         static void Clean(PathSetPathParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathSpawner {
-        PathSetPathParameter setParameter;
+        heur::rfl::PathSetPathParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8465,8 +9311,10 @@ namespace app::rfl {
         static void Finish(ObjSetPathSpawner* pInstance);
         static void Clean(ObjSetPathSpawner* pInstance);
     };
+}
 
-    struct PathLoopParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathLoopParameter : heur::rfl::PathParameterCommon {
         enum class EasingPoint : int8_t {
             BothPoint = 0,
             BeginPoint = 1,
@@ -8481,7 +9329,7 @@ namespace app::rfl {
         float outDistance;
         float easingForce;
         EasingPoint easingPoint;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8490,9 +9338,11 @@ namespace app::rfl {
         static void Finish(PathLoopParameter* pInstance);
         static void Clean(PathLoopParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathLoopSpawner {
-        PathLoopParameter setParameter;
+        heur::rfl::PathLoopParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8501,8 +9351,10 @@ namespace app::rfl {
         static void Finish(ObjSetPathLoopSpawner* pInstance);
         static void Clean(ObjSetPathLoopSpawner* pInstance);
     };
+}
 
-    struct PathSpiralParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathSpiralParameter : heur::rfl::PathParameterCommon {
         enum class RotDir : int8_t {
             ROT_DIR_LEFT = 0,
             ROT_DIR_RIGHT = 1,
@@ -8523,7 +9375,7 @@ namespace app::rfl {
         float outDistance;
         float easingForce;
         EasingPoint easingPoint;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8532,9 +9384,11 @@ namespace app::rfl {
         static void Finish(PathSpiralParameter* pInstance);
         static void Clean(PathSpiralParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathSpiralSpawner {
-        PathSpiralParameter setParameter;
+        heur::rfl::PathSpiralParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8543,11 +9397,13 @@ namespace app::rfl {
         static void Finish(ObjSetPathSpiralSpawner* pInstance);
         static void Clean(ObjSetPathSpiralSpawner* pInstance);
     };
+}
 
-    struct PathLineParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathLineParameter : heur::rfl::PathParameterCommon {
         float distance;
         float twistAngle;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8556,9 +9412,11 @@ namespace app::rfl {
         static void Finish(PathLineParameter* pInstance);
         static void Clean(PathLineParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathLineSpawner {
-        PathLineParameter setParameter;
+        heur::rfl::PathLineParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8567,8 +9425,10 @@ namespace app::rfl {
         static void Finish(ObjSetPathLineSpawner* pInstance);
         static void Clean(ObjSetPathLineSpawner* pInstance);
     };
+}
 
-    struct PathCircleParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathCircleParameter : heur::rfl::PathParameterCommon {
         enum class NormalType : int8_t {
             NOR_DEFAULT = 0,
             NOR_OUTSIDE = 1,
@@ -8579,7 +9439,7 @@ namespace app::rfl {
         float radius;
         float divideRate;
         bool isReverse;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8588,9 +9448,11 @@ namespace app::rfl {
         static void Finish(PathCircleParameter* pInstance);
         static void Clean(PathCircleParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathCircleSpawner {
-        PathCircleParameter setParameter;
+        heur::rfl::PathCircleParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8599,8 +9461,10 @@ namespace app::rfl {
         static void Finish(ObjSetPathCircleSpawner* pInstance);
         static void Clean(ObjSetPathCircleSpawner* pInstance);
     };
+}
 
-    struct PathPolygonParameter : PathParameterCommon {
+namespace heur::rfl {
+    struct PathPolygonParameter : heur::rfl::PathParameterCommon {
         enum class PolygonType : int8_t {
             TRIANGLE_PATH = 0,
             SQUARE_PATH = 1,
@@ -8617,7 +9481,7 @@ namespace app::rfl {
         float width;
         float height;
         float offsetHeight;
-        ConnectParameter connectParam;
+        heur::rfl::ConnectParameter connectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8626,9 +9490,11 @@ namespace app::rfl {
         static void Finish(PathPolygonParameter* pInstance);
         static void Clean(PathPolygonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathPolygonSpawner {
-        PathPolygonParameter setParameter;
+        heur::rfl::PathPolygonParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8637,7 +9503,9 @@ namespace app::rfl {
         static void Finish(ObjSetPathPolygonSpawner* pInstance);
         static void Clean(ObjSetPathPolygonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSetPathConnectorSpawner {
         enum class PathType : int8_t {
             OBJ_PATH = 0,
@@ -8659,7 +9527,9 @@ namespace app::rfl {
         static void Finish(ObjSetPathConnectorSpawner* pInstance);
         static void Clean(ObjSetPathConnectorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShotgunTouchManagerSpawner {
         int32_t no;
         float createRadiusMin;
@@ -8675,7 +9545,9 @@ namespace app::rfl {
         static void Finish(ObjShotgunTouchManagerSpawner* pInstance);
         static void Clean(ObjShotgunTouchManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShotgunTouchSwitchSpawner {
         int32_t no;
 
@@ -8686,7 +9558,9 @@ namespace app::rfl {
         static void Finish(ObjShotgunTouchSwitchSpawner* pInstance);
         static void Clean(ObjShotgunTouchSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShutterSpawner {
         int32_t no;
         csl::math::Vector3 shutterSize;
@@ -8702,7 +9576,9 @@ namespace app::rfl {
         static void Finish(ObjShutterSpawner* pInstance);
         static void Clean(ObjShutterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSilverMoonRingSpawner {
         enum class ModelType : int8_t {
             NORMAL = 0,
@@ -8727,7 +9603,9 @@ namespace app::rfl {
         static void Finish(ObjSilverMoonRingSpawner* pInstance);
         static void Clean(ObjSilverMoonRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSlashCommonSpawner {
         enum class ObjType : int8_t {
             BONFIRE = 0,
@@ -8769,10 +9647,12 @@ namespace app::rfl {
         static void Finish(ObjSlashCommonSpawner* pInstance);
         static void Clean(ObjSlashCommonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSliderParamTriggerSpawner {
         float speed;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8781,7 +9661,9 @@ namespace app::rfl {
         static void Finish(ObjSliderParamTriggerSpawner* pInstance);
         static void Clean(ObjSliderParamTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSliderTriggerSpawner {
         enum class ActionType : int8_t {
             ACT_BEGIN = 0,
@@ -8790,7 +9672,7 @@ namespace app::rfl {
 
         ActionType action;
         float speed;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8799,7 +9681,9 @@ namespace app::rfl {
         static void Finish(ObjSliderTriggerSpawner* pInstance);
         static void Clean(ObjSliderTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpinnerISpawner {
         enum class MoveType : int8_t {
             Fix = 0,
@@ -8837,7 +9721,9 @@ namespace app::rfl {
         static void Finish(ObjSpinnerISpawner* pInstance);
         static void Clean(ObjSpinnerISpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpotLightSpawner {
         float colorR;
         float colorG;
@@ -8854,7 +9740,9 @@ namespace app::rfl {
         static void Finish(ObjSpotLightSpawner* pInstance);
         static void Clean(ObjSpotLightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderRollingParam {
         float speed;
         float phase;
@@ -8866,14 +9754,16 @@ namespace app::rfl {
         static void Finish(ObjSpiderRollingParam* pInstance);
         static void Clean(ObjSpiderRollingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpringSpawner {
         enum class Visual : int8_t {
             Normal = 0,
             Sky = 1,
         };
 
-        Visual v;
+        Visual visual;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -8887,8 +9777,8 @@ namespace app::rfl {
         bool airtrick;
         bool isVisible;
         bool isSmooth;
-        ActionNotification actions[3];
-        ObjSpiderRollingParam rollingParam;
+        heur::rfl::ActionNotification actions[3];
+        heur::rfl::ObjSpiderRollingParam rollingParam;
         csl::math::Vector3 offsetCollision;
         csl::math::Vector3 scaleCollision;
         bool isConstrain;
@@ -8900,7 +9790,9 @@ namespace app::rfl {
         static void Finish(ObjSpringSpawner* pInstance);
         static void Clean(ObjSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpringPoleSpawner {
         float speedMin;
         float speedMax;
@@ -8912,7 +9804,9 @@ namespace app::rfl {
         static void Finish(ObjSpringPoleSpawner* pInstance);
         static void Clean(ObjSpringPoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStartPositionSpawner {
         enum class StartType : int8_t {
             STAND = 0,
@@ -8934,7 +9828,9 @@ namespace app::rfl {
         static void Finish(ObjStartPositionSpawner* pInstance);
         static void Clean(ObjStartPositionSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStorageKeySpawner {
         int32_t no;
         bool eventDriven;
@@ -8949,7 +9845,9 @@ namespace app::rfl {
         static void Finish(ObjStorageKeySpawner* pInstance);
         static void Clean(ObjStorageKeySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSwitchVolumeSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -8962,8 +9860,8 @@ namespace app::rfl {
         Condition condition;
         float lifetime;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        ActionNotification actions[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -8972,7 +9870,9 @@ namespace app::rfl {
         static void Finish(ObjSwitchVolumeSpawner* pInstance);
         static void Clean(ObjSwitchVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTerrainBlockSpawner {
         enum class Block : int8_t {
             BLOCK_BOX = 0,
@@ -9034,7 +9934,9 @@ namespace app::rfl {
         static void Finish(ObjTerrainBlockSpawner* pInstance);
         static void Clean(ObjTerrainBlockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Point {
         float z;
         float y;
@@ -9046,7 +9948,9 @@ namespace app::rfl {
         static void Finish(Point* pInstance);
         static void Clean(Point* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTerrainBlocksSpawner {
         enum class Layer : int8_t {
             LAYER_LAND = 0,
@@ -9070,7 +9974,7 @@ namespace app::rfl {
 
         float Width;
         float Height;
-        Point Blocks[30];
+        heur::rfl::Point Blocks[30];
         Layer LayerGroup;
         bool AttrEnableParkour;
         WallType WallLeft;
@@ -9088,7 +9992,9 @@ namespace app::rfl {
         static void Finish(ObjTerrainBlocksSpawner* pInstance);
         static void Clean(ObjTerrainBlocksSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTerrainPathSpawner {
         enum class WallType : int8_t {
             WALL_NONE = 0,
@@ -9121,7 +10027,9 @@ namespace app::rfl {
         static void Finish(ObjTerrainPathSpawner* pInstance);
         static void Clean(ObjTerrainPathSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTerrainPathCylinderSpawner {
         csl::ut::VariableString pathName;
         float radius;
@@ -9135,7 +10043,9 @@ namespace app::rfl {
         static void Finish(ObjTerrainPathCylinderSpawner* pInstance);
         static void Clean(ObjTerrainPathCylinderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornSpawner {
         enum class MoveType : int8_t {
             TYPE_APPEAR = 0,
@@ -9159,7 +10069,9 @@ namespace app::rfl {
         static void Finish(ObjThornSpawner* pInstance);
         static void Clean(ObjThornSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornBallMoveParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -9184,7 +10096,9 @@ namespace app::rfl {
         static void Finish(ObjThornBallMoveParam* pInstance);
         static void Clean(ObjThornBallMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornBallRollingParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -9203,7 +10117,9 @@ namespace app::rfl {
         static void Finish(ObjThornBallRollingParam* pInstance);
         static void Clean(ObjThornBallRollingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornBallSpawner {
         enum class Type : int8_t {
             TYPE_NORMAL = 0,
@@ -9219,8 +10135,8 @@ namespace app::rfl {
         Type type;
         ModelType modelType;
         bool hitEnemy;
-        ObjThornBallMoveParam moveParam;
-        ObjThornBallRollingParam rollingParam;
+        heur::rfl::ObjThornBallMoveParam moveParam;
+        heur::rfl::ObjThornBallRollingParam rollingParam;
         bool eventDriven;
         float collisionRate;
         bool isEnableTimeStop;
@@ -9235,7 +10151,9 @@ namespace app::rfl {
         static void Finish(ObjThornBallSpawner* pInstance);
         static void Clean(ObjThornBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornCylinderSpawner {
         enum class Type : int8_t {
             TYPE_SHORT = 0,
@@ -9254,7 +10172,9 @@ namespace app::rfl {
         static void Finish(ObjThornCylinderSpawner* pInstance);
         static void Clean(ObjThornCylinderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBallSpawner {
         float height;
         bool upd3flag;
@@ -9267,7 +10187,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBallSpawner* pInstance);
         static void Clean(ObjTimeBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBallGeneratorSpawner {
         int32_t no;
 
@@ -9278,7 +10200,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBallGeneratorSpawner* pInstance);
         static void Clean(ObjTimeBallGeneratorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBallGoalSpawner {
         int32_t no;
         float radius;
@@ -9291,7 +10215,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBallGoalSpawner* pInstance);
         static void Clean(ObjTimeBallGoalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBallManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> goals;
@@ -9310,7 +10236,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBallManagerSpawner* pInstance);
         static void Clean(ObjTimeBallManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBombSpawner_ActivationCamera {
         csl::math::Vector3 positionOffset;
         csl::math::Vector3 targetOffset;
@@ -9324,9 +10252,11 @@ namespace app::rfl {
         static void Finish(ObjTimeBombSpawner_ActivationCamera* pInstance);
         static void Clean(ObjTimeBombSpawner_ActivationCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBombSpawner {
-        ObjTimeBombSpawner_ActivationCamera activationCamera;
+        heur::rfl::ObjTimeBombSpawner_ActivationCamera activationCamera;
         bool disableInputInCatching;
         float catchingMoveHeight;
         float limitTime;
@@ -9347,9 +10277,11 @@ namespace app::rfl {
         static void Finish(ObjTimeBombSpawner* pInstance);
         static void Clean(ObjTimeBombSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBombGeneratorSpawner {
-        ObjTimeBombSpawner timeBomb;
+        heur::rfl::ObjTimeBombSpawner timeBomb;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9358,7 +10290,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBombGeneratorSpawner* pInstance);
         static void Clean(ObjTimeBombGeneratorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimerPanelSpawner {
         int32_t no;
         hh::game::ObjectId linkObj;
@@ -9370,7 +10304,9 @@ namespace app::rfl {
         static void Finish(ObjTimerPanelSpawner* pInstance);
         static void Clean(ObjTimerPanelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimerPowerupSeedSpawner {
         enum class SeedType : int8_t {
             POWER = 0,
@@ -9387,7 +10323,9 @@ namespace app::rfl {
         static void Finish(ObjTimerPowerupSeedSpawner* pInstance);
         static void Clean(ObjTimerPowerupSeedSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimerRingSpawner {
         enum class SetType : int8_t {
             EquallySpaced = 0,
@@ -9407,7 +10345,9 @@ namespace app::rfl {
         static void Finish(ObjTimerRingSpawner* pInstance);
         static void Clean(ObjTimerRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimerSwitchSpawner {
         int32_t no;
         float activateTime;
@@ -9424,9 +10364,11 @@ namespace app::rfl {
         static void Finish(ObjTimerSwitchSpawner* pInstance);
         static void Clean(ObjTimerSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeStopVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9435,7 +10377,9 @@ namespace app::rfl {
         static void Finish(ObjTimeStopVolumeSpawner* pInstance);
         static void Clean(ObjTimeStopVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTombStatueSpawner {
         int32_t no;
         bool isLock;
@@ -9447,7 +10391,9 @@ namespace app::rfl {
         static void Finish(ObjTombStatueSpawner* pInstance);
         static void Clean(ObjTombStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTombStoneManagerSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> rotateList;
         hh::game::ObjectId cameraActivator;
@@ -9459,7 +10405,9 @@ namespace app::rfl {
         static void Finish(ObjTombStoneManagerSpawner* pInstance);
         static void Clean(ObjTombStoneManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTowerSpawner {
         int32_t dummy;
 
@@ -9470,7 +10418,9 @@ namespace app::rfl {
         static void Finish(ObjTowerSpawner* pInstance);
         static void Clean(ObjTowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTraceStoneBuilderSpawner {
         csl::math::Vector3 size;
         hh::game::ObjectId controlBoard;
@@ -9482,7 +10432,9 @@ namespace app::rfl {
         static void Finish(ObjTraceStoneBuilderSpawner* pInstance);
         static void Clean(ObjTraceStoneBuilderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTraceStoneBuildSwitchSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> relatedObj;
 
@@ -9493,7 +10445,9 @@ namespace app::rfl {
         static void Finish(ObjTraceStoneBuildSwitchSpawner* pInstance);
         static void Clean(ObjTraceStoneBuildSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTraceStoneControlBoardSpawner {
         int8_t recordNum;
         hh::game::ObjectId boardSwitch;
@@ -9507,7 +10461,9 @@ namespace app::rfl {
         static void Finish(ObjTraceStoneControlBoardSpawner* pInstance);
         static void Clean(ObjTraceStoneControlBoardSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTreasureChestSpawner {
         enum class EventType : int8_t {
             EVENT_NONE = 0,
@@ -9530,7 +10486,9 @@ namespace app::rfl {
         static void Finish(ObjTreasureChestSpawner* pInstance);
         static void Clean(ObjTreasureChestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTutorialWallSpawner {
         csl::math::Vector3 scale;
 
@@ -9541,7 +10499,9 @@ namespace app::rfl {
         static void Finish(ObjTutorialWallSpawner* pInstance);
         static void Clean(ObjTutorialWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTutoIslandVolumeSpawner {
         enum class TutoIsland : uint8_t {
             CAMERA = 0,
@@ -9570,7 +10530,7 @@ namespace app::rfl {
             PHASE_CLEAR = 3,
         };
 
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         TutoIsland islandPhase;
         TutoAction enterAction;
         TutoAction leaveAction;
@@ -9583,7 +10543,9 @@ namespace app::rfl {
         static void Finish(ObjTutoIslandVolumeSpawner* pInstance);
         static void Clean(ObjTutoIslandVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FrontParam {
         float frontOcTime;
         float frontSpeed;
@@ -9596,7 +10558,9 @@ namespace app::rfl {
         static void Finish(FrontParam* pInstance);
         static void Clean(FrontParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BackParam {
         float backOcTime;
         float backSpeed;
@@ -9609,11 +10573,13 @@ namespace app::rfl {
         static void Finish(BackParam* pInstance);
         static void Clean(BackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTwoWayGrindBoosterSpawner {
-        FrontParam frontParam;
-        BackParam backParam;
-        ActionNotification actions[3];
+        heur::rfl::FrontParam frontParam;
+        heur::rfl::BackParam backParam;
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9622,7 +10588,9 @@ namespace app::rfl {
         static void Finish(ObjTwoWayGrindBoosterSpawner* pInstance);
         static void Clean(ObjTwoWayGrindBoosterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUnmovedStatueSpawner {
         int32_t no;
 
@@ -9633,7 +10601,9 @@ namespace app::rfl {
         static void Finish(ObjUnmovedStatueSpawner* pInstance);
         static void Clean(ObjUnmovedStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUnmovedTombStoneSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> targetList;
@@ -9646,9 +10616,11 @@ namespace app::rfl {
         static void Finish(ObjUnmovedTombStoneSpawner* pInstance);
         static void Clean(ObjUnmovedTombStoneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarpObjVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         hh::game::ObjectId target;
         hh::game::ObjectId transformLocator;
         bool is_use_disp;
@@ -9661,7 +10633,9 @@ namespace app::rfl {
         static void Finish(ObjWarpObjVolumeSpawner* pInstance);
         static void Clean(ObjWarpObjVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarpTriggerSpawner {
         enum class StatusType : int8_t {
             RESET = 0,
@@ -9670,7 +10644,7 @@ namespace app::rfl {
 
         hh::game::ObjectId warpPoint;
         StatusType status;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9679,9 +10653,11 @@ namespace app::rfl {
         static void Finish(ObjWarpTriggerSpawner* pInstance);
         static void Clean(ObjWarpTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WaterFallVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9690,9 +10666,11 @@ namespace app::rfl {
         static void Finish(WaterFallVolumeSpawner* pInstance);
         static void Clean(WaterFallVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaterVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9701,7 +10679,9 @@ namespace app::rfl {
         static void Finish(ObjWaterVolumeSpawner* pInstance);
         static void Clean(ObjWaterVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaveCannonBoxSpawner {
         enum class BoxSize : int8_t {
             SIZE_S = 0,
@@ -9719,7 +10699,9 @@ namespace app::rfl {
         static void Finish(ObjWaveCannonBoxSpawner* pInstance);
         static void Clean(ObjWaveCannonBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaveCannonWallSpawner {
         enum class WallSize : int8_t {
             SIZE_S = 0,
@@ -9737,7 +10719,9 @@ namespace app::rfl {
         static void Finish(ObjWaveCannonWallSpawner* pInstance);
         static void Clean(ObjWaveCannonWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWeightSpawner {
         float scale;
         float offsetY;
@@ -9749,7 +10733,9 @@ namespace app::rfl {
         static void Finish(ObjWeightSpawner* pInstance);
         static void Clean(ObjWeightSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWeightSwitchSpawner {
         enum class TurnOnType : int8_t {
             TYPE_WEIGHT = 0,
@@ -9768,7 +10754,7 @@ namespace app::rfl {
         float activateTime;
         float cyHammerTime;
         bool isConstrain;
-        ActionNotification actions[5];
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9777,7 +10763,9 @@ namespace app::rfl {
         static void Finish(ObjWeightSwitchSpawner* pInstance);
         static void Clean(ObjWeightSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWhirlpoolDrainageSpawner {
         float waterColliderRadius;
 
@@ -9788,12 +10776,14 @@ namespace app::rfl {
         static void Finish(ObjWhirlpoolDrainageSpawner* pInstance);
         static void Clean(ObjWhirlpoolDrainageSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWideSpringSpawner {
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9802,7 +10792,9 @@ namespace app::rfl {
         static void Finish(ObjWideSpringSpawner* pInstance);
         static void Clean(ObjWideSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWoodBoxSpawner {
         float offsetY;
 
@@ -9813,7 +10805,9 @@ namespace app::rfl {
         static void Finish(ObjWoodBoxSpawner* pInstance);
         static void Clean(ObjWoodBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAnimalSpawner {
         enum class ModelType : int8_t {
             Pocky = 0,
@@ -9840,7 +10834,9 @@ namespace app::rfl {
         static void Finish(ObjAnimalSpawner* pInstance);
         static void Clean(ObjAnimalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAnimalRescueAreaSpawner {
         float scale;
 
@@ -9851,7 +10847,9 @@ namespace app::rfl {
         static void Finish(ObjAnimalRescueAreaSpawner* pInstance);
         static void Clean(ObjAnimalRescueAreaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAppearBoxSpawner {
         bool eventDriven;
         uint32_t blockNum;
@@ -9863,7 +10861,9 @@ namespace app::rfl {
         static void Finish(ObjAppearBoxSpawner* pInstance);
         static void Clean(ObjAppearBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBalloonSpawner {
         enum class Color : int8_t {
             COLOR_W9 = 0,
@@ -9892,7 +10892,7 @@ namespace app::rfl {
         bool isGroupSet;
         bool eventDriven;
         bool isHorming;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -9901,7 +10901,9 @@ namespace app::rfl {
         static void Finish(ObjBalloonSpawner* pInstance);
         static void Clean(ObjBalloonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBoardingJumpBoardSpawner {
         enum class SizeType : int8_t {
             SIZE_S = 0,
@@ -9942,7 +10944,7 @@ namespace app::rfl {
         float outOfControl;
         float motionTime;
         SizeType size;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
         Trick useTrick;
         MoveType moveType;
         PatrolType patrolType;
@@ -9967,7 +10969,9 @@ namespace app::rfl {
         static void Finish(ObjBoardingJumpBoardSpawner* pInstance);
         static void Clean(ObjBoardingJumpBoardSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakCliffSpawner {
         enum class TerminusType : int8_t {
             NONE = 0,
@@ -9992,7 +10996,9 @@ namespace app::rfl {
         static void Finish(ObjBreakCliffSpawner* pInstance);
         static void Clean(ObjBreakCliffSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCannonSpawner {
         enum class ModelType : int8_t {
             FV = 0,
@@ -10016,7 +11022,7 @@ namespace app::rfl {
         float keepVelocity;
         bool isAutoShot;
         bool isMovableBarrel;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10025,7 +11031,9 @@ namespace app::rfl {
         static void Finish(ObjCannonSpawner* pInstance);
         static void Clean(ObjCannonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCarSpawner {
         enum class ActionType : int8_t {
             RUN = 0,
@@ -10069,7 +11077,7 @@ namespace app::rfl {
         CarType carType;
         uint32_t color;
         float addTime;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
         MoveType moveType;
         PatrolType patrolType;
         TimeType timeType;
@@ -10093,7 +11101,9 @@ namespace app::rfl {
         static void Finish(ObjCarSpawner* pInstance);
         static void Clean(ObjCarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCarrierCarSpawner {
         enum class SizeType : int8_t {
             SIZE_S = 0,
@@ -10125,7 +11135,7 @@ namespace app::rfl {
         bool posConst;
         bool veloConst;
         SizeType size;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
         bool isUsingButtonAction;
         float addTime;
         MoveType moveType;
@@ -10150,7 +11160,9 @@ namespace app::rfl {
         static void Finish(ObjCarrierCarSpawner* pInstance);
         static void Clean(ObjCarrierCarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChangeSwitchSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -10163,8 +11175,8 @@ namespace app::rfl {
         Condition condition;
         float lifetime;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        ActionNotification actions[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10173,7 +11185,9 @@ namespace app::rfl {
         static void Finish(ObjChangeSwitchSpawner* pInstance);
         static void Clean(ObjChangeSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCloudFloorSpawner {
         enum class Visual : int8_t {
             Cloud2m = 0,
@@ -10188,7 +11202,7 @@ namespace app::rfl {
             NumActionsOnEvent = 2,
         };
 
-        Visual v;
+        Visual visual;
         bool eventDriven;
         ActionOnEvent actionOnEvent;
         float timeTilDisappear;
@@ -10201,7 +11215,9 @@ namespace app::rfl {
         static void Finish(ObjCloudFloorSpawner* pInstance);
         static void Clean(ObjCloudFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FigureEightMove {
         float rotateMaxspeed;
         float rotateMinSpeed;
@@ -10217,7 +11233,9 @@ namespace app::rfl {
         static void Finish(FigureEightMove* pInstance);
         static void Clean(FigureEightMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CircleMove {
         float rotateMaxspeed;
         float rotateMinSpeed;
@@ -10236,7 +11254,9 @@ namespace app::rfl {
         static void Finish(CircleMove* pInstance);
         static void Clean(CircleMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BulletParameter {
         float bulletSpeed;
         float bulletWaitTime;
@@ -10252,7 +11272,9 @@ namespace app::rfl {
         static void Finish(BulletParameter* pInstance);
         static void Clean(BulletParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DashRingParameter {
         bool UseDashRing;
         float OutOfControl;
@@ -10269,7 +11291,9 @@ namespace app::rfl {
         static void Finish(DashRingParameter* pInstance);
         static void Clean(DashRingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ConeCollision {
         float angle;
         float nearClip;
@@ -10283,18 +11307,20 @@ namespace app::rfl {
         static void Finish(ConeCollision* pInstance);
         static void Clean(ConeCollision* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDivingAirPlaneSpawner {
         bool isEventDriven;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         float startStayTime;
         float lowDafaultPlayerSpeed;
         float lowFastPlayerSpeed;
         float highDafaultPlayerSpeed;
         float highFastPlayerSpeed;
         float verticalSpeed;
-        FigureEightMove figureEightMove;
-        CircleMove circleMove;
+        heur::rfl::FigureEightMove figureEightMove;
+        heur::rfl::CircleMove circleMove;
         float stayTime;
         float homingDistOffset;
         float setupWeaponTime;
@@ -10309,15 +11335,15 @@ namespace app::rfl {
         float gameoverPlayerPos;
         csl::math::Vector3 firstNozzle;
         csl::math::Vector3 secondNozzle;
-        BulletParameter mainPattern;
-        BulletParameter subPattern;
-        DashRingParameter dishRingParam;
+        heur::rfl::BulletParameter mainPattern;
+        heur::rfl::BulletParameter subPattern;
+        heur::rfl::DashRingParameter dishRingParam;
         csl::math::Vector3 scale;
         bool visiableCollision;
         bool visiableWeaponDebug;
-        ConeCollision lowSlipCol;
-        ConeCollision highSlipCol;
-        ConeCollision weaponCol;
+        heur::rfl::ConeCollision lowSlipCol;
+        heur::rfl::ConeCollision highSlipCol;
+        heur::rfl::ConeCollision weaponCol;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10326,7 +11352,9 @@ namespace app::rfl {
         static void Finish(ObjDivingAirPlaneSpawner* pInstance);
         static void Clean(ObjDivingAirPlaneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDownReelSpawner {
         uint32_t standLegNum;
         uint32_t standStickNum;
@@ -10340,7 +11368,7 @@ namespace app::rfl {
         bool isExtendOver;
         bool isOneTimeUp;
         bool eventDriven;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10349,9 +11377,11 @@ namespace app::rfl {
         static void Finish(ObjDownReelSpawner* pInstance);
         static void Clean(ObjDownReelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDriftEndVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10360,10 +11390,12 @@ namespace app::rfl {
         static void Finish(ObjDriftEndVolumeSpawner* pInstance);
         static void Clean(ObjDriftEndVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDriftPanelSpawner {
         float speed;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10372,7 +11404,9 @@ namespace app::rfl {
         static void Finish(ObjDriftPanelSpawner* pInstance);
         static void Clean(ObjDriftPanelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDropBridgeSpawner {
         bool isEventOn;
         float dropWaitTime;
@@ -10385,8 +11419,10 @@ namespace app::rfl {
         static void Finish(ObjDropBridgeSpawner* pInstance);
         static void Clean(ObjDropBridgeSpawner* pInstance);
     };
+}
 
-    struct ObjDropBridgeSVSpawner : ObjDropBridgeSpawner {
+namespace heur::rfl {
+    struct ObjDropBridgeSVSpawner : heur::rfl::ObjDropBridgeSpawner {
         enum class ModelType : int8_t {
             TYPE_A = 0,
             TYPE_B = 1,
@@ -10403,7 +11439,9 @@ namespace app::rfl {
         static void Finish(ObjDropBridgeSVSpawner* pInstance);
         static void Clean(ObjDropBridgeSVSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDropFloorSpawner {
         int32_t blockNum;
 
@@ -10414,7 +11452,9 @@ namespace app::rfl {
         static void Finish(ObjDropFloorSpawner* pInstance);
         static void Clean(ObjDropFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDropTowerSpawner {
         enum class PiecesType : int8_t {
             TYPE_A = 0,
@@ -10434,7 +11474,9 @@ namespace app::rfl {
         static void Finish(ObjDropTowerSpawner* pInstance);
         static void Clean(ObjDropTowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGoalTriggerSpawner {
         enum class GoalActionType : int8_t {
             GOALACTIONTYPE_STOP = 0,
@@ -10444,7 +11486,7 @@ namespace app::rfl {
 
         float goalTime;
         GoalActionType actionType;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10453,7 +11495,9 @@ namespace app::rfl {
         static void Finish(ObjGoalTriggerSpawner* pInstance);
         static void Clean(ObjGoalTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrindThornSpawner {
         bool reverse;
 
@@ -10464,7 +11508,9 @@ namespace app::rfl {
         static void Finish(ObjGrindThornSpawner* pInstance);
         static void Clean(ObjGrindThornSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GunTruckAppear {
         bool bySwitch;
 
@@ -10475,7 +11521,9 @@ namespace app::rfl {
         static void Finish(GunTruckAppear* pInstance);
         static void Clean(GunTruckAppear* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GunTruckMove {
         enum class MoveType : uint8_t {
             Fixed = 0,
@@ -10495,7 +11543,9 @@ namespace app::rfl {
         static void Finish(GunTruckMove* pInstance);
         static void Clean(GunTruckMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GunTruckAttack {
         bool changeParam;
         float shotStartAngle;
@@ -10510,7 +11560,9 @@ namespace app::rfl {
         static void Finish(GunTruckAttack* pInstance);
         static void Clean(GunTruckAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GunTruckDie {
         enum class DieType : uint8_t {
             Distance = 0,
@@ -10529,12 +11581,14 @@ namespace app::rfl {
         static void Finish(GunTruckDie* pInstance);
         static void Clean(GunTruckDie* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGunTruckSpawner {
-        GunTruckAppear appear;
-        GunTruckMove move;
-        GunTruckAttack attack[3];
-        GunTruckDie die;
+        heur::rfl::GunTruckAppear appear;
+        heur::rfl::GunTruckMove move;
+        heur::rfl::GunTruckAttack attack[3];
+        heur::rfl::GunTruckDie die;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10543,7 +11597,9 @@ namespace app::rfl {
         static void Finish(ObjGunTruckSpawner* pInstance);
         static void Clean(ObjGunTruckSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHanggliderSpawner {
         enum class MoveType : int8_t {
             MOVE_POINT = 0,
@@ -10556,7 +11612,7 @@ namespace app::rfl {
         csl::ut::VariableString pathName;
         float finishDist;
         float moveSpeed;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10565,7 +11621,9 @@ namespace app::rfl {
         static void Finish(ObjHanggliderSpawner* pInstance);
         static void Clean(ObjHanggliderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HelicopterMoveParam {
         enum class MoveType : int8_t {
             MOVE_POINT = 0,
@@ -10587,18 +11645,20 @@ namespace app::rfl {
         static void Finish(HelicopterMoveParam* pInstance);
         static void Clean(HelicopterMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHelicopterCarrySpawner {
         enum class CatchType : int8_t {
             RIGHT = 0,
             LEFT = 1,
         };
 
-        HelicopterMoveParam firstMove;
-        HelicopterMoveParam secondMove;
+        heur::rfl::HelicopterMoveParam firstMove;
+        heur::rfl::HelicopterMoveParam secondMove;
         CatchType catchType;
         bool eventDriven;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10607,7 +11667,9 @@ namespace app::rfl {
         static void Finish(ObjHelicopterCarrySpawner* pInstance);
         static void Clean(ObjHelicopterCarrySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ShotInfo {
         float distance;
         float height;
@@ -10625,12 +11687,14 @@ namespace app::rfl {
         static void Finish(ShotInfo* pInstance);
         static void Clean(ShotInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjJumpPanelClassicSpawner {
-        ShotInfo lowShot;
-        ShotInfo highShot;
+        heur::rfl::ShotInfo lowShot;
+        heur::rfl::ShotInfo highShot;
         float directionMoveSpeed;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10639,7 +11703,9 @@ namespace app::rfl {
         static void Finish(ObjJumpPanelClassicSpawner* pInstance);
         static void Clean(ObjJumpPanelClassicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JumpSelectorLaunch {
         float firstSpeed;
         float outOfControl;
@@ -10652,7 +11718,9 @@ namespace app::rfl {
         static void Finish(JumpSelectorLaunch* pInstance);
         static void Clean(JumpSelectorLaunch* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjJumpSelectorSpawner {
         enum class JumpSelectorType : uint8_t {
             JUMP = 0,
@@ -10662,8 +11730,8 @@ namespace app::rfl {
 
         JumpSelectorType type;
         float inputTime;
-        JumpSelectorLaunch launchJump;
-        JumpSelectorLaunch launchAttack;
+        heur::rfl::JumpSelectorLaunch launchJump;
+        heur::rfl::JumpSelectorLaunch launchAttack;
         float outOfControlMiss;
         float collisionRadius;
         bool reusable;
@@ -10675,7 +11743,9 @@ namespace app::rfl {
         static void Finish(ObjJumpSelectorSpawner* pInstance);
         static void Clean(ObjJumpSelectorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLaserFenceSpawner {
         enum class ActionType : int8_t {
             ACT_LOOP = 0,
@@ -10705,7 +11775,9 @@ namespace app::rfl {
         static void Finish(ObjLaserFenceSpawner* pInstance);
         static void Clean(ObjLaserFenceSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLineEffectGeneratorSpawner {
         bool bySwitch;
         csl::math::Vector3 appearRange;
@@ -10721,7 +11793,9 @@ namespace app::rfl {
         static void Finish(ObjLineEffectGeneratorSpawner* pInstance);
         static void Clean(ObjLineEffectGeneratorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNitroBottleSpawner {
         float respawnTime;
         bool canAirBoost;
@@ -10733,7 +11807,9 @@ namespace app::rfl {
         static void Finish(ObjNitroBottleSpawner* pInstance);
         static void Clean(ObjNitroBottleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNormalFloorSpawner {
         enum class SizeType : int8_t {
             SIZE_A = 0,
@@ -10791,8 +11867,10 @@ namespace app::rfl {
         static void Finish(ObjNormalFloorSpawner* pInstance);
         static void Clean(ObjNormalFloorSpawner* pInstance);
     };
+}
 
-    struct ObjThroughFloorSpawner : ObjNormalFloorSpawner {
+namespace heur::rfl {
+    struct ObjThroughFloorSpawner : heur::rfl::ObjNormalFloorSpawner {
         enum class Visual : int8_t {
             Floor2m = 0,
             Floor3m = 1,
@@ -10801,7 +11879,7 @@ namespace app::rfl {
             NumVisuals = 4,
         };
 
-        Visual v;
+        Visual visual;
         bool canGoThrough;
         bool doesRespawn;
         float respawnTime;
@@ -10814,7 +11892,9 @@ namespace app::rfl {
         static void Finish(ObjThroughFloorSpawner* pInstance);
         static void Clean(ObjThroughFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNormalFloorLSpawner {
         enum class SizeType : int8_t {
             SizeType_5x15 = 0,
@@ -10833,7 +11913,9 @@ namespace app::rfl {
         static void Finish(ObjNormalFloorLSpawner* pInstance);
         static void Clean(ObjNormalFloorLSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNumberRingSpawner {
         enum class NoType : int8_t {
             No1 = 0,
@@ -10860,7 +11942,9 @@ namespace app::rfl {
         static void Finish(ObjNumberRingSpawner* pInstance);
         static void Clean(ObjNumberRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOperationGuideVolumeSpawner {
         enum class GuideType : int32_t {
             SideStep = 0,
@@ -10870,7 +11954,7 @@ namespace app::rfl {
         };
 
         float lifetime;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         GuideType guideType;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -10880,7 +11964,9 @@ namespace app::rfl {
         static void Finish(ObjOperationGuideVolumeSpawner* pInstance);
         static void Clean(ObjOperationGuideVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPipeCapSpawner {
         hh::game::ObjectId springId;
         csl::ut::VariableString pathName;
@@ -10898,7 +11984,9 @@ namespace app::rfl {
         static void Finish(ObjPipeCapSpawner* pInstance);
         static void Clean(ObjPipeCapSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPipeSpringSpawner {
         float velocitySpring;
         float outOfControlSpring;
@@ -10917,7 +12005,9 @@ namespace app::rfl {
         static void Finish(ObjPipeSpringSpawner* pInstance);
         static void Clean(ObjPipeSpringSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPoleSpawner {
         enum class Type : int8_t {
             FV = 0,
@@ -10935,7 +12025,7 @@ namespace app::rfl {
         csl::math::Vector3 successShotVelocity;
         csl::math::Vector3 failShotVelocity;
         float outOfControlTime;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10944,7 +12034,9 @@ namespace app::rfl {
         static void Finish(ObjPoleSpawner* pInstance);
         static void Clean(ObjPoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPurpleRockSpawner {
         enum class ViewType : int8_t {
             SV = 0,
@@ -10961,7 +12053,9 @@ namespace app::rfl {
         static void Finish(ObjPurpleRockSpawner* pInstance);
         static void Clean(ObjPurpleRockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPushBlockSpawner {
         csl::math::Vector3 size;
 
@@ -10972,10 +12066,12 @@ namespace app::rfl {
         static void Finish(ObjPushBlockSpawner* pInstance);
         static void Clean(ObjPushBlockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRingGeneratorSpawner {
         float interval;
-        PathMovement pathMovement;
+        heur::rfl::PathMovement pathMovement;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -10984,7 +12080,9 @@ namespace app::rfl {
         static void Finish(ObjRingGeneratorSpawner* pInstance);
         static void Clean(ObjRingGeneratorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRollingFloorSpawner {
         enum class ViewType : int8_t {
             SV = 0,
@@ -11028,7 +12126,9 @@ namespace app::rfl {
         static void Finish(ObjRollingFloorSpawner* pInstance);
         static void Clean(ObjRollingFloorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RotateBlockJumpParam {
         bool isEnable;
         bool isSpin;
@@ -11043,7 +12143,9 @@ namespace app::rfl {
         static void Finish(RotateBlockJumpParam* pInstance);
         static void Clean(RotateBlockJumpParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotateBlockSpawner {
         enum class BasePointType : int8_t {
             Center = 0,
@@ -11096,7 +12198,7 @@ namespace app::rfl {
         bool eventDriven;
         bool rideOnDriven;
         PressType pressType;
-        RotateBlockJumpParam jumpParam;
+        heur::rfl::RotateBlockJumpParam jumpParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11105,7 +12207,9 @@ namespace app::rfl {
         static void Finish(ObjRotateBlockSpawner* pInstance);
         static void Clean(ObjRotateBlockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotateThornBallAxisParam {
         float radius;
         uint32_t ballNum;
@@ -11118,7 +12222,9 @@ namespace app::rfl {
         static void Finish(ObjRotateThornBallAxisParam* pInstance);
         static void Clean(ObjRotateThornBallAxisParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotateThornBallSpawner {
         enum class RotateType : int8_t {
             TYPE_RIGHT = 0,
@@ -11149,7 +12255,7 @@ namespace app::rfl {
         bool eventDriven;
         bool showCenterObj;
         uint32_t axisNum;
-        ObjRotateThornBallAxisParam axisParam[4];
+        heur::rfl::ObjRotateThornBallAxisParam axisParam[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11158,7 +12264,9 @@ namespace app::rfl {
         static void Finish(ObjRotateThornBallSpawner* pInstance);
         static void Clean(ObjRotateThornBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShadowTailsSpawner {
         int32_t no;
         csl::ut::VariableString pathName;
@@ -11173,7 +12281,9 @@ namespace app::rfl {
         static void Finish(ObjShadowTailsSpawner* pInstance);
         static void Clean(ObjShadowTailsSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShadowTailsPlayerCompareSpawner {
         csl::ut::VariableString playerPathNames[4];
 
@@ -11184,7 +12294,9 @@ namespace app::rfl {
         static void Finish(ObjShadowTailsPlayerCompareSpawner* pInstance);
         static void Clean(ObjShadowTailsPlayerCompareSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSideReelSpawner {
         bool visiableLegModel;
         uint32_t standLegNum;
@@ -11195,7 +12307,7 @@ namespace app::rfl {
         float outOfControl;
         bool isOneTimeUp;
         bool eventDriven;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11204,10 +12316,12 @@ namespace app::rfl {
         static void Finish(ObjSideReelSpawner* pInstance);
         static void Clean(ObjSideReelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSideViewPathVolumeSpawner {
         csl::ut::VariableString pathName;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11216,21 +12330,23 @@ namespace app::rfl {
         static void Finish(ObjSideViewPathVolumeSpawner* pInstance);
         static void Clean(ObjSideViewPathVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpringBoardSpawner {
         enum class Visual : int8_t {
             Normal = 0,
             Sky = 1,
         };
 
-        Visual v;
+        Visual visual;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
         bool isEventOn;
         bool isHorizon;
         bool isVisible;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11239,14 +12355,16 @@ namespace app::rfl {
         static void Finish(ObjSpringBoardSpawner* pInstance);
         static void Clean(ObjSpringBoardSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpringClassicSpawner {
         enum class Visual : int8_t {
             Red = 0,
             Yellow = 1,
         };
 
-        Visual v;
+        Visual visual;
         float firstSpeed;
         float outOfControl;
         float keepVelocityDistance;
@@ -11254,7 +12372,7 @@ namespace app::rfl {
         bool isEventOn;
         bool isHorizon;
         bool isVisible;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11263,7 +12381,9 @@ namespace app::rfl {
         static void Finish(ObjSpringClassicSpawner* pInstance);
         static void Clean(ObjSpringClassicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStopWatchSpawner {
         float extendTime;
         float collisionRadius;
@@ -11275,7 +12395,9 @@ namespace app::rfl {
         static void Finish(ObjStopWatchSpawner* pInstance);
         static void Clean(ObjStopWatchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SwingReelImpulse {
         float addSpeed;
         float outOfControl;
@@ -11288,7 +12410,9 @@ namespace app::rfl {
         static void Finish(SwingReelImpulse* pInstance);
         static void Clean(SwingReelImpulse* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SwingReelPath {
         hh::game::ObjectId targetObj;
         csl::math::Vector3 targetOffset;
@@ -11305,7 +12429,9 @@ namespace app::rfl {
         static void Finish(SwingReelPath* pInstance);
         static void Clean(SwingReelPath* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SwingReelVertical {
         float moveRange;
         float launchAngleSum;
@@ -11318,7 +12444,9 @@ namespace app::rfl {
         static void Finish(SwingReelVertical* pInstance);
         static void Clean(SwingReelVertical* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SwingReelHorizontal {
         enum class RotateDirection : int8_t {
             Left = 0,
@@ -11338,7 +12466,9 @@ namespace app::rfl {
         static void Finish(SwingReelHorizontal* pInstance);
         static void Clean(SwingReelHorizontal* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSwingReelSpawner {
         enum class SwingReelType : int8_t {
             TypeVertical = 0,
@@ -11349,11 +12479,11 @@ namespace app::rfl {
         float ropeLength;
         bool eventDriven;
         float handleDownTime;
-        SwingReelImpulse impulseParam;
-        SwingReelPath pathParam;
-        SwingReelVertical vertParam;
-        SwingReelHorizontal horzParam;
-        ActionNotification actions[3];
+        heur::rfl::SwingReelImpulse impulseParam;
+        heur::rfl::SwingReelPath pathParam;
+        heur::rfl::SwingReelVertical vertParam;
+        heur::rfl::SwingReelHorizontal horzParam;
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11362,7 +12492,9 @@ namespace app::rfl {
         static void Finish(ObjSwingReelSpawner* pInstance);
         static void Clean(ObjSwingReelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSwitchUsualSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -11375,7 +12507,7 @@ namespace app::rfl {
         bool usedRigidCol;
         bool eventDriven;
         bool isConstrain;
-        ActionNotification actions[5];
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11384,7 +12516,9 @@ namespace app::rfl {
         static void Finish(ObjSwitchUsualSpawner* pInstance);
         static void Clean(ObjSwitchUsualSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeStartVolumeSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -11397,8 +12531,8 @@ namespace app::rfl {
         Condition condition;
         float lifetime;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        ActionNotification actions[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11407,7 +12541,9 @@ namespace app::rfl {
         static void Finish(ObjTimeStartVolumeSpawner* pInstance);
         static void Clean(ObjTimeStartVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeStopWatchVolumeSpawner {
         enum class Condition : int8_t {
             COND_ON_TRIGGER = 0,
@@ -11420,8 +12556,8 @@ namespace app::rfl {
         Condition condition;
         float lifetime;
         bool eventDriven;
-        VolumeTriggerSpawner volume;
-        ActionNotification actions[5];
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::ActionNotification actions[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11430,7 +12566,9 @@ namespace app::rfl {
         static void Finish(ObjTimeStopWatchVolumeSpawner* pInstance);
         static void Clean(ObjTimeStopWatchVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ShotParam {
         float firstSpeed;
         float outOfControl;
@@ -11443,12 +12581,14 @@ namespace app::rfl {
         static void Finish(ShotParam* pInstance);
         static void Clean(ShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTrampolineSpawner {
         float autoJumpTime;
-        ShotParam lowShot;
-        ShotParam middleShot;
-        ShotParam highShot;
+        heur::rfl::ShotParam lowShot;
+        heur::rfl::ShotParam middleShot;
+        heur::rfl::ShotParam highShot;
         float size;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -11458,7 +12598,9 @@ namespace app::rfl {
         static void Finish(ObjTrampolineSpawner* pInstance);
         static void Clean(ObjTrampolineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTrapBallSpawner {
         enum class MoveType : int8_t {
             Straight = 0,
@@ -11499,7 +12641,9 @@ namespace app::rfl {
         static void Finish(ObjTrapBallSpawner* pInstance);
         static void Clean(ObjTrapBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUpDownPoleSpawner {
         int32_t barLengthNum;
         float speed;
@@ -11514,7 +12658,9 @@ namespace app::rfl {
         static void Finish(ObjUpDownPoleSpawner* pInstance);
         static void Clean(ObjUpDownPoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUpDownPolePillarSpawner {
         enum class BaseType : int8_t {
             Grond = 0,
@@ -11531,7 +12677,9 @@ namespace app::rfl {
         static void Finish(ObjUpDownPolePillarSpawner* pInstance);
         static void Clean(ObjUpDownPolePillarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUpReelSpawner {
         float length;
         float upSpeedMax;
@@ -11539,7 +12687,7 @@ namespace app::rfl {
         float outOfControl;
         bool isOneTimeUp;
         bool eventDriven;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11548,7 +12696,9 @@ namespace app::rfl {
         static void Finish(ObjUpReelSpawner* pInstance);
         static void Clean(ObjUpReelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWallJumpBlockSpawner {
         float width;
         float height;
@@ -11560,7 +12710,9 @@ namespace app::rfl {
         static void Finish(ObjWallJumpBlockSpawner* pInstance);
         static void Clean(ObjWallJumpBlockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarpStoneSpawner {
         enum class Visual : int8_t {
             SV = 0,
@@ -11568,7 +12720,7 @@ namespace app::rfl {
             NumVisuals = 2,
         };
 
-        Visual v;
+        Visual visual;
         float distance;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -11578,7 +12730,9 @@ namespace app::rfl {
         static void Finish(ObjWarpStoneSpawner* pInstance);
         static void Clean(ObjWarpStoneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarpStoneEndSpawner {
         enum class Visual : int8_t {
             SV = 0,
@@ -11586,7 +12740,7 @@ namespace app::rfl {
             NumVisuals = 2,
         };
 
-        Visual v;
+        Visual visual;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11595,7 +12749,9 @@ namespace app::rfl {
         static void Finish(ObjWarpStoneEndSpawner* pInstance);
         static void Clean(ObjWarpStoneEndSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWoodBridgeSpawner {
         enum class ViewType : int8_t {
             FV = 0,
@@ -11613,8 +12769,10 @@ namespace app::rfl {
         static void Finish(ObjWoodBridgeSpawner* pInstance);
         static void Clean(ObjWoodBridgeSpawner* pInstance);
     };
+}
 
-    struct ObjWoodBridgeBreakSpawner : ObjWoodBridgeSpawner {
+namespace heur::rfl {
+    struct ObjWoodBridgeBreakSpawner : heur::rfl::ObjWoodBridgeSpawner {
         float shakeWaitTime;
         float shakeTime;
 
@@ -11625,7 +12783,9 @@ namespace app::rfl {
         static void Finish(ObjWoodBridgeBreakSpawner* pInstance);
         static void Clean(ObjWoodBridgeBreakSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWoodSwingSpawner {
         enum class SizeType : int8_t {
             SIZE_3m = 0,
@@ -11657,7 +12817,9 @@ namespace app::rfl {
         static void Finish(ObjWoodSwingSpawner* pInstance);
         static void Clean(ObjWoodSwingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWoodTunnelSpawner {
         enum class Type : int8_t {
             SMALL = 0,
@@ -11674,7 +12836,9 @@ namespace app::rfl {
         static void Finish(ObjWoodTunnelSpawner* pInstance);
         static void Clean(ObjWoodTunnelSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyPracticeNotifierConfig {
         bool usePracticeNotifier;
         int8_t practiceNo;
@@ -11687,7 +12851,9 @@ namespace app::rfl {
         static void Finish(EnemyPracticeNotifierConfig* pInstance);
         static void Clean(EnemyPracticeNotifierConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballSpawner {
         int32_t no;
         uint32_t level;
@@ -11697,7 +12863,7 @@ namespace app::rfl {
         csl::ut::VariableString movePathName;
         float captureLimitTimeOffset;
         float moveSpeedOffset;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11706,7 +12872,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballSpawner* pInstance);
         static void Clean(EnemyAquaballSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBatabataSpawner {
         enum class ViewType : int8_t {
             FV = 0,
@@ -11731,7 +12899,9 @@ namespace app::rfl {
         static void Finish(EnemyBatabataSpawner* pInstance);
         static void Clean(EnemyBatabataSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BeetonMoveParam {
         enum class BeetonMoveType : int8_t {
             FIXED = 0,
@@ -11751,7 +12921,9 @@ namespace app::rfl {
         static void Finish(BeetonMoveParam* pInstance);
         static void Clean(BeetonMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BeetonAttackParam {
         bool isAttack;
         float bulletSpeed;
@@ -11766,13 +12938,15 @@ namespace app::rfl {
         static void Finish(BeetonAttackParam* pInstance);
         static void Clean(BeetonAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBeetonSpawner {
         bool isFV;
         bool doesRespawn;
         float respawnTime;
-        BeetonMoveParam moveParam;
-        BeetonAttackParam attackParam;
+        heur::rfl::BeetonMoveParam moveParam;
+        heur::rfl::BeetonAttackParam attackParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11781,14 +12955,16 @@ namespace app::rfl {
         static void Finish(EnemyBeetonSpawner* pInstance);
         static void Clean(EnemyBeetonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdSpawner {
         int32_t no;
         uint32_t level;
         csl::ut::VariableString pathName;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11797,7 +12973,9 @@ namespace app::rfl {
         static void Finish(EnemyBirdSpawner* pInstance);
         static void Clean(EnemyBirdSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBirdLaserSpawner {
         int8_t dummy;
 
@@ -11808,7 +12986,9 @@ namespace app::rfl {
         static void Finish(ObjBirdLaserSpawner* pInstance);
         static void Clean(ObjBirdLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SonicSetParam {
         bool isSonicSet;
         float searchRadiusOffset;
@@ -11824,15 +13004,17 @@ namespace app::rfl {
         static void Finish(SonicSetParam* pInstance);
         static void Clean(SonicSetParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerSpawner {
         int32_t no;
         int32_t level;
         hh::game::ObjectId territoryId;
         bool respawnableByMeteorShower;
         bool appearEffectEnabled;
-        SonicSetParam sonicSetParam;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::SonicSetParam sonicSetParam;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11841,7 +13023,9 @@ namespace app::rfl {
         static void Finish(EnemyBommerSpawner* pInstance);
         static void Clean(EnemyBommerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleSpawner {
         int32_t no;
         uint32_t level;
@@ -11849,7 +13033,7 @@ namespace app::rfl {
         bool isSonicSet;
         float eyesightDistance;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -11858,7 +13042,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleSpawner* pInstance);
         static void Clean(EnemyBubbleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenderSpawner {
         int32_t no;
         int32_t level;
@@ -11867,7 +13053,7 @@ namespace app::rfl {
         float guardDistance;
         float boomerangDistance;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool isTrial;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -11877,7 +13063,9 @@ namespace app::rfl {
         static void Finish(EnemyDefenderSpawner* pInstance);
         static void Clean(EnemyDefenderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboAppearParam {
         enum class AppearType : int8_t {
             Fix = 0,
@@ -11938,7 +13126,9 @@ namespace app::rfl {
         static void Finish(EggRoboAppearParam* pInstance);
         static void Clean(EggRoboAppearParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboSearchParam {
         enum class MoveType : int8_t {
             Fixed = 0,
@@ -12002,7 +13192,9 @@ namespace app::rfl {
         static void Finish(EggRoboSearchParam* pInstance);
         static void Clean(EggRoboSearchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboAttackLaserParam {
         float colliderDistance;
         float colliderThickness;
@@ -12024,7 +13216,9 @@ namespace app::rfl {
         static void Finish(EggRoboAttackLaserParam* pInstance);
         static void Clean(EggRoboAttackLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboAttackMissileParam {
         float colliderDistance;
         float colliderAngle;
@@ -12043,7 +13237,9 @@ namespace app::rfl {
         static void Finish(EggRoboAttackMissileParam* pInstance);
         static void Clean(EggRoboAttackMissileParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboAttackParam {
         enum class WeaponType : int8_t {
             Laser = 0,
@@ -12055,8 +13251,8 @@ namespace app::rfl {
         bool isLookTarget;
         float trackAngleSpeed;
         float targetLostTime;
-        EggRoboAttackLaserParam laserParam;
-        EggRoboAttackMissileParam missileParam;
+        heur::rfl::EggRoboAttackLaserParam laserParam;
+        heur::rfl::EggRoboAttackMissileParam missileParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12065,7 +13261,9 @@ namespace app::rfl {
         static void Finish(EggRoboAttackParam* pInstance);
         static void Clean(EggRoboAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EggRoboReviveParam {
         enum class ReviveType : int8_t {
             None = 0,
@@ -12085,7 +13283,9 @@ namespace app::rfl {
         static void Finish(EggRoboReviveParam* pInstance);
         static void Clean(EggRoboReviveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyEggRoboSpawner {
         enum class ViewType : int8_t {
             SV = 0,
@@ -12094,10 +13294,10 @@ namespace app::rfl {
         };
 
         ViewType viewType;
-        EggRoboAppearParam appearParam;
-        EggRoboSearchParam searchParam;
-        EggRoboAttackParam attackParam;
-        EggRoboReviveParam reviveParam;
+        heur::rfl::EggRoboAppearParam appearParam;
+        heur::rfl::EggRoboSearchParam searchParam;
+        heur::rfl::EggRoboAttackParam attackParam;
+        heur::rfl::EggRoboReviveParam reviveParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12106,7 +13306,9 @@ namespace app::rfl {
         static void Finish(EnemyEggRoboSpawner* pInstance);
         static void Clean(EnemyEggRoboSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyGaniganiTwoPoints {
         csl::math::Vector3 pos;
         float startPosRatio;
@@ -12121,7 +13323,9 @@ namespace app::rfl {
         static void Finish(EnemyGaniganiTwoPoints* pInstance);
         static void Clean(EnemyGaniganiTwoPoints* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyGaniganiFixed {
         float searchInterval;
 
@@ -12132,7 +13336,9 @@ namespace app::rfl {
         static void Finish(EnemyGaniganiFixed* pInstance);
         static void Clean(EnemyGaniganiFixed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyGaniganiShot {
         float searchRadius;
         float searchAngle;
@@ -12152,7 +13358,9 @@ namespace app::rfl {
         static void Finish(EnemyGaniganiShot* pInstance);
         static void Clean(EnemyGaniganiShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyGaniganiSpawner {
         enum class MoveType : uint8_t {
             TypeFixed = 0,
@@ -12162,9 +13370,9 @@ namespace app::rfl {
         bool isFV;
         bool isFindMotion;
         MoveType moveType;
-        EnemyGaniganiTwoPoints twoPt;
-        EnemyGaniganiFixed fixed;
-        EnemyGaniganiShot shot;
+        heur::rfl::EnemyGaniganiTwoPoints twoPt;
+        heur::rfl::EnemyGaniganiFixed fixed;
+        heur::rfl::EnemyGaniganiShot shot;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12173,7 +13381,9 @@ namespace app::rfl {
         static void Finish(EnemyGaniganiSpawner* pInstance);
         static void Clean(EnemyGaniganiSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SVParam {
         float descentDistance;
         float descentSpeed;
@@ -12190,7 +13400,9 @@ namespace app::rfl {
         static void Finish(SVParam* pInstance);
         static void Clean(SVParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FVParam {
         float hipsRotDegPerSec;
         float bulletVelocityY;
@@ -12206,7 +13418,9 @@ namespace app::rfl {
         static void Finish(FVParam* pInstance);
         static void Clean(FVParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyGrabberSpawner {
         enum class Placement : uint8_t {
             SV = 0,
@@ -12233,8 +13447,8 @@ namespace app::rfl {
         float rotDegPerSec;
         float searchDistance;
         float searchAngle;
-        SVParam svParam;
-        FVParam fvParam;
+        heur::rfl::SVParam svParam;
+        heur::rfl::FVParam fvParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12243,7 +13457,9 @@ namespace app::rfl {
         static void Finish(EnemyGrabberSpawner* pInstance);
         static void Clean(EnemyGrabberSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliTwoPoint {
         csl::math::Vector3 localDest;
         float speed;
@@ -12257,7 +13473,9 @@ namespace app::rfl {
         static void Finish(HeliTwoPoint* pInstance);
         static void Clean(HeliTwoPoint* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliOnPath {
         enum class MOVE_PARAM : uint8_t {
             FOLLOW_PLAYER = 0,
@@ -12277,7 +13495,9 @@ namespace app::rfl {
         static void Finish(HeliOnPath* pInstance);
         static void Clean(HeliOnPath* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliEyeSight {
         float distance;
         float angle;
@@ -12289,7 +13509,9 @@ namespace app::rfl {
         static void Finish(HeliEyeSight* pInstance);
         static void Clean(HeliEyeSight* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliAppearance {
         csl::math::Vector3 appearPosLocal;
         float speed;
@@ -12304,7 +13526,9 @@ namespace app::rfl {
         static void Finish(HeliAppearance* pInstance);
         static void Clean(HeliAppearance* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyHelicopterSpawner {
         enum class MOVE_TYPE : uint8_t {
             FIXED = 0,
@@ -12313,10 +13537,10 @@ namespace app::rfl {
         };
 
         MOVE_TYPE moveType;
-        HeliTwoPoint twoPointParam;
-        HeliOnPath onPathParam;
-        HeliEyeSight eyesightParam;
-        HeliAppearance appearParam;
+        heur::rfl::HeliTwoPoint twoPointParam;
+        heur::rfl::HeliOnPath onPathParam;
+        heur::rfl::HeliEyeSight eyesightParam;
+        heur::rfl::HeliAppearance appearParam;
         bool isAttackChain;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -12326,7 +13550,9 @@ namespace app::rfl {
         static void Finish(EnemyHelicopterSpawner* pInstance);
         static void Clean(EnemyHelicopterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJellymanSpawner {
         enum class Mode : int8_t {
             Human = 0,
@@ -12348,7 +13574,7 @@ namespace app::rfl {
         bool isSonicSet;
         float actionRate[5];
         float actionCoolTime[5];
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool eventDriven;
         bool onlyHeightField;
         bool noWaveAttack;
@@ -12361,7 +13587,9 @@ namespace app::rfl {
         static void Finish(EnemyJellymanSpawner* pInstance);
         static void Clean(EnemyJellymanSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSpawner {
         int32_t no;
         uint32_t level;
@@ -12373,7 +13601,7 @@ namespace app::rfl {
         float eyesightDistance;
         bool respawnableByMeteorShower;
         bool onlyHeightField;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12382,7 +13610,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperSpawner* pInstance);
         static void Clean(EnemyJumperSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -12400,7 +13630,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubSpawner* pInstance);
         static void Clean(EnemyJumperSubSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLanderTwoPoints {
         csl::math::Vector3 pos;
         float startPosRatio;
@@ -12415,7 +13647,9 @@ namespace app::rfl {
         static void Finish(EnemyLanderTwoPoints* pInstance);
         static void Clean(EnemyLanderTwoPoints* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLanderShot {
         enum class ShotType : uint8_t {
             Ground = 0,
@@ -12452,7 +13686,9 @@ namespace app::rfl {
         static void Finish(EnemyLanderShot* pInstance);
         static void Clean(EnemyLanderShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLanderSpawner {
         enum class MoveType : uint8_t {
             Fixed = 0,
@@ -12460,8 +13696,8 @@ namespace app::rfl {
         };
 
         MoveType moveType;
-        EnemyLanderTwoPoints twoPt;
-        EnemyLanderShot shot;
+        heur::rfl::EnemyLanderTwoPoints twoPt;
+        heur::rfl::EnemyLanderShot shot;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12470,7 +13706,9 @@ namespace app::rfl {
         static void Finish(EnemyLanderSpawner* pInstance);
         static void Clean(EnemyLanderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyMotoraSpawner {
         enum class Placement : uint8_t {
             WhereItsSet = 0,
@@ -12513,7 +13751,9 @@ namespace app::rfl {
         static void Finish(EnemyMotoraSpawner* pInstance);
         static void Clean(EnemyMotoraSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyRobberMovePaths {
         csl::ut::VariableString path1;
         csl::ut::VariableString path2;
@@ -12528,16 +13768,18 @@ namespace app::rfl {
         static void Finish(EnemyRobberMovePaths* pInstance);
         static void Clean(EnemyRobberMovePaths* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyRobberSpawner {
         int32_t no;
         int32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
         hh::game::ObjectId emeraldDropObjID;
-        EnemyRobberMovePaths movePaths;
+        heur::rfl::EnemyRobberMovePaths movePaths;
         float searchDistanceOffset;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12546,7 +13788,9 @@ namespace app::rfl {
         static void Finish(EnemyRobberSpawner* pInstance);
         static void Clean(EnemyRobberSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySniperSpawner {
         int32_t no;
         int32_t level;
@@ -12563,7 +13807,7 @@ namespace app::rfl {
         float sonicSetShotSpeedOffset;
         float sonicSetHideCoreDist;
         float sonicSetShowCoreDist;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12572,7 +13816,9 @@ namespace app::rfl {
         static void Finish(EnemySniperSpawner* pInstance);
         static void Clean(EnemySniperSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TankSpawnerAppearance {
         bool respawn;
         float respawnTime;
@@ -12584,7 +13830,9 @@ namespace app::rfl {
         static void Finish(TankSpawnerAppearance* pInstance);
         static void Clean(TankSpawnerAppearance* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TankSpawnerMainGun {
         float interval;
         bool noBlast;
@@ -12599,13 +13847,15 @@ namespace app::rfl {
         static void Finish(TankSpawnerMainGun* pInstance);
         static void Clean(TankSpawnerMainGun* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTankSpawner {
         bool attackBySwitch;
-        TankSpawnerAppearance appearance;
-        TankSpawnerMainGun mainGun;
+        heur::rfl::TankSpawnerAppearance appearance;
+        heur::rfl::TankSpawnerMainGun mainGun;
         uint8_t hp;
-        ActionNotification actions[3];
+        heur::rfl::ActionNotification actions[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12614,7 +13864,9 @@ namespace app::rfl {
         static void Finish(EnemyTankSpawner* pInstance);
         static void Clean(EnemyTankSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTutorialSpawner {
         enum class HealthType : int8_t {
             One = 0,
@@ -12659,7 +13911,9 @@ namespace app::rfl {
         static void Finish(EnemyTutorialSpawner* pInstance);
         static void Clean(EnemyTutorialSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTwisterSpawner {
         enum class MoveType : int8_t {
             Fix = 0,
@@ -12683,7 +13937,7 @@ namespace app::rfl {
         RotateType rotateType;
         float changeTime;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool rigidbody;
         bool isQuest;
         bool isSonicSet;
@@ -12695,7 +13949,9 @@ namespace app::rfl {
         static void Finish(EnemyTwisterSpawner* pInstance);
         static void Clean(EnemyTwisterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ParachuteLineConfig {
         uint32_t objType[8];
         csl::math::Vector3 offSet;
@@ -12707,14 +13963,16 @@ namespace app::rfl {
         static void Finish(ParachuteLineConfig* pInstance);
         static void Clean(ParachuteLineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ParachuteShotConfig {
         int32_t steps;
         int32_t lineNum;
         float distance;
         float range;
         bool isOrder;
-        ParachuteLineConfig lineLists[8];
+        heur::rfl::ParachuteLineConfig lineLists[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12723,7 +13981,9 @@ namespace app::rfl {
         static void Finish(ParachuteShotConfig* pInstance);
         static void Clean(ParachuteShotConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SonicSetConfig {
         bool isSonicSet;
         float jumpHeight;
@@ -12739,18 +13999,20 @@ namespace app::rfl {
         static void Finish(SonicSetConfig* pInstance);
         static void Clean(SonicSetConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyUmbrellaSpawner {
         int32_t no;
         int32_t level;
         float distance;
         float tolerance;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
-        ParachuteShotConfig parachute;
+        heur::rfl::ParachuteShotConfig parachute;
         bool respawnableByMeteorShower;
-        SonicSetConfig sonicset;
+        heur::rfl::SonicSetConfig sonicset;
         bool onlyHeightField;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12759,7 +14021,9 @@ namespace app::rfl {
         static void Finish(EnemyUmbrellaSpawner* pInstance);
         static void Clean(EnemyUmbrellaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfSpawner {
         int32_t no;
         uint32_t level;
@@ -12769,7 +14033,7 @@ namespace app::rfl {
         float searchDistanceOffset;
         hh::game::ObjectId managerId;
         bool respawnableByMeteorShower;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool isTrial;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -12779,7 +14043,9 @@ namespace app::rfl {
         static void Finish(EnemyWolfSpawner* pInstance);
         static void Clean(EnemyWolfSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWolfManagerSpawner {
         float effectHeightOffset;
         bool isTrial;
@@ -12791,7 +14057,9 @@ namespace app::rfl {
         static void Finish(ObjWolfManagerSpawner* pInstance);
         static void Clean(ObjWolfManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SpawnParam {
         enum class ModeType : int8_t {
             MODE_NONE = 0,
@@ -12813,7 +14081,9 @@ namespace app::rfl {
         static void Finish(SpawnParam* pInstance);
         static void Clean(SpawnParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTerritorySpawner {
         enum class Shape : int8_t {
             SHAPE_CYLINDER = 0,
@@ -12843,7 +14113,9 @@ namespace app::rfl {
         static void Finish(ObjTerritorySpawner* pInstance);
         static void Clean(ObjTerritorySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySpawnerSpawner {
         enum class SpawnPattern : int8_t {
             Random = 0,
@@ -12869,7 +14141,7 @@ namespace app::rfl {
             BASE_Z_PLANE = 3,
         };
 
-        SpawnParam spawnParam[4];
+        heur::rfl::SpawnParam spawnParam[4];
         bool eventDriven;
         bool saveEventDriven;
         bool enableEffect;
@@ -12885,7 +14157,7 @@ namespace app::rfl {
         bool disableChangeMode;
         bool useTerritory;
         bool isDeadRangeOut;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         int32_t no;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -12895,7 +14167,9 @@ namespace app::rfl {
         static void Finish(EnemySpawnerSpawner* pInstance);
         static void Clean(EnemySpawnerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GravityFieldSetupParameter {
         int8_t prio;
         bool defaultON;
@@ -12908,8 +14182,10 @@ namespace app::rfl {
         static void Finish(GravityFieldSetupParameter* pInstance);
         static void Clean(GravityFieldSetupParameter* pInstance);
     };
+}
 
-    struct GravityFieldConcaveBoxSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldConcaveBoxSetupParameter : heur::rfl::GravityFieldSetupParameter {
         float x;
         float y;
         float z;
@@ -12921,8 +14197,10 @@ namespace app::rfl {
         static void Finish(GravityFieldConcaveBoxSetupParameter* pInstance);
         static void Clean(GravityFieldConcaveBoxSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldConcaveBoxSpawner : GravityFieldConcaveBoxSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldConcaveBoxSpawner : heur::rfl::GravityFieldConcaveBoxSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12931,8 +14209,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldConcaveBoxSpawner* pInstance);
         static void Clean(ObjGFieldConcaveBoxSpawner* pInstance);
     };
+}
 
-    struct GravityFieldConstantSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldConstantSetupParameter : heur::rfl::GravityFieldSetupParameter {
         float x;
         float y;
         float z;
@@ -12944,8 +14224,10 @@ namespace app::rfl {
         static void Finish(GravityFieldConstantSetupParameter* pInstance);
         static void Clean(GravityFieldConstantSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldConstantSpawner : GravityFieldConstantSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldConstantSpawner : heur::rfl::GravityFieldConstantSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12954,8 +14236,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldConstantSpawner* pInstance);
         static void Clean(ObjGFieldConstantSpawner* pInstance);
     };
+}
 
-    struct GravityFieldCylinderSplineSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldCylinderSplineSetupParameter : heur::rfl::GravityFieldSetupParameter {
         float radius;
         csl::ut::VariableString pathName;
 
@@ -12966,8 +14250,10 @@ namespace app::rfl {
         static void Finish(GravityFieldCylinderSplineSetupParameter* pInstance);
         static void Clean(GravityFieldCylinderSplineSetupParameter* pInstance);
     };
+}
 
-    struct GravityFieldFaceSplineSetupParameter : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldFaceSplineSetupParameter : heur::rfl::GravityFieldCylinderSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12976,8 +14262,10 @@ namespace app::rfl {
         static void Finish(GravityFieldFaceSplineSetupParameter* pInstance);
         static void Clean(GravityFieldFaceSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldFaceSplineSpawner : GravityFieldFaceSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldFaceSplineSpawner : heur::rfl::GravityFieldFaceSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -12986,8 +14274,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldFaceSplineSpawner* pInstance);
         static void Clean(ObjGFieldFaceSplineSpawner* pInstance);
     };
+}
 
-    struct GravityFieldHemisphereSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldHemisphereSetupParameter : heur::rfl::GravityFieldSetupParameter {
         enum class Type : int8_t {
             TYPE_OUTER = 0,
             TYPE_INNER = 1,
@@ -13004,8 +14294,10 @@ namespace app::rfl {
         static void Finish(GravityFieldHemisphereSetupParameter* pInstance);
         static void Clean(GravityFieldHemisphereSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldHemisphereSpawner : GravityFieldHemisphereSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldHemisphereSpawner : heur::rfl::GravityFieldHemisphereSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13014,8 +14306,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldHemisphereSpawner* pInstance);
         static void Clean(ObjGFieldHemisphereSpawner* pInstance);
     };
+}
 
-    struct GravityFieldInsideCylinderSplineSetupParameter : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldInsideCylinderSplineSetupParameter : heur::rfl::GravityFieldCylinderSplineSetupParameter {
         float innerRadius;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -13025,8 +14319,10 @@ namespace app::rfl {
         static void Finish(GravityFieldInsideCylinderSplineSetupParameter* pInstance);
         static void Clean(GravityFieldInsideCylinderSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldInsideCylinderSplineSpawner : GravityFieldInsideCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldInsideCylinderSplineSpawner : heur::rfl::GravityFieldInsideCylinderSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13035,8 +14331,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldInsideCylinderSplineSpawner* pInstance);
         static void Clean(ObjGFieldInsideCylinderSplineSpawner* pInstance);
     };
+}
 
-    struct GravityFieldInsidePrismSplineSetupParameter : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldInsidePrismSplineSetupParameter : heur::rfl::GravityFieldCylinderSplineSetupParameter {
         float innerRadius;
         int8_t divide;
 
@@ -13047,8 +14345,10 @@ namespace app::rfl {
         static void Finish(GravityFieldInsidePrismSplineSetupParameter* pInstance);
         static void Clean(GravityFieldInsidePrismSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldInsidePrismSplineSpawner : GravityFieldInsidePrismSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldInsidePrismSplineSpawner : heur::rfl::GravityFieldInsidePrismSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13057,8 +14357,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldInsidePrismSplineSpawner* pInstance);
         static void Clean(ObjGFieldInsidePrismSplineSpawner* pInstance);
     };
+}
 
-    struct GravityFieldOutsideCylinderSplineSetupParameter : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldOutsideCylinderSplineSetupParameter : heur::rfl::GravityFieldCylinderSplineSetupParameter {
         float innerRadius;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -13068,8 +14370,10 @@ namespace app::rfl {
         static void Finish(GravityFieldOutsideCylinderSplineSetupParameter* pInstance);
         static void Clean(GravityFieldOutsideCylinderSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldOutsideCylinderSplineSpawner : GravityFieldOutsideCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldOutsideCylinderSplineSpawner : heur::rfl::GravityFieldOutsideCylinderSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13078,8 +14382,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldOutsideCylinderSplineSpawner* pInstance);
         static void Clean(ObjGFieldOutsideCylinderSplineSpawner* pInstance);
     };
+}
 
-    struct GravityFieldOutsidePrismSplineSetupParameter : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldOutsidePrismSplineSetupParameter : heur::rfl::GravityFieldCylinderSplineSetupParameter {
         float innerRadius;
         int8_t divide;
 
@@ -13090,8 +14396,10 @@ namespace app::rfl {
         static void Finish(GravityFieldOutsidePrismSplineSetupParameter* pInstance);
         static void Clean(GravityFieldOutsidePrismSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldOutsidePrismSplineSpawner : GravityFieldOutsidePrismSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldOutsidePrismSplineSpawner : heur::rfl::GravityFieldOutsidePrismSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13100,8 +14408,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldOutsidePrismSplineSpawner* pInstance);
         static void Clean(ObjGFieldOutsidePrismSplineSpawner* pInstance);
     };
+}
 
-    struct GravityFieldSphereSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldSphereSetupParameter : heur::rfl::GravityFieldSetupParameter {
         float radius;
         float innerRadius;
 
@@ -13112,8 +14422,10 @@ namespace app::rfl {
         static void Finish(GravityFieldSphereSetupParameter* pInstance);
         static void Clean(GravityFieldSphereSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldSphereSpawner : GravityFieldSphereSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldSphereSpawner : heur::rfl::GravityFieldSphereSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13122,8 +14434,10 @@ namespace app::rfl {
         static void Finish(ObjGFieldSphereSpawner* pInstance);
         static void Clean(ObjGFieldSphereSpawner* pInstance);
     };
+}
 
-    struct GravityFieldSvSplineSetupParameter : GravityFieldSetupParameter {
+namespace heur::rfl {
+    struct GravityFieldSvSplineSetupParameter : heur::rfl::GravityFieldSetupParameter {
         csl::ut::VariableString pathName;
         float x;
         float y;
@@ -13137,8 +14451,10 @@ namespace app::rfl {
         static void Finish(GravityFieldSvSplineSetupParameter* pInstance);
         static void Clean(GravityFieldSvSplineSetupParameter* pInstance);
     };
+}
 
-    struct ObjGFieldSvSplineSpawner : GravityFieldSvSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldSvSplineSpawner : heur::rfl::GravityFieldSvSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13147,7 +14463,9 @@ namespace app::rfl {
         static void Finish(ObjGFieldSvSplineSpawner* pInstance);
         static void Clean(ObjGFieldSvSplineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHoleCommonSpawner {
         enum class InitialState : uint8_t {
             Close = 0,
@@ -13167,8 +14485,10 @@ namespace app::rfl {
         static void Finish(ObjHoleCommonSpawner* pInstance);
         static void Clean(ObjHoleCommonSpawner* pInstance);
     };
+}
 
-    struct ObjHoleAuraTrainSpawner : ObjHoleCommonSpawner {
+namespace heur::rfl {
+    struct ObjHoleAuraTrainSpawner : heur::rfl::ObjHoleCommonSpawner {
         csl::ut::VariableString pathName;
         bool reverse;
         hh::game::ObjectId cameraUuid;
@@ -13184,8 +14504,10 @@ namespace app::rfl {
         static void Finish(ObjHoleAuraTrainSpawner* pInstance);
         static void Clean(ObjHoleAuraTrainSpawner* pInstance);
     };
+}
 
-    struct ObjHoleHideSpawner : ObjHoleCommonSpawner {
+namespace heur::rfl {
+    struct ObjHoleHideSpawner : heur::rfl::ObjHoleCommonSpawner {
         int32_t dummy;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -13195,8 +14517,10 @@ namespace app::rfl {
         static void Finish(ObjHoleHideSpawner* pInstance);
         static void Clean(ObjHoleHideSpawner* pInstance);
     };
+}
 
-    struct ObjHolePopupItemSpawner : ObjHoleCommonSpawner {
+namespace heur::rfl {
+    struct ObjHolePopupItemSpawner : heur::rfl::ObjHoleCommonSpawner {
         enum class ItemKind : uint32_t {
             Ring = 0,
             SuperRing = 1,
@@ -13214,8 +14538,10 @@ namespace app::rfl {
         static void Finish(ObjHolePopupItemSpawner* pInstance);
         static void Clean(ObjHolePopupItemSpawner* pInstance);
     };
+}
 
-    struct ObjHoleWarpSpawner : ObjHoleCommonSpawner {
+namespace heur::rfl {
+    struct ObjHoleWarpSpawner : heur::rfl::ObjHoleCommonSpawner {
         enum class Interpolate : int8_t {
             Linear = 0,
             LinearAbsolute = 1,
@@ -13239,7 +14565,9 @@ namespace app::rfl {
         static void Finish(ObjHoleWarpSpawner* pInstance);
         static void Clean(ObjHoleWarpSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnucklesPillarSpawner {
         enum class SizeType : int8_t {
             SMALL = 0,
@@ -13295,7 +14623,9 @@ namespace app::rfl {
         static void Finish(ObjKnucklesPillarSpawner* pInstance);
         static void Clean(ObjKnucklesPillarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnucklesWallSpawner {
         enum class SizeType : int8_t {
             SMALL = 0,
@@ -13352,7 +14682,9 @@ namespace app::rfl {
         static void Finish(ObjKnucklesWallSpawner* pInstance);
         static void Clean(ObjKnucklesWallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDashCircleBulletSpawner {
         enum class DirectionType : int8_t {
             Front = 0,
@@ -13378,7 +14710,9 @@ namespace app::rfl {
         static void Finish(ObjDashCircleBulletSpawner* pInstance);
         static void Clean(ObjDashCircleBulletSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -13387,13 +14721,13 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         csl::ut::MoveArray<hh::game::ObjectId> portalBitsLegL;
         csl::ut::MoveArray<hh::game::ObjectId> portalBitsLegR;
         float searchDistanceOffset;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13402,7 +14736,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraSpawner* pInstance);
         static void Clean(MiniBossAshuraSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -13412,10 +14748,10 @@ namespace app::rfl {
         bool respawnableByMeteorShower;
         float nonBattleRange;
         bool useTerritory;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool enableAttackOutsideArea;
         bool enable3rdParameter;
         bool enableHightSpeedMoveing;
@@ -13428,7 +14764,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeSpawner* pInstance);
         static void Clean(MiniBossBladeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TimerTrigger {
         int32_t bootNum;
         float delayTime;
@@ -13440,7 +14778,9 @@ namespace app::rfl {
         static void Finish(TimerTrigger* pInstance);
         static void Clean(TimerTrigger* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AttachSpringParam {
         float outOfControl;
         float firstSpeed;
@@ -13454,7 +14794,9 @@ namespace app::rfl {
         static void Finish(AttachSpringParam* pInstance);
         static void Clean(AttachSpringParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGAttachmentSpawner {
         enum class AttachmentType : int8_t {
             Normal = 0,
@@ -13462,12 +14804,12 @@ namespace app::rfl {
             S = 2,
         };
 
-        TimerTrigger trigger;
+        heur::rfl::TimerTrigger trigger;
         AttachmentType type;
         csl::math::Vector3 moveOffset;
         float moveTime;
         float targetCursorMaxDistance;
-        AttachSpringParam springParam;
+        heur::rfl::AttachSpringParam springParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13476,7 +14818,9 @@ namespace app::rfl {
         static void Finish(ObjCGGAttachmentSpawner* pInstance);
         static void Clean(ObjCGGAttachmentSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGBaseSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> children;
 
@@ -13487,9 +14831,11 @@ namespace app::rfl {
         static void Finish(ObjCGGBaseSpawner* pInstance);
         static void Clean(ObjCGGBaseSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGBulletNormalGeneratorSpawner {
-        TimerTrigger trigger;
+        heur::rfl::TimerTrigger trigger;
         float distance;
         int32_t bulletCount;
         float regenerateTime;
@@ -13502,14 +14848,16 @@ namespace app::rfl {
         static void Finish(ObjCGGBulletNormalGeneratorSpawner* pInstance);
         static void Clean(ObjCGGBulletNormalGeneratorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGLaserSpawner {
         enum class MoveType : int8_t {
             Fixed = 0,
             Rotate = 1,
         };
 
-        TimerTrigger trigger;
+        heur::rfl::TimerTrigger trigger;
         int32_t count;
         float offset;
         float length;
@@ -13524,9 +14872,11 @@ namespace app::rfl {
         static void Finish(ObjCGGLaserSpawner* pInstance);
         static void Clean(ObjCGGLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGNodeTiltAxisSpawner {
-        ObjCGGBaseSpawner base;
+        heur::rfl::ObjCGGBaseSpawner base;
         float angle;
         float speed;
         bool isClockWise;
@@ -13538,9 +14888,11 @@ namespace app::rfl {
         static void Finish(ObjCGGNodeTiltAxisSpawner* pInstance);
         static void Clean(ObjCGGNodeTiltAxisSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGRailSpawner {
-        PathCircleParameter setParameter;
+        heur::rfl::PathCircleParameter setParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13549,9 +14901,11 @@ namespace app::rfl {
         static void Finish(ObjCGGRailSpawner* pInstance);
         static void Clean(ObjCGGRailSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGResetBindSpawner {
-        TimerTrigger trigger;
+        heur::rfl::TimerTrigger trigger;
         csl::ut::MoveArray<hh::game::ObjectId> nextObjects;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -13561,7 +14915,9 @@ namespace app::rfl {
         static void Finish(ObjCGGResetBindSpawner* pInstance);
         static void Clean(ObjCGGResetBindSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGRootTimerParam {
         float unitTime;
         float decPoint;
@@ -13573,10 +14929,12 @@ namespace app::rfl {
         static void Finish(ObjCGGRootTimerParam* pInstance);
         static void Clean(ObjCGGRootTimerParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGRootSpawner {
-        ObjCGGBaseSpawner base;
-        ObjCGGRootTimerParam timer;
+        heur::rfl::ObjCGGBaseSpawner base;
+        heur::rfl::ObjCGGRootTimerParam timer;
         uint8_t railNum;
         float debugAreaRadius;
 
@@ -13587,18 +14945,20 @@ namespace app::rfl {
         static void Finish(ObjCGGRootSpawner* pInstance);
         static void Clean(ObjCGGRootSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
         bool isWaitSpawn;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
         int32_t cggLayerId;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool isCutRail;
         bool enable3rdParameter;
         bool enableHightSpeedMoveing;
@@ -13611,7 +14971,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerSpawner* pInstance);
         static void Clean(MiniBossChargerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaSpawner {
         enum class Mode : int8_t {
             Battle = 0,
@@ -13630,7 +14992,7 @@ namespace app::rfl {
         bool isAppear;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
         float stompWaitTimeFirst;
@@ -13639,7 +15001,7 @@ namespace app::rfl {
         float scoutDistanceOutsideOffset;
         bool isThorn;
         bool enabledEyeSightMask;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool enable3rdParameter;
         bool enableHightSpeedMoveing;
         float speedUpScale;
@@ -13651,7 +15013,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaSpawner* pInstance);
         static void Clean(MiniBossDarumaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerPathLoopInfo {
         bool enable;
         float start;
@@ -13665,7 +15029,9 @@ namespace app::rfl {
         static void Finish(FlyerPathLoopInfo* pInstance);
         static void Clean(FlyerPathLoopInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossFlyerSpawner {
         uint32_t level;
         bool isWaitSpawn;
@@ -13673,9 +15039,9 @@ namespace app::rfl {
         bool respawnableByMeteorShower;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         csl::ut::VariableString pathName;
-        FlyerPathLoopInfo loopInfo[5];
+        heur::rfl::FlyerPathLoopInfo loopInfo[5];
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13684,7 +15050,9 @@ namespace app::rfl {
         static void Finish(MiniBossFlyerSpawner* pInstance);
         static void Clean(MiniBossFlyerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSkierMissileSpawner {
         float speed;
         csl::math::Vector3 launchDirCorrectionAngle;
@@ -13696,7 +15064,9 @@ namespace app::rfl {
         static void Finish(ObjSkierMissileSpawner* pInstance);
         static void Clean(ObjSkierMissileSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSkierProhibitedAreaSpawner {
         float radius;
 
@@ -13707,7 +15077,9 @@ namespace app::rfl {
         static void Finish(ObjSkierProhibitedAreaSpawner* pInstance);
         static void Clean(ObjSkierProhibitedAreaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSkierPylonSpawner {
         float appearTime;
         float hideOffsetY;
@@ -13719,7 +15091,9 @@ namespace app::rfl {
         static void Finish(ObjSkierPylonSpawner* pInstance);
         static void Clean(ObjSkierPylonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkierPathAttributeInfo {
         enum class Attribute : int8_t {
             SNAKE_MOVE_ENABLE = 0,
@@ -13746,7 +15120,9 @@ namespace app::rfl {
         static void Finish(SkierPathAttributeInfo* pInstance);
         static void Clean(SkierPathAttributeInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkierSkiAcitionRate {
         float SnakeMoveRate;
         float JumpHighRate;
@@ -13761,7 +15137,9 @@ namespace app::rfl {
         static void Finish(SkierSkiAcitionRate* pInstance);
         static void Clean(SkierSkiAcitionRate* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkierSkiActionParam {
         enum class RateType : int8_t {
             COMMON = 0,
@@ -13774,7 +15152,7 @@ namespace app::rfl {
         bool debugDraw;
         RateType type;
         float pathDist;
-        SkierSkiAcitionRate rate;
+        heur::rfl::SkierSkiAcitionRate rate;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13783,7 +15161,9 @@ namespace app::rfl {
         static void Finish(SkierSkiActionParam* pInstance);
         static void Clean(SkierSkiActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkierCameraInfo {
         enum class ActivateCondition : int8_t {
             ALL = 0,
@@ -13807,23 +15187,25 @@ namespace app::rfl {
         static void Finish(SkierCameraInfo* pInstance);
         static void Clean(SkierCameraInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierSpawner {
         int32_t no;
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
         bool useTerritory;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         bool isWaitSpawn;
         bool isTutorial;
         bool respawnableByMeteorShower;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         csl::ut::VariableString pathName;
         float pathPNTInterpolateSpeed;
-        SkierPathAttributeInfo pathInfo[20];
-        SkierSkiActionParam pathAction[20];
-        SkierCameraInfo cameraInfo[40];
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::SkierPathAttributeInfo pathInfo[20];
+        heur::rfl::SkierSkiActionParam pathAction[20];
+        heur::rfl::SkierCameraInfo cameraInfo[40];
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         csl::ut::MoveArray<hh::game::ObjectId> prohibitedArea;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -13833,7 +15215,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierSpawner* pInstance);
         static void Clean(MiniBossSkierSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDivingAuraTrainRoot {
         csl::ut::VariableString pathName;
         hh::game::ObjectId cameraUuid;
@@ -13847,7 +15231,9 @@ namespace app::rfl {
         static void Finish(ObjDivingAuraTrainRoot* pInstance);
         static void Clean(ObjDivingAuraTrainRoot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDivingAuraTrainSpawner {
         enum class SetType : int8_t {
             Distance = 0,
@@ -13858,7 +15244,7 @@ namespace app::rfl {
         float value;
         int32_t startNum;
         csl::ut::MoveArray<hh::game::ObjectId> cameraColliderUuids;
-        ObjDivingAuraTrainRoot root;
+        heur::rfl::ObjDivingAuraTrainRoot root;
         float speed;
         csl::math::Vector3 collisionScale;
 
@@ -13869,7 +15255,9 @@ namespace app::rfl {
         static void Finish(ObjDivingAuraTrainSpawner* pInstance);
         static void Clean(ObjDivingAuraTrainSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderDivingVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -13889,7 +15277,7 @@ namespace app::rfl {
         bool velocityReset;
         StateType state;
         ActionType action;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -13898,7 +15286,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderDivingVolumeSpawner* pInstance);
         static void Clean(ObjSpiderDivingVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderNeedleSpawner {
         csl::ut::VariableString pathName;
         csl::math::Vector3 collisionSize;
@@ -13911,7 +15301,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderNeedleSpawner* pInstance);
         static void Clean(ObjSpiderNeedleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderRippleLaserSpawner {
         float minScale;
         float maxScale;
@@ -13929,7 +15321,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderRippleLaserSpawner* pInstance);
         static void Clean(ObjSpiderRippleLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderRotateLaserTurretParam {
         enum class TimeType : int8_t {
             TIME_LOCAL = 0,
@@ -13948,9 +15342,11 @@ namespace app::rfl {
         static void Finish(ObjSpiderRotateLaserTurretParam* pInstance);
         static void Clean(ObjSpiderRotateLaserTurretParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderRotateLaserTurretSpawner {
-        ObjSpiderRotateLaserTurretParam param;
+        heur::rfl::ObjSpiderRotateLaserTurretParam param;
         int8_t edgeNum;
         bool eventDriven;
 
@@ -13961,7 +15357,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderRotateLaserTurretSpawner* pInstance);
         static void Clean(ObjSpiderRotateLaserTurretSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderThornBallMoveParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -13986,7 +15384,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderThornBallMoveParam* pInstance);
         static void Clean(ObjSpiderThornBallMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderThornBallRollingParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -14005,7 +15405,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderThornBallRollingParam* pInstance);
         static void Clean(ObjSpiderThornBallRollingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderThornBallSpawner {
         enum class Type : int8_t {
             TYPE_NORMAL = 0,
@@ -14014,9 +15416,9 @@ namespace app::rfl {
         };
 
         Type type;
-        ObjSpiderThornBallMoveParam moveParam;
-        ObjSpiderThornBallRollingParam rollingParam;
-        VolumeTriggerSpawner volume;
+        heur::rfl::ObjSpiderThornBallMoveParam moveParam;
+        heur::rfl::ObjSpiderThornBallRollingParam rollingParam;
+        heur::rfl::VolumeTriggerSpawner volume;
         bool eventDriven;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -14026,7 +15428,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderThornBallSpawner* pInstance);
         static void Clean(ObjSpiderThornBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderTwisterMoveParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -14051,7 +15455,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderTwisterMoveParam* pInstance);
         static void Clean(ObjSpiderTwisterMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderTwisterRollingParam {
         enum class Direction : int8_t {
             DIR_HORIZONTAL = 0,
@@ -14070,7 +15476,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderTwisterRollingParam* pInstance);
         static void Clean(ObjSpiderTwisterRollingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSpiderTwisterSpawner {
         enum class Type : int8_t {
             TYPE_NORMAL = 0,
@@ -14079,8 +15487,8 @@ namespace app::rfl {
         };
 
         Type type;
-        ObjSpiderTwisterMoveParam moveParam;
-        ObjSpiderTwisterRollingParam rollingParam;
+        heur::rfl::ObjSpiderTwisterMoveParam moveParam;
+        heur::rfl::ObjSpiderTwisterRollingParam rollingParam;
         float rigidColliderRadius;
         float damageColliderRadius;
 
@@ -14091,7 +15499,9 @@ namespace app::rfl {
         static void Finish(ObjSpiderTwisterSpawner* pInstance);
         static void Clean(ObjSpiderTwisterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -14099,7 +15509,7 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         hh::game::ObjectId locatorDiving;
         uint8_t shieldHpNormal;
@@ -14111,7 +15521,7 @@ namespace app::rfl {
         csl::ut::VariableString divingSetNameAngry;
         csl::ut::VariableString divingActiveLayerAngry;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool isCutUpper;
         bool enable3rdParameter;
 
@@ -14122,7 +15532,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderSpawner* pInstance);
         static void Clean(MiniBossSpiderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderArcLaserSpawner {
         int8_t dummy;
 
@@ -14133,7 +15545,9 @@ namespace app::rfl {
         static void Finish(ObjStriderArcLaserSpawner* pInstance);
         static void Clean(ObjStriderArcLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderBulletSpawner {
         hh::game::ObjectId connectToPole;
 
@@ -14144,8 +15558,10 @@ namespace app::rfl {
         static void Finish(ObjStriderBulletSpawner* pInstance);
         static void Clean(ObjStriderBulletSpawner* pInstance);
     };
+}
 
-    struct ObjStriderGrindRailSpawner : PathCircleParameter {
+namespace heur::rfl {
+    struct ObjStriderGrindRailSpawner : heur::rfl::PathCircleParameter {
         int8_t dummy;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -14155,7 +15571,9 @@ namespace app::rfl {
         static void Finish(ObjStriderGrindRailSpawner* pInstance);
         static void Clean(ObjStriderGrindRailSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderLaserSpawner {
         int8_t dummy;
 
@@ -14166,7 +15584,9 @@ namespace app::rfl {
         static void Finish(ObjStriderLaserSpawner* pInstance);
         static void Clean(ObjStriderLaserSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -14174,10 +15594,10 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -14186,7 +15606,9 @@ namespace app::rfl {
         static void Finish(MiniBossStriderSpawner* pInstance);
         static void Clean(MiniBossStriderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleSpawner {
         enum class NormalDirection : int8_t {
             Front = 0,
@@ -14203,7 +15625,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleSpawner* pInstance);
         static void Clean(ObjSumoPoleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPuckSpawner {
         enum class BehaviorType : int8_t {
             Bumper = 0,
@@ -14223,18 +15647,20 @@ namespace app::rfl {
         static void Finish(ObjSumoPuckSpawner* pInstance);
         static void Clean(ObjSumoPuckSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoSpawner {
         uint32_t level;
         bool isWaitSpawn;
         bool isTutorial;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> poles;
         bool onlyHeightField;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -14243,7 +15669,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoSpawner* pInstance);
         static void Clean(MiniBossSumoSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -14255,10 +15683,10 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool enable3rdParameter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -14268,7 +15696,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerSpawner* pInstance);
         static void Clean(MiniBossTrackerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerAttackTargetSpawner {
         enum class Type : int8_t {
             Mine = 0,
@@ -14287,7 +15717,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerAttackTargetSpawner* pInstance);
         static void Clean(MiniBossTrackerAttackTargetSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerBaseSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> gimmicks;
         float returnRadius;
@@ -14300,7 +15732,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerBaseSpawner* pInstance);
         static void Clean(MiniBossTrackerBaseSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -14308,10 +15742,10 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         int32_t no;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
         bool isCutUpper;
         bool enable3rdParameter;
         bool enableHightSpeedMoveing;
@@ -14324,7 +15758,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantSpawner* pInstance);
         static void Clean(MiniBossTyrantSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarShipBirdSpawner {
         int32_t dummy;
 
@@ -14335,7 +15771,9 @@ namespace app::rfl {
         static void Finish(ObjWarShipBirdSpawner* pInstance);
         static void Clean(ObjWarShipBirdSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarShipBulletSpawner {
         int32_t railNo;
 
@@ -14346,7 +15784,9 @@ namespace app::rfl {
         static void Finish(ObjWarShipBulletSpawner* pInstance);
         static void Clean(ObjWarShipBulletSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarshipDashRingSpawner {
         enum class Visual : int8_t {
             WarshipDashRing = 0,
@@ -14355,7 +15795,7 @@ namespace app::rfl {
             Num = 3,
         };
 
-        Visual v;
+        Visual visual;
         float OutOfControl;
         float KeepVelocity;
         float Speed;
@@ -14363,8 +15803,8 @@ namespace app::rfl {
         bool VeloConst;
         bool Spin;
         bool AirTrick;
-        ActionNotification actions[3];
-        PathMovement pathMovement;
+        heur::rfl::ActionNotification actions[3];
+        heur::rfl::PathMovement pathMovement;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -14373,7 +15813,9 @@ namespace app::rfl {
         static void Finish(ObjWarshipDashRingSpawner* pInstance);
         static void Clean(ObjWarshipDashRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct LandingLaunchParam {
         float outStrength;
         float inStrength;
@@ -14391,7 +15833,9 @@ namespace app::rfl {
         static void Finish(LandingLaunchParam* pInstance);
         static void Clean(LandingLaunchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarshipLandVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -14405,8 +15849,8 @@ namespace app::rfl {
 
         StateType state;
         ActionType action;
-        VolumeTriggerSpawner volume;
-        LandingLaunchParam launchParam;
+        heur::rfl::VolumeTriggerSpawner volume;
+        heur::rfl::LandingLaunchParam launchParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -14415,7 +15859,9 @@ namespace app::rfl {
         static void Finish(ObjWarshipLandVolumeSpawner* pInstance);
         static void Clean(ObjWarshipLandVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipSpeedParam {
         enum class SpeedUseType : int8_t {
             NONE = 0,
@@ -14439,7 +15885,9 @@ namespace app::rfl {
         static void Finish(WarshipSpeedParam* pInstance);
         static void Clean(WarshipSpeedParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipMotionParam {
         enum class MotionType : int8_t {
             MOTION_NONE = 0,
@@ -14463,7 +15911,9 @@ namespace app::rfl {
         static void Finish(WarshipMotionParam* pInstance);
         static void Clean(WarshipMotionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarshipVolumeSpawner {
         enum class StateType : int8_t {
             DEFAULTSTATE_ON = 0,
@@ -14477,9 +15927,9 @@ namespace app::rfl {
 
         StateType state;
         ActionType action;
-        WarshipSpeedParam speedParam;
-        WarshipMotionParam motionParam;
-        VolumeTriggerSpawner volume;
+        heur::rfl::WarshipSpeedParam speedParam;
+        heur::rfl::WarshipMotionParam motionParam;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -14488,7 +15938,9 @@ namespace app::rfl {
         static void Finish(ObjWarshipVolumeSpawner* pInstance);
         static void Clean(ObjWarshipVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipLocatorInfo {
         csl::ut::VariableString attackPathName;
         csl::ut::MoveArray<hh::game::ObjectId> locaterList;
@@ -14503,7 +15955,9 @@ namespace app::rfl {
         static void Finish(WarshipLocatorInfo* pInstance);
         static void Clean(WarshipLocatorInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipCameraParam {
         float start;
         float end;
@@ -14516,7 +15970,9 @@ namespace app::rfl {
         static void Finish(WarshipCameraParam* pInstance);
         static void Clean(WarshipCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipPathSectionInfo {
         bool enable;
         float start;
@@ -14529,7 +15985,9 @@ namespace app::rfl {
         static void Finish(WarshipPathSectionInfo* pInstance);
         static void Clean(WarshipPathSectionInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipSpawner {
         uint32_t level;
         csl::ut::MoveArray<hh::game::ObjectId> territories;
@@ -14537,18 +15995,18 @@ namespace app::rfl {
         bool isTutorial;
         bool useTerritory;
         bool respawnableByMeteorShower;
-        ObjTerritorySpawner territoryInfo;
+        heur::rfl::ObjTerritorySpawner territoryInfo;
         csl::ut::MoveArray<hh::game::ObjectId> portalBits;
         csl::ut::VariableString wanderPathName;
-        WarshipLocatorInfo locatorInfo[3];
+        heur::rfl::WarshipLocatorInfo locatorInfo[3];
         int32_t eacapePathNo;
         csl::ut::MoveArray<hh::game::ObjectId> winWarpList;
         csl::ut::MoveArray<hh::game::ObjectId> eventLocatorList;
-        WarshipCameraParam cameraParam[20];
-        WarshipPathSectionInfo rotateInfo[20];
-        WarshipPathSectionInfo wanderPathInfo;
-        WarshipPathSectionInfo noBombPathInfo[10];
-        EnemyPracticeNotifierConfig practiceConfig;
+        heur::rfl::WarshipCameraParam cameraParam[20];
+        heur::rfl::WarshipPathSectionInfo rotateInfo[20];
+        heur::rfl::WarshipPathSectionInfo wanderPathInfo;
+        heur::rfl::WarshipPathSectionInfo noBombPathInfo[10];
+        heur::rfl::EnemyPracticeNotifierConfig practiceConfig;
         int32_t no;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -14558,7 +16016,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipSpawner* pInstance);
         static void Clean(MiniBossWarshipSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpawnerSpawner {
         int32_t minibossId;
 
@@ -14569,7 +16029,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpawnerSpawner* pInstance);
         static void Clean(MiniBossSpawnerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBarbecueMachineSpawner {
         int32_t dummy;
 
@@ -14580,7 +16042,9 @@ namespace app::rfl {
         static void Finish(ObjBarbecueMachineSpawner* pInstance);
         static void Clean(ObjBarbecueMachineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBarbecueSonicSpawner {
         int32_t dummy;
 
@@ -14591,7 +16055,9 @@ namespace app::rfl {
         static void Finish(ObjBarbecueSonicSpawner* pInstance);
         static void Clean(ObjBarbecueSonicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishCoinSpawner {
         int32_t no;
         bool eventDriven;
@@ -14604,7 +16070,9 @@ namespace app::rfl {
         static void Finish(ObjFishCoinSpawner* pInstance);
         static void Clean(ObjFishCoinSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFisherSonicSpawner {
         csl::math::Vector3 castPointCenter;
         float castPointRadius;
@@ -14618,7 +16086,9 @@ namespace app::rfl {
         static void Finish(ObjFisherSonicSpawner* pInstance);
         static void Clean(ObjFisherSonicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishingBigSpawner {
         int8_t dummy;
 
@@ -14629,7 +16099,9 @@ namespace app::rfl {
         static void Finish(ObjFishingBigSpawner* pInstance);
         static void Clean(ObjFishingBigSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishingSequenceSpawner {
         int32_t spotId;
         hh::game::ObjectId sonicObj;
@@ -14658,7 +16130,9 @@ namespace app::rfl {
         static void Finish(ObjFishingSequenceSpawner* pInstance);
         static void Clean(ObjFishingSequenceSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmySpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -14724,7 +16198,9 @@ namespace app::rfl {
         static void Finish(ObjAmySpawner* pInstance);
         static void Clean(ObjAmySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEggManSpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -14758,7 +16234,9 @@ namespace app::rfl {
         static void Finish(ObjEggManSpawner* pInstance);
         static void Clean(ObjEggManSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnucklesSpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -14824,7 +16302,9 @@ namespace app::rfl {
         static void Finish(ObjKnucklesSpawner* pInstance);
         static void Clean(ObjKnucklesSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmyKodamaElderSpawner {
         int32_t no;
         bool guideCircleEnabled;
@@ -14838,7 +16318,9 @@ namespace app::rfl {
         static void Finish(ObjAmyKodamaElderSpawner* pInstance);
         static void Clean(ObjAmyKodamaElderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmyKodamaHermitSpawner {
         int32_t no;
         bool guideCircleEnabled;
@@ -14852,7 +16334,9 @@ namespace app::rfl {
         static void Finish(ObjAmyKodamaHermitSpawner* pInstance);
         static void Clean(ObjAmyKodamaHermitSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaSpawner {
         int32_t no;
         bool eventDriven;
@@ -14865,7 +16349,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaSpawner* pInstance);
         static void Clean(ObjKodamaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaElderSpawner {
         int32_t no;
         hh::game::ObjectId fastTravelLocator;
@@ -14877,7 +16363,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaElderSpawner* pInstance);
         static void Clean(ObjKodamaElderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaEscortSpawner {
         enum class QuestType : uint8_t {
             KodamaEscortDesert = 0,
@@ -14894,7 +16382,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaEscortSpawner* pInstance);
         static void Clean(ObjKodamaEscortSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaHermitSpawner {
         int32_t no;
         hh::game::ObjectId fastTravelLocator;
@@ -14909,7 +16399,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaHermitSpawner* pInstance);
         static void Clean(ObjKodamaHermitSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaLauncherSpawner {
         uint32_t numKodamas;
         float splashMinRadius;
@@ -14925,7 +16417,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaLauncherSpawner* pInstance);
         static void Clean(ObjKodamaLauncherSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMapSpawner {
         enum class CharacterType : int8_t {
             Amy = 0,
@@ -14946,7 +16440,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMapSpawner* pInstance);
         static void Clean(ObjKodamaMapSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMasterSpawner {
         enum class TrialType : int8_t {
             Dragon = 0,
@@ -14979,7 +16475,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMasterSpawner* pInstance);
         static void Clean(ObjKodamaMasterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMasterKingSpawner {
         enum class KingStateType : int8_t {
             Access = 0,
@@ -15005,7 +16503,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMasterKingSpawner* pInstance);
         static void Clean(ObjKodamaMasterKingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaNewFormSpawner {
         enum class Value : int8_t {
             RareA = 0,
@@ -15031,7 +16531,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaNewFormSpawner* pInstance);
         static void Clean(ObjKodamaNewFormSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaPeddlerSpawner {
         enum class CharacterType : int8_t {
             Amy = 0,
@@ -15053,7 +16555,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaPeddlerSpawner* pInstance);
         static void Clean(ObjKodamaPeddlerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaQuestSpawner {
         enum class QuestType : uint8_t {
             KodamaCollectionGrass = 0,
@@ -15071,7 +16575,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaQuestSpawner* pInstance);
         static void Clean(ObjKodamaQuestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaTowerSpawner {
         int32_t no;
         float cyloopSignDistance;
@@ -15085,7 +16591,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaTowerSpawner* pInstance);
         static void Clean(ObjKodamaTowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTailsKodamaHackingSpawner {
         int32_t no;
         bool disableFunction;
@@ -15099,7 +16607,9 @@ namespace app::rfl {
         static void Finish(ObjTailsKodamaHackingSpawner* pInstance);
         static void Clean(ObjTailsKodamaHackingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaChildSpawner {
         int32_t no;
         bool eventDriven;
@@ -15111,7 +16621,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaChildSpawner* pInstance);
         static void Clean(ObjKodamaChildSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaDiscipleSpawner {
         int32_t no;
         bool eventDriven;
@@ -15123,7 +16635,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaDiscipleSpawner* pInstance);
         static void Clean(ObjKodamaDiscipleSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaLoverSpawner {
         int32_t no;
         bool eventDriven;
@@ -15135,7 +16649,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaLoverSpawner* pInstance);
         static void Clean(ObjKodamaLoverSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMotherSpawner {
         enum class PurposeOfUse : uint8_t {
             Normal = 0,
@@ -15155,7 +16671,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMotherSpawner* pInstance);
         static void Clean(ObjKodamaMotherSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaPunchSpawner {
         int32_t no;
         bool guideCircleEnabled;
@@ -15168,7 +16686,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaPunchSpawner* pInstance);
         static void Clean(ObjKodamaPunchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaSoldierSpawner {
         int32_t no;
         bool eventDriven;
@@ -15180,7 +16700,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaSoldierSpawner* pInstance);
         static void Clean(ObjKodamaSoldierSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaWarriorSpawner {
         int32_t no;
         bool eventDriven;
@@ -15192,7 +16714,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaWarriorSpawner* pInstance);
         static void Clean(ObjKodamaWarriorSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNpcSonicSpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -15226,7 +16750,9 @@ namespace app::rfl {
         static void Finish(ObjNpcSonicSpawner* pInstance);
         static void Clean(ObjNpcSonicSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSageSpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -15290,7 +16816,9 @@ namespace app::rfl {
         static void Finish(ObjSageSpawner* pInstance);
         static void Clean(ObjSageSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTailsSpawner {
         enum class PurposeOfUse : int8_t {
             Normal = 0,
@@ -15342,7 +16870,9 @@ namespace app::rfl {
         static void Finish(ObjTailsSpawner* pInstance);
         static void Clean(ObjTailsSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PathMoveCameraParam {
         float azimuth;
         float elevation;
@@ -15358,9 +16888,11 @@ namespace app::rfl {
         static void Finish(PathMoveCameraParam* pInstance);
         static void Clean(PathMoveCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPathMoveFieldSpawner {
-        PathMoveCameraParam cameraParam;
+        heur::rfl::PathMoveCameraParam cameraParam;
         csl::ut::VariableString pathName;
         float speed;
 
@@ -15371,7 +16903,9 @@ namespace app::rfl {
         static void Finish(ObjPathMoveFieldSpawner* pInstance);
         static void Clean(ObjPathMoveFieldSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DropQuestItemParam {
         int32_t dropNum;
         float velocity;
@@ -15383,7 +16917,9 @@ namespace app::rfl {
         static void Finish(DropQuestItemParam* pInstance);
         static void Clean(DropQuestItemParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestBoxSpawner {
         enum class BoxSizeType : int8_t {
             SMALL = 0,
@@ -15396,7 +16932,7 @@ namespace app::rfl {
         int32_t heightBoxNum;
         int32_t SideBoxNum;
         int32_t depthBoxNum;
-        DropQuestItemParam dropItemParam;
+        heur::rfl::DropQuestItemParam dropItemParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15405,7 +16941,9 @@ namespace app::rfl {
         static void Finish(ObjQuestBoxSpawner* pInstance);
         static void Clean(ObjQuestBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestBreakBoxSpawner {
         int32_t dummy;
 
@@ -15416,7 +16954,9 @@ namespace app::rfl {
         static void Finish(ObjQuestBreakBoxSpawner* pInstance);
         static void Clean(ObjQuestBreakBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GoalBoxParam {
         float depth;
         float height;
@@ -15429,9 +16969,11 @@ namespace app::rfl {
         static void Finish(GoalBoxParam* pInstance);
         static void Clean(GoalBoxParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestDrawBridgeGoalSpawner {
-        GoalBoxParam BoxPram;
+        heur::rfl::GoalBoxParam BoxPram;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15440,7 +16982,9 @@ namespace app::rfl {
         static void Finish(ObjQuestDrawBridgeGoalSpawner* pInstance);
         static void Clean(ObjQuestDrawBridgeGoalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaEscortDarumaSpawner {
         uint32_t level;
         uint32_t bodyCount;
@@ -15454,7 +16998,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaEscortDarumaSpawner* pInstance);
         static void Clean(ObjKodamaEscortDarumaSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBeeFlowerSpawner {
         int32_t dummy;
 
@@ -15465,7 +17011,9 @@ namespace app::rfl {
         static void Finish(ObjBeeFlowerSpawner* pInstance);
         static void Clean(ObjBeeFlowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBeeSwarmSpawner {
         int8_t beeNum;
         float beeInterval;
@@ -15477,7 +17025,9 @@ namespace app::rfl {
         static void Finish(ObjBeeSwarmSpawner* pInstance);
         static void Clean(ObjBeeSwarmSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrassRestoreVolumeSpawner {
         csl::math::Vector3 extents;
 
@@ -15488,7 +17038,9 @@ namespace app::rfl {
         static void Finish(ObjGrassRestoreVolumeSpawner* pInstance);
         static void Clean(ObjGrassRestoreVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMowingGrassSpawner {
         int32_t dummy;
 
@@ -15499,7 +17051,9 @@ namespace app::rfl {
         static void Finish(ObjMowingGrassSpawner* pInstance);
         static void Clean(ObjMowingGrassSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjResultViewCameraStoreSpawner {
         hh::game::ObjectId camera;
 
@@ -15510,7 +17064,9 @@ namespace app::rfl {
         static void Finish(ObjResultViewCameraStoreSpawner* pInstance);
         static void Clean(ObjResultViewCameraStoreSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestEndPositionSpawner {
         enum class Value : int8_t {
             KodamaCollection01 = 0,
@@ -15538,7 +17094,9 @@ namespace app::rfl {
         static void Finish(ObjQuestEndPositionSpawner* pInstance);
         static void Clean(ObjQuestEndPositionSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestStartPositionSpawner {
         enum class Value : int8_t {
             KodamaCollection01 = 0,
@@ -15560,7 +17118,9 @@ namespace app::rfl {
         static void Finish(ObjQuestStartPositionSpawner* pInstance);
         static void Clean(ObjQuestStartPositionSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEnemyBulletPatternPreviewSpawner {
         int32_t no;
 
@@ -15571,7 +17131,9 @@ namespace app::rfl {
         static void Finish(ObjEnemyBulletPatternPreviewSpawner* pInstance);
         static void Clean(ObjEnemyBulletPatternPreviewSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHomingLaserTargetManagerSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> enemyIds;
         hh::game::ObjectId bossId;
@@ -15583,7 +17145,9 @@ namespace app::rfl {
         static void Finish(ObjHomingLaserTargetManagerSpawner* pInstance);
         static void Clean(ObjHomingLaserTargetManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShootingEnemyCoreSpawner {
         int32_t no;
         csl::ut::VariableString luaName;
@@ -15596,7 +17160,9 @@ namespace app::rfl {
         static void Finish(ObjShootingEnemyCoreSpawner* pInstance);
         static void Clean(ObjShootingEnemyCoreSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChangeWaveCondition {
         bool coreEnemyHpRemain;
         float coreEnemyRemanHpPersentage;
@@ -15611,12 +17177,14 @@ namespace app::rfl {
         static void Finish(ChangeWaveCondition* pInstance);
         static void Clean(ChangeWaveCondition* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShootingEnemyManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> enemyIds;
         csl::ut::VariableString luaName;
-        ChangeWaveCondition changeWaveCondition;
+        heur::rfl::ChangeWaveCondition changeWaveCondition;
         bool startScriptAfterSerif;
         csl::ut::VariableString soundName;
 
@@ -15627,7 +17195,9 @@ namespace app::rfl {
         static void Finish(ObjShootingEnemyManagerSpawner* pInstance);
         static void Clean(ObjShootingEnemyManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShootingEnemyNormalSpawner {
         enum class HpType : uint8_t {
             HpS = 0,
@@ -15646,7 +17216,9 @@ namespace app::rfl {
         static void Finish(ObjShootingEnemyNormalSpawner* pInstance);
         static void Clean(ObjShootingEnemyNormalSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShootingEnemyWaveManagerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> enemyManagerIds;
@@ -15658,7 +17230,9 @@ namespace app::rfl {
         static void Finish(ObjShootingEnemyWaveManagerSpawner* pInstance);
         static void Clean(ObjShootingEnemyWaveManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmbSoundVolumeSpawner {
         enum class ShapeType : int8_t {
             SHAPE_BOX = 0,
@@ -15686,13 +17260,15 @@ namespace app::rfl {
         static void Finish(ObjAmbSoundVolumeSpawner* pInstance);
         static void Clean(ObjAmbSoundVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChangeBGMAisacVolumeSpawner {
         csl::ut::VariableString aisacName;
         float targetAisacValue;
         float fadeInTime;
         float fadeOutTime;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15701,13 +17277,15 @@ namespace app::rfl {
         static void Finish(ObjChangeBGMAisacVolumeSpawner* pInstance);
         static void Clean(ObjChangeBGMAisacVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChangeBGMTriggerSpawner {
         csl::ut::VariableString cueName;
         float fadeOutTime;
         float playDelayTime;
         float fadeInTime;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15716,7 +17294,9 @@ namespace app::rfl {
         static void Finish(ObjChangeBGMTriggerSpawner* pInstance);
         static void Clean(ObjChangeBGMTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChangeBGMVolumeSpawner {
         enum class ShapeType : int8_t {
             SHAPE_BOX = 0,
@@ -15748,13 +17328,15 @@ namespace app::rfl {
         static void Finish(ObjChangeBGMVolumeSpawner* pInstance);
         static void Clean(ObjChangeBGMVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjChangeSEAisacVolumeSpawner {
         csl::ut::VariableString aisacName;
         float targetAisacValue;
         float fadeInTime;
         float fadeOutTime;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15763,7 +17345,9 @@ namespace app::rfl {
         static void Finish(ObjChangeSEAisacVolumeSpawner* pInstance);
         static void Clean(ObjChangeSEAisacVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjExtentSoundSourceSpawner {
         enum class PlayMode : int8_t {
             PLAYMODE_LOOP = 0,
@@ -15791,7 +17375,9 @@ namespace app::rfl {
         static void Finish(ObjExtentSoundSourceSpawner* pInstance);
         static void Clean(ObjExtentSoundSourceSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOneShotBGMTriggerSpawner {
         enum class ShapeType : int8_t {
             SHAPE_BOX = 0,
@@ -15819,7 +17405,9 @@ namespace app::rfl {
         static void Finish(ObjOneShotBGMTriggerSpawner* pInstance);
         static void Clean(ObjOneShotBGMTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOneShotSoundTriggerSpawner {
         enum class SoundPositionType : int8_t {
             SOUND_POS_CENTER = 0,
@@ -15855,7 +17443,9 @@ namespace app::rfl {
         static void Finish(ObjOneShotSoundTriggerSpawner* pInstance);
         static void Clean(ObjOneShotSoundTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSoundSourceSpawner {
         enum class PlayMode : int8_t {
             PLAYMODE_LOOP = 0,
@@ -15878,8 +17468,10 @@ namespace app::rfl {
         static void Finish(ObjSoundSourceSpawner* pInstance);
         static void Clean(ObjSoundSourceSpawner* pInstance);
     };
+}
 
-    struct ObjPathSoundSourceSpawner : ObjSoundSourceSpawner {
+namespace heur::rfl {
+    struct ObjPathSoundSourceSpawner : heur::rfl::ObjSoundSourceSpawner {
         csl::ut::VariableString pathName;
         int32_t searchDivideNum;
 
@@ -15890,8 +17482,10 @@ namespace app::rfl {
         static void Finish(ObjPathSoundSourceSpawner* pInstance);
         static void Clean(ObjPathSoundSourceSpawner* pInstance);
     };
+}
 
-    struct ObjPointSoundSourceSpawner : ObjSoundSourceSpawner {
+namespace heur::rfl {
+    struct ObjPointSoundSourceSpawner : heur::rfl::ObjSoundSourceSpawner {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15900,13 +17494,15 @@ namespace app::rfl {
         static void Finish(ObjPointSoundSourceSpawner* pInstance);
         static void Clean(ObjPointSoundSourceSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSoundSourcePlaneSpawner {
         csl::ut::VariableString cueName;
         float volume;
         bool is3D;
         csl::math::Vector3 pos3D;
-        PassPlaneTriggerSpawner planeTrigger;
+        heur::rfl::PassPlaneTriggerSpawner planeTrigger;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15915,9 +17511,11 @@ namespace app::rfl {
         static void Finish(ObjSoundSourcePlaneSpawner* pInstance);
         static void Clean(ObjSoundSourcePlaneSpawner* pInstance);
     };
+}
 
-    struct ObjSoundSourceVolumeSpawner : ObjSoundSourceSpawner {
-        VolumeTriggerSpawner volumeTrigger;
+namespace heur::rfl {
+    struct ObjSoundSourceVolumeSpawner : heur::rfl::ObjSoundSourceSpawner {
+        heur::rfl::VolumeTriggerSpawner volumeTrigger;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -15926,7 +17524,9 @@ namespace app::rfl {
         static void Finish(ObjSoundSourceVolumeSpawner* pInstance);
         static void Clean(ObjSoundSourceVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAlbatrossChaseSpawner {
         csl::math::Vector3 relative;
         float thresholdTime;
@@ -15940,7 +17540,9 @@ namespace app::rfl {
         static void Finish(ObjAlbatrossChaseSpawner* pInstance);
         static void Clean(ObjAlbatrossChaseSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAlbatrossGroupSpawner {
         enum class RotAxisType : int8_t {
             ROT_AXIS_X = 0,
@@ -15967,7 +17569,9 @@ namespace app::rfl {
         static void Finish(ObjAlbatrossGroupSpawner* pInstance);
         static void Clean(ObjAlbatrossGroupSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBreakableObjectSpawner {
         int32_t dummy;
 
@@ -15978,7 +17582,9 @@ namespace app::rfl {
         static void Finish(ObjBreakableObjectSpawner* pInstance);
         static void Clean(ObjBreakableObjectSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAncientBridgeSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
@@ -15990,7 +17596,9 @@ namespace app::rfl {
         static void Finish(ObjAncientBridgeSpawner* pInstance);
         static void Clean(ObjAncientBridgeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossNestColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
@@ -16014,7 +17622,9 @@ namespace app::rfl {
         static void Finish(ObjBossNestColliderSpawner* pInstance);
         static void Clean(ObjBossNestColliderSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantBridgeSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
@@ -16026,7 +17636,9 @@ namespace app::rfl {
         static void Finish(ObjGiantBridgeSpawner* pInstance);
         static void Clean(ObjGiantBridgeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantIncidentSpawner {
         hh::game::ObjectId startPos;
         hh::game::ObjectId endPos;
@@ -16041,7 +17653,9 @@ namespace app::rfl {
         static void Finish(ObjGiantIncidentSpawner* pInstance);
         static void Clean(ObjGiantIncidentSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantIncidentGiantSpawner {
         int32_t dummy;
 
@@ -16052,7 +17666,9 @@ namespace app::rfl {
         static void Finish(ObjGiantIncidentGiantSpawner* pInstance);
         static void Clean(ObjGiantIncidentGiantSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantIncidentRockSpawner {
         enum class ModelType : int8_t {
             TYPE_A = 0,
@@ -16071,7 +17687,9 @@ namespace app::rfl {
         static void Finish(ObjGiantIncidentRockSpawner* pInstance);
         static void Clean(ObjGiantIncidentRockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantStatueSpawner {
         int32_t no;
 
@@ -16082,7 +17700,9 @@ namespace app::rfl {
         static void Finish(ObjGiantStatueSpawner* pInstance);
         static void Clean(ObjGiantStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjExtraGiantTowerSpawner {
         int32_t no;
         int8_t unlockOrder;
@@ -16094,7 +17714,9 @@ namespace app::rfl {
         static void Finish(ObjExtraGiantTowerSpawner* pInstance);
         static void Clean(ObjExtraGiantTowerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantTowerSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
@@ -16106,8 +17728,10 @@ namespace app::rfl {
         static void Finish(ObjGiantTowerSpawner* pInstance);
         static void Clean(ObjGiantTowerSpawner* pInstance);
     };
+}
 
-    struct ObjCameraLimitedPanSpawner : ObjCameraSpawner {
+namespace heur::rfl {
+    struct ObjCameraLimitedPanSpawner : heur::rfl::ObjCameraSpawner {
         enum class PositionMode : int8_t {
             POS_MODE_FIX = 0,
             POS_MODE_MAINTAIN_DISTANCE = 1,
@@ -16128,7 +17752,9 @@ namespace app::rfl {
         static void Finish(ObjCameraLimitedPanSpawner* pInstance);
         static void Clean(ObjCameraLimitedPanSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStatueSmallSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> targetList;
@@ -16140,7 +17766,9 @@ namespace app::rfl {
         static void Finish(ObjStatueSmallSpawner* pInstance);
         static void Clean(ObjStatueSmallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaterfallBreakSpawner {
         int32_t no;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
@@ -16148,8 +17776,8 @@ namespace app::rfl {
         float collisionHeight;
         float collisionDepth;
         csl::math::Vector3 collisionOffset;
-        VolumeTriggerSpawner effectVolume;
-        VolumeTriggerSpawner effectVolumeBreak[2];
+        heur::rfl::VolumeTriggerSpawner effectVolume;
+        heur::rfl::VolumeTriggerSpawner effectVolumeBreak[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16158,7 +17786,9 @@ namespace app::rfl {
         static void Finish(ObjWaterfallBreakSpawner* pInstance);
         static void Clean(ObjWaterfallBreakSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaterfallStatueSpawner {
         int32_t no;
 
@@ -16169,7 +17799,9 @@ namespace app::rfl {
         static void Finish(ObjWaterfallStatueSpawner* pInstance);
         static void Clean(ObjWaterfallStatueSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAirFireBarSpawner {
         int16_t barCount;
         float rotSpeed;
@@ -16182,13 +17814,15 @@ namespace app::rfl {
         static void Finish(ObjAirFireBarSpawner* pInstance);
         static void Clean(ObjAirFireBarSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonActionVolumeSpawner {
         enum class ActionType : int8_t {
             MISSILE = 0,
         };
 
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         ActionType actionType;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -16198,9 +17832,11 @@ namespace app::rfl {
         static void Finish(ObjDragonActionVolumeSpawner* pInstance);
         static void Clean(ObjDragonActionVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonAreaSubVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         hh::game::ObjectId target;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -16210,9 +17846,11 @@ namespace app::rfl {
         static void Finish(ObjDragonAreaSubVolumeSpawner* pInstance);
         static void Clean(ObjDragonAreaSubVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonAreaVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         float closeRadius;
         hh::game::ObjectId dragon;
 
@@ -16223,9 +17861,11 @@ namespace app::rfl {
         static void Finish(ObjDragonAreaVolumeSpawner* pInstance);
         static void Clean(ObjDragonAreaVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonCameraChangeVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         int32_t priority;
         float easeTimeEnter;
         float easeTimeLeave;
@@ -16245,7 +17885,9 @@ namespace app::rfl {
         static void Finish(ObjDragonCameraChangeVolumeSpawner* pInstance);
         static void Clean(ObjDragonCameraChangeVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_EventFirstParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16257,7 +17899,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_EventFirstParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_EventFirstParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_EventEndParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16269,7 +17913,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_EventEndParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_EventEndParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_EventRetryParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16281,7 +17927,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_EventRetryParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_EventRetryParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_AutorunCameraParam {
         enum class PlayerOffsetType : int8_t {
             PLAYER_OFFSET_NORMAL = 0,
@@ -16311,15 +17959,17 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_AutorunCameraParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_AutorunCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_AutorunParam {
         csl::ut::VariableString pathName;
         float speed;
         float boostSpeed;
         float boostSpeedMax;
         float width;
-        ObjDragonIncidentSpawner_AutorunCameraParam cameraIntro;
-        ObjDragonIncidentSpawner_AutorunCameraParam cameraMain;
+        heur::rfl::ObjDragonIncidentSpawner_AutorunCameraParam cameraIntro;
+        heur::rfl::ObjDragonIncidentSpawner_AutorunCameraParam cameraMain;
         csl::ut::MoveArray<hh::game::ObjectId> cameraCollision;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -16329,7 +17979,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_AutorunParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_AutorunParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_MissilePresetParam {
         float heightOffset;
         float firstPathOffset;
@@ -16345,9 +17997,11 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_MissilePresetParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_MissilePresetParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner_MissileCommonParam {
-        ObjDragonIncidentSpawner_MissilePresetParam presets[10];
+        heur::rfl::ObjDragonIncidentSpawner_MissilePresetParam presets[10];
         float explodeRadius;
         float explodeTime;
         uint32_t damageRings;
@@ -16363,14 +18017,16 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner_MissileCommonParam* pInstance);
         static void Clean(ObjDragonIncidentSpawner_MissileCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentSpawner {
         hh::game::ObjectId dragon;
-        ObjDragonIncidentSpawner_EventFirstParam eventFirst;
-        ObjDragonIncidentSpawner_EventEndParam eventEnd;
-        ObjDragonIncidentSpawner_EventRetryParam eventRetry;
-        ObjDragonIncidentSpawner_AutorunParam autorun;
-        ObjDragonIncidentSpawner_MissileCommonParam missile;
+        heur::rfl::ObjDragonIncidentSpawner_EventFirstParam eventFirst;
+        heur::rfl::ObjDragonIncidentSpawner_EventEndParam eventEnd;
+        heur::rfl::ObjDragonIncidentSpawner_EventRetryParam eventRetry;
+        heur::rfl::ObjDragonIncidentSpawner_AutorunParam autorun;
+        heur::rfl::ObjDragonIncidentSpawner_MissileCommonParam missile;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16379,10 +18035,12 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentSpawner* pInstance);
         static void Clean(ObjDragonIncidentSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentCameraTriggerSpawner {
         hh::game::ObjectId dragonIncident;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16391,7 +18049,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentCameraTriggerSpawner* pInstance);
         static void Clean(ObjDragonIncidentCameraTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentDragonSpawner {
         hh::game::ObjectId incident;
         float height;
@@ -16404,7 +18064,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentDragonSpawner* pInstance);
         static void Clean(ObjDragonIncidentDragonSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentMissileSpawner {
         int32_t dummy;
 
@@ -16415,7 +18077,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentMissileSpawner* pInstance);
         static void Clean(ObjDragonIncidentMissileSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentMissileGroupSpawner {
         int32_t dummy;
 
@@ -16426,7 +18090,9 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentMissileGroupSpawner* pInstance);
         static void Clean(ObjDragonIncidentMissileGroupSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonIncidentMissileTriggerSpawner {
         hh::game::ObjectId dragonIncident;
         csl::math::Vector3 firstOffset;
@@ -16434,7 +18100,7 @@ namespace app::rfl {
         csl::math::Vector3 finishOffset;
         uint32_t preset;
         bool aimPlayer;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16443,9 +18109,11 @@ namespace app::rfl {
         static void Finish(ObjDragonIncidentMissileTriggerSpawner* pInstance);
         static void Clean(ObjDragonIncidentMissileTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDragonStatusVolumeSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         bool disableMissile;
         bool keepChase;
         bool changeMotion;
@@ -16457,7 +18125,9 @@ namespace app::rfl {
         static void Finish(ObjDragonStatusVolumeSpawner* pInstance);
         static void Clean(ObjDragonStatusVolumeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantBallSpawner {
         bool eventObject;
 
@@ -16468,7 +18138,9 @@ namespace app::rfl {
         static void Finish(ObjGiantBallSpawner* pInstance);
         static void Clean(ObjGiantBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantCraneSpawner {
         int32_t dummy;
 
@@ -16479,7 +18151,9 @@ namespace app::rfl {
         static void Finish(ObjGiantCraneSpawner* pInstance);
         static void Clean(ObjGiantCraneSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantOrbSpawner {
         int32_t dummy;
 
@@ -16490,7 +18164,9 @@ namespace app::rfl {
         static void Finish(ObjGiantOrbSpawner* pInstance);
         static void Clean(ObjGiantOrbSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantOrbMountSpawner {
         int32_t dummy;
 
@@ -16501,7 +18177,9 @@ namespace app::rfl {
         static void Finish(ObjGiantOrbMountSpawner* pInstance);
         static void Clean(ObjGiantOrbMountSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CraneGrid {
         uint8_t row;
         uint8_t col;
@@ -16513,9 +18191,11 @@ namespace app::rfl {
         static void Finish(CraneGrid* pInstance);
         static void Clean(CraneGrid* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OrbMountParam {
-        CraneGrid pos;
+        heur::rfl::CraneGrid pos;
         float r;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -16525,7 +18205,9 @@ namespace app::rfl {
         static void Finish(OrbMountParam* pInstance);
         static void Clean(OrbMountParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantCraneManagerSpawner {
         int32_t no;
         uint8_t row;
@@ -16535,10 +18217,10 @@ namespace app::rfl {
         float craneSpeed;
         float armSpeed;
         float timeCatch;
-        CraneGrid cranePos;
-        CraneGrid orbPos[4];
-        OrbMountParam orbMount[4];
-        GimmickCameraOptionalParam cameraParam;
+        heur::rfl::CraneGrid cranePos;
+        heur::rfl::CraneGrid orbPos[4];
+        heur::rfl::OrbMountParam orbMount[4];
+        heur::rfl::GimmickCameraOptionalParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16547,7 +18229,9 @@ namespace app::rfl {
         static void Finish(ObjGiantCraneManagerSpawner* pInstance);
         static void Clean(ObjGiantCraneManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantShieldSpawner {
         enum class VisualType : int8_t {
             Normal = 0,
@@ -16563,7 +18247,9 @@ namespace app::rfl {
         static void Finish(ObjGiantShieldSpawner* pInstance);
         static void Clean(ObjGiantShieldSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLandSlideSpawner {
         int32_t dummy;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
@@ -16575,7 +18261,9 @@ namespace app::rfl {
         static void Finish(ObjLandSlideSpawner* pInstance);
         static void Clean(ObjLandSlideSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSandSmokeSpawner {
         enum class EffectColor : uint8_t {
             Yellow = 0,
@@ -16603,11 +18291,13 @@ namespace app::rfl {
         static void Finish(ObjSandSmokeSpawner* pInstance);
         static void Clean(ObjSandSmokeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossCloudSpawner {
         int32_t no;
         float distance;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
         csl::ut::MoveArray<hh::game::ObjectId> hiddenList;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -16617,7 +18307,9 @@ namespace app::rfl {
         static void Finish(ObjBossCloudSpawner* pInstance);
         static void Clean(ObjBossCloudSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBrokenRobotSpawner {
         int32_t no;
 
@@ -16628,7 +18320,9 @@ namespace app::rfl {
         static void Finish(ObjBrokenRobotSpawner* pInstance);
         static void Clean(ObjBrokenRobotSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBumperSpawner {
         enum class BumperMark : int8_t {
             MarkStar = 0,
@@ -16648,7 +18342,9 @@ namespace app::rfl {
         static void Finish(ObjBumperSpawner* pInstance);
         static void Clean(ObjBumperSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCrackGroundSpawner {
         enum class ModelType : int8_t {
             ModelType_1 = 0,
@@ -16665,7 +18361,9 @@ namespace app::rfl {
         static void Finish(ObjCrackGroundSpawner* pInstance);
         static void Clean(ObjCrackGroundSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDeviceControllerSpawner {
         int32_t dummy;
 
@@ -16676,7 +18374,9 @@ namespace app::rfl {
         static void Finish(ObjDeviceControllerSpawner* pInstance);
         static void Clean(ObjDeviceControllerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDiveSwitchSpawner {
         int32_t no;
 
@@ -16687,7 +18387,9 @@ namespace app::rfl {
         static void Finish(ObjDiveSwitchSpawner* pInstance);
         static void Clean(ObjDiveSwitchSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDrawBridgeSpawner {
         int32_t no;
         float r;
@@ -16699,7 +18401,9 @@ namespace app::rfl {
         static void Finish(ObjDrawBridgeSpawner* pInstance);
         static void Clean(ObjDrawBridgeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEnergyBallSpawner {
         int8_t dummy;
 
@@ -16710,7 +18414,9 @@ namespace app::rfl {
         static void Finish(ObjEnergyBallSpawner* pInstance);
         static void Clean(ObjEnergyBallSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEnergyBallLauncherSpawner {
         float speed;
         float gravity;
@@ -16724,7 +18430,9 @@ namespace app::rfl {
         static void Finish(ObjEnergyBallLauncherSpawner* pInstance);
         static void Clean(ObjEnergyBallLauncherSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEnvAnalyzerSpawner {
         int32_t no;
 
@@ -16735,7 +18443,9 @@ namespace app::rfl {
         static void Finish(ObjEnvAnalyzerSpawner* pInstance);
         static void Clean(ObjEnvAnalyzerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEruptionControlDeviceManagerredRingNodeUse {
         bool useNode[15];
 
@@ -16746,7 +18456,9 @@ namespace app::rfl {
         static void Finish(ObjEruptionControlDeviceManagerredRingNodeUse* pInstance);
         static void Clean(ObjEruptionControlDeviceManagerredRingNodeUse* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEruptionControlDeviceManagerSpawner {
         uint32_t easyLvFailedCount[3];
         float speed;
@@ -16782,7 +18494,7 @@ namespace app::rfl {
         csl::ut::MoveArray<hh::game::ObjectId> childs;
         csl::ut::MoveArray<hh::game::ObjectId> childsAfterClearing;
         csl::ut::MoveArray<hh::game::ObjectId> redRingNodeList;
-        ObjEruptionControlDeviceManagerredRingNodeUse redRingUsePattern[9];
+        heur::rfl::ObjEruptionControlDeviceManagerredRingNodeUse redRingUsePattern[9];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16791,7 +18503,9 @@ namespace app::rfl {
         static void Finish(ObjEruptionControlDeviceManagerSpawner* pInstance);
         static void Clean(ObjEruptionControlDeviceManagerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlipperSpawner {
         enum class RotateDirection : int8_t {
             Left = 0,
@@ -16814,7 +18528,9 @@ namespace app::rfl {
         static void Finish(ObjFlipperSpawner* pInstance);
         static void Clean(ObjFlipperSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_FvParam {
         hh::game::ObjectId startPosition;
         csl::ut::VariableString fvShieldPathName;
@@ -16828,7 +18544,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_FvParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_FvParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_EventFirstParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16840,7 +18558,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_EventFirstParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_EventFirstParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_EventEndParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16853,7 +18573,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_EventEndParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_EventEndParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_EventRetryParam {
         hh::game::ObjectId position;
         hh::game::ObjectId lookAt;
@@ -16865,7 +18587,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_EventRetryParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_EventRetryParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_FlyerParam {
         hh::game::ObjectId flyer;
         csl::ut::VariableString pathName;
@@ -16877,7 +18601,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_FlyerParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_FlyerParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_ShieldPresetParam {
         csl::math::Vector3 launchOffset;
         csl::math::Vector3 approachOffset;
@@ -16898,9 +18624,11 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_ShieldPresetParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_ShieldPresetParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner_ShieldCommonParam {
-        ObjKnightIncidentSpawner_ShieldPresetParam presets[6];
+        heur::rfl::ObjKnightIncidentSpawner_ShieldPresetParam presets[6];
         float collisionRadius;
         uint32_t damageRings;
 
@@ -16911,14 +18639,16 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner_ShieldCommonParam* pInstance);
         static void Clean(ObjKnightIncidentSpawner_ShieldCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentSpawner {
-        ObjKnightIncidentSpawner_FvParam fv;
-        ObjKnightIncidentSpawner_EventFirstParam eventFirst;
-        ObjKnightIncidentSpawner_EventEndParam eventEnd;
-        ObjKnightIncidentSpawner_EventRetryParam eventRetry;
-        ObjKnightIncidentSpawner_FlyerParam flyer;
-        ObjKnightIncidentSpawner_ShieldCommonParam shield;
+        heur::rfl::ObjKnightIncidentSpawner_FvParam fv;
+        heur::rfl::ObjKnightIncidentSpawner_EventFirstParam eventFirst;
+        heur::rfl::ObjKnightIncidentSpawner_EventEndParam eventEnd;
+        heur::rfl::ObjKnightIncidentSpawner_EventRetryParam eventRetry;
+        heur::rfl::ObjKnightIncidentSpawner_FlyerParam flyer;
+        heur::rfl::ObjKnightIncidentSpawner_ShieldCommonParam shield;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16927,7 +18657,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentSpawner* pInstance);
         static void Clean(ObjKnightIncidentSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_PathLoopInfo {
         bool enable;
         float start;
@@ -16941,7 +18673,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_PathLoopInfo* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_PathLoopInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_HoleParam {
         float start;
         float end;
@@ -16953,13 +18687,15 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_HoleParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_HoleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_TrailParam {
         float interval;
         int32_t recordNum;
         float width;
         float wallHeight;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_HoleParam holes[16];
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_HoleParam holes[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16968,7 +18704,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_TrailParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_TrailParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData_OneBullet {
         float vert;
         float initSpeed;
@@ -16983,11 +18721,13 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData_OneBullet* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData_OneBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData {
         bool enabled;
         float shotAnimSpeed;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData_OneBullet oneBullet[6];
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData_OneBullet oneBullet[6];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -16996,9 +18736,11 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam {
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData posTable[16];
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam_TableData posTable[16];
         float readyDuration;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -17008,7 +18750,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_CameraParam {
         float fovy;
         float distance;
@@ -17032,7 +18776,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_CameraParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_CameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_QuickStepParam {
         bool enable;
         float speed;
@@ -17046,16 +18792,18 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_QuickStepParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_QuickStepParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam {
         float startSpeed;
         float decrease;
         float minSpeed;
         float targetDisableTime;
         float resetByFallTime;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam shot;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_CameraParam camera;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_QuickStepParam quickStep;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_ShotParam shot;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_CameraParam camera;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam_QuickStepParam quickStep;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17064,10 +18812,12 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner_ConfigParam {
-        ObjKnightIncidentFlyerSpawner_ConfigParam_TrailParam trail;
-        ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam escape;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_TrailParam trail;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam_EscapeParam escape;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17076,12 +18826,14 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner_ConfigParam* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner_ConfigParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentFlyerSpawner {
         csl::ut::VariableString pathName;
-        ObjKnightIncidentFlyerSpawner_PathLoopInfo loopInfo[5];
+        heur::rfl::ObjKnightIncidentFlyerSpawner_PathLoopInfo loopInfo[5];
         int32_t no;
-        ObjKnightIncidentFlyerSpawner_ConfigParam config;
+        heur::rfl::ObjKnightIncidentFlyerSpawner_ConfigParam config;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17090,7 +18842,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentFlyerSpawner* pInstance);
         static void Clean(ObjKnightIncidentFlyerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentShieldSpawner {
         int32_t dummy;
 
@@ -17101,7 +18855,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentShieldSpawner* pInstance);
         static void Clean(ObjKnightIncidentShieldSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentShieldFvSpawner {
         int32_t dummy;
 
@@ -17112,11 +18868,13 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentShieldFvSpawner* pInstance);
         static void Clean(ObjKnightIncidentShieldFvSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKnightIncidentShieldTriggerSpawner {
         hh::game::ObjectId knightIncident;
         uint32_t preset;
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17125,7 +18883,9 @@ namespace app::rfl {
         static void Finish(ObjKnightIncidentShieldTriggerSpawner* pInstance);
         static void Clean(ObjKnightIncidentShieldTriggerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPinballDecorationSpawner {
         enum class Type : int8_t {
             TypeA = 0,
@@ -17142,7 +18902,9 @@ namespace app::rfl {
         static void Finish(ObjPinballDecorationSpawner* pInstance);
         static void Clean(ObjPinballDecorationSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPinballReverseSpawner {
         enum class Type : int8_t {
             TypeAL = 0,
@@ -17162,7 +18924,9 @@ namespace app::rfl {
         static void Finish(ObjPinballReverseSpawner* pInstance);
         static void Clean(ObjPinballReverseSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPinballRedRingSpawner {
         int32_t dummy;
 
@@ -17173,7 +18937,9 @@ namespace app::rfl {
         static void Finish(ObjPinballRedRingSpawner* pInstance);
         static void Clean(ObjPinballRedRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPinballRingSpawner {
         enum class SetType : int8_t {
             EquallySpaced = 0,
@@ -17194,7 +18960,9 @@ namespace app::rfl {
         static void Finish(ObjPinballRingSpawner* pInstance);
         static void Clean(ObjPinballRingSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPinballShutterSpawner {
         int32_t dummy;
 
@@ -17205,7 +18973,9 @@ namespace app::rfl {
         static void Finish(ObjPinballShutterSpawner* pInstance);
         static void Clean(ObjPinballShutterSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRolloverSpawner {
         enum class InOutLane : int8_t {
             InLnae = 0,
@@ -17223,7 +18993,9 @@ namespace app::rfl {
         static void Finish(ObjRolloverSpawner* pInstance);
         static void Clean(ObjRolloverSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSlingshotSpawner {
         int32_t score;
         float impluse;
@@ -17235,7 +19007,9 @@ namespace app::rfl {
         static void Finish(ObjSlingshotSpawner* pInstance);
         static void Clean(ObjSlingshotSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjVolcanicEruptionSpawner {
         int32_t type;
 
@@ -17246,7 +19020,9 @@ namespace app::rfl {
         static void Finish(ObjVolcanicEruptionSpawner* pInstance);
         static void Clean(ObjVolcanicEruptionSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmbSoundResearcherSpawner {
         float width;
         float height;
@@ -17260,7 +19036,9 @@ namespace app::rfl {
         static void Finish(ObjAmbSoundResearcherSpawner* pInstance);
         static void Clean(ObjAmbSoundResearcherSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAmbSoundTestMaterialSpawner {
         enum class Material : int8_t {
             MATERIAL_GRASS = 0,
@@ -17280,7 +19058,9 @@ namespace app::rfl {
         static void Finish(ObjAmbSoundTestMaterialSpawner* pInstance);
         static void Clean(ObjAmbSoundTestMaterialSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AnimatorTestSpawner {
         int32_t dummy;
 
@@ -17291,7 +19071,9 @@ namespace app::rfl {
         static void Finish(AnimatorTestSpawner* pInstance);
         static void Clean(AnimatorTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AnimatorTest2Spawner {
         float speed;
         float lr;
@@ -17303,7 +19085,9 @@ namespace app::rfl {
         static void Finish(AnimatorTest2Spawner* pInstance);
         static void Clean(AnimatorTest2Spawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AttractionMoveParam {
         enum class MoveType : int8_t {
             MoveNone = 0,
@@ -17323,7 +19107,9 @@ namespace app::rfl {
         static void Finish(AttractionMoveParam* pInstance);
         static void Clean(AttractionMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAttractionTestSpawner {
         float weight;
         float size;
@@ -17333,7 +19119,7 @@ namespace app::rfl {
         float maxSpeed;
         float enabledTime;
         float disabledTime;
-        AttractionMoveParam move;
+        heur::rfl::AttractionMoveParam move;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17342,7 +19128,9 @@ namespace app::rfl {
         static void Finish(ObjAttractionTestSpawner* pInstance);
         static void Clean(ObjAttractionTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAuraTrainTestRoot {
         csl::ut::VariableString pathName;
         hh::game::ObjectId cameraUuid;
@@ -17356,9 +19144,11 @@ namespace app::rfl {
         static void Finish(ObjAuraTrainTestRoot* pInstance);
         static void Clean(ObjAuraTrainTestRoot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAuraTrainTestSpawner {
-        ObjAuraTrainTestRoot roots[3];
+        heur::rfl::ObjAuraTrainTestRoot roots[3];
         float speed;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -17368,7 +19158,9 @@ namespace app::rfl {
         static void Finish(ObjAuraTrainTestSpawner* pInstance);
         static void Clean(ObjAuraTrainTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossAttackTestSpawner {
         enum class AttackType : int8_t {
             ATTACK_TYPE_MISSILE = 0,
@@ -17390,7 +19182,9 @@ namespace app::rfl {
         static void Finish(ObjBossAttackTestSpawner* pInstance);
         static void Clean(ObjBossAttackTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossDecoySpawner {
         int32_t dummy;
 
@@ -17401,7 +19195,9 @@ namespace app::rfl {
         static void Finish(ObjBossDecoySpawner* pInstance);
         static void Clean(ObjBossDecoySpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossRushTestSpawner {
         int32_t dummy;
 
@@ -17412,7 +19208,9 @@ namespace app::rfl {
         static void Finish(ObjBossRushTestSpawner* pInstance);
         static void Clean(ObjBossRushTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossShakeCameraTestSpawner {
         enum class ShakeType : int8_t {
             MINI = 0,
@@ -17432,7 +19230,9 @@ namespace app::rfl {
         static void Finish(ObjBossShakeCameraTestSpawner* pInstance);
         static void Clean(ObjBossShakeCameraTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBulletHoleTestSpawner {
         float scale;
 
@@ -17443,7 +19243,9 @@ namespace app::rfl {
         static void Finish(ObjBulletHoleTestSpawner* pInstance);
         static void Clean(ObjBulletHoleTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMultiFocusCameraTestSpawner {
         hh::game::ObjectId farLookAt;
         hh::game::ObjectId nearLookAt;
@@ -17459,7 +19261,9 @@ namespace app::rfl {
         static void Finish(ObjMultiFocusCameraTestSpawner* pInstance);
         static void Clean(ObjMultiFocusCameraTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraBehaviorDemoSpawner {
         enum class CameraType : int8_t {
             CAMERA_NORMAL = 0,
@@ -17468,7 +19272,7 @@ namespace app::rfl {
         };
 
         CameraType cameraType;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17477,7 +19281,9 @@ namespace app::rfl {
         static void Finish(ObjCameraBehaviorDemoSpawner* pInstance);
         static void Clean(ObjCameraBehaviorDemoSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCameraResetTestSpawner {
         enum class Type : int8_t {
             Standard = 0,
@@ -17486,7 +19292,7 @@ namespace app::rfl {
         };
 
         Type type;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17495,7 +19301,9 @@ namespace app::rfl {
         static void Finish(ObjCameraResetTestSpawner* pInstance);
         static void Clean(ObjCameraResetTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCharacterActionGuideTestSpawner {
         int32_t dummy;
 
@@ -17506,7 +19314,9 @@ namespace app::rfl {
         static void Finish(ObjCharacterActionGuideTestSpawner* pInstance);
         static void Clean(ObjCharacterActionGuideTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CharacterRbTestSpawner {
         enum class MoveSystem : int8_t {
             Stairs = 0,
@@ -17538,7 +19348,9 @@ namespace app::rfl {
         static void Finish(CharacterRbTestSpawner* pInstance);
         static void Clean(CharacterRbTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjColliderQueryTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -17561,7 +19373,9 @@ namespace app::rfl {
         static void Finish(ObjColliderQueryTestSpawner* pInstance);
         static void Clean(ObjColliderQueryTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjColliderTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -17622,7 +19436,9 @@ namespace app::rfl {
         static void Finish(ObjColliderTestSpawner* pInstance);
         static void Clean(ObjColliderTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCompassTestSpawner {
         int32_t dummy;
 
@@ -17633,7 +19449,9 @@ namespace app::rfl {
         static void Finish(ObjCompassTestSpawner* pInstance);
         static void Clean(ObjCompassTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjContactTestSpawner {
         csl::math::Vector3 localOffset;
         bool compassEnabled;
@@ -17645,7 +19463,9 @@ namespace app::rfl {
         static void Finish(ObjContactTestSpawner* pInstance);
         static void Clean(ObjContactTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyBlasterTestSpawner {
         csl::math::Vector3 releaseVel;
 
@@ -17656,7 +19476,9 @@ namespace app::rfl {
         static void Finish(ObjCyBlasterTestSpawner* pInstance);
         static void Clean(ObjCyBlasterTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WhiteFlow {
         float m_circleRadius;
         float m_uvScrollSpeed;
@@ -17673,7 +19495,9 @@ namespace app::rfl {
         static void Finish(WhiteFlow* pInstance);
         static void Clean(WhiteFlow* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BlackFlow {
         float m_circleRadius;
         float m_uvScrollSpeed;
@@ -17697,14 +19521,16 @@ namespace app::rfl {
         static void Finish(BlackFlow* pInstance);
         static void Clean(BlackFlow* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyloopSlashTestSpawner {
         float m_circleVertices;
         csl::ut::Color<float> m_colorA;
         csl::ut::Color<float> m_colorB;
         float m_flowLuminance;
-        WhiteFlow m_whiteFlow[3];
-        BlackFlow m_blackFlow;
+        heur::rfl::WhiteFlow m_whiteFlow[3];
+        heur::rfl::BlackFlow m_blackFlow;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17713,7 +19539,9 @@ namespace app::rfl {
         static void Finish(ObjCyloopSlashTestSpawner* pInstance);
         static void Clean(ObjCyloopSlashTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCyloopTestSpawner {
         bool collisionEnabled;
         float collisionRadius;
@@ -17728,7 +19556,9 @@ namespace app::rfl {
         static void Finish(ObjCyloopTestSpawner* pInstance);
         static void Clean(ObjCyloopTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDamageTestDefence {
         enum class Reaction : int8_t {
             Hit = 0,
@@ -17761,7 +19591,9 @@ namespace app::rfl {
         static void Finish(ObjDamageTestDefence* pInstance);
         static void Clean(ObjDamageTestDefence* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDamageTestAttack {
         enum class Attribute : int8_t {
             Normal = 0,
@@ -17982,10 +19814,12 @@ namespace app::rfl {
         static void Finish(ObjDamageTestAttack* pInstance);
         static void Clean(ObjDamageTestAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDamageTestSpawner {
-        ObjDamageTestDefence defence;
-        ObjDamageTestAttack attack;
+        heur::rfl::ObjDamageTestDefence defence;
+        heur::rfl::ObjDamageTestAttack attack;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -17994,7 +19828,9 @@ namespace app::rfl {
         static void Finish(ObjDamageTestSpawner* pInstance);
         static void Clean(ObjDamageTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisTestCommonParam {
         float gravityPow;
         float lifeTime;
@@ -18009,7 +19845,9 @@ namespace app::rfl {
         static void Finish(DebrisTestCommonParam* pInstance);
         static void Clean(DebrisTestCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisTestImpulseVelInfo {
         csl::math::Vector3 contactPoint;
         csl::math::Vector3 direction;
@@ -18022,7 +19860,9 @@ namespace app::rfl {
         static void Finish(DebrisTestImpulseVelInfo* pInstance);
         static void Clean(DebrisTestImpulseVelInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisTestExplosionVelInfo {
         csl::math::Vector3 explosionPoint;
         float explosionForce;
@@ -18034,7 +19874,9 @@ namespace app::rfl {
         static void Finish(DebrisTestExplosionVelInfo* pInstance);
         static void Clean(DebrisTestExplosionVelInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisTestRotationInfo {
         float defaultMaxAngle;
         float maxAngularVelocity;
@@ -18046,12 +19888,14 @@ namespace app::rfl {
         static void Finish(DebrisTestRotationInfo* pInstance);
         static void Clean(DebrisTestRotationInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDebrisTestSpawner {
-        DebrisTestCommonParam commonParam;
-        DebrisTestImpulseVelInfo impulseVelInfo;
-        DebrisTestExplosionVelInfo expolsionVelInfo;
-        DebrisTestRotationInfo rotationInfo;
+        heur::rfl::DebrisTestCommonParam commonParam;
+        heur::rfl::DebrisTestImpulseVelInfo impulseVelInfo;
+        heur::rfl::DebrisTestExplosionVelInfo expolsionVelInfo;
+        heur::rfl::DebrisTestRotationInfo rotationInfo;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18060,7 +19904,9 @@ namespace app::rfl {
         static void Finish(ObjDebrisTestSpawner* pInstance);
         static void Clean(ObjDebrisTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDeformableFieldSpawner {
         float width;
         uint32_t numV;
@@ -18081,7 +19927,9 @@ namespace app::rfl {
         static void Finish(ObjDeformableFieldSpawner* pInstance);
         static void Clean(ObjDeformableFieldSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDependChildTestSpawner {
         int32_t dummy;
 
@@ -18092,7 +19940,9 @@ namespace app::rfl {
         static void Finish(ObjDependChildTestSpawner* pInstance);
         static void Clean(ObjDependChildTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDependParentTestSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> childs;
 
@@ -18103,7 +19953,9 @@ namespace app::rfl {
         static void Finish(ObjDependParentTestSpawner* pInstance);
         static void Clean(ObjDependParentTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjDestinationTestSpawner {
         csl::math::Vector3 localOffset;
         float tolerance;
@@ -18116,7 +19968,9 @@ namespace app::rfl {
         static void Finish(ObjDestinationTestSpawner* pInstance);
         static void Clean(ObjDestinationTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEasingTestSpawner {
         enum class EasingType : int8_t {
             EASE_IN = 0,
@@ -18171,7 +20025,9 @@ namespace app::rfl {
         static void Finish(ObjEasingTestSpawner* pInstance);
         static void Clean(ObjEasingTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MoveParam {
         enum class MoveType : int8_t {
             MOVE_NONE = 0,
@@ -18191,12 +20047,14 @@ namespace app::rfl {
         static void Finish(MoveParam* pInstance);
         static void Clean(MoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEffectTestSpawner {
         csl::ut::VariableString name;
         float cycle;
         csl::math::Vector3 offset;
-        MoveParam move;
+        heur::rfl::MoveParam move;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18205,7 +20063,9 @@ namespace app::rfl {
         static void Finish(ObjEffectTestSpawner* pInstance);
         static void Clean(ObjEffectTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EventPlayTestParam {
         enum class StartType : uint8_t {
             Stand = 0,
@@ -18228,11 +20088,13 @@ namespace app::rfl {
         static void Finish(EventPlayTestParam* pInstance);
         static void Clean(EventPlayTestParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEventPlayTestSpawner {
         bool eventDriven;
         bool preload;
-        EventPlayTestParam param;
+        heur::rfl::EventPlayTestParam param;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18241,7 +20103,9 @@ namespace app::rfl {
         static void Finish(ObjEventPlayTestSpawner* pInstance);
         static void Clean(ObjEventPlayTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjExternalControlTestSpawner {
         int32_t dummy;
 
@@ -18252,7 +20116,9 @@ namespace app::rfl {
         static void Finish(ObjExternalControlTestSpawner* pInstance);
         static void Clean(ObjExternalControlTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlipMouthTestSpawner {
         bool autoFlip;
         bool forceFlip;
@@ -18264,7 +20130,9 @@ namespace app::rfl {
         static void Finish(ObjFlipMouthTestSpawner* pInstance);
         static void Clean(ObjFlipMouthTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlowDustTestSpawner {
         bool wind;
         float emitInterval;
@@ -18276,7 +20144,9 @@ namespace app::rfl {
         static void Finish(ObjFlowDustTestSpawner* pInstance);
         static void Clean(ObjFlowDustTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFxParamChangerSpawner {
         enum class InterpolateType : int8_t {
             LINEAR = 0,
@@ -18295,7 +20165,9 @@ namespace app::rfl {
         static void Finish(ObjFxParamChangerSpawner* pInstance);
         static void Clean(ObjFxParamChangerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGeometrizeBillboardTestSpawner {
         int32_t dummy;
 
@@ -18306,7 +20178,9 @@ namespace app::rfl {
         static void Finish(ObjGeometrizeBillboardTestSpawner* pInstance);
         static void Clean(ObjGeometrizeBillboardTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGeometrizeTestSpawner {
         enum class Shape : int32_t {
             Polyline = 0,
@@ -18344,7 +20218,9 @@ namespace app::rfl {
         static void Finish(ObjGeometrizeTestSpawner* pInstance);
         static void Clean(ObjGeometrizeTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGeometryInstanceTestSpawner {
         uint32_t dummy;
 
@@ -18355,7 +20231,9 @@ namespace app::rfl {
         static void Finish(ObjGeometryInstanceTestSpawner* pInstance);
         static void Clean(ObjGeometryInstanceTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGiantGTestSpawner {
         float scale;
         float moveSpeed;
@@ -18368,7 +20246,9 @@ namespace app::rfl {
         static void Finish(ObjGiantGTestSpawner* pInstance);
         static void Clean(ObjGiantGTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGimmickScriptTestSpawner {
         int32_t no;
         csl::ut::VariableString luaName;
@@ -18380,7 +20260,9 @@ namespace app::rfl {
         static void Finish(ObjGimmickScriptTestSpawner* pInstance);
         static void Clean(ObjGimmickScriptTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjGrindTestSpawner {
         float length;
         float cycle;
@@ -18393,7 +20275,9 @@ namespace app::rfl {
         static void Finish(ObjGrindTestSpawner* pInstance);
         static void Clean(ObjGrindTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHeightCheckerSpawner {
         int32_t dummy;
 
@@ -18404,7 +20288,9 @@ namespace app::rfl {
         static void Finish(ObjHeightCheckerSpawner* pInstance);
         static void Clean(ObjHeightCheckerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHeightFieldTestSpawner {
         csl::ut::VariableString resFile;
 
@@ -18415,7 +20301,9 @@ namespace app::rfl {
         static void Finish(ObjHeightFieldTestSpawner* pInstance);
         static void Clean(ObjHeightFieldTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHomingTargetTestSpawner {
         float phantomSize;
         bool hasPhantom;
@@ -18429,7 +20317,9 @@ namespace app::rfl {
         static void Finish(ObjHomingTargetTestSpawner* pInstance);
         static void Clean(ObjHomingTargetTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HsmTestSpawner {
         int32_t dummy;
 
@@ -18440,7 +20330,9 @@ namespace app::rfl {
         static void Finish(HsmTestSpawner* pInstance);
         static void Clean(HsmTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFootIKTestSpawner {
         int32_t dummy;
 
@@ -18451,7 +20343,9 @@ namespace app::rfl {
         static void Finish(ObjFootIKTestSpawner* pInstance);
         static void Clean(ObjFootIKTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLevitateTestSpawner {
         enum class Shape : int8_t {
             S = 0,
@@ -18468,7 +20362,9 @@ namespace app::rfl {
         static void Finish(ObjLevitateTestSpawner* pInstance);
         static void Clean(ObjLevitateTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLookAtTargetTestSpawner {
         csl::ut::VariableString objectName;
         float runningTime;
@@ -18483,7 +20379,9 @@ namespace app::rfl {
         static void Finish(ObjLookAtTargetTestSpawner* pInstance);
         static void Clean(ObjLookAtTargetTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLuaTestSpawner {
         int32_t dummy;
 
@@ -18494,7 +20392,9 @@ namespace app::rfl {
         static void Finish(ObjLuaTestSpawner* pInstance);
         static void Clean(ObjLuaTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMaterialTestSpawner {
         float radius;
         float intervalDist;
@@ -18509,7 +20409,9 @@ namespace app::rfl {
         static void Finish(ObjMaterialTestSpawner* pInstance);
         static void Clean(ObjMaterialTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMessageTestSpawner {
         hh::game::ObjectId receiver;
 
@@ -18520,7 +20422,9 @@ namespace app::rfl {
         static void Finish(ObjMessageTestSpawner* pInstance);
         static void Clean(ObjMessageTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMissileLauncherSpawner {
         enum class MissileMoveType : int8_t {
             Straight = 0,
@@ -18547,7 +20451,9 @@ namespace app::rfl {
         static void Finish(ObjMissileLauncherSpawner* pInstance);
         static void Clean(ObjMissileLauncherSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMockSpawner {
         enum class Kind : int8_t {
             PuzzleSmall = 0,
@@ -18569,7 +20475,9 @@ namespace app::rfl {
         static void Finish(ObjMockSpawner* pInstance);
         static void Clean(ObjMockSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMotionBlendCameraTestSpawner {
         csl::ut::VariableString resource0;
         csl::ut::VariableString resource1;
@@ -18582,7 +20490,9 @@ namespace app::rfl {
         static void Finish(ObjMotionBlendCameraTestSpawner* pInstance);
         static void Clean(ObjMotionBlendCameraTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMotionCameraTestSpawner {
         csl::ut::VariableString resource;
 
@@ -18593,7 +20503,9 @@ namespace app::rfl {
         static void Finish(ObjMotionCameraTestSpawner* pInstance);
         static void Clean(ObjMotionCameraTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMovieTestSpawner {
         csl::ut::VariableString name;
         int8_t audioTrackNo;
@@ -18607,9 +20519,11 @@ namespace app::rfl {
         static void Finish(ObjMovieTestSpawner* pInstance);
         static void Clean(ObjMovieTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNarrationTestSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18618,7 +20532,9 @@ namespace app::rfl {
         static void Finish(ObjNarrationTestSpawner* pInstance);
         static void Clean(ObjNarrationTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NaviPathData {
         csl::ut::VariableString pathName;
         float pathRangeMax;
@@ -18630,7 +20546,9 @@ namespace app::rfl {
         static void Finish(NaviPathData* pInstance);
         static void Clean(NaviPathData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNavigationPathTestSpawner {
         enum class PointType : int8_t {
             POINT_TYPE_NONE = 0,
@@ -18638,7 +20556,7 @@ namespace app::rfl {
             POINT_TYPE_END_PLAYER_POS = 2,
         };
 
-        NaviPathData naviPathDatas[16];
+        heur::rfl::NaviPathData naviPathDatas[16];
         hh::game::ObjectId startPointObj;
         hh::game::ObjectId endPointObj;
         PointType pointType;
@@ -18650,7 +20568,9 @@ namespace app::rfl {
         static void Finish(ObjNavigationPathTestSpawner* pInstance);
         static void Clean(ObjNavigationPathTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNavMeshFindPathTestSpawner {
         csl::math::Vector3 destination;
         csl::math::Vector3 searchPosition;
@@ -18663,7 +20583,9 @@ namespace app::rfl {
         static void Finish(ObjNavMeshFindPathTestSpawner* pInstance);
         static void Clean(ObjNavMeshFindPathTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNpcTestSpawner {
         int32_t no;
         bool eventDriven;
@@ -18676,7 +20598,9 @@ namespace app::rfl {
         static void Finish(ObjNpcTestSpawner* pInstance);
         static void Clean(ObjNpcTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOnewayFloorTestSpawner {
         int32_t dummy;
 
@@ -18687,7 +20611,9 @@ namespace app::rfl {
         static void Finish(ObjOnewayFloorTestSpawner* pInstance);
         static void Clean(ObjOnewayFloorTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OverlapTestSpawner {
         enum class LayerType : int8_t {
             NONE_GROUP = 0,
@@ -18713,7 +20639,9 @@ namespace app::rfl {
         static void Finish(OverlapTestSpawner* pInstance);
         static void Clean(OverlapTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjOverlayTestSpawner {
         enum class Kind : int8_t {
             Toast = 0,
@@ -18755,9 +20683,11 @@ namespace app::rfl {
         static void Finish(ObjOverlayTestSpawner* pInstance);
         static void Clean(ObjOverlayTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPassPlaneTestSpawner {
-        PassPlaneTriggerSpawner passPlane;
+        heur::rfl::PassPlaneTriggerSpawner passPlane;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18766,7 +20696,9 @@ namespace app::rfl {
         static void Finish(ObjPassPlaneTestSpawner* pInstance);
         static void Clean(ObjPassPlaneTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPathBuildTestSpawner {
         int32_t dummy;
 
@@ -18777,7 +20709,9 @@ namespace app::rfl {
         static void Finish(ObjPathBuildTestSpawner* pInstance);
         static void Clean(ObjPathBuildTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjPbaTestSpawner {
         csl::ut::VariableString modelName;
         csl::ut::VariableString skeletonName;
@@ -18793,7 +20727,9 @@ namespace app::rfl {
         static void Finish(ObjPbaTestSpawner* pInstance);
         static void Clean(ObjPbaTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRaycastTestSpawner {
         enum class RaycastType : int8_t {
             World = 0,
@@ -18814,7 +20750,9 @@ namespace app::rfl {
         static void Finish(ObjRaycastTestSpawner* pInstance);
         static void Clean(ObjRaycastTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjReactiveTestSpawner {
         int32_t dummy;
 
@@ -18825,7 +20763,9 @@ namespace app::rfl {
         static void Finish(ObjReactiveTestSpawner* pInstance);
         static void Clean(ObjReactiveTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBlockObjectTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -18924,7 +20864,9 @@ namespace app::rfl {
         static void Finish(ObjBlockObjectTestSpawner* pInstance);
         static void Clean(ObjBlockObjectTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRigidBodyTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -19028,7 +20970,9 @@ namespace app::rfl {
         static void Finish(ObjRigidBodyTestSpawner* pInstance);
         static void Clean(ObjRigidBodyTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSampleShapeSpawner {
         enum class Shape : int8_t {
             SHAPE_BOX = 0,
@@ -19127,9 +21071,11 @@ namespace app::rfl {
         static void Finish(ObjSampleShapeSpawner* pInstance);
         static void Clean(ObjSampleShapeSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSavePermissionTestSpawner {
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19138,7 +21084,9 @@ namespace app::rfl {
         static void Finish(ObjSavePermissionTestSpawner* pInstance);
         static void Clean(ObjSavePermissionTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSearchPathSpawner {
         enum class Shape : int8_t {
             S = 0,
@@ -19158,7 +21106,9 @@ namespace app::rfl {
         static void Finish(ObjSearchPathSpawner* pInstance);
         static void Clean(ObjSearchPathSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShadowCameraTestSpawner {
         float nearPlane;
         float farPlane;
@@ -19172,11 +21122,13 @@ namespace app::rfl {
         static void Finish(ObjShadowCameraTestSpawner* pInstance);
         static void Clean(ObjShadowCameraTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSlingshotTestSpawner {
         csl::ut::MoveArray<hh::game::ObjectId> routePoints;
         float speed;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19185,7 +21137,9 @@ namespace app::rfl {
         static void Finish(ObjSlingshotTestSpawner* pInstance);
         static void Clean(ObjSlingshotTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSplineTestSpawner {
         csl::math::Vector3 target;
         float beginAngle;
@@ -19201,7 +21155,9 @@ namespace app::rfl {
         static void Finish(ObjSplineTestSpawner* pInstance);
         static void Clean(ObjSplineTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSwayTestSpawner {
         int32_t dummy;
 
@@ -19212,7 +21168,9 @@ namespace app::rfl {
         static void Finish(ObjSwayTestSpawner* pInstance);
         static void Clean(ObjSwayTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSweepTest2Spawner {
         enum class SweepType : int8_t {
             World = 0,
@@ -19234,7 +21192,9 @@ namespace app::rfl {
         static void Finish(ObjSweepTest2Spawner* pInstance);
         static void Clean(ObjSweepTest2Spawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SweepTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -19261,7 +21221,9 @@ namespace app::rfl {
         static void Finish(SweepTestSpawner* pInstance);
         static void Clean(SweepTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTalkModeTestSpawner {
         int32_t dummy;
 
@@ -19272,7 +21234,9 @@ namespace app::rfl {
         static void Finish(ObjTalkModeTestSpawner* pInstance);
         static void Clean(ObjTalkModeTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTargetSearchTestSpawner {
         enum class ViewShapeType : int8_t {
             S = 0,
@@ -19294,7 +21258,9 @@ namespace app::rfl {
         static void Finish(ObjTargetSearchTestSpawner* pInstance);
         static void Clean(ObjTargetSearchTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTargetTestSpawner {
         enum class ShapeType : int8_t {
             SPHERE = 0,
@@ -19331,7 +21297,9 @@ namespace app::rfl {
         static void Finish(ObjTargetTestSpawner* pInstance);
         static void Clean(ObjTargetTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCreditBoxSpawner {
         int32_t dummy;
 
@@ -19342,7 +21310,9 @@ namespace app::rfl {
         static void Finish(ObjCreditBoxSpawner* pInstance);
         static void Clean(ObjCreditBoxSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTestHangerSpawner {
         float radius;
         bool move;
@@ -19358,7 +21328,9 @@ namespace app::rfl {
         static void Finish(ObjTestHangerSpawner* pInstance);
         static void Clean(ObjTestHangerSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTextTestSpawner {
         csl::ut::VariableString label;
 
@@ -19369,7 +21341,9 @@ namespace app::rfl {
         static void Finish(ObjTextTestSpawner* pInstance);
         static void Clean(ObjTextTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TinyFsmTestSpawner {
         int32_t dummy;
 
@@ -19380,7 +21354,9 @@ namespace app::rfl {
         static void Finish(TinyFsmTestSpawner* pInstance);
         static void Clean(TinyFsmTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTreadmillTestSpawner {
         float minSpeed;
         float maxSpeed;
@@ -19392,7 +21368,9 @@ namespace app::rfl {
         static void Finish(ObjTreadmillTestSpawner* pInstance);
         static void Clean(ObjTreadmillTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLifeGaugeTestSpawner {
         int32_t dummy;
 
@@ -19403,7 +21381,9 @@ namespace app::rfl {
         static void Finish(ObjLifeGaugeTestSpawner* pInstance);
         static void Clean(ObjLifeGaugeTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUserModelMaterialTestSpawner {
         csl::math::Vector3 albedo;
         float reflectance;
@@ -19416,7 +21396,9 @@ namespace app::rfl {
         static void Finish(ObjUserModelMaterialTestSpawner* pInstance);
         static void Clean(ObjUserModelMaterialTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUserModelShaderTestSpawner {
         csl::ut::VariableString texture;
         csl::ut::VariableString vertexShaderName;
@@ -19429,7 +21411,9 @@ namespace app::rfl {
         static void Finish(ObjUserModelShaderTestSpawner* pInstance);
         static void Clean(ObjUserModelShaderTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjUserModelTestSpawner {
         enum class RenderPresetType : int8_t {
             RENDER_PRESET_OPAQUE = 0,
@@ -19465,7 +21449,9 @@ namespace app::rfl {
         static void Finish(ObjUserModelTestSpawner* pInstance);
         static void Clean(ObjUserModelTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjVerificationTestSpawner {
         float lengthV;
         float lengthH;
@@ -19481,7 +21467,9 @@ namespace app::rfl {
         static void Finish(ObjVerificationTestSpawner* pInstance);
         static void Clean(ObjVerificationTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjVibrationTestSpawner {
         enum class RumbleType : int8_t {
             RUMBLE_AUTO = 0,
@@ -19496,7 +21484,7 @@ namespace app::rfl {
         bool enabledDistAttn;
         float distance;
         float easeoutTime;
-        VolumeTriggerSpawner volume;
+        heur::rfl::VolumeTriggerSpawner volume;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19505,7 +21493,9 @@ namespace app::rfl {
         static void Finish(ObjVibrationTestSpawner* pInstance);
         static void Clean(ObjVibrationTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjVisualModelCacheTestSpawner {
         int32_t dummy;
 
@@ -19516,7 +21506,9 @@ namespace app::rfl {
         static void Finish(ObjVisualModelCacheTestSpawner* pInstance);
         static void Clean(ObjVisualModelCacheTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjVisualModelTestSpawner {
         csl::ut::VariableString modelName;
         csl::ut::VariableString skeletonName;
@@ -19531,7 +21523,9 @@ namespace app::rfl {
         static void Finish(ObjVisualModelTestSpawner* pInstance);
         static void Clean(ObjVisualModelTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarpMonitorTestSpawner {
         int32_t no;
         bool eventDriven;
@@ -19547,7 +21541,9 @@ namespace app::rfl {
         static void Finish(ObjWarpMonitorTestSpawner* pInstance);
         static void Clean(ObjWarpMonitorTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWindTestSpawner {
         enum class WindFlowType : uint8_t {
             FlowNone = 0,
@@ -19568,7 +21564,7 @@ namespace app::rfl {
         WindFlowType type;
         csl::math::Vector3 dir;
         float fanAngle;
-        PathMovement pathParam;
+        heur::rfl::PathMovement pathParam;
         float easingTime;
         WindVolumnCenter volumnCenter;
 
@@ -19579,7 +21575,9 @@ namespace app::rfl {
         static void Finish(ObjWindTestSpawner* pInstance);
         static void Clean(ObjWindTestSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraBattleParameter {
         float distance;
         float distanceSuspensionK;
@@ -19605,7 +21603,9 @@ namespace app::rfl {
         static void Finish(StandardCameraBattleParameter* pInstance);
         static void Clean(StandardCameraBattleParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraCommonParameter {
         float distance;
         float distanceSuspensionK;
@@ -19641,7 +21641,9 @@ namespace app::rfl {
         static void Finish(StandardCameraCommonParameter* pInstance);
         static void Clean(StandardCameraCommonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraDashParameter {
         float minDistance;
         float maxDistance;
@@ -19663,7 +21665,9 @@ namespace app::rfl {
         static void Finish(StandardCameraDashParameter* pInstance);
         static void Clean(StandardCameraDashParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraCyloopParameter {
         float minDistance;
         float maxDistance;
@@ -19682,7 +21686,9 @@ namespace app::rfl {
         static void Finish(StandardCameraCyloopParameter* pInstance);
         static void Clean(StandardCameraCyloopParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraLockonParameter {
         float distance;
         float minElevation;
@@ -19706,7 +21712,9 @@ namespace app::rfl {
         static void Finish(StandardCameraLockonParameter* pInstance);
         static void Clean(StandardCameraLockonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraWallParameter {
         float distance;
         float targetUpOffset;
@@ -19718,7 +21726,9 @@ namespace app::rfl {
         static void Finish(StandardCameraWallParameter* pInstance);
         static void Clean(StandardCameraWallParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraLoopParameter {
         float azimuthSensitivity;
         float elevationUpSensitivity;
@@ -19733,7 +21743,9 @@ namespace app::rfl {
         static void Finish(StandardCameraLoopParameter* pInstance);
         static void Clean(StandardCameraLoopParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraOptionParameter {
         float minManualRotationSpeed;
         float maxManualRotationSpeed;
@@ -19752,22 +21764,24 @@ namespace app::rfl {
         static void Finish(StandardCameraOptionParameter* pInstance);
         static void Clean(StandardCameraOptionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StandardCameraConfig {
-        StandardCameraCommonParameter common;
-        StandardCameraDashParameter dash;
-        StandardCameraCyloopParameter c;
-        StandardCameraCyloopParameter cyloopSnipe;
-        StandardCameraLockonParameter lockon;
-        StandardCameraLockonParameter lockonCharger;
-        StandardCameraLockonParameter lockonSpider;
-        StandardCameraLockonParameter lockonDaruma;
-        StandardCameraLockonParameter lockonNinja;
-        StandardCameraLockonParameter lockonSumo;
-        StandardCameraWallParameter wall;
-        StandardCameraLoopParameter loop;
-        StandardCameraBattleParameter battle;
-        StandardCameraOptionParameter option;
+        heur::rfl::StandardCameraCommonParameter common;
+        heur::rfl::StandardCameraDashParameter dash;
+        heur::rfl::StandardCameraCyloopParameter c;
+        heur::rfl::StandardCameraCyloopParameter cyloopSnipe;
+        heur::rfl::StandardCameraLockonParameter lockon;
+        heur::rfl::StandardCameraLockonParameter lockonCharger;
+        heur::rfl::StandardCameraLockonParameter lockonSpider;
+        heur::rfl::StandardCameraLockonParameter lockonDaruma;
+        heur::rfl::StandardCameraLockonParameter lockonNinja;
+        heur::rfl::StandardCameraLockonParameter lockonSumo;
+        heur::rfl::StandardCameraWallParameter wall;
+        heur::rfl::StandardCameraLoopParameter loop;
+        heur::rfl::StandardCameraBattleParameter battle;
+        heur::rfl::StandardCameraOptionParameter option;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19776,7 +21790,9 @@ namespace app::rfl {
         static void Finish(StandardCameraConfig* pInstance);
         static void Clean(StandardCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CameraShakeRecord {
         enum class ShakeType : uint8_t {
             Directional = 0,
@@ -19802,9 +21818,11 @@ namespace app::rfl {
         static void Finish(CameraShakeRecord* pInstance);
         static void Clean(CameraShakeRecord* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CameraShakeTable {
-        CameraShakeRecord records[64];
+        heur::rfl::CameraShakeRecord records[64];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19813,7 +21831,9 @@ namespace app::rfl {
         static void Finish(CameraShakeTable* pInstance);
         static void Clean(CameraShakeTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AddDatabaseInfo {
         uint8_t recordNo;
         uint8_t numRecords;
@@ -19825,9 +21845,11 @@ namespace app::rfl {
         static void Finish(AddDatabaseInfo* pInstance);
         static void Clean(AddDatabaseInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ContentParameter {
-        AddDatabaseInfo databases[2];
+        heur::rfl::AddDatabaseInfo databases[2];
         csl::ut::VariableString stagedata;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -19837,7 +21859,9 @@ namespace app::rfl {
         static void Finish(ContentParameter* pInstance);
         static void Clean(ContentParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Record {
         uint8_t no;
 
@@ -19848,8 +21872,10 @@ namespace app::rfl {
         static void Finish(Record* pInstance);
         static void Clean(Record* pInstance);
     };
+}
 
-    struct EnemyAttackRecord : Record {
+namespace heur::rfl {
+    struct EnemyAttackRecord : heur::rfl::Record {
         enum class Kind : int16_t {
             InvalidKind = -1,
             Dead_BattleJellymanLv1 = 0,
@@ -20051,9 +22077,11 @@ namespace app::rfl {
         static void Finish(EnemyAttackRecord* pInstance);
         static void Clean(EnemyAttackRecord* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAttackRecordBaseTable {
-        EnemyAttackRecord data[192];
+        heur::rfl::EnemyAttackRecord data[192];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20062,9 +22090,11 @@ namespace app::rfl {
         static void Finish(EnemyAttackRecordBaseTable* pInstance);
         static void Clean(EnemyAttackRecordBaseTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAttackRecordTable {
-        EnemyAttackRecord data[192];
+        heur::rfl::EnemyAttackRecord data[192];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20073,8 +22103,10 @@ namespace app::rfl {
         static void Finish(EnemyAttackRecordTable* pInstance);
         static void Clean(EnemyAttackRecordTable* pInstance);
     };
+}
 
-    struct EnemyDefenceRecord : Record {
+namespace heur::rfl {
+    struct EnemyDefenceRecord : heur::rfl::Record {
         csl::ut::VariableString name;
         float baseRate;
         float slashRate;
@@ -20089,9 +22121,11 @@ namespace app::rfl {
         static void Finish(EnemyDefenceRecord* pInstance);
         static void Clean(EnemyDefenceRecord* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenceRecordBaseTable {
-        EnemyDefenceRecord data[64];
+        heur::rfl::EnemyDefenceRecord data[64];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20100,9 +22134,11 @@ namespace app::rfl {
         static void Finish(EnemyDefenceRecordBaseTable* pInstance);
         static void Clean(EnemyDefenceRecordBaseTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenceRecordTable {
-        EnemyDefenceRecord data[128];
+        heur::rfl::EnemyDefenceRecord data[128];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20111,7 +22147,9 @@ namespace app::rfl {
         static void Finish(EnemyDefenceRecordTable* pInstance);
         static void Clean(EnemyDefenceRecordTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DLCMhrBarbecueTokenParam {
         uint32_t rawToken;
         uint32_t rawBurnToken;
@@ -20125,7 +22163,9 @@ namespace app::rfl {
         static void Finish(DLCMhrBarbecueTokenParam* pInstance);
         static void Clean(DLCMhrBarbecueTokenParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DLCMhrBarbecueParameter {
         float rawTime;
         float rawBurnTime;
@@ -20136,7 +22176,7 @@ namespace app::rfl {
         float missTime;
         float resultUIDelaySuccess;
         float resultUIDelayFaild;
-        DLCMhrBarbecueTokenParam tokenParam[4];
+        heur::rfl::DLCMhrBarbecueTokenParam tokenParam[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20145,7 +22185,9 @@ namespace app::rfl {
         static void Finish(DLCMhrBarbecueParameter* pInstance);
         static void Clean(DLCMhrBarbecueParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DLCParameter {
         uint8_t dummy;
 
@@ -20156,7 +22198,9 @@ namespace app::rfl {
         static void Finish(DLCParameter* pInstance);
         static void Clean(DLCParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRushStageParameter {
         uint32_t hour;
         uint32_t minute;
@@ -20171,10 +22215,12 @@ namespace app::rfl {
         static void Finish(BossRushStageParameter* pInstance);
         static void Clean(BossRushStageParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRushParameterElement {
         int32_t applicableFailedCount;
-        BossRushStageParameter stages[3];
+        heur::rfl::BossRushStageParameter stages[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20183,10 +22229,12 @@ namespace app::rfl {
         static void Finish(BossRushParameterElement* pInstance);
         static void Clean(BossRushParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRushParameter {
-        BossRushParameterElement element[3];
-        BossRushParameterElement elementEasy[3];
+        heur::rfl::BossRushParameterElement element[3];
+        heur::rfl::BossRushParameterElement elementEasy[3];
         uint32_t defaultRing;
         uint32_t defaultRingEasy;
         float defaultCyloopGauge;
@@ -20207,7 +22255,9 @@ namespace app::rfl {
         static void Finish(BossRushParameter* pInstance);
         static void Clean(BossRushParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisParameter {
         int32_t m_maxNumPieces;
         float gravity;
@@ -20221,7 +22271,9 @@ namespace app::rfl {
         static void Finish(DebrisParameter* pInstance);
         static void Clean(DebrisParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MasterTrialStageParameter {
         csl::ut::Bitset<uint8_t> prerequisite;
         float limitTime;
@@ -20241,10 +22293,12 @@ namespace app::rfl {
         static void Finish(MasterTrialStageParameter* pInstance);
         static void Clean(MasterTrialStageParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MasterTrialParameterElement {
         int32_t applicableFailedCount;
-        MasterTrialStageParameter stages[4];
+        heur::rfl::MasterTrialStageParameter stages[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20253,7 +22307,9 @@ namespace app::rfl {
         static void Finish(MasterTrialParameterElement* pInstance);
         static void Clean(MasterTrialParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MasterTrialParameters {
         float subjectViewTime;
         float readyTime;
@@ -20265,8 +22321,8 @@ namespace app::rfl {
         float kodamaFightDelayTime;
         float kodamaFightTextTime;
         float kodamaSplendidTextTime;
-        MasterTrialParameterElement element[3];
-        MasterTrialParameterElement elementEasy[3];
+        heur::rfl::MasterTrialParameterElement element[3];
+        heur::rfl::MasterTrialParameterElement elementEasy[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20275,7 +22331,9 @@ namespace app::rfl {
         static void Finish(MasterTrialParameters* pInstance);
         static void Clean(MasterTrialParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DevConfigParameters {
         enum class Value : int8_t {
             Invalid = -1,
@@ -20307,7 +22365,9 @@ namespace app::rfl {
         static void Finish(DevConfigParameters* pInstance);
         static void Clean(DevConfigParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeightFieldConfigData {
         enum class LayerType : int8_t {
             LAYER_NONE = 0,
@@ -20391,9 +22451,11 @@ namespace app::rfl {
         static void Finish(HeightFieldConfigData* pInstance);
         static void Clean(HeightFieldConfigData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeightFieldConfig {
-        HeightFieldConfigData data[255];
+        heur::rfl::HeightFieldConfigData data[255];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20402,7 +22464,9 @@ namespace app::rfl {
         static void Finish(HeightFieldConfig* pInstance);
         static void Clean(HeightFieldConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MonologueIslandParameters {
         float playSpanTime;
         csl::ut::VariableString labelNames[24];
@@ -20414,7 +22478,9 @@ namespace app::rfl {
         static void Finish(MonologueIslandParameters* pInstance);
         static void Clean(MonologueIslandParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MonologueMultiTextParameters {
         csl::ut::VariableString labelNames[4];
 
@@ -20425,7 +22491,9 @@ namespace app::rfl {
         static void Finish(MonologueMultiTextParameters* pInstance);
         static void Clean(MonologueMultiTextParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MonologueParameters {
         enum class Value : int8_t {
             SteppeIsland1 = 0,
@@ -20438,8 +22506,8 @@ namespace app::rfl {
             NumInExtra = 6,
         };
 
-        MonologueIslandParameters islands[5];
-        MonologueMultiTextParameters multiText[1];
+        heur::rfl::MonologueIslandParameters islands[5];
+        heur::rfl::MonologueMultiTextParameters multiText[1];
         int8_t firstTheEndNotifyCount;
         int8_t theEndNotifyCount;
         Value dummy;
@@ -20451,7 +22519,9 @@ namespace app::rfl {
         static void Finish(MonologueParameters* pInstance);
         static void Clean(MonologueParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BakeBoxParameter {
         csl::ut::VariableString name;
         csl::math::Vector3 center;
@@ -20464,10 +22534,12 @@ namespace app::rfl {
         static void Finish(BakeBoxParameter* pInstance);
         static void Clean(BakeBoxParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BakeCameraParameter {
         csl::ut::VariableString name;
-        csl::ut::MoveArray<BakeCameraParameter> data;
+        csl::ut::MoveArray<heur::rfl::BakeCameraParameter> data;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20476,7 +22548,9 @@ namespace app::rfl {
         static void Finish(BakeCameraParameter* pInstance);
         static void Clean(BakeCameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BakeCameraParameterData {
         csl::math::Vector3 target;
         csl::math::Vector3 eye;
@@ -20488,7 +22562,9 @@ namespace app::rfl {
         static void Finish(BakeCameraParameterData* pInstance);
         static void Clean(BakeCameraParameterData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BattleRushPhaseRankParameter {
         uint32_t rankTime[4];
         uint32_t rankTimeAll[4];
@@ -20500,7 +22576,9 @@ namespace app::rfl {
         static void Finish(BattleRushPhaseRankParameter* pInstance);
         static void Clean(BattleRushPhaseRankParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BattleRushStageParameter {
         enum class BgmType : int8_t {
             INVALID = -1,
@@ -20526,7 +22604,7 @@ namespace app::rfl {
         float phaseLimitTime[11];
         float phaseClearedTime[11];
         float phaseResultTime[11];
-        BattleRushPhaseRankParameter phaseRank[11];
+        heur::rfl::BattleRushPhaseRankParameter phaseRank[11];
         BgmType phaseBgmType[11];
         uint32_t hour;
         uint32_t minute;
@@ -20538,9 +22616,11 @@ namespace app::rfl {
         static void Finish(BattleRushStageParameter* pInstance);
         static void Clean(BattleRushStageParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BattleRushParameter {
-        BattleRushStageParameter stages[4];
+        heur::rfl::BattleRushStageParameter stages[4];
         float viewPaseResultTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -20550,7 +22630,9 @@ namespace app::rfl {
         static void Finish(BattleRushParameter* pInstance);
         static void Clean(BattleRushParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyKnuckleHoleTransitionParameter {
         enum class EasingType : uint8_t {
             LINEAR_EASEIN = 0,
@@ -20599,16 +22681,18 @@ namespace app::rfl {
         static void Finish(CyKnuckleHoleTransitionParameter* pInstance);
         static void Clean(CyKnuckleHoleTransitionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyKnuckleHoleParameter {
         float radiusOpenSmall;
         float radiusOpen;
-        CyKnuckleHoleTransitionParameter closeToOpenSmall;
-        CyKnuckleHoleTransitionParameter closeToOpen;
-        CyKnuckleHoleTransitionParameter openSmallToClose;
-        CyKnuckleHoleTransitionParameter openSmallToOpen;
-        CyKnuckleHoleTransitionParameter openToClose;
-        CyKnuckleHoleTransitionParameter openToOpenSmall;
+        heur::rfl::CyKnuckleHoleTransitionParameter closeToOpenSmall;
+        heur::rfl::CyKnuckleHoleTransitionParameter closeToOpen;
+        heur::rfl::CyKnuckleHoleTransitionParameter openSmallToClose;
+        heur::rfl::CyKnuckleHoleTransitionParameter openSmallToOpen;
+        heur::rfl::CyKnuckleHoleTransitionParameter openToClose;
+        heur::rfl::CyKnuckleHoleTransitionParameter openToOpenSmall;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20617,7 +22701,9 @@ namespace app::rfl {
         static void Finish(CyKnuckleHoleParameter* pInstance);
         static void Clean(CyKnuckleHoleParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameExpParameter {
         uint32_t maxExpPointBase;
         uint32_t maxExpPointAdd;
@@ -20629,7 +22715,9 @@ namespace app::rfl {
         static void Finish(GameExpParameter* pInstance);
         static void Clean(GameExpParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameGrassInteractionParameterData {
         csl::ut::VariableString name;
         float radius;
@@ -20644,9 +22732,11 @@ namespace app::rfl {
         static void Finish(GameGrassInteractionParameterData* pInstance);
         static void Clean(GameGrassInteractionParameterData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameGrassInteractionParameter {
-        GameGrassInteractionParameterData data[32];
+        heur::rfl::GameGrassInteractionParameterData data[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20655,7 +22745,9 @@ namespace app::rfl {
         static void Finish(GameGrassInteractionParameter* pInstance);
         static void Clean(GameGrassInteractionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameGrindLodParameter {
         float distances[4];
         float cullingDistances[4];
@@ -20667,7 +22759,9 @@ namespace app::rfl {
         static void Finish(GameGrindLodParameter* pInstance);
         static void Clean(GameGrindLodParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameHitStopParameterData {
         csl::ut::VariableString name;
         float scale;
@@ -20687,9 +22781,11 @@ namespace app::rfl {
         static void Finish(GameHitStopParameterData* pInstance);
         static void Clean(GameHitStopParameterData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameHitStopParameter {
-        GameHitStopParameterData data[64];
+        heur::rfl::GameHitStopParameterData data[64];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20698,7 +22794,9 @@ namespace app::rfl {
         static void Finish(GameHitStopParameter* pInstance);
         static void Clean(GameHitStopParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkillParam {
         uint8_t unlockPoint;
         uint8_t addUnlockPoint;
@@ -20711,7 +22809,9 @@ namespace app::rfl {
         static void Finish(SkillParam* pInstance);
         static void Clean(SkillParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkillLinkSetting {
         bool down;
         bool left;
@@ -20724,7 +22824,9 @@ namespace app::rfl {
         static void Finish(SkillLinkSetting* pInstance);
         static void Clean(SkillLinkSetting* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkillNodeParam {
         enum class Value : int8_t {
             BeginSonicSkill = 0,
@@ -20826,7 +22928,7 @@ namespace app::rfl {
 
         bool enable;
         Value skill;
-        SkillLinkSetting link;
+        heur::rfl::SkillLinkSetting link;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20835,9 +22937,11 @@ namespace app::rfl {
         static void Finish(SkillNodeParam* pInstance);
         static void Clean(SkillNodeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SkillTreeParam {
-        SkillNodeParam nodeParams[30];
+        heur::rfl::SkillNodeParam nodeParams[30];
         int8_t startIndex;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -20847,13 +22951,15 @@ namespace app::rfl {
         static void Finish(SkillTreeParam* pInstance);
         static void Clean(SkillTreeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameSkillParameter {
-        SkillParam skillParams[80];
-        SkillTreeParam treeParams[1];
-        SkillTreeParam treeParamsAmy[1];
-        SkillTreeParam treeParamsKnuckles[1];
-        SkillTreeParam treeParamsTails[1];
+        heur::rfl::SkillParam skillParams[80];
+        heur::rfl::SkillTreeParam treeParams[1];
+        heur::rfl::SkillTreeParam treeParamsAmy[1];
+        heur::rfl::SkillTreeParam treeParamsKnuckles[1];
+        heur::rfl::SkillTreeParam treeParamsTails[1];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20862,7 +22968,9 @@ namespace app::rfl {
         static void Finish(GameSkillParameter* pInstance);
         static void Clean(GameSkillParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PhotoModeCameraParameters {
         float translationLimit;
         float translationSpeedXZ;
@@ -20884,7 +22992,9 @@ namespace app::rfl {
         static void Finish(PhotoModeCameraParameters* pInstance);
         static void Clean(PhotoModeCameraParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PhotoModeFilterParameters {
         float sepiaSaturationOffset;
         float sepiaColorizeRate;
@@ -20909,10 +23019,12 @@ namespace app::rfl {
         static void Finish(PhotoModeFilterParameters* pInstance);
         static void Clean(PhotoModeFilterParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PhotoModeParameters {
-        PhotoModeCameraParameters camera;
-        PhotoModeFilterParameters filter;
+        heur::rfl::PhotoModeCameraParameters camera;
+        heur::rfl::PhotoModeFilterParameters filter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20921,7 +23033,9 @@ namespace app::rfl {
         static void Finish(PhotoModeParameters* pInstance);
         static void Clean(PhotoModeParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeAction {
         enum class Type : uint16_t {
             None = 0,
@@ -21020,7 +23134,9 @@ namespace app::rfl {
         static void Finish(PracticeAction* pInstance);
         static void Clean(PracticeAction* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticePrerequisite {
         csl::ut::Bitset<uint64_t> skill;
         csl::ut::Bitset<uint64_t> skill2;
@@ -21037,7 +23153,9 @@ namespace app::rfl {
         static void Finish(PracticePrerequisite* pInstance);
         static void Clean(PracticePrerequisite* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeSubject {
         enum class Checker : int8_t {
             InvalidChecker = -1,
@@ -21069,9 +23187,9 @@ namespace app::rfl {
         };
 
         Checker checker;
-        PracticeAction actions[6];
+        heur::rfl::PracticeAction actions[6];
         int32_t count;
-        PracticePrerequisite prerequisite;
+        heur::rfl::PracticePrerequisite prerequisite;
         csl::ut::Bitset<uint8_t> options;
         Value character;
 
@@ -21082,7 +23200,9 @@ namespace app::rfl {
         static void Finish(PracticeSubject* pInstance);
         static void Clean(PracticeSubject* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeText {
         csl::ut::VariableString labels[10];
 
@@ -21093,7 +23213,9 @@ namespace app::rfl {
         static void Finish(PracticeText* pInstance);
         static void Clean(PracticeText* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeTime {
         float readyTime;
         float countTime;
@@ -21110,7 +23232,9 @@ namespace app::rfl {
         static void Finish(PracticeTime* pInstance);
         static void Clean(PracticeTime* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeTipsPrerequisite {
         csl::ut::Bitset<uint64_t> skill;
         csl::ut::Bitset<uint64_t> skill2;
@@ -21129,9 +23253,11 @@ namespace app::rfl {
         static void Finish(PracticeTipsPrerequisite* pInstance);
         static void Clean(PracticeTipsPrerequisite* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeTips {
-        PracticeTipsPrerequisite prerequisite;
+        heur::rfl::PracticeTipsPrerequisite prerequisite;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21140,7 +23266,9 @@ namespace app::rfl {
         static void Finish(PracticeTips* pInstance);
         static void Clean(PracticeTips* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeSet {
         int16_t subjects[20];
         int16_t tips[100];
@@ -21152,15 +23280,17 @@ namespace app::rfl {
         static void Finish(PracticeSet* pInstance);
         static void Clean(PracticeSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PracticeParameters {
-        PracticeSubject subjects[200];
-        PracticeText text;
-        PracticeTime time;
+        heur::rfl::PracticeSubject subjects[200];
+        heur::rfl::PracticeText text;
+        heur::rfl::PracticeTime time;
         float notifyTime;
-        PracticeTips tips[256];
+        heur::rfl::PracticeTips tips[256];
         float tipsMinViewTime;
-        PracticeSet sets[181];
+        heur::rfl::PracticeSet sets[181];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21169,7 +23299,9 @@ namespace app::rfl {
         static void Finish(PracticeParameters* pInstance);
         static void Clean(PracticeParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TimeServiceParam {
         float speed;
         float timeMagnification;
@@ -21182,7 +23314,9 @@ namespace app::rfl {
         static void Finish(TimeServiceParam* pInstance);
         static void Clean(TimeServiceParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherBlockParameter {
         uint8_t blockWeights[5];
 
@@ -21193,10 +23327,12 @@ namespace app::rfl {
         static void Finish(WeatherBlockParameter* pInstance);
         static void Clean(WeatherBlockParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherTypeParameter {
         uint8_t transitWeights[5];
-        WeatherBlockParameter blockParams[5];
+        heur::rfl::WeatherBlockParameter blockParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21205,7 +23341,9 @@ namespace app::rfl {
         static void Finish(WeatherTypeParameter* pInstance);
         static void Clean(WeatherTypeParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherTimeParameter {
         uint8_t hour;
         uint8_t minute;
@@ -21217,13 +23355,15 @@ namespace app::rfl {
         static void Finish(WeatherTimeParameter* pInstance);
         static void Clean(WeatherTimeParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherTimeControlParameter {
-        WeatherTimeParameter sunriseBeginTime;
-        WeatherTimeParameter dayBeginTime;
-        WeatherTimeParameter sunsetBeginTime;
-        WeatherTimeParameter nightBeginTime;
-        WeatherTimeParameter blockTime;
+        heur::rfl::WeatherTimeParameter sunriseBeginTime;
+        heur::rfl::WeatherTimeParameter dayBeginTime;
+        heur::rfl::WeatherTimeParameter sunsetBeginTime;
+        heur::rfl::WeatherTimeParameter nightBeginTime;
+        heur::rfl::WeatherTimeParameter blockTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21232,10 +23372,12 @@ namespace app::rfl {
         static void Finish(WeatherTimeControlParameter* pInstance);
         static void Clean(WeatherTimeControlParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherParameters {
-        WeatherTypeParameter type[5];
-        WeatherTimeControlParameter timeControl;
+        heur::rfl::WeatherTypeParameter type[5];
+        heur::rfl::WeatherTimeControlParameter timeControl;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21244,7 +23386,9 @@ namespace app::rfl {
         static void Finish(WeatherParameters* pInstance);
         static void Clean(WeatherParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EffectParameters {
         float localLightIntensityScale;
         bool dropPriorityEnabled;
@@ -21257,7 +23401,9 @@ namespace app::rfl {
         static void Finish(EffectParameters* pInstance);
         static void Clean(EffectParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AuraEffectLerpNode {
         float distance;
         float noiseTextureScrollSpeed;
@@ -21272,10 +23418,12 @@ namespace app::rfl {
         static void Finish(AuraEffectLerpNode* pInstance);
         static void Clean(AuraEffectLerpNode* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AuraEffectLerpParameter {
         csl::ut::VariableString name;
-        AuraEffectLerpNode node[2];
+        heur::rfl::AuraEffectLerpNode node[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21284,9 +23432,11 @@ namespace app::rfl {
         static void Finish(AuraEffectLerpParameter* pInstance);
         static void Clean(AuraEffectLerpParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AuraEffectParameters {
-        AuraEffectLerpParameter params[4];
+        heur::rfl::AuraEffectLerpParameter params[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21295,11 +23445,13 @@ namespace app::rfl {
         static void Finish(AuraEffectParameters* pInstance);
         static void Clean(AuraEffectParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GraphicsParameters {
-        AuraEffectParameters aura;
-        EffectParameters effect;
-        WeatherParameters weather;
+        heur::rfl::AuraEffectParameters aura;
+        heur::rfl::EffectParameters effect;
+        heur::rfl::WeatherParameters weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21308,9 +23460,11 @@ namespace app::rfl {
         static void Finish(GraphicsParameters* pInstance);
         static void Clean(GraphicsParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NoisePresetParameters {
-        FxCyberSpaceStartNoiseParameter presets[8];
+        hh::needle::FxCyberSpaceStartNoiseParameter presets[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21319,7 +23473,9 @@ namespace app::rfl {
         static void Finish(NoisePresetParameters* pInstance);
         static void Clean(NoisePresetParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFlashSwitchConfig {
         float recoveryQuickCyloopValue;
 
@@ -21330,7 +23486,9 @@ namespace app::rfl {
         static void Finish(ObjFlashSwitchConfig* pInstance);
         static void Clean(ObjFlashSwitchConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonAttackSignParam {
         float delayTime[6];
 
@@ -21341,7 +23499,9 @@ namespace app::rfl {
         static void Finish(BossDragonAttackSignParam* pInstance);
         static void Clean(BossDragonAttackSignParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonCameraParam {
         csl::ut::VariableString gazeFrame;
         csl::ut::VariableString gazeFrameMirror;
@@ -21358,7 +23518,9 @@ namespace app::rfl {
         static void Finish(BossDragonCameraParam* pInstance);
         static void Clean(BossDragonCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonChaseParam {
         float distance;
         float goalOffset;
@@ -21382,7 +23544,9 @@ namespace app::rfl {
         static void Finish(BossDragonChaseParam* pInstance);
         static void Clean(BossDragonChaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonCollisionParamBase {
         csl::ut::VariableString name;
         csl::ut::VariableString parentFrame;
@@ -21397,8 +23561,10 @@ namespace app::rfl {
         static void Finish(BossDragonCollisionParamBase* pInstance);
         static void Clean(BossDragonCollisionParamBase* pInstance);
     };
+}
 
-    struct BossDragonHitBoxParam : BossDragonCollisionParamBase {
+namespace heur::rfl {
+    struct BossDragonHitBoxParam : heur::rfl::BossDragonCollisionParamBase {
         csl::math::Vector3 damageVelocity;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -21408,8 +23574,10 @@ namespace app::rfl {
         static void Finish(BossDragonHitBoxParam* pInstance);
         static void Clean(BossDragonHitBoxParam* pInstance);
     };
+}
 
-    struct BossDragonHurtBoxParam : BossDragonCollisionParamBase {
+namespace heur::rfl {
+    struct BossDragonHurtBoxParam : heur::rfl::BossDragonCollisionParamBase {
         bool isEnableHoming;
         csl::ut::VariableString homingNode;
         csl::ut::VariableString homingNodeMirror;
@@ -21422,7 +23590,9 @@ namespace app::rfl {
         static void Finish(BossDragonHurtBoxParam* pInstance);
         static void Clean(BossDragonHurtBoxParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonScratchParam {
         float aimTime;
         float stunTime;
@@ -21434,7 +23604,9 @@ namespace app::rfl {
         static void Finish(BossDragonScratchParam* pInstance);
         static void Clean(BossDragonScratchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonReflectShotParam {
         float radius;
         float speed;
@@ -21454,7 +23626,9 @@ namespace app::rfl {
         static void Finish(BossDragonReflectShotParam* pInstance);
         static void Clean(BossDragonReflectShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonShotParam {
         float radius;
         float speed;
@@ -21472,7 +23646,9 @@ namespace app::rfl {
         static void Finish(BossDragonShotParam* pInstance);
         static void Clean(BossDragonShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonSpiralShotParam {
         float radius;
         float speed;
@@ -21492,7 +23668,9 @@ namespace app::rfl {
         static void Finish(BossDragonSpiralShotParam* pInstance);
         static void Clean(BossDragonSpiralShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonSplashShotParam {
         float radius;
         float speed;
@@ -21513,7 +23691,9 @@ namespace app::rfl {
         static void Finish(BossDragonSplashShotParam* pInstance);
         static void Clean(BossDragonSplashShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonHomingLaserParam {
         float radius;
         float speed;
@@ -21534,7 +23714,9 @@ namespace app::rfl {
         static void Finish(BossDragonHomingLaserParam* pInstance);
         static void Clean(BossDragonHomingLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonHomingMissileParam {
         float radius;
         float length;
@@ -21554,7 +23736,9 @@ namespace app::rfl {
         static void Finish(BossDragonHomingMissileParam* pInstance);
         static void Clean(BossDragonHomingMissileParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRippleLaserParam {
         float innerRadius;
         float outerRadius;
@@ -21576,7 +23760,9 @@ namespace app::rfl {
         static void Finish(BossDragonRippleLaserParam* pInstance);
         static void Clean(BossDragonRippleLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRippleLaserRageParam {
         float innerRadius;
         float outerRadius;
@@ -21600,7 +23786,9 @@ namespace app::rfl {
         static void Finish(BossDragonRippleLaserRageParam* pInstance);
         static void Clean(BossDragonRippleLaserRageParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRippleLaserDummyParam {
         float innerRadius;
         float outerRadius;
@@ -21620,7 +23808,9 @@ namespace app::rfl {
         static void Finish(BossDragonRippleLaserDummyParam* pInstance);
         static void Clean(BossDragonRippleLaserDummyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonWaveParam {
         float speed;
         float rotSpeed;
@@ -21640,7 +23830,9 @@ namespace app::rfl {
         static void Finish(BossDragonWaveParam* pInstance);
         static void Clean(BossDragonWaveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonLaserParam {
         float radius;
         float length;
@@ -21659,7 +23851,9 @@ namespace app::rfl {
         static void Finish(BossDragonLaserParam* pInstance);
         static void Clean(BossDragonLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonCounterLaserParam {
         float radius;
         float speed;
@@ -21672,7 +23866,9 @@ namespace app::rfl {
         static void Finish(BossDragonCounterLaserParam* pInstance);
         static void Clean(BossDragonCounterLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRingSupplyMissileParam {
         int32_t missileNum;
         float missileWaitTime;
@@ -21684,13 +23880,15 @@ namespace app::rfl {
         static void Finish(BossDragonRingSupplyMissileParam* pInstance);
         static void Clean(BossDragonRingSupplyMissileParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRingSupplyParam {
         csl::math::Vector3 playerPosition;
         float moveTime;
         float moveRange;
         float rotSpeed;
-        BossDragonRingSupplyMissileParam missile[3];
+        heur::rfl::BossDragonRingSupplyMissileParam missile[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21699,7 +23897,9 @@ namespace app::rfl {
         static void Finish(BossDragonRingSupplyParam* pInstance);
         static void Clean(BossDragonRingSupplyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonLayoutParam {
         enum class EaseType : int8_t {
             SMOOTH = 0,
@@ -21726,7 +23926,9 @@ namespace app::rfl {
         static void Finish(BossDragonLayoutParam* pInstance);
         static void Clean(BossDragonLayoutParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonMoveParam {
         csl::math::Vector3 playerNodes[8];
         csl::math::Vector3 bossNodes[8];
@@ -21741,7 +23943,9 @@ namespace app::rfl {
         static void Finish(BossDragonMoveParam* pInstance);
         static void Clean(BossDragonMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonFireBarParam {
         float radius;
         float length;
@@ -21754,7 +23958,9 @@ namespace app::rfl {
         static void Finish(BossDragonFireBarParam* pInstance);
         static void Clean(BossDragonFireBarParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonEscapeShotParam {
         uint32_t vertRatio[3];
         float initSpeed;
@@ -21769,7 +23975,9 @@ namespace app::rfl {
         static void Finish(BossDragonEscapeShotParam* pInstance);
         static void Clean(BossDragonEscapeShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonObstacleParam {
         enum class Type : int8_t {
             None = 0,
@@ -21795,7 +24003,9 @@ namespace app::rfl {
         static void Finish(BossDragonObstacleParam* pInstance);
         static void Clean(BossDragonObstacleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonHoleParam {
         float start;
         float end;
@@ -21807,15 +24017,17 @@ namespace app::rfl {
         static void Finish(BossDragonHoleParam* pInstance);
         static void Clean(BossDragonHoleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonRoadParam {
         float interval;
         int32_t recordNum;
         float width;
-        BossDragonFireBarParam fireBar;
-        BossDragonEscapeShotParam shot;
-        BossDragonObstacleParam obstacles[64];
-        BossDragonHoleParam holes[16];
+        heur::rfl::BossDragonFireBarParam fireBar;
+        heur::rfl::BossDragonEscapeShotParam shot;
+        heur::rfl::BossDragonObstacleParam obstacles[64];
+        heur::rfl::BossDragonHoleParam holes[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21824,7 +24036,9 @@ namespace app::rfl {
         static void Finish(BossDragonRoadParam* pInstance);
         static void Clean(BossDragonRoadParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonLaunchParam {
         float outStrength;
         float inStrength;
@@ -21857,7 +24071,9 @@ namespace app::rfl {
         static void Finish(BossDragonLaunchParam* pInstance);
         static void Clean(BossDragonLaunchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonQuickStepParam {
         float speed;
         float boostSpeed;
@@ -21870,7 +24086,9 @@ namespace app::rfl {
         static void Finish(BossDragonQuickStepParam* pInstance);
         static void Clean(BossDragonQuickStepParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonMissileIndividualParam {
         bool isValid;
         float rotForce;
@@ -21886,7 +24104,9 @@ namespace app::rfl {
         static void Finish(BossDragonMissileIndividualParam* pInstance);
         static void Clean(BossDragonMissileIndividualParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonMissileFirePattern {
         float hpRatioThreshold;
         int32_t count;
@@ -21901,7 +24121,9 @@ namespace app::rfl {
         static void Finish(BossDragonMissileFirePattern* pInstance);
         static void Clean(BossDragonMissileFirePattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonMissileParam {
         float radius;
         float length;
@@ -21909,9 +24131,9 @@ namespace app::rfl {
         float maxSpeed;
         float accel;
         float lifeTime;
-        BossDragonMissileIndividualParam individuals[16];
-        BossDragonMissileIndividualParam badIndividuals[8];
-        BossDragonMissileFirePattern firePatterns[8];
+        heur::rfl::BossDragonMissileIndividualParam individuals[16];
+        heur::rfl::BossDragonMissileIndividualParam badIndividuals[8];
+        heur::rfl::BossDragonMissileFirePattern firePatterns[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21920,7 +24142,9 @@ namespace app::rfl {
         static void Finish(BossDragonMissileParam* pInstance);
         static void Clean(BossDragonMissileParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonInterruptParam {
         enum class BossDragonInterrupt : int8_t {
             NOP = 0,
@@ -21940,7 +24164,9 @@ namespace app::rfl {
         static void Finish(BossDragonInterruptParam* pInstance);
         static void Clean(BossDragonInterruptParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonCyloopBindParam {
         float postCameraTime[4];
 
@@ -21951,7 +24177,9 @@ namespace app::rfl {
         static void Finish(BossDragonCyloopBindParam* pInstance);
         static void Clean(BossDragonCyloopBindParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonParrySlowParam {
         float scale;
         float time;
@@ -21965,9 +24193,11 @@ namespace app::rfl {
         static void Finish(BossDragonParrySlowParam* pInstance);
         static void Clean(BossDragonParrySlowParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonParryParam {
-        BossDragonParrySlowParam slowParams[2];
+        heur::rfl::BossDragonParrySlowParam slowParams[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21976,10 +24206,12 @@ namespace app::rfl {
         static void Finish(BossDragonParryParam* pInstance);
         static void Clean(BossDragonParryParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDragonNotifierParam {
-        EnemyPracticeNotifierConfig notifierConfigClimb;
-        EnemyPracticeNotifierConfig notifierConfigBattle;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigClimb;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -21988,7 +24220,9 @@ namespace app::rfl {
         static void Finish(BossDragonNotifierParam* pInstance);
         static void Clean(BossDragonNotifierParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerMoveableRangeParam {
         csl::ut::MoveArray<hh::game::ObjectId> initPositions;
         csl::ut::VariableString heightTargetNodeName;
@@ -22010,7 +24244,9 @@ namespace app::rfl {
         static void Finish(PlayerMoveableRangeParam* pInstance);
         static void Clean(PlayerMoveableRangeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossPhaseParam {
         bool isUse;
         bool isUsePillar;
@@ -22023,7 +24259,9 @@ namespace app::rfl {
         static void Finish(BossPhaseParam* pInstance);
         static void Clean(BossPhaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossLockOnCameraParam {
         enum class EaseType : int8_t {
             ET_Sin = 0,
@@ -22047,17 +24285,19 @@ namespace app::rfl {
         static void Finish(BossLockOnCameraParam* pInstance);
         static void Clean(BossLockOnCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossStatusConfig {
         uint32_t healthPoint;
         float stunTime;
         float maxStunPoint[3];
         float maxStaggerPoint[5];
         uint16_t exp;
-        PlayerMoveableRangeParam moveRangeParam;
-        PlayerMoveableRangeParam cyloopDamageMoveRangeParam;
-        BossPhaseParam phaseParams[8];
-        BossLockOnCameraParam cameraParam;
+        heur::rfl::PlayerMoveableRangeParam moveRangeParam;
+        heur::rfl::PlayerMoveableRangeParam cyloopDamageMoveRangeParam;
+        heur::rfl::BossPhaseParam phaseParams[8];
+        heur::rfl::BossLockOnCameraParam cameraParam;
         bool isDebugDraw;
         uint32_t debugDrawPhaseIndex;
 
@@ -22068,7 +24308,9 @@ namespace app::rfl {
         static void Finish(BossStatusConfig* pInstance);
         static void Clean(BossStatusConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossPillarParam {
         enum class GimmickType : int8_t {
             GT_A = 0,
@@ -22104,7 +24346,9 @@ namespace app::rfl {
         static void Finish(BossPillarParam* pInstance);
         static void Clean(BossPillarParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossPillarConfig {
         enum class GimmickType : int8_t {
             GT_A = 0,
@@ -22128,7 +24372,7 @@ namespace app::rfl {
         float gimmickIntervalTimeAll;
         AttackType attackTypeAll;
         float attackIntervalTimeAll;
-        BossPillarParam pillars[32];
+        heur::rfl::BossPillarParam pillars[32];
         csl::ut::VariableString spawnPositionName;
         uint32_t pillarHealthPoint;
         uint32_t pillarBreakDamage;
@@ -22143,7 +24387,9 @@ namespace app::rfl {
         static void Finish(BossPillarConfig* pInstance);
         static void Clean(BossPillarConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossColliderStatus {
         enum class ColliderActiveType : int8_t {
             Always = 0,
@@ -22197,7 +24443,9 @@ namespace app::rfl {
         static void Finish(BossColliderStatus* pInstance);
         static void Clean(BossColliderStatus* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossPerceiveCollisionParam {
         enum class CollisionType : int8_t {
             CT_SPHERE = 0,
@@ -22212,7 +24460,7 @@ namespace app::rfl {
         CollisionType type;
         csl::ut::VariableString attachNodeName;
         csl::ut::VariableString name;
-        BossColliderStatus status;
+        heur::rfl::BossColliderStatus status;
         csl::math::Vector3 size;
         csl::math::Vector3 offset;
         csl::math::Vector3 rotation;
@@ -22224,9 +24472,11 @@ namespace app::rfl {
         static void Finish(BossPerceiveCollisionParam* pInstance);
         static void Clean(BossPerceiveCollisionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossPerceivePartsWithCollisionConfig {
-        BossPerceiveCollisionParam perceiveCollisions[64];
+        heur::rfl::BossPerceiveCollisionParam perceiveCollisions[64];
         bool isDebugDraw;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -22236,9 +24486,11 @@ namespace app::rfl {
         static void Finish(BossPerceivePartsWithCollisionConfig* pInstance);
         static void Clean(BossPerceivePartsWithCollisionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossHomingPointParam {
-        BossColliderStatus status;
+        heur::rfl::BossColliderStatus status;
         float distance;
         float nextSearchDistance;
 
@@ -22249,7 +24501,9 @@ namespace app::rfl {
         static void Finish(BossHomingPointParam* pInstance);
         static void Clean(BossHomingPointParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossMinionParam {
         uint32_t num;
         float interval;
@@ -22263,7 +24517,9 @@ namespace app::rfl {
         static void Finish(BossMinionParam* pInstance);
         static void Clean(BossMinionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossTrigerParam {
         enum class Shape : int8_t {
             SHAPE_BOX = 0,
@@ -22284,7 +24540,9 @@ namespace app::rfl {
         static void Finish(BossTrigerParam* pInstance);
         static void Clean(BossTrigerParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossStickParam {
         float phaseTime;
 
@@ -22295,7 +24553,9 @@ namespace app::rfl {
         static void Finish(BossStickParam* pInstance);
         static void Clean(BossStickParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDamagePointParam {
         bool isCyloopDownUnuse;
         csl::ut::VariableString text;
@@ -22307,7 +24567,9 @@ namespace app::rfl {
         static void Finish(BossDamagePointParam* pInstance);
         static void Clean(BossDamagePointParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDashCirclPointParam {
         int32_t focusGeometryIndex;
         int32_t focusTriangleIndex;
@@ -22327,7 +24589,9 @@ namespace app::rfl {
         static void Finish(BossDashCirclPointParam* pInstance);
         static void Clean(BossDashCirclPointParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossMeshFrameParam {
         enum class PointType : int8_t {
             PT_HOMINGPOINT = 0,
@@ -22346,12 +24610,12 @@ namespace app::rfl {
         uint32_t geometryIndex;
         uint32_t triangleIndex;
         PointType type;
-        BossHomingPointParam homingPoint;
-        BossMinionParam minionParam;
-        BossTrigerParam trigger;
-        BossStickParam stickParam;
-        BossDamagePointParam damagePoint;
-        BossDashCirclPointParam dashCirclPoint;
+        heur::rfl::BossHomingPointParam homingPoint;
+        heur::rfl::BossMinionParam minionParam;
+        heur::rfl::BossTrigerParam trigger;
+        heur::rfl::BossStickParam stickParam;
+        heur::rfl::BossDamagePointParam damagePoint;
+        heur::rfl::BossDashCirclPointParam dashCirclPoint;
         int32_t linkNums[5];
         csl::math::Vector3 offsetPos;
         csl::math::Vector3 offsetRot;
@@ -22363,9 +24627,11 @@ namespace app::rfl {
         static void Finish(BossMeshFrameParam* pInstance);
         static void Clean(BossMeshFrameParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossMeshFrameConfig {
-        BossMeshFrameParam meshShapeKeyFrames[256];
+        heur::rfl::BossMeshFrameParam meshShapeKeyFrames[256];
         bool isDebugDraw;
         bool isDebugDrawPoint;
         bool isDebugDrawMesh;
@@ -22380,7 +24646,9 @@ namespace app::rfl {
         static void Finish(BossMeshFrameConfig* pInstance);
         static void Clean(BossMeshFrameConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossAttackCollisionParam {
         enum class AttackType : int8_t {
             AT_NONE = 0,
@@ -22397,7 +24665,7 @@ namespace app::rfl {
         csl::ut::VariableString attachNodeName;
         float damageVelocityRaito;
         AttackType types[4];
-        BossColliderStatus status;
+        heur::rfl::BossColliderStatus status;
         float size;
         csl::math::Vector3 offset;
         csl::ut::VariableString parryCounterTargetCollisionName;
@@ -22409,9 +24677,11 @@ namespace app::rfl {
         static void Finish(BossAttackCollisionParam* pInstance);
         static void Clean(BossAttackCollisionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossAttackCollisionConfig {
-        BossAttackCollisionParam attackCollisions[64];
+        heur::rfl::BossAttackCollisionParam attackCollisions[64];
         bool isDebugDraw;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -22421,7 +24691,9 @@ namespace app::rfl {
         static void Finish(BossAttackCollisionConfig* pInstance);
         static void Clean(BossAttackCollisionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossBattlePhaseCollisionParam {
         bool isUse;
         csl::ut::VariableString attachNodeName;
@@ -22440,9 +24712,11 @@ namespace app::rfl {
         static void Finish(BossBattlePhaseCollisionParam* pInstance);
         static void Clean(BossBattlePhaseCollisionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossBattlePhaseCollisionConfig {
-        BossBattlePhaseCollisionParam battleCollisions[16];
+        heur::rfl::BossBattlePhaseCollisionParam battleCollisions[16];
         bool isDebugDraw;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -22452,7 +24726,9 @@ namespace app::rfl {
         static void Finish(BossBattlePhaseCollisionConfig* pInstance);
         static void Clean(BossBattlePhaseCollisionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossDropRingConfig {
         uint32_t ringNumQuickCyloopUp;
         uint32_t ringNumQuickCyloopDown;
@@ -22467,15 +24743,17 @@ namespace app::rfl {
         static void Finish(BossDropRingConfig* pInstance);
         static void Clean(BossDropRingConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossBaseConfig {
-        BossStatusConfig status;
-        BossPillarConfig pillar;
-        BossPerceivePartsWithCollisionConfig perceivPartsWithCollision;
-        BossMeshFrameConfig meshShapeKeyFrame;
-        BossAttackCollisionConfig attackCollision;
-        BossBattlePhaseCollisionConfig battleCollision;
-        BossDropRingConfig dropRing;
+        heur::rfl::BossStatusConfig status;
+        heur::rfl::BossPillarConfig pillar;
+        heur::rfl::BossPerceivePartsWithCollisionConfig perceivPartsWithCollision;
+        heur::rfl::BossMeshFrameConfig meshShapeKeyFrame;
+        heur::rfl::BossAttackCollisionConfig attackCollision;
+        heur::rfl::BossBattlePhaseCollisionConfig battleCollision;
+        heur::rfl::BossDropRingConfig dropRing;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22484,8 +24762,10 @@ namespace app::rfl {
         static void Finish(BossBaseConfig* pInstance);
         static void Clean(BossBaseConfig* pInstance);
     };
+}
 
-    struct BossDragonConfig : BossBaseConfig {
+namespace heur::rfl {
+    struct BossDragonConfig : heur::rfl::BossBaseConfig {
         enum class BossDragonSequence : int8_t {
             NOP = 0,
             BITE = 1,
@@ -22535,41 +24815,41 @@ namespace app::rfl {
         int32_t specialAttackDamage;
         int32_t qte1Damage;
         csl::ut::VariableString accessNodeNames[16];
-        BossDragonHitBoxParam hitBoxes[32];
-        BossDragonHurtBoxParam hurtBoxes[32];
-        BossDragonScratchParam scratch;
-        BossDragonReflectShotParam reflect;
-        BossDragonShotParam shot;
-        BossDragonSpiralShotParam spiral;
-        BossDragonSpiralShotParam spiralAlternate;
-        BossDragonSpiralShotParam spiralVertical;
-        BossDragonSplashShotParam splash;
-        BossDragonHomingLaserParam homingLaser;
-        BossDragonHomingMissileParam homingMissile;
-        BossDragonRippleLaserParam rippleLaser;
-        BossDragonRippleLaserRageParam rippleLaserRage;
-        BossDragonRippleLaserDummyParam rippleLaserDummy;
-        BossDragonWaveParam wave;
-        BossDragonLaserParam laserWinder;
-        BossDragonLaserParam randomLaser;
-        BossDragonCounterLaserParam counterLaser;
-        BossDragonRingSupplyParam ringSupply;
+        heur::rfl::BossDragonHitBoxParam hitBoxes[32];
+        heur::rfl::BossDragonHurtBoxParam hurtBoxes[32];
+        heur::rfl::BossDragonScratchParam scratch;
+        heur::rfl::BossDragonReflectShotParam reflect;
+        heur::rfl::BossDragonShotParam shot;
+        heur::rfl::BossDragonSpiralShotParam spiral;
+        heur::rfl::BossDragonSpiralShotParam spiralAlternate;
+        heur::rfl::BossDragonSpiralShotParam spiralVertical;
+        heur::rfl::BossDragonSplashShotParam splash;
+        heur::rfl::BossDragonHomingLaserParam homingLaser;
+        heur::rfl::BossDragonHomingMissileParam homingMissile;
+        heur::rfl::BossDragonRippleLaserParam rippleLaser;
+        heur::rfl::BossDragonRippleLaserRageParam rippleLaserRage;
+        heur::rfl::BossDragonRippleLaserDummyParam rippleLaserDummy;
+        heur::rfl::BossDragonWaveParam wave;
+        heur::rfl::BossDragonLaserParam laserWinder;
+        heur::rfl::BossDragonLaserParam randomLaser;
+        heur::rfl::BossDragonCounterLaserParam counterLaser;
+        heur::rfl::BossDragonRingSupplyParam ringSupply;
         float damageRates[4];
-        BossDragonLayoutParam layouts[46];
-        BossDragonCameraParam cameras[47];
-        BossDragonMoveParam swapMove;
-        BossDragonRoadParam road;
-        BossDragonLaunchParam launch;
-        BossDragonQuickStepParam quickStep;
-        BossDragonChaseParam chase;
-        BossDragonMissileParam missile;
+        heur::rfl::BossDragonLayoutParam layouts[46];
+        heur::rfl::BossDragonCameraParam cameras[47];
+        heur::rfl::BossDragonMoveParam swapMove;
+        heur::rfl::BossDragonRoadParam road;
+        heur::rfl::BossDragonLaunchParam launch;
+        heur::rfl::BossDragonQuickStepParam quickStep;
+        heur::rfl::BossDragonChaseParam chase;
+        heur::rfl::BossDragonMissileParam missile;
         BossDragonSequence seq[16];
         BossDragonSequence seq2[16];
-        BossDragonInterruptParam interrupts[8];
-        BossDragonCyloopBindParam cyloopBind;
-        BossDragonParryParam parry[4];
-        BossDragonAttackSignParam attackSign;
-        BossDragonNotifierParam notifier;
+        heur::rfl::BossDragonInterruptParam interrupts[8];
+        heur::rfl::BossDragonCyloopBindParam cyloopBind;
+        heur::rfl::BossDragonParryParam parry[4];
+        heur::rfl::BossDragonAttackSignParam attackSign;
+        heur::rfl::BossDragonNotifierParam notifier;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22578,7 +24858,9 @@ namespace app::rfl {
         static void Finish(BossDragonConfig* pInstance);
         static void Clean(BossDragonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantPhaseParam {
         enum class ActionType : int8_t {
             AT_NONE = 0,
@@ -22612,7 +24894,9 @@ namespace app::rfl {
         static void Finish(BossGiantPhaseParam* pInstance);
         static void Clean(BossGiantPhaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantPhaseAttackActionParam {
         enum class ActionAttribute : int8_t {
             AA_NONE = 0,
@@ -22651,7 +24935,9 @@ namespace app::rfl {
         static void Finish(BossGiantPhaseAttackActionParam* pInstance);
         static void Clean(BossGiantPhaseAttackActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantCyloopFloatActionParam {
         float landingCounterHPRatio;
         float floatCounterHPRatio;
@@ -22663,7 +24949,9 @@ namespace app::rfl {
         static void Finish(BossGiantCyloopFloatActionParam* pInstance);
         static void Clean(BossGiantCyloopFloatActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantThresholdRingSupplyParam {
         enum class LaserType : int8_t {
             LT_NONE = 0,
@@ -22681,7 +24969,9 @@ namespace app::rfl {
         static void Finish(BossGiantThresholdRingSupplyParam* pInstance);
         static void Clean(BossGiantThresholdRingSupplyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantBattleParam {
         enum class ActionType : int8_t {
             AT_NONE = 0,
@@ -22703,11 +24993,11 @@ namespace app::rfl {
             NUM_ACTION_TYPE = 16,
         };
 
-        BossGiantPhaseParam giantPhaseParams[4];
-        BossGiantPhaseAttackActionParam actionParams[15];
+        heur::rfl::BossGiantPhaseParam giantPhaseParams[4];
+        heur::rfl::BossGiantPhaseAttackActionParam actionParams[15];
         ActionType immediateActions[20];
-        BossGiantCyloopFloatActionParam cyloopFloatAction;
-        BossGiantThresholdRingSupplyParam thresholdRingSupply[3];
+        heur::rfl::BossGiantCyloopFloatActionParam cyloopFloatAction;
+        heur::rfl::BossGiantThresholdRingSupplyParam thresholdRingSupply[3];
         float thresholdDamageEffectHPRatio[3];
         bool isDebugDraw;
 
@@ -22718,10 +25008,12 @@ namespace app::rfl {
         static void Finish(BossGiantBattleParam* pInstance);
         static void Clean(BossGiantBattleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossGiantNotifierParam {
-        EnemyPracticeNotifierConfig notifierConfigClimb;
-        EnemyPracticeNotifierConfig notifierConfigBattle;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigClimb;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22730,10 +25022,12 @@ namespace app::rfl {
         static void Finish(BossGiantNotifierParam* pInstance);
         static void Clean(BossGiantNotifierParam* pInstance);
     };
+}
 
-    struct BossGiantConfig : BossBaseConfig {
-        BossGiantBattleParam battleParam;
-        BossGiantNotifierParam notifierParam;
+namespace heur::rfl {
+    struct BossGiantConfig : heur::rfl::BossBaseConfig {
+        heur::rfl::BossGiantBattleParam battleParam;
+        heur::rfl::BossGiantNotifierParam notifierParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22742,7 +25036,9 @@ namespace app::rfl {
         static void Finish(BossGiantConfig* pInstance);
         static void Clean(BossGiantConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightIdleConfig {
         float runSpeed;
 
@@ -22753,7 +25049,9 @@ namespace app::rfl {
         static void Finish(KnightIdleConfig* pInstance);
         static void Clean(KnightIdleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbIdleConfig {
         float moveIntervalAfterSlam;
         float moveIntervalAfterMove;
@@ -22766,7 +25064,9 @@ namespace app::rfl {
         static void Finish(KnightClimbIdleConfig* pInstance);
         static void Clean(KnightClimbIdleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbMoveConfig {
         float speedAvg;
         float angle1Min;
@@ -22782,7 +25082,9 @@ namespace app::rfl {
         static void Finish(KnightClimbMoveConfig* pInstance);
         static void Clean(KnightClimbMoveConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbSlamLookupCameraConfig {
         float duration;
         float lockonDistance;
@@ -22800,7 +25102,9 @@ namespace app::rfl {
         static void Finish(KnightClimbSlamLookupCameraConfig* pInstance);
         static void Clean(KnightClimbSlamLookupCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbSlamWaveConfig {
         float interval;
         uint32_t generateNum;
@@ -22823,7 +25127,9 @@ namespace app::rfl {
         static void Finish(KnightClimbSlamWaveConfig* pInstance);
         static void Clean(KnightClimbSlamWaveConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbSlamConfig {
         float rotateSpeedBeforeSlam;
         float slamAnimSpeed;
@@ -22832,8 +25138,8 @@ namespace app::rfl {
         float liftUpEndAnimSpeed;
         float liftUpStartAnimSpeedMiss;
         float liftUpEndAnimSpeedMiss;
-        KnightClimbSlamLookupCameraConfig lookupCam;
-        KnightClimbSlamWaveConfig wave;
+        heur::rfl::KnightClimbSlamLookupCameraConfig lookupCam;
+        heur::rfl::KnightClimbSlamWaveConfig wave;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22842,7 +25148,9 @@ namespace app::rfl {
         static void Finish(KnightClimbSlamConfig* pInstance);
         static void Clean(KnightClimbSlamConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightGrindCameraConfig {
         enum class PlayerOffsetType : int8_t {
             PLAYER_OFFSET_NORMAL = 0,
@@ -22870,7 +25178,9 @@ namespace app::rfl {
         static void Finish(KnightGrindCameraConfig* pInstance);
         static void Clean(KnightGrindCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightGrindTrapConfig {
         int32_t damage;
         bool blowOff;
@@ -22882,7 +25192,9 @@ namespace app::rfl {
         static void Finish(KnightGrindTrapConfig* pInstance);
         static void Clean(KnightGrindTrapConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightGrindLaunchCameraConfig {
         csl::math::Vector3 lookAtOffset;
         csl::math::Vector3 eyeOffset;
@@ -22897,7 +25209,9 @@ namespace app::rfl {
         static void Finish(KnightGrindLaunchCameraConfig* pInstance);
         static void Clean(KnightGrindLaunchCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightGrindLaunchConfig {
         float outStrength;
         float inStrength;
@@ -22908,7 +25222,7 @@ namespace app::rfl {
         csl::math::Vector3 landOffset;
         csl::math::Vector3 landRayOffset;
         csl::math::Vector3 landOffsetAfterRaycast;
-        KnightGrindLaunchCameraConfig camera;
+        heur::rfl::KnightGrindLaunchCameraConfig camera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22917,12 +25231,14 @@ namespace app::rfl {
         static void Finish(KnightGrindLaunchConfig* pInstance);
         static void Clean(KnightGrindLaunchConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbGrindConfig {
-        KnightGrindCameraConfig camera;
+        heur::rfl::KnightGrindCameraConfig camera;
         float playerSpeed;
-        KnightGrindTrapConfig trap;
-        KnightGrindLaunchConfig launch;
+        heur::rfl::KnightGrindTrapConfig trap;
+        heur::rfl::KnightGrindLaunchConfig launch;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22931,7 +25247,9 @@ namespace app::rfl {
         static void Finish(KnightClimbGrindConfig* pInstance);
         static void Clean(KnightClimbGrindConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbTraceWaveConfig {
         float traceSpeed;
         float traceRotSpeed;
@@ -22953,14 +25271,16 @@ namespace app::rfl {
         static void Finish(KnightClimbTraceWaveConfig* pInstance);
         static void Clean(KnightClimbTraceWaveConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightClimbConfig {
-        KnightClimbIdleConfig idle;
-        KnightClimbMoveConfig move;
-        KnightClimbSlamConfig slam;
-        KnightClimbGrindConfig grind;
+        heur::rfl::KnightClimbIdleConfig idle;
+        heur::rfl::KnightClimbMoveConfig move;
+        heur::rfl::KnightClimbSlamConfig slam;
+        heur::rfl::KnightClimbGrindConfig grind;
         float climbTimeLimit;
-        KnightClimbTraceWaveConfig trace;
+        heur::rfl::KnightClimbTraceWaveConfig trace;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -22969,7 +25289,9 @@ namespace app::rfl {
         static void Finish(KnightClimbConfig* pInstance);
         static void Clean(KnightClimbConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1IdleConfig {
         float moveInterval;
 
@@ -22980,7 +25302,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1IdleConfig* pInstance);
         static void Clean(KnightBattle1IdleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1MoveConfig {
         float speedAvg;
         float angle1Min;
@@ -22996,7 +25320,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1MoveConfig* pInstance);
         static void Clean(KnightBattle1MoveConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1GuardConfig {
         float guardStaggerMax;
         float damageStaggerMax;
@@ -23008,7 +25334,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1GuardConfig* pInstance);
         static void Clean(KnightBattle1GuardConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightShieldRideConfig {
         float startDistance;
         float startXOffset;
@@ -23076,7 +25404,9 @@ namespace app::rfl {
         static void Finish(KnightShieldRideConfig* pInstance);
         static void Clean(KnightShieldRideConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1InterruptConfig {
         float parriedDuration;
         float slowRate;
@@ -23091,7 +25421,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1InterruptConfig* pInstance);
         static void Clean(KnightBattle1InterruptConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1CyFloat {
         float height;
         float riseDuration;
@@ -23110,7 +25442,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1CyFloat* pInstance);
         static void Clean(KnightBattle1CyFloat* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightThresholdRingSupplyParam {
         float hpRatio;
         int32_t missileNum;
@@ -23123,7 +25457,9 @@ namespace app::rfl {
         static void Finish(KnightThresholdRingSupplyParam* pInstance);
         static void Clean(KnightThresholdRingSupplyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightRageShieldAttackCameraConfig {
         float interpolateTimeBegin;
         float interpolateTimeEnd;
@@ -23135,7 +25471,9 @@ namespace app::rfl {
         static void Finish(KnightRageShieldAttackCameraConfig* pInstance);
         static void Clean(KnightRageShieldAttackCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightRageShieldConfig {
         float modelScale;
         float hitEffectScale;
@@ -23169,7 +25507,7 @@ namespace app::rfl {
         float parryFlyLineDuration;
         float parryFlySuspendDuration;
         float parryFlySuspendEndDistance;
-        KnightRageShieldAttackCameraConfig attackCamera;
+        heur::rfl::KnightRageShieldAttackCameraConfig attackCamera;
         float damageRatio;
         float damageVelocity;
 
@@ -23180,7 +25518,9 @@ namespace app::rfl {
         static void Finish(KnightRageShieldConfig* pInstance);
         static void Clean(KnightRageShieldConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightRageOverlookCameraConfig {
         float azimuth;
         float elevation;
@@ -23202,11 +25542,13 @@ namespace app::rfl {
         static void Finish(KnightRageOverlookCameraConfig* pInstance);
         static void Clean(KnightRageOverlookCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1Rage {
-        KnightRageShieldConfig shield;
-        KnightRageOverlookCameraConfig normalCamera;
-        KnightRageOverlookCameraConfig targetingCamera;
+        heur::rfl::KnightRageShieldConfig shield;
+        heur::rfl::KnightRageOverlookCameraConfig normalCamera;
+        heur::rfl::KnightRageOverlookCameraConfig targetingCamera;
         float moveRestartAnimSpeed;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23216,7 +25558,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1Rage* pInstance);
         static void Clean(KnightBattle1Rage* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightAerialCamera {
         float downTime;
         float downCutChangeTime[2];
@@ -23231,21 +25575,23 @@ namespace app::rfl {
         static void Finish(KnightAerialCamera* pInstance);
         static void Clean(KnightAerialCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle1Config {
         float closedAreaRadius;
-        KnightBattle1IdleConfig idle;
-        KnightBattle1MoveConfig move;
-        KnightBattle1GuardConfig guard;
-        KnightShieldRideConfig shieldRide;
-        KnightBattle1InterruptConfig interrupt;
+        heur::rfl::KnightBattle1IdleConfig idle;
+        heur::rfl::KnightBattle1MoveConfig move;
+        heur::rfl::KnightBattle1GuardConfig guard;
+        heur::rfl::KnightShieldRideConfig shieldRide;
+        heur::rfl::KnightBattle1InterruptConfig interrupt;
         float normalKnockbackDistance;
-        KnightBattle1CyFloat cyFloat;
-        KnightThresholdRingSupplyParam ringSupply[3];
-        KnightBattle1Rage rage;
+        heur::rfl::KnightBattle1CyFloat cyFloat;
+        heur::rfl::KnightThresholdRingSupplyParam ringSupply[3];
+        heur::rfl::KnightBattle1Rage rage;
         float rageHPRatio;
         float atkSpecialHPRatio;
-        KnightAerialCamera aerialCamera;
+        heur::rfl::KnightAerialCamera aerialCamera;
         float damageEventTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23255,7 +25601,9 @@ namespace app::rfl {
         static void Finish(KnightBattle1Config* pInstance);
         static void Clean(KnightBattle1Config* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2RunCamera {
         float azimuth;
         float elevation;
@@ -23271,7 +25619,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2RunCamera* pInstance);
         static void Clean(KnightBattle2RunCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2RunConfig {
         float speed;
         float moveWidth;
@@ -23282,7 +25632,7 @@ namespace app::rfl {
         csl::math::Vector3 playerOffsetTackle;
         float attackInterval;
         float attackIntervalDelayOnHit;
-        KnightBattle2RunCamera camera;
+        heur::rfl::KnightBattle2RunCamera camera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23291,7 +25641,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2RunConfig* pInstance);
         static void Clean(KnightBattle2RunConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2ShieldSplineNode {
         enum class XType : uint8_t {
             Zero = 0,
@@ -23312,7 +25664,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2ShieldSplineNode* pInstance);
         static void Clean(KnightBattle2ShieldSplineNode* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2ShieldUTurnCameraConfig {
         float duration;
         float interpolateTimeBegin;
@@ -23325,9 +25679,11 @@ namespace app::rfl {
         static void Finish(KnightBattle2ShieldUTurnCameraConfig* pInstance);
         static void Clean(KnightBattle2ShieldUTurnCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2ShieldConfig {
-        KnightBattle2ShieldSplineNode nodesStraight[8];
+        heur::rfl::KnightBattle2ShieldSplineNode nodesStraight[8];
         float stopPosRatioStraight;
         float stopDecStartPosRatioStraight;
         float stopAccEndPosRatioStraight;
@@ -23337,7 +25693,7 @@ namespace app::rfl {
         float hitPosXStraight;
         float uTurnEndPosStraight;
         float swordDelayStraight;
-        KnightBattle2ShieldSplineNode nodesSlalom[8];
+        heur::rfl::KnightBattle2ShieldSplineNode nodesSlalom[8];
         float stopPosRatioSlalom;
         float stopDecStartPosRatioSlalom;
         float stopAccEndPosRatioSlalom;
@@ -23354,7 +25710,7 @@ namespace app::rfl {
         float swordDelaySlalom;
         float uTurnSpeedRatioDuringCam;
         float uTurnSpeedRatioAfterCam;
-        KnightBattle2ShieldUTurnCameraConfig uTurnCamera;
+        heur::rfl::KnightBattle2ShieldUTurnCameraConfig uTurnCamera;
         float attackLineWidth;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23364,7 +25720,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2ShieldConfig* pInstance);
         static void Clean(KnightBattle2ShieldConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2SwordConfig {
         float parriedDuration;
         float animSpeedOnDoubleAtkParried;
@@ -23376,7 +25734,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2SwordConfig* pInstance);
         static void Clean(KnightBattle2SwordConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2InterruptConfig {
         float parriedDuration;
 
@@ -23387,7 +25747,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2InterruptConfig* pInstance);
         static void Clean(KnightBattle2InterruptConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2CyFloat {
         float height;
         float riseDuration;
@@ -23406,15 +25768,17 @@ namespace app::rfl {
         static void Finish(KnightBattle2CyFloat* pInstance);
         static void Clean(KnightBattle2CyFloat* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightBattle2Config {
-        KnightBattle2RunConfig run;
-        KnightBattle2ShieldConfig shield;
-        KnightBattle2SwordConfig sword;
-        KnightBattle2InterruptConfig interrupt;
+        heur::rfl::KnightBattle2RunConfig run;
+        heur::rfl::KnightBattle2ShieldConfig shield;
+        heur::rfl::KnightBattle2SwordConfig sword;
+        heur::rfl::KnightBattle2InterruptConfig interrupt;
         float knockbackDistance;
-        KnightBattle2CyFloat cyFloat;
-        KnightAerialCamera aerialCamera;
+        heur::rfl::KnightBattle2CyFloat cyFloat;
+        heur::rfl::KnightAerialCamera aerialCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23423,7 +25787,9 @@ namespace app::rfl {
         static void Finish(KnightBattle2Config* pInstance);
         static void Clean(KnightBattle2Config* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightSonicSpecialConfig {
         float damageRatio;
 
@@ -23434,7 +25800,9 @@ namespace app::rfl {
         static void Finish(KnightSonicSpecialConfig* pInstance);
         static void Clean(KnightSonicSpecialConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightCyFloatSpearConfig {
         csl::math::Vector3 upOffset[8];
         csl::math::Vector3 upRotationAngle[8];
@@ -23451,7 +25819,9 @@ namespace app::rfl {
         static void Finish(KnightCyFloatSpearConfig* pInstance);
         static void Clean(KnightCyFloatSpearConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnightAttackSignParam {
         float delayTime[6];
 
@@ -23462,11 +25832,13 @@ namespace app::rfl {
         static void Finish(KnightAttackSignParam* pInstance);
         static void Clean(KnightAttackSignParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossKnightNotifierParam {
-        EnemyPracticeNotifierConfig notifierConfigClimb;
-        EnemyPracticeNotifierConfig notifierConfigBattle1;
-        EnemyPracticeNotifierConfig notifierConfigBattle2;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigClimb;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle1;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23475,18 +25847,20 @@ namespace app::rfl {
         static void Finish(BossKnightNotifierParam* pInstance);
         static void Clean(BossKnightNotifierParam* pInstance);
     };
+}
 
-    struct BossKnightConfig : BossBaseConfig {
-        KnightIdleConfig idle;
-        KnightClimbConfig climb;
-        KnightBattle1Config battle1;
-        KnightBattle2Config battle2;
-        KnightSonicSpecialConfig sonicSpecial;
-        KnightCyFloatSpearConfig cyFloatSpear;
+namespace heur::rfl {
+    struct BossKnightConfig : heur::rfl::BossBaseConfig {
+        heur::rfl::KnightIdleConfig idle;
+        heur::rfl::KnightClimbConfig climb;
+        heur::rfl::KnightBattle1Config battle1;
+        heur::rfl::KnightBattle2Config battle2;
+        heur::rfl::KnightSonicSpecialConfig sonicSpecial;
+        heur::rfl::KnightCyFloatSpearConfig cyFloatSpear;
         uint8_t knockbackStaggerCount;
         float thresholdDamageEffectHPRatio[3];
-        KnightAttackSignParam attackSign;
-        BossKnightNotifierParam notifier;
+        heur::rfl::KnightAttackSignParam attackSign;
+        heur::rfl::BossKnightNotifierParam notifier;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23495,7 +25869,9 @@ namespace app::rfl {
         static void Finish(BossKnightConfig* pInstance);
         static void Clean(BossKnightConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleAttackData {
         enum class ActionType : int8_t {
             AT_NONE = 0,
@@ -23534,10 +25910,12 @@ namespace app::rfl {
         static void Finish(BossRifleAttackData* pInstance);
         static void Clean(BossRifleAttackData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleAttackPatternParam {
-        BossRifleAttackData attackDatas[16];
-        BossRifleAttackData bitBreakAttackDatas[2];
+        heur::rfl::BossRifleAttackData attackDatas[16];
+        heur::rfl::BossRifleAttackData bitBreakAttackDatas[2];
         uint32_t breakBitNum;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23547,7 +25925,9 @@ namespace app::rfl {
         static void Finish(BossRifleAttackPatternParam* pInstance);
         static void Clean(BossRifleAttackPatternParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleAttackHandLaserPatternParam {
         float intarvalDistance;
         float delay;
@@ -23563,7 +25943,9 @@ namespace app::rfl {
         static void Finish(BossRifleBattleAttackHandLaserPatternParam* pInstance);
         static void Clean(BossRifleBattleAttackHandLaserPatternParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleAttackHandLaser {
         float bulletRadius;
         float bulletSpeed;
@@ -23573,8 +25955,8 @@ namespace app::rfl {
         float blowoffSpeed;
         float outOfControlTime;
         float keepVelocity;
-        BossRifleBattleAttackHandLaserPatternParam handLeftPatterns[4];
-        BossRifleBattleAttackHandLaserPatternParam handRightPatterns[4];
+        heur::rfl::BossRifleBattleAttackHandLaserPatternParam handLeftPatterns[4];
+        heur::rfl::BossRifleBattleAttackHandLaserPatternParam handRightPatterns[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23583,7 +25965,9 @@ namespace app::rfl {
         static void Finish(BossRifleBattleAttackHandLaser* pInstance);
         static void Clean(BossRifleBattleAttackHandLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleAttackHomingLaserShotPoint {
         bool isParry;
         bool isUse;
@@ -23597,7 +25981,9 @@ namespace app::rfl {
         static void Finish(BossRifleBattleAttackHomingLaserShotPoint* pInstance);
         static void Clean(BossRifleBattleAttackHomingLaserShotPoint* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleAttackHomingLaserAttackParam {
         csl::ut::VariableString nodeName;
         csl::math::Vector3 nodePos;
@@ -23614,7 +26000,7 @@ namespace app::rfl {
         float interval;
         float intervals[8];
         float delay;
-        BossRifleBattleAttackHomingLaserShotPoint points[32];
+        heur::rfl::BossRifleBattleAttackHomingLaserShotPoint points[32];
         csl::math::Vector3 fixedCameraEyePos;
         csl::math::Vector3 fixedCameraLookAtPos;
         float fixedCameraDelay;
@@ -23634,13 +26020,15 @@ namespace app::rfl {
         static void Finish(BossRifleBattleAttackHomingLaserAttackParam* pInstance);
         static void Clean(BossRifleBattleAttackHomingLaserAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleAttackHomingLaser {
         float bulletScale;
         float parryMoveTime;
-        BossRifleBattleAttackHomingLaserAttackParam headShotParam;
-        BossRifleBattleAttackHomingLaserAttackParam headShotFlyParam;
-        BossRifleBattleAttackHomingLaserAttackParam normalShotParam;
+        heur::rfl::BossRifleBattleAttackHomingLaserAttackParam headShotParam;
+        heur::rfl::BossRifleBattleAttackHomingLaserAttackParam headShotFlyParam;
+        heur::rfl::BossRifleBattleAttackHomingLaserAttackParam normalShotParam;
         bool isDebugDraw;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23650,7 +26038,9 @@ namespace app::rfl {
         static void Finish(BossRifleBattleAttackHomingLaser* pInstance);
         static void Clean(BossRifleBattleAttackHomingLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleZoomCamera {
         float distance;
         float elevation;
@@ -23670,10 +26060,12 @@ namespace app::rfl {
         static void Finish(BossRifleBattleZoomCamera* pInstance);
         static void Clean(BossRifleBattleZoomCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleCameraParam {
-        BossRifleBattleZoomCamera normalCamera[2];
-        BossRifleBattleZoomCamera flyCamera[2];
+        heur::rfl::BossRifleBattleZoomCamera normalCamera[2];
+        heur::rfl::BossRifleBattleZoomCamera flyCamera[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23682,7 +26074,9 @@ namespace app::rfl {
         static void Finish(BossRifleBattleCameraParam* pInstance);
         static void Clean(BossRifleBattleCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleFlyParam {
         float flyHeight;
         float flyRotationSpeed;
@@ -23698,12 +26092,14 @@ namespace app::rfl {
         static void Finish(BossRifleBattleFlyParam* pInstance);
         static void Clean(BossRifleBattleFlyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRiflePhaseParam {
         float attackWaitTime;
         float attackSpeedRatio;
         uint32_t knockbackCountMax;
-        BossRifleAttackPatternParam patterns[4];
+        heur::rfl::BossRifleAttackPatternParam patterns[4];
         float patternChangeHpRatios[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -23713,7 +26109,9 @@ namespace app::rfl {
         static void Finish(BossRiflePhaseParam* pInstance);
         static void Clean(BossRiflePhaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRiflePhaseAttackActionParam {
         enum class ActionAttribute : int8_t {
             AA_NONE = 0,
@@ -23752,7 +26150,9 @@ namespace app::rfl {
         static void Finish(BossRiflePhaseAttackActionParam* pInstance);
         static void Clean(BossRiflePhaseAttackActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleCyloopFloatActionParam {
         float landingCounterHPRatio;
         float floatCounterHPRatio;
@@ -23764,7 +26164,9 @@ namespace app::rfl {
         static void Finish(BossRifleCyloopFloatActionParam* pInstance);
         static void Clean(BossRifleCyloopFloatActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleParrySlowParam {
         float scale;
         float time;
@@ -23778,11 +26180,13 @@ namespace app::rfl {
         static void Finish(BossRifleParrySlowParam* pInstance);
         static void Clean(BossRifleParrySlowParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleParryParam {
-        BossRifleParrySlowParam homingLaserParrySlow;
-        BossRifleParrySlowParam homingLaserLastParrySlow;
-        BossRifleParrySlowParam homingLaserOneShotParrySlow;
+        heur::rfl::BossRifleParrySlowParam homingLaserParrySlow;
+        heur::rfl::BossRifleParrySlowParam homingLaserLastParrySlow;
+        heur::rfl::BossRifleParrySlowParam homingLaserOneShotParrySlow;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23791,7 +26195,9 @@ namespace app::rfl {
         static void Finish(BossRifleParryParam* pInstance);
         static void Clean(BossRifleParryParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBattleParam {
         enum class ActionType : int8_t {
             AT_NONE = 0,
@@ -23814,15 +26220,15 @@ namespace app::rfl {
             NUM_ACTION_TYPE = 17,
         };
 
-        BossRiflePhaseParam giantPhaseParams[4];
-        BossRiflePhaseAttackActionParam actionParams[16];
+        heur::rfl::BossRiflePhaseParam giantPhaseParams[4];
+        heur::rfl::BossRiflePhaseAttackActionParam actionParams[16];
         ActionType immediateActions[20];
-        BossRifleCyloopFloatActionParam cyloopFloatAction;
-        BossRifleBattleAttackHomingLaser attackHomingLaser;
-        BossRifleBattleAttackHandLaser attackHandLaser;
-        BossRifleBattleFlyParam flyParam;
-        BossRifleBattleCameraParam cameraParam;
-        BossRifleParryParam parryParam;
+        heur::rfl::BossRifleCyloopFloatActionParam cyloopFloatAction;
+        heur::rfl::BossRifleBattleAttackHomingLaser attackHomingLaser;
+        heur::rfl::BossRifleBattleAttackHandLaser attackHandLaser;
+        heur::rfl::BossRifleBattleFlyParam flyParam;
+        heur::rfl::BossRifleBattleCameraParam cameraParam;
+        heur::rfl::BossRifleParryParam parryParam;
         float thresholdDamageEffectHPRatio[3];
         float qteSucceedWaitTimes[4];
         bool isDebugDraw;
@@ -23835,10 +26241,12 @@ namespace app::rfl {
         static void Finish(BossRifleBattleParam* pInstance);
         static void Clean(BossRifleBattleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleNotifierParam {
-        EnemyPracticeNotifierConfig notifierConfigBattle1;
-        EnemyPracticeNotifierConfig notifierConfigBattle2;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle1;
+        heur::rfl::EnemyPracticeNotifierConfig notifierConfigBattle2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23847,10 +26255,12 @@ namespace app::rfl {
         static void Finish(BossRifleNotifierParam* pInstance);
         static void Clean(BossRifleNotifierParam* pInstance);
     };
+}
 
-    struct BossRifleConfig : BossBaseConfig {
-        BossRifleBattleParam battleParam;
-        BossRifleNotifierParam notifierParam;
+namespace heur::rfl {
+    struct BossRifleConfig : heur::rfl::BossBaseConfig {
+        heur::rfl::BossRifleBattleParam battleParam;
+        heur::rfl::BossRifleNotifierParam notifierParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -23859,7 +26269,9 @@ namespace app::rfl {
         static void Finish(BossRifleConfig* pInstance);
         static void Clean(BossRifleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleThresholdRingSupplyParam {
         enum class LaserType : int8_t {
             LT_NONE = 0,
@@ -23877,7 +26289,9 @@ namespace app::rfl {
         static void Finish(BossRifleThresholdRingSupplyParam* pInstance);
         static void Clean(BossRifleThresholdRingSupplyParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleArmSetting {
         float angleSide;
         float angleFront;
@@ -23891,7 +26305,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleArmSetting* pInstance);
         static void Clean(BossRifleBeastBattleArmSetting* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastClawCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -23906,7 +26322,9 @@ namespace app::rfl {
         static void Finish(RifleBeastClawCamera* pInstance);
         static void Clean(RifleBeastClawCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastClawRange {
         float useDistanceMin;
         float useDistanceMax;
@@ -23924,7 +26342,9 @@ namespace app::rfl {
         static void Finish(RifleBeastClawRange* pInstance);
         static void Clean(RifleBeastClawRange* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleAttackHomingLaserBase {
         enum class ArmType : int8_t {
             AL = 0,
@@ -23949,7 +26369,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleAttackHomingLaserBase* pInstance);
         static void Clean(BossRifleBeastBattleAttackHomingLaserBase* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleAttackHomingLaserPattern {
         enum class CameraType : int8_t {
             CameraPatern0 = 0,
@@ -23960,7 +26382,7 @@ namespace app::rfl {
             NUM_ACTION_TYPE = 5,
         };
 
-        BossRifleBeastBattleAttackHomingLaserBase patterns[20];
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserBase patterns[20];
         int32_t laserNum;
         CameraType cameraPatern;
         float endCamera;
@@ -23973,10 +26395,12 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleAttackHomingLaserPattern* pInstance);
         static void Clean(BossRifleBeastBattleAttackHomingLaserPattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastClawQTE {
         float QTEStunTime;
-        BossRifleBeastBattleAttackHomingLaserPattern laserPattern;
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserPattern laserPattern;
         float FirstShot;
         float IntervalShot;
         csl::math::Vector3 QTEPlayerPos;
@@ -23988,16 +26412,18 @@ namespace app::rfl {
         static void Finish(RifleBeastClawQTE* pInstance);
         static void Clean(RifleBeastClawQTE* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleAttackClaw {
-        RifleBeastClawCamera camera[2];
-        RifleBeastClawRange range;
+        heur::rfl::RifleBeastClawCamera camera[2];
+        heur::rfl::RifleBeastClawRange range;
         float waitTime;
         float damageWaitTime;
         csl::math::Vector3 playerPos[2];
         float stateWaitTime;
         bool useSlow;
-        RifleBeastClawQTE QTEParam;
+        heur::rfl::RifleBeastClawQTE QTEParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24006,7 +26432,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleAttackClaw* pInstance);
         static void Clean(BossRifleBeastBattleAttackClaw* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleAttackHomingLaser {
         float radius;
         float speed;
@@ -24020,7 +26448,7 @@ namespace app::rfl {
         float controlTime;
         int32_t spritBomb;
         float homingRatio;
-        BossRifleBeastBattleArmSetting armSet[5];
+        heur::rfl::BossRifleBeastBattleArmSetting armSet[5];
         float motionSeed;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -24030,7 +26458,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleAttackHomingLaser* pInstance);
         static void Clean(BossRifleBeastBattleAttackHomingLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleAttackPattern {
         enum class AtackType : int8_t {
             AT_HIMING00 = 0,
@@ -24060,7 +26490,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleAttackPattern* pInstance);
         static void Clean(BossRifleBeastBattleAttackPattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleZoomCamera {
         float distance;
         float elevation;
@@ -24080,10 +26512,12 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleZoomCamera* pInstance);
         static void Clean(BossRifleBeastBattleZoomCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCameraParam {
-        BossRifleBeastBattleZoomCamera normalCamera[6];
-        BossRifleBeastBattleZoomCamera homingCamera[5];
+        heur::rfl::BossRifleBeastBattleZoomCamera normalCamera[6];
+        heur::rfl::BossRifleBeastBattleZoomCamera homingCamera[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24092,7 +26526,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCameraParam* pInstance);
         static void Clean(BossRifleBeastBattleCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopFocusFrameCamera {
         csl::ut::VariableString nodeName;
         float fovyDeg;
@@ -24111,7 +26547,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopFocusFrameCamera* pInstance);
         static void Clean(BossRifleBeastBattleCyloopFocusFrameCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopCameraFixedCamera {
         csl::math::Vector3 targetOffset;
         csl::math::Vector3 cameraOffset;
@@ -24127,7 +26565,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopCameraFixedCamera* pInstance);
         static void Clean(BossRifleBeastBattleCyloopCameraFixedCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopCameraShake {
         bool enabled;
         float waitTime;
@@ -24143,11 +26583,13 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopCameraShake* pInstance);
         static void Clean(BossRifleBeastBattleCyloopCameraShake* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopCamera {
-        BossRifleBeastBattleCyloopFocusFrameCamera cameraFocus;
-        BossRifleBeastBattleCyloopCameraFixedCamera cameraFixed;
-        BossRifleBeastBattleCyloopCameraShake cameraShakePress;
+        heur::rfl::BossRifleBeastBattleCyloopFocusFrameCamera cameraFocus;
+        heur::rfl::BossRifleBeastBattleCyloopCameraFixedCamera cameraFixed;
+        heur::rfl::BossRifleBeastBattleCyloopCameraShake cameraShakePress;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24156,7 +26598,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopCamera* pInstance);
         static void Clean(BossRifleBeastBattleCyloopCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopLaserCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -24171,7 +26615,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopLaserCamera* pInstance);
         static void Clean(BossRifleBeastBattleCyloopLaserCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopEffectPos {
         csl::math::Vector3 toptOffset;
         csl::math::Vector3 bottomOffset;
@@ -24183,7 +26629,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopEffectPos* pInstance);
         static void Clean(BossRifleBeastBattleCyloopEffectPos* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastParrySlowParam {
         float scale;
         float time;
@@ -24198,7 +26646,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastParrySlowParam* pInstance);
         static void Clean(BossRifleBeastParrySlowParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloop {
         float restraintTime;
         float pressDamageRatio;
@@ -24210,16 +26660,16 @@ namespace app::rfl {
         bool isUsePressVibration;
         csl::ut::VariableString pressVibrationName;
         csl::math::Vector3 pressPlayerPos;
-        BossRifleBeastBattleCyloopCamera camera;
+        heur::rfl::BossRifleBeastBattleCyloopCamera camera;
         float StartBlowTime;
         float LaserRadius;
         float LaserHight;
         float keepCameraTime;
         csl::math::Vector3 cunterWarpOffset;
-        BossRifleBeastBattleCyloopLaserCamera laserCamera;
-        BossRifleBeastBattleCyloopEffectPos EffectPos;
+        heur::rfl::BossRifleBeastBattleCyloopLaserCamera laserCamera;
+        heur::rfl::BossRifleBeastBattleCyloopEffectPos EffectPos;
         float waitTime;
-        BossRifleBeastParrySlowParam slowSetting;
+        heur::rfl::BossRifleBeastParrySlowParam slowSetting;
         float effectSize;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -24229,9 +26679,11 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloop* pInstance);
         static void Clean(BossRifleBeastBattleCyloop* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopAttackHomingLaser {
-        BossRifleBeastBattleArmSetting armSet[5];
+        heur::rfl::BossRifleBeastBattleArmSetting armSet[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24240,14 +26692,16 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopAttackHomingLaser* pInstance);
         static void Clean(BossRifleBeastBattleCyloopAttackHomingLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopBlowOffCamera {
         float blowAwayTime;
-        BossRifleBeastBattleCyloopFocusFrameCamera blowUpCamera;
-        BossRifleBeastBattleCyloopCameraFixedCamera cameraFixed;
-        BossRifleBeastBattleCyloopCameraShake cameraShakePress;
-        BossRifleBeastBattleCyloopFocusFrameCamera landingCamera;
-        BossRifleBeastBattleCyloopCameraShake cameraShakeLanding;
+        heur::rfl::BossRifleBeastBattleCyloopFocusFrameCamera blowUpCamera;
+        heur::rfl::BossRifleBeastBattleCyloopCameraFixedCamera cameraFixed;
+        heur::rfl::BossRifleBeastBattleCyloopCameraShake cameraShakePress;
+        heur::rfl::BossRifleBeastBattleCyloopFocusFrameCamera landingCamera;
+        heur::rfl::BossRifleBeastBattleCyloopCameraShake cameraShakeLanding;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24256,7 +26710,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopBlowOffCamera* pInstance);
         static void Clean(BossRifleBeastBattleCyloopBlowOffCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopBlowOffLaser {
         float changeDelay;
         float speed;
@@ -24266,7 +26722,7 @@ namespace app::rfl {
         float slowScale;
         float slowTime;
         float slowEaseOutTime;
-        BossRifleBeastBattleAttackHomingLaserPattern laserPattern;
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserPattern laserPattern;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24275,7 +26731,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopBlowOffLaser* pInstance);
         static void Clean(BossRifleBeastBattleCyloopBlowOffLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopBlowOff {
         float restraintTime;
         float pressDamageRatio;
@@ -24292,10 +26750,10 @@ namespace app::rfl {
         bool isUseLandingVibration;
         csl::ut::VariableString landingVibrationName;
         csl::math::Vector3 landingPlayerOffSet;
-        BossRifleBeastBattleCyloopBlowOffCamera camera;
-        BossRifleBeastBattleCyloopBlowOffLaser l;
-        BossRifleBeastBattleCyloopEffectPos EffectPos;
-        BossRifleBeastParrySlowParam slowSetting;
+        heur::rfl::BossRifleBeastBattleCyloopBlowOffCamera camera;
+        heur::rfl::BossRifleBeastBattleCyloopBlowOffLaser l;
+        heur::rfl::BossRifleBeastBattleCyloopEffectPos EffectPos;
+        heur::rfl::BossRifleBeastParrySlowParam slowSetting;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24304,10 +26762,12 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopBlowOff* pInstance);
         static void Clean(BossRifleBeastBattleCyloopBlowOff* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleCyloopState {
-        BossRifleBeastBattleCyloop c;
-        BossRifleBeastBattleCyloopBlowOff blowOff;
+        heur::rfl::BossRifleBeastBattleCyloop c;
+        heur::rfl::BossRifleBeastBattleCyloopBlowOff blowOff;
         float cyloopDamageRate;
         float waitTime;
 
@@ -24318,7 +26778,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleCyloopState* pInstance);
         static void Clean(BossRifleBeastBattleCyloopState* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleDownRifle {
         float angleX;
         float angleY;
@@ -24335,14 +26797,16 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleDownRifle* pInstance);
         static void Clean(BossRifleBeastBattleDownRifle* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleDownState {
         float waitTime;
         uint16_t lowerHP;
         float fase4DownTime;
         bool isPlayerFixHeight;
         float playerHeight;
-        BossRifleBeastBattleDownRifle rifle;
+        heur::rfl::BossRifleBeastBattleDownRifle rifle;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24351,7 +26815,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleDownState* pInstance);
         static void Clean(BossRifleBeastBattleDownState* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleFirstAttackHomingLaserPattern {
         enum class CameraType : int8_t {
             CameraPatern0 = 0,
@@ -24362,7 +26828,7 @@ namespace app::rfl {
             NUM_ACTION_TYPE = 5,
         };
 
-        BossRifleBeastBattleAttackHomingLaserBase patterns[20];
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserBase patterns[20];
         uint16_t Num;
         int32_t laserNum;
         float endTime;
@@ -24377,7 +26843,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleFirstAttackHomingLaserPattern* pInstance);
         static void Clean(BossRifleBeastBattleFirstAttackHomingLaserPattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastPhaseAttackActionParam {
         float coolTime;
         float initCoolTime;
@@ -24395,7 +26863,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastPhaseAttackActionParam* pInstance);
         static void Clean(BossRifleBeastPhaseAttackActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleSonic2FirstAttackHomingLaserPattern {
         enum class CameraType : int8_t {
             CameraPatern0 = 0,
@@ -24406,7 +26876,7 @@ namespace app::rfl {
             NUM_ACTION_TYPE = 5,
         };
 
-        BossRifleBeastBattleAttackHomingLaserBase patterns[8];
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserBase patterns[8];
         uint16_t Num;
         int32_t laserNum;
         CameraType cameraPatern;
@@ -24420,7 +26890,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleSonic2FirstAttackHomingLaserPattern* pInstance);
         static void Clean(BossRifleBeastBattleSonic2FirstAttackHomingLaserPattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastTackleCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -24435,7 +26907,9 @@ namespace app::rfl {
         static void Finish(RifleBeastTackleCamera* pInstance);
         static void Clean(RifleBeastTackleCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleTackleCamera {
         csl::ut::VariableString nodeName;
         float fovyDeg;
@@ -24453,10 +26927,12 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleTackleCamera* pInstance);
         static void Clean(BossRifleBeastBattleTackleCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleTackle {
-        RifleBeastTackleCamera barrierCamera;
-        RifleBeastTackleCamera behindCamera;
+        heur::rfl::RifleBeastTackleCamera barrierCamera;
+        heur::rfl::RifleBeastTackleCamera behindCamera;
         float cameraDirection;
         float cameraHight;
         int32_t easyBarrierHP;
@@ -24469,15 +26945,15 @@ namespace app::rfl {
         float damageWaitTime;
         csl::math::Vector3 tackleColliderOffset;
         csl::math::Vector3 tackleColliderSize;
-        BossRifleBeastBattleCyloopCameraShake cameraShake;
+        heur::rfl::BossRifleBeastBattleCyloopCameraShake cameraShake;
         int32_t drummingNum[10];
         csl::math::Vector3 playerPos;
         float drummingTime;
         float playerHoldTime;
-        BossRifleBeastBattleTackleCamera playerCamera;
-        BossRifleBeastBattleTackleCamera playerCamera2;
+        heur::rfl::BossRifleBeastBattleTackleCamera playerCamera;
+        heur::rfl::BossRifleBeastBattleTackleCamera playerCamera2;
         csl::math::Vector3 BehindPos;
-        BossRifleBeastParrySlowParam behindSetting;
+        heur::rfl::BossRifleBeastParrySlowParam behindSetting;
         float behindHoldTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -24487,7 +26963,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleTackle* pInstance);
         static void Clean(BossRifleBeastBattleTackle* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleState {
         float ClosedAreaRadius;
         float ClosedAreaHeght;
@@ -24508,11 +26986,13 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleState* pInstance);
         static void Clean(BossRifleBeastBattleState* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastParryParam {
-        BossRifleBeastParrySlowParam homingLaserParrySlow;
-        BossRifleBeastParrySlowParam homingLaserLastParrySlow;
-        BossRifleBeastParrySlowParam homingLaserOneShotParrySlow;
+        heur::rfl::BossRifleBeastParrySlowParam homingLaserParrySlow;
+        heur::rfl::BossRifleBeastParrySlowParam homingLaserLastParrySlow;
+        heur::rfl::BossRifleBeastParrySlowParam homingLaserOneShotParrySlow;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24521,7 +27001,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastParryParam* pInstance);
         static void Clean(BossRifleBeastParryParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastDebugCommand {
         enum class DebugCameraDrawTypeCyloop : uint8_t {
             Cyloop1Start = 0,
@@ -24553,25 +27035,27 @@ namespace app::rfl {
         static void Finish(BossRifleBeastDebugCommand* pInstance);
         static void Clean(BossRifleBeastDebugCommand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastBattleParam {
-        BossRifleBeastPhaseAttackActionParam actionParams[2];
-        BossRifleBeastBattleAttackPattern attackPattern[12];
-        BossRifleBeastBattleAttackPattern attackPatternAfter[12];
-        BossRifleBeastBattleDownState downState;
-        BossRifleBeastBattleAttackHomingLaserPattern attackHomingLaserPattern[10];
-        BossRifleBeastBattleFirstAttackHomingLaserPattern firstAttackHomingLaserPattern;
-        BossRifleBeastBattleSonic2FirstAttackHomingLaserPattern Sonic2firstAttackHomingLaserPattern;
-        BossRifleBeastBattleAttackHomingLaser attackHomingLaser;
-        BossRifleBeastBattleCyloopAttackHomingLaser cyloopAttackHomingLaser;
-        BossRifleBeastBattleCyloopAttackHomingLaser clawStunAttackHomingLaser;
-        BossRifleBeastBattleAttackClaw attackClaw;
-        BossRifleBeastBattleTackle attackTackle;
-        BossRifleBeastBattleCameraParam cameraParam;
-        BossRifleBeastBattleState battaleState;
-        BossRifleBeastBattleCyloopState cyloopState;
-        BossRifleBeastParryParam parryParam;
-        BossRifleBeastDebugCommand debugParam;
+        heur::rfl::BossRifleBeastPhaseAttackActionParam actionParams[2];
+        heur::rfl::BossRifleBeastBattleAttackPattern attackPattern[12];
+        heur::rfl::BossRifleBeastBattleAttackPattern attackPatternAfter[12];
+        heur::rfl::BossRifleBeastBattleDownState downState;
+        heur::rfl::BossRifleBeastBattleAttackHomingLaserPattern attackHomingLaserPattern[10];
+        heur::rfl::BossRifleBeastBattleFirstAttackHomingLaserPattern firstAttackHomingLaserPattern;
+        heur::rfl::BossRifleBeastBattleSonic2FirstAttackHomingLaserPattern Sonic2firstAttackHomingLaserPattern;
+        heur::rfl::BossRifleBeastBattleAttackHomingLaser attackHomingLaser;
+        heur::rfl::BossRifleBeastBattleCyloopAttackHomingLaser cyloopAttackHomingLaser;
+        heur::rfl::BossRifleBeastBattleCyloopAttackHomingLaser clawStunAttackHomingLaser;
+        heur::rfl::BossRifleBeastBattleAttackClaw attackClaw;
+        heur::rfl::BossRifleBeastBattleTackle attackTackle;
+        heur::rfl::BossRifleBeastBattleCameraParam cameraParam;
+        heur::rfl::BossRifleBeastBattleState battaleState;
+        heur::rfl::BossRifleBeastBattleCyloopState cyloopState;
+        heur::rfl::BossRifleBeastParryParam parryParam;
+        heur::rfl::BossRifleBeastDebugCommand debugParam;
         float thresholdDamageEffectHPRatio[3];
         float qteSucceedWaitTimes[4];
         bool isDebugDraw;
@@ -24584,7 +27068,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastBattleParam* pInstance);
         static void Clean(BossRifleBeastBattleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastCableCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -24601,7 +27087,9 @@ namespace app::rfl {
         static void Finish(RifleBeastCableCamera* pInstance);
         static void Clean(RifleBeastCableCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastCableParam {
         uint32_t healthPoint;
         float colliderOffsetY;
@@ -24609,7 +27097,7 @@ namespace app::rfl {
         float cyloopRadius;
         float targetableTime;
         float targetableDistance;
-        RifleBeastCableCamera camera;
+        heur::rfl::RifleBeastCableCamera camera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24618,7 +27106,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastCableParam* pInstance);
         static void Clean(BossRifleBeastCableParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RifleBeastPracticeNotifierConfig {
         bool usePracticeNotifier;
         int8_t practiceNo;
@@ -24631,11 +27121,13 @@ namespace app::rfl {
         static void Finish(RifleBeastPracticeNotifierConfig* pInstance);
         static void Clean(RifleBeastPracticeNotifierConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossRifleBeastNotifierParam {
-        RifleBeastPracticeNotifierConfig notifierConfigBattle1;
-        RifleBeastPracticeNotifierConfig notifierConfigBattle2;
-        RifleBeastPracticeNotifierConfig notifierConfigBattle3;
+        heur::rfl::RifleBeastPracticeNotifierConfig notifierConfigBattle1;
+        heur::rfl::RifleBeastPracticeNotifierConfig notifierConfigBattle2;
+        heur::rfl::RifleBeastPracticeNotifierConfig notifierConfigBattle3;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24644,11 +27136,13 @@ namespace app::rfl {
         static void Finish(BossRifleBeastNotifierParam* pInstance);
         static void Clean(BossRifleBeastNotifierParam* pInstance);
     };
+}
 
-    struct BossRifleBeastConfig : BossBaseConfig {
-        BossRifleBeastBattleParam battleParam;
-        BossRifleBeastCableParam cableParam;
-        BossRifleBeastNotifierParam notifierParam;
+namespace heur::rfl {
+    struct BossRifleBeastConfig : heur::rfl::BossBaseConfig {
+        heur::rfl::BossRifleBeastBattleParam battleParam;
+        heur::rfl::BossRifleBeastCableParam cableParam;
+        heur::rfl::BossRifleBeastNotifierParam notifierParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24657,7 +27151,9 @@ namespace app::rfl {
         static void Finish(BossRifleBeastConfig* pInstance);
         static void Clean(BossRifleBeastConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct LaserTargetConfig {
         float scale;
 
@@ -24668,7 +27164,9 @@ namespace app::rfl {
         static void Finish(LaserTargetConfig* pInstance);
         static void Clean(LaserTargetConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SerifConfig {
         bool useHpBorder;
         float hpBorder;
@@ -24684,10 +27182,12 @@ namespace app::rfl {
         static void Finish(SerifConfig* pInstance);
         static void Clean(SerifConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NotifierConfig {
         uint8_t waveId;
-        EnemyPracticeNotifierConfig practiceNotifierConfig;
+        heur::rfl::EnemyPracticeNotifierConfig practiceNotifierConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24696,7 +27196,9 @@ namespace app::rfl {
         static void Finish(NotifierConfig* pInstance);
         static void Clean(NotifierConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UIConfig {
         float borderLifeRatio;
         float sonicDamageRatio;
@@ -24708,13 +27210,15 @@ namespace app::rfl {
         static void Finish(UIConfig* pInstance);
         static void Clean(UIConfig* pInstance);
     };
+}
 
-    struct BossTheEndConfig : BossBaseConfig {
-        LaserTargetConfig target;
-        SerifConfig serifConfigs[26];
-        NotifierConfig notifierConfigStart;
-        NotifierConfig notifierConfigLaser;
-        UIConfig uiConfig;
+namespace heur::rfl {
+    struct BossTheEndConfig : heur::rfl::BossBaseConfig {
+        heur::rfl::LaserTargetConfig target;
+        heur::rfl::SerifConfig serifConfigs[26];
+        heur::rfl::NotifierConfig notifierConfigStart;
+        heur::rfl::NotifierConfig notifierConfigLaser;
+        heur::rfl::UIConfig uiConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24723,7 +27227,9 @@ namespace app::rfl {
         static void Finish(BossTheEndConfig* pInstance);
         static void Clean(BossTheEndConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossResourceInfo {
         csl::ut::VariableString modelName;
         csl::ut::VariableString animName;
@@ -24738,7 +27244,9 @@ namespace app::rfl {
         static void Finish(BossResourceInfo* pInstance);
         static void Clean(BossResourceInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HoldPoint {
         csl::ut::VariableString nodeName;
         csl::math::Vector3 offset;
@@ -24753,9 +27261,11 @@ namespace app::rfl {
         static void Finish(HoldPoint* pInstance);
         static void Clean(HoldPoint* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HoldPointParameter {
-        HoldPoint holdPoints[128];
+        heur::rfl::HoldPoint holdPoints[128];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24764,7 +27274,9 @@ namespace app::rfl {
         static void Finish(HoldPointParameter* pInstance);
         static void Clean(HoldPointParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CollisionPart {
         enum class Shape : int8_t {
             SHAPE_SPHERER = 0,
@@ -24788,9 +27300,11 @@ namespace app::rfl {
         static void Finish(CollisionPart* pInstance);
         static void Clean(CollisionPart* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CollisionPartParameter {
-        CollisionPart colParts[32];
+        heur::rfl::CollisionPart colParts[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24799,11 +27313,13 @@ namespace app::rfl {
         static void Finish(CollisionPartParameter* pInstance);
         static void Clean(CollisionPartParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossCommonParameters {
-        BossResourceInfo resource;
-        HoldPointParameter holdParam;
-        CollisionPartParameter colParam;
+        heur::rfl::BossResourceInfo resource;
+        heur::rfl::HoldPointParameter holdParam;
+        heur::rfl::CollisionPartParameter colParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24812,7 +27328,9 @@ namespace app::rfl {
         static void Finish(BossCommonParameters* pInstance);
         static void Clean(BossCommonParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossStatusParameterBase {
         int32_t maxHp;
 
@@ -24823,7 +27341,9 @@ namespace app::rfl {
         static void Finish(BossStatusParameterBase* pInstance);
         static void Clean(BossStatusParameterBase* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FSRow {
         uint8_t columns[5];
 
@@ -24834,9 +27354,11 @@ namespace app::rfl {
         static void Finish(FSRow* pInstance);
         static void Clean(FSRow* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FSLayer {
-        FSRow rows[5];
+        heur::rfl::FSRow rows[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24845,13 +27367,15 @@ namespace app::rfl {
         static void Finish(FSLayer* pInstance);
         static void Clean(FSLayer* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FreeShape {
         uint8_t numLayers;
         uint8_t numRows;
         uint8_t numColumns;
         csl::math::Vector3 offsetToTopLeft;
-        FSLayer layers[5];
+        heur::rfl::FSLayer layers[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24860,9 +27384,11 @@ namespace app::rfl {
         static void Finish(FreeShape* pInstance);
         static void Clean(FreeShape* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Obj3DPuzzleBlockConfig {
-        FreeShape freeShapes[29];
+        heur::rfl::FreeShape freeShapes[29];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24871,7 +27397,9 @@ namespace app::rfl {
         static void Finish(Obj3DPuzzleBlockConfig* pInstance);
         static void Clean(Obj3DPuzzleBlockConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainScoreParameter {
         uint32_t score;
         uint32_t level1Meter;
@@ -24892,7 +27420,9 @@ namespace app::rfl {
         static void Finish(ActionChainScoreParameter* pInstance);
         static void Clean(ActionChainScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainAttackLevelParameter {
         uint32_t level1Param;
         uint32_t level99Param;
@@ -24904,18 +27434,20 @@ namespace app::rfl {
         static void Finish(ActionChainAttackLevelParameter* pInstance);
         static void Clean(ActionChainAttackLevelParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainAttackScoreParameter {
-        ActionChainAttackLevelParameter score;
-        ActionChainAttackLevelParameter level1Meter;
-        ActionChainAttackLevelParameter level2Meter;
-        ActionChainAttackLevelParameter level3Meter;
-        ActionChainAttackLevelParameter level4Meter;
-        ActionChainAttackLevelParameter level5Meter;
-        ActionChainAttackLevelParameter level6Meter;
-        ActionChainAttackLevelParameter level7Meter;
-        ActionChainAttackLevelParameter level8Meter;
-        ActionChainAttackLevelParameter level9Meter;
+        heur::rfl::ActionChainAttackLevelParameter score;
+        heur::rfl::ActionChainAttackLevelParameter level1Meter;
+        heur::rfl::ActionChainAttackLevelParameter level2Meter;
+        heur::rfl::ActionChainAttackLevelParameter level3Meter;
+        heur::rfl::ActionChainAttackLevelParameter level4Meter;
+        heur::rfl::ActionChainAttackLevelParameter level5Meter;
+        heur::rfl::ActionChainAttackLevelParameter level6Meter;
+        heur::rfl::ActionChainAttackLevelParameter level7Meter;
+        heur::rfl::ActionChainAttackLevelParameter level8Meter;
+        heur::rfl::ActionChainAttackLevelParameter level9Meter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24924,7 +27456,9 @@ namespace app::rfl {
         static void Finish(ActionChainAttackScoreParameter* pInstance);
         static void Clean(ActionChainAttackScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainIntervalScoreParameter {
         float intervalTime;
         uint32_t score;
@@ -24945,21 +27479,23 @@ namespace app::rfl {
         static void Finish(ActionChainIntervalScoreParameter* pInstance);
         static void Clean(ActionChainIntervalScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainBoostScoreParameter {
         float intervalTime;
         float minSpeed;
         float maxSpeed;
-        ActionChainAttackLevelParameter score;
-        ActionChainAttackLevelParameter level1Meter;
-        ActionChainAttackLevelParameter level2Meter;
-        ActionChainAttackLevelParameter level3Meter;
-        ActionChainAttackLevelParameter level4Meter;
-        ActionChainAttackLevelParameter level5Meter;
-        ActionChainAttackLevelParameter level6Meter;
-        ActionChainAttackLevelParameter level7Meter;
-        ActionChainAttackLevelParameter level8Meter;
-        ActionChainAttackLevelParameter level9Meter;
+        heur::rfl::ActionChainAttackLevelParameter score;
+        heur::rfl::ActionChainAttackLevelParameter level1Meter;
+        heur::rfl::ActionChainAttackLevelParameter level2Meter;
+        heur::rfl::ActionChainAttackLevelParameter level3Meter;
+        heur::rfl::ActionChainAttackLevelParameter level4Meter;
+        heur::rfl::ActionChainAttackLevelParameter level5Meter;
+        heur::rfl::ActionChainAttackLevelParameter level6Meter;
+        heur::rfl::ActionChainAttackLevelParameter level7Meter;
+        heur::rfl::ActionChainAttackLevelParameter level8Meter;
+        heur::rfl::ActionChainAttackLevelParameter level9Meter;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -24968,21 +27504,23 @@ namespace app::rfl {
         static void Finish(ActionChainBoostScoreParameter* pInstance);
         static void Clean(ActionChainBoostScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainSpinBoostScoreParameter {
         float intervalTime;
         float minSpeed;
         float maxSpeed;
-        ActionChainAttackLevelParameter score;
-        ActionChainAttackLevelParameter level1Meter;
-        ActionChainAttackLevelParameter level2Meter;
-        ActionChainAttackLevelParameter level3Meter;
-        ActionChainAttackLevelParameter level4Meter;
-        ActionChainAttackLevelParameter level5Meter;
-        ActionChainAttackLevelParameter level6Meter;
-        ActionChainAttackLevelParameter level7Meter;
-        ActionChainAttackLevelParameter level8Meter;
-        ActionChainAttackLevelParameter level9Meter;
+        heur::rfl::ActionChainAttackLevelParameter score;
+        heur::rfl::ActionChainAttackLevelParameter level1Meter;
+        heur::rfl::ActionChainAttackLevelParameter level2Meter;
+        heur::rfl::ActionChainAttackLevelParameter level3Meter;
+        heur::rfl::ActionChainAttackLevelParameter level4Meter;
+        heur::rfl::ActionChainAttackLevelParameter level5Meter;
+        heur::rfl::ActionChainAttackLevelParameter level6Meter;
+        heur::rfl::ActionChainAttackLevelParameter level7Meter;
+        heur::rfl::ActionChainAttackLevelParameter level8Meter;
+        heur::rfl::ActionChainAttackLevelParameter level9Meter;
         float minHeight;
         float maxHeight;
         float maxHeightMagnification;
@@ -24994,60 +27532,62 @@ namespace app::rfl {
         static void Finish(ActionChainSpinBoostScoreParameter* pInstance);
         static void Clean(ActionChainSpinBoostScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainActionParameter {
-        ActionChainScoreParameter dashRollerScore;
-        ActionChainScoreParameter dashPanelScore;
-        ActionChainScoreParameter jumpBoardScore;
-        ActionChainScoreParameter jumpSelecterScore;
-        ActionChainScoreParameter poleScore;
-        ActionChainScoreParameter selectCannonScore;
-        ActionChainScoreParameter springScore;
-        ActionChainScoreParameter wideSpringScore;
-        ActionChainScoreParameter springClassicScore;
-        ActionChainScoreParameter balloonScore;
-        ActionChainScoreParameter upReelScore;
-        ActionChainScoreParameter wallJumpScore;
-        ActionChainScoreParameter propellerSpringScore;
-        ActionChainScoreParameter springPoleScore;
-        ActionChainScoreParameter dashRingScore;
-        ActionChainAttackScoreParameter acceleCombo1Score;
-        ActionChainAttackScoreParameter acceleCombo2Score;
-        ActionChainAttackScoreParameter comboFinishScore;
-        ActionChainAttackScoreParameter acceleRushCombo1Score;
-        ActionChainAttackScoreParameter acceleRushCombo2Score;
-        ActionChainAttackScoreParameter acceleRushComboFinishScore;
-        ActionChainAttackScoreParameter chargeAttackScore;
-        ActionChainAttackScoreParameter smashScore;
-        ActionChainAttackScoreParameter recoverySmashScore;
-        ActionChainAttackScoreParameter sonicBoomScore;
-        ActionChainAttackScoreParameter crasherScore;
-        ActionChainAttackScoreParameter loopKickScore;
-        ActionChainAttackScoreParameter spinSlashScore;
-        ActionChainAttackScoreParameter stompingAttackScore;
-        ActionChainAttackScoreParameter homingShotScore;
-        ActionChainAttackScoreParameter crossSlashScore;
-        ActionChainScoreParameter ringScore;
-        ActionChainScoreParameter gismoScore;
-        ActionChainScoreParameter homingScore;
-        ActionChainAttackScoreParameter enemyHomingScore;
-        ActionChainScoreParameter airTrickScore;
-        ActionChainScoreParameter chainBoosterScore;
-        ActionChainScoreParameter parryScore;
-        ActionChainAttackScoreParameter quickCyloopScore;
-        ActionChainScoreParameter defeatEnemyScore;
-        ActionChainScoreParameter defeatMiniBossScore;
-        ActionChainAttackScoreParameter slingShotScore;
-        ActionChainScoreParameter rippleLaserScore;
-        ActionChainIntervalScoreParameter grindRailScore;
-        ActionChainIntervalScoreParameter pulleyScore;
-        ActionChainIntervalScoreParameter fanScore;
-        ActionChainIntervalScoreParameter wallRunScore;
-        ActionChainBoostScoreParameter boostScore;
-        ActionChainIntervalScoreParameter powerBoostScore;
-        ActionChainIntervalScoreParameter sandSkiScore;
-        ActionChainIntervalScoreParameter acceleRailScore;
-        ActionChainSpinBoostScoreParameter spinBoostScore;
+        heur::rfl::ActionChainScoreParameter dashRollerScore;
+        heur::rfl::ActionChainScoreParameter dashPanelScore;
+        heur::rfl::ActionChainScoreParameter jumpBoardScore;
+        heur::rfl::ActionChainScoreParameter jumpSelecterScore;
+        heur::rfl::ActionChainScoreParameter poleScore;
+        heur::rfl::ActionChainScoreParameter selectCannonScore;
+        heur::rfl::ActionChainScoreParameter springScore;
+        heur::rfl::ActionChainScoreParameter wideSpringScore;
+        heur::rfl::ActionChainScoreParameter springClassicScore;
+        heur::rfl::ActionChainScoreParameter balloonScore;
+        heur::rfl::ActionChainScoreParameter upReelScore;
+        heur::rfl::ActionChainScoreParameter wallJumpScore;
+        heur::rfl::ActionChainScoreParameter propellerSpringScore;
+        heur::rfl::ActionChainScoreParameter springPoleScore;
+        heur::rfl::ActionChainScoreParameter dashRingScore;
+        heur::rfl::ActionChainAttackScoreParameter acceleCombo1Score;
+        heur::rfl::ActionChainAttackScoreParameter acceleCombo2Score;
+        heur::rfl::ActionChainAttackScoreParameter comboFinishScore;
+        heur::rfl::ActionChainAttackScoreParameter acceleRushCombo1Score;
+        heur::rfl::ActionChainAttackScoreParameter acceleRushCombo2Score;
+        heur::rfl::ActionChainAttackScoreParameter acceleRushComboFinishScore;
+        heur::rfl::ActionChainAttackScoreParameter chargeAttackScore;
+        heur::rfl::ActionChainAttackScoreParameter smashScore;
+        heur::rfl::ActionChainAttackScoreParameter recoverySmashScore;
+        heur::rfl::ActionChainAttackScoreParameter sonicBoomScore;
+        heur::rfl::ActionChainAttackScoreParameter crasherScore;
+        heur::rfl::ActionChainAttackScoreParameter loopKickScore;
+        heur::rfl::ActionChainAttackScoreParameter spinSlashScore;
+        heur::rfl::ActionChainAttackScoreParameter stompingAttackScore;
+        heur::rfl::ActionChainAttackScoreParameter homingShotScore;
+        heur::rfl::ActionChainAttackScoreParameter crossSlashScore;
+        heur::rfl::ActionChainScoreParameter ringScore;
+        heur::rfl::ActionChainScoreParameter gismoScore;
+        heur::rfl::ActionChainScoreParameter homingScore;
+        heur::rfl::ActionChainAttackScoreParameter enemyHomingScore;
+        heur::rfl::ActionChainScoreParameter airTrickScore;
+        heur::rfl::ActionChainScoreParameter chainBoosterScore;
+        heur::rfl::ActionChainScoreParameter parryScore;
+        heur::rfl::ActionChainAttackScoreParameter quickCyloopScore;
+        heur::rfl::ActionChainScoreParameter defeatEnemyScore;
+        heur::rfl::ActionChainScoreParameter defeatMiniBossScore;
+        heur::rfl::ActionChainAttackScoreParameter slingShotScore;
+        heur::rfl::ActionChainScoreParameter rippleLaserScore;
+        heur::rfl::ActionChainIntervalScoreParameter grindRailScore;
+        heur::rfl::ActionChainIntervalScoreParameter pulleyScore;
+        heur::rfl::ActionChainIntervalScoreParameter fanScore;
+        heur::rfl::ActionChainIntervalScoreParameter wallRunScore;
+        heur::rfl::ActionChainBoostScoreParameter boostScore;
+        heur::rfl::ActionChainIntervalScoreParameter powerBoostScore;
+        heur::rfl::ActionChainIntervalScoreParameter sandSkiScore;
+        heur::rfl::ActionChainIntervalScoreParameter acceleRailScore;
+        heur::rfl::ActionChainSpinBoostScoreParameter spinBoostScore;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25056,7 +27596,9 @@ namespace app::rfl {
         static void Finish(ActionChainActionParameter* pInstance);
         static void Clean(ActionChainActionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainMeterParameter {
         uint32_t meterMax;
         float meterDecreaseTime;
@@ -25073,18 +27615,20 @@ namespace app::rfl {
         static void Finish(ActionChainMeterParameter* pInstance);
         static void Clean(ActionChainMeterParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainParameter {
-        ActionChainActionParameter actionParam;
-        ActionChainMeterParameter level1MeterParam;
-        ActionChainMeterParameter level2MeterParam;
-        ActionChainMeterParameter level3MeterParam;
-        ActionChainMeterParameter level4MeterParam;
-        ActionChainMeterParameter level5MeterParam;
-        ActionChainMeterParameter level6MeterParam;
-        ActionChainMeterParameter level7MeterParam;
-        ActionChainMeterParameter level8MeterParam;
-        ActionChainMeterParameter level9MeterParam;
+        heur::rfl::ActionChainActionParameter actionParam;
+        heur::rfl::ActionChainMeterParameter level1MeterParam;
+        heur::rfl::ActionChainMeterParameter level2MeterParam;
+        heur::rfl::ActionChainMeterParameter level3MeterParam;
+        heur::rfl::ActionChainMeterParameter level4MeterParam;
+        heur::rfl::ActionChainMeterParameter level5MeterParam;
+        heur::rfl::ActionChainMeterParameter level6MeterParam;
+        heur::rfl::ActionChainMeterParameter level7MeterParam;
+        heur::rfl::ActionChainMeterParameter level8MeterParam;
+        heur::rfl::ActionChainMeterParameter level9MeterParam;
         float gimmickReuseTime;
         bool isChainBoosterLevelUp;
 
@@ -25095,7 +27639,9 @@ namespace app::rfl {
         static void Finish(ActionChainParameter* pInstance);
         static void Clean(ActionChainParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainScoreThresholdParameter {
         uint32_t scoreS;
         uint32_t scoreA;
@@ -25109,13 +27655,15 @@ namespace app::rfl {
         static void Finish(ActionChainScoreThresholdParameter* pInstance);
         static void Clean(ActionChainScoreThresholdParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainPlaceParameter {
         float time;
-        ActionChainScoreThresholdParameter scoreEasy;
-        ActionChainScoreThresholdParameter scoreNormal;
-        ActionChainScoreThresholdParameter scoreHard;
-        ActionChainScoreThresholdParameter scoreVeryHard;
+        heur::rfl::ActionChainScoreThresholdParameter scoreEasy;
+        heur::rfl::ActionChainScoreThresholdParameter scoreNormal;
+        heur::rfl::ActionChainScoreThresholdParameter scoreHard;
+        heur::rfl::ActionChainScoreThresholdParameter scoreVeryHard;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25124,9 +27672,11 @@ namespace app::rfl {
         static void Finish(ActionChainPlaceParameter* pInstance);
         static void Clean(ActionChainPlaceParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainStageParameter {
-        ActionChainPlaceParameter placeParam[16];
+        heur::rfl::ActionChainPlaceParameter placeParam[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25135,7 +27685,9 @@ namespace app::rfl {
         static void Finish(ActionChainStageParameter* pInstance);
         static void Clean(ActionChainStageParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GimmickCameraParam {
         float interoplateTimeActivate;
         float interoplateTimeDeactivate;
@@ -25149,9 +27701,11 @@ namespace app::rfl {
         static void Finish(GimmickCameraParam* pInstance);
         static void Clean(GimmickCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBattingMachineConfig {
-        GimmickCameraParam cameraParam;
+        heur::rfl::GimmickCameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25160,7 +27714,9 @@ namespace app::rfl {
         static void Finish(ObjBattingMachineConfig* pInstance);
         static void Clean(ObjBattingMachineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBombBoxConfig {
         float fallStartSpeed;
         float gravity;
@@ -25172,7 +27728,9 @@ namespace app::rfl {
         static void Finish(ObjBombBoxConfig* pInstance);
         static void Clean(ObjBombBoxConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct LargeBitLaserParameter {
         float rangeMin;
         float rangeMax;
@@ -25184,7 +27742,9 @@ namespace app::rfl {
         static void Finish(LargeBitLaserParameter* pInstance);
         static void Clean(LargeBitLaserParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SmallBitLaserBulletParameter {
         float bulletRadius;
         float bulletMoveLimitDistance;
@@ -25205,7 +27765,9 @@ namespace app::rfl {
         static void Finish(SmallBitLaserBulletParameter* pInstance);
         static void Clean(SmallBitLaserBulletParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SmallBitAttackPatternParameter {
         enum class BulletType : uint8_t {
             Normal = 0,
@@ -25269,10 +27831,12 @@ namespace app::rfl {
         static void Finish(SmallBitAttackPatternParameter* pInstance);
         static void Clean(SmallBitAttackPatternParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SmallBitSetPatternParameter {
         csl::ut::VariableString text;
-        SmallBitAttackPatternParameter param;
+        heur::rfl::SmallBitAttackPatternParameter param;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25281,7 +27845,9 @@ namespace app::rfl {
         static void Finish(SmallBitSetPatternParameter* pInstance);
         static void Clean(SmallBitSetPatternParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SmallBitFormationFanShaped {
         float distance;
         float height;
@@ -25295,12 +27861,14 @@ namespace app::rfl {
         static void Finish(SmallBitFormationFanShaped* pInstance);
         static void Clean(SmallBitFormationFanShaped* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SmallBitFormationParameter {
         float changeTime;
         float changeDelay;
         float changeOffsetHeight;
-        SmallBitFormationFanShaped fanShaped;
+        heur::rfl::SmallBitFormationFanShaped fanShaped;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25309,12 +27877,14 @@ namespace app::rfl {
         static void Finish(SmallBitFormationParameter* pInstance);
         static void Clean(SmallBitFormationParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BossBitConfig {
-        LargeBitLaserParameter largeBitLaserParam;
-        SmallBitLaserBulletParameter smallBitLaserParam;
-        SmallBitSetPatternParameter smallBitPatternDatas[64];
-        SmallBitFormationParameter smallBitFormation;
+        heur::rfl::LargeBitLaserParameter largeBitLaserParam;
+        heur::rfl::SmallBitLaserBulletParameter smallBitLaserParam;
+        heur::rfl::SmallBitSetPatternParameter smallBitPatternDatas[64];
+        heur::rfl::SmallBitFormationParameter smallBitFormation;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25323,9 +27893,11 @@ namespace app::rfl {
         static void Finish(BossBitConfig* pInstance);
         static void Clean(BossBitConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBossRingSupplyConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         float requestTime;
         float accessDistance;
         uint32_t numRings[3];
@@ -25337,7 +27909,9 @@ namespace app::rfl {
         static void Finish(ObjBossRingSupplyConfig* pInstance);
         static void Clean(ObjBossRingSupplyConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExplosionParameter {
         csl::math::Vector3 centerPosOffsetMin;
         csl::math::Vector3 centerPosOffsetMax;
@@ -25352,7 +27926,9 @@ namespace app::rfl {
         static void Finish(ExplosionParameter* pInstance);
         static void Clean(ExplosionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ImpulseParameter {
         csl::math::Vector3 impulseDir;
         float powerMin;
@@ -25365,15 +27941,17 @@ namespace app::rfl {
         static void Finish(ImpulseParameter* pInstance);
         static void Clean(ImpulseParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisPhaseParameter {
         float marginTime;
         float nextTime;
         float gravity;
         float moveStopTime;
         bool damping;
-        ExplosionParameter explosionParam;
-        ImpulseParameter impulseParam;
+        heur::rfl::ExplosionParameter explosionParam;
+        heur::rfl::ImpulseParameter impulseParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25382,9 +27960,11 @@ namespace app::rfl {
         static void Finish(DebrisPhaseParameter* pInstance);
         static void Clean(DebrisPhaseParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EffectDebrisParameter {
-        DebrisPhaseParameter debrisPhaseParameters[3];
+        heur::rfl::DebrisPhaseParameter debrisPhaseParameters[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25393,9 +27973,11 @@ namespace app::rfl {
         static void Finish(EffectDebrisParameter* pInstance);
         static void Clean(EffectDebrisParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjEffectDebrisParameters {
-        EffectDebrisParameter effectDebrisParameters[10];
+        heur::rfl::EffectDebrisParameter effectDebrisParameters[10];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25404,7 +27986,9 @@ namespace app::rfl {
         static void Finish(ObjEffectDebrisParameters* pInstance);
         static void Clean(ObjEffectDebrisParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ElectricLineConnectData {
         int32_t challengeNo0;
         int32_t challengeNo1;
@@ -25416,11 +28000,13 @@ namespace app::rfl {
         static void Finish(ElectricLineConnectData* pInstance);
         static void Clean(ElectricLineConnectData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ElectricLineConnectParameter {
         int32_t challengeNo0;
         int32_t challengeNo1;
-        ElectricLineConnectData data[3];
+        heur::rfl::ElectricLineConnectData data[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25429,9 +28015,11 @@ namespace app::rfl {
         static void Finish(ElectricLineConnectParameter* pInstance);
         static void Clean(ElectricLineConnectParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ElectricLineParameter {
-        ElectricLineConnectParameter connect[200];
+        heur::rfl::ElectricLineConnectParameter connect[200];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25440,7 +28028,9 @@ namespace app::rfl {
         static void Finish(ElectricLineParameter* pInstance);
         static void Clean(ElectricLineParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjFishCAConfig {
         float fallStartSpeed;
         float gravity;
@@ -25452,7 +28042,9 @@ namespace app::rfl {
         static void Finish(ObjFishCAConfig* pInstance);
         static void Clean(ObjFishCAConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DebrisData {
         float gravity;
         float lifeTime;
@@ -25468,7 +28060,9 @@ namespace app::rfl {
         static void Finish(DebrisData* pInstance);
         static void Clean(DebrisData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EffectData {
         csl::ut::VariableString effectName;
         bool linkMotionStop;
@@ -25480,7 +28074,9 @@ namespace app::rfl {
         static void Finish(EffectData* pInstance);
         static void Clean(EffectData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GismoBasicParam {
         csl::ut::VariableString modelName;
         csl::ut::VariableString skeltonName;
@@ -25493,7 +28089,9 @@ namespace app::rfl {
         static void Finish(GismoBasicParam* pInstance);
         static void Clean(GismoBasicParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GismoCollision {
         enum class ShapeType : int8_t {
             SHAPE_BOX = 0,
@@ -25527,7 +28125,9 @@ namespace app::rfl {
         static void Finish(GismoCollision* pInstance);
         static void Clean(GismoCollision* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PhysicsParam {
         float mass;
         float friction;
@@ -25544,7 +28144,9 @@ namespace app::rfl {
         static void Finish(PhysicsParam* pInstance);
         static void Clean(PhysicsParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GismoRegidBody {
         enum class RigidBodyType : int8_t {
             RIGID_BODY_NONE = 0,
@@ -25561,7 +28163,7 @@ namespace app::rfl {
 
         RigidBodyType rigidBodyType;
         RigidBodyMaterial rigidBodyMaterial;
-        PhysicsParam physicsParam;
+        heur::rfl::PhysicsParam physicsParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25570,7 +28172,9 @@ namespace app::rfl {
         static void Finish(GismoRegidBody* pInstance);
         static void Clean(GismoRegidBody* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MotionData {
         csl::ut::VariableString motionName;
         bool syncFrame;
@@ -25583,7 +28187,9 @@ namespace app::rfl {
         static void Finish(MotionData* pInstance);
         static void Clean(MotionData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MirageAnimData {
         csl::ut::VariableString texSrtAnimName[3];
         csl::ut::VariableString texPatAnimName[3];
@@ -25596,7 +28202,9 @@ namespace app::rfl {
         static void Finish(MirageAnimData* pInstance);
         static void Clean(MirageAnimData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ProgramMotionData {
         enum class MotionType : uint8_t {
             MOTION_SWING = 0,
@@ -25617,7 +28225,9 @@ namespace app::rfl {
         static void Finish(ProgramMotionData* pInstance);
         static void Clean(ProgramMotionData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SoundData {
         csl::ut::VariableString cueName;
 
@@ -25628,7 +28238,9 @@ namespace app::rfl {
         static void Finish(SoundData* pInstance);
         static void Clean(SoundData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KillData {
         enum class KillType : int8_t {
             KILL_TYPE_NOT_KILL = 0,
@@ -25640,7 +28252,7 @@ namespace app::rfl {
         KillType killType;
         float killTime;
         csl::ut::VariableString breakMotionName;
-        DebrisData debrisData;
+        heur::rfl::DebrisData debrisData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25649,14 +28261,16 @@ namespace app::rfl {
         static void Finish(KillData* pInstance);
         static void Clean(KillData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReactionData {
-        MotionData motionData;
-        MirageAnimData mirageAnimData;
-        ProgramMotionData programMotionData;
-        EffectData effectData;
-        SoundData soundData;
-        KillData killData;
+        heur::rfl::MotionData motionData;
+        heur::rfl::MirageAnimData mirageAnimData;
+        heur::rfl::ProgramMotionData programMotionData;
+        heur::rfl::EffectData effectData;
+        heur::rfl::SoundData soundData;
+        heur::rfl::KillData killData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25665,19 +28279,21 @@ namespace app::rfl {
         static void Finish(ReactionData* pInstance);
         static void Clean(ReactionData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GismoConfigDesignData {
         float rangeIn;
         float rangeDistance;
-        GismoBasicParam basicParam;
-        GismoCollision collision;
-        GismoRegidBody rigidBody;
-        ReactionData reactionIdle;
-        ReactionData reactionEnter;
-        ReactionData reactionLeave;
-        ReactionData reactionStay;
-        ReactionData reactionStayMove;
-        ReactionData reactionDamage;
+        heur::rfl::GismoBasicParam basicParam;
+        heur::rfl::GismoCollision collision;
+        heur::rfl::GismoRegidBody rigidBody;
+        heur::rfl::ReactionData reactionIdle;
+        heur::rfl::ReactionData reactionEnter;
+        heur::rfl::ReactionData reactionLeave;
+        heur::rfl::ReactionData reactionStay;
+        heur::rfl::ReactionData reactionStayMove;
+        heur::rfl::ReactionData reactionDamage;
         bool ignoreMeteorShowerAndRespawnOnReenterRange;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -25687,7 +28303,9 @@ namespace app::rfl {
         static void Finish(GismoConfigDesignData* pInstance);
         static void Clean(GismoConfigDesignData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GismoConfigPlanData {
         enum class ContactDamageType : int8_t {
             CONTACT_DAMAGE_NONE = 0,
@@ -25708,7 +28326,9 @@ namespace app::rfl {
         static void Finish(GismoConfigPlanData* pInstance);
         static void Clean(GismoConfigPlanData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HackingConfig {
         uint32_t dummy;
 
@@ -25719,7 +28339,9 @@ namespace app::rfl {
         static void Finish(HackingConfig* pInstance);
         static void Clean(HackingConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerMachineConfig {
         int32_t baseHp;
         int32_t lifeCount;
@@ -25748,7 +28370,9 @@ namespace app::rfl {
         static void Finish(PlayerMachineConfig* pInstance);
         static void Clean(PlayerMachineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HomingLaserTrailConfig {
         float length;
         float minLength;
@@ -25761,7 +28385,9 @@ namespace app::rfl {
         static void Finish(HomingLaserTrailConfig* pInstance);
         static void Clean(HomingLaserTrailConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HomingLaserConfig {
         float radius;
         float speed;
@@ -25772,7 +28398,7 @@ namespace app::rfl {
         float maxYaw;
         float depthVelocity;
         uint32_t power;
-        HomingLaserTrailConfig trail;
+        heur::rfl::HomingLaserTrailConfig trail;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25781,7 +28407,9 @@ namespace app::rfl {
         static void Finish(HomingLaserConfig* pInstance);
         static void Clean(HomingLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ElementBulletConfig {
         float radius;
         float speed;
@@ -25795,12 +28423,14 @@ namespace app::rfl {
         static void Finish(ElementBulletConfig* pInstance);
         static void Clean(ElementBulletConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHackingPlayerMachineConfig {
-        PlayerMachineConfig machine;
-        HomingLaserConfig l;
-        ElementBulletConfig bullet;
-        HackingConfig hacking;
+        heur::rfl::PlayerMachineConfig machine;
+        heur::rfl::HomingLaserConfig l;
+        heur::rfl::ElementBulletConfig bullet;
+        heur::rfl::HackingConfig hacking;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25809,7 +28439,9 @@ namespace app::rfl {
         static void Finish(ObjHackingPlayerMachineConfig* pInstance);
         static void Clean(ObjHackingPlayerMachineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TheEndConfig {
         float distance;
         float gageUpVolumeFromMiss;
@@ -25822,12 +28454,14 @@ namespace app::rfl {
         static void Finish(TheEndConfig* pInstance);
         static void Clean(TheEndConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTheEndPlayerMachineConfig {
-        PlayerMachineConfig machine;
-        HomingLaserConfig l;
-        ElementBulletConfig bullet;
-        TheEndConfig TheEnd;
+        heur::rfl::PlayerMachineConfig machine;
+        heur::rfl::HomingLaserConfig l;
+        heur::rfl::ElementBulletConfig bullet;
+        heur::rfl::TheEndConfig TheEnd;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -25836,7 +28470,9 @@ namespace app::rfl {
         static void Finish(ObjTheEndPlayerMachineConfig* pInstance);
         static void Clean(ObjTheEndPlayerMachineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjHoverStoneConfig {
         float hoverUpSpeed;
         float fallSpeed;
@@ -25849,7 +28485,9 @@ namespace app::rfl {
         static void Finish(ObjHoverStoneConfig* pInstance);
         static void Clean(ObjHoverStoneConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CeilingInfo {
         enum class Symbol : int8_t {
             Invalid = -1,
@@ -25870,7 +28508,9 @@ namespace app::rfl {
         static void Finish(CeilingInfo* pInstance);
         static void Clean(CeilingInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReelParam {
         enum class Symbol : int8_t {
             Invalid = -1,
@@ -25894,7 +28534,9 @@ namespace app::rfl {
         static void Finish(ReelParam* pInstance);
         static void Clean(ReelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RateInfo {
         enum class Symbol : int8_t {
             Invalid = -1,
@@ -25915,7 +28557,9 @@ namespace app::rfl {
         static void Finish(RateInfo* pInstance);
         static void Clean(RateInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PayoutInfo {
         enum class Symbol : int8_t {
             Invalid = -1,
@@ -25936,13 +28580,15 @@ namespace app::rfl {
         static void Finish(PayoutInfo* pInstance);
         static void Clean(PayoutInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBonusSlotConfig {
-        ReelParam reelParams[3];
+        heur::rfl::ReelParam reelParams[3];
         float spinInterval;
-        RateInfo rateInfos[4];
-        CeilingInfo ceilingInfos[4];
-        PayoutInfo payoutInfos[4];
+        heur::rfl::RateInfo rateInfos[4];
+        heur::rfl::CeilingInfo ceilingInfos[4];
+        heur::rfl::PayoutInfo payoutInfos[4];
         uint32_t payoutOnBlank;
         bool WinEvenWithPush;
         float retrySpeed;
@@ -25956,7 +28602,9 @@ namespace app::rfl {
         static void Finish(ObjBonusSlotConfig* pInstance);
         static void Clean(ObjBonusSlotConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MeteorShowerEffectParameter {
         float spawnIntervalMax;
         float spawnIntervalMin;
@@ -25985,7 +28633,9 @@ namespace app::rfl {
         static void Finish(MeteorShowerEffectParameter* pInstance);
         static void Clean(MeteorShowerEffectParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MeteorShowerParameter {
         float rangeFromSonicObjectsDontRespawn;
         uint32_t intervalDay;
@@ -25996,8 +28646,8 @@ namespace app::rfl {
         uint32_t extraIslandSeedRate;
         uint32_t extraIslandKodamaRate;
         uint32_t extraIntervalDay;
-        MeteorShowerEffectParameter effect;
-        ObjBonusSlotConfig bonusSlotConfig;
+        heur::rfl::MeteorShowerEffectParameter effect;
+        heur::rfl::ObjBonusSlotConfig bonusSlotConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26006,7 +28656,9 @@ namespace app::rfl {
         static void Finish(MeteorShowerParameter* pInstance);
         static void Clean(MeteorShowerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SeedParameter {
         enum class SeedType : uint8_t {
             SeedSensor = 0,
@@ -26023,7 +28675,9 @@ namespace app::rfl {
         static void Finish(SeedParameter* pInstance);
         static void Clean(SeedParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReflexesPanelCameraParam {
         float interoplateTimeActivate;
         float interoplateTimeDeactivate;
@@ -26035,7 +28689,9 @@ namespace app::rfl {
         static void Finish(ReflexesPanelCameraParam* pInstance);
         static void Clean(ReflexesPanelCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReflexesPanelPanelParam {
         csl::math::Vector3 collisionHalfExtents;
         csl::math::Vector3 collisionOffset;
@@ -26047,10 +28703,12 @@ namespace app::rfl {
         static void Finish(ReflexesPanelPanelParam* pInstance);
         static void Clean(ReflexesPanelPanelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReflexesPanelParam {
-        ReflexesPanelCameraParam cameraParam;
-        ReflexesPanelPanelParam panelParam;
+        heur::rfl::ReflexesPanelCameraParam cameraParam;
+        heur::rfl::ReflexesPanelPanelParam panelParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26059,7 +28717,9 @@ namespace app::rfl {
         static void Finish(ReflexesPanelParam* pInstance);
         static void Clean(ReflexesPanelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TornadoRingParameter {
         float suckedTime;
         float launchAngle;
@@ -26076,11 +28736,13 @@ namespace app::rfl {
         static void Finish(TornadoRingParameter* pInstance);
         static void Clean(TornadoRingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjLaserMirrorConfig {
-        GimmickCameraParam rotateMirrorH;
-        GimmickCameraParam rotateMirrorV;
-        GimmickCameraParam moveMirror;
+        heur::rfl::GimmickCameraParam rotateMirrorH;
+        heur::rfl::GimmickCameraParam rotateMirrorV;
+        heur::rfl::GimmickCameraParam moveMirror;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26089,9 +28751,11 @@ namespace app::rfl {
         static void Finish(ObjLaserMirrorConfig* pInstance);
         static void Clean(ObjLaserMirrorConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotatableStatueConfig {
-        GimmickCameraParam cameraParam;
+        heur::rfl::GimmickCameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26100,9 +28764,11 @@ namespace app::rfl {
         static void Finish(ObjRotatableStatueConfig* pInstance);
         static void Clean(ObjRotatableStatueConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjRotatableTombStoneConfig {
-        GimmickCameraParam cameraParam;
+        heur::rfl::GimmickCameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26111,7 +28777,9 @@ namespace app::rfl {
         static void Finish(ObjRotatableTombStoneConfig* pInstance);
         static void Clean(ObjRotatableTombStoneConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SequenceParameter {
         enum class SequenceType : uint8_t {
             SequenceSensor = 0,
@@ -26128,7 +28796,9 @@ namespace app::rfl {
         static void Finish(SequenceParameter* pInstance);
         static void Clean(SequenceParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShotGunTouchCameraParam {
         csl::math::Vector3 cameraOffset;
         float cameraHoldTime;
@@ -26140,7 +28810,9 @@ namespace app::rfl {
         static void Finish(ObjShotGunTouchCameraParam* pInstance);
         static void Clean(ObjShotGunTouchCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShotGunTouchTargetParam {
         float targetRadius;
         float catchDistance;
@@ -26155,10 +28827,12 @@ namespace app::rfl {
         static void Finish(ObjShotGunTouchTargetParam* pInstance);
         static void Clean(ObjShotGunTouchTargetParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjShotGunTouchParam {
-        ObjShotGunTouchTargetParam targetParam;
-        ObjShotGunTouchCameraParam cameraParam;
+        heur::rfl::ObjShotGunTouchTargetParam targetParam;
+        heur::rfl::ObjShotGunTouchCameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26167,7 +28841,9 @@ namespace app::rfl {
         static void Finish(ObjShotGunTouchParam* pInstance);
         static void Clean(ObjShotGunTouchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjThornBallConfig {
         float fallStartSpeed;
         float gravity;
@@ -26182,7 +28858,9 @@ namespace app::rfl {
         static void Finish(ObjThornBallConfig* pInstance);
         static void Clean(ObjThornBallConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CollisionConfig {
         float radius;
         float friction;
@@ -26195,7 +28873,9 @@ namespace app::rfl {
         static void Finish(CollisionConfig* pInstance);
         static void Clean(CollisionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CorrectionsConfig {
         float CorrectionsMaxDistance;
         float CorrectionsMinDistance;
@@ -26209,7 +28889,9 @@ namespace app::rfl {
         static void Finish(CorrectionsConfig* pInstance);
         static void Clean(CorrectionsConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjTimeBallConfig {
         float mass;
         float linearDamping;
@@ -26218,8 +28900,8 @@ namespace app::rfl {
         float maxLinearAcceleration;
         float linearVelocityTimes;
         float gravity;
-        CollisionConfig collisionConfig;
-        CorrectionsConfig correctionsConfig;
+        heur::rfl::CollisionConfig collisionConfig;
+        heur::rfl::CorrectionsConfig correctionsConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26228,7 +28910,9 @@ namespace app::rfl {
         static void Finish(ObjTimeBallConfig* pInstance);
         static void Clean(ObjTimeBallConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWaveCannonConfig {
         uint32_t waveCannonBreakNum;
 
@@ -26239,7 +28923,9 @@ namespace app::rfl {
         static void Finish(ObjWaveCannonConfig* pInstance);
         static void Clean(ObjWaveCannonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWeightConfig {
         float fallStartSpeed;
         float gravity;
@@ -26251,7 +28937,9 @@ namespace app::rfl {
         static void Finish(ObjWeightConfig* pInstance);
         static void Clean(ObjWeightConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWoodBoxConfig {
         float fallStartSpeed;
         float gravity;
@@ -26263,7 +28951,9 @@ namespace app::rfl {
         static void Finish(ObjWoodBoxConfig* pInstance);
         static void Clean(ObjWoodBoxConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjAnimalConfig {
         float powerGettingOn;
         float timeGettingOn;
@@ -26279,7 +28969,9 @@ namespace app::rfl {
         static void Finish(ObjAnimalConfig* pInstance);
         static void Clean(ObjAnimalConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtremeConfig {
         enum class LineType : int8_t {
             LINE3 = 0,
@@ -26308,7 +29000,9 @@ namespace app::rfl {
         static void Finish(ExtremeConfig* pInstance);
         static void Clean(ExtremeConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NormalFloorSize {
         float length;
         float width;
@@ -26321,9 +29015,11 @@ namespace app::rfl {
         static void Finish(NormalFloorSize* pInstance);
         static void Clean(NormalFloorSize* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjNormalFloorConfig {
-        NormalFloorSize sizeInfo[10];
+        heur::rfl::NormalFloorSize sizeInfo[10];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26332,7 +29028,9 @@ namespace app::rfl {
         static void Finish(ObjNormalFloorConfig* pInstance);
         static void Clean(ObjNormalFloorConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballActionConfig {
         int32_t maxSuccessCount;
         csl::math::Vector2 bounceSuccessTiming[3];
@@ -26348,7 +29046,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballActionConfig* pInstance);
         static void Clean(EnemyAquaballActionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -26362,7 +29062,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballCommonLevelParam* pInstance);
         static void Clean(EnemyAquaballCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballPatrolConfig {
         float rotateSpeedMin;
         float rotateSpeedMax;
@@ -26381,7 +29083,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballPatrolConfig* pInstance);
         static void Clean(EnemyAquaballPatrolConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballCommonParam {
         float killWaitTime;
         float colliderRadius;
@@ -26390,9 +29094,9 @@ namespace app::rfl {
         float hitPlayerColliderRadiusOffset;
         float checkBarrierDistance;
         float battleDistance;
-        RingParameter ringParam;
-        EnemyAquaballPatrolConfig patrolConfig;
-        EnemyAquaballActionConfig actionConfig;
+        heur::rfl::RingParameter ringParam;
+        heur::rfl::EnemyAquaballPatrolConfig patrolConfig;
+        heur::rfl::EnemyAquaballActionConfig actionConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26401,10 +29105,12 @@ namespace app::rfl {
         static void Finish(EnemyAquaballCommonParam* pInstance);
         static void Clean(EnemyAquaballCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballLevelParam {
         int32_t level;
-        EnemyAquaballCommonLevelParam common;
+        heur::rfl::EnemyAquaballCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26413,7 +29119,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballLevelParam* pInstance);
         static void Clean(EnemyAquaballLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballLevelBand {
         int32_t level;
 
@@ -26424,11 +29132,13 @@ namespace app::rfl {
         static void Finish(EnemyAquaballLevelBand* pInstance);
         static void Clean(EnemyAquaballLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyAquaballConfig {
-        EnemyAquaballCommonParam commonParam;
-        EnemyAquaballLevelParam levelParams[5];
-        EnemyAquaballLevelBand levelBand[5];
+        heur::rfl::EnemyAquaballCommonParam commonParam;
+        heur::rfl::EnemyAquaballLevelParam levelParams[5];
+        heur::rfl::EnemyAquaballLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26437,7 +29147,9 @@ namespace app::rfl {
         static void Finish(EnemyAquaballConfig* pInstance);
         static void Clean(EnemyAquaballConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdApproachParam {
         float speed;
         float maxSpeed;
@@ -26453,7 +29165,9 @@ namespace app::rfl {
         static void Finish(BirdApproachParam* pInstance);
         static void Clean(BirdApproachParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdBackupParam {
         float speed;
         float maxSpeed;
@@ -26467,7 +29181,9 @@ namespace app::rfl {
         static void Finish(BirdBackupParam* pInstance);
         static void Clean(BirdBackupParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdBarParam {
         float haWaitTime;
         float degreeOnPath;
@@ -26484,7 +29200,9 @@ namespace app::rfl {
         static void Finish(BirdBarParam* pInstance);
         static void Clean(BirdBarParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdCameraParam {
         float azimuth;
         float elevation;
@@ -26500,7 +29218,9 @@ namespace app::rfl {
         static void Finish(BirdCameraParam* pInstance);
         static void Clean(BirdCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdChargeParam {
         float waitTime;
         float speed;
@@ -26521,7 +29241,9 @@ namespace app::rfl {
         static void Finish(BirdChargeParam* pInstance);
         static void Clean(BirdChargeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdDeadParam {
         float minWaitTime;
         float maxWaitTime;
@@ -26537,7 +29259,9 @@ namespace app::rfl {
         static void Finish(BirdDeadParam* pInstance);
         static void Clean(BirdDeadParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdGlidingParam {
         float moveSpeed;
         float gidingVelocityY;
@@ -26556,7 +29280,9 @@ namespace app::rfl {
         static void Finish(BirdGlidingParam* pInstance);
         static void Clean(BirdGlidingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdLaserStateParam {
         float laserInterval;
         float rotateDegreeToSonic;
@@ -26568,7 +29294,9 @@ namespace app::rfl {
         static void Finish(BirdLaserStateParam* pInstance);
         static void Clean(BirdLaserStateParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdOnBackCameraParam {
         float distToConsiderSonicAsOnBird;
         float distance;
@@ -26580,7 +29308,9 @@ namespace app::rfl {
         static void Finish(BirdOnBackCameraParam* pInstance);
         static void Clean(BirdOnBackCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdRaycastParam {
         float distanceFront;
         float distanceBack;
@@ -26593,7 +29323,9 @@ namespace app::rfl {
         static void Finish(BirdRaycastParam* pInstance);
         static void Clean(BirdRaycastParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BirdWanderParam {
         float speedOnPath;
         float speedToPath;
@@ -26606,7 +29338,9 @@ namespace app::rfl {
         static void Finish(BirdWanderParam* pInstance);
         static void Clean(BirdWanderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -26620,7 +29354,9 @@ namespace app::rfl {
         static void Finish(EnemyBirdCommonLevelParam* pInstance);
         static void Clean(EnemyBirdCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdCommonParam {
         csl::math::Vector3 backColliderExtents;
         csl::math::Vector3 backColliderOffset;
@@ -26638,10 +29374,12 @@ namespace app::rfl {
         static void Finish(EnemyBirdCommonParam* pInstance);
         static void Clean(EnemyBirdCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdLevelParam {
         int32_t level;
-        EnemyBirdCommonLevelParam common;
+        heur::rfl::EnemyBirdCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26650,7 +29388,9 @@ namespace app::rfl {
         static void Finish(EnemyBirdLevelParam* pInstance);
         static void Clean(EnemyBirdLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdLevelBand {
         int32_t level;
 
@@ -26661,25 +29401,27 @@ namespace app::rfl {
         static void Finish(EnemyBirdLevelBand* pInstance);
         static void Clean(EnemyBirdLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdParam {
         csl::math::Vector3 haColliderExtents;
         csl::math::Vector3 haColliderOffset;
         csl::math::Vector3 haTargetOffset;
         float haTargetRadius;
         float haTargetHeight;
-        BirdWanderParam wanderParam;
-        BirdApproachParam approachParam;
-        BirdLaserStateParam laserStateParam;
-        BirdChargeParam chargeParam;
-        BirdBackupParam backupParam;
-        BirdBarParam barParam;
-        BirdGlidingParam glidingParam;
-        BirdDeadParam deadParam;
-        BirdRaycastParam raycastParam;
+        heur::rfl::BirdWanderParam wanderParam;
+        heur::rfl::BirdApproachParam approachParam;
+        heur::rfl::BirdLaserStateParam laserStateParam;
+        heur::rfl::BirdChargeParam chargeParam;
+        heur::rfl::BirdBackupParam backupParam;
+        heur::rfl::BirdBarParam barParam;
+        heur::rfl::BirdGlidingParam glidingParam;
+        heur::rfl::BirdDeadParam deadParam;
+        heur::rfl::BirdRaycastParam raycastParam;
         bool useCamera;
-        BirdOnBackCameraParam onBackCameraParam;
-        BirdCameraParam cameraParam;
+        heur::rfl::BirdOnBackCameraParam onBackCameraParam;
+        heur::rfl::BirdCameraParam cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26688,12 +29430,14 @@ namespace app::rfl {
         static void Finish(EnemyBirdParam* pInstance);
         static void Clean(EnemyBirdParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBirdConfig {
-        EnemyBirdCommonParam commonParam;
-        EnemyBirdLevelParam levelParams[5];
-        EnemyBirdLevelBand levelBand[5];
-        EnemyBirdParam birdParam;
+        heur::rfl::EnemyBirdCommonParam commonParam;
+        heur::rfl::EnemyBirdLevelParam levelParams[5];
+        heur::rfl::EnemyBirdLevelBand levelBand[5];
+        heur::rfl::EnemyBirdParam birdParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26702,7 +29446,9 @@ namespace app::rfl {
         static void Finish(EnemyBirdConfig* pInstance);
         static void Clean(EnemyBirdConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SpeedInfo {
         float speed;
         float maxSpeed;
@@ -26715,10 +29461,12 @@ namespace app::rfl {
         static void Finish(SpeedInfo* pInstance);
         static void Clean(SpeedInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBirdLaserConfig {
-        SpeedInfo speedInfoToSonic;
-        SpeedInfo speedInfoToBird;
+        heur::rfl::SpeedInfo speedInfoToSonic;
+        heur::rfl::SpeedInfo speedInfoToBird;
         float colliderLength;
         float colliderRadius;
         float lifeTime;
@@ -26731,7 +29479,9 @@ namespace app::rfl {
         static void Finish(ObjBirdLaserConfig* pInstance);
         static void Clean(ObjBirdLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BommerCommonLevelConfig {
         int32_t maxHealthPoint;
         float attackRate;
@@ -26745,7 +29495,9 @@ namespace app::rfl {
         static void Finish(BommerCommonLevelConfig* pInstance);
         static void Clean(BommerCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerAimingConfig {
         float moveDecerleration;
         float rotationAngleMax;
@@ -26759,7 +29511,9 @@ namespace app::rfl {
         static void Finish(EnemyBommerAimingConfig* pInstance);
         static void Clean(EnemyBommerAimingConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerAttackConfig {
         float moveVelocity;
         float moveDecerleration;
@@ -26774,7 +29528,9 @@ namespace app::rfl {
         static void Finish(EnemyBommerAttackConfig* pInstance);
         static void Clean(EnemyBommerAttackConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerChaseConfig {
         float moveVelocity;
         float moveAccerleration;
@@ -26797,7 +29553,9 @@ namespace app::rfl {
         static void Finish(EnemyBommerChaseConfig* pInstance);
         static void Clean(EnemyBommerChaseConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerPatrolConfig {
         float rotationDeceleration;
         float rotationAngleMax;
@@ -26811,9 +29569,11 @@ namespace app::rfl {
         static void Finish(EnemyBommerPatrolConfig* pInstance);
         static void Clean(EnemyBommerPatrolConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         float mass;
         float slopeAngleMax;
         float checkBarrierDistance;
@@ -26822,15 +29582,15 @@ namespace app::rfl {
         float damageColliderRadiusOffset;
         float eyesightDistance;
         float eyesightDistanceMargin;
-        EnemyBommerPatrolConfig patrolConfig;
-        EnemyBommerAimingConfig aimingConfig;
-        EnemyBommerAttackConfig attackConfig;
-        EnemyBommerChaseConfig chaseConfig;
+        heur::rfl::EnemyBommerPatrolConfig patrolConfig;
+        heur::rfl::EnemyBommerAimingConfig aimingConfig;
+        heur::rfl::EnemyBommerAttackConfig attackConfig;
+        heur::rfl::EnemyBommerChaseConfig chaseConfig;
         float explodeSignalTime;
         float explodeColliderRadius;
         bool useUniqueDebrisSetting;
-        DebrisParameter debrisExplode;
-        DebrisParameter debrisCyloop;
+        heur::rfl::DebrisParameter debrisExplode;
+        heur::rfl::DebrisParameter debrisCyloop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26839,10 +29599,12 @@ namespace app::rfl {
         static void Finish(EnemyBommerCommonConfig* pInstance);
         static void Clean(EnemyBommerCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerLevelConfig {
         int32_t level;
-        BommerCommonLevelConfig common;
+        heur::rfl::BommerCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26851,10 +29613,12 @@ namespace app::rfl {
         static void Finish(EnemyBommerLevelConfig* pInstance);
         static void Clean(EnemyBommerLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBommerConfig {
-        EnemyBommerCommonConfig commonParams;
-        EnemyBommerLevelConfig levelParams[5];
+        heur::rfl::EnemyBommerCommonConfig commonParams;
+        heur::rfl::EnemyBommerLevelConfig levelParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26863,7 +29627,9 @@ namespace app::rfl {
         static void Finish(EnemyBommerConfig* pInstance);
         static void Clean(EnemyBommerConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleApproachConfig {
         float moveMinDistance;
         float moveSpeedMax;
@@ -26875,7 +29641,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleApproachConfig* pInstance);
         static void Clean(EnemyBubbleApproachConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleBlitzProtectionConfig {
         float moveMinDistance;
         float moveSpeedMax;
@@ -26889,7 +29657,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleBlitzProtectionConfig* pInstance);
         static void Clean(EnemyBubbleBlitzProtectionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleBlitzProtectionReadyConfig {
         float moveMinDistance;
         float moveSpeedMax;
@@ -26903,7 +29673,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleBlitzProtectionReadyConfig* pInstance);
         static void Clean(EnemyBubbleBlitzProtectionReadyConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -26917,7 +29689,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleCommonLevelParam* pInstance);
         static void Clean(EnemyBubbleCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleShellConfig {
         float baseHeight;
         float innerDistance;
@@ -26938,7 +29712,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleShellConfig* pInstance);
         static void Clean(EnemyBubbleShellConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleCommonParam {
         float killWaitTime;
         float colliderRadius;
@@ -26951,10 +29727,10 @@ namespace app::rfl {
         float mass;
         float slopeAngleMax;
         float knockBackTime;
-        EnemyBubbleApproachConfig approachConfig;
-        EnemyBubbleBlitzProtectionReadyConfig blitzReadyConfig;
-        EnemyBubbleBlitzProtectionConfig blitzConfig;
-        EnemyBubbleShellConfig shellConfig;
+        heur::rfl::EnemyBubbleApproachConfig approachConfig;
+        heur::rfl::EnemyBubbleBlitzProtectionReadyConfig blitzReadyConfig;
+        heur::rfl::EnemyBubbleBlitzProtectionConfig blitzConfig;
+        heur::rfl::EnemyBubbleShellConfig shellConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26963,10 +29739,12 @@ namespace app::rfl {
         static void Finish(EnemyBubbleCommonParam* pInstance);
         static void Clean(EnemyBubbleCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleLevelParam {
         int32_t level;
-        EnemyBubbleCommonLevelParam common;
+        heur::rfl::EnemyBubbleCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26975,7 +29753,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleLevelParam* pInstance);
         static void Clean(EnemyBubbleLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleLevelBand {
         int32_t level;
 
@@ -26986,11 +29766,13 @@ namespace app::rfl {
         static void Finish(EnemyBubbleLevelBand* pInstance);
         static void Clean(EnemyBubbleLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyBubbleConfig {
-        EnemyBubbleCommonParam commonParam;
-        EnemyBubbleLevelParam levelParams[5];
-        EnemyBubbleLevelBand levelBand[5];
+        heur::rfl::EnemyBubbleCommonParam commonParam;
+        heur::rfl::EnemyBubbleLevelParam levelParams[5];
+        heur::rfl::EnemyBubbleLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -26999,7 +29781,9 @@ namespace app::rfl {
         static void Finish(EnemyBubbleConfig* pInstance);
         static void Clean(EnemyBubbleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DefenderCommonLevelConfig {
         int32_t maxHealthPoint;
         float attackRate;
@@ -27013,7 +29797,9 @@ namespace app::rfl {
         static void Finish(DefenderCommonLevelConfig* pInstance);
         static void Clean(DefenderCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenderPatrolConfig {
         float changeTimeIdlePatrolMin;
         float changeTimeIdlePatrolMax;
@@ -27025,9 +29811,11 @@ namespace app::rfl {
         static void Finish(EnemyDefenderPatrolConfig* pInstance);
         static void Clean(EnemyDefenderPatrolConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenderCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         float mass;
         float slopeAngleMax;
         float checkBarrierDistance;
@@ -27040,7 +29828,7 @@ namespace app::rfl {
         float boomerangCameraKeepTimeMin;
         float eyesightDistance;
         float eyesightLostDelayTime;
-        EnemyDefenderPatrolConfig patrolConfig;
+        heur::rfl::EnemyDefenderPatrolConfig patrolConfig;
         float shieldBlowUpTime;
         float shieldBlowUpHeight;
         float shieldBoomerangSpeed;
@@ -27060,10 +29848,12 @@ namespace app::rfl {
         static void Finish(EnemyDefenderCommonConfig* pInstance);
         static void Clean(EnemyDefenderCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenderLevelConfig {
         int32_t level;
-        DefenderCommonLevelConfig common;
+        heur::rfl::DefenderCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27072,10 +29862,12 @@ namespace app::rfl {
         static void Finish(EnemyDefenderLevelConfig* pInstance);
         static void Clean(EnemyDefenderLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyDefenderConfig {
-        EnemyDefenderCommonConfig commonParams;
-        EnemyDefenderLevelConfig levelParams[5];
+        heur::rfl::EnemyDefenderCommonConfig commonParams;
+        heur::rfl::EnemyDefenderLevelConfig levelParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27084,7 +29876,9 @@ namespace app::rfl {
         static void Finish(EnemyDefenderConfig* pInstance);
         static void Clean(EnemyDefenderConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyEggRoboConfig {
         float scaleSv;
         float scaleFv;
@@ -27106,7 +29900,9 @@ namespace app::rfl {
         static void Finish(EnemyEggRoboConfig* pInstance);
         static void Clean(EnemyEggRoboConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliDamageCol {
         float radius;
         csl::math::Vector3 pos;
@@ -27118,10 +29914,12 @@ namespace app::rfl {
         static void Finish(HeliDamageCol* pInstance);
         static void Clean(HeliDamageCol* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliCommon {
         float followRotateSpeed;
-        HeliDamageCol damageCol;
+        heur::rfl::HeliDamageCol damageCol;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27130,7 +29928,9 @@ namespace app::rfl {
         static void Finish(HeliCommon* pInstance);
         static void Clean(HeliCommon* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeliAttackBase {
         float life;
         float attackInterval;
@@ -27142,8 +29942,10 @@ namespace app::rfl {
         static void Finish(HeliAttackBase* pInstance);
         static void Clean(HeliAttackBase* pInstance);
     };
+}
 
-    struct HeliBullet : HeliAttackBase {
+namespace heur::rfl {
+    struct HeliBullet : heur::rfl::HeliAttackBase {
         float bulletSpeed;
         float gunRotateSpeed;
         uint8_t attackChainNum;
@@ -27156,8 +29958,10 @@ namespace app::rfl {
         static void Finish(HeliBullet* pInstance);
         static void Clean(HeliBullet* pInstance);
     };
+}
 
-    struct HeliBomb : HeliAttackBase {
+namespace heur::rfl {
+    struct HeliBomb : heur::rfl::HeliAttackBase {
         float bombSpeed;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -27167,11 +29971,13 @@ namespace app::rfl {
         static void Finish(HeliBomb* pInstance);
         static void Clean(HeliBomb* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyHelicopterConfig {
-        HeliCommon common;
-        HeliBullet attackBullet;
-        HeliBomb attackBomb;
+        heur::rfl::HeliCommon common;
+        heur::rfl::HeliBullet attackBullet;
+        heur::rfl::HeliBomb attackBomb;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27180,7 +29986,9 @@ namespace app::rfl {
         static void Finish(EnemyHelicopterConfig* pInstance);
         static void Clean(EnemyHelicopterConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Movement {
         float rotateSpeedMin;
         float rotateSpeedMax;
@@ -27194,7 +30002,9 @@ namespace app::rfl {
         static void Finish(Movement* pInstance);
         static void Clean(Movement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Eyesight {
         float distance;
         float angle;
@@ -27206,7 +30016,9 @@ namespace app::rfl {
         static void Finish(Eyesight* pInstance);
         static void Clean(Eyesight* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Fight {
         float attackRange;
         float attackAngle;
@@ -27219,11 +30031,13 @@ namespace app::rfl {
         static void Finish(Fight* pInstance);
         static void Clean(Fight* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJellymanModeConfig {
-        Movement movement;
-        Eyesight eyesight;
-        Fight fight;
+        heur::rfl::Movement movement;
+        heur::rfl::Eyesight eyesight;
+        heur::rfl::Fight fight;
         float transformRate;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -27233,9 +30047,11 @@ namespace app::rfl {
         static void Finish(EnemyJellymanModeConfig* pInstance);
         static void Clean(EnemyJellymanModeConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanHumanCommonConfig {
-        EnemyJellymanModeConfig common;
+        heur::rfl::EnemyJellymanModeConfig common;
         float actionDistance[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -27245,7 +30061,9 @@ namespace app::rfl {
         static void Finish(JellymanHumanCommonConfig* pInstance);
         static void Clean(JellymanHumanCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct VolumeInfo {
         csl::math::Vector3 volumeSize;
         csl::math::Vector3 volumeOffset;
@@ -27258,7 +30076,9 @@ namespace app::rfl {
         static void Finish(VolumeInfo* pInstance);
         static void Clean(VolumeInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MappingPairInfo {
         enum class VolumeShape : int8_t {
             SPHERE = 0,
@@ -27273,9 +30093,9 @@ namespace app::rfl {
         float pieceFuncFactor;
         VolumeShape volumeShape;
         csl::ut::VariableString humanNodeName;
-        VolumeInfo humanVolume;
+        heur::rfl::VolumeInfo humanVolume;
         csl::ut::VariableString eggNodeName;
-        VolumeInfo eggVolume;
+        heur::rfl::VolumeInfo eggVolume;
         bool effectActive;
         bool debugDraw;
         bool debugDrawVolumeAxis;
@@ -27288,15 +30108,17 @@ namespace app::rfl {
         static void Finish(MappingPairInfo* pInstance);
         static void Clean(MappingPairInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyCommonConfig {
-        JellymanHumanCommonConfig human;
-        RingParameter ringParam;
+        heur::rfl::JellymanHumanCommonConfig human;
+        heur::rfl::RingParameter ringParam;
         int32_t codeDropNumMin;
         int32_t codeDropNumMax;
         int32_t codeXDropNumMin;
         int32_t codeXDropNumMax;
-        MappingPairInfo mappingPairInfo[32];
+        heur::rfl::MappingPairInfo mappingPairInfo[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27305,7 +30127,9 @@ namespace app::rfl {
         static void Finish(EnemyCommonConfig* pInstance);
         static void Clean(EnemyCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanCommonLevelConfig {
         int32_t maxHealthPoint;
         float maxStunPoint[3];
@@ -27327,7 +30151,9 @@ namespace app::rfl {
         static void Finish(JellymanCommonLevelConfig* pInstance);
         static void Clean(JellymanCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanHumanLevelConfig {
         float wallTime;
         int32_t wallLife;
@@ -27341,11 +30167,13 @@ namespace app::rfl {
         static void Finish(JellymanHumanLevelConfig* pInstance);
         static void Clean(JellymanHumanLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLevelConfig {
         int32_t level;
-        JellymanCommonLevelConfig common;
-        JellymanHumanLevelConfig human;
+        heur::rfl::JellymanCommonLevelConfig common;
+        heur::rfl::JellymanHumanLevelConfig human;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27354,7 +30182,9 @@ namespace app::rfl {
         static void Finish(EnemyLevelConfig* pInstance);
         static void Clean(EnemyLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanCommonActionConfig {
         enum class SuperArmorType : int8_t {
             None = 0,
@@ -27373,7 +30203,9 @@ namespace app::rfl {
         static void Finish(JellymanCommonActionConfig* pInstance);
         static void Clean(JellymanCommonActionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanHumanActionRate {
         float actionRate[5];
 
@@ -27384,9 +30216,11 @@ namespace app::rfl {
         static void Finish(JellymanHumanActionRate* pInstance);
         static void Clean(JellymanHumanActionRate* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct JellymanHumanActionConfig {
-        JellymanHumanActionRate rateTable[4];
+        heur::rfl::JellymanHumanActionRate rateTable[4];
         float coolTime[5];
         float attackCoolTime;
         float nearRange;
@@ -27413,11 +30247,13 @@ namespace app::rfl {
         static void Finish(JellymanHumanActionConfig* pInstance);
         static void Clean(JellymanHumanActionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLevelBandConfig {
         int32_t level;
-        JellymanCommonActionConfig common;
-        JellymanHumanActionConfig human;
+        heur::rfl::JellymanCommonActionConfig common;
+        heur::rfl::JellymanHumanActionConfig human;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27426,7 +30262,9 @@ namespace app::rfl {
         static void Finish(EnemyLevelBandConfig* pInstance);
         static void Clean(EnemyLevelBandConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySquadAvarageLevelConfig {
         int32_t level;
         int32_t maxActionCount;
@@ -27440,9 +30278,11 @@ namespace app::rfl {
         static void Finish(EnemySquadAvarageLevelConfig* pInstance);
         static void Clean(EnemySquadAvarageLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySquadConfig {
-        EnemySquadAvarageLevelConfig averageLevelConfig[5];
+        heur::rfl::EnemySquadAvarageLevelConfig averageLevelConfig[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27451,12 +30291,14 @@ namespace app::rfl {
         static void Finish(EnemySquadConfig* pInstance);
         static void Clean(EnemySquadConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJellymanConfig {
-        EnemyCommonConfig commonParams;
-        EnemyLevelConfig levelParams[8];
-        EnemyLevelBandConfig levelBands[5];
-        EnemySquadConfig squadParams;
+        heur::rfl::EnemyCommonConfig commonParams;
+        heur::rfl::EnemyLevelConfig levelParams[8];
+        heur::rfl::EnemyLevelBandConfig levelBands[5];
+        heur::rfl::EnemySquadConfig squadParams;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27465,7 +30307,9 @@ namespace app::rfl {
         static void Finish(EnemyJellymanConfig* pInstance);
         static void Clean(EnemyJellymanConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct VolumeSize {
         float width;
         float height;
@@ -27478,7 +30322,9 @@ namespace app::rfl {
         static void Finish(VolumeSize* pInstance);
         static void Clean(VolumeSize* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SpringPlayer {
         float velocity;
         float targetCursorMaxDistance;
@@ -27490,7 +30336,9 @@ namespace app::rfl {
         static void Finish(SpringPlayer* pInstance);
         static void Clean(SpringPlayer* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BattleParam {
         float stompingRange;
         float stompingTotalNum;
@@ -27502,7 +30350,7 @@ namespace app::rfl {
         float chaseSpeed;
         float speed;
         float groundImpactRadius;
-        SpringPlayer springPlayer;
+        heur::rfl::SpringPlayer springPlayer;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27511,7 +30359,9 @@ namespace app::rfl {
         static void Finish(BattleParam* pInstance);
         static void Clean(BattleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CharacterControllerCollision {
         float height;
         float radius;
@@ -27525,7 +30375,9 @@ namespace app::rfl {
         static void Finish(CharacterControllerCollision* pInstance);
         static void Clean(CharacterControllerCollision* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperAutoLockonParam {
         float distance;
         float lockOnMinDistance;
@@ -27538,7 +30390,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperAutoLockonParam* pInstance);
         static void Clean(EnemyJumperAutoLockonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -27552,7 +30406,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperCommonLevelParam* pInstance);
         static void Clean(EnemyJumperCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperPatrolConfig {
         float rotateSpeedMin;
         float rotateSpeedMax;
@@ -27575,7 +30431,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperPatrolConfig* pInstance);
         static void Clean(EnemyJumperPatrolConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperCommonParam {
         float killWaitTime;
         float colliderRadius;
@@ -27586,8 +30444,8 @@ namespace app::rfl {
         float eyesightDistance;
         float maxSpeed;
         float checkBarrierDistance;
-        EnemyJumperPatrolConfig patrolConfig;
-        EnemyJumperAutoLockonParam lockonCamera;
+        heur::rfl::EnemyJumperPatrolConfig patrolConfig;
+        heur::rfl::EnemyJumperAutoLockonParam lockonCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27596,10 +30454,12 @@ namespace app::rfl {
         static void Finish(EnemyJumperCommonParam* pInstance);
         static void Clean(EnemyJumperCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperLevelParam {
         int32_t level;
-        EnemyJumperCommonLevelParam common;
+        heur::rfl::EnemyJumperCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27608,7 +30468,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperLevelParam* pInstance);
         static void Clean(EnemyJumperLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperLevelBand {
         int32_t level;
 
@@ -27619,7 +30481,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperLevelBand* pInstance);
         static void Clean(EnemyJumperLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MovementParam {
         float rotateSpeedMin;
         float rotateSpeedMax;
@@ -27633,14 +30497,16 @@ namespace app::rfl {
         static void Finish(MovementParam* pInstance);
         static void Clean(MovementParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperConfig {
-        EnemyJumperCommonParam commonParam;
-        EnemyJumperLevelParam levelParams[5];
-        EnemyJumperLevelBand levelBand[5];
-        CharacterControllerCollision characterControllerCollision;
-        MovementParam movement;
-        BattleParam battleParam;
+        heur::rfl::EnemyJumperCommonParam commonParam;
+        heur::rfl::EnemyJumperLevelParam levelParams[5];
+        heur::rfl::EnemyJumperLevelBand levelBand[5];
+        heur::rfl::CharacterControllerCollision characterControllerCollision;
+        heur::rfl::MovementParam movement;
+        heur::rfl::BattleParam battleParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27649,7 +30515,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperConfig* pInstance);
         static void Clean(EnemyJumperConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -27663,7 +30531,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubCommonLevelParam* pInstance);
         static void Clean(EnemyJumperSubCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubCommonParam {
         float killWaitTime;
         float colliderRadius;
@@ -27678,10 +30548,12 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubCommonParam* pInstance);
         static void Clean(EnemyJumperSubCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubLevelParam {
         int32_t level;
-        EnemyJumperSubCommonLevelParam common;
+        heur::rfl::EnemyJumperSubCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27690,7 +30562,9 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubLevelParam* pInstance);
         static void Clean(EnemyJumperSubLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubLevelBand {
         int32_t level;
 
@@ -27701,11 +30575,13 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubLevelBand* pInstance);
         static void Clean(EnemyJumperSubLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyJumperSubConfig {
-        EnemyJumperSubCommonParam commonParam;
-        EnemyJumperSubLevelParam levelParams[5];
-        EnemyJumperSubLevelBand levelBand[5];
+        heur::rfl::EnemyJumperSubCommonParam commonParam;
+        heur::rfl::EnemyJumperSubLevelParam levelParams[5];
+        heur::rfl::EnemyJumperSubLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27714,9 +30590,11 @@ namespace app::rfl {
         static void Finish(EnemyJumperSubConfig* pInstance);
         static void Clean(EnemyJumperSubConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyRobberCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         float eyesightDistance;
         float idlingSpeed;
         float chasingSpeed;
@@ -27733,7 +30611,9 @@ namespace app::rfl {
         static void Finish(EnemyRobberCommonConfig* pInstance);
         static void Clean(EnemyRobberCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RobbberCommonLevelConfig {
         int32_t maxHealthPoint;
         float attackRate;
@@ -27747,10 +30627,12 @@ namespace app::rfl {
         static void Finish(RobbberCommonLevelConfig* pInstance);
         static void Clean(RobbberCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyRobberLevelConfig {
         int32_t level;
-        RobbberCommonLevelConfig common;
+        heur::rfl::RobbberCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27759,10 +30641,12 @@ namespace app::rfl {
         static void Finish(EnemyRobberLevelConfig* pInstance);
         static void Clean(EnemyRobberLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyRobberConfig {
-        EnemyRobberCommonConfig commonParams;
-        EnemyRobberLevelConfig levelParams[5];
+        heur::rfl::EnemyRobberCommonConfig commonParams;
+        heur::rfl::EnemyRobberLevelConfig levelParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27771,9 +30655,11 @@ namespace app::rfl {
         static void Finish(EnemyRobberConfig* pInstance);
         static void Clean(EnemyRobberConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySniperCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         int32_t codeDropNumMin;
         int32_t codeDropNumMax;
         int32_t codeXDropNumMin;
@@ -27797,7 +30683,9 @@ namespace app::rfl {
         static void Finish(EnemySniperCommonConfig* pInstance);
         static void Clean(EnemySniperCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SniperCommonLevelConfig {
         int32_t maxHealthPoint;
         int32_t maxGuardPoint;
@@ -27825,10 +30713,12 @@ namespace app::rfl {
         static void Finish(SniperCommonLevelConfig* pInstance);
         static void Clean(SniperCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySniperLevelConfig {
         int32_t level;
-        SniperCommonLevelConfig common;
+        heur::rfl::SniperCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27837,7 +30727,9 @@ namespace app::rfl {
         static void Finish(EnemySniperLevelConfig* pInstance);
         static void Clean(EnemySniperLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SniperCommonActionConfig {
         int32_t dummy;
 
@@ -27848,10 +30740,12 @@ namespace app::rfl {
         static void Finish(SniperCommonActionConfig* pInstance);
         static void Clean(SniperCommonActionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySniperLevelBandConfig {
         int32_t level;
-        SniperCommonActionConfig common;
+        heur::rfl::SniperCommonActionConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27860,11 +30754,13 @@ namespace app::rfl {
         static void Finish(EnemySniperLevelBandConfig* pInstance);
         static void Clean(EnemySniperLevelBandConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemySniperConfig {
-        EnemySniperCommonConfig commonParams;
-        EnemySniperLevelConfig levelParams[5];
-        EnemySniperLevelBandConfig levelBands[5];
+        heur::rfl::EnemySniperCommonConfig commonParams;
+        heur::rfl::EnemySniperLevelConfig levelParams[5];
+        heur::rfl::EnemySniperLevelBandConfig levelBands[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27873,16 +30769,18 @@ namespace app::rfl {
         static void Finish(EnemySniperConfig* pInstance);
         static void Clean(EnemySniperConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTwisterCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         float rigidColliderRadius;
         float damageColliderRadius;
         float battleDistance;
         float cyloopHeight;
         float rotateSpeed;
         bool useUniqueDebrisSetting;
-        DebrisParameter debris;
+        heur::rfl::DebrisParameter debris;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27891,7 +30789,9 @@ namespace app::rfl {
         static void Finish(EnemyTwisterCommonConfig* pInstance);
         static void Clean(EnemyTwisterCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TwisterCommonLevelConfig {
         int32_t maxHealthPoint;
         float attackRate;
@@ -27905,10 +30805,12 @@ namespace app::rfl {
         static void Finish(TwisterCommonLevelConfig* pInstance);
         static void Clean(TwisterCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTwisterLevelConfig {
         int32_t level;
-        TwisterCommonLevelConfig common;
+        heur::rfl::TwisterCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27917,10 +30819,12 @@ namespace app::rfl {
         static void Finish(EnemyTwisterLevelConfig* pInstance);
         static void Clean(EnemyTwisterLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyTwisterConfig {
-        EnemyTwisterCommonConfig commonParams;
-        EnemyTwisterLevelConfig levelParams[5];
+        heur::rfl::EnemyTwisterCommonConfig commonParams;
+        heur::rfl::EnemyTwisterLevelConfig levelParams[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27929,9 +30833,11 @@ namespace app::rfl {
         static void Finish(EnemyTwisterConfig* pInstance);
         static void Clean(EnemyTwisterConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyUmbrellaCommonConfig {
-        RingParameter ringParam;
+        heur::rfl::RingParameter ringParam;
         int32_t codeDropNumMin;
         int32_t codeDropNumMax;
         int32_t codeXDropNumMin;
@@ -27949,7 +30855,9 @@ namespace app::rfl {
         static void Finish(EnemyUmbrellaCommonConfig* pInstance);
         static void Clean(EnemyUmbrellaCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UmbrellaCommonLevelConfig {
         enum class BarrageType : uint8_t {
             BOX = 0,
@@ -27980,10 +30888,12 @@ namespace app::rfl {
         static void Finish(UmbrellaCommonLevelConfig* pInstance);
         static void Clean(UmbrellaCommonLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyUmbrellaLevelConfig {
         int32_t level;
-        UmbrellaCommonLevelConfig common;
+        heur::rfl::UmbrellaCommonLevelConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -27992,7 +30902,9 @@ namespace app::rfl {
         static void Finish(EnemyUmbrellaLevelConfig* pInstance);
         static void Clean(EnemyUmbrellaLevelConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UmbrellaCommonActionConfig {
         int32_t dummy;
 
@@ -28003,10 +30915,12 @@ namespace app::rfl {
         static void Finish(UmbrellaCommonActionConfig* pInstance);
         static void Clean(UmbrellaCommonActionConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyUmbrellaLevelBandConfig {
         int32_t level;
-        UmbrellaCommonActionConfig common;
+        heur::rfl::UmbrellaCommonActionConfig common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28015,11 +30929,13 @@ namespace app::rfl {
         static void Finish(EnemyUmbrellaLevelBandConfig* pInstance);
         static void Clean(EnemyUmbrellaLevelBandConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyUmbrellaConfig {
-        EnemyUmbrellaCommonConfig commonParams;
-        EnemyUmbrellaLevelConfig levelParams[5];
-        EnemyUmbrellaLevelBandConfig levelBands[5];
+        heur::rfl::EnemyUmbrellaCommonConfig commonParams;
+        heur::rfl::EnemyUmbrellaLevelConfig levelParams[5];
+        heur::rfl::EnemyUmbrellaLevelBandConfig levelBands[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28028,7 +30944,9 @@ namespace app::rfl {
         static void Finish(EnemyUmbrellaConfig* pInstance);
         static void Clean(EnemyUmbrellaConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfCommonLevelParam {
         int32_t maxHealthPoint;
         float attackRate;
@@ -28042,7 +30960,9 @@ namespace app::rfl {
         static void Finish(EnemyWolfCommonLevelParam* pInstance);
         static void Clean(EnemyWolfCommonLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WolfMovementParam {
         float rotateSpeedMin;
         float rotateSpeedMax;
@@ -28056,7 +30976,9 @@ namespace app::rfl {
         static void Finish(WolfMovementParam* pInstance);
         static void Clean(WolfMovementParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WolfEyesightParam {
         float distance;
         float angle;
@@ -28068,7 +30990,9 @@ namespace app::rfl {
         static void Finish(WolfEyesightParam* pInstance);
         static void Clean(WolfEyesightParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WolfVolumeInfo {
         csl::math::Vector3 volumeSize;
         csl::math::Vector3 volumeOffset;
@@ -28081,7 +31005,9 @@ namespace app::rfl {
         static void Finish(WolfVolumeInfo* pInstance);
         static void Clean(WolfVolumeInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WolfMappingPairInfo {
         enum class WolfVolumeShape : int8_t {
             SPHERE = 0,
@@ -28096,7 +31022,7 @@ namespace app::rfl {
         float pieceFuncFactor;
         WolfVolumeShape volumeShape;
         csl::ut::VariableString wolfNodeName;
-        WolfVolumeInfo wolfVolume;
+        heur::rfl::WolfVolumeInfo wolfVolume;
         bool effectActive;
         bool debugDraw;
         bool debugDrawVolumeAxis;
@@ -28109,11 +31035,13 @@ namespace app::rfl {
         static void Finish(WolfMappingPairInfo* pInstance);
         static void Clean(WolfMappingPairInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfCommonParam {
-        RingParameter ringParam;
-        WolfMovementParam movement;
-        WolfEyesightParam eyesight;
+        heur::rfl::RingParameter ringParam;
+        heur::rfl::WolfMovementParam movement;
+        heur::rfl::WolfEyesightParam eyesight;
         float killWaitTime;
         float blockColliderRadius;
         float blockColliderHeight;
@@ -28121,7 +31049,7 @@ namespace app::rfl {
         float damageColliderHeight;
         float eyesightDistance;
         csl::math::Vector3 cursorOffset;
-        WolfMappingPairInfo mappingPairInfo[32];
+        heur::rfl::WolfMappingPairInfo mappingPairInfo[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28130,10 +31058,12 @@ namespace app::rfl {
         static void Finish(EnemyWolfCommonParam* pInstance);
         static void Clean(EnemyWolfCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfLevelParam {
         int32_t level;
-        EnemyWolfCommonLevelParam common;
+        heur::rfl::EnemyWolfCommonLevelParam common;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28142,7 +31072,9 @@ namespace app::rfl {
         static void Finish(EnemyWolfLevelParam* pInstance);
         static void Clean(EnemyWolfLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfLevelBand {
         int32_t level;
 
@@ -28153,11 +31085,13 @@ namespace app::rfl {
         static void Finish(EnemyWolfLevelBand* pInstance);
         static void Clean(EnemyWolfLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyWolfConfig {
-        EnemyWolfCommonParam commonParam;
-        EnemyWolfLevelParam levelParams[5];
-        EnemyWolfLevelBand levelBand[5];
+        heur::rfl::EnemyWolfCommonParam commonParam;
+        heur::rfl::EnemyWolfLevelParam levelParams[5];
+        heur::rfl::EnemyWolfLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28166,7 +31100,9 @@ namespace app::rfl {
         static void Finish(EnemyWolfConfig* pInstance);
         static void Clean(EnemyWolfConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FocusCameraConfig {
         float duration;
         float distance;
@@ -28182,9 +31118,11 @@ namespace app::rfl {
         static void Finish(FocusCameraConfig* pInstance);
         static void Clean(FocusCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWolfManagerConfig {
-        FocusCameraConfig focusCamera;
+        heur::rfl::FocusCameraConfig focusCamera;
         float shotInterval;
         float shotInterval_Parried;
         float shotInterval_Reborn;
@@ -28205,7 +31143,9 @@ namespace app::rfl {
         static void Finish(ObjWolfManagerConfig* pInstance);
         static void Clean(ObjWolfManagerConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WolfVolumeSize {
         float width;
         float height;
@@ -28218,7 +31158,9 @@ namespace app::rfl {
         static void Finish(WolfVolumeSize* pInstance);
         static void Clean(WolfVolumeSize* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EventData {
         enum class EventType : int8_t {
             KEY = 0,
@@ -28237,7 +31179,9 @@ namespace app::rfl {
         static void Finish(EventData* pInstance);
         static void Clean(EventData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NodeInfoInAnim {
         csl::math::Vector3 position;
         csl::math::Quaternion rotation;
@@ -28250,10 +31194,12 @@ namespace app::rfl {
         static void Finish(NodeInfoInAnim* pInstance);
         static void Clean(NodeInfoInAnim* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NodeData {
         csl::ut::VariableString name;
-        csl::ut::MoveArray<NodeInfoInAnim> nodeInfos;
+        csl::ut::MoveArray<heur::rfl::NodeInfoInAnim> nodeInfos;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28262,7 +31208,9 @@ namespace app::rfl {
         static void Finish(NodeData* pInstance);
         static void Clean(NodeData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DeltaMotionInfoInAnim {
         csl::math::Vector3 position;
         csl::math::Quaternion rotation;
@@ -28275,9 +31223,11 @@ namespace app::rfl {
         static void Finish(DeltaMotionInfoInAnim* pInstance);
         static void Clean(DeltaMotionInfoInAnim* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct DeltaMotionData {
-        csl::ut::MoveArray<DeltaMotionInfoInAnim> deltaInfos;
+        csl::ut::MoveArray<heur::rfl::DeltaMotionInfoInAnim> deltaInfos;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28286,12 +31236,14 @@ namespace app::rfl {
         static void Finish(DeltaMotionData* pInstance);
         static void Clean(DeltaMotionData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AnimData {
         csl::ut::VariableString name;
-        csl::ut::MoveArray<EventData> eventDatas;
-        csl::ut::MoveArray<NodeData> nodeDatas;
-        DeltaMotionData deltaMotionData;
+        csl::ut::MoveArray<heur::rfl::EventData> eventDatas;
+        csl::ut::MoveArray<heur::rfl::NodeData> nodeDatas;
+        heur::rfl::DeltaMotionData deltaMotionData;
         float maxTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -28301,9 +31253,11 @@ namespace app::rfl {
         static void Finish(AnimData* pInstance);
         static void Clean(AnimData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RecordData {
-        csl::ut::MoveArray<AnimData> animDatas;
+        csl::ut::MoveArray<heur::rfl::AnimData> animDatas;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28312,8 +31266,10 @@ namespace app::rfl {
         static void Finish(RecordData* pInstance);
         static void Clean(RecordData* pInstance);
     };
+}
 
-    struct ObjGFieldCylinderSplineSpawner : GravityFieldCylinderSplineSetupParameter {
+namespace heur::rfl {
+    struct ObjGFieldCylinderSplineSpawner : heur::rfl::GravityFieldCylinderSplineSetupParameter {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28322,7 +31278,9 @@ namespace app::rfl {
         static void Finish(ObjGFieldCylinderSplineSpawner* pInstance);
         static void Clean(ObjGFieldCylinderSplineSpawner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossCommonConfig {
         float scoutDistance;
         float scoutDistanceOutside;
@@ -28338,9 +31296,11 @@ namespace app::rfl {
         static void Finish(MiniBossCommonConfig* pInstance);
         static void Clean(MiniBossCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraCommonParam {
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28349,7 +31309,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraCommonParam* pInstance);
         static void Clean(MiniBossAshuraCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossLevelCommonConfig {
         int32_t maxHealthPoint;
         float maxStunPoint[3];
@@ -28369,10 +31331,12 @@ namespace app::rfl {
         static void Finish(MiniBossLevelCommonConfig* pInstance);
         static void Clean(MiniBossLevelCommonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28381,7 +31345,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraLevelParam* pInstance);
         static void Clean(MiniBossAshuraLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraLevelBand {
         int32_t level;
 
@@ -28392,7 +31358,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraLevelBand* pInstance);
         static void Clean(MiniBossAshuraLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectCircleLaser {
         float rotationSpeed;
         float moveRadiusMin;
@@ -28411,7 +31379,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectCircleLaser* pInstance);
         static void Clean(MiniBossAshuraObjectCircleLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectCrawlSpark {
         int32_t createNum;
         int32_t createParkourNum;
@@ -28431,7 +31401,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectCrawlSpark* pInstance);
         static void Clean(MiniBossAshuraObjectCrawlSpark* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectDashCircleBulletParamByType {
         float ocTime;
         float dashSpeed;
@@ -28445,12 +31417,14 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectDashCircleBulletParamByType* pInstance);
         static void Clean(MiniBossAshuraObjectDashCircleBulletParamByType* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectDashCircleBullet {
         float moveSpeed;
         float lifeTime;
-        MiniBossAshuraObjectDashCircleBulletParamByType frontType;
-        MiniBossAshuraObjectDashCircleBulletParamByType backType;
+        heur::rfl::MiniBossAshuraObjectDashCircleBulletParamByType frontType;
+        heur::rfl::MiniBossAshuraObjectDashCircleBulletParamByType backType;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28459,7 +31433,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectDashCircleBullet* pInstance);
         static void Clean(MiniBossAshuraObjectDashCircleBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectSlamWave {
         float blowOffRadius;
         float blowOffHeight;
@@ -28472,12 +31448,14 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectSlamWave* pInstance);
         static void Clean(MiniBossAshuraObjectSlamWave* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraObjectParam {
-        MiniBossAshuraObjectCircleLaser circleLaser;
-        MiniBossAshuraObjectCrawlSpark crawlSpark;
-        MiniBossAshuraObjectDashCircleBullet dashCircleBullet;
-        MiniBossAshuraObjectSlamWave slamWave;
+        heur::rfl::MiniBossAshuraObjectCircleLaser circleLaser;
+        heur::rfl::MiniBossAshuraObjectCrawlSpark crawlSpark;
+        heur::rfl::MiniBossAshuraObjectDashCircleBullet dashCircleBullet;
+        heur::rfl::MiniBossAshuraObjectSlamWave slamWave;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28486,7 +31464,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraObjectParam* pInstance);
         static void Clean(MiniBossAshuraObjectParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraPhaseOnArmCircleBulletPos {
         enum class OnArmCircleBulletType : int8_t {
             CBT_NONE = 0,
@@ -28509,13 +31489,15 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraPhaseOnArmCircleBulletPos* pInstance);
         static void Clean(MiniBossAshuraPhaseOnArmCircleBulletPos* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraPhaseParam {
         bool isCircleLaser;
         bool isCrawlSpark;
         bool isAttackArmWave;
         bool isAttackArmCircleBulletOnArm;
-        MiniBossAshuraPhaseOnArmCircleBulletPos onArmCircleBullets[8];
+        heur::rfl::MiniBossAshuraPhaseOnArmCircleBulletPos onArmCircleBullets[8];
         bool isAttackArmCircleBullet;
         int32_t circleBulletBackTypeFreq;
         int32_t circleBulletCreateNum;
@@ -28531,13 +31513,15 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraPhaseParam* pInstance);
         static void Clean(MiniBossAshuraPhaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossAshuraConfig {
-        MiniBossAshuraCommonParam commonParam;
-        MiniBossAshuraLevelParam levelParams[5];
-        MiniBossAshuraLevelBand levelBand[5];
-        MiniBossAshuraObjectParam objectParam;
-        MiniBossAshuraPhaseParam phaseParam[3];
+        heur::rfl::MiniBossAshuraCommonParam commonParam;
+        heur::rfl::MiniBossAshuraLevelParam levelParams[5];
+        heur::rfl::MiniBossAshuraLevelBand levelBand[5];
+        heur::rfl::MiniBossAshuraObjectParam objectParam;
+        heur::rfl::MiniBossAshuraPhaseParam phaseParam[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28546,7 +31530,9 @@ namespace app::rfl {
         static void Finish(MiniBossAshuraConfig* pInstance);
         static void Clean(MiniBossAshuraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeCommonAIParam {
         float backRange;
         float standRange;
@@ -28568,10 +31554,12 @@ namespace app::rfl {
         static void Finish(MiniBossBladeCommonAIParam* pInstance);
         static void Clean(MiniBossBladeCommonAIParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeCommonParam {
-        MiniBossCommonConfig commonConfig;
-        MiniBossBladeCommonAIParam ai;
+        heur::rfl::MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossBladeCommonAIParam ai;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28580,7 +31568,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeCommonParam* pInstance);
         static void Clean(MiniBossBladeCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeLevelCommonParam {
         float angryHpRatio;
         float stunTime;
@@ -28599,7 +31589,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeLevelCommonParam* pInstance);
         static void Clean(MiniBossBladeLevelCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeLevelAIParam {
         float firstContactWait;
         float specialAttackInterval;
@@ -28624,7 +31616,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeLevelAIParam* pInstance);
         static void Clean(MiniBossBladeLevelAIParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeSpecialAttackParam {
         uint8_t spawnNum;
 
@@ -28635,13 +31629,15 @@ namespace app::rfl {
         static void Finish(MiniBossBladeSpecialAttackParam* pInstance);
         static void Clean(MiniBossBladeSpecialAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig common;
-        MiniBossBladeLevelCommonParam general;
-        MiniBossBladeLevelAIParam ai;
-        MiniBossBladeSpecialAttackParam special;
+        heur::rfl::MiniBossLevelCommonConfig common;
+        heur::rfl::MiniBossBladeLevelCommonParam general;
+        heur::rfl::MiniBossBladeLevelAIParam ai;
+        heur::rfl::MiniBossBladeSpecialAttackParam special;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28650,7 +31646,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeLevelParam* pInstance);
         static void Clean(MiniBossBladeLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeLevelPhaseAction {
         float verticalSlashRate;
         float horizontalSlashRate;
@@ -28675,10 +31673,12 @@ namespace app::rfl {
         static void Finish(MiniBossBladeLevelPhaseAction* pInstance);
         static void Clean(MiniBossBladeLevelPhaseAction* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeLevelBand {
         uint32_t level;
-        MiniBossBladeLevelPhaseAction phases[2];
+        heur::rfl::MiniBossBladeLevelPhaseAction phases[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28687,12 +31687,14 @@ namespace app::rfl {
         static void Finish(MiniBossBladeLevelBand* pInstance);
         static void Clean(MiniBossBladeLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossBladeConfig {
-        MiniBossBladeCommonParam commonParam;
-        MiniBossBladeLevelParam levelParams[5];
-        MiniBossBladeLevelBand levelBands[5];
-        RingParameter ringParam;
+        heur::rfl::MiniBossBladeCommonParam commonParam;
+        heur::rfl::MiniBossBladeLevelParam levelParams[5];
+        heur::rfl::MiniBossBladeLevelBand levelBands[5];
+        heur::rfl::RingParameter ringParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28701,7 +31703,9 @@ namespace app::rfl {
         static void Finish(MiniBossBladeConfig* pInstance);
         static void Clean(MiniBossBladeConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGAttachmentConfig {
         float radius;
         csl::ut::Color<uint8_t> color;
@@ -28713,7 +31717,9 @@ namespace app::rfl {
         static void Finish(ObjCGGAttachmentConfig* pInstance);
         static void Clean(ObjCGGAttachmentConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGBulletNormalConfig {
         float radius;
         csl::ut::Color<uint8_t> color;
@@ -28734,7 +31740,9 @@ namespace app::rfl {
         static void Finish(ObjCGGBulletNormalConfig* pInstance);
         static void Clean(ObjCGGBulletNormalConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct RailCameraParam {
         float yOffset;
         float cameraElevation;
@@ -28754,15 +31762,17 @@ namespace app::rfl {
         static void Finish(RailCameraParam* pInstance);
         static void Clean(RailCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGRootConfig {
         float radius;
         csl::math::Vector3 offset;
         csl::ut::Color<uint8_t> colorActive;
         csl::ut::Color<uint8_t> colorDeactive;
         float timerHeightOffset;
-        RailCameraParam twoRailCamera;
-        RailCameraParam threeRailCamera;
+        heur::rfl::RailCameraParam twoRailCamera;
+        heur::rfl::RailCameraParam threeRailCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28771,7 +31781,9 @@ namespace app::rfl {
         static void Finish(ObjCGGRootConfig* pInstance);
         static void Clean(ObjCGGRootConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGResetBindConfig {
         float radius;
         csl::ut::Color<uint8_t> color;
@@ -28784,7 +31796,9 @@ namespace app::rfl {
         static void Finish(ObjCGGResetBindConfig* pInstance);
         static void Clean(ObjCGGResetBindConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGLaserConfig {
         float radius;
         float heightInterval;
@@ -28797,13 +31811,15 @@ namespace app::rfl {
         static void Finish(ObjCGGLaserConfig* pInstance);
         static void Clean(ObjCGGLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjCGGConfig {
-        ObjCGGRootConfig root;
-        ObjCGGBulletNormalConfig bulletNormal;
-        ObjCGGResetBindConfig resetBind;
-        ObjCGGLaserConfig l;
-        ObjCGGAttachmentConfig attachment;
+        heur::rfl::ObjCGGRootConfig root;
+        heur::rfl::ObjCGGBulletNormalConfig bulletNormal;
+        heur::rfl::ObjCGGResetBindConfig resetBind;
+        heur::rfl::ObjCGGLaserConfig l;
+        heur::rfl::ObjCGGAttachmentConfig attachment;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -28812,7 +31828,9 @@ namespace app::rfl {
         static void Finish(ObjCGGConfig* pInstance);
         static void Clean(ObjCGGConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerAirDrop {
         int32_t barrageIndex;
         float yOffset;
@@ -28834,7 +31852,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerAirDrop* pInstance);
         static void Clean(MiniBossChagerAirDrop* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerBarrageParam {
         enum class BarrageType : int8_t {
             TYPE_LASER = 0,
@@ -28867,7 +31887,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerBarrageParam* pInstance);
         static void Clean(MiniBossChagerBarrageParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerChaseShot {
         float startWaitTime;
         int32_t muzzleNum;
@@ -28894,7 +31916,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerChaseShot* pInstance);
         static void Clean(MiniBossChagerChaseShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerCrossBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -28914,7 +31938,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerCrossBullet* pInstance);
         static void Clean(MiniBossChagerCrossBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerCrossLaser {
         float startWaitTime;
         float moveSpeed;
@@ -28929,7 +31955,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerCrossLaser* pInstance);
         static void Clean(MiniBossChagerCrossLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerDiffuseLaser {
         float startWaitTime;
         float yOffset;
@@ -28954,7 +31982,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerDiffuseLaser* pInstance);
         static void Clean(MiniBossChagerDiffuseLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerFollowLaser {
         float startWaitTime;
         float yOffset;
@@ -28973,7 +32003,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerFollowLaser* pInstance);
         static void Clean(MiniBossChagerFollowLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerGroundObj {
         int32_t bulletDamage;
         float bulletStaggerPoint;
@@ -28998,7 +32030,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerGroundObj* pInstance);
         static void Clean(MiniBossChagerGroundObj* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerMassLaser {
         float startWaitTime;
         float yOffset;
@@ -29013,7 +32047,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerMassLaser* pInstance);
         static void Clean(MiniBossChagerMassLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerSimpleRotateBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29034,7 +32070,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerSimpleRotateBullet* pInstance);
         static void Clean(MiniBossChagerSimpleRotateBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerVerticalRoundBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29052,7 +32090,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerVerticalRoundBullet* pInstance);
         static void Clean(MiniBossChagerVerticalRoundBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChagerVortexLaser {
         float startWaitTime;
         int32_t muzzleNum;
@@ -29070,7 +32110,9 @@ namespace app::rfl {
         static void Finish(MiniBossChagerVortexLaser* pInstance);
         static void Clean(MiniBossChagerVortexLaser* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerAttackParam {
         enum class AttackType : int32_t {
             AttackTypeInvalid = 0,
@@ -29107,7 +32149,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerAttackParam* pInstance);
         static void Clean(MiniBossChargerAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerCameraShake {
         float time;
         float magnitude;
@@ -29122,7 +32166,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerCameraShake* pInstance);
         static void Clean(MiniBossChargerCameraShake* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerCatchParam {
         float hitDistance;
         float durationBind;
@@ -29139,7 +32185,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerCatchParam* pInstance);
         static void Clean(MiniBossChargerCatchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossPyramidRoundBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29161,7 +32209,9 @@ namespace app::rfl {
         static void Finish(MiniBossPyramidRoundBullet* pInstance);
         static void Clean(MiniBossPyramidRoundBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossPlaneUpDownBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29183,7 +32233,9 @@ namespace app::rfl {
         static void Finish(MiniBossPlaneUpDownBullet* pInstance);
         static void Clean(MiniBossPlaneUpDownBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTriangleBatteryBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29200,7 +32252,9 @@ namespace app::rfl {
         static void Finish(MiniBossTriangleBatteryBullet* pInstance);
         static void Clean(MiniBossTriangleBatteryBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossPlayerFallBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29220,7 +32274,9 @@ namespace app::rfl {
         static void Finish(MiniBossPlayerFallBullet* pInstance);
         static void Clean(MiniBossPlayerFallBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossGatlingRevolverBullet {
         int32_t barrageIndex;
         float startWaitTime;
@@ -29240,7 +32296,9 @@ namespace app::rfl {
         static void Finish(MiniBossGatlingRevolverBullet* pInstance);
         static void Clean(MiniBossGatlingRevolverBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWinderBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -29261,7 +32319,9 @@ namespace app::rfl {
         static void Finish(MiniBossWinderBullet* pInstance);
         static void Clean(MiniBossWinderBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossShotgunBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -29282,29 +32342,31 @@ namespace app::rfl {
         static void Finish(MiniBossShotgunBullet* pInstance);
         static void Clean(MiniBossShotgunBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerCommonParam {
-        MiniBossCommonConfig commonConfig;
-        MiniBossChagerBarrageParam barrage[16];
-        MiniBossChagerSimpleRotateBullet simpleRotateBullet[3];
-        MiniBossChagerFollowLaser followLaser[3];
-        MiniBossChagerVortexLaser vortexLaser[3];
-        MiniBossChagerCrossLaser crossLaser[3];
-        MiniBossChagerCrossBullet crossBullet[3];
-        MiniBossChagerMassLaser massLaser[3];
-        MiniBossChagerVerticalRoundBullet verticalRoundBullet[3];
-        MiniBossPyramidRoundBullet pyramidRoundBullet[3];
-        MiniBossPlaneUpDownBullet planeUpDownBullet[3];
-        MiniBossTriangleBatteryBullet triangleBatteryBullet[3];
-        MiniBossPlayerFallBullet playerFallBullet[3];
-        MiniBossGatlingRevolverBullet gatlingRevolverBullet[3];
-        MiniBossWinderBullet winderBullet[3];
-        MiniBossShotgunBullet shotgunBullet[3];
-        MiniBossChagerAirDrop airDrop[3];
-        MiniBossChagerGroundObj groundObj[3];
-        MiniBossChagerDiffuseLaser diffuseLaser[3];
-        MiniBossChagerChaseShot chaseShot[3];
-        MiniBossChargerCatchParam atkCatch;
+        heur::rfl::MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossChagerBarrageParam barrage[16];
+        heur::rfl::MiniBossChagerSimpleRotateBullet simpleRotateBullet[3];
+        heur::rfl::MiniBossChagerFollowLaser followLaser[3];
+        heur::rfl::MiniBossChagerVortexLaser vortexLaser[3];
+        heur::rfl::MiniBossChagerCrossLaser crossLaser[3];
+        heur::rfl::MiniBossChagerCrossBullet crossBullet[3];
+        heur::rfl::MiniBossChagerMassLaser massLaser[3];
+        heur::rfl::MiniBossChagerVerticalRoundBullet verticalRoundBullet[3];
+        heur::rfl::MiniBossPyramidRoundBullet pyramidRoundBullet[3];
+        heur::rfl::MiniBossPlaneUpDownBullet planeUpDownBullet[3];
+        heur::rfl::MiniBossTriangleBatteryBullet triangleBatteryBullet[3];
+        heur::rfl::MiniBossPlayerFallBullet playerFallBullet[3];
+        heur::rfl::MiniBossGatlingRevolverBullet gatlingRevolverBullet[3];
+        heur::rfl::MiniBossWinderBullet winderBullet[3];
+        heur::rfl::MiniBossShotgunBullet shotgunBullet[3];
+        heur::rfl::MiniBossChagerAirDrop airDrop[3];
+        heur::rfl::MiniBossChagerGroundObj groundObj[3];
+        heur::rfl::MiniBossChagerDiffuseLaser diffuseLaser[3];
+        heur::rfl::MiniBossChagerChaseShot chaseShot[3];
+        heur::rfl::MiniBossChargerCatchParam atkCatch;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29313,10 +32375,12 @@ namespace app::rfl {
         static void Finish(MiniBossChargerCommonParam* pInstance);
         static void Clean(MiniBossChargerCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
         float stunTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -29326,7 +32390,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerLevelParam* pInstance);
         static void Clean(MiniBossChargerLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerHPRateParam {
         int32_t rateHp;
         csl::ut::VariableString grindSetName;
@@ -29338,7 +32404,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerHPRateParam* pInstance);
         static void Clean(MiniBossChargerHPRateParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerLevelBand {
         enum class AttackType : int32_t {
             AttackTypeInvalid = 0,
@@ -29373,7 +32441,7 @@ namespace app::rfl {
         float chanceTimeAddSpeed;
         AttackType attackTable[10];
         int32_t attackIndexTable[10];
-        MiniBossChargerHPRateParam hpRateParams[3];
+        heur::rfl::MiniBossChargerHPRateParam hpRateParams[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29382,7 +32450,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerLevelBand* pInstance);
         static void Clean(MiniBossChargerLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerLevel1 {
         enum class AttackType : int32_t {
             AttackTypeInvalid = 0,
@@ -29418,12 +32488,14 @@ namespace app::rfl {
         static void Finish(MiniBossChargerLevel1* pInstance);
         static void Clean(MiniBossChargerLevel1* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossChargerConfig {
-        MiniBossChargerCommonParam commonParam;
-        MiniBossChargerLevelParam levelParams[5];
-        MiniBossChargerLevelBand levelBands[5];
-        MiniBossChargerLevel1 level1Params[2];
+        heur::rfl::MiniBossChargerCommonParam commonParam;
+        heur::rfl::MiniBossChargerLevelParam levelParams[5];
+        heur::rfl::MiniBossChargerLevelBand levelBands[5];
+        heur::rfl::MiniBossChargerLevel1 level1Params[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29432,7 +32504,9 @@ namespace app::rfl {
         static void Finish(MiniBossChargerConfig* pInstance);
         static void Clean(MiniBossChargerConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaSpecialShotParamBase {
         enum class ScatterType : int8_t {
             RANDOM = 0,
@@ -29461,8 +32535,10 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaSpecialShotParamBase* pInstance);
         static void Clean(MiniBossDarumaSpecialShotParamBase* pInstance);
     };
+}
 
-    struct MiniBossDarumaBombParam : MiniBossDarumaSpecialShotParamBase {
+namespace heur::rfl {
+    struct MiniBossDarumaBombParam : heur::rfl::MiniBossDarumaSpecialShotParamBase {
         float explosionRadius;
         float explosionEffectScale;
         float explosionTime;
@@ -29474,7 +32550,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaBombParam* pInstance);
         static void Clean(MiniBossDarumaBombParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaCameraShakeParam {
         float time;
         float magnitude;
@@ -29489,7 +32567,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaCameraShakeParam* pInstance);
         static void Clean(MiniBossDarumaCameraShakeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaShotParam {
         int32_t count;
         float intervalTime;
@@ -29512,8 +32592,10 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaShotParam* pInstance);
         static void Clean(MiniBossDarumaShotParam* pInstance);
     };
+}
 
-    struct MiniBossDarumaFlamePillarParam : MiniBossDarumaSpecialShotParamBase {
+namespace heur::rfl {
+    struct MiniBossDarumaFlamePillarParam : heur::rfl::MiniBossDarumaSpecialShotParamBase {
         float burnLifeTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -29523,8 +32605,10 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaFlamePillarParam* pInstance);
         static void Clean(MiniBossDarumaFlamePillarParam* pInstance);
     };
+}
 
-    struct MiniBossDarumaWaveBombParam : MiniBossDarumaSpecialShotParamBase {
+namespace heur::rfl {
+    struct MiniBossDarumaWaveBombParam : heur::rfl::MiniBossDarumaSpecialShotParamBase {
         float burnLifeTime;
         float cycleTime;
         float cycleDistance;
@@ -29539,7 +32623,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaWaveBombParam* pInstance);
         static void Clean(MiniBossDarumaWaveBombParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaStompingParam {
         float range;
         float riseDistance;
@@ -29579,7 +32665,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaStompingParam* pInstance);
         static void Clean(MiniBossDarumaStompingParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaCyloopReactionParam {
         csl::math::Vector3 targetOffSet;
         float azimuth;
@@ -29600,7 +32688,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaCyloopReactionParam* pInstance);
         static void Clean(MiniBossDarumaCyloopReactionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaDebrisBodySmallParam {
         float lifeTime;
         float forceScale;
@@ -29620,13 +32710,15 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaDebrisBodySmallParam* pInstance);
         static void Clean(MiniBossDarumaDebrisBodySmallParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaDebrisParam {
         float damageVelocityScale;
         float minSpeed;
         float maxSpeed;
-        MiniBossDarumaDebrisBodySmallParam body;
-        MiniBossDarumaDebrisBodySmallParam c;
+        heur::rfl::MiniBossDarumaDebrisBodySmallParam body;
+        heur::rfl::MiniBossDarumaDebrisBodySmallParam c;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29635,9 +32727,11 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaDebrisParam* pInstance);
         static void Clean(MiniBossDarumaDebrisParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaCommonParam {
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
         float headHeight;
         int32_t bodyMaxHealthPoint;
         float bodyRadius;
@@ -29652,30 +32746,30 @@ namespace app::rfl {
         float maxSpeed;
         float stompingTransitRange;
         int32_t questKodamaMaxNum[3];
-        MiniBossDarumaShotParam shot;
-        MiniBossDarumaShotParam shot3way;
-        MiniBossDarumaShotParam shot5way;
-        MiniBossDarumaBombParam bomb;
-        MiniBossDarumaFlamePillarParam flamePillar;
-        MiniBossDarumaWaveBombParam waveBomb;
-        MiniBossDarumaStompingParam stomping;
-        MiniBossDarumaStompingParam stompingThorn;
-        MiniBossDarumaStompingParam stompingQuest[3];
-        MiniBossDarumaStompingParam stompingQuestHigh[3];
-        MiniBossDarumaStompingParam stompingQuest2[3];
-        MiniBossDarumaStompingParam stompingQuest2High[3];
-        MiniBossDarumaCyloopReactionParam cyloopReaction;
-        MiniBossDarumaShotParam shotBerserk;
-        MiniBossDarumaShotParam shotBerserk3way;
-        MiniBossDarumaShotParam shotBerserk5way;
-        MiniBossDarumaStompingParam hop;
-        MiniBossDarumaStompingParam stompingBerserk;
-        MiniBossDarumaFlamePillarParam flamePillarBerserk;
-        MiniBossDarumaDebrisParam debris;
-        MiniBossDarumaCameraShakeParam cameraShakeStomping;
-        MiniBossDarumaCameraShakeParam cameraShakeStompingQuest;
-        MiniBossDarumaCameraShakeParam cameraShakeStompingQuest2;
-        MiniBossDarumaCameraShakeParam cameraShakeDrop;
+        heur::rfl::MiniBossDarumaShotParam shot;
+        heur::rfl::MiniBossDarumaShotParam shot3way;
+        heur::rfl::MiniBossDarumaShotParam shot5way;
+        heur::rfl::MiniBossDarumaBombParam bomb;
+        heur::rfl::MiniBossDarumaFlamePillarParam flamePillar;
+        heur::rfl::MiniBossDarumaWaveBombParam waveBomb;
+        heur::rfl::MiniBossDarumaStompingParam stomping;
+        heur::rfl::MiniBossDarumaStompingParam stompingThorn;
+        heur::rfl::MiniBossDarumaStompingParam stompingQuest[3];
+        heur::rfl::MiniBossDarumaStompingParam stompingQuestHigh[3];
+        heur::rfl::MiniBossDarumaStompingParam stompingQuest2[3];
+        heur::rfl::MiniBossDarumaStompingParam stompingQuest2High[3];
+        heur::rfl::MiniBossDarumaCyloopReactionParam cyloopReaction;
+        heur::rfl::MiniBossDarumaShotParam shotBerserk;
+        heur::rfl::MiniBossDarumaShotParam shotBerserk3way;
+        heur::rfl::MiniBossDarumaShotParam shotBerserk5way;
+        heur::rfl::MiniBossDarumaStompingParam hop;
+        heur::rfl::MiniBossDarumaStompingParam stompingBerserk;
+        heur::rfl::MiniBossDarumaFlamePillarParam flamePillarBerserk;
+        heur::rfl::MiniBossDarumaDebrisParam debris;
+        heur::rfl::MiniBossDarumaCameraShakeParam cameraShakeStomping;
+        heur::rfl::MiniBossDarumaCameraShakeParam cameraShakeStompingQuest;
+        heur::rfl::MiniBossDarumaCameraShakeParam cameraShakeStompingQuest2;
+        heur::rfl::MiniBossDarumaCameraShakeParam cameraShakeDrop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29684,10 +32778,12 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaCommonParam* pInstance);
         static void Clean(MiniBossDarumaCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29696,7 +32792,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaLevelParam* pInstance);
         static void Clean(MiniBossDarumaLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaLevelBand {
         enum class StompingType : int8_t {
             WEEK = 0,
@@ -29736,13 +32834,15 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaLevelBand* pInstance);
         static void Clean(MiniBossDarumaLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossDarumaConfig {
-        MiniBossDarumaCommonParam commonParam;
-        MiniBossDarumaLevelParam levelParams[5];
-        MiniBossDarumaLevelBand levelBands[5];
-        MiniBossDarumaLevelParam levelParamQuest;
-        MiniBossDarumaLevelBand levelBandQuest;
+        heur::rfl::MiniBossDarumaCommonParam commonParam;
+        heur::rfl::MiniBossDarumaLevelParam levelParams[5];
+        heur::rfl::MiniBossDarumaLevelBand levelBands[5];
+        heur::rfl::MiniBossDarumaLevelParam levelParamQuest;
+        heur::rfl::MiniBossDarumaLevelBand levelBandQuest;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29751,7 +32851,9 @@ namespace app::rfl {
         static void Finish(MiniBossDarumaConfig* pInstance);
         static void Clean(MiniBossDarumaConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlayerEscapeShotSequenceTable {
         int32_t id;
         float interval;
@@ -29763,10 +32865,12 @@ namespace app::rfl {
         static void Finish(FlayerEscapeShotSequenceTable* pInstance);
         static void Clean(FlayerEscapeShotSequenceTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlayerEscapeShotSequenceTableData {
         bool isUse;
-        FlayerEscapeShotSequenceTable table[8];
+        heur::rfl::FlayerEscapeShotSequenceTable table[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29775,7 +32879,9 @@ namespace app::rfl {
         static void Finish(FlayerEscapeShotSequenceTableData* pInstance);
         static void Clean(FlayerEscapeShotSequenceTableData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerAutoLockonParam {
         float lockonDistance;
         float unlockDistance;
@@ -29792,7 +32898,9 @@ namespace app::rfl {
         static void Finish(FlyerAutoLockonParam* pInstance);
         static void Clean(FlyerAutoLockonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerEscapeCameraParam {
         enum class PlayerOffsetType : int8_t {
             PLAYER_OFFSET_NORMAL = 0,
@@ -29820,7 +32928,9 @@ namespace app::rfl {
         static void Finish(FlyerEscapeCameraParam* pInstance);
         static void Clean(FlyerEscapeCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerEscapeShotTableData {
         enum class HorizontalType : int8_t {
             HorzCenter = 0,
@@ -29837,9 +32947,11 @@ namespace app::rfl {
         static void Finish(FlyerEscapeShotTableData* pInstance);
         static void Clean(FlyerEscapeShotTableData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerEscapeShotParam {
-        FlyerEscapeShotTableData posTable[16];
+        heur::rfl::FlyerEscapeShotTableData posTable[16];
         float interval;
         float waitAfterLoop;
         float readyDuration;
@@ -29858,7 +32970,9 @@ namespace app::rfl {
         static void Finish(FlyerEscapeShotParam* pInstance);
         static void Clean(FlyerEscapeShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerEscapeQuickStepParam {
         bool enable;
         float speed;
@@ -29872,7 +32986,9 @@ namespace app::rfl {
         static void Finish(FlyerEscapeQuickStepParam* pInstance);
         static void Clean(FlyerEscapeQuickStepParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerEscapeParam {
         float startSpeed;
         float decrease;
@@ -29880,9 +32996,9 @@ namespace app::rfl {
         float targetDisableTime;
         float resetByFallTime;
         float resetByDistance;
-        FlyerEscapeShotParam shot;
-        FlyerEscapeCameraParam camera;
-        FlyerEscapeQuickStepParam quickStep;
+        heur::rfl::FlyerEscapeShotParam shot;
+        heur::rfl::FlyerEscapeCameraParam camera;
+        heur::rfl::FlyerEscapeQuickStepParam quickStep;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29891,7 +33007,9 @@ namespace app::rfl {
         static void Finish(FlyerEscapeParam* pInstance);
         static void Clean(FlyerEscapeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerGuardParam {
         float duration;
 
@@ -29902,7 +33020,9 @@ namespace app::rfl {
         static void Finish(FlyerGuardParam* pInstance);
         static void Clean(FlyerGuardParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerIdlingNearParam {
         float durationMin;
         float durationMax;
@@ -29915,7 +33035,9 @@ namespace app::rfl {
         static void Finish(FlyerIdlingNearParam* pInstance);
         static void Clean(FlyerIdlingNearParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerNearEndLaunchParam {
         float outStrength;
         float inStrength;
@@ -29933,7 +33055,9 @@ namespace app::rfl {
         static void Finish(FlyerNearEndLaunchParam* pInstance);
         static void Clean(FlyerNearEndLaunchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerNearStartCamParam {
         float duration;
         csl::math::Vector3 posOffset;
@@ -29948,18 +33072,20 @@ namespace app::rfl {
         static void Finish(FlyerNearStartCamParam* pInstance);
         static void Clean(FlyerNearStartCamParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerNearParam {
         float duration;
         float startHABounceUp;
         float startHABounceBack;
         float preliminaryMotionSpeed;
         float resetByDistance;
-        FlyerNearStartCamParam startCam;
-        FlyerIdlingNearParam idling;
-        FlyerGuardParam guard;
-        FlyerAutoLockonParam lockon;
-        FlyerNearEndLaunchParam launch;
+        heur::rfl::FlyerNearStartCamParam startCam;
+        heur::rfl::FlyerIdlingNearParam idling;
+        heur::rfl::FlyerGuardParam guard;
+        heur::rfl::FlyerAutoLockonParam lockon;
+        heur::rfl::FlyerNearEndLaunchParam launch;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -29968,7 +33094,9 @@ namespace app::rfl {
         static void Finish(FlyerNearParam* pInstance);
         static void Clean(FlyerNearParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerTrailParam {
         float interval;
         int32_t recordNumWander;
@@ -29984,7 +33112,9 @@ namespace app::rfl {
         static void Finish(FlyerTrailParam* pInstance);
         static void Clean(FlyerTrailParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerWanderParam {
         float speed;
 
@@ -29995,7 +33125,9 @@ namespace app::rfl {
         static void Finish(FlyerWanderParam* pInstance);
         static void Clean(FlyerWanderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerWatchShotParam {
         float interval;
         float readyDuration;
@@ -30011,11 +33143,13 @@ namespace app::rfl {
         static void Finish(FlyerWatchShotParam* pInstance);
         static void Clean(FlyerWatchShotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlyerWatchParam {
         float speed;
         float changeWanderTime;
-        FlyerWatchShotParam shot;
+        heur::rfl::FlyerWatchShotParam shot;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30024,14 +33158,16 @@ namespace app::rfl {
         static void Finish(FlyerWatchParam* pInstance);
         static void Clean(FlyerWatchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossFlyerCommonParam {
-        MiniBossCommonConfig commonConfig;
-        FlyerTrailParam trail;
-        FlyerWanderParam wander;
-        FlyerWatchParam watch;
-        FlyerEscapeParam escape;
-        FlyerNearParam nearRange;
+        heur::rfl::MiniBossCommonConfig commonConfig;
+        heur::rfl::FlyerTrailParam trail;
+        heur::rfl::FlyerWanderParam wander;
+        heur::rfl::FlyerWatchParam watch;
+        heur::rfl::FlyerEscapeParam escape;
+        heur::rfl::FlyerNearParam nearRange;
         float stunTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -30041,10 +33177,12 @@ namespace app::rfl {
         static void Finish(MiniBossFlyerCommonParam* pInstance);
         static void Clean(MiniBossFlyerCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossFlyerLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30053,10 +33191,12 @@ namespace app::rfl {
         static void Finish(MiniBossFlyerLevelParam* pInstance);
         static void Clean(MiniBossFlyerLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossFlyerLevelBand {
         int32_t level;
-        FlayerEscapeShotSequenceTableData sequence[16];
+        heur::rfl::FlayerEscapeShotSequenceTableData sequence[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30065,11 +33205,13 @@ namespace app::rfl {
         static void Finish(MiniBossFlyerLevelBand* pInstance);
         static void Clean(MiniBossFlyerLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossFlyerConfig {
-        MiniBossFlyerCommonParam commonParam;
-        MiniBossFlyerLevelParam levelParams[5];
-        MiniBossFlyerLevelBand levelBand[5];
+        heur::rfl::MiniBossFlyerCommonParam commonParam;
+        heur::rfl::MiniBossFlyerLevelParam levelParams[5];
+        heur::rfl::MiniBossFlyerLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30078,7 +33220,9 @@ namespace app::rfl {
         static void Finish(MiniBossFlyerConfig* pInstance);
         static void Clean(MiniBossFlyerConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSkierMissileConfig {
         float colliderHeight;
         float colliderRadius;
@@ -30095,7 +33239,9 @@ namespace app::rfl {
         static void Finish(ObjSkierMissileConfig* pInstance);
         static void Clean(ObjSkierMissileConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkeirPlayerControlLR {
         float LRFBNormalRatioSpeed;
         float LRDangerAngle;
@@ -30112,7 +33258,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkeirPlayerControlLR* pInstance);
         static void Clean(MiniBossSkeirPlayerControlLR* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkeirPlayerControlTail {
         float tailRatioChangeSpeed;
         float tailRatioRecoverSpeed;
@@ -30126,7 +33274,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkeirPlayerControlTail* pInstance);
         static void Clean(MiniBossSkeirPlayerControlTail* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkeirPlayerControlUD {
         float UDSafeRatio;
         float UDRecoverSpeed;
@@ -30139,7 +33289,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkeirPlayerControlUD* pInstance);
         static void Clean(MiniBossSkeirPlayerControlUD* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkeirTailMoveParam {
         float tailRotateMinSpeed;
         float tailRotateMaxSpeed;
@@ -30152,7 +33304,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkeirTailMoveParam* pInstance);
         static void Clean(MiniBossSkeirTailMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierSkiAcitionRate {
         float NoActionRate;
         float SnakeMoveRate;
@@ -30168,10 +33322,12 @@ namespace app::rfl {
         static void Finish(MiniBossSkierSkiAcitionRate* pInstance);
         static void Clean(MiniBossSkierSkiAcitionRate* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierBattlePhaseParam {
         float HPRate;
-        MiniBossSkierSkiAcitionRate actionRate;
+        heur::rfl::MiniBossSkierSkiAcitionRate actionRate;
         float showWeaknessTimeReTry;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -30181,7 +33337,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierBattlePhaseParam* pInstance);
         static void Clean(MiniBossSkierBattlePhaseParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierColliderParam {
         float blockRadius;
         float blockHeight;
@@ -30202,7 +33360,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierColliderParam* pInstance);
         static void Clean(MiniBossSkierColliderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierTailParam {
         float tailExtendTime;
         float tailNodeLenthMin;
@@ -30211,8 +33371,8 @@ namespace app::rfl {
         float checkGroundEndDistanceOnSkiing;
         float checkGroundEndDistanceOnSkiingJump;
         float checkGroundEndDistanceOnSkiingCamera;
-        MiniBossSkeirTailMoveParam rotateParamNormal;
-        MiniBossSkeirTailMoveParam rotateParamAttack;
+        heur::rfl::MiniBossSkeirTailMoveParam rotateParamNormal;
+        heur::rfl::MiniBossSkeirTailMoveParam rotateParamAttack;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30221,7 +33381,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierTailParam* pInstance);
         static void Clean(MiniBossSkierTailParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierMissileParam {
         float timeExplodePassed;
         float timeExplodeAuto;
@@ -30233,7 +33395,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierMissileParam* pInstance);
         static void Clean(MiniBossSkierMissileParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierCustomCameraParam {
         float interoplateTimeActivate;
         float interoplateTimeDeactivate;
@@ -30247,17 +33411,19 @@ namespace app::rfl {
         static void Finish(MiniBossSkierCustomCameraParam* pInstance);
         static void Clean(MiniBossSkierCustomCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierCommonParam {
-        MiniBossCommonConfig commonConfig;
-        MiniBossSkierColliderParam colliderParam;
-        MiniBossSkierTailParam tailParam;
-        MiniBossSkeirPlayerControlLR LRControlParam;
-        MiniBossSkeirPlayerControlUD UDControlParam;
-        MiniBossSkeirPlayerControlTail tailControlParam;
-        MiniBossSkierMissileParam missileParam;
-        MiniBossSkierCustomCameraParam customCameraParam;
-        MiniBossSkierCustomCameraParam skiCameraParam;
+        heur::rfl::MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossSkierColliderParam colliderParam;
+        heur::rfl::MiniBossSkierTailParam tailParam;
+        heur::rfl::MiniBossSkeirPlayerControlLR LRControlParam;
+        heur::rfl::MiniBossSkeirPlayerControlUD UDControlParam;
+        heur::rfl::MiniBossSkeirPlayerControlTail tailControlParam;
+        heur::rfl::MiniBossSkierMissileParam missileParam;
+        heur::rfl::MiniBossSkierCustomCameraParam customCameraParam;
+        heur::rfl::MiniBossSkierCustomCameraParam skiCameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30266,10 +33432,12 @@ namespace app::rfl {
         static void Finish(MiniBossSkierCommonParam* pInstance);
         static void Clean(MiniBossSkierCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30278,7 +33446,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierLevelParam* pInstance);
         static void Clean(MiniBossSkierLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierJumpOutParam {
         float attackInterval;
         float attackSensorRange;
@@ -30292,7 +33462,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierJumpOutParam* pInstance);
         static void Clean(MiniBossSkierJumpOutParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierSkiParam {
         float showWeaknessTime;
         float skiMoveSpeed;
@@ -30311,7 +33483,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierSkiParam* pInstance);
         static void Clean(MiniBossSkierSkiParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierSnakeMoveParam {
         float snakeMoveAmplitude;
         float snakeMovePeriod;
@@ -30326,7 +33500,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierSnakeMoveParam* pInstance);
         static void Clean(MiniBossSkierSnakeMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierTailAttackParam {
         float signSpeed;
         float attackMinSpeed;
@@ -30346,7 +33522,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierTailAttackParam* pInstance);
         static void Clean(MiniBossSkierTailAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierTailAttackPylonParam {
         float signSpeed;
         float signTime;
@@ -30360,15 +33538,17 @@ namespace app::rfl {
         static void Finish(MiniBossSkierTailAttackPylonParam* pInstance);
         static void Clean(MiniBossSkierTailAttackPylonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierLevelBand {
         int32_t level;
-        MiniBossSkierBattlePhaseParam phaseParam[3];
-        MiniBossSkierJumpOutParam jumpOutParam;
-        MiniBossSkierSkiParam skiParam;
-        MiniBossSkierSnakeMoveParam snakeMoveParam;
-        MiniBossSkierTailAttackParam tailAttackParam;
-        MiniBossSkierTailAttackPylonParam pylonParam;
+        heur::rfl::MiniBossSkierBattlePhaseParam phaseParam[3];
+        heur::rfl::MiniBossSkierJumpOutParam jumpOutParam;
+        heur::rfl::MiniBossSkierSkiParam skiParam;
+        heur::rfl::MiniBossSkierSnakeMoveParam snakeMoveParam;
+        heur::rfl::MiniBossSkierTailAttackParam tailAttackParam;
+        heur::rfl::MiniBossSkierTailAttackPylonParam pylonParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30377,11 +33557,13 @@ namespace app::rfl {
         static void Finish(MiniBossSkierLevelBand* pInstance);
         static void Clean(MiniBossSkierLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSkierConfig {
-        MiniBossSkierCommonParam commonParam;
-        MiniBossSkierLevelParam levelParams[5];
-        MiniBossSkierLevelBand levelBand[5];
+        heur::rfl::MiniBossSkierCommonParam commonParam;
+        heur::rfl::MiniBossSkierLevelParam levelParams[5];
+        heur::rfl::MiniBossSkierLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30390,7 +33572,9 @@ namespace app::rfl {
         static void Finish(MiniBossSkierConfig* pInstance);
         static void Clean(MiniBossSkierConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelBandRate {
         float pressRate;
         float stompRate;
@@ -30408,7 +33592,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelBandRate* pInstance);
         static void Clean(MiniBossSpiderLevelBandRate* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelBandInterval {
         float pressInterval;
         float stompInterval;
@@ -30426,12 +33612,14 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelBandInterval* pInstance);
         static void Clean(MiniBossSpiderLevelBandInterval* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderActionParam {
         float nearRange;
-        MiniBossSpiderLevelBandRate nearRates[2];
-        MiniBossSpiderLevelBandRate farRates[2];
-        MiniBossSpiderLevelBandInterval interval[2];
+        heur::rfl::MiniBossSpiderLevelBandRate nearRates[2];
+        heur::rfl::MiniBossSpiderLevelBandRate farRates[2];
+        heur::rfl::MiniBossSpiderLevelBandInterval interval[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30440,7 +33628,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderActionParam* pInstance);
         static void Clean(MiniBossSpiderActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderCameraLockOn {
         float time;
         float distance;
@@ -30456,7 +33646,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderCameraLockOn* pInstance);
         static void Clean(MiniBossSpiderCameraLockOn* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderCameraShake {
         float time;
         float magnitude;
@@ -30471,7 +33663,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderCameraShake* pInstance);
         static void Clean(MiniBossSpiderCameraShake* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderWaveParam {
         float radius;
         float appearRadius;
@@ -30490,7 +33684,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderWaveParam* pInstance);
         static void Clean(MiniBossSpiderWaveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderCommonParam {
         enum class MiniBossSpiderBreakType : int8_t {
             BREAK_NONE = 0,
@@ -30501,7 +33697,7 @@ namespace app::rfl {
             BREAK_ALL = 5,
         };
 
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
         float patrolWalkWaitTimeMin;
         float patrolWalkWaitTimeMax;
         float jumpSpeed;
@@ -30542,18 +33738,18 @@ namespace app::rfl {
         float thornLifeTime;
         float thornFlyingSpeed;
         int32_t protecterHp;
-        MiniBossSpiderCameraShake cameraShakeWalk;
-        MiniBossSpiderCameraShake cameraShakeAttack;
-        RingParameter ringParam;
-        MiniBossSpiderWaveParam waveParams[8];
-        MiniBossSpiderCameraLockOn cameraLockBreakArmor;
-        MiniBossSpiderCameraLockOn cameraLockBlownUp;
-        MiniBossSpiderCameraLockOn cameraLockBlownDown;
-        MiniBossSpiderCameraLockOn cameraLockFootUp;
-        MiniBossSpiderCameraLockOn cameraLockFall;
-        DebrisParameter debrisSet;
+        heur::rfl::MiniBossSpiderCameraShake cameraShakeWalk;
+        heur::rfl::MiniBossSpiderCameraShake cameraShakeAttack;
+        heur::rfl::RingParameter ringParam;
+        heur::rfl::MiniBossSpiderWaveParam waveParams[8];
+        heur::rfl::MiniBossSpiderCameraLockOn cameraLockBreakArmor;
+        heur::rfl::MiniBossSpiderCameraLockOn cameraLockBlownUp;
+        heur::rfl::MiniBossSpiderCameraLockOn cameraLockBlownDown;
+        heur::rfl::MiniBossSpiderCameraLockOn cameraLockFootUp;
+        heur::rfl::MiniBossSpiderCameraLockOn cameraLockFall;
+        heur::rfl::DebrisParameter debrisSet;
         MiniBossSpiderBreakType rotationTypeTable[8];
-        MiniBossSpiderActionParam rotationActionTable[4];
+        heur::rfl::MiniBossSpiderActionParam rotationActionTable[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30562,10 +33758,12 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderCommonParam* pInstance);
         static void Clean(MiniBossSpiderCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
         float attackRate;
         float stunTime;
         float downTime;
@@ -30581,7 +33779,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelParam* pInstance);
         static void Clean(MiniBossSpiderLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelPhaseAction {
         int8_t pressType;
         uint8_t pressNum;
@@ -30595,7 +33795,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelPhaseAction* pInstance);
         static void Clean(MiniBossSpiderLevelPhaseAction* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelPhaseDiving {
         float divingEndHeight;
 
@@ -30606,7 +33808,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelPhaseDiving* pInstance);
         static void Clean(MiniBossSpiderLevelPhaseDiving* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderLevelBand {
         enum class MiniBossSpiderBreakType : int8_t {
             BREAK_NONE = 0,
@@ -30644,11 +33848,11 @@ namespace app::rfl {
         int32_t chainWaveNum;
         bool enableReProtect;
         float nearRange;
-        MiniBossSpiderLevelBandRate nearRates[2];
-        MiniBossSpiderLevelBandRate farRates[2];
-        MiniBossSpiderLevelPhaseAction phases[2];
-        MiniBossSpiderLevelBandInterval interval[2];
-        MiniBossSpiderLevelPhaseDiving diving[2];
+        heur::rfl::MiniBossSpiderLevelBandRate nearRates[2];
+        heur::rfl::MiniBossSpiderLevelBandRate farRates[2];
+        heur::rfl::MiniBossSpiderLevelPhaseAction phases[2];
+        heur::rfl::MiniBossSpiderLevelBandInterval interval[2];
+        heur::rfl::MiniBossSpiderLevelPhaseDiving diving[2];
         float slowRate[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -30658,11 +33862,13 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderLevelBand* pInstance);
         static void Clean(MiniBossSpiderLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSpiderConfig {
-        MiniBossSpiderCommonParam commonParam;
-        MiniBossSpiderLevelParam levelParams[5];
-        MiniBossSpiderLevelBand levelBands[5];
+        heur::rfl::MiniBossSpiderCommonParam commonParam;
+        heur::rfl::MiniBossSpiderLevelParam levelParams[5];
+        heur::rfl::MiniBossSpiderLevelBand levelBands[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30671,7 +33877,9 @@ namespace app::rfl {
         static void Finish(MiniBossSpiderConfig* pInstance);
         static void Clean(MiniBossSpiderConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AttackInfo {
         enum class MeansOfAttack : uint8_t {
             Bullet = 0,
@@ -30690,9 +33898,11 @@ namespace app::rfl {
         static void Finish(AttackInfo* pInstance);
         static void Clean(AttackInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AttackPhase {
-        AttackInfo attackInfos[2];
+        heur::rfl::AttackInfo attackInfos[2];
         float triggeredHPRatio;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -30702,7 +33912,9 @@ namespace app::rfl {
         static void Finish(AttackPhase* pInstance);
         static void Clean(AttackPhase* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ArcLaserConfig {
         float arrivalTime;
         uint8_t numPatterns;
@@ -30726,7 +33938,9 @@ namespace app::rfl {
         static void Finish(ArcLaserConfig* pInstance);
         static void Clean(ArcLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CommonBulletParam {
         enum class ShootingDirection : uint8_t {
             Sonic = 0,
@@ -30747,8 +33961,10 @@ namespace app::rfl {
         static void Finish(CommonBulletParam* pInstance);
         static void Clean(CommonBulletParam* pInstance);
     };
+}
 
-    struct HomingBulletParam : CommonBulletParam {
+namespace heur::rfl {
+    struct HomingBulletParam : heur::rfl::CommonBulletParam {
         float railChangeDelay;
         float turnaroundTime;
         float splinePositionDistance;
@@ -30761,8 +33977,10 @@ namespace app::rfl {
         static void Finish(HomingBulletParam* pInstance);
         static void Clean(HomingBulletParam* pInstance);
     };
+}
 
-    struct ReverseHomingBulletParam : CommonBulletParam {
+namespace heur::rfl {
+    struct ReverseHomingBulletParam : heur::rfl::CommonBulletParam {
         float railChangeDelay;
         float turnaroundTime;
         float splinePositionDistance;
@@ -30775,8 +33993,10 @@ namespace app::rfl {
         static void Finish(ReverseHomingBulletParam* pInstance);
         static void Clean(ReverseHomingBulletParam* pInstance);
     };
+}
 
-    struct SameBodyRailBulletParam : CommonBulletParam {
+namespace heur::rfl {
+    struct SameBodyRailBulletParam : heur::rfl::CommonBulletParam {
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30785,11 +34005,13 @@ namespace app::rfl {
         static void Finish(SameBodyRailBulletParam* pInstance);
         static void Clean(SameBodyRailBulletParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderBulletConfig {
-        HomingBulletParam homingBulletParam;
-        ReverseHomingBulletParam reverseHomingBulletParam;
-        SameBodyRailBulletParam sameBodyRailBulletParam;
+        heur::rfl::HomingBulletParam homingBulletParam;
+        heur::rfl::ReverseHomingBulletParam reverseHomingBulletParam;
+        heur::rfl::SameBodyRailBulletParam sameBodyRailBulletParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30798,7 +34020,9 @@ namespace app::rfl {
         static void Finish(ObjStriderBulletConfig* pInstance);
         static void Clean(ObjStriderBulletConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderGrindRailConfig {
         float bulletSpeed;
         float bulletRotDegPerSec;
@@ -30828,7 +34052,9 @@ namespace app::rfl {
         static void Finish(ObjStriderGrindRailConfig* pInstance);
         static void Clean(ObjStriderGrindRailConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderLaserConfig {
         float lifeTime;
         float degreeVelocityPrePostLaser;
@@ -30838,7 +34064,7 @@ namespace app::rfl {
         float collisionRadius;
         float minStartingPointOffset;
         float maxStartingPointOffset;
-        ArcLaserConfig arcLaserConfig;
+        heur::rfl::ArcLaserConfig arcLaserConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30847,9 +34073,11 @@ namespace app::rfl {
         static void Finish(ObjStriderLaserConfig* pInstance);
         static void Clean(ObjStriderLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderCommonParam {
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30858,10 +34086,12 @@ namespace app::rfl {
         static void Finish(MiniBossStriderCommonParam* pInstance);
         static void Clean(MiniBossStriderCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30870,7 +34100,9 @@ namespace app::rfl {
         static void Finish(MiniBossStriderLevelParam* pInstance);
         static void Clean(MiniBossStriderLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderLevelBand {
         int32_t level;
 
@@ -30881,9 +34113,11 @@ namespace app::rfl {
         static void Finish(MiniBossStriderLevelBand* pInstance);
         static void Clean(MiniBossStriderLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderParam {
-        AttackPhase attackPhases[3];
+        heur::rfl::AttackPhase attackPhases[3];
         float initialAttackWaitBullet;
         float initialAttackWaitLaser;
         float attackableTime;
@@ -30914,7 +34148,9 @@ namespace app::rfl {
         static void Finish(MiniBossStriderParam* pInstance);
         static void Clean(MiniBossStriderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderGrindRailParam {
         float radius1;
         float radius2;
@@ -30936,7 +34172,9 @@ namespace app::rfl {
         static void Finish(ObjStriderGrindRailParam* pInstance);
         static void Clean(ObjStriderGrindRailParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjStriderPlatformParam {
         float colliderRadius;
         float colliderHeight;
@@ -30948,14 +34186,16 @@ namespace app::rfl {
         static void Finish(ObjStriderPlatformParam* pInstance);
         static void Clean(ObjStriderPlatformParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossStriderConfig {
-        MiniBossStriderCommonParam commonParam;
-        MiniBossStriderLevelParam levelParams[5];
-        MiniBossStriderLevelBand levelBand[5];
-        MiniBossStriderParam striderParam;
-        ObjStriderGrindRailParam grindRailParam;
-        ObjStriderPlatformParam platformParam;
+        heur::rfl::MiniBossStriderCommonParam commonParam;
+        heur::rfl::MiniBossStriderLevelParam levelParams[5];
+        heur::rfl::MiniBossStriderLevelBand levelBand[5];
+        heur::rfl::MiniBossStriderParam striderParam;
+        heur::rfl::ObjStriderGrindRailParam grindRailParam;
+        heur::rfl::ObjStriderPlatformParam platformParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -30964,7 +34204,9 @@ namespace app::rfl {
         static void Finish(MiniBossStriderConfig* pInstance);
         static void Clean(MiniBossStriderConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleColliderConfig {
         float baseHeight;
         float baseRadius;
@@ -30983,7 +34225,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleColliderConfig* pInstance);
         static void Clean(ObjSumoPoleColliderConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleSlingShotLookDownCameraConfig {
         float interpolationTime;
         float height;
@@ -30996,7 +34240,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleSlingShotLookDownCameraConfig* pInstance);
         static void Clean(ObjSumoPoleSlingShotLookDownCameraConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleSlingShotConfig {
         float shotGuideMoveDistance;
         float shotRaycastLength;
@@ -31014,7 +34260,7 @@ namespace app::rfl {
         float bendPullLength;
         float aimTimeScale;
         float aimLimitTime;
-        ObjSumoPoleSlingShotLookDownCameraConfig cameraLookDown;
+        heur::rfl::ObjSumoPoleSlingShotLookDownCameraConfig cameraLookDown;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31023,7 +34269,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleSlingShotConfig* pInstance);
         static void Clean(ObjSumoPoleSlingShotConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleSlingshotLineConfig {
         float width;
         float maxDistance;
@@ -31043,7 +34291,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleSlingshotLineConfig* pInstance);
         static void Clean(ObjSumoPoleSlingshotLineConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleRopeElectricConfig {
         float width;
         float tilingDistance;
@@ -31068,7 +34318,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleRopeElectricConfig* pInstance);
         static void Clean(ObjSumoPoleRopeElectricConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleRopeConfig {
         float timeAppear;
         float timeDisappear;
@@ -31079,7 +34331,7 @@ namespace app::rfl {
         float swingTime;
         float swingPeriod;
         float swingReturnSlowTime;
-        ObjSumoPoleRopeElectricConfig electric;
+        heur::rfl::ObjSumoPoleRopeElectricConfig electric;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31088,13 +34340,15 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleRopeConfig* pInstance);
         static void Clean(ObjSumoPoleRopeConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPoleConfig {
         int32_t electricDamageToEnemy;
-        ObjSumoPoleColliderConfig collider;
-        ObjSumoPoleSlingShotConfig slingShot;
-        ObjSumoPoleSlingshotLineConfig line;
-        ObjSumoPoleRopeConfig rope;
+        heur::rfl::ObjSumoPoleColliderConfig collider;
+        heur::rfl::ObjSumoPoleSlingShotConfig slingShot;
+        heur::rfl::ObjSumoPoleSlingshotLineConfig line;
+        heur::rfl::ObjSumoPoleRopeConfig rope;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31103,7 +34357,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPoleConfig* pInstance);
         static void Clean(ObjSumoPoleConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjSumoPuckConfig {
         float mass;
         float slopeAngleMax;
@@ -31127,7 +34383,9 @@ namespace app::rfl {
         static void Finish(ObjSumoPuckConfig* pInstance);
         static void Clean(ObjSumoPuckConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoBaseConfig {
         float mass;
         float slopeAngleMax;
@@ -31145,7 +34403,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoBaseConfig* pInstance);
         static void Clean(MiniBossSumoBaseConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoPuckParam {
         int32_t puckCount;
         float speed;
@@ -31158,7 +34418,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoPuckParam* pInstance);
         static void Clean(MiniBossSumoPuckParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoElectricRopePattern {
         bool enabled;
         bool electriced[8];
@@ -31170,9 +34432,11 @@ namespace app::rfl {
         static void Finish(MiniBossSumoElectricRopePattern* pInstance);
         static void Clean(MiniBossSumoElectricRopePattern* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoRotationElectricRopeParam {
-        MiniBossSumoElectricRopePattern patterns[10];
+        heur::rfl::MiniBossSumoElectricRopePattern patterns[10];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31181,15 +34445,17 @@ namespace app::rfl {
         static void Finish(MiniBossSumoRotationElectricRopeParam* pInstance);
         static void Clean(MiniBossSumoRotationElectricRopeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoBehaviorHPRateParam {
         int32_t rateHp;
-        MiniBossSumoPuckParam puck;
-        MiniBossSumoRotationElectricRopeParam rotation8;
-        MiniBossSumoRotationElectricRopeParam rotation7;
-        MiniBossSumoRotationElectricRopeParam rotation6;
-        MiniBossSumoRotationElectricRopeParam rotation5;
-        MiniBossSumoRotationElectricRopeParam rotation4;
+        heur::rfl::MiniBossSumoPuckParam puck;
+        heur::rfl::MiniBossSumoRotationElectricRopeParam rotation8;
+        heur::rfl::MiniBossSumoRotationElectricRopeParam rotation7;
+        heur::rfl::MiniBossSumoRotationElectricRopeParam rotation6;
+        heur::rfl::MiniBossSumoRotationElectricRopeParam rotation5;
+        heur::rfl::MiniBossSumoRotationElectricRopeParam rotation4;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31198,7 +34464,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoBehaviorHPRateParam* pInstance);
         static void Clean(MiniBossSumoBehaviorHPRateParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoColliderParam {
         enum class ColliderProperty : uint32_t {
             None = 0,
@@ -31232,15 +34500,17 @@ namespace app::rfl {
         static void Finish(MiniBossSumoColliderParam* pInstance);
         static void Clean(MiniBossSumoColliderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoColliderConfig {
-        MiniBossSumoColliderParam damaged[6];
-        MiniBossSumoColliderParam damage[2];
-        MiniBossSumoColliderParam detectPuck;
-        MiniBossSumoColliderParam c;
-        MiniBossSumoColliderParam pressBlow[3];
-        MiniBossSumoColliderParam sensorArm[2];
-        MiniBossSumoColliderParam simpleBody;
+        heur::rfl::MiniBossSumoColliderParam damaged[6];
+        heur::rfl::MiniBossSumoColliderParam damage[2];
+        heur::rfl::MiniBossSumoColliderParam detectPuck;
+        heur::rfl::MiniBossSumoColliderParam c;
+        heur::rfl::MiniBossSumoColliderParam pressBlow[3];
+        heur::rfl::MiniBossSumoColliderParam sensorArm[2];
+        heur::rfl::MiniBossSumoColliderParam simpleBody;
         float moveRadius;
         float moveHeight;
         csl::math::Vector3 targetMarkerOffset;
@@ -31255,7 +34525,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoColliderConfig* pInstance);
         static void Clean(MiniBossSumoColliderConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoRopeConfig {
         float coolDownTimeToChangeElectric;
         float timeToWaitChangeAfterDamage;
@@ -31277,7 +34549,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoRopeConfig* pInstance);
         static void Clean(MiniBossSumoRopeConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoSlingShotConfig {
         float backInitialSpeeds[5];
         float backDeccelation;
@@ -31291,7 +34565,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoSlingShotConfig* pInstance);
         static void Clean(MiniBossSumoSlingShotConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoMoveConfig {
         float moveHorzLimitAngle;
         float moveRotateDeceleration;
@@ -31303,7 +34579,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoMoveConfig* pInstance);
         static void Clean(MiniBossSumoMoveConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoThrowPuckParam {
         float distanceThrow;
         float coolTime;
@@ -31320,7 +34598,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoThrowPuckParam* pInstance);
         static void Clean(MiniBossSumoThrowPuckParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoSlingshotComboParam {
         int32_t count;
         bool reflectBack;
@@ -31333,7 +34613,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoSlingshotComboParam* pInstance);
         static void Clean(MiniBossSumoSlingshotComboParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoIKFootParam {
         csl::math::Vector3 kneeAxisLS;
         csl::math::Vector3 footEndLS;
@@ -31362,7 +34644,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoIKFootParam* pInstance);
         static void Clean(MiniBossSumoIKFootParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoIKHandParam {
         csl::math::Vector3 elbowAxisLS;
         csl::math::Vector3 handOffsetLS;
@@ -31381,18 +34665,20 @@ namespace app::rfl {
         static void Finish(MiniBossSumoIKHandParam* pInstance);
         static void Clean(MiniBossSumoIKHandParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoIKParam {
         float footRaycastDistanceUp;
         float footRaycastDistanceDown;
-        MiniBossSumoIKFootParam feet[2];
+        heur::rfl::MiniBossSumoIKFootParam feet[2];
         float handRaycastDistanceUp;
         float handRaycastDistanceDown;
         float handSweepRadius;
         float handGain;
         float easeInTimeHandIk;
         float easeOutTimeHandIk;
-        MiniBossSumoIKHandParam hands[2];
+        heur::rfl::MiniBossSumoIKHandParam hands[2];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31401,7 +34687,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoIKParam* pInstance);
         static void Clean(MiniBossSumoIKParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoCyloopConfig {
         float puckSpeed;
         float puckTimeStartDecelerate;
@@ -31415,7 +34703,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoCyloopConfig* pInstance);
         static void Clean(MiniBossSumoCyloopConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoLockonConfig {
         float distance;
         float minElevation;
@@ -31429,19 +34719,21 @@ namespace app::rfl {
         static void Finish(MiniBossSumoLockonConfig* pInstance);
         static void Clean(MiniBossSumoLockonConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoCommonParam {
-        MiniBossCommonConfig common;
-        MiniBossSumoBaseConfig base;
-        MiniBossSumoColliderConfig collider;
-        MiniBossSumoRopeConfig rope;
-        MiniBossSumoSlingShotConfig slingShot;
-        MiniBossSumoMoveConfig move;
-        MiniBossSumoThrowPuckParam throwPuck;
-        MiniBossSumoSlingshotComboParam combo;
-        MiniBossSumoIKParam ik;
-        MiniBossSumoCyloopConfig c;
-        MiniBossSumoLockonConfig lockon;
+        heur::rfl::MiniBossCommonConfig common;
+        heur::rfl::MiniBossSumoBaseConfig base;
+        heur::rfl::MiniBossSumoColliderConfig collider;
+        heur::rfl::MiniBossSumoRopeConfig rope;
+        heur::rfl::MiniBossSumoSlingShotConfig slingShot;
+        heur::rfl::MiniBossSumoMoveConfig move;
+        heur::rfl::MiniBossSumoThrowPuckParam throwPuck;
+        heur::rfl::MiniBossSumoSlingshotComboParam combo;
+        heur::rfl::MiniBossSumoIKParam ik;
+        heur::rfl::MiniBossSumoCyloopConfig c;
+        heur::rfl::MiniBossSumoLockonConfig lockon;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31450,10 +34742,12 @@ namespace app::rfl {
         static void Finish(MiniBossSumoCommonParam* pInstance);
         static void Clean(MiniBossSumoCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31462,10 +34756,12 @@ namespace app::rfl {
         static void Finish(MiniBossSumoLevelParam* pInstance);
         static void Clean(MiniBossSumoLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoLevelBand {
         int32_t level;
-        MiniBossSumoBehaviorHPRateParam hpRateParams[3];
+        heur::rfl::MiniBossSumoBehaviorHPRateParam hpRateParams[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31474,11 +34770,13 @@ namespace app::rfl {
         static void Finish(MiniBossSumoLevelBand* pInstance);
         static void Clean(MiniBossSumoLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossSumoConfig {
-        MiniBossSumoCommonParam commonParam;
-        MiniBossSumoLevelParam levelParams[5];
-        MiniBossSumoLevelBand levelBand[5];
+        heur::rfl::MiniBossSumoCommonParam commonParam;
+        heur::rfl::MiniBossSumoLevelParam levelParams[5];
+        heur::rfl::MiniBossSumoLevelBand levelBand[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31487,7 +34785,9 @@ namespace app::rfl {
         static void Finish(MiniBossSumoConfig* pInstance);
         static void Clean(MiniBossSumoConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerActionParam {
         enum class ActionType : int8_t {
             BULLET = 0,
@@ -31509,7 +34809,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerActionParam* pInstance);
         static void Clean(MiniBossTrackerActionParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerBulletParam {
         float time;
         float interval;
@@ -31525,7 +34827,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerBulletParam* pInstance);
         static void Clean(MiniBossTrackerBulletParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerCameraLockOn {
         float time;
         float distance;
@@ -31541,9 +34845,11 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerCameraLockOn* pInstance);
         static void Clean(MiniBossTrackerCameraLockOn* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerCommonParam {
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31552,10 +34858,12 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerCommonParam* pInstance);
         static void Clean(MiniBossTrackerCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31564,7 +34872,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerLevelParam* pInstance);
         static void Clean(MiniBossTrackerLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerLevelBand {
         int32_t level;
 
@@ -31575,7 +34885,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerLevelBand* pInstance);
         static void Clean(MiniBossTrackerLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerMoveParam {
         float facingSpeed;
         float facingSpeed2;
@@ -31609,7 +34921,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerMoveParam* pInstance);
         static void Clean(MiniBossTrackerMoveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerMineParam {
         int32_t num;
         int32_t num2;
@@ -31632,7 +34946,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerMineParam* pInstance);
         static void Clean(MiniBossTrackerMineParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerRingHoleParam {
         float minRadius;
         float maxRadius;
@@ -31661,7 +34977,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerRingHoleParam* pInstance);
         static void Clean(MiniBossTrackerRingHoleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerGameParam {
         int32_t hp;
         float lossRingTime;
@@ -31682,22 +35000,24 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerGameParam* pInstance);
         static void Clean(MiniBossTrackerGameParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTrackerConfig {
-        MiniBossTrackerCommonParam commonParam;
-        MiniBossTrackerLevelParam levelParams[5];
-        MiniBossTrackerLevelBand levelBand[5];
-        MiniBossTrackerCameraLockOn cameraLockDamage;
-        MiniBossTrackerMoveParam move;
-        MiniBossTrackerBulletParam bullet;
-        MiniBossTrackerMineParam mine;
-        MiniBossTrackerRingHoleParam ringHole;
-        MiniBossTrackerActionParam action1;
-        MiniBossTrackerActionParam action2;
-        MiniBossTrackerActionParam action3;
-        MiniBossTrackerActionParam action4;
-        MiniBossTrackerActionParam action5;
-        MiniBossTrackerGameParam game;
+        heur::rfl::MiniBossTrackerCommonParam commonParam;
+        heur::rfl::MiniBossTrackerLevelParam levelParams[5];
+        heur::rfl::MiniBossTrackerLevelBand levelBand[5];
+        heur::rfl::MiniBossTrackerCameraLockOn cameraLockDamage;
+        heur::rfl::MiniBossTrackerMoveParam move;
+        heur::rfl::MiniBossTrackerBulletParam bullet;
+        heur::rfl::MiniBossTrackerMineParam mine;
+        heur::rfl::MiniBossTrackerRingHoleParam ringHole;
+        heur::rfl::MiniBossTrackerActionParam action1;
+        heur::rfl::MiniBossTrackerActionParam action2;
+        heur::rfl::MiniBossTrackerActionParam action3;
+        heur::rfl::MiniBossTrackerActionParam action4;
+        heur::rfl::MiniBossTrackerActionParam action5;
+        heur::rfl::MiniBossTrackerGameParam game;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31706,7 +35026,9 @@ namespace app::rfl {
         static void Finish(MiniBossTrackerConfig* pInstance);
         static void Clean(MiniBossTrackerConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackAirSpinParam {
         float speed;
         int32_t attackNum;
@@ -31718,7 +35040,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackAirSpinParam* pInstance);
         static void Clean(MiniBossTyrantAttackAirSpinParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackCircleBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -31738,7 +35062,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackCircleBullet* pInstance);
         static void Clean(MiniBossTyrantAttackCircleBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackLaserParam {
         csl::math::Vector3 muzzlePosOffset;
         float time;
@@ -31752,7 +35078,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackLaserParam* pInstance);
         static void Clean(MiniBossTyrantAttackLaserParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackSpinParam {
         float speed;
         float time;
@@ -31766,7 +35094,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackSpinParam* pInstance);
         static void Clean(MiniBossTyrantAttackSpinParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackRouletteParam {
         float time;
 
@@ -31777,7 +35107,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackRouletteParam* pInstance);
         static void Clean(MiniBossTyrantAttackRouletteParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantBarrageParam {
         enum class BarrageType : int8_t {
             TYPE_AIM_PLAYER = 0,
@@ -31806,7 +35138,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantBarrageParam* pInstance);
         static void Clean(MiniBossTyrantBarrageParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantShotgunBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -31827,7 +35161,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantShotgunBullet* pInstance);
         static void Clean(MiniBossTyrantShotgunBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantWinderBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -31848,7 +35184,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantWinderBullet* pInstance);
         static void Clean(MiniBossTyrantWinderBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantLineBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -31866,7 +35204,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantLineBullet* pInstance);
         static void Clean(MiniBossTyrantLineBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantWaveBullet {
         int32_t barrageIndex;
         float yOffset;
@@ -31886,7 +35226,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantWaveBullet* pInstance);
         static void Clean(MiniBossTyrantWaveBullet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantSequenceParameter {
         float airBattleRate;
         float nextRoundRate;
@@ -31903,7 +35245,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantSequenceParameter* pInstance);
         static void Clean(MiniBossTyrantSequenceParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantCyloopDamageParameter {
         float upPower;
         float upTime;
@@ -31917,7 +35261,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantCyloopDamageParameter* pInstance);
         static void Clean(MiniBossTyrantCyloopDamageParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantAttackParam {
         enum class ActionType : int8_t {
             ACTION_TYPE_NONE = 0,
@@ -31931,19 +35277,19 @@ namespace app::rfl {
             ACTION_TYPE_CIRCLE = 8,
         };
 
-        MiniBossTyrantAttackSpinParam spin;
-        MiniBossTyrantAttackAirSpinParam airSpin;
-        MiniBossTyrantAttackRouletteParam roulette;
-        MiniBossTyrantAttackLaserParam l;
+        heur::rfl::MiniBossTyrantAttackSpinParam spin;
+        heur::rfl::MiniBossTyrantAttackAirSpinParam airSpin;
+        heur::rfl::MiniBossTyrantAttackRouletteParam roulette;
+        heur::rfl::MiniBossTyrantAttackLaserParam l;
         float rotSpeed;
-        MiniBossTyrantBarrageParam barrage[16];
-        MiniBossTyrantShotgunBullet shotgunBullet;
-        MiniBossTyrantWinderBullet winderBullet;
-        MiniBossTyrantLineBullet lineBullet;
-        MiniBossTyrantWaveBullet waveBullet;
-        MiniBossTyrantAttackCircleBullet circleBullet;
-        MiniBossTyrantSequenceParameter sequenceParam;
-        MiniBossTyrantCyloopDamageParameter cyloopParam;
+        heur::rfl::MiniBossTyrantBarrageParam barrage[16];
+        heur::rfl::MiniBossTyrantShotgunBullet shotgunBullet;
+        heur::rfl::MiniBossTyrantWinderBullet winderBullet;
+        heur::rfl::MiniBossTyrantLineBullet lineBullet;
+        heur::rfl::MiniBossTyrantWaveBullet waveBullet;
+        heur::rfl::MiniBossTyrantAttackCircleBullet circleBullet;
+        heur::rfl::MiniBossTyrantSequenceParameter sequenceParam;
+        heur::rfl::MiniBossTyrantCyloopDamageParameter cyloopParam;
         ActionType actionListGround[10];
         ActionType actionListAir[10];
 
@@ -31954,9 +35300,11 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantAttackParam* pInstance);
         static void Clean(MiniBossTyrantAttackParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantCommonParam {
-        MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossCommonConfig commonConfig;
         float nonBattleRange;
         float miniDamageRange;
         float miniComboRange;
@@ -31972,10 +35320,12 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantCommonParam* pInstance);
         static void Clean(MiniBossTyrantCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31984,7 +35334,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantLevelParam* pInstance);
         static void Clean(MiniBossTyrantLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantLevelBand {
         int32_t level;
 
@@ -31995,7 +35347,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantLevelBand* pInstance);
         static void Clean(MiniBossTyrantLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantDebrisParam {
         float speed;
         float accel;
@@ -32015,9 +35369,11 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantDebrisParam* pInstance);
         static void Clean(MiniBossTyrantDebrisParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantStormEffectParam {
-        MiniBossTyrantDebrisParam debris;
+        heur::rfl::MiniBossTyrantDebrisParam debris;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32026,13 +35382,15 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantStormEffectParam* pInstance);
         static void Clean(MiniBossTyrantStormEffectParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossTyrantConfig {
-        MiniBossTyrantCommonParam commonParam;
-        MiniBossTyrantLevelParam levelParams[5];
-        MiniBossTyrantLevelBand levelBand[5];
-        MiniBossTyrantAttackParam attackParam;
-        MiniBossTyrantStormEffectParam stormEffectParam;
+        heur::rfl::MiniBossTyrantCommonParam commonParam;
+        heur::rfl::MiniBossTyrantLevelParam levelParams[5];
+        heur::rfl::MiniBossTyrantLevelBand levelBand[5];
+        heur::rfl::MiniBossTyrantAttackParam attackParam;
+        heur::rfl::MiniBossTyrantStormEffectParam stormEffectParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32041,7 +35399,9 @@ namespace app::rfl {
         static void Finish(MiniBossTyrantConfig* pInstance);
         static void Clean(MiniBossTyrantConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjWarshipDashRingConfig {
         float baseHeight;
 
@@ -32052,7 +35412,9 @@ namespace app::rfl {
         static void Finish(ObjWarshipDashRingConfig* pInstance);
         static void Clean(ObjWarshipDashRingConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipAccelSpeed {
         float min;
         float max;
@@ -32064,7 +35426,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipAccelSpeed* pInstance);
         static void Clean(MiniBossWarshipAccelSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipBombAttackCameraParam {
         float lockonDistance;
         float unlockDistance;
@@ -32081,11 +35445,13 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipBombAttackCameraParam* pInstance);
         static void Clean(MiniBossWarshipBombAttackCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipAttackStateCameraParam {
         float midCameraPosOffset;
-        MiniBossWarshipBombAttackCameraParam firstCamera;
-        MiniBossWarshipBombAttackCameraParam secondCamera;
+        heur::rfl::MiniBossWarshipBombAttackCameraParam firstCamera;
+        heur::rfl::MiniBossWarshipBombAttackCameraParam secondCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32094,7 +35460,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipAttackStateCameraParam* pInstance);
         static void Clean(MiniBossWarshipAttackStateCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipAttackStateParam {
         float moveSpeed;
         float bombDropSpeed;
@@ -32112,7 +35480,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipAttackStateParam* pInstance);
         static void Clean(MiniBossWarshipAttackStateParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipBattleFlagParam {
         float firstFinishTimer;
         float finishTimer;
@@ -32125,7 +35495,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipBattleFlagParam* pInstance);
         static void Clean(MiniBossWarshipBattleFlagParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipSpeedParam {
         float highSpeed;
         float lowSpeed;
@@ -32142,7 +35514,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipSpeedParam* pInstance);
         static void Clean(MiniBossWarshipSpeedParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipWarpCameraParam {
         float zoomDistance;
         csl::math::Vector3 zoomOffset;
@@ -32156,7 +35530,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipWarpCameraParam* pInstance);
         static void Clean(MiniBossWarshipWarpCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipEscapeCameraParam {
         float fovy;
         float zRot;
@@ -32178,7 +35554,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipEscapeCameraParam* pInstance);
         static void Clean(MiniBossWarshipEscapeCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipObjectParam {
         float dashRingAppearDistance;
         float dashRingDisappearDistance;
@@ -32194,7 +35572,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipObjectParam* pInstance);
         static void Clean(MiniBossWarshipObjectParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipNearLaunchParam {
         float outStrength;
         float inStrength;
@@ -32212,16 +35592,18 @@ namespace app::rfl {
         static void Finish(WarshipNearLaunchParam* pInstance);
         static void Clean(WarshipNearLaunchParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipCommonParam {
-        MiniBossCommonConfig commonConfig;
-        MiniBossWarshipSpeedParam speedParam;
-        MiniBossWarshipAccelSpeed normalSpeedParam;
-        MiniBossWarshipAccelSpeed boostSpeedParam;
-        MiniBossWarshipWarpCameraParam warpCameraParam;
-        MiniBossWarshipEscapeCameraParam escapeCameraParam;
-        MiniBossWarshipObjectParam objectParam;
-        WarshipNearLaunchParam launchParam;
+        heur::rfl::MiniBossCommonConfig commonConfig;
+        heur::rfl::MiniBossWarshipSpeedParam speedParam;
+        heur::rfl::MiniBossWarshipAccelSpeed normalSpeedParam;
+        heur::rfl::MiniBossWarshipAccelSpeed boostSpeedParam;
+        heur::rfl::MiniBossWarshipWarpCameraParam warpCameraParam;
+        heur::rfl::MiniBossWarshipEscapeCameraParam escapeCameraParam;
+        heur::rfl::MiniBossWarshipObjectParam objectParam;
+        heur::rfl::WarshipNearLaunchParam launchParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32230,10 +35612,12 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipCommonParam* pInstance);
         static void Clean(MiniBossWarshipCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipLevelParam {
         int32_t level;
-        MiniBossLevelCommonConfig commonConfig;
+        heur::rfl::MiniBossLevelCommonConfig commonConfig;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32242,7 +35626,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipLevelParam* pInstance);
         static void Clean(MiniBossWarshipLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipLevelBand {
         int32_t level;
 
@@ -32253,7 +35639,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipLevelBand* pInstance);
         static void Clean(MiniBossWarshipLevelBand* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipRecoverBoostGaugeParam {
         float normal;
         float boost;
@@ -32265,7 +35653,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipRecoverBoostGaugeParam* pInstance);
         static void Clean(MiniBossWarshipRecoverBoostGaugeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipNearBattleCameraParam {
         float distance;
         float minElevation;
@@ -32281,11 +35671,13 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipNearBattleCameraParam* pInstance);
         static void Clean(MiniBossWarshipNearBattleCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WarshipEscapePathInfo {
         csl::ut::VariableString followPaths;
-        WarshipPathSectionInfo usePathInfo[50];
-        WarshipPathSectionInfo accelInfo[50];
+        heur::rfl::WarshipPathSectionInfo usePathInfo[50];
+        heur::rfl::WarshipPathSectionInfo accelInfo[50];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32294,9 +35686,11 @@ namespace app::rfl {
         static void Finish(WarshipEscapePathInfo* pInstance);
         static void Clean(WarshipEscapePathInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipEscapePathParam {
-        WarshipEscapePathInfo escapePathInfo[5];
+        heur::rfl::WarshipEscapePathInfo escapePathInfo[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32305,27 +35699,29 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipEscapePathParam* pInstance);
         static void Clean(MiniBossWarshipEscapePathParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct MiniBossWarshipConfig {
-        MiniBossWarshipCommonParam commonParam;
-        MiniBossWarshipLevelParam levelParams[5];
-        MiniBossWarshipLevelBand levelBand[5];
+        heur::rfl::MiniBossWarshipCommonParam commonParam;
+        heur::rfl::MiniBossWarshipLevelParam levelParams[5];
+        heur::rfl::MiniBossWarshipLevelBand levelBand[5];
         float wanderMoveSpeed;
         float railMaxLength;
-        MiniBossWarshipSpeedParam shiftStateMoveSpeedParam;
+        heur::rfl::MiniBossWarshipSpeedParam shiftStateMoveSpeedParam;
         float locatorDistance;
         float distanceEscapePathToStart;
-        MiniBossWarshipRecoverBoostGaugeParam boostGaugeParam;
-        MiniBossWarshipAttackStateParam attackStateParam;
-        MiniBossWarshipBattleFlagParam battleFlagParam;
-        MiniBossWarshipNearBattleCameraParam nearBattleCameraParam;
+        heur::rfl::MiniBossWarshipRecoverBoostGaugeParam boostGaugeParam;
+        heur::rfl::MiniBossWarshipAttackStateParam attackStateParam;
+        heur::rfl::MiniBossWarshipBattleFlagParam battleFlagParam;
+        heur::rfl::MiniBossWarshipNearBattleCameraParam nearBattleCameraParam;
         float disableGimmickDistance;
         float warpTime;
         float cameraChangeTime;
         float cameraAppearTime;
         float spreadHomingDistance;
-        MiniBossWarshipEscapePathParam escapePathID[5];
-        MiniBossWarshipAttackStateCameraParam bombAttackCameraParam[5];
+        heur::rfl::MiniBossWarshipEscapePathParam escapePathID[5];
+        heur::rfl::MiniBossWarshipAttackStateCameraParam bombAttackCameraParam[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32334,7 +35730,9 @@ namespace app::rfl {
         static void Finish(MiniBossWarshipConfig* pInstance);
         static void Clean(MiniBossWarshipConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingCommonParam {
         float baseWaveThickness;
         float baseWaveSuccessRatioNormal;
@@ -32364,7 +35762,9 @@ namespace app::rfl {
         static void Finish(FishingCommonParam* pInstance);
         static void Clean(FishingCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingFishGroupParam {
         float rate;
 
@@ -32375,7 +35775,9 @@ namespace app::rfl {
         static void Finish(FishingFishGroupParam* pInstance);
         static void Clean(FishingFishGroupParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingFishParam {
         enum class FishShadowType : int8_t {
             SMALL = 0,
@@ -32423,7 +35825,9 @@ namespace app::rfl {
         static void Finish(FishingFishParam* pInstance);
         static void Clean(FishingFishParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingFixedResultParam {
         int32_t count;
         int32_t fishId;
@@ -32435,7 +35839,9 @@ namespace app::rfl {
         static void Finish(FishingFixedResultParam* pInstance);
         static void Clean(FishingFixedResultParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingSuccessPatternParam {
         uint32_t successNum;
         uint32_t failureNum;
@@ -32447,7 +35853,9 @@ namespace app::rfl {
         static void Finish(FishingSuccessPatternParam* pInstance);
         static void Clean(FishingSuccessPatternParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingWaveParam {
         enum class Type : int8_t {
             TYPE_INVALID = 0,
@@ -32466,9 +35874,11 @@ namespace app::rfl {
         static void Finish(FishingWaveParam* pInstance);
         static void Clean(FishingWaveParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingWaveGroupParam {
-        FishingWaveParam waves[5];
+        heur::rfl::FishingWaveParam waves[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32477,7 +35887,9 @@ namespace app::rfl {
         static void Finish(FishingWaveGroupParam* pInstance);
         static void Clean(FishingWaveGroupParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingWavePatternParam {
         float speed;
         float intervalMinFirst;
@@ -32487,7 +35899,7 @@ namespace app::rfl {
         float addRadiusMin;
         float addRadiusMax;
         uint32_t waveGroupNum;
-        FishingWaveGroupParam waveGroups[10];
+        heur::rfl::FishingWaveGroupParam waveGroups[10];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32496,7 +35908,9 @@ namespace app::rfl {
         static void Finish(FishingWavePatternParam* pInstance);
         static void Clean(FishingWavePatternParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingSpotSpawnFishParam {
         int32_t spawnFishId[20];
 
@@ -32507,11 +35921,13 @@ namespace app::rfl {
         static void Finish(FishingSpotSpawnFishParam* pInstance);
         static void Clean(FishingSpotSpawnFishParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingSpotFixedResultParam {
         uint32_t tableSize;
         uint32_t achievementUnlockCount;
-        FishingFixedResultParam fixedResultList[50];
+        heur::rfl::FishingFixedResultParam fixedResultList[50];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32520,10 +35936,12 @@ namespace app::rfl {
         static void Finish(FishingSpotFixedResultParam* pInstance);
         static void Clean(FishingSpotFixedResultParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingSpotParam {
-        FishingSpotSpawnFishParam spawnFish[4];
-        FishingSpotFixedResultParam fixedResults[4];
+        heur::rfl::FishingSpotSpawnFishParam spawnFish[4];
+        heur::rfl::FishingSpotFixedResultParam fixedResults[4];
         uint32_t useFishCoinNum[4];
         uint32_t tokenRate[4];
 
@@ -32534,12 +35952,14 @@ namespace app::rfl {
         static void Finish(FishingSpotParam* pInstance);
         static void Clean(FishingSpotParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingTutorialParam {
         uint32_t singleWaveSuccessCount;
         uint32_t holdWaveSuccessCount;
-        FishingWavePatternParam singleWave;
-        FishingWavePatternParam holdWave;
+        heur::rfl::FishingWavePatternParam singleWave;
+        heur::rfl::FishingWavePatternParam holdWave;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32548,7 +35968,9 @@ namespace app::rfl {
         static void Finish(FishingTutorialParam* pInstance);
         static void Clean(FishingTutorialParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingTradeTableParma {
         uint8_t sales[9];
 
@@ -32559,9 +35981,11 @@ namespace app::rfl {
         static void Finish(FishingTradeTableParma* pInstance);
         static void Clean(FishingTradeTableParma* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingTradeParam {
-        FishingTradeTableParma spot[4];
+        heur::rfl::FishingTradeTableParma spot[4];
         uint8_t prices[9];
         uint8_t pricesVeryHard[9];
         uint8_t counts[9];
@@ -32573,16 +35997,18 @@ namespace app::rfl {
         static void Finish(FishingTradeParam* pInstance);
         static void Clean(FishingTradeParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishingParameter {
-        FishingCommonParam common;
-        FishingSuccessPatternParam successPattern[10];
-        FishingWavePatternParam wavePattern[10];
-        FishingFishGroupParam fishGroup[10];
-        FishingFishParam fish[130];
-        FishingSpotParam spot;
-        FishingTutorialParam tutorial;
-        FishingTradeParam trade;
+        heur::rfl::FishingCommonParam common;
+        heur::rfl::FishingSuccessPatternParam successPattern[10];
+        heur::rfl::FishingWavePatternParam wavePattern[10];
+        heur::rfl::FishingFishGroupParam fishGroup[10];
+        heur::rfl::FishingFishParam fish[130];
+        heur::rfl::FishingSpotParam spot;
+        heur::rfl::FishingTutorialParam tutorial;
+        heur::rfl::FishingTradeParam trade;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32591,7 +36017,9 @@ namespace app::rfl {
         static void Finish(FishingParameter* pInstance);
         static void Clean(FishingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GimmickCameraSimpleParam {
         csl::math::Vector3 targetOffset;
         csl::math::Vector3 cameraPosOffset;
@@ -32603,7 +36031,9 @@ namespace app::rfl {
         static void Finish(GimmickCameraSimpleParam* pInstance);
         static void Clean(GimmickCameraSimpleParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaMasterCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -32619,7 +36049,9 @@ namespace app::rfl {
         static void Finish(KodamaMasterCamera* pInstance);
         static void Clean(KodamaMasterCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaMasterKingCamera {
         csl::math::Vector3 camLookAtOffset;
         csl::math::Vector3 camEyeOffset;
@@ -32635,7 +36067,9 @@ namespace app::rfl {
         static void Finish(KodamaMasterKingCamera* pInstance);
         static void Clean(KodamaMasterKingCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaEscortParameterElement {
         int32_t applicableFailedCount;
         float stackingHeight;
@@ -32675,9 +36109,11 @@ namespace app::rfl {
         static void Finish(ObjKodamaEscortParameterElement* pInstance);
         static void Clean(ObjKodamaEscortParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaEscortParameter {
-        ObjKodamaEscortParameterElement element[3];
+        heur::rfl::ObjKodamaEscortParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32686,7 +36122,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaEscortParameter* pInstance);
         static void Clean(ObjKodamaEscortParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMasterConfig {
         float followingDistance;
         float followingNormalSpeed;
@@ -32697,8 +36135,8 @@ namespace app::rfl {
         float followingHomingDecelerationSpeed;
         float followingHomingDecelerationDistance;
         float followingHeightPosition;
-        KodamaMasterCamera beginCamera;
-        KodamaMasterCamera endCamera;
+        heur::rfl::KodamaMasterCamera beginCamera;
+        heur::rfl::KodamaMasterCamera endCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32707,7 +36145,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMasterConfig* pInstance);
         static void Clean(ObjKodamaMasterConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaMasterKingConfig {
         float playerChangeFadeOutTime;
         float followingDistance;
@@ -32727,8 +36167,8 @@ namespace app::rfl {
         float SuperSonicfollowingHomingDecelerationDistance;
         csl::math::Vector3 followingInitialLocalPosition;
         csl::math::Vector3 superSonicInitialLocalPosition;
-        KodamaMasterKingCamera beginCamera;
-        KodamaMasterKingCamera endCamera;
+        heur::rfl::KodamaMasterKingCamera beginCamera;
+        heur::rfl::KodamaMasterKingCamera endCamera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32737,7 +36177,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaMasterKingConfig* pInstance);
         static void Clean(ObjKodamaMasterKingConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestKodamaCollectionBaseParameter {
         int32_t clearKodamaNum;
         float modelScale;
@@ -32754,7 +36196,9 @@ namespace app::rfl {
         static void Finish(QuestKodamaCollectionBaseParameter* pInstance);
         static void Clean(QuestKodamaCollectionBaseParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestKodamaCollectionMoveParameter {
         float rotationAnglePerSec;
         float moveSpeed;
@@ -32773,7 +36217,9 @@ namespace app::rfl {
         static void Finish(QuestKodamaCollectionMoveParameter* pInstance);
         static void Clean(QuestKodamaCollectionMoveParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestKodamaCollectionBombParameter {
         float bombSpawnTrialTime;
         uint16_t numKodamasNeededForBombSpawnRate2;
@@ -32791,8 +36237,10 @@ namespace app::rfl {
         static void Finish(QuestKodamaCollectionBombParameter* pInstance);
         static void Clean(QuestKodamaCollectionBombParameter* pInstance);
     };
+}
 
-    struct QuestKodamaCollectionSandBombParameter : QuestKodamaCollectionBombParameter {
+namespace heur::rfl {
+    struct QuestKodamaCollectionSandBombParameter : heur::rfl::QuestKodamaCollectionBombParameter {
         float sandStormTime;
         float noBombsTime;
         float sandStormInLerpTime;
@@ -32805,7 +36253,9 @@ namespace app::rfl {
         static void Finish(QuestKodamaCollectionSandBombParameter* pInstance);
         static void Clean(QuestKodamaCollectionSandBombParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestKodamaCollectionTimerParameter {
         bool isTimeUp;
         float timeLimitSeconds;
@@ -32821,13 +36271,15 @@ namespace app::rfl {
         static void Finish(QuestKodamaCollectionTimerParameter* pInstance);
         static void Clean(QuestKodamaCollectionTimerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaQuestDesertIslandParameter {
         int32_t applicableFailedCount;
-        QuestKodamaCollectionBaseParameter baseParam;
-        QuestKodamaCollectionMoveParameter moveParam;
-        QuestKodamaCollectionSandBombParameter bombParam;
-        QuestKodamaCollectionTimerParameter timerParam;
+        heur::rfl::QuestKodamaCollectionBaseParameter baseParam;
+        heur::rfl::QuestKodamaCollectionMoveParameter moveParam;
+        heur::rfl::QuestKodamaCollectionSandBombParameter bombParam;
+        heur::rfl::QuestKodamaCollectionTimerParameter timerParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32836,13 +36288,15 @@ namespace app::rfl {
         static void Finish(ObjKodamaQuestDesertIslandParameter* pInstance);
         static void Clean(ObjKodamaQuestDesertIslandParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaQuestGrassIslandParameter {
         int32_t applicableFailedCount;
-        QuestKodamaCollectionBaseParameter baseParam;
-        QuestKodamaCollectionMoveParameter moveParam;
-        QuestKodamaCollectionBombParameter bombParam;
-        QuestKodamaCollectionTimerParameter timerParam;
+        heur::rfl::QuestKodamaCollectionBaseParameter baseParam;
+        heur::rfl::QuestKodamaCollectionMoveParameter moveParam;
+        heur::rfl::QuestKodamaCollectionBombParameter bombParam;
+        heur::rfl::QuestKodamaCollectionTimerParameter timerParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32851,10 +36305,12 @@ namespace app::rfl {
         static void Finish(ObjKodamaQuestGrassIslandParameter* pInstance);
         static void Clean(ObjKodamaQuestGrassIslandParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjKodamaQuestParameter {
-        ObjKodamaQuestGrassIslandParameter grassIslandParam[3];
-        ObjKodamaQuestDesertIslandParameter desertIslandParam[3];
+        heur::rfl::ObjKodamaQuestGrassIslandParameter grassIslandParam[3];
+        heur::rfl::ObjKodamaQuestDesertIslandParameter desertIslandParam[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32863,7 +36319,9 @@ namespace app::rfl {
         static void Finish(ObjKodamaQuestParameter* pInstance);
         static void Clean(ObjKodamaQuestParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjQuestBoxParameter {
         float dropBoxProbabilly;
         float boxHpSmall;
@@ -32883,7 +36341,9 @@ namespace app::rfl {
         static void Finish(ObjQuestBoxParameter* pInstance);
         static void Clean(ObjQuestBoxParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBeeFlowerParameter {
         float modelScale;
         float capsuleRadiusSprouts;
@@ -32902,7 +36362,9 @@ namespace app::rfl {
         static void Finish(ObjBeeFlowerParameter* pInstance);
         static void Clean(ObjBeeFlowerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjBeeSwarmParameter {
         csl::math::Vector3 targetOffset;
         csl::math::Vector3 targetOffsetFlower;
@@ -32923,7 +36385,9 @@ namespace app::rfl {
         static void Finish(ObjBeeSwarmParameter* pInstance);
         static void Clean(ObjBeeSwarmParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMowingGrassParameter {
         float radius;
 
@@ -32934,11 +36398,13 @@ namespace app::rfl {
         static void Finish(ObjMowingGrassParameter* pInstance);
         static void Clean(ObjMowingGrassParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMowingParameterElement {
-        ObjMowingGrassParameter grassParam;
-        ObjBeeFlowerParameter beeFlowerParam;
-        ObjBeeSwarmParameter beeSwarm;
+        heur::rfl::ObjMowingGrassParameter grassParam;
+        heur::rfl::ObjBeeFlowerParameter beeFlowerParam;
+        heur::rfl::ObjBeeSwarmParameter beeSwarm;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32947,9 +36413,11 @@ namespace app::rfl {
         static void Finish(ObjMowingParameterElement* pInstance);
         static void Clean(ObjMowingParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ObjMowingParameter {
-        ObjMowingParameterElement element[3];
+        heur::rfl::ObjMowingParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -32958,7 +36426,9 @@ namespace app::rfl {
         static void Finish(ObjMowingParameter* pInstance);
         static void Clean(ObjMowingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestCameraParameter {
         float distance;
         float azimuthSensitivity;
@@ -32973,7 +36443,9 @@ namespace app::rfl {
         static void Finish(QuestCameraParameter* pInstance);
         static void Clean(QuestCameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestCollectitemTimerParameter {
         float timeLimitSeconds;
         float cautionTime;
@@ -32988,12 +36460,14 @@ namespace app::rfl {
         static void Finish(QuestCollectitemTimerParameter* pInstance);
         static void Clean(QuestCollectitemTimerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestCollectItemParameterElement {
         int32_t applicableFailedCount;
         int32_t RequestItemNum;
-        QuestCollectitemTimerParameter timerParam;
-        QuestCameraParameter cameraParam;
+        heur::rfl::QuestCollectitemTimerParameter timerParam;
+        heur::rfl::QuestCameraParameter cameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33002,9 +36476,11 @@ namespace app::rfl {
         static void Finish(QuestCollectItemParameterElement* pInstance);
         static void Clean(QuestCollectItemParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestCollectItemParameter {
-        QuestCollectItemParameterElement element[3];
+        heur::rfl::QuestCollectItemParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33013,7 +36489,9 @@ namespace app::rfl {
         static void Finish(QuestCollectItemParameter* pInstance);
         static void Clean(QuestCollectItemParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDarumaTimerParameter {
         float timeLimitSeconds;
         float cautionTime;
@@ -33028,12 +36506,14 @@ namespace app::rfl {
         static void Finish(QuestDarumaTimerParameter* pInstance);
         static void Clean(QuestDarumaTimerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDarumaBattleParameterElement {
         int32_t applicableFailedCount;
         float collectionColliderRadius;
         float collectionColliderHeight;
-        QuestDarumaTimerParameter timerParam;
+        heur::rfl::QuestDarumaTimerParameter timerParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33042,9 +36522,11 @@ namespace app::rfl {
         static void Finish(QuestDarumaBattleParameterElement* pInstance);
         static void Clean(QuestDarumaBattleParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDarumaBattleParameter {
-        QuestDarumaBattleParameterElement element[3];
+        heur::rfl::QuestDarumaBattleParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33053,7 +36535,9 @@ namespace app::rfl {
         static void Finish(QuestDarumaBattleParameter* pInstance);
         static void Clean(QuestDarumaBattleParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDrawBridgeTimerParameter {
         float timeLimitSeconds;
         float cautionTime;
@@ -33068,10 +36552,12 @@ namespace app::rfl {
         static void Finish(QuestDrawBridgeTimerParameter* pInstance);
         static void Clean(QuestDrawBridgeTimerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDrawBridgeParameterElement {
         int32_t applicableFailedCount;
-        QuestDrawBridgeTimerParameter timerParam;
+        heur::rfl::QuestDrawBridgeTimerParameter timerParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33080,9 +36566,11 @@ namespace app::rfl {
         static void Finish(QuestDrawBridgeParameterElement* pInstance);
         static void Clean(QuestDrawBridgeParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestDrawBridgeParameter {
-        QuestDrawBridgeParameterElement element[3];
+        heur::rfl::QuestDrawBridgeParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33091,7 +36579,9 @@ namespace app::rfl {
         static void Finish(QuestDrawBridgeParameter* pInstance);
         static void Clean(QuestDrawBridgeParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingEarnedScoreParameter {
         float visibleSize;
         float visibleTime;
@@ -33104,7 +36594,9 @@ namespace app::rfl {
         static void Finish(QuestMowingEarnedScoreParameter* pInstance);
         static void Clean(QuestMowingEarnedScoreParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingPlayerParameter {
         float playerBoostRatio;
 
@@ -33115,7 +36607,9 @@ namespace app::rfl {
         static void Finish(QuestMowingPlayerParameter* pInstance);
         static void Clean(QuestMowingPlayerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingPointParameter {
         uint32_t collisionNum;
         uint32_t pointLine;
@@ -33127,7 +36621,9 @@ namespace app::rfl {
         static void Finish(QuestMowingPointParameter* pInstance);
         static void Clean(QuestMowingPointParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingTimerParameter {
         float timeLimitSeconds;
         float cautionTime;
@@ -33142,7 +36638,9 @@ namespace app::rfl {
         static void Finish(QuestMowingTimerParameter* pInstance);
         static void Clean(QuestMowingTimerParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingResultCameraParameter {
         float resultCameraEaseTime;
 
@@ -33153,16 +36651,18 @@ namespace app::rfl {
         static void Finish(QuestMowingResultCameraParameter* pInstance);
         static void Clean(QuestMowingResultCameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingParameterElement {
         int32_t applicableFailedCount;
         uint32_t questClearPoint;
-        QuestMowingPlayerParameter playerParam;
+        heur::rfl::QuestMowingPlayerParameter playerParam;
         uint32_t pointParamNum;
-        QuestMowingPointParameter pointParam[5];
-        QuestMowingTimerParameter timerParam;
-        QuestMowingEarnedScoreParameter scoreUIParam;
-        QuestMowingResultCameraParameter resultCameraParam;
+        heur::rfl::QuestMowingPointParameter pointParam[5];
+        heur::rfl::QuestMowingTimerParameter timerParam;
+        heur::rfl::QuestMowingEarnedScoreParameter scoreUIParam;
+        heur::rfl::QuestMowingResultCameraParameter resultCameraParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33171,9 +36671,11 @@ namespace app::rfl {
         static void Finish(QuestMowingParameterElement* pInstance);
         static void Clean(QuestMowingParameterElement* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct QuestMowingParameter {
-        QuestMowingParameterElement element[3];
+        heur::rfl::QuestMowingParameterElement element[3];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33182,7 +36684,9 @@ namespace app::rfl {
         static void Finish(QuestMowingParameter* pInstance);
         static void Clean(QuestMowingParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AnimationParameter {
         float angle;
         float time;
@@ -33194,7 +36698,9 @@ namespace app::rfl {
         static void Finish(AnimationParameter* pInstance);
         static void Clean(AnimationParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BulletPatternParameter {
         enum class Type : uint8_t {
             BulletFixed = 0,
@@ -33220,7 +36726,7 @@ namespace app::rfl {
         float laserLength;
         float lifeTime;
         bool animation;
-        AnimationParameter animParam[8];
+        heur::rfl::AnimationParameter animParam[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33229,10 +36735,12 @@ namespace app::rfl {
         static void Finish(BulletPatternParameter* pInstance);
         static void Clean(BulletPatternParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BulletPatternSetParameter {
         csl::ut::VariableString name;
-        BulletPatternParameter param;
+        heur::rfl::BulletPatternParameter param;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33241,7 +36749,9 @@ namespace app::rfl {
         static void Finish(BulletPatternSetParameter* pInstance);
         static void Clean(BulletPatternSetParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HackingBulletParameter {
         float bulletRadius;
         float bulletModelScale;
@@ -33258,10 +36768,12 @@ namespace app::rfl {
         static void Finish(HackingBulletParameter* pInstance);
         static void Clean(HackingBulletParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BulletPatternSetParameters {
-        HackingBulletParameter bulletParam;
-        BulletPatternSetParameter data[256];
+        heur::rfl::HackingBulletParameter bulletParam;
+        heur::rfl::BulletPatternSetParameter data[256];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33270,7 +36782,9 @@ namespace app::rfl {
         static void Finish(BulletPatternSetParameters* pInstance);
         static void Clean(BulletPatternSetParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EnemyLaserConfig {
         float rotLaserVanishTime;
         float rotLaserOmenTime;
@@ -33284,7 +36798,9 @@ namespace app::rfl {
         static void Finish(EnemyLaserConfig* pInstance);
         static void Clean(EnemyLaserConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HackingEnemyParameterCore {
         float colliderRadius;
         float colliderHeight;
@@ -33297,7 +36813,9 @@ namespace app::rfl {
         static void Finish(HackingEnemyParameterCore* pInstance);
         static void Clean(HackingEnemyParameterCore* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HackingEnemyParameterNormal {
         uint16_t hpS;
         uint16_t hpM;
@@ -33313,10 +36831,12 @@ namespace app::rfl {
         static void Finish(HackingEnemyParameterNormal* pInstance);
         static void Clean(HackingEnemyParameterNormal* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HackingEnemyParameters {
-        HackingEnemyParameterNormal normalEnemyParam;
-        HackingEnemyParameterCore coreEnemyParam;
+        heur::rfl::HackingEnemyParameterNormal normalEnemyParam;
+        heur::rfl::HackingEnemyParameterCore coreEnemyParam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33325,7 +36845,9 @@ namespace app::rfl {
         static void Finish(HackingEnemyParameters* pInstance);
         static void Clean(HackingEnemyParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChaosEmeraldStorageParam {
         bool isEnable;
         int8_t useKeyNum;
@@ -33337,7 +36859,9 @@ namespace app::rfl {
         static void Finish(ChaosEmeraldStorageParam* pInstance);
         static void Clean(ChaosEmeraldStorageParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraTowerParam {
         bool isEnable;
         int8_t useKeyNum;
@@ -33349,9 +36873,11 @@ namespace app::rfl {
         static void Finish(ExtraTowerParam* pInstance);
         static void Clean(ExtraTowerParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraIslandParam {
-        ExtraTowerParam extratowers[5];
+        heur::rfl::ExtraTowerParam extratowers[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33360,9 +36886,11 @@ namespace app::rfl {
         static void Finish(ExtraIslandParam* pInstance);
         static void Clean(ExtraIslandParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandParam {
-        ChaosEmeraldStorageParam storages[7];
+        heur::rfl::ChaosEmeraldStorageParam storages[7];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33371,7 +36899,9 @@ namespace app::rfl {
         static void Finish(IslandParam* pInstance);
         static void Clean(IslandParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaCommonParam {
         float takableRange;
         float fadeTime;
@@ -33385,7 +36915,9 @@ namespace app::rfl {
         static void Finish(KodamaCommonParam* pInstance);
         static void Clean(KodamaCommonParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaFollowParam {
         int8_t maxFollowNum;
         float speed;
@@ -33401,10 +36933,12 @@ namespace app::rfl {
         static void Finish(KodamaFollowParam* pInstance);
         static void Clean(KodamaFollowParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaNormalParam {
-        KodamaCommonParam common;
-        KodamaFollowParam follow;
+        heur::rfl::KodamaCommonParam common;
+        heur::rfl::KodamaFollowParam follow;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33413,7 +36947,9 @@ namespace app::rfl {
         static void Finish(KodamaNormalParam* pInstance);
         static void Clean(KodamaNormalParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaElderParam {
         int32_t levelupKodamaNum[3];
         int32_t levelupKodamaNumFriends[3];
@@ -33426,7 +36962,9 @@ namespace app::rfl {
         static void Finish(KodamaElderParam* pInstance);
         static void Clean(KodamaElderParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaHermitLvUpParam {
         int32_t difficulty[3];
 
@@ -33437,10 +36975,12 @@ namespace app::rfl {
         static void Finish(KodamaHermitLvUpParam* pInstance);
         static void Clean(KodamaHermitLvUpParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaHermitParam {
-        KodamaHermitLvUpParam levelupSeedNum[99];
-        KodamaHermitLvUpParam levelupSeedNumFriends[99];
+        heur::rfl::KodamaHermitLvUpParam levelupSeedNum[99];
+        heur::rfl::KodamaHermitLvUpParam levelupSeedNumFriends[99];
         int32_t amyRequiredKodamaNum;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -33450,7 +36990,9 @@ namespace app::rfl {
         static void Finish(KodamaHermitParam* pInstance);
         static void Clean(KodamaHermitParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaNewFormParam {
         float takableRange;
         float colliderRange;
@@ -33465,12 +37007,14 @@ namespace app::rfl {
         static void Finish(KodamaNewFormParam* pInstance);
         static void Clean(KodamaNewFormParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KodamaParam {
-        KodamaNormalParam normal;
-        KodamaElderParam elder;
-        KodamaHermitParam hermit;
-        KodamaNewFormParam newform[8];
+        heur::rfl::KodamaNormalParam normal;
+        heur::rfl::KodamaElderParam elder;
+        heur::rfl::KodamaHermitParam hermit;
+        heur::rfl::KodamaNewFormParam newform[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33479,7 +37023,9 @@ namespace app::rfl {
         static void Finish(KodamaParam* pInstance);
         static void Clean(KodamaParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct NpcParam {
         int32_t inputSequenceItemNumShort;
         int32_t inputSequenceItemNumMiddle;
@@ -33491,12 +37037,14 @@ namespace app::rfl {
         static void Finish(NpcParam* pInstance);
         static void Clean(NpcParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandParameter {
-        IslandParam islands[5];
-        ExtraIslandParam extraIsland;
-        KodamaParam kodama;
-        NpcParam npc;
+        heur::rfl::IslandParam islands[5];
+        heur::rfl::ExtraIslandParam extraIsland;
+        heur::rfl::KodamaParam kodama;
+        heur::rfl::NpcParam npc;
         int32_t portalExtraKeyNum;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -33506,7 +37054,9 @@ namespace app::rfl {
         static void Finish(IslandParameter* pInstance);
         static void Clean(IslandParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerCameraParameter {
         enum class CameraType : uint8_t {
             None = 0,
@@ -33541,7 +37091,9 @@ namespace app::rfl {
         static void Finish(PlayerCameraParameter* pInstance);
         static void Clean(PlayerCameraParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerCameraSetParameter {
         enum class Priority : uint8_t {
             Default = 0,
@@ -33551,7 +37103,7 @@ namespace app::rfl {
         csl::ut::VariableString name;
         float easeoutTime;
         Priority priority;
-        PlayerCameraParameter param[8];
+        heur::rfl::PlayerCameraParameter param[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33560,9 +37112,11 @@ namespace app::rfl {
         static void Finish(PlayerCameraSetParameter* pInstance);
         static void Clean(PlayerCameraSetParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerCameraSetParameters {
-        PlayerCameraSetParameter data[45];
+        heur::rfl::PlayerCameraSetParameter data[45];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33571,8 +37125,10 @@ namespace app::rfl {
         static void Finish(PlayerCameraSetParameters* pInstance);
         static void Clean(PlayerCameraSetParameters* pInstance);
     };
+}
 
-    struct EffectRecord : Record {
+namespace heur::rfl {
+    struct EffectRecord : heur::rfl::Record {
         csl::ut::VariableString emitterSetName[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -33582,9 +37138,11 @@ namespace app::rfl {
         static void Finish(EffectRecord* pInstance);
         static void Clean(EffectRecord* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EffectRecordBaseTable {
-        EffectRecord data[100];
+        heur::rfl::EffectRecord data[100];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33593,9 +37151,11 @@ namespace app::rfl {
         static void Finish(EffectRecordBaseTable* pInstance);
         static void Clean(EffectRecordBaseTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct EffectRecordTable {
-        EffectRecord data[255];
+        heur::rfl::EffectRecord data[255];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33604,7 +37164,9 @@ namespace app::rfl {
         static void Finish(EffectRecordTable* pInstance);
         static void Clean(EffectRecordTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamAirCyHammer {
         float acceleForce;
         float deceleForce;
@@ -33623,7 +37185,9 @@ namespace app::rfl {
         static void Finish(AmyParamAirCyHammer* pInstance);
         static void Clean(AmyParamAirCyHammer* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamBlowKissCamera {
         float playerUpOffset;
         float playerRightOffset;
@@ -33642,7 +37206,9 @@ namespace app::rfl {
         static void Finish(AmyParamBlowKissCamera* pInstance);
         static void Clean(AmyParamBlowKissCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamHeartBreakCamera {
         float distanceToPlayer;
         float azimuthOffset;
@@ -33657,7 +37223,9 @@ namespace app::rfl {
         static void Finish(AmyParamHeartBreakCamera* pInstance);
         static void Clean(AmyParamHeartBreakCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamCharmAttack {
         float lockonLevelUpSpanTime[5];
         float lockonSearchDistance;
@@ -33671,8 +37239,8 @@ namespace app::rfl {
         float damageSpanTime;
         float postDamageTime;
         csl::ut::VariableString hitStopObject;
-        AmyParamBlowKissCamera camera;
-        AmyParamHeartBreakCamera cameraHeartBreak;
+        heur::rfl::AmyParamBlowKissCamera camera;
+        heur::rfl::AmyParamHeartBreakCamera cameraHeartBreak;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33681,7 +37249,9 @@ namespace app::rfl {
         static void Finish(AmyParamCharmAttack* pInstance);
         static void Clean(AmyParamCharmAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamCyHammer {
         float radius;
         float effectTime;
@@ -33695,7 +37265,9 @@ namespace app::rfl {
         static void Finish(AmyParamCyHammer* pInstance);
         static void Clean(AmyParamCyHammer* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopDropItemWeightParameter {
         uint32_t noneWeight;
         uint32_t ring10Weight;
@@ -33715,10 +37287,12 @@ namespace app::rfl {
         static void Finish(CyloopDropItemWeightParameter* pInstance);
         static void Clean(CyloopDropItemWeightParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopDropItemParameter {
-        CyloopDropItemWeightParameter weight;
-        CyloopDropItemWeightParameter weight2;
+        heur::rfl::CyloopDropItemWeightParameter weight;
+        heur::rfl::CyloopDropItemWeightParameter weight2;
         uint32_t numRings;
         uint32_t numRings2;
         uint32_t num10Rings;
@@ -33733,10 +37307,12 @@ namespace app::rfl {
         static void Finish(CyloopDropItemParameter* pInstance);
         static void Clean(CyloopDropItemParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamCyHammerAppearGimmick {
         float appearWaitTime;
-        CyloopDropItemParameter dropItem;
+        heur::rfl::CyloopDropItemParameter dropItem;
         float airCyHammerBonusScale;
         float airCyHammerMinBonusDistance;
         float airCyHammerMaxBonusDistance;
@@ -33748,7 +37324,9 @@ namespace app::rfl {
         static void Finish(AmyParamCyHammerAppearGimmick* pInstance);
         static void Clean(AmyParamCyHammerAppearGimmick* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboCommon {
         float longPressTime;
 
@@ -33759,7 +37337,9 @@ namespace app::rfl {
         static void Finish(PlayerParamComboCommon* pInstance);
         static void Clean(PlayerParamComboCommon* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboMove {
         enum class ComboMoveType : uint8_t {
             Homing = 0,
@@ -33780,7 +37360,9 @@ namespace app::rfl {
         static void Finish(PlayerParamComboMove* pInstance);
         static void Clean(PlayerParamComboMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboMoveCorrection {
         float moveSpeed;
         float rotateSpeed;
@@ -33792,7 +37374,9 @@ namespace app::rfl {
         static void Finish(PlayerParamComboMoveCorrection* pInstance);
         static void Clean(PlayerParamComboMoveCorrection* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboTransit {
         enum class Action : int8_t {
             Root = 0,
@@ -33861,46 +37445,48 @@ namespace app::rfl {
         static void Finish(PlayerParamComboTransit* pInstance);
         static void Clean(PlayerParamComboTransit* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboTransitTable {
-        PlayerParamComboTransit root;
-        PlayerParamComboTransit homingAttack;
-        PlayerParamComboTransit aerialHoming;
-        PlayerParamComboTransit pursuit;
-        PlayerParamComboTransit stomping;
-        PlayerParamComboTransit loopKick;
-        PlayerParamComboTransit crasher;
-        PlayerParamComboTransit spinSlash;
-        PlayerParamComboTransit sonicBoom;
-        PlayerParamComboTransit crossSlash;
-        PlayerParamComboTransit homingShot;
-        PlayerParamComboTransit chargeAttack;
-        PlayerParamComboTransit quickCyloop;
-        PlayerParamComboTransit aerialQuickCyloop;
-        PlayerParamComboTransit acceleCombo1;
-        PlayerParamComboTransit acceleCombo2;
-        PlayerParamComboTransit acceleCombo3;
-        PlayerParamComboTransit acceleCombo4;
-        PlayerParamComboTransit aerialAcceleCombo1;
-        PlayerParamComboTransit aerialAcceleCombo2;
-        PlayerParamComboTransit aerialAcceleCombo3;
-        PlayerParamComboTransit aerialAcceleCombo4;
-        PlayerParamComboTransit behind;
-        PlayerParamComboTransit guarded;
-        PlayerParamComboTransit avoid;
-        PlayerParamComboTransit airBoost;
-        PlayerParamComboTransit afterAirBoost;
-        PlayerParamComboTransit knucklesPunch1;
-        PlayerParamComboTransit knucklesPunch2;
-        PlayerParamComboTransit knucklesUppercut;
-        PlayerParamComboTransit knucklesCyKnuckle;
-        PlayerParamComboTransit knucklesHeatKnuckle;
-        PlayerParamComboTransit amyTarotAttack;
-        PlayerParamComboTransit amyTarotAttack2;
-        PlayerParamComboTransit amyTarotRolling;
-        PlayerParamComboTransit amyCyHammer;
-        PlayerParamComboTransit amyCharmAttack;
-        PlayerParamComboTransit tailsSpanner;
+        heur::rfl::PlayerParamComboTransit root;
+        heur::rfl::PlayerParamComboTransit homingAttack;
+        heur::rfl::PlayerParamComboTransit aerialHoming;
+        heur::rfl::PlayerParamComboTransit pursuit;
+        heur::rfl::PlayerParamComboTransit stomping;
+        heur::rfl::PlayerParamComboTransit loopKick;
+        heur::rfl::PlayerParamComboTransit crasher;
+        heur::rfl::PlayerParamComboTransit spinSlash;
+        heur::rfl::PlayerParamComboTransit sonicBoom;
+        heur::rfl::PlayerParamComboTransit crossSlash;
+        heur::rfl::PlayerParamComboTransit homingShot;
+        heur::rfl::PlayerParamComboTransit chargeAttack;
+        heur::rfl::PlayerParamComboTransit quickCyloop;
+        heur::rfl::PlayerParamComboTransit aerialQuickCyloop;
+        heur::rfl::PlayerParamComboTransit acceleCombo1;
+        heur::rfl::PlayerParamComboTransit acceleCombo2;
+        heur::rfl::PlayerParamComboTransit acceleCombo3;
+        heur::rfl::PlayerParamComboTransit acceleCombo4;
+        heur::rfl::PlayerParamComboTransit aerialAcceleCombo1;
+        heur::rfl::PlayerParamComboTransit aerialAcceleCombo2;
+        heur::rfl::PlayerParamComboTransit aerialAcceleCombo3;
+        heur::rfl::PlayerParamComboTransit aerialAcceleCombo4;
+        heur::rfl::PlayerParamComboTransit behind;
+        heur::rfl::PlayerParamComboTransit guarded;
+        heur::rfl::PlayerParamComboTransit avoid;
+        heur::rfl::PlayerParamComboTransit airBoost;
+        heur::rfl::PlayerParamComboTransit afterAirBoost;
+        heur::rfl::PlayerParamComboTransit knucklesPunch1;
+        heur::rfl::PlayerParamComboTransit knucklesPunch2;
+        heur::rfl::PlayerParamComboTransit knucklesUppercut;
+        heur::rfl::PlayerParamComboTransit knucklesCyKnuckle;
+        heur::rfl::PlayerParamComboTransit knucklesHeatKnuckle;
+        heur::rfl::PlayerParamComboTransit amyTarotAttack;
+        heur::rfl::PlayerParamComboTransit amyTarotAttack2;
+        heur::rfl::PlayerParamComboTransit amyTarotRolling;
+        heur::rfl::PlayerParamComboTransit amyCyHammer;
+        heur::rfl::PlayerParamComboTransit amyCharmAttack;
+        heur::rfl::PlayerParamComboTransit tailsSpanner;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33909,13 +37495,15 @@ namespace app::rfl {
         static void Finish(PlayerParamComboTransitTable* pInstance);
         static void Clean(PlayerParamComboTransitTable* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCombo {
-        PlayerParamComboCommon common;
-        PlayerParamComboMove comboMoveSonic;
-        PlayerParamComboMove comboMoveSupersonic;
-        PlayerParamComboMoveCorrection comboMoveCorrection;
-        PlayerParamComboTransitTable comboTable;
+        heur::rfl::PlayerParamComboCommon common;
+        heur::rfl::PlayerParamComboMove comboMoveSonic;
+        heur::rfl::PlayerParamComboMove comboMoveSupersonic;
+        heur::rfl::PlayerParamComboMoveCorrection comboMoveCorrection;
+        heur::rfl::PlayerParamComboTransitTable comboTable;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33924,7 +37512,9 @@ namespace app::rfl {
         static void Finish(PlayerParamCombo* pInstance);
         static void Clean(PlayerParamCombo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamParryDebuff {
         uint32_t damagePoint;
         float effectTime;
@@ -33938,7 +37528,9 @@ namespace app::rfl {
         static void Finish(AmyParamParryDebuff* pInstance);
         static void Clean(AmyParamParryDebuff* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopSlashEffectBaseParameter {
         int32_t m_divideCircle;
         float m_circleRadius;
@@ -33964,8 +37556,10 @@ namespace app::rfl {
         static void Finish(CyloopSlashEffectBaseParameter* pInstance);
         static void Clean(CyloopSlashEffectBaseParameter* pInstance);
     };
+}
 
-    struct CyloopTransparentLocusParameter : CyloopSlashEffectBaseParameter {
+namespace heur::rfl {
+    struct CyloopTransparentLocusParameter : heur::rfl::CyloopSlashEffectBaseParameter {
         csl::ut::Color<float> m_color0;
         csl::ut::Color<float> m_color1;
         float m_luminance;
@@ -33981,7 +37575,9 @@ namespace app::rfl {
         static void Finish(CyloopTransparentLocusParameter* pInstance);
         static void Clean(CyloopTransparentLocusParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OpaqueLineUvCell {
         float scale;
         float speedX;
@@ -33994,11 +37590,13 @@ namespace app::rfl {
         static void Finish(OpaqueLineUvCell* pInstance);
         static void Clean(OpaqueLineUvCell* pInstance);
     };
+}
 
-    struct CyloopOpaqueLocusParameter : CyloopSlashEffectBaseParameter {
+namespace heur::rfl {
+    struct CyloopOpaqueLocusParameter : heur::rfl::CyloopSlashEffectBaseParameter {
         csl::ut::Color<float> m_color;
         float m_alphaThreshold;
-        OpaqueLineUvCell m_uvCells[2];
+        heur::rfl::OpaqueLineUvCell m_uvCells[2];
         float m_uvLineScaleX;
         float m_uvLineScaleY;
         csl::ut::Color<float> m_flashColor;
@@ -34011,7 +37609,9 @@ namespace app::rfl {
         static void Finish(CyloopOpaqueLocusParameter* pInstance);
         static void Clean(CyloopOpaqueLocusParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopCrossLineParameter {
         csl::ut::VariableString m_textureNamePattern;
         csl::ut::VariableString m_textureNameDist;
@@ -34062,14 +37662,16 @@ namespace app::rfl {
         static void Finish(CyloopCrossLineParameter* pInstance);
         static void Clean(CyloopCrossLineParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopLocusParameter {
         int32_t m_numTransparentLines;
-        CyloopTransparentLocusParameter m_transparentLines[3];
+        heur::rfl::CyloopTransparentLocusParameter m_transparentLines[3];
         int32_t m_numOpaqueLines;
-        CyloopOpaqueLocusParameter m_opaqueLines[3];
+        heur::rfl::CyloopOpaqueLocusParameter m_opaqueLines[3];
         int32_t m_numCrossLines;
-        CyloopCrossLineParameter m_crossline;
+        heur::rfl::CyloopCrossLineParameter m_crossline;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34078,7 +37680,9 @@ namespace app::rfl {
         static void Finish(CyloopLocusParameter* pInstance);
         static void Clean(CyloopLocusParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopShapeWindCountParameter {
         float damageRate;
         float stunRate;
@@ -34092,9 +37696,11 @@ namespace app::rfl {
         static void Finish(CyloopShapeWindCountParameter* pInstance);
         static void Clean(CyloopShapeWindCountParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopShapeWindEffectParaemter {
-        CyloopShapeWindCountParameter param[5];
+        heur::rfl::CyloopShapeWindCountParameter param[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34103,9 +37709,11 @@ namespace app::rfl {
         static void Finish(CyloopShapeWindEffectParaemter* pInstance);
         static void Clean(CyloopShapeWindEffectParaemter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyloopShapeEffectParameter {
-        CyloopShapeWindEffectParaemter wind;
+        heur::rfl::CyloopShapeWindEffectParaemter wind;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34114,16 +37722,18 @@ namespace app::rfl {
         static void Finish(CyloopShapeEffectParameter* pInstance);
         static void Clean(CyloopShapeEffectParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCyloop {
-        CyloopLocusParameter locus;
-        CyloopLocusParameter locusQuick;
-        CyloopLocusParameter locusSuperSonic;
-        CyloopLocusParameter locusSuperSonicQuick;
+        heur::rfl::CyloopLocusParameter locus;
+        heur::rfl::CyloopLocusParameter locusQuick;
+        heur::rfl::CyloopLocusParameter locusSuperSonic;
+        heur::rfl::CyloopLocusParameter locusSuperSonicQuick;
         csl::ut::Color<float> auraColor;
-        CyloopDropItemParameter dropItem;
+        heur::rfl::CyloopDropItemParameter dropItem;
         float needSpeed;
-        CyloopShapeEffectParameter shapeEffect;
+        heur::rfl::CyloopShapeEffectParameter shapeEffect;
         float lossQuickCyloopEnergy;
         float recoveryQuickCyloopEnergyByTime;
         float recoveryQuickCyloopEnergyByTimeInMinigame;
@@ -34136,7 +37746,9 @@ namespace app::rfl {
         static void Finish(PlayerParamCyloop* pInstance);
         static void Clean(PlayerParamCyloop* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamOffensive {
         uint16_t pointMin;
         uint16_t pointMax;
@@ -34153,7 +37765,9 @@ namespace app::rfl {
         static void Finish(PlayerParamOffensive* pInstance);
         static void Clean(PlayerParamOffensive* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDefensive {
         uint8_t rateMin;
         uint8_t rateMax;
@@ -34166,10 +37780,12 @@ namespace app::rfl {
         static void Finish(PlayerParamDefensive* pInstance);
         static void Clean(PlayerParamDefensive* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAttackCommon {
-        PlayerParamOffensive offensive;
-        PlayerParamDefensive defensive;
+        heur::rfl::PlayerParamOffensive offensive;
+        heur::rfl::PlayerParamDefensive defensive;
         float criticalDamageRate;
         float criticalRate;
         float criticalRateSS;
@@ -34182,7 +37798,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAttackCommon* pInstance);
         static void Clean(PlayerParamAttackCommon* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAttackData {
         enum class HitSE : int8_t {
             SE_None = -1,
@@ -34258,63 +37876,65 @@ namespace app::rfl {
         static void Finish(PlayerParamAttackData* pInstance);
         static void Clean(PlayerParamAttackData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAttack {
-        PlayerParamAttackCommon common;
-        PlayerParamAttackData spinAttack;
-        PlayerParamAttackData spinDash;
-        PlayerParamAttackData homingAttack;
-        PlayerParamAttackData homingAttackAir;
-        PlayerParamAttackData pursuitKick;
-        PlayerParamAttackData stomping;
-        PlayerParamAttackData stompingAttack;
-        PlayerParamAttackData boundStompingLast;
-        PlayerParamAttackData sliding;
-        PlayerParamAttackData loopKick;
-        PlayerParamAttackData crasher;
-        PlayerParamAttackData spinSlashHoming;
-        PlayerParamAttackData spinSlash;
-        PlayerParamAttackData spinSlashLast;
-        PlayerParamAttackData sonicBoom;
-        PlayerParamAttackData crossSlash;
-        PlayerParamAttackData homingShot;
-        PlayerParamAttackData chargeAttack;
-        PlayerParamAttackData chargeAttackLast;
-        PlayerParamAttackData c;
-        PlayerParamAttackData cyloopQuick;
-        PlayerParamAttackData cyloopAerial;
-        PlayerParamAttackData accele1;
-        PlayerParamAttackData accele2;
-        PlayerParamAttackData aerialAccele1;
-        PlayerParamAttackData aerialAccele2;
-        PlayerParamAttackData comboFinish;
-        PlayerParamAttackData comboFinishF;
-        PlayerParamAttackData comboFinishB;
-        PlayerParamAttackData comboFinishL;
-        PlayerParamAttackData comboFinishR;
-        PlayerParamAttackData acceleComboFinish;
-        PlayerParamAttackData acceleComboFinishF;
-        PlayerParamAttackData acceleComboFinishB;
-        PlayerParamAttackData acceleComboFinishL;
-        PlayerParamAttackData acceleComboFinishR;
-        PlayerParamAttackData smash;
-        PlayerParamAttackData smashLast;
-        PlayerParamAttackData slingShot;
-        PlayerParamAttackData knucklesPunch1;
-        PlayerParamAttackData knucklesPunch2;
-        PlayerParamAttackData knucklesUppercut;
-        PlayerParamAttackData knucklesHeatKnuckle;
-        PlayerParamAttackData knucklesHeatKnuckleLast;
-        PlayerParamAttackData amyTarotAttack;
-        PlayerParamAttackData amyTarotAttack2;
-        PlayerParamAttackData amyTarotRolling;
-        PlayerParamAttackData amyCharmAttack;
-        PlayerParamAttackData amyTarotBoost;
-        PlayerParamAttackData tailsSpanner;
-        PlayerParamAttackData tailsSpannerFloat;
-        PlayerParamAttackData tailsPowerBoost;
-        PlayerParamAttackData tailsWaveCannon;
-        PlayerParamAttackData tailsWaveCannonFinish;
+        heur::rfl::PlayerParamAttackCommon common;
+        heur::rfl::PlayerParamAttackData spinAttack;
+        heur::rfl::PlayerParamAttackData spinDash;
+        heur::rfl::PlayerParamAttackData homingAttack;
+        heur::rfl::PlayerParamAttackData homingAttackAir;
+        heur::rfl::PlayerParamAttackData pursuitKick;
+        heur::rfl::PlayerParamAttackData stomping;
+        heur::rfl::PlayerParamAttackData stompingAttack;
+        heur::rfl::PlayerParamAttackData boundStompingLast;
+        heur::rfl::PlayerParamAttackData sliding;
+        heur::rfl::PlayerParamAttackData loopKick;
+        heur::rfl::PlayerParamAttackData crasher;
+        heur::rfl::PlayerParamAttackData spinSlashHoming;
+        heur::rfl::PlayerParamAttackData spinSlash;
+        heur::rfl::PlayerParamAttackData spinSlashLast;
+        heur::rfl::PlayerParamAttackData sonicBoom;
+        heur::rfl::PlayerParamAttackData crossSlash;
+        heur::rfl::PlayerParamAttackData homingShot;
+        heur::rfl::PlayerParamAttackData chargeAttack;
+        heur::rfl::PlayerParamAttackData chargeAttackLast;
+        heur::rfl::PlayerParamAttackData c;
+        heur::rfl::PlayerParamAttackData cyloopQuick;
+        heur::rfl::PlayerParamAttackData cyloopAerial;
+        heur::rfl::PlayerParamAttackData accele1;
+        heur::rfl::PlayerParamAttackData accele2;
+        heur::rfl::PlayerParamAttackData aerialAccele1;
+        heur::rfl::PlayerParamAttackData aerialAccele2;
+        heur::rfl::PlayerParamAttackData comboFinish;
+        heur::rfl::PlayerParamAttackData comboFinishF;
+        heur::rfl::PlayerParamAttackData comboFinishB;
+        heur::rfl::PlayerParamAttackData comboFinishL;
+        heur::rfl::PlayerParamAttackData comboFinishR;
+        heur::rfl::PlayerParamAttackData acceleComboFinish;
+        heur::rfl::PlayerParamAttackData acceleComboFinishF;
+        heur::rfl::PlayerParamAttackData acceleComboFinishB;
+        heur::rfl::PlayerParamAttackData acceleComboFinishL;
+        heur::rfl::PlayerParamAttackData acceleComboFinishR;
+        heur::rfl::PlayerParamAttackData smash;
+        heur::rfl::PlayerParamAttackData smashLast;
+        heur::rfl::PlayerParamAttackData slingShot;
+        heur::rfl::PlayerParamAttackData knucklesPunch1;
+        heur::rfl::PlayerParamAttackData knucklesPunch2;
+        heur::rfl::PlayerParamAttackData knucklesUppercut;
+        heur::rfl::PlayerParamAttackData knucklesHeatKnuckle;
+        heur::rfl::PlayerParamAttackData knucklesHeatKnuckleLast;
+        heur::rfl::PlayerParamAttackData amyTarotAttack;
+        heur::rfl::PlayerParamAttackData amyTarotAttack2;
+        heur::rfl::PlayerParamAttackData amyTarotRolling;
+        heur::rfl::PlayerParamAttackData amyCharmAttack;
+        heur::rfl::PlayerParamAttackData amyTarotBoost;
+        heur::rfl::PlayerParamAttackData tailsSpanner;
+        heur::rfl::PlayerParamAttackData tailsSpannerFloat;
+        heur::rfl::PlayerParamAttackData tailsPowerBoost;
+        heur::rfl::PlayerParamAttackData tailsWaveCannon;
+        heur::rfl::PlayerParamAttackData tailsWaveCannonFinish;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34323,7 +37943,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAttack* pInstance);
         static void Clean(PlayerParamAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamWaterAct {
         float resistRate;
         float breatheBrake;
@@ -34337,7 +37959,9 @@ namespace app::rfl {
         static void Finish(PlayerParamWaterAct* pInstance);
         static void Clean(PlayerParamWaterAct* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBaseJump {
         float baseSpeed;
         float upSpeed;
@@ -34353,7 +37977,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBaseJump* pInstance);
         static void Clean(PlayerParamBaseJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBallMove {
         float maxSpeed;
         float slidePower;
@@ -34370,7 +37996,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBallMove* pInstance);
         static void Clean(PlayerParamBallMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLocusData {
         float width;
         float distance;
@@ -34384,9 +38012,11 @@ namespace app::rfl {
         static void Finish(PlayerParamLocusData* pInstance);
         static void Clean(PlayerParamLocusData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLocus {
-        PlayerParamLocusData data[4];
+        heur::rfl::PlayerParamLocusData data[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34395,7 +38025,9 @@ namespace app::rfl {
         static void Finish(PlayerParamLocus* pInstance);
         static void Clean(PlayerParamLocus* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAuraTrain {
         float effectSpanTime;
         float effectLifeTime;
@@ -34409,7 +38041,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAuraTrain* pInstance);
         static void Clean(PlayerParamAuraTrain* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLevel {
         uint8_t ringsLevel;
         uint8_t speedLevel;
@@ -34423,7 +38057,9 @@ namespace app::rfl {
         static void Finish(PlayerParamLevel* pInstance);
         static void Clean(PlayerParamLevel* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBarrierWall {
         float coolTime;
 
@@ -34434,7 +38070,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBarrierWall* pInstance);
         static void Clean(PlayerParamBarrierWall* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageRateLevel {
         float rates[5];
 
@@ -34445,9 +38083,11 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageRateLevel* pInstance);
         static void Clean(PlayerParamDamageRateLevel* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageRate {
-        PlayerParamDamageRateLevel diffculties[4];
+        heur::rfl::PlayerParamDamageRateLevel diffculties[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34456,7 +38096,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageRate* pInstance);
         static void Clean(PlayerParamDamageRate* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAcceleMode {
         float declineSpeed;
         float declineSpeedAccele;
@@ -34471,18 +38113,20 @@ namespace app::rfl {
         static void Finish(PlayerParamAcceleMode* pInstance);
         static void Clean(PlayerParamAcceleMode* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CommonPackage {
-        PlayerParamAttack attack;
-        PlayerParamWaterAct wateract;
-        PlayerParamBaseJump basejump;
-        PlayerParamBallMove ballmove;
-        PlayerParamLocus locus;
-        PlayerParamAuraTrain auratrain;
-        PlayerParamLevel level;
-        PlayerParamBarrierWall barrierWall;
-        PlayerParamDamageRate damageRate;
-        PlayerParamAcceleMode acceleMode;
+        heur::rfl::PlayerParamAttack attack;
+        heur::rfl::PlayerParamWaterAct wateract;
+        heur::rfl::PlayerParamBaseJump basejump;
+        heur::rfl::PlayerParamBallMove ballmove;
+        heur::rfl::PlayerParamLocus locus;
+        heur::rfl::PlayerParamAuraTrain auratrain;
+        heur::rfl::PlayerParamLevel level;
+        heur::rfl::PlayerParamBarrierWall barrierWall;
+        heur::rfl::PlayerParamDamageRate damageRate;
+        heur::rfl::PlayerParamAcceleMode acceleMode;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34491,11 +38135,13 @@ namespace app::rfl {
         static void Finish(CommonPackage* pInstance);
         static void Clean(CommonPackage* pInstance);
     };
+}
 
-    struct CommonPackageAmy : CommonPackage {
-        PlayerParamCombo combo;
-        AmyParamParryDebuff parryDebuff;
-        PlayerParamCyloop c;
+namespace heur::rfl {
+    struct CommonPackageAmy : heur::rfl::CommonPackage {
+        heur::rfl::PlayerParamCombo combo;
+        heur::rfl::AmyParamParryDebuff parryDebuff;
+        heur::rfl::PlayerParamCyloop c;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34504,7 +38150,9 @@ namespace app::rfl {
         static void Finish(CommonPackageAmy* pInstance);
         static void Clean(CommonPackageAmy* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamPropellerJump {
         float initialSpeed;
         float bounceSpeed;
@@ -34525,7 +38173,9 @@ namespace app::rfl {
         static void Finish(AmyParamPropellerJump* pInstance);
         static void Clean(AmyParamPropellerJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamStomping {
         float landAttackScale;
 
@@ -34536,7 +38186,9 @@ namespace app::rfl {
         static void Finish(AmyParamStomping* pInstance);
         static void Clean(AmyParamStomping* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamHighJump {
         float jumpForce;
         float longPressTime;
@@ -34548,7 +38200,9 @@ namespace app::rfl {
         static void Finish(AmyParamHighJump* pInstance);
         static void Clean(AmyParamHighJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAttackCollider {
         enum class Condition : int8_t {
             Time = 0,
@@ -34575,7 +38229,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAttackCollider* pInstance);
         static void Clean(PlayerParamAttackCollider* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotAttackSpeed {
         float initial;
         float min;
@@ -34589,12 +38245,14 @@ namespace app::rfl {
         static void Finish(AmyParamTarotAttackSpeed* pInstance);
         static void Clean(AmyParamTarotAttackSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotAttack {
-        PlayerParamAttackCollider hit;
-        PlayerParamAttackCollider rollingHit;
-        AmyParamTarotAttackSpeed speed;
-        AmyParamTarotAttackSpeed speedRingMax;
+        heur::rfl::PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider rollingHit;
+        heur::rfl::AmyParamTarotAttackSpeed speed;
+        heur::rfl::AmyParamTarotAttackSpeed speedRingMax;
         float speedEaseInTime;
         float speedEaseOutTime;
         float minSpeedScale;
@@ -34610,7 +38268,9 @@ namespace app::rfl {
         static void Finish(AmyParamTarotAttack* pInstance);
         static void Clean(AmyParamTarotAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpeedAcceleData {
         float force;
         float force2;
@@ -34625,7 +38285,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpeedAcceleData* pInstance);
         static void Clean(PlayerParamSpeedAcceleData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotBoostSpeed {
         float buildInitialSpeed;
         float buildMinSpeed;
@@ -34633,8 +38295,8 @@ namespace app::rfl {
         float buildAirRotationForce;
         float initialSpeed;
         float maxSpeed;
-        PlayerParamSpeedAcceleData accele;
-        PlayerParamSpeedAcceleData decele;
+        heur::rfl::PlayerParamSpeedAcceleData accele;
+        heur::rfl::PlayerParamSpeedAcceleData decele;
         float baseRotateForce;
         float minTurnSpeed;
         float turnDeceleAngleMin;
@@ -34647,7 +38309,9 @@ namespace app::rfl {
         static void Finish(AmyParamTarotBoostSpeed* pInstance);
         static void Clean(AmyParamTarotBoostSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotTurnCamera {
         float minDistance;
         float maxDistance;
@@ -34662,7 +38326,9 @@ namespace app::rfl {
         static void Finish(AmyParamTarotTurnCamera* pInstance);
         static void Clean(AmyParamTarotTurnCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotBoost {
         enum class AirAccelMode : int8_t {
             Alawys = 0,
@@ -34672,7 +38338,7 @@ namespace app::rfl {
 
         float prepareTime;
         float initialRunTime;
-        AmyParamTarotBoostSpeed speed;
+        heur::rfl::AmyParamTarotBoostSpeed speed;
         float gravitySize;
         float gravityBeginTime;
         float gravityMaxTime;
@@ -34692,7 +38358,7 @@ namespace app::rfl {
         bool quickTurnStopEdge;
         float stompingLimitHeight;
         float stompingLimitJumpOutTime;
-        AmyParamTarotTurnCamera cameraTurn;
+        heur::rfl::AmyParamTarotTurnCamera cameraTurn;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34701,7 +38367,9 @@ namespace app::rfl {
         static void Finish(AmyParamTarotBoost* pInstance);
         static void Clean(AmyParamTarotBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotDriftCamera {
         float fovy;
         float zRot;
@@ -34720,7 +38388,9 @@ namespace app::rfl {
         static void Finish(AmyParamTarotDriftCamera* pInstance);
         static void Clean(AmyParamTarotDriftCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParamTarotDrift {
         float startAngle;
         float endSpeed;
@@ -34738,7 +38408,7 @@ namespace app::rfl {
         float maxRotateSpeed;
         bool steerFixedInput;
         float driftDashTime;
-        AmyParamTarotDriftCamera camera;
+        heur::rfl::AmyParamTarotDriftCamera camera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34747,12 +38417,14 @@ namespace app::rfl {
         static void Finish(AmyParamTarotDrift* pInstance);
         static void Clean(AmyParamTarotDrift* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinBoostSpeed {
         float initialSpeed;
         float maxSpeed;
-        PlayerParamSpeedAcceleData accele;
-        PlayerParamSpeedAcceleData decele;
+        heur::rfl::PlayerParamSpeedAcceleData accele;
+        heur::rfl::PlayerParamSpeedAcceleData decele;
         float baseRotateForce;
         float minTurnSpeed;
         float turnDeceleAngleMin;
@@ -34765,7 +38437,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinBoostSpeed* pInstance);
         static void Clean(PlayerParamSpinBoostSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpeedAcceleData2 {
         float force;
         float damperRange;
@@ -34779,7 +38453,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpeedAcceleData2* pInstance);
         static void Clean(PlayerParamSpeedAcceleData2* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinBoost {
         enum class AirAccelMode : int8_t {
             Alawys = 0,
@@ -34789,10 +38465,10 @@ namespace app::rfl {
 
         float forceRunTime;
         float initialRunTime;
-        PlayerParamSpinBoostSpeed speedBall;
-        PlayerParamSpinBoostSpeed speedBoost;
-        PlayerParamSpeedAcceleData2 deceleNeutralMin;
-        PlayerParamSpeedAcceleData2 deceleNeutralMax;
+        heur::rfl::PlayerParamSpinBoostSpeed speedBall;
+        heur::rfl::PlayerParamSpinBoostSpeed speedBoost;
+        heur::rfl::PlayerParamSpeedAcceleData2 deceleNeutralMin;
+        heur::rfl::PlayerParamSpeedAcceleData2 deceleNeutralMax;
         float gravitySize;
         float gravityBeginTime;
         float gravityMaxTime;
@@ -34819,7 +38495,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinBoost* pInstance);
         static void Clean(PlayerParamSpinBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCommon {
         enum class SupportedPlane : int8_t {
             Flat = 0,
@@ -34851,7 +38529,9 @@ namespace app::rfl {
         static void Finish(PlayerParamCommon* pInstance);
         static void Clean(PlayerParamCommon* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpeedData {
         float initial;
         float min;
@@ -34865,23 +38545,25 @@ namespace app::rfl {
         static void Finish(PlayerParamSpeedData* pInstance);
         static void Clean(PlayerParamSpeedData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpeed {
-        PlayerParamSpeedData normal;
-        PlayerParamSpeedData normal2;
-        PlayerParamSpeedData boost;
-        PlayerParamSpeedData boost2;
-        PlayerParamSpeedData boostLvMax;
-        PlayerParamSpeedData boostLvMax2;
+        heur::rfl::PlayerParamSpeedData normal;
+        heur::rfl::PlayerParamSpeedData normal2;
+        heur::rfl::PlayerParamSpeedData boost;
+        heur::rfl::PlayerParamSpeedData boost2;
+        heur::rfl::PlayerParamSpeedData boostLvMax;
+        heur::rfl::PlayerParamSpeedData boostLvMax2;
         float maxSpeedOver;
         float opitonMaxSpeedLimitMin;
         float opitonMaxSpeedLimitMax;
         float thresholdStopSpeed;
         float maxFallSpeed;
-        PlayerParamSpeedAcceleData accele;
-        PlayerParamSpeedAcceleData decele;
-        PlayerParamSpeedAcceleData2 deceleNeutralMin;
-        PlayerParamSpeedAcceleData2 deceleNeutralMax;
+        heur::rfl::PlayerParamSpeedAcceleData accele;
+        heur::rfl::PlayerParamSpeedAcceleData decele;
+        heur::rfl::PlayerParamSpeedAcceleData2 deceleNeutralMin;
+        heur::rfl::PlayerParamSpeedAcceleData2 deceleNeutralMax;
         float acceleAuto;
         float deceleAuto;
         float turnDeceleAngleMin;
@@ -34899,7 +38581,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpeed* pInstance);
         static void Clean(PlayerParamSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamRotation {
         float baseRotateForce;
         float baseRotateForce2;
@@ -34920,7 +38604,9 @@ namespace app::rfl {
         static void Finish(PlayerParamRotation* pInstance);
         static void Clean(PlayerParamRotation* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamRunning {
         float walkSpeed;
         float sneakingSpeed;
@@ -34943,7 +38629,9 @@ namespace app::rfl {
         static void Finish(PlayerParamRunning* pInstance);
         static void Clean(PlayerParamRunning* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBalanceData {
         float rotateSpeedMinFB;
         float rotateSpeedMaxFB;
@@ -34957,10 +38645,12 @@ namespace app::rfl {
         static void Finish(PlayerParamBalanceData* pInstance);
         static void Clean(PlayerParamBalanceData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBalance {
-        PlayerParamBalanceData standard;
-        PlayerParamBalanceData loop;
+        heur::rfl::PlayerParamBalanceData standard;
+        heur::rfl::PlayerParamBalanceData loop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34969,7 +38659,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBalance* pInstance);
         static void Clean(PlayerParamBalance* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBrake {
         float initialSpeedRatio;
         float maxSpeed;
@@ -34985,7 +38677,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBrake* pInstance);
         static void Clean(PlayerParamBrake* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamTurn {
         float thresholdSpeed;
         float thresholdAngle;
@@ -34999,7 +38693,9 @@ namespace app::rfl {
         static void Finish(PlayerParamTurn* pInstance);
         static void Clean(PlayerParamTurn* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamJump {
         float preActionTime;
         float longPressTime;
@@ -35016,7 +38712,9 @@ namespace app::rfl {
         static void Finish(PlayerParamJump* pInstance);
         static void Clean(PlayerParamJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamJumpSpeed {
         float acceleForce;
         float deceleForce;
@@ -35038,7 +38736,9 @@ namespace app::rfl {
         static void Finish(PlayerParamJumpSpeed* pInstance);
         static void Clean(PlayerParamJumpSpeed* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDoubleJump {
         float initialSpeed;
         float bounceSpeed;
@@ -35051,7 +38751,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDoubleJump* pInstance);
         static void Clean(PlayerParamDoubleJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamFall {
         float thresholdVertSpeed;
         float tolerateJumpTime;
@@ -35072,7 +38774,9 @@ namespace app::rfl {
         static void Finish(PlayerParamFall* pInstance);
         static void Clean(PlayerParamFall* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageCommon {
         float invincibleTime;
 
@@ -35083,7 +38787,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageCommon* pInstance);
         static void Clean(PlayerParamDamageCommon* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageNormal {
         float initialHorzSpeed;
         float initialVertSpeed;
@@ -35098,7 +38804,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageNormal* pInstance);
         static void Clean(PlayerParamDamageNormal* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageTurnBack {
         float fixedTime;
 
@@ -35109,7 +38817,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageTurnBack* pInstance);
         static void Clean(PlayerParamDamageTurnBack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageBlowOff {
         float initialHorzSpeed;
         float initialVertSpeed;
@@ -35126,7 +38836,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageBlowOff* pInstance);
         static void Clean(PlayerParamDamageBlowOff* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageGuarded {
         float vertSpeed;
         float horzSpeed;
@@ -35140,7 +38852,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageGuarded* pInstance);
         static void Clean(PlayerParamDamageGuarded* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageRunning {
         float actionTime;
         float minSpeed;
@@ -35154,7 +38868,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageRunning* pInstance);
         static void Clean(PlayerParamDamageRunning* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageQuake {
         float actionTime;
 
@@ -35165,7 +38881,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageQuake* pInstance);
         static void Clean(PlayerParamDamageQuake* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageLava {
         csl::math::Vector3 jumpVelocity;
         float gravitySize;
@@ -35179,7 +38897,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageLava* pInstance);
         static void Clean(PlayerParamDamageLava* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamageMine {
         csl::math::Vector3 jumpVelocity;
         float gravitySize;
@@ -35197,18 +38917,20 @@ namespace app::rfl {
         static void Finish(PlayerParamDamageMine* pInstance);
         static void Clean(PlayerParamDamageMine* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDamage {
-        PlayerParamDamageCommon common;
-        PlayerParamDamageNormal normal;
-        PlayerParamDamageTurnBack turnBack;
-        PlayerParamDamageBlowOff blowOff;
-        PlayerParamDamageGuarded guarded;
-        PlayerParamDamageGuarded guardedSS;
-        PlayerParamDamageRunning running;
-        PlayerParamDamageQuake quake;
-        PlayerParamDamageLava lava;
-        PlayerParamDamageMine mine;
+        heur::rfl::PlayerParamDamageCommon common;
+        heur::rfl::PlayerParamDamageNormal normal;
+        heur::rfl::PlayerParamDamageTurnBack turnBack;
+        heur::rfl::PlayerParamDamageBlowOff blowOff;
+        heur::rfl::PlayerParamDamageGuarded guarded;
+        heur::rfl::PlayerParamDamageGuarded guardedSS;
+        heur::rfl::PlayerParamDamageRunning running;
+        heur::rfl::PlayerParamDamageQuake quake;
+        heur::rfl::PlayerParamDamageLava lava;
+        heur::rfl::PlayerParamDamageMine mine;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35217,7 +38939,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDamage* pInstance);
         static void Clean(PlayerParamDamage* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDeadNormal {
         float invincibleTime;
         float initialHorzSpeed;
@@ -35230,9 +38954,11 @@ namespace app::rfl {
         static void Finish(PlayerParamDeadNormal* pInstance);
         static void Clean(PlayerParamDeadNormal* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDead {
-        PlayerParamDeadNormal normal;
+        heur::rfl::PlayerParamDeadNormal normal;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35241,7 +38967,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDead* pInstance);
         static void Clean(PlayerParamDead* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSliding {
         float minSpeed;
         float endSpeed;
@@ -35267,7 +38995,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSliding* pInstance);
         static void Clean(PlayerParamSliding* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamStomping {
         float initialSpeed;
         float initialAccele;
@@ -35285,7 +39015,9 @@ namespace app::rfl {
         static void Finish(PlayerParamStomping* pInstance);
         static void Clean(PlayerParamStomping* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamGrind {
         float maxSpeed;
         float maxBoostSpeed;
@@ -35300,7 +39032,9 @@ namespace app::rfl {
         static void Finish(PlayerParamGrind* pInstance);
         static void Clean(PlayerParamGrind* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamFallSlope {
         float initialSpeed;
         float maxSpeed;
@@ -35324,7 +39058,9 @@ namespace app::rfl {
         static void Finish(PlayerParamFallSlope* pInstance);
         static void Clean(PlayerParamFallSlope* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamFallFlip {
         float thresholdSpeed;
         float maxSpeed;
@@ -35337,7 +39073,9 @@ namespace app::rfl {
         static void Finish(PlayerParamFallFlip* pInstance);
         static void Clean(PlayerParamFallFlip* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamTumble {
         bool enabled;
         float sideSpinAngle;
@@ -35373,7 +39111,9 @@ namespace app::rfl {
         static void Finish(PlayerParamTumble* pInstance);
         static void Clean(PlayerParamTumble* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinAttack {
         float jumpForce;
         float jumpAddForce;
@@ -35391,7 +39131,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinAttack* pInstance);
         static void Clean(PlayerParamSpinAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHomingAttackData {
         float speed;
 
@@ -35402,7 +39144,9 @@ namespace app::rfl {
         static void Finish(PlayerParamHomingAttackData* pInstance);
         static void Clean(PlayerParamHomingAttackData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHomingBounceData {
         float bounceVertSpeed;
         float bounceHorzSpeed;
@@ -35420,15 +39164,17 @@ namespace app::rfl {
         static void Finish(PlayerParamHomingBounceData* pInstance);
         static void Clean(PlayerParamHomingBounceData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHomingAttack {
-        PlayerParamHomingAttackData sonic;
-        PlayerParamHomingAttackData supersonic;
-        PlayerParamHomingBounceData sonicBounce;
-        PlayerParamHomingBounceData sonicBounceWeak;
-        PlayerParamHomingBounceData sonicBounceStorm;
-        PlayerParamHomingBounceData sonicBounceStormSwirl;
-        PlayerParamHomingBounceData supersonicBounce;
+        heur::rfl::PlayerParamHomingAttackData sonic;
+        heur::rfl::PlayerParamHomingAttackData supersonic;
+        heur::rfl::PlayerParamHomingBounceData sonicBounce;
+        heur::rfl::PlayerParamHomingBounceData sonicBounceWeak;
+        heur::rfl::PlayerParamHomingBounceData sonicBounceStorm;
+        heur::rfl::PlayerParamHomingBounceData sonicBounceStormSwirl;
+        heur::rfl::PlayerParamHomingBounceData supersonicBounce;
         float cameraEaseInTime;
         float cameraEaseOutTime;
 
@@ -35439,7 +39185,9 @@ namespace app::rfl {
         static void Finish(PlayerParamHomingAttack* pInstance);
         static void Clean(PlayerParamHomingAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHitEnemy {
         float bounceVertSpeed;
         float bounceHorzSpeed;
@@ -35453,7 +39201,9 @@ namespace app::rfl {
         static void Finish(PlayerParamHitEnemy* pInstance);
         static void Clean(PlayerParamHitEnemy* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SpeedParam {
         float maxVertSpeed;
         float acceleVertForce;
@@ -35467,12 +39217,14 @@ namespace app::rfl {
         static void Finish(SpeedParam* pInstance);
         static void Clean(SpeedParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDiving {
-        SpeedParam normal;
-        SpeedParam fast;
-        SpeedParam damaged;
-        SpeedParam ringdash;
+        heur::rfl::SpeedParam normal;
+        heur::rfl::SpeedParam fast;
+        heur::rfl::SpeedParam damaged;
+        heur::rfl::SpeedParam ringdash;
         float startHeight;
         float startSpeed;
         float deceleVertForce;
@@ -35488,7 +39240,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDiving* pInstance);
         static void Clean(PlayerParamDiving* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamFan {
         float damperV;
         float damperH;
@@ -35504,7 +39258,9 @@ namespace app::rfl {
         static void Finish(PlayerParamFan* pInstance);
         static void Clean(PlayerParamFan* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBackflip {
         float jumpSpeed;
         float backSpeed;
@@ -35520,7 +39276,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBackflip* pInstance);
         static void Clean(PlayerParamBackflip* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSlowMove {
         float startSpeed;
         float maxSpeed;
@@ -35538,7 +39296,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSlowMove* pInstance);
         static void Clean(PlayerParamSlowMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpin {
         float startSlopeAngle;
         float endSlopeAngle;
@@ -35556,7 +39316,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpin* pInstance);
         static void Clean(PlayerParamSpin* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamWallMove {
         float maxSpeed;
         float walkSpeed;
@@ -35600,7 +39362,9 @@ namespace app::rfl {
         static void Finish(PlayerParamWallMove* pInstance);
         static void Clean(PlayerParamWallMove* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamWallJump {
         float gravitySize;
         float minTime;
@@ -35619,7 +39383,9 @@ namespace app::rfl {
         static void Finish(PlayerParamWallJump* pInstance);
         static void Clean(PlayerParamWallJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamClimbing {
         float stepSpeedFront;
         float stepSpeedFrontDash;
@@ -35650,7 +39416,9 @@ namespace app::rfl {
         static void Finish(PlayerParamClimbing* pInstance);
         static void Clean(PlayerParamClimbing* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSlideDown {
         float time;
         float speed;
@@ -35666,7 +39434,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSlideDown* pInstance);
         static void Clean(PlayerParamSlideDown* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBoost {
         float consumptionRate;
         float consumptionRateSS;
@@ -35689,7 +39459,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBoost* pInstance);
         static void Clean(PlayerParamBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAirBoost {
         float startHSpeed;
         float startHSpeedMax;
@@ -35712,7 +39484,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAirBoost* pInstance);
         static void Clean(PlayerParamAirBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAutorun {
         float initialSideSpeed;
         float acceleSideForce;
@@ -35726,7 +39500,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAutorun* pInstance);
         static void Clean(PlayerParamAutorun* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSideStep {
         float speed;
         float brakeForce;
@@ -35744,7 +39520,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSideStep* pInstance);
         static void Clean(PlayerParamSideStep* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSideStep2 {
         float speed;
         float brakeForce;
@@ -35762,7 +39540,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSideStep2* pInstance);
         static void Clean(PlayerParamSideStep2* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamQuickStep {
         float needSpeed;
         float acceleForce;
@@ -35781,7 +39561,9 @@ namespace app::rfl {
         static void Finish(PlayerParamQuickStep* pInstance);
         static void Clean(PlayerParamQuickStep* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamParry {
         float minRecieveTime;
         float maxRecieveTimes[4];
@@ -35806,7 +39588,9 @@ namespace app::rfl {
         static void Finish(PlayerParamParry* pInstance);
         static void Clean(PlayerParamParry* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAvoidData {
         float speed;
         float damper;
@@ -35820,7 +39604,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAvoidData* pInstance);
         static void Clean(PlayerParamAvoidData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAvoid {
         float time;
         float fixedTime;
@@ -35829,7 +39615,7 @@ namespace app::rfl {
         float frontAngle;
         float backAngle;
         float addFallSpeed;
-        PlayerParamAvoidData data[7];
+        heur::rfl::PlayerParamAvoidData data[7];
         float baseDistance;
         float limitAngle;
 
@@ -35840,47 +39626,49 @@ namespace app::rfl {
         static void Finish(PlayerParamAvoid* pInstance);
         static void Clean(PlayerParamAvoid* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ModePackage {
-        PlayerParamCommon common;
-        PlayerParamSpeed speed;
-        PlayerParamRotation rotation;
-        PlayerParamRunning running;
-        PlayerParamBalance balance;
-        PlayerParamBrake brake;
-        PlayerParamTurn turn;
-        PlayerParamJump jump;
-        PlayerParamJumpSpeed jumpSpeed;
-        PlayerParamDoubleJump doubleJump;
-        PlayerParamFall fall;
-        PlayerParamDamage damage;
-        PlayerParamDead dead;
-        PlayerParamSliding sliding;
-        PlayerParamStomping stomping;
-        PlayerParamGrind grind;
-        PlayerParamFallSlope fallSlope;
-        PlayerParamFallFlip fallFlip;
-        PlayerParamTumble tumble;
-        PlayerParamSpinAttack spinAttack;
-        PlayerParamHomingAttack homingAttack;
-        PlayerParamHitEnemy hitEnemy;
-        PlayerParamDiving diving;
-        PlayerParamFan fan;
-        PlayerParamBackflip backflip;
-        PlayerParamSlowMove slowmove;
-        PlayerParamSpin spin;
-        PlayerParamWallMove wallmove;
-        PlayerParamWallJump walljump;
-        PlayerParamClimbing climbing;
-        PlayerParamSlideDown slidedown;
-        PlayerParamBoost boost;
-        PlayerParamAirBoost airboost;
-        PlayerParamAutorun autorun;
-        PlayerParamSideStep sidestep;
-        PlayerParamSideStep2 sidestep2;
-        PlayerParamQuickStep quickstep;
-        PlayerParamParry parry;
-        PlayerParamAvoid avoid;
+        heur::rfl::PlayerParamCommon common;
+        heur::rfl::PlayerParamSpeed speed;
+        heur::rfl::PlayerParamRotation rotation;
+        heur::rfl::PlayerParamRunning running;
+        heur::rfl::PlayerParamBalance balance;
+        heur::rfl::PlayerParamBrake brake;
+        heur::rfl::PlayerParamTurn turn;
+        heur::rfl::PlayerParamJump jump;
+        heur::rfl::PlayerParamJumpSpeed jumpSpeed;
+        heur::rfl::PlayerParamDoubleJump doubleJump;
+        heur::rfl::PlayerParamFall fall;
+        heur::rfl::PlayerParamDamage damage;
+        heur::rfl::PlayerParamDead dead;
+        heur::rfl::PlayerParamSliding sliding;
+        heur::rfl::PlayerParamStomping stomping;
+        heur::rfl::PlayerParamGrind grind;
+        heur::rfl::PlayerParamFallSlope fallSlope;
+        heur::rfl::PlayerParamFallFlip fallFlip;
+        heur::rfl::PlayerParamTumble tumble;
+        heur::rfl::PlayerParamSpinAttack spinAttack;
+        heur::rfl::PlayerParamHomingAttack homingAttack;
+        heur::rfl::PlayerParamHitEnemy hitEnemy;
+        heur::rfl::PlayerParamDiving diving;
+        heur::rfl::PlayerParamFan fan;
+        heur::rfl::PlayerParamBackflip backflip;
+        heur::rfl::PlayerParamSlowMove slowmove;
+        heur::rfl::PlayerParamSpin spin;
+        heur::rfl::PlayerParamWallMove wallmove;
+        heur::rfl::PlayerParamWallJump walljump;
+        heur::rfl::PlayerParamClimbing climbing;
+        heur::rfl::PlayerParamSlideDown slidedown;
+        heur::rfl::PlayerParamBoost boost;
+        heur::rfl::PlayerParamAirBoost airboost;
+        heur::rfl::PlayerParamAutorun autorun;
+        heur::rfl::PlayerParamSideStep sidestep;
+        heur::rfl::PlayerParamSideStep2 sidestep2;
+        heur::rfl::PlayerParamQuickStep quickstep;
+        heur::rfl::PlayerParamParry parry;
+        heur::rfl::PlayerParamAvoid avoid;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35889,19 +39677,21 @@ namespace app::rfl {
         static void Finish(ModePackage* pInstance);
         static void Clean(ModePackage* pInstance);
     };
+}
 
-    struct ModePackageAmy : ModePackage {
-        AmyParamPropellerJump propellerJump;
-        AmyParamStomping stomping;
-        AmyParamHighJump highJump;
-        AmyParamTarotAttack tarotAttack;
-        AmyParamCyHammer cyHammer;
-        AmyParamAirCyHammer airCyHammer;
-        AmyParamCyHammerAppearGimmick cyHammerAppearGimmick;
-        AmyParamTarotBoost tarotBoost;
-        AmyParamTarotDrift tarotDrift;
-        AmyParamCharmAttack charmAttack;
-        PlayerParamSpinBoost spinBoost;
+namespace heur::rfl {
+    struct ModePackageAmy : heur::rfl::ModePackage {
+        heur::rfl::AmyParamPropellerJump propellerJump;
+        heur::rfl::AmyParamStomping stomping;
+        heur::rfl::AmyParamHighJump highJump;
+        heur::rfl::AmyParamTarotAttack tarotAttack;
+        heur::rfl::AmyParamCyHammer cyHammer;
+        heur::rfl::AmyParamAirCyHammer airCyHammer;
+        heur::rfl::AmyParamCyHammerAppearGimmick cyHammerAppearGimmick;
+        heur::rfl::AmyParamTarotBoost tarotBoost;
+        heur::rfl::AmyParamTarotDrift tarotDrift;
+        heur::rfl::AmyParamCharmAttack charmAttack;
+        heur::rfl::PlayerParamSpinBoost spinBoost;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35910,14 +39700,16 @@ namespace app::rfl {
         static void Finish(ModePackageAmy* pInstance);
         static void Clean(ModePackageAmy* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WaterModePackage {
-        PlayerParamSpeed speed;
-        PlayerParamJump jump;
-        PlayerParamJumpSpeed jumpSpeed;
-        PlayerParamDoubleJump doubleJump;
-        PlayerParamBoost boost;
-        PlayerParamAirBoost airboost;
+        heur::rfl::PlayerParamSpeed speed;
+        heur::rfl::PlayerParamJump jump;
+        heur::rfl::PlayerParamJumpSpeed jumpSpeed;
+        heur::rfl::PlayerParamDoubleJump doubleJump;
+        heur::rfl::PlayerParamBoost boost;
+        heur::rfl::PlayerParamAirBoost airboost;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35926,12 +39718,14 @@ namespace app::rfl {
         static void Finish(WaterModePackage* pInstance);
         static void Clean(WaterModePackage* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmyParameters {
-        CommonPackageAmy common;
-        ModePackageAmy forwardView;
-        WaterModePackage water;
-        ModePackageAmy cyberspaceSV;
+        heur::rfl::CommonPackageAmy common;
+        heur::rfl::ModePackageAmy forwardView;
+        heur::rfl::WaterModePackage water;
+        heur::rfl::ModePackageAmy cyberspaceSV;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -35940,9 +39734,11 @@ namespace app::rfl {
         static void Finish(AmyParameters* pInstance);
         static void Clean(AmyParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamComboPunch1 {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float motionScale;
         float motionSpeedRate;
         int32_t fallSpeedBaseCount;
@@ -35956,9 +39752,11 @@ namespace app::rfl {
         static void Finish(KnucklesParamComboPunch1* pInstance);
         static void Clean(KnucklesParamComboPunch1* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamComboPunch2 {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float motionScale;
         float motionSpeedRate;
         int32_t fallSpeedBaseCount;
@@ -35972,9 +39770,11 @@ namespace app::rfl {
         static void Finish(KnucklesParamComboPunch2* pInstance);
         static void Clean(KnucklesParamComboPunch2* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamComboUppercut {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float motionScale;
         float motionSpeedRate;
 
@@ -35985,7 +39785,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamComboUppercut* pInstance);
         static void Clean(KnucklesParamComboUppercut* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamParryDebuff {
         float damageRate;
         float effectTime;
@@ -35997,14 +39799,16 @@ namespace app::rfl {
         static void Finish(KnucklesParamParryDebuff* pInstance);
         static void Clean(KnucklesParamParryDebuff* pInstance);
     };
+}
 
-    struct CommonPackageKnuckles : CommonPackage {
-        PlayerParamCombo combo;
-        KnucklesParamComboPunch1 comboPunch1;
-        KnucklesParamComboPunch2 comboPunch2;
-        KnucklesParamComboUppercut comboUppercut;
-        KnucklesParamParryDebuff parryDebuff;
-        PlayerParamCyloop c;
+namespace heur::rfl {
+    struct CommonPackageKnuckles : heur::rfl::CommonPackage {
+        heur::rfl::PlayerParamCombo combo;
+        heur::rfl::KnucklesParamComboPunch1 comboPunch1;
+        heur::rfl::KnucklesParamComboPunch2 comboPunch2;
+        heur::rfl::KnucklesParamComboUppercut comboUppercut;
+        heur::rfl::KnucklesParamParryDebuff parryDebuff;
+        heur::rfl::PlayerParamCyloop c;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36013,9 +39817,11 @@ namespace app::rfl {
         static void Finish(CommonPackageKnuckles* pInstance);
         static void Clean(CommonPackageKnuckles* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAcceleCombo {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float motionSpeedRatio;
         float motionSpeedRatioAccele;
 
@@ -36026,11 +39832,13 @@ namespace app::rfl {
         static void Finish(PlayerParamAcceleCombo* pInstance);
         static void Clean(PlayerParamAcceleCombo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAcceleComboSet {
-        PlayerParamAcceleCombo sonic;
-        PlayerParamAcceleCombo superSonic1;
-        PlayerParamAcceleCombo superSonic2;
+        heur::rfl::PlayerParamAcceleCombo sonic;
+        heur::rfl::PlayerParamAcceleCombo superSonic1;
+        heur::rfl::PlayerParamAcceleCombo superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36039,7 +39847,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAcceleComboSet* pInstance);
         static void Clean(PlayerParamAcceleComboSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLoopKick {
         float loopRadius;
         float loopTime;
@@ -36058,11 +39868,13 @@ namespace app::rfl {
         static void Finish(PlayerParamLoopKick* pInstance);
         static void Clean(PlayerParamLoopKick* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLoopKickSet {
-        PlayerParamLoopKick sonic;
-        PlayerParamLoopKick superSonic1;
-        PlayerParamLoopKick superSonic2;
+        heur::rfl::PlayerParamLoopKick sonic;
+        heur::rfl::PlayerParamLoopKick superSonic1;
+        heur::rfl::PlayerParamLoopKick superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36071,7 +39883,9 @@ namespace app::rfl {
         static void Finish(PlayerParamLoopKickSet* pInstance);
         static void Clean(PlayerParamLoopKickSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCrasher {
         float startWait;
         float distanceRatios[5];
@@ -36096,11 +39910,13 @@ namespace app::rfl {
         static void Finish(PlayerParamCrasher* pInstance);
         static void Clean(PlayerParamCrasher* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCrasherSet {
-        PlayerParamCrasher sonic;
-        PlayerParamCrasher superSonic1;
-        PlayerParamCrasher superSonic2;
+        heur::rfl::PlayerParamCrasher sonic;
+        heur::rfl::PlayerParamCrasher superSonic1;
+        heur::rfl::PlayerParamCrasher superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36109,10 +39925,12 @@ namespace app::rfl {
         static void Finish(PlayerParamCrasherSet* pInstance);
         static void Clean(PlayerParamCrasherSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinSlash {
-        PlayerParamAttackCollider hit;
-        PlayerParamAttackCollider hitLast;
+        heur::rfl::PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hitLast;
         float chargeTime;
         float homingSpeed;
         float bounceTime;
@@ -36135,11 +39953,13 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinSlash* pInstance);
         static void Clean(PlayerParamSpinSlash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinSlashSet {
-        PlayerParamSpinSlash sonic;
-        PlayerParamSpinSlash superSonic1;
-        PlayerParamSpinSlash superSonic2;
+        heur::rfl::PlayerParamSpinSlash sonic;
+        heur::rfl::PlayerParamSpinSlash superSonic1;
+        heur::rfl::PlayerParamSpinSlash superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36148,10 +39968,12 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinSlashSet* pInstance);
         static void Clean(PlayerParamSpinSlashSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamChargeAttack {
-        PlayerParamAttackCollider hit;
-        PlayerParamAttackCollider hitLast;
+        heur::rfl::PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hitLast;
         float ignoreSwingingTime;
         float riseSlowRatio;
         float riseTime;
@@ -36173,11 +39995,13 @@ namespace app::rfl {
         static void Finish(PlayerParamChargeAttack* pInstance);
         static void Clean(PlayerParamChargeAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamChargeAttackSet {
-        PlayerParamChargeAttack sonic;
-        PlayerParamChargeAttack superSonic1;
-        PlayerParamChargeAttack superSonic2;
+        heur::rfl::PlayerParamChargeAttack sonic;
+        heur::rfl::PlayerParamChargeAttack superSonic1;
+        heur::rfl::PlayerParamChargeAttack superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36186,10 +40010,12 @@ namespace app::rfl {
         static void Finish(PlayerParamChargeAttackSet* pInstance);
         static void Clean(PlayerParamChargeAttackSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamStompingAttack {
-        PlayerParamAttackCollider hit;
-        PlayerParamAttackCollider hitLast;
+        heur::rfl::PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hitLast;
         float riseTime;
         float flipSpeed;
         float motionTime;
@@ -36211,11 +40037,13 @@ namespace app::rfl {
         static void Finish(PlayerParamStompingAttack* pInstance);
         static void Clean(PlayerParamStompingAttack* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamStompingAttackSet {
-        PlayerParamStompingAttack sonic;
-        PlayerParamStompingAttack superSonic1;
-        PlayerParamStompingAttack superSonic2;
+        heur::rfl::PlayerParamStompingAttack sonic;
+        heur::rfl::PlayerParamStompingAttack superSonic1;
+        heur::rfl::PlayerParamStompingAttack superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36224,9 +40052,11 @@ namespace app::rfl {
         static void Finish(PlayerParamStompingAttackSet* pInstance);
         static void Clean(PlayerParamStompingAttackSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboFinish {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float ignoreSwingingTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -36236,11 +40066,13 @@ namespace app::rfl {
         static void Finish(PlayerParamComboFinish* pInstance);
         static void Clean(PlayerParamComboFinish* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamComboFinishSet {
-        PlayerParamComboFinish sonic;
-        PlayerParamComboFinish superSonic1;
-        PlayerParamComboFinish superSonic2;
+        heur::rfl::PlayerParamComboFinish sonic;
+        heur::rfl::PlayerParamComboFinish superSonic1;
+        heur::rfl::PlayerParamComboFinish superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36249,7 +40081,9 @@ namespace app::rfl {
         static void Finish(PlayerParamComboFinishSet* pInstance);
         static void Clean(PlayerParamComboFinishSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSonicBoom {
         float waitTime;
         float spanTime;
@@ -36269,11 +40103,13 @@ namespace app::rfl {
         static void Finish(PlayerParamSonicBoom* pInstance);
         static void Clean(PlayerParamSonicBoom* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSonicBoomSet {
-        PlayerParamSonicBoom sonic;
-        PlayerParamSonicBoom superSonic1;
-        PlayerParamSonicBoom superSonic2;
+        heur::rfl::PlayerParamSonicBoom sonic;
+        heur::rfl::PlayerParamSonicBoom superSonic1;
+        heur::rfl::PlayerParamSonicBoom superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36282,7 +40118,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSonicBoomSet* pInstance);
         static void Clean(PlayerParamSonicBoomSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCrossSlash {
         float spanTime;
         float attackTime;
@@ -36309,11 +40147,13 @@ namespace app::rfl {
         static void Finish(PlayerParamCrossSlash* pInstance);
         static void Clean(PlayerParamCrossSlash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCrossSlashSet {
-        PlayerParamCrossSlash sonic;
-        PlayerParamCrossSlash superSonic1;
-        PlayerParamCrossSlash superSonic2;
+        heur::rfl::PlayerParamCrossSlash sonic;
+        heur::rfl::PlayerParamCrossSlash superSonic1;
+        heur::rfl::PlayerParamCrossSlash superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36322,7 +40162,9 @@ namespace app::rfl {
         static void Finish(PlayerParamCrossSlashSet* pInstance);
         static void Clean(PlayerParamCrossSlashSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHomingShot {
         float appearTime;
         float appearPhaseTime;
@@ -36360,11 +40202,13 @@ namespace app::rfl {
         static void Finish(PlayerParamHomingShot* pInstance);
         static void Clean(PlayerParamHomingShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamHomingShotSet {
-        PlayerParamHomingShot sonic;
-        PlayerParamHomingShot superSonic1;
-        PlayerParamHomingShot superSonic2;
+        heur::rfl::PlayerParamHomingShot sonic;
+        heur::rfl::PlayerParamHomingShot superSonic1;
+        heur::rfl::PlayerParamHomingShot superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36373,10 +40217,12 @@ namespace app::rfl {
         static void Finish(PlayerParamHomingShotSet* pInstance);
         static void Clean(PlayerParamHomingShotSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSmash {
-        PlayerParamAttackCollider hit1;
-        PlayerParamAttackCollider hit2;
+        heur::rfl::PlayerParamAttackCollider hit1;
+        heur::rfl::PlayerParamAttackCollider hit2;
         csl::math::Vector3 offsets[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -36386,11 +40232,13 @@ namespace app::rfl {
         static void Finish(PlayerParamSmash* pInstance);
         static void Clean(PlayerParamSmash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSmashSet {
-        PlayerParamSmash sonic;
-        PlayerParamSmash superSonic1;
-        PlayerParamSmash superSonic2;
+        heur::rfl::PlayerParamSmash sonic;
+        heur::rfl::PlayerParamSmash superSonic1;
+        heur::rfl::PlayerParamSmash superSonic2;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36399,7 +40247,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSmashSet* pInstance);
         static void Clean(PlayerParamSmashSet* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBehind {
         float moveTime;
         float moveTimeSS;
@@ -36414,7 +40264,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBehind* pInstance);
         static void Clean(PlayerParamBehind* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSuperSonicShapeAttackData {
         enum class Part : int8_t {
             PunchR = 0,
@@ -36439,14 +40291,16 @@ namespace app::rfl {
         static void Finish(PlayerParamSuperSonicShapeAttackData* pInstance);
         static void Clean(PlayerParamSuperSonicShapeAttackData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSuperSonic {
         int32_t numRings;
         float decreaseSec;
         float inletRadius;
         float moveSoundSpeed;
         csl::ut::Color<float> auraColor2;
-        PlayerParamSuperSonicShapeAttackData shapeEffects[32];
+        heur::rfl::PlayerParamSuperSonicShapeAttackData shapeEffects[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36455,7 +40309,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSuperSonic* pInstance);
         static void Clean(PlayerParamSuperSonic* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSandSki {
         float blowDeceleForce;
         float blowDeceleForceOnGround;
@@ -36473,7 +40329,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSandSki* pInstance);
         static void Clean(PlayerParamSandSki* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSlingshot {
         enum class CameraShakeTiming : int8_t {
             StartCameraInterpolation = 0,
@@ -36502,7 +40360,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSlingshot* pInstance);
         static void Clean(PlayerParamSlingshot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamRunawayBee {
         float meanderCycle;
         float meanderAngle;
@@ -36517,7 +40377,9 @@ namespace app::rfl {
         static void Finish(PlayerParamRunawayBee* pInstance);
         static void Clean(PlayerParamRunawayBee* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamRunWithKodamaParam {
         int32_t numKodamas;
         float initialSpeed;
@@ -36532,11 +40394,13 @@ namespace app::rfl {
         static void Finish(PlayerParamRunWithKodamaParam* pInstance);
         static void Clean(PlayerParamRunWithKodamaParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamRunWithKodama {
         int32_t maxKodamas;
         float gravitySize;
-        PlayerParamRunWithKodamaParam params[8];
+        heur::rfl::PlayerParamRunWithKodamaParam params[8];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36545,7 +40409,9 @@ namespace app::rfl {
         static void Finish(PlayerParamRunWithKodama* pInstance);
         static void Clean(PlayerParamRunWithKodama* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamMine {
         float radiusLow;
         float radiusMedium;
@@ -36558,28 +40424,30 @@ namespace app::rfl {
         static void Finish(PlayerParamMine* pInstance);
         static void Clean(PlayerParamMine* pInstance);
     };
+}
 
-    struct CommonPackageSonic : CommonPackage {
-        PlayerParamAcceleComboSet acceleComboSet;
-        PlayerParamLoopKickSet loopKickSet;
-        PlayerParamCrasherSet crasherSet;
-        PlayerParamSpinSlashSet spinSlashSet;
-        PlayerParamChargeAttackSet chargeAtackSet;
-        PlayerParamStompingAttackSet stompingAttackSet;
-        PlayerParamComboFinishSet comboFinishSet;
-        PlayerParamSonicBoomSet sonicboomSet;
-        PlayerParamCrossSlashSet crossSlashSet;
-        PlayerParamHomingShotSet homingShotSet;
-        PlayerParamSmashSet smashSet;
-        PlayerParamBehind behind;
-        PlayerParamCombo combo;
-        PlayerParamCyloop c;
-        PlayerParamSuperSonic supersonic;
-        PlayerParamSandSki sandski;
-        PlayerParamSlingshot slingshot;
-        PlayerParamRunawayBee runawayBee;
-        PlayerParamRunWithKodama runWithKodama;
-        PlayerParamMine mine;
+namespace heur::rfl {
+    struct CommonPackageSonic : heur::rfl::CommonPackage {
+        heur::rfl::PlayerParamAcceleComboSet acceleComboSet;
+        heur::rfl::PlayerParamLoopKickSet loopKickSet;
+        heur::rfl::PlayerParamCrasherSet crasherSet;
+        heur::rfl::PlayerParamSpinSlashSet spinSlashSet;
+        heur::rfl::PlayerParamChargeAttackSet chargeAtackSet;
+        heur::rfl::PlayerParamStompingAttackSet stompingAttackSet;
+        heur::rfl::PlayerParamComboFinishSet comboFinishSet;
+        heur::rfl::PlayerParamSonicBoomSet sonicboomSet;
+        heur::rfl::PlayerParamCrossSlashSet crossSlashSet;
+        heur::rfl::PlayerParamHomingShotSet homingShotSet;
+        heur::rfl::PlayerParamSmashSet smashSet;
+        heur::rfl::PlayerParamBehind behind;
+        heur::rfl::PlayerParamCombo combo;
+        heur::rfl::PlayerParamCyloop c;
+        heur::rfl::PlayerParamSuperSonic supersonic;
+        heur::rfl::PlayerParamSandSki sandski;
+        heur::rfl::PlayerParamSlingshot slingshot;
+        heur::rfl::PlayerParamRunawayBee runawayBee;
+        heur::rfl::PlayerParamRunWithKodama runWithKodama;
+        heur::rfl::PlayerParamMine mine;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36588,7 +40456,9 @@ namespace app::rfl {
         static void Finish(CommonPackageSonic* pInstance);
         static void Clean(CommonPackageSonic* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamParryDebuff {
         float damageRate;
         float effectTime;
@@ -36600,11 +40470,13 @@ namespace app::rfl {
         static void Finish(TailsParamParryDebuff* pInstance);
         static void Clean(TailsParamParryDebuff* pInstance);
     };
+}
 
-    struct CommonPackageTails : CommonPackage {
-        PlayerParamCombo combo;
-        TailsParamParryDebuff parryDebuff;
-        PlayerParamCyloop c;
+namespace heur::rfl {
+    struct CommonPackageTails : heur::rfl::CommonPackage {
+        heur::rfl::PlayerParamCombo combo;
+        heur::rfl::TailsParamParryDebuff parryDebuff;
+        heur::rfl::PlayerParamCyloop c;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36613,7 +40485,9 @@ namespace app::rfl {
         static void Finish(CommonPackageTails* pInstance);
         static void Clean(CommonPackageTails* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamCyKnuckle {
         float findRadius;
         uint32_t numNotifies;
@@ -36631,10 +40505,12 @@ namespace app::rfl {
         static void Finish(KnucklesParamCyKnuckle* pInstance);
         static void Clean(KnucklesParamCyKnuckle* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamCyKnuckleAppearGimmick {
         float appearWaitTime;
-        CyloopDropItemParameter dropItem;
+        heur::rfl::CyloopDropItemParameter dropItem;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36643,7 +40519,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamCyKnuckleAppearGimmick* pInstance);
         static void Clean(KnucklesParamCyKnuckleAppearGimmick* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamCyKnuckleDig {
         float diveScale;
         float speed;
@@ -36657,7 +40535,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamCyKnuckleDig* pInstance);
         static void Clean(KnucklesParamCyKnuckleDig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamCyKnucklePopupItem {
         float appearWaitTime;
 
@@ -36668,7 +40548,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamCyKnucklePopupItem* pInstance);
         static void Clean(KnucklesParamCyKnucklePopupItem* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamCyKnuckleWarp {
         float appearWaitTime;
 
@@ -36679,7 +40561,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamCyKnuckleWarp* pInstance);
         static void Clean(KnucklesParamCyKnuckleWarp* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamDrillBoost {
         float prepareTime;
 
@@ -36690,7 +40574,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamDrillBoost* pInstance);
         static void Clean(KnucklesParamDrillBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamGlidingCamera {
         float azimuthSensitivity;
         float elevationOffset;
@@ -36702,7 +40588,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamGlidingCamera* pInstance);
         static void Clean(KnucklesParamGlidingCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamGliding {
         float minSpeed;
         float minSpeedRingMax;
@@ -36724,7 +40612,7 @@ namespace app::rfl {
         float rollAngleRatioMaxRingMax;
         float height;
         float startHeight;
-        KnucklesParamGlidingCamera camera;
+        heur::rfl::KnucklesParamGlidingCamera camera;
         float practiceTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -36734,7 +40622,9 @@ namespace app::rfl {
         static void Finish(KnucklesParamGliding* pInstance);
         static void Clean(KnucklesParamGliding* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParamMaximumHeatKnuckle {
         float lockonLevelUpSpanTime[4];
         float damageTime[4];
@@ -36744,8 +40634,8 @@ namespace app::rfl {
         float preDamageTime;
         float postDamageTime;
         float slowRate;
-        PlayerParamAttackCollider hit;
-        PlayerParamAttackCollider hit2;
+        heur::rfl::PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit2;
         csl::math::Vector3 hitVisualOffset;
         csl::math::Vector3 hitEffectOffset;
         float followSpeed;
@@ -36765,17 +40655,19 @@ namespace app::rfl {
         static void Finish(KnucklesParamMaximumHeatKnuckle* pInstance);
         static void Clean(KnucklesParamMaximumHeatKnuckle* pInstance);
     };
+}
 
-    struct ModePackageKnuckles : ModePackage {
-        KnucklesParamGliding gliding;
-        KnucklesParamCyKnuckle cyknuckle;
-        KnucklesParamCyKnuckleDig cyknuckleDig;
-        KnucklesParamCyKnuckleWarp cyknuckleWarp;
-        KnucklesParamCyKnucklePopupItem cyknucklePopupItem;
-        KnucklesParamCyKnuckleAppearGimmick cyknuckleAppearGimmick;
-        KnucklesParamMaximumHeatKnuckle maximumHeatKnuckle;
-        KnucklesParamDrillBoost drillBoost;
-        PlayerParamSpinBoost spinBoost;
+namespace heur::rfl {
+    struct ModePackageKnuckles : heur::rfl::ModePackage {
+        heur::rfl::KnucklesParamGliding gliding;
+        heur::rfl::KnucklesParamCyKnuckle cyknuckle;
+        heur::rfl::KnucklesParamCyKnuckleDig cyknuckleDig;
+        heur::rfl::KnucklesParamCyKnuckleWarp cyknuckleWarp;
+        heur::rfl::KnucklesParamCyKnucklePopupItem cyknucklePopupItem;
+        heur::rfl::KnucklesParamCyKnuckleAppearGimmick cyknuckleAppearGimmick;
+        heur::rfl::KnucklesParamMaximumHeatKnuckle maximumHeatKnuckle;
+        heur::rfl::KnucklesParamDrillBoost drillBoost;
+        heur::rfl::PlayerParamSpinBoost spinBoost;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36784,12 +40676,14 @@ namespace app::rfl {
         static void Finish(ModePackageKnuckles* pInstance);
         static void Clean(ModePackageKnuckles* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct KnucklesParameters {
-        CommonPackageKnuckles common;
-        ModePackageKnuckles forwardView;
-        WaterModePackage water;
-        ModePackageKnuckles cyberspaceSV;
+        heur::rfl::CommonPackageKnuckles common;
+        heur::rfl::ModePackageKnuckles forwardView;
+        heur::rfl::WaterModePackage water;
+        heur::rfl::ModePackageKnuckles cyberspaceSV;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -36798,7 +40692,9 @@ namespace app::rfl {
         static void Finish(KnucklesParameters* pInstance);
         static void Clean(KnucklesParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamStorm {
         float damperV;
         float damperH;
@@ -36825,7 +40721,9 @@ namespace app::rfl {
         static void Finish(PlayerParamStorm* pInstance);
         static void Clean(PlayerParamStorm* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCloudJump {
         float acceleForce;
         float deceleForce;
@@ -36842,7 +40740,9 @@ namespace app::rfl {
         static void Finish(PlayerParamCloudJump* pInstance);
         static void Clean(PlayerParamCloudJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAquaBall {
         float fallAccel;
         float damper;
@@ -36857,7 +40757,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAquaBall* pInstance);
         static void Clean(PlayerParamAquaBall* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSlider {
         float frontAccel;
         float frontBrake;
@@ -36875,7 +40777,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSlider* pInstance);
         static void Clean(PlayerParamSlider* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAirTrick {
         uint32_t amount;
 
@@ -36886,7 +40790,9 @@ namespace app::rfl {
         static void Finish(PlayerParamAirTrick* pInstance);
         static void Clean(PlayerParamAirTrick* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDrift {
         float startAngle;
         float endSpeed;
@@ -36922,7 +40828,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDrift* pInstance);
         static void Clean(PlayerParamDrift* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDriftAir {
         float startAngle;
         float endSpeed;
@@ -36945,7 +40853,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDriftAir* pInstance);
         static void Clean(PlayerParamDriftAir* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDriftDash {
         float maxSpeed;
         float brake;
@@ -36964,7 +40874,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDriftDash* pInstance);
         static void Clean(PlayerParamDriftDash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBoarding {
         float maxSpeed;
         float minSpeed;
@@ -37002,7 +40914,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBoarding* pInstance);
         static void Clean(PlayerParamBoarding* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamDropDash {
         float maxChargeTime;
         float minDashSpeed;
@@ -37027,7 +40941,9 @@ namespace app::rfl {
         static void Finish(PlayerParamDropDash* pInstance);
         static void Clean(PlayerParamDropDash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBounceJump {
         float startSpeed;
         float jumpRate1;
@@ -37042,7 +40958,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBounceJump* pInstance);
         static void Clean(PlayerParamBounceJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLightDash {
         float dashSpeed;
         float dashSpeedMax;
@@ -37058,7 +40976,9 @@ namespace app::rfl {
         static void Finish(PlayerParamLightDash* pInstance);
         static void Clean(PlayerParamLightDash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamSpinDash {
         float time;
         float minSpeed;
@@ -37071,7 +40991,9 @@ namespace app::rfl {
         static void Finish(PlayerParamSpinDash* pInstance);
         static void Clean(PlayerParamSpinDash* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamFly {
         float maxSpeed;
         float maxDashSpeed;
@@ -37097,7 +41019,9 @@ namespace app::rfl {
         static void Finish(PlayerParamFly* pInstance);
         static void Clean(PlayerParamFly* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLimitedFly {
         float maxSpeed1D;
         float accel1D;
@@ -37120,7 +41044,9 @@ namespace app::rfl {
         static void Finish(PlayerParamLimitedFly* pInstance);
         static void Clean(PlayerParamLimitedFly* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerCyberModeSpeedParam {
         float initial;
         float min;
@@ -37134,10 +41060,12 @@ namespace app::rfl {
         static void Finish(PlayerCyberModeSpeedParam* pInstance);
         static void Clean(PlayerCyberModeSpeedParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerMaxSpeedChallengeLevelParam {
-        PlayerCyberModeSpeedParam speed;
-        PlayerCyberModeSpeedParam speedPowerBoost;
+        heur::rfl::PlayerCyberModeSpeedParam speed;
+        heur::rfl::PlayerCyberModeSpeedParam speedPowerBoost;
         float recoveryRate;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37147,7 +41075,9 @@ namespace app::rfl {
         static void Finish(PlayerMaxSpeedChallengeLevelParam* pInstance);
         static void Clean(PlayerMaxSpeedChallengeLevelParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamCyberMode {
         float lowGravityScale;
         float timeScale;
@@ -37159,7 +41089,7 @@ namespace app::rfl {
         float maxSpeed;
         float maxSpeedInBoost;
         uint32_t numLevels;
-        PlayerMaxSpeedChallengeLevelParam levels[8];
+        heur::rfl::PlayerMaxSpeedChallengeLevelParam levels[8];
         float animalMinSpeed;
         float animalMaxSpeed;
         float animalInitialSpeed;
@@ -37178,10 +41108,10 @@ namespace app::rfl {
         float nitroRunEffectDelay;
         csl::ut::VariableString nitroCameraShakeNameInRun;
         csl::ut::VariableString nitroVibrationNameInRun;
-        PlayerCyberModeSpeedParam nitroSpeed;
-        PlayerCyberModeSpeedParam nitroSpeedLvMax;
-        PlayerCyberModeSpeedParam nitroSpeedPowerBoost;
-        PlayerCyberModeSpeedParam nitroSpeedLvMaxPowerBoost;
+        heur::rfl::PlayerCyberModeSpeedParam nitroSpeed;
+        heur::rfl::PlayerCyberModeSpeedParam nitroSpeedLvMax;
+        heur::rfl::PlayerCyberModeSpeedParam nitroSpeedPowerBoost;
+        heur::rfl::PlayerCyberModeSpeedParam nitroSpeedLvMaxPowerBoost;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37190,25 +41120,27 @@ namespace app::rfl {
         static void Finish(PlayerParamCyberMode* pInstance);
         static void Clean(PlayerParamCyberMode* pInstance);
     };
+}
 
-    struct ModePackageSonic : ModePackage {
-        PlayerParamStorm storm;
-        PlayerParamCloudJump cloudJump;
-        PlayerParamAquaBall aquaball;
-        PlayerParamSlider slider;
-        PlayerParamAirTrick airtrick;
-        PlayerParamDrift drift;
-        PlayerParamDriftAir driftair;
-        PlayerParamDriftDash driftDash;
-        PlayerParamBoarding boarding;
-        PlayerParamDropDash dropDash;
-        PlayerParamBounceJump bounceJump;
-        PlayerParamLightDash lightDash;
-        PlayerParamSpinDash spindash;
-        PlayerParamSpinBoost spinBoost;
-        PlayerParamFly fly;
-        PlayerParamLimitedFly limitedfly;
-        PlayerParamCyberMode cyberMode;
+namespace heur::rfl {
+    struct ModePackageSonic : heur::rfl::ModePackage {
+        heur::rfl::PlayerParamStorm storm;
+        heur::rfl::PlayerParamCloudJump cloudJump;
+        heur::rfl::PlayerParamAquaBall aquaball;
+        heur::rfl::PlayerParamSlider slider;
+        heur::rfl::PlayerParamAirTrick airtrick;
+        heur::rfl::PlayerParamDrift drift;
+        heur::rfl::PlayerParamDriftAir driftair;
+        heur::rfl::PlayerParamDriftDash driftDash;
+        heur::rfl::PlayerParamBoarding boarding;
+        heur::rfl::PlayerParamDropDash dropDash;
+        heur::rfl::PlayerParamBounceJump bounceJump;
+        heur::rfl::PlayerParamLightDash lightDash;
+        heur::rfl::PlayerParamSpinDash spindash;
+        heur::rfl::PlayerParamSpinBoost spinBoost;
+        heur::rfl::PlayerParamFly fly;
+        heur::rfl::PlayerParamLimitedFly limitedfly;
+        heur::rfl::PlayerParamCyberMode cyberMode;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37217,7 +41149,9 @@ namespace app::rfl {
         static void Finish(ModePackageSonic* pInstance);
         static void Clean(ModePackageSonic* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFlyStart {
         float decY;
         float duration;
@@ -37230,7 +41164,9 @@ namespace app::rfl {
         static void Finish(TailsParamFlyStart* pInstance);
         static void Clean(TailsParamFlyStart* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFlyRise {
         float speedYStart;
         float speedYMax;
@@ -37246,7 +41182,9 @@ namespace app::rfl {
         static void Finish(TailsParamFlyRise* pInstance);
         static void Clean(TailsParamFlyRise* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFlyCruise {
         float decY;
         float duration;
@@ -37258,7 +41196,9 @@ namespace app::rfl {
         static void Finish(TailsParamFlyCruise* pInstance);
         static void Clean(TailsParamFlyCruise* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFlyDescend {
         float speedYMax;
         float accY;
@@ -37271,7 +41211,9 @@ namespace app::rfl {
         static void Finish(TailsParamFlyDescend* pInstance);
         static void Clean(TailsParamFlyDescend* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFlyCamera {
         float azimuthSensitivity;
         float elevationOffset;
@@ -37283,12 +41225,14 @@ namespace app::rfl {
         static void Finish(TailsParamFlyCamera* pInstance);
         static void Clean(TailsParamFlyCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamFly {
-        TailsParamFlyStart start;
-        TailsParamFlyRise rise;
-        TailsParamFlyCruise cruise;
-        TailsParamFlyDescend descend;
+        heur::rfl::TailsParamFlyStart start;
+        heur::rfl::TailsParamFlyRise rise;
+        heur::rfl::TailsParamFlyCruise cruise;
+        heur::rfl::TailsParamFlyDescend descend;
         float maxSpeed;
         float acc;
         float dec;
@@ -37299,7 +41243,7 @@ namespace app::rfl {
         float maxRollAngle;
         float height;
         float heightLimit;
-        TailsParamFlyCamera camera;
+        heur::rfl::TailsParamFlyCamera camera;
         float practiceTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37309,7 +41253,9 @@ namespace app::rfl {
         static void Finish(TailsParamFly* pInstance);
         static void Clean(TailsParamFly* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamSpannerShot {
         float archSpeed;
         float archHomingMinSpeed;
@@ -37347,7 +41293,9 @@ namespace app::rfl {
         static void Finish(TailsParamSpannerShot* pInstance);
         static void Clean(TailsParamSpannerShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamSpannerCombo {
         float initialTime;
         float continueTime;
@@ -37360,10 +41308,12 @@ namespace app::rfl {
         static void Finish(TailsParamSpannerCombo* pInstance);
         static void Clean(TailsParamSpannerCombo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamSpanner {
-        TailsParamSpannerShot shot;
-        TailsParamSpannerCombo combo;
+        heur::rfl::TailsParamSpannerShot shot;
+        heur::rfl::TailsParamSpannerCombo combo;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37372,7 +41322,9 @@ namespace app::rfl {
         static void Finish(TailsParamSpanner* pInstance);
         static void Clean(TailsParamSpanner* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCyBlasterShot {
         float speed;
         float range;
@@ -37396,7 +41348,9 @@ namespace app::rfl {
         static void Finish(TailsParamCyBlasterShot* pInstance);
         static void Clean(TailsParamCyBlasterShot* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCyBlasterLiftRun {
         float initial;
         float min;
@@ -37412,7 +41366,9 @@ namespace app::rfl {
         static void Finish(TailsParamCyBlasterLiftRun* pInstance);
         static void Clean(TailsParamCyBlasterLiftRun* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCyBlasterLiftAir {
         float jumpForce;
         float gravitySize;
@@ -37424,10 +41380,12 @@ namespace app::rfl {
         static void Finish(TailsParamCyBlasterLiftAir* pInstance);
         static void Clean(TailsParamCyBlasterLiftAir* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCyBlasterLift {
-        TailsParamCyBlasterLiftRun run;
-        TailsParamCyBlasterLiftAir air;
+        heur::rfl::TailsParamCyBlasterLiftRun run;
+        heur::rfl::TailsParamCyBlasterLiftAir air;
         float liftUpTime;
         csl::math::Vector3 liftOffset;
 
@@ -37438,11 +41396,13 @@ namespace app::rfl {
         static void Finish(TailsParamCyBlasterLift* pInstance);
         static void Clean(TailsParamCyBlasterLift* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCyBlaster {
-        TailsParamCyBlasterShot shot;
-        TailsParamCyBlasterLift lift;
-        CyloopDropItemParameter dropItem;
+        heur::rfl::TailsParamCyBlasterShot shot;
+        heur::rfl::TailsParamCyBlasterLift lift;
+        heur::rfl::CyloopDropItemParameter dropItem;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37451,7 +41411,9 @@ namespace app::rfl {
         static void Finish(TailsParamCyBlaster* pInstance);
         static void Clean(TailsParamCyBlaster* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamStomping {
         float landAttackScale;
 
@@ -37462,7 +41424,9 @@ namespace app::rfl {
         static void Finish(TailsParamStomping* pInstance);
         static void Clean(TailsParamStomping* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCycloneBoostCamera {
         float azimuthSensitivity;
         float elevationOffset;
@@ -37474,14 +41438,16 @@ namespace app::rfl {
         static void Finish(TailsParamCycloneBoostCamera* pInstance);
         static void Clean(TailsParamCycloneBoostCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamCycloneBoost {
         float startHSpeed;
         float yawSpeedMax;
         float yawAcc;
         float neutralYawDec;
         float attackScale;
-        TailsParamCycloneBoostCamera camera;
+        heur::rfl::TailsParamCycloneBoostCamera camera;
         float practiceTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37491,7 +41457,9 @@ namespace app::rfl {
         static void Finish(TailsParamCycloneBoost* pInstance);
         static void Clean(TailsParamCycloneBoost* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamAirBoostCycloneCamera {
         float azimuthSensitivity;
         float elevationOffset;
@@ -37503,7 +41471,9 @@ namespace app::rfl {
         static void Finish(TailsParamAirBoostCycloneCamera* pInstance);
         static void Clean(TailsParamAirBoostCycloneCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamAirBoostCycloneTakeOff {
         float vSpeedStart;
         float heightMin;
@@ -37515,7 +41485,9 @@ namespace app::rfl {
         static void Finish(TailsParamAirBoostCycloneTakeOff* pInstance);
         static void Clean(TailsParamAirBoostCycloneTakeOff* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamAirBoostCyclone {
         float startHSpeed;
         float vSpeedMax;
@@ -37531,8 +41503,8 @@ namespace app::rfl {
         float barrelRollDuration;
         float additionalTransitTime;
         float attackScale;
-        TailsParamAirBoostCycloneCamera camera;
-        TailsParamAirBoostCycloneTakeOff takeOff;
+        heur::rfl::TailsParamAirBoostCycloneCamera camera;
+        heur::rfl::TailsParamAirBoostCycloneTakeOff takeOff;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37541,7 +41513,9 @@ namespace app::rfl {
         static void Finish(TailsParamAirBoostCyclone* pInstance);
         static void Clean(TailsParamAirBoostCyclone* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamStepCyclone {
         float stepSpeed;
         float stepDistance;
@@ -37554,7 +41528,9 @@ namespace app::rfl {
         static void Finish(TailsParamStepCyclone* pInstance);
         static void Clean(TailsParamStepCyclone* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamWaveCannonCamera {
         csl::math::Vector3 frameOffset;
         float elevation;
@@ -37570,7 +41546,9 @@ namespace app::rfl {
         static void Finish(TailsParamWaveCannonCamera* pInstance);
         static void Clean(TailsParamWaveCannonCamera* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParamWaveCannon {
         float chargeDuration;
         float chargeTurnSpeed;
@@ -37582,7 +41560,7 @@ namespace app::rfl {
         float colliderExtendSpeed;
         float damageInterval;
         float hitEffectInterval;
-        TailsParamWaveCannonCamera camera;
+        heur::rfl::TailsParamWaveCannonCamera camera;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37591,17 +41569,19 @@ namespace app::rfl {
         static void Finish(TailsParamWaveCannon* pInstance);
         static void Clean(TailsParamWaveCannon* pInstance);
     };
+}
 
-    struct ModePackageTails : ModePackage {
-        TailsParamFly tailsFly;
-        TailsParamSpanner spanner;
-        TailsParamCyBlaster cyBlaster;
-        TailsParamStomping stomping;
-        TailsParamCycloneBoost cycloneBoost;
-        TailsParamAirBoostCyclone airBoostCyclone;
-        TailsParamStepCyclone stepCyclone;
-        PlayerParamSpinBoost spinBoost;
-        TailsParamWaveCannon waveCannon;
+namespace heur::rfl {
+    struct ModePackageTails : heur::rfl::ModePackage {
+        heur::rfl::TailsParamFly tailsFly;
+        heur::rfl::TailsParamSpanner spanner;
+        heur::rfl::TailsParamCyBlaster cyBlaster;
+        heur::rfl::TailsParamStomping stomping;
+        heur::rfl::TailsParamCycloneBoost cycloneBoost;
+        heur::rfl::TailsParamAirBoostCyclone airBoostCyclone;
+        heur::rfl::TailsParamStepCyclone stepCyclone;
+        heur::rfl::PlayerParamSpinBoost spinBoost;
+        heur::rfl::TailsParamWaveCannon waveCannon;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37610,9 +41590,11 @@ namespace app::rfl {
         static void Finish(ModePackageTails* pInstance);
         static void Clean(ModePackageTails* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamAerialFinish {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float ignoreSwingingTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37622,9 +41604,11 @@ namespace app::rfl {
         static void Finish(PlayerParamAerialFinish* pInstance);
         static void Clean(PlayerParamAerialFinish* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamBehindFinish {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float ignoreSwingingTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37634,7 +41618,9 @@ namespace app::rfl {
         static void Finish(PlayerParamBehindFinish* pInstance);
         static void Clean(PlayerParamBehindFinish* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamLowAltitudeJump {
         float upSpeed;
         float frontSpeed;
@@ -37650,9 +41636,11 @@ namespace app::rfl {
         static void Finish(PlayerParamLowAltitudeJump* pInstance);
         static void Clean(PlayerParamLowAltitudeJump* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamPursuitFinish {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float ignoreSwingingTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37662,9 +41650,11 @@ namespace app::rfl {
         static void Finish(PlayerParamPursuitFinish* pInstance);
         static void Clean(PlayerParamPursuitFinish* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayerParamStompingFinish {
-        PlayerParamAttackCollider hit;
+        heur::rfl::PlayerParamAttackCollider hit;
         float ignoreSwingingTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37674,13 +41664,15 @@ namespace app::rfl {
         static void Finish(PlayerParamStompingFinish* pInstance);
         static void Clean(PlayerParamStompingFinish* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SonicParameters {
-        CommonPackageSonic common;
-        ModePackageSonic forwardView;
-        WaterModePackage water;
-        ModePackageSonic cyberspace;
-        ModePackageSonic cyberspaceSV;
+        heur::rfl::CommonPackageSonic common;
+        heur::rfl::ModePackageSonic forwardView;
+        heur::rfl::WaterModePackage water;
+        heur::rfl::ModePackageSonic cyberspace;
+        heur::rfl::ModePackageSonic cyberspaceSV;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37689,12 +41681,14 @@ namespace app::rfl {
         static void Finish(SonicParameters* pInstance);
         static void Clean(SonicParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TailsParameters {
-        CommonPackageTails common;
-        ModePackageTails forwardView;
-        WaterModePackage water;
-        ModePackageTails cyberspaceSV;
+        heur::rfl::CommonPackageTails common;
+        heur::rfl::ModePackageTails forwardView;
+        heur::rfl::WaterModePackage water;
+        heur::rfl::ModePackageTails cyberspaceSV;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37703,7 +41697,9 @@ namespace app::rfl {
         static void Finish(TailsParameters* pInstance);
         static void Clean(TailsParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ScriptParameter {
         uint32_t intervalMinuntes;
 
@@ -37714,7 +41710,9 @@ namespace app::rfl {
         static void Finish(ScriptParameter* pInstance);
         static void Clean(ScriptParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TalkEventCameraPresetParameter {
         enum class GazePositionType : int8_t {
             Base = 0,
@@ -37742,9 +41740,11 @@ namespace app::rfl {
         static void Finish(TalkEventCameraPresetParameter* pInstance);
         static void Clean(TalkEventCameraPresetParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct TalkEventCameraPresetParameters {
-        TalkEventCameraPresetParameter param[16];
+        heur::rfl::TalkEventCameraPresetParameter param[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37753,7 +41753,9 @@ namespace app::rfl {
         static void Finish(TalkEventCameraPresetParameters* pInstance);
         static void Clean(TalkEventCameraPresetParameters* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbBaseNoiseParameter {
         csl::ut::VariableString cueName;
 
@@ -37764,7 +41766,9 @@ namespace app::rfl {
         static void Finish(AmbBaseNoiseParameter* pInstance);
         static void Clean(AmbBaseNoiseParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbInfo {
         csl::ut::VariableString cueName;
         float fadeInTime;
@@ -37777,7 +41781,9 @@ namespace app::rfl {
         static void Finish(AmbInfo* pInstance);
         static void Clean(AmbInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbNearPointParameter {
         csl::ut::VariableString cueName;
         float sensorRebootTime;
@@ -37793,7 +41799,9 @@ namespace app::rfl {
         static void Finish(AmbNearPointParameter* pInstance);
         static void Clean(AmbNearPointParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbRelativeWindParameter {
         csl::ut::VariableString cueName;
         float speedThreshold;
@@ -37806,7 +41814,9 @@ namespace app::rfl {
         static void Finish(AmbRelativeWindParameter* pInstance);
         static void Clean(AmbRelativeWindParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbRiverParameter_Multiple3D {
         csl::ut::VariableString cueName;
         float attenuationDistance;
@@ -37819,7 +41829,9 @@ namespace app::rfl {
         static void Finish(AmbRiverParameter_Multiple3D* pInstance);
         static void Clean(AmbRiverParameter_Multiple3D* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbRiverParameter_Nearest {
         csl::ut::VariableString cueName;
         float sensorRadius;
@@ -37831,15 +41843,17 @@ namespace app::rfl {
         static void Finish(AmbRiverParameter_Nearest* pInstance);
         static void Clean(AmbRiverParameter_Nearest* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AmbSoundParameter {
-        AmbInfo ambSoundInfo[8];
-        AmbBaseNoiseParameter baseNoise;
-        AmbRelativeWindParameter relativeWind;
-        AmbNearPointParameter insect;
-        AmbNearPointParameter grass;
-        AmbRiverParameter_Nearest riverNearest;
-        AmbRiverParameter_Multiple3D riverMultiple3D;
+        heur::rfl::AmbInfo ambSoundInfo[8];
+        heur::rfl::AmbBaseNoiseParameter baseNoise;
+        heur::rfl::AmbRelativeWindParameter relativeWind;
+        heur::rfl::AmbNearPointParameter insect;
+        heur::rfl::AmbNearPointParameter grass;
+        heur::rfl::AmbRiverParameter_Nearest riverNearest;
+        heur::rfl::AmbRiverParameter_Multiple3D riverMultiple3D;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37848,7 +41862,9 @@ namespace app::rfl {
         static void Finish(AmbSoundParameter* pInstance);
         static void Clean(AmbSoundParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AisacChangeInfo {
         float value;
         float fadeTime;
@@ -37860,13 +41876,15 @@ namespace app::rfl {
         static void Finish(AisacChangeInfo* pInstance);
         static void Clean(AisacChangeInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct AisacChangeInfoList {
-        AisacChangeInfo sunny;
-        AisacChangeInfo cloudy;
-        AisacChangeInfo rainy;
-        AisacChangeInfo beginUnderWater;
-        AisacChangeInfo finishUnderWater;
+        heur::rfl::AisacChangeInfo sunny;
+        heur::rfl::AisacChangeInfo cloudy;
+        heur::rfl::AisacChangeInfo rainy;
+        heur::rfl::AisacChangeInfo beginUnderWater;
+        heur::rfl::AisacChangeInfo finishUnderWater;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37875,7 +41893,9 @@ namespace app::rfl {
         static void Finish(AisacChangeInfoList* pInstance);
         static void Clean(AisacChangeInfoList* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMInfo {
         enum class Priority : int8_t {
             PRIORITY_LOW = 0,
@@ -37913,7 +41933,9 @@ namespace app::rfl {
         static void Finish(BGMInfo* pInstance);
         static void Clean(BGMInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMTransitInfo {
         enum class InterruptType : int8_t {
             INTERRUPT_TYPE_STOP = 0,
@@ -37938,7 +41960,9 @@ namespace app::rfl {
         static void Finish(BGMTransitInfo* pInstance);
         static void Clean(BGMTransitInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMSceneInfo {
         csl::ut::VariableString sceneName;
         int32_t bgmId;
@@ -37951,11 +41975,13 @@ namespace app::rfl {
         static void Finish(BGMSceneInfo* pInstance);
         static void Clean(BGMSceneInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMInfoParameter {
-        BGMInfo changeBgmInfo[32];
-        BGMTransitInfo transitBgmInfo[32];
-        BGMSceneInfo sceneBgmInfo[4];
+        heur::rfl::BGMInfo changeBgmInfo[32];
+        heur::rfl::BGMTransitInfo transitBgmInfo[32];
+        heur::rfl::BGMSceneInfo sceneBgmInfo[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37964,7 +41990,9 @@ namespace app::rfl {
         static void Finish(BGMInfoParameter* pInstance);
         static void Clean(BGMInfoParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMVolumeChangeInfo {
         float value;
         float delayTime;
@@ -37977,15 +42005,17 @@ namespace app::rfl {
         static void Finish(BGMVolumeChangeInfo* pInstance);
         static void Clean(BGMVolumeChangeInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct BGMVolumeChangeInfoList {
-        BGMVolumeChangeInfo playerStop;
-        BGMVolumeChangeInfo playerWalk;
-        BGMVolumeChangeInfo playerRun;
-        BGMVolumeChangeInfo fishingHitIn;
-        BGMVolumeChangeInfo fishingHitOut;
-        BGMVolumeChangeInfo musicBoxIn;
-        BGMVolumeChangeInfo musicBoxOut;
+        heur::rfl::BGMVolumeChangeInfo playerStop;
+        heur::rfl::BGMVolumeChangeInfo playerWalk;
+        heur::rfl::BGMVolumeChangeInfo playerRun;
+        heur::rfl::BGMVolumeChangeInfo fishingHitIn;
+        heur::rfl::BGMVolumeChangeInfo fishingHitOut;
+        heur::rfl::BGMVolumeChangeInfo musicBoxIn;
+        heur::rfl::BGMVolumeChangeInfo musicBoxOut;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37994,7 +42024,9 @@ namespace app::rfl {
         static void Finish(BGMVolumeChangeInfoList* pInstance);
         static void Clean(BGMVolumeChangeInfoList* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CustomMusicInfo {
         enum class MusicType : int8_t {
             THEME_SONG = 0,
@@ -38013,7 +42045,9 @@ namespace app::rfl {
         static void Finish(CustomMusicInfo* pInstance);
         static void Clean(CustomMusicInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CustomMusicTransitInfo {
         float fadeOutTime;
         float delayTime;
@@ -38025,10 +42059,12 @@ namespace app::rfl {
         static void Finish(CustomMusicTransitInfo* pInstance);
         static void Clean(CustomMusicTransitInfo* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CustomMusicParameter {
-        CustomMusicTransitInfo transitInfo;
-        CustomMusicInfo musicInfos[128];
+        heur::rfl::CustomMusicTransitInfo transitInfo;
+        heur::rfl::CustomMusicInfo musicInfos[128];
         float idlingViewTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38038,16 +42074,18 @@ namespace app::rfl {
         static void Finish(CustomMusicParameter* pInstance);
         static void Clean(CustomMusicParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct SoundCommonParameter {
         float pauseFadeOutTime;
         float pauseFadeInTime;
         float enterCyberFadeOutTime;
         float leaveCyberResultFadeOutTime;
-        BGMVolumeChangeInfoList bgmVolumeInfo;
-        AisacChangeInfoList aisacInfo;
-        BGMInfo changeBgmInfo[128];
-        BGMTransitInfo transitBgmInfo[128];
+        heur::rfl::BGMVolumeChangeInfoList bgmVolumeInfo;
+        heur::rfl::AisacChangeInfoList aisacInfo;
+        heur::rfl::BGMInfo changeBgmInfo[128];
+        heur::rfl::BGMTransitInfo transitBgmInfo[128];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38056,7 +42094,9 @@ namespace app::rfl {
         static void Finish(SoundCommonParameter* pInstance);
         static void Clean(SoundCommonParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct LabelData {
         enum class DisplayType : int8_t {
             Caption = 0,
@@ -38074,9 +42114,11 @@ namespace app::rfl {
         static void Finish(LabelData* pInstance);
         static void Clean(LabelData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct Discussion {
-        LabelData labels[20];
+        heur::rfl::LabelData labels[20];
         bool isForcePlay;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38086,9 +42128,11 @@ namespace app::rfl {
         static void Finish(Discussion* pInstance);
         static void Clean(Discussion* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CaptionParameter {
-        Discussion discussions[10];
+        heur::rfl::Discussion discussions[10];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38097,7 +42141,9 @@ namespace app::rfl {
         static void Finish(CaptionParameter* pInstance);
         static void Clean(CaptionParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UICreditParameter {
         float LicenseInterval;
         float NameInterval;
@@ -38113,7 +42159,9 @@ namespace app::rfl {
         static void Finish(UICreditParameter* pInstance);
         static void Clean(UICreditParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FishCameraParam {
         csl::math::Vector3 position;
         csl::math::Vector3 target;
@@ -38126,9 +42174,11 @@ namespace app::rfl {
         static void Finish(FishCameraParam* pInstance);
         static void Clean(FishCameraParam* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UIFishiGuideConfig {
-        FishCameraParam fishList[105];
+        heur::rfl::FishCameraParam fishList[105];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38137,14 +42187,16 @@ namespace app::rfl {
         static void Finish(UIFishiGuideConfig* pInstance);
         static void Clean(UIFishiGuideConfig* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UIWireframeParameter {
         csl::math::Vector3 camerapos;
         float lineAlpha;
         float noiseScale;
         float noiseSpeed;
         float moveWidth;
-        FxDOFParameter dofparam;
+        hh::needle::FxDOFParameter dofparam;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38153,7 +42205,9 @@ namespace app::rfl {
         static void Finish(UIWireframeParameter* pInstance);
         static void Clean(UIWireframeParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeID1DimParameter {
         int32_t challengeID[40];
 
@@ -38164,7 +42218,9 @@ namespace app::rfl {
         static void Finish(ChallengeID1DimParameter* pInstance);
         static void Clean(ChallengeID1DimParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IDColor {
         int32_t id;
         csl::ut::Color<uint8_t> color;
@@ -38176,9 +42232,11 @@ namespace app::rfl {
         static void Finish(IDColor* pInstance);
         static void Clean(IDColor* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandMapParameter {
-        ChallengeID1DimParameter challengeIDHorizonGridGroup[40];
+        heur::rfl::ChallengeID1DimParameter challengeIDHorizonGridGroup[40];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38187,10 +42245,12 @@ namespace app::rfl {
         static void Finish(IslandMapParameter* pInstance);
         static void Clean(IslandMapParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct UIMapParameter {
-        IslandMapParameter islandMapParam[6];
-        IDColor idColors[264];
+        heur::rfl::IslandMapParameter islandMapParam[6];
+        heur::rfl::IDColor idColors[264];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38199,7 +42259,9 @@ namespace app::rfl {
         static void Finish(UIMapParameter* pInstance);
         static void Clean(UIMapParameter* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayLog {
         csl::ut::VariableString stagecode;
         csl::ut::VariableString play;
@@ -38214,7 +42276,9 @@ namespace app::rfl {
         static void Finish(PlayLog* pInstance);
         static void Clean(PlayLog* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayStatsSummary {
         csl::ut::VariableString stagecode;
         int32_t highTime;
@@ -38227,14 +42291,16 @@ namespace app::rfl {
         static void Finish(PlayStatsSummary* pInstance);
         static void Clean(PlayStatsSummary* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayStatsData {
         int32_t enemies;
         int32_t damages;
         int32_t misses;
         int32_t retry;
         int32_t restart;
-        csl::ut::MoveArray<PlayLog> logs;
+        csl::ut::MoveArray<heur::rfl::PlayLog> logs;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38243,12 +42309,14 @@ namespace app::rfl {
         static void Finish(PlayStatsData* pInstance);
         static void Clean(PlayStatsData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayStats {
         csl::ut::VariableString username;
         csl::ut::VariableString time;
-        csl::ut::MoveArray<PlayStatsSummary> summaries;
-        PlayStatsData playLog;
+        csl::ut::MoveArray<heur::rfl::PlayStatsSummary> summaries;
+        heur::rfl::PlayStatsData playLog;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38257,7 +42325,9 @@ namespace app::rfl {
         static void Finish(PlayStats* pInstance);
         static void Clean(PlayStats* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ScoreAndRnakData {
         uint32_t hightScore;
         uint16_t rank;
@@ -38271,9 +42341,11 @@ namespace app::rfl {
         static void Finish(ScoreAndRnakData* pInstance);
         static void Clean(ScoreAndRnakData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ActionChainStruct {
-        ScoreAndRnakData hightState[200];
+        heur::rfl::ScoreAndRnakData hightState[200];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38282,7 +42354,9 @@ namespace app::rfl {
         static void Finish(ActionChainStruct* pInstance);
         static void Clean(ActionChainStruct* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct HeaderData {
         enum class Status : int8_t {
             STATUS_ZERO_FILL = 0,
@@ -38338,7 +42412,9 @@ namespace app::rfl {
         static void Finish(HeaderData* pInstance);
         static void Clean(HeaderData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyberStageData {
         uint16_t flags;
         uint32_t bestTime;
@@ -38352,9 +42428,11 @@ namespace app::rfl {
         static void Finish(CyberStageData* pInstance);
         static void Clean(CyberStageData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CyberStageContainerData {
-        CyberStageData actStages[32];
+        heur::rfl::CyberStageData actStages[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38363,11 +42441,13 @@ namespace app::rfl {
         static void Finish(CyberStageContainerData* pInstance);
         static void Clean(CyberStageContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ArcadeData {
-        HeaderData header;
+        heur::rfl::HeaderData header;
         bool unlocked;
-        CyberStageContainerData stages;
+        heur::rfl::CyberStageContainerData stages;
         uint32_t reserved[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38377,7 +42457,9 @@ namespace app::rfl {
         static void Finish(ArcadeData* pInstance);
         static void Clean(ArcadeData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeBattleRushScoreData {
         uint32_t bestTime;
         uint32_t reserved0;
@@ -38392,10 +42474,12 @@ namespace app::rfl {
         static void Finish(ChallengeBattleRushScoreData* pInstance);
         static void Clean(ChallengeBattleRushScoreData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeBattleRushData {
         uint32_t status;
-        ChallengeBattleRushScoreData scores[16];
+        heur::rfl::ChallengeBattleRushScoreData scores[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38404,9 +42488,11 @@ namespace app::rfl {
         static void Finish(ChallengeBattleRushData* pInstance);
         static void Clean(ChallengeBattleRushData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeBattleRushContainerData {
-        ChallengeBattleRushData stages[4];
+        heur::rfl::ChallengeBattleRushData stages[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38415,7 +42501,9 @@ namespace app::rfl {
         static void Finish(ChallengeBattleRushContainerData* pInstance);
         static void Clean(ChallengeBattleRushContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeCyberStageData {
         enum class Value : int8_t {
             S = 0,
@@ -38429,7 +42517,7 @@ namespace app::rfl {
         uint32_t status;
         uint32_t totalBestTime;
         Value totalBestRank;
-        CyberStageContainerData stages;
+        heur::rfl::CyberStageContainerData stages;
         int32_t stageNos[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38439,9 +42527,11 @@ namespace app::rfl {
         static void Finish(ChallengeCyberStageData* pInstance);
         static void Clean(ChallengeCyberStageData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeCyberStageContainerData {
-        ChallengeCyberStageData stages[5];
+        heur::rfl::ChallengeCyberStageData stages[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38450,13 +42540,15 @@ namespace app::rfl {
         static void Finish(ChallengeCyberStageContainerData* pInstance);
         static void Clean(ChallengeCyberStageContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ChallengeData {
-        HeaderData header;
+        heur::rfl::HeaderData header;
         uint32_t status;
-        ChallengeCyberStageContainerData cyberStage;
-        ChallengeBattleRushContainerData battleRush;
-        ChallengeBattleRushContainerData battleRushAll;
+        heur::rfl::ChallengeCyberStageContainerData cyberStage;
+        heur::rfl::ChallengeBattleRushContainerData battleRush;
+        heur::rfl::ChallengeBattleRushContainerData battleRushAll;
         uint32_t reserved0;
         uint32_t reserved1;
         uint32_t reserved2;
@@ -38469,7 +42561,9 @@ namespace app::rfl {
         static void Finish(ChallengeData* pInstance);
         static void Clean(ChallengeData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct CharacterData {
         uint16_t numRings;
         uint8_t ringLevel;
@@ -38507,7 +42601,9 @@ namespace app::rfl {
         static void Finish(CharacterData* pInstance);
         static void Clean(CharacterData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraCharacterData {
         uint32_t bossRushNumRings;
         float bossRushQuickCyloopGauge;
@@ -38537,10 +42633,12 @@ namespace app::rfl {
         static void Finish(ExtraCharacterData* pInstance);
         static void Clean(ExtraCharacterData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraCharacterContainerData {
-        CharacterData characters[3];
-        ExtraCharacterData extras[4];
+        heur::rfl::CharacterData characters[3];
+        heur::rfl::ExtraCharacterData extras[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38549,9 +42647,11 @@ namespace app::rfl {
         static void Finish(ExtraCharacterContainerData* pInstance);
         static void Clean(ExtraCharacterContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraCyberStageContainerData {
-        CyberStageData actStages[16];
+        heur::rfl::CyberStageData actStages[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38560,7 +42660,9 @@ namespace app::rfl {
         static void Finish(ExtraCyberStageContainerData* pInstance);
         static void Clean(ExtraCyberStageContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WorldFlagData {
         uint32_t bitFlags[1024];
         int8_t byteFlags[1024];
@@ -38573,7 +42675,9 @@ namespace app::rfl {
         static void Finish(WorldFlagData* pInstance);
         static void Clean(WorldFlagData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraFlagData {
         uint32_t bitFlags[512];
         int8_t byteFlags[512];
@@ -38586,10 +42690,12 @@ namespace app::rfl {
         static void Finish(ExtraFlagData* pInstance);
         static void Clean(ExtraFlagData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraFlagContainerData {
-        WorldFlagData worldData;
-        ExtraFlagData extraData;
+        heur::rfl::WorldFlagData worldData;
+        heur::rfl::ExtraFlagData extraData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38598,7 +42704,9 @@ namespace app::rfl {
         static void Finish(ExtraFlagContainerData* pInstance);
         static void Clean(ExtraFlagContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandMapGridData {
         uint8_t x;
         uint8_t y;
@@ -38610,9 +42718,11 @@ namespace app::rfl {
         static void Finish(IslandMapGridData* pInstance);
         static void Clean(IslandMapGridData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandMapData {
-        IslandMapGridData grid[136];
+        heur::rfl::IslandMapGridData grid[136];
         uint16_t numReleaseGrids;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38622,11 +42732,13 @@ namespace app::rfl {
         static void Finish(IslandMapData* pInstance);
         static void Clean(IslandMapData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandStageData {
         csl::math::Vector3 destination;
         uint32_t flags;
-        IslandMapData map;
+        heur::rfl::IslandMapData map;
         uint32_t reserved[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -38636,9 +42748,11 @@ namespace app::rfl {
         static void Finish(IslandStageData* pInstance);
         static void Clean(IslandStageData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ExtraIslandStageContainerData {
-        IslandStageData islands[1];
+        heur::rfl::IslandStageData islands[1];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38647,7 +42761,9 @@ namespace app::rfl {
         static void Finish(ExtraIslandStageContainerData* pInstance);
         static void Clean(ExtraIslandStageContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct FlagContainerData {
         uint32_t bitFlags[24];
         int8_t byteFlags[128];
@@ -38660,7 +42776,9 @@ namespace app::rfl {
         static void Finish(FlagContainerData* pInstance);
         static void Clean(FlagContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GamePlayData {
         enum class Status : int8_t {
             STATUS_NEWGAME = 0,
@@ -38699,9 +42817,11 @@ namespace app::rfl {
         static void Finish(GamePlayData* pInstance);
         static void Clean(GamePlayData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct IslandStageContainerData {
-        IslandStageData islands[5];
+        heur::rfl::IslandStageData islands[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38710,10 +42830,12 @@ namespace app::rfl {
         static void Finish(IslandStageContainerData* pInstance);
         static void Clean(IslandStageContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WorldFlagContainerData {
-        WorldFlagData worldDatas[5];
-        WorldFlagData debugWorldData;
+        heur::rfl::WorldFlagData worldDatas[5];
+        heur::rfl::WorldFlagData debugWorldData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38722,7 +42844,9 @@ namespace app::rfl {
         static void Finish(WorldFlagContainerData* pInstance);
         static void Clean(WorldFlagContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct ReservedData {
         uint8_t reserved[601552];
 
@@ -38733,7 +42857,9 @@ namespace app::rfl {
         static void Finish(ReservedData* pInstance);
         static void Clean(ReservedData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StatValue {
         int32_t value;
         bool assigned;
@@ -38745,9 +42871,11 @@ namespace app::rfl {
         static void Finish(StatValue* pInstance);
         static void Clean(StatValue* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct StatsContainerData {
-        StatValue stats[3393];
+        heur::rfl::StatValue stats[3393];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38756,7 +42884,9 @@ namespace app::rfl {
         static void Finish(StatsContainerData* pInstance);
         static void Clean(StatsContainerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherTimerData {
         float duration;
         float time;
@@ -38768,7 +42898,9 @@ namespace app::rfl {
         static void Finish(WeatherTimerData* pInstance);
         static void Clean(WeatherTimerData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherBlockData {
         enum class Type : int8_t {
             Sunny = 0,
@@ -38799,7 +42931,9 @@ namespace app::rfl {
         static void Finish(WeatherBlockData* pInstance);
         static void Clean(WeatherBlockData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct WeatherData {
         enum class Type : int8_t {
             Sunny = 0,
@@ -38812,8 +42946,8 @@ namespace app::rfl {
 
         Type currentWeather;
         Type prevWeather;
-        WeatherTimerData timer;
-        WeatherBlockData block;
+        heur::rfl::WeatherTimerData timer;
+        heur::rfl::WeatherBlockData block;
         int32_t stageNo;
         uint32_t reserved[4];
 
@@ -38824,23 +42958,25 @@ namespace app::rfl {
         static void Finish(WeatherData* pInstance);
         static void Clean(WeatherData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameData {
-        HeaderData header;
-        GamePlayData gameplay;
-        CharacterData character;
-        IslandStageContainerData islands;
-        CyberStageContainerData stages;
-        FlagContainerData flags;
-        WorldFlagContainerData worldFlags;
-        ExtraFlagContainerData extraFlags;
-        ActionChainStruct actionChain;
-        ExtraCharacterContainerData extraCharacters;
-        ExtraCyberStageContainerData extraStages;
-        ExtraIslandStageContainerData extraIslands;
-        ReservedData reserved;
-        StatsContainerData stats;
-        WeatherData weather;
+        heur::rfl::HeaderData header;
+        heur::rfl::GamePlayData gameplay;
+        heur::rfl::CharacterData character;
+        heur::rfl::IslandStageContainerData islands;
+        heur::rfl::CyberStageContainerData stages;
+        heur::rfl::FlagContainerData flags;
+        heur::rfl::WorldFlagContainerData worldFlags;
+        heur::rfl::ExtraFlagContainerData extraFlags;
+        heur::rfl::ActionChainStruct actionChain;
+        heur::rfl::ExtraCharacterContainerData extraCharacters;
+        heur::rfl::ExtraCyberStageContainerData extraStages;
+        heur::rfl::ExtraIslandStageContainerData extraIslands;
+        heur::rfl::ReservedData reserved;
+        heur::rfl::StatsContainerData stats;
+        heur::rfl::WeatherData weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38849,7 +42985,9 @@ namespace app::rfl {
         static void Finish(GameData* pInstance);
         static void Clean(GameData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayLogCoordData {
         uint16_t time;
         uint16_t x;
@@ -38862,7 +43000,9 @@ namespace app::rfl {
         static void Finish(PlayLogCoordData* pInstance);
         static void Clean(PlayLogCoordData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayLogEventData {
         enum class EventType : int8_t {
             InvalidEvent = -1,
@@ -38882,7 +43022,7 @@ namespace app::rfl {
             AccessRingSensor = 13,
         };
 
-        PlayLogCoordData coord;
+        heur::rfl::PlayLogCoordData coord;
         EventType eventType;
         int8_t option;
 
@@ -38893,14 +43033,16 @@ namespace app::rfl {
         static void Finish(PlayLogEventData* pInstance);
         static void Clean(PlayLogEventData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct PlayLogData {
         uint32_t numFootMarks;
         uint32_t footMarksIndex;
-        PlayLogCoordData footmarks[36000];
+        heur::rfl::PlayLogCoordData footmarks[36000];
         uint32_t numEvents;
         uint32_t eventsIndex;
-        PlayLogEventData events[50000];
+        heur::rfl::PlayLogEventData events[50000];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38909,18 +43051,20 @@ namespace app::rfl {
         static void Finish(PlayLogData* pInstance);
         static void Clean(PlayLogData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct GameDataInPlayLog {
-        HeaderData header;
-        GamePlayData gameplay;
-        CharacterData character;
-        IslandStageContainerData islands;
-        CyberStageContainerData stages;
-        FlagContainerData flags;
-        WorldFlagContainerData worldFlags;
-        PlayLogData playlog;
-        StatsContainerData stats;
-        WeatherData weather;
+        heur::rfl::HeaderData header;
+        heur::rfl::GamePlayData gameplay;
+        heur::rfl::CharacterData character;
+        heur::rfl::IslandStageContainerData islands;
+        heur::rfl::CyberStageContainerData stages;
+        heur::rfl::FlagContainerData flags;
+        heur::rfl::WorldFlagContainerData worldFlags;
+        heur::rfl::PlayLogData playlog;
+        heur::rfl::StatsContainerData stats;
+        heur::rfl::WeatherData weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38929,7 +43073,9 @@ namespace app::rfl {
         static void Finish(GameDataInPlayLog* pInstance);
         static void Clean(GameDataInPlayLog* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionAudioData {
         enum class MusicSelect : int8_t {
             MUSIC_SELECT_ON = 0,
@@ -38959,7 +43105,9 @@ namespace app::rfl {
         static void Finish(OptionAudioData* pInstance);
         static void Clean(OptionAudioData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionCameraData {
         enum class MovementStyle : int8_t {
             PadSimulate = 0,
@@ -38986,7 +43134,9 @@ namespace app::rfl {
         static void Finish(OptionCameraData* pInstance);
         static void Clean(OptionCameraData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionControlsData {
         enum class InputKey : int32_t {
             Invalid = -1,
@@ -39154,7 +43304,9 @@ namespace app::rfl {
         static void Finish(OptionControlsData* pInstance);
         static void Clean(OptionControlsData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionGamePlayData {
         enum class VoiceLanguageType : int8_t {
             VOICE_LANGUAGE_ENGLISH = 0,
@@ -39232,7 +43384,9 @@ namespace app::rfl {
         static void Finish(OptionGamePlayData* pInstance);
         static void Clean(OptionGamePlayData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionGraphicsData {
         enum class Resolution : int8_t {
             Reso3840x2160 = 0,
@@ -39320,14 +43474,16 @@ namespace app::rfl {
         static void Finish(OptionGraphicsData* pInstance);
         static void Clean(OptionGraphicsData* pInstance);
     };
+}
 
+namespace heur::rfl {
     struct OptionData {
-        HeaderData header;
-        OptionGamePlayData gameplay;
-        OptionControlsData controls;
-        OptionCameraData camera;
-        OptionAudioData audio;
-        OptionGraphicsData graphics;
+        heur::rfl::HeaderData header;
+        heur::rfl::OptionGamePlayData gameplay;
+        heur::rfl::OptionControlsData controls;
+        heur::rfl::OptionCameraData camera;
+        heur::rfl::OptionAudioData audio;
+        heur::rfl::OptionGraphicsData graphics;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -39336,5 +43492,5 @@ namespace app::rfl {
         static void Finish(OptionData* pInstance);
         static void Clean(OptionData* pInstance);
     };
-
 }
+

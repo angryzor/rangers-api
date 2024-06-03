@@ -7,8 +7,8 @@ namespace app::gfx {
         , public evt::EventPlayerListener {
         game::TimeService* timeService;
         evt::EventPlayer* eventPlayer;
-        app::rfl::TimeProgressNeedleFxParam timeProgressNeedleFxParam;
-        app::rfl::FxAtmosphereParameter atmosphereParameter;
+        heur::rfl::TimeProgressNeedleFxParam timeProgressNeedleFxParam;
+        hh::needle::FxAtmosphereParameter atmosphereParameter;
         uint16_t unk1;
         
     public:

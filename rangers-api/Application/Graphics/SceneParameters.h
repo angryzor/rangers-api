@@ -5,7 +5,7 @@ namespace app::gfx {
 
     class SceneParameters : public hh::fnd::ReferencedObject, public hh::gfx::FxParamEditorListener {
     public:
-        app::rfl::NeedleFxSceneData* sceneData;
+        hh::needle::NeedleFxSceneData* sceneData;
         csl::ut::MoveArray<SceneParameterListener*> listeners;
         csl::ut::MoveArray<void*> unk2;
         uint64_t unk3;
@@ -16,6 +16,6 @@ namespace app::gfx {
         virtual void FPE_OnSetParam(const hh::gfx::FxParamEditInfo& editInfo) override;
         virtual void FPE_OnSetParam2(const hh::gfx::FxParamEditInfo& editInfo) override;
         virtual void FPE_OnInterpolate(const hh::gfx::FxParamEditInfo& editInfo) override;
-        app::rfl::NeedleFxSceneData* GetSceneData();
+        hh::needle::NeedleFxSceneData* GetSceneData();
     };
 }

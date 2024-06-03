@@ -17,34 +17,34 @@ namespace app::player {
         };
 
         union CharacterParameters {
-            hh::fnd::ResReflectionT<app::rfl::SonicParameters> sonic;
-            hh::fnd::ResReflectionT<app::rfl::AmyParameters> amy;
-            hh::fnd::ResReflectionT<app::rfl::KnucklesParameters> knuckles;
-            hh::fnd::ResReflectionT<app::rfl::TailsParameters> tails;
+            hh::fnd::ResReflectionT<heur::rfl::SonicParameters> sonic;
+            hh::fnd::ResReflectionT<heur::rfl::AmyParameters> amy;
+            hh::fnd::ResReflectionT<heur::rfl::KnucklesParameters> knuckles;
+            hh::fnd::ResReflectionT<heur::rfl::TailsParameters> tails;
         };
 
         union CharacterModePackage {
-            app::rfl::ModePackageSonic sonic;
-            app::rfl::ModePackageAmy amy;
-            app::rfl::ModePackageKnuckles knuckles;
-            app::rfl::ModePackageTails tails;
-            app::rfl::ModePackage unknown;
+            heur::rfl::ModePackageSonic sonic;
+            heur::rfl::ModePackageAmy amy;
+            heur::rfl::ModePackageKnuckles knuckles;
+            heur::rfl::ModePackageTails tails;
+            heur::rfl::ModePackage unknown;
         };
 
         hh::fnd::Reference<CharacterParameters> characterParameters;
-        hh::fnd::Reference<hh::fnd::ResReflectionT<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
-        app::rfl::ModePackage* modePackages[4];
-        app::rfl::WaterModePackage* waterModePackage;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::PlayerCameraSetParameters>> cameraSetParameters;
+        heur::rfl::ModePackage* modePackages[4];
+        heur::rfl::WaterModePackage* waterModePackage;
         Mode mode;
         SuperState superState;
         CharacterId characterId;
-        app::rfl::PlayerParamCommon* commonParameters[4];
-        app::rfl::PlayerParamSpeed* speedParameters[4];
-        app::rfl::PlayerParamJump* jumpParameters[4];
-        app::rfl::PlayerParamJumpSpeed* jumpSpeedParameters[4];
-        app::rfl::PlayerParamDoubleJump* doubleJumpParameters[4];
-        app::rfl::PlayerParamBoost* boostParameters[4];
-        app::rfl::PlayerParamAirBoost* airBoostParameters[4];
+        heur::rfl::PlayerParamCommon* commonParameters[4];
+        heur::rfl::PlayerParamSpeed* speedParameters[4];
+        heur::rfl::PlayerParamJump* jumpParameters[4];
+        heur::rfl::PlayerParamJumpSpeed* jumpSpeedParameters[4];
+        heur::rfl::PlayerParamDoubleJump* doubleJumpParameters[4];
+        heur::rfl::PlayerParamBoost* boostParameters[4];
+        heur::rfl::PlayerParamAirBoost* airBoostParameters[4];
 
     private:
         void* GetPlayerParameter(const hh::fnd::RflClass& rflClass);
@@ -52,32 +52,32 @@ namespace app::player {
         struct Config {
             uint32_t flags;
             hh::fnd::Reference<hh::fnd::ResReflectionT<CharacterParameters>> characterParameters;
-            hh::fnd::Reference<hh::fnd::ResReflectionT<app::rfl::PlayerCameraSetParameters>> cameraSetParameters;
+            hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::PlayerCameraSetParameters>> cameraSetParameters;
             CharacterId characterId;
         };
 
         GOCPlayerParameter(csl::fnd::IAllocator* allocator);
         void Initialize(const Config& config);
 
-        app::rfl::PlayerParamCommon& GetCommonParameters() const;
-        app::rfl::PlayerParamSpeed& GetSpeedParameters() const;
-        app::rfl::PlayerParamJump& GetJumpParameters() const;
-        app::rfl::PlayerParamJumpSpeed& GetJumpSpeedParameters() const;
-        app::rfl::PlayerParamDoubleJump& GetDoubleJumpParameters() const;
-        app::rfl::PlayerParamBoost& GetBoostParameters() const;
-        app::rfl::PlayerParamAirBoost& GetAirBoostParameters() const;
+        heur::rfl::PlayerParamCommon& GetCommonParameters() const;
+        heur::rfl::PlayerParamSpeed& GetSpeedParameters() const;
+        heur::rfl::PlayerParamJump& GetJumpParameters() const;
+        heur::rfl::PlayerParamJumpSpeed& GetJumpSpeedParameters() const;
+        heur::rfl::PlayerParamDoubleJump& GetDoubleJumpParameters() const;
+        heur::rfl::PlayerParamBoost& GetBoostParameters() const;
+        heur::rfl::PlayerParamAirBoost& GetAirBoostParameters() const;
 
-        app::rfl::PlayerParamAcceleCombo& GetAcceleComboParameters() const;
-        app::rfl::PlayerParamLoopKick& GetLoopKickParameters() const;
-        app::rfl::PlayerParamCrasher& GetCrasherParameters() const;
-        app::rfl::PlayerParamSpinSlash& GetSpinSlashParameters() const;
-        app::rfl::PlayerParamChargeAttack& GetChargeAttackParameters() const;
-        app::rfl::PlayerParamStompingAttack& GetStompingAttackParameters() const;
-        app::rfl::PlayerParamComboFinish& GetComboFinishParameters() const;
-        app::rfl::PlayerParamSonicBoom& GetSonicBoomParameters() const;
-        app::rfl::PlayerParamCrossSlash& GetCrossSlashParameters() const;
-        app::rfl::PlayerParamHomingShot& GetHomingShotParameters() const;
-        app::rfl::PlayerParamSmash& GetSmashParameters() const;
+        heur::rfl::PlayerParamAcceleCombo& GetAcceleComboParameters() const;
+        heur::rfl::PlayerParamLoopKick& GetLoopKickParameters() const;
+        heur::rfl::PlayerParamCrasher& GetCrasherParameters() const;
+        heur::rfl::PlayerParamSpinSlash& GetSpinSlashParameters() const;
+        heur::rfl::PlayerParamChargeAttack& GetChargeAttackParameters() const;
+        heur::rfl::PlayerParamStompingAttack& GetStompingAttackParameters() const;
+        heur::rfl::PlayerParamComboFinish& GetComboFinishParameters() const;
+        heur::rfl::PlayerParamSonicBoom& GetSonicBoomParameters() const;
+        heur::rfl::PlayerParamCrossSlash& GetCrossSlashParameters() const;
+        heur::rfl::PlayerParamHomingShot& GetHomingShotParameters() const;
+        heur::rfl::PlayerParamSmash& GetSmashParameters() const;
 
         void SetMode(Mode mode);
         void SetSuperState(SuperState state);

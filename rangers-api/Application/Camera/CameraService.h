@@ -17,7 +17,7 @@ namespace app::camera {
         csl::fnd::Mutex mutex1;
         csl::fnd::Mutex mutex2;
         CameraBridgeUnit cameraBridges[3];
-        hh::fnd::Reference<hh::fnd::ResReflectionT<app::rfl::CameraShakeTable>> cameraShakeTable;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::CameraShakeTable>> cameraShakeTable;
         uint64_t unk2;
         float timeLeftInZoom;
         csl::ut::LinkList<CameraBridge> unk4; // This CameraBridge is a dummy, I don't yet know what's inside.

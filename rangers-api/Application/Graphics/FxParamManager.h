@@ -134,7 +134,7 @@ namespace app::gfx {
 
         void SetSceneParameters(SceneParameters* parameters, int idx);
 
-        inline void AddNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxSceneConfig* needleFxSceneConfig, unsigned int priority, float interpolationTime) {
+        inline void AddNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, hh::needle::NeedleFxSceneConfig* needleFxSceneConfig, unsigned int priority, float interpolationTime) {
             this->mutex.Lock();
             sceneConfigInterpolators.fxRenderTargetSettingInterpolator->AddJob(ownerId, &needleFxSceneConfig->rendertarget, -1, priority, interpolationTime, -1);
             sceneConfigInterpolators.fxAntiAliasingInterpolator->AddJob(ownerId, &needleFxSceneConfig->antialiasing, -1, priority, interpolationTime, -1);
@@ -146,8 +146,8 @@ namespace app::gfx {
             this->mutex.Unlock();
             updated |= UpdateNeedleFxSceneConfigInterpolators();
         }
-        void AddDefaultNeedleFxSceneConfigInterpolationJob(app::rfl::NeedleFxSceneConfig* needleFxParameter, unsigned int priority);
-        inline void UpdateNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxSceneConfig* needleFxSceneConfig) {
+        void AddDefaultNeedleFxSceneConfigInterpolationJob(hh::needle::NeedleFxSceneConfig* needleFxParameter, unsigned int priority);
+        inline void UpdateNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, hh::needle::NeedleFxSceneConfig* needleFxSceneConfig) {
             this->mutex.Lock();
             sceneConfigInterpolators.fxRenderTargetSettingInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->rendertarget);
             sceneConfigInterpolators.fxAntiAliasingInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->antialiasing);
@@ -159,7 +159,7 @@ namespace app::gfx {
             this->mutex.Unlock();
             updated |= UpdateNeedleFxSceneConfigInterpolators();
         }
-        void UpdateDefaultNeedleFxSceneConfigInterpolationJob(app::rfl::NeedleFxSceneConfig* needleFxParameter);
+        void UpdateDefaultNeedleFxSceneConfigInterpolationJob(hh::needle::NeedleFxSceneConfig* needleFxParameter);
         inline void RemoveNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, float interpolationTime) {
             this->mutex.Lock();
             sceneConfigInterpolators.fxRenderTargetSettingInterpolator->ReverseJob(ownerId, interpolationTime);
@@ -173,10 +173,10 @@ namespace app::gfx {
             // updated |= UpdateNeedleFxSceneConfigInterpolators();
         }
     
-        void AddNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority, float interpolationTime);
-        void AddDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter, unsigned int priority);
-        void UpdateDefaultNeedleFxParameterInterpolationJob(app::rfl::NeedleFxParameter* needleFxParameter);
-        void UpdateNeedleFxParameterInterpolationJob(uint64_t ownerId, app::rfl::NeedleFxParameter* needleFxParameter);
+        void AddNeedleFxParameterInterpolationJob(uint64_t ownerId, hh::needle::NeedleFxParameter* needleFxParameter, unsigned int priority, float interpolationTime);
+        void AddDefaultNeedleFxParameterInterpolationJob(hh::needle::NeedleFxParameter* needleFxParameter, unsigned int priority);
+        void UpdateDefaultNeedleFxParameterInterpolationJob(hh::needle::NeedleFxParameter* needleFxParameter);
+        void UpdateNeedleFxParameterInterpolationJob(uint64_t ownerId, hh::needle::NeedleFxParameter* needleFxParameter);
         inline void RemoveNeedleFxParameterInterpolationJob(uint64_t ownerId, float interpolationTime) {
             this->mutex.Lock();
             paramInterpolators.bloomInterpolator->ReverseJob(ownerId, interpolationTime);

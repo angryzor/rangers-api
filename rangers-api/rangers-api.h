@@ -114,6 +114,29 @@
 #include "Hedgehog/Resource/FileCache.h"
 #include "Hedgehog/Resource/FileLoader.h"
 
+#include "Hedgehog/Game/ObjectId.h"
+
+// Hedgehog Reflection Library
+#include "Hedgehog/Reflection/ResReflection.h"
+#include "Hedgehog/Reflection/hhInternalClassMember.h"
+#include "Hedgehog/Reflection/hhRflEntity.h"
+#include "Hedgehog/Reflection/hhRflArray.h"
+#include "Hedgehog/Reflection/hhRflCustomAttribute.h"
+#include "Hedgehog/Reflection/hhRflClassMember.h"
+#include "Hedgehog/Reflection/hhRflClassEnum.h"
+#include "Hedgehog/Reflection/hhRflClass.h"
+#include "Hedgehog/Reflection/hhRflTypeInfo.h"
+#include "Hedgehog/Reflection/hhRflRegistry.h"
+#include "Hedgehog/Reflection/hhRflTypeInfoRegistry.h"
+#include "Hedgehog/Reflection/hhRflClassNameRegistry.h"
+#include "Hedgehog/Reflection/hhBuiltinTypeRegistry.h"
+// #include "Hedgehog/Reflection/hhDataResource.h"
+#include "Hedgehog/Reflection/hhDataValue.h"
+// #include "Hedgehog/Reflection/hhVariantDataUtil.h"
+// #include "Hedgehog/Reflection/hhRflSerializeUtil.h"
+
+#include "Heuristics/Reflection.h"
+
 #include "Hedgehog/Rsdx/rsdx_noncopyable.h"
 #include "Hedgehog/Needle/Utility/Binhash.h"
 #include "Hedgehog/Needle/Types.h"
@@ -197,6 +220,8 @@
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceDX11.h"
 
 #include "Hedgehog/GraphicsFoundation/ResTexture.h"
+#include "Hedgehog/GraphicsFoundation/ResVertexShader.h"
+#include "Hedgehog/GraphicsFoundation/ResFragmentShader.h"
 #include "Hedgehog/GraphicsFoundation/Renderable.h"
 #include "Hedgehog/GraphicsFoundation/RenderableContainer.h"
 #include "Hedgehog/GraphicsFoundation/ViewportData.h"
@@ -211,6 +236,7 @@
 #include "Hedgehog/GraphicsFoundation/DrawSystemNeedle.h"
 
 #include "Hedgehog/Font/ResBitmapFont.h"
+#include "Hedgehog/Font/ResScalableFontSet.h"
 #include "Hedgehog/Font/TextListener.h"
 #include "Hedgehog/Font/FontContainer.h"
 
@@ -248,27 +274,6 @@
 
 // // // System Messages
 // // #include "System/Messages/MsgRobChaosEmerald.h"
-#include "Hedgehog/Game/ObjectId.h"
-
-// Hedgehog Reflection Library
-#include "Hedgehog/Reflection/ResReflection.h"
-#include "Hedgehog/Reflection/hhInternalClassMember.h"
-#include "Hedgehog/Reflection/hhRflEntity.h"
-#include "Hedgehog/Reflection/hhRflArray.h"
-#include "Hedgehog/Reflection/hhRflCustomAttribute.h"
-#include "Hedgehog/Reflection/hhRflClassMember.h"
-#include "Hedgehog/Reflection/hhRflClassEnum.h"
-#include "Hedgehog/Reflection/hhRflClass.h"
-#include "Hedgehog/Reflection/hhRflTypeInfo.h"
-#include "Hedgehog/Reflection/hhRflRegistry.h"
-#include "Hedgehog/Reflection/hhRflTypeInfoRegistry.h"
-#include "Hedgehog/Reflection/hhRflClassNameRegistry.h"
-#include "Hedgehog/Reflection/hhBuiltinTypeRegistry.h"
-// #include "Hedgehog/Reflection/hhDataResource.h"
-#include "Hedgehog/Reflection/hhDataValue.h"
-// #include "Hedgehog/Reflection/hhVariantDataUtil.h"
-// #include "Hedgehog/Reflection/hhRflSerializeUtil.h"
-#include "Application/Reflection/Types.h"
 
 #include "Hedgehog/Debug/Messages.h"
 #include "Hedgehog/Debug/ViewerContext.h"
@@ -340,6 +345,15 @@
 #include "Hedgehog/Graphics/VisualManager.h"
 #include "Hedgehog/Graphics/VisibilityManager.h"
 #include "Hedgehog/Graphics/FxParamEditor.h"
+#include "Hedgehog/Graphics/ResModelParameterInterface.h"
+#include "Hedgehog/Graphics/ResModelBase.h"
+#include "Hedgehog/Graphics/ResModelNeedle.h"
+#include "Hedgehog/Graphics/ResModel.h"
+#include "Hedgehog/Graphics/ResTerrainModel.h"
+#include "Hedgehog/Graphics/ResModelInstanceInfo.h"
+#include "Hedgehog/Graphics/ResMirageTerrainInstanceInfo.h"
+#include "Hedgehog/Graphics/ResMirageLight.h"
+#include "Hedgehog/Graphics/ResMirageLightField.h"
 
 #include "Hedgehog/Physics/ShapeHolder.h"
 #include "Hedgehog/Physics/EventQueue.h"
@@ -356,7 +370,15 @@
 #include "Hedgehog/Physics/PhysicsPickedObjectViewer.h"
 #include "Hedgehog/Physics/BulletPhysicsModule.h"
 
+#include "Hedgehog/Effect/ResEffect.h"
+
+#include "Hedgehog/Sound/ResAtomConfig.h"
+#include "Hedgehog/Sound/ResAtomCueSheet.h"
 #include "Hedgehog/Sound/GOCSound.h"
+
+#include "Hedgehog/Text/ResText.h"
+#include "Hedgehog/Text/ResTextMeta.h"
+#include "Hedgehog/Text/ResTextProject.h"
 
 #include "Hedgehog/Animation/Trigger.h"
 #include "Hedgehog/Animation/Bindable.h"

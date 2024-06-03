@@ -18,7 +18,7 @@ namespace app {
         csl::ut::MoveArray<VolumeListener*> listeners;
     
     protected:
-        void Setup(hh::game::GameObject* object, const app::rfl::VolumeTriggerSpawner& config);
+        void Setup(hh::game::GameObject* object, const heur::rfl::VolumeTriggerSpawner& config);
 
     public:
         // CollisionFilter changes the collider type
@@ -26,7 +26,7 @@ namespace app {
         // 1 = category 27, unk4 0x010000 
         // 2 = category 29, unk4 0x018000 
         // 3 = category 29, unk4 0x158000 
-        app::rfl::VolumeTriggerSpawner config;
+        heur::rfl::VolumeTriggerSpawner config;
         uint8_t unk13;
     
         DEFAULT_CREATE_FUNC(VolumeTrigger)
@@ -35,10 +35,10 @@ namespace app {
         virtual void GOCCL_UnkFunc2(hh::physics::GOCCollider* collider) override;
         virtual void GOCCL_UnkFunc3(hh::physics::GOCCollider* collider) override;
 
-        void Setup(hh::game::GameObject* object, const app::rfl::VolumeTriggerSpawner& config, uint32_t unkParam1, bool unkParam2);
+        void Setup(hh::game::GameObject* object, const heur::rfl::VolumeTriggerSpawner& config, uint32_t unkParam1, bool unkParam2);
         void SetupDebugVisual();
-        void UpdateConfig(const app::rfl::VolumeTriggerSpawner& config);
-        void UpdateDebugVisual(const app::rfl::VolumeTriggerSpawner& config);
+        void UpdateConfig(const heur::rfl::VolumeTriggerSpawner& config);
+        void UpdateDebugVisual(const heur::rfl::VolumeTriggerSpawner& config);
         void AddListener(VolumeListener* listener);
         void RemoveListener(VolumeListener* listener);
 

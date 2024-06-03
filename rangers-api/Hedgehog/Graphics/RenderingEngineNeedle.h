@@ -43,10 +43,10 @@ namespace hh::gfx {
         virtual needle::RenderingDeviceContext* GetRenderingDeviceContext();
         virtual void SetSupportFX(needle::SupportFX* supportFX);
         virtual needle::SupportFX* GetSupportFX();
-        virtual void SetFXParameter(app::rfl::NeedleFxParameter* parameter, unsigned int unkParam1) {}
-        virtual void GetFXParameter(app::rfl::NeedleFxParameter* parameter) {}
-        virtual void SetSceneConfig(app::rfl::NeedleFxSceneConfig* sceneConfig) {}
-        virtual void GetSceneConfig(app::rfl::NeedleFxSceneConfig* sceneConfig) {}
+        virtual void SetFXParameter(hh::needle::NeedleFxParameter* parameter, unsigned int unkParam1) {}
+        virtual void GetFXParameter(hh::needle::NeedleFxParameter* parameter) {}
+        virtual void SetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) {}
+        virtual void GetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) {}
         virtual uint64_t CreateRenderTextureHandle(const needle::RenderTextureCreateArgs& createArgs, csl::fnd::IAllocator* allocator);
         virtual uint64_t DestroyRenderTextureHandle(needle::RenderTextureHandle* handle);
         virtual void AddRenderableToRenderTextureHandle(needle::RenderTextureHandle* handle, gfnd::Renderable* renderable) {}

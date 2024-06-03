@@ -5,7 +5,7 @@ namespace app {
         : public hh::game::GameObject
         , public app::VolumeListener
         , public app::game::GOCEventListener {
-        app::rfl::ObjSwitchVolumeSpawner::Condition condition;
+        heur::rfl::ObjSwitchVolumeSpawner::Condition condition;
         app::VolumeTrigger volumeTrigger;
     public:
 		virtual bool ProcessMessage(hh::fnd::Message& message) override;
