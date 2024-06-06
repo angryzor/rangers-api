@@ -16,9 +16,7 @@ namespace hh::fw {
         static Application* instance;
         Application(csl::fnd::IAllocator* pAllocator, FrameworkEnvironment* frameworkEnvironment);
 
-        inline static Application* GetInstance() {
-            return RESOLVE_STATIC_VARIABLE(instance);
-        }
+        static Application* GetInstance();
 
         void AddListener(ApplicationListener* listener);
         void RemoveListener(ApplicationListener* listener);

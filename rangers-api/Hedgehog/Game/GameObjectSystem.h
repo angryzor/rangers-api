@@ -21,7 +21,10 @@ namespace hh::game {
 
         static void LoadGameObjectClasses();
 
-        static GameObject* GetGameObjectByHandle(const fnd::Handle<hh::game::GameObject>& handle);
+        inline static GameObject* GetGameObjectByHandle(const fnd::Handle<hh::game::GameObject>& handle) {
+            return static_cast<GameObject*>(hh::fnd::MessageManager::GetInstance()->GetMessengerByHandle(reinterpret_cast<const fnd::Handle<hh::fnd::Messenger>&>(handle)));
+        }
+
         inline static GOComponent* GetComponentByHandle(const fnd::Handle<hh::game::GOComponent>& handle) {
             return *handle;
         }
@@ -37,3 +40,6 @@ namespace hh::game {
         }
     };
 }
+
+template class hh::fnd::HandleManager<hh::game::GOComponent>;
+template class hh::fnd::Handle<hh::game::GOComponent>;

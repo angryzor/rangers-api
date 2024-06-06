@@ -5,13 +5,13 @@ namespace hh::hid {
     public:
         InputDevice(csl::fnd::IAllocator* pAllocator);
 
-        virtual void* GetRuntimeTypeInfo();
-        virtual uint64_t UnkFunc1();
-        virtual float UnkFunc2();
-        virtual csl::math::Vector4 UnkFunc3(); // most probably not a vector, but don't know what it really is
-        virtual csl::math::Vector4 UnkFunc4();
-        virtual void UnkFunc5();
-        virtual bool UnkFunc6() { return true; }
+        virtual void* GetRuntimeTypeInfo() const;
+        virtual unsigned int GetDeviceId() const;
+        virtual float GetInputValue(unsigned int inputId) const;
+        virtual csl::math::Vector4 GetTarget1() const;
+        virtual csl::math::Vector4 GetTarget2() const;
+        virtual void Update(float unkParam);
+        virtual bool HasUpdated() { return true; }
         virtual bool UnkFunc7() { return false; } 
     };
 }

@@ -10,7 +10,9 @@ namespace hh::fnd {
         virtual void Load(void* data, size_t size) override;
         virtual void Unload() override;
 
-        void* GetData();
+        inline void* GetData() {
+            return reflectionData;
+        }
 
         MANAGED_RESOURCE_CLASS_DECLARATION(ResReflection)
     };
@@ -18,8 +20,8 @@ namespace hh::fnd {
     template<typename T>
     class ResReflectionT : public ResReflection {
     public:
-        T* GetData() {
-            return static_cast<T*>(GetData());
+        inline T* GetData() {
+            return static_cast<T*>(ResReflection::GetData());
         }
 
         inline static const ResourceTypeInfo* GetTypeInfo() {

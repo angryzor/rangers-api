@@ -222,6 +222,7 @@
 #include "Hedgehog/GraphicsFoundation/ResTexture.h"
 #include "Hedgehog/GraphicsFoundation/ResVertexShader.h"
 #include "Hedgehog/GraphicsFoundation/ResFragmentShader.h"
+#include "Hedgehog/GraphicsFoundation/ResComputeShader.h"
 #include "Hedgehog/GraphicsFoundation/Renderable.h"
 #include "Hedgehog/GraphicsFoundation/RenderableContainer.h"
 #include "Hedgehog/GraphicsFoundation/ViewportData.h"

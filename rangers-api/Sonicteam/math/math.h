@@ -102,6 +102,13 @@ namespace csl::math
 	class alignas(16) Matrix34 : public Eigen::Affine3f
 	{
 	public:
+		inline bool operator==(const csl::math::Matrix34& other) const {
+			return this->matrix() == other.matrix();
+		}
+
+		inline bool operator!=(const csl::math::Matrix34& other) const {
+			return this->matrix() != other.matrix();
+		}
 		// Vector3& GetColumn(uint32_t column) const
 		// {
 		// 	return *(Vector3*)col(column).data();
