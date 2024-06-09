@@ -258,5 +258,6 @@ namespace hh::game
 		void PerformMessages();
 		void UpdateGlobalTime(const fnd::SUpdateInfo& updateInfo);
 		void GetViewportData(int viewportId);
+		bool IsWorldFlagSet(int index, int type);
 	};
 }

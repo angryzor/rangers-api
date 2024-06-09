@@ -48,7 +48,7 @@ namespace hh::fnd
 
 		Message(MessageID in_id);
 
-		virtual MessageAsyncHandler* CreateAsyncHandler();
+		virtual MessageAsyncHandler* CreateAsyncHandler(csl::fnd::IAllocator* allocator);
 		virtual ~Message() = default;
 
 		inline static void* operator new(size_t count) {
@@ -60,15 +60,16 @@ namespace hh::fnd
 		}
 	};
 
-	class MessageAsyncHandler : ReferencedObject
+	class MessageAsyncHandler : public ReferencedObject
 	{
-		Message* message{};
+		Message& message;
 		uint8_t unk1{};
 
 	public:
+		MessageAsyncHandler(csl::fnd::IAllocator* allocator, Message& message) : ReferencedObject{ allocator, true }, message{ message } {}
 		virtual ~MessageAsyncHandler() = default;
 		inline Message& GetMessage() const {
-			return *message;
+			return message;
 		}
 
 		template<typename T>
@@ -81,5 +82,8 @@ namespace hh::fnd
 	class MessageAsyncHandlerInplace : public MessageAsyncHandler
 	{
 		T messageInPlace;
+
+	public:
+		inline MessageAsyncHandlerInplace(csl::fnd::IAllocator* allocator, const T& message) : messageInPlace{ message }, MessageAsyncHandler { allocator, messageInPlace } {}
 	};
 }

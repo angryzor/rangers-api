@@ -3,7 +3,7 @@
 namespace hh::game {
 	struct WorldObjectCInfo {
 		csl::ut::InplaceMoveArray<hh::game::GOComponentConfiguration, 5> componentConfig;
-		uint64_t unk1; // see 1.40 0x140D48348 -- Packfile*??? see 0x140CFC8C5
+		fnd::Packfile* packFile; // see 1.40 0x140D48348 -- Packfile*??? see 0x140CFC8C5
                        //     1.41 0x140D4B1F7
 	};
 
@@ -33,7 +33,7 @@ namespace hh::game {
 
         typedef bool (*ObjectAttribute)(const GameObjectClass* gameObjectClass, int* attributeFlags);
 
-        uint64_t unk1;
+        ObjectWorld* objectWorld;
         GameManager* gameManager;
         csl::ut::Bitset<Flag> flags;
         csl::ut::MoveArray<ObjectWorldChunkListener*> listeners;
@@ -110,6 +110,11 @@ namespace hh::game {
             DespawnByIndex(idx);
         }
         
+        inline void Restart(int index, bool force) {
+            if (index >= 0 && index < objects.size())
+                objectStatuses[index].Restart();
+        }
+
         inline void Restart(bool force) {
             if (force) {
                 for (int i = 0; i < objects.size(); i++) {

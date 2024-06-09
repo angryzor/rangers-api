@@ -12,10 +12,10 @@ namespace hh::game {
         csl::ut::MoveArray<ObjectWorldChunk*> worldChunks;
         csl::ut::MoveArray<ObjectWorldListener*> listeners;
         csl::ut::MoveArray<ObjectWorldExtension*> extensions;
-        uint64_t unk104;
-        uint8_t unk105; //flags? 0 = LEVEL_STARTED, 1 = EDITOR_STARTED
-
     public:
+        fnd::Packfile* packFile;
+        uint8_t flags; // 0 = LEVEL_STARTED, 1 = EDITOR_STARTED
+
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;

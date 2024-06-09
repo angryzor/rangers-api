@@ -339,13 +339,6 @@
 #include "Hedgehog/Graphics/RenderingEngineRangers.h"
 #include "Hedgehog/Graphics/RenderManager.h"
 #include "Hedgehog/Graphics/ResMaterial.h"
-#include "Hedgehog/Graphics/GOCVisual.h"
-#include "Hedgehog/Graphics/GOCVisualTransformed.h"
-#include "Hedgehog/Graphics/GOCVisualModel.h"
-#include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
-#include "Hedgehog/Graphics/VisualManager.h"
-#include "Hedgehog/Graphics/VisibilityManager.h"
-#include "Hedgehog/Graphics/FxParamEditor.h"
 #include "Hedgehog/Graphics/ResModelParameterInterface.h"
 #include "Hedgehog/Graphics/ResModelBase.h"
 #include "Hedgehog/Graphics/ResModelNeedle.h"
@@ -355,6 +348,13 @@
 #include "Hedgehog/Graphics/ResMirageTerrainInstanceInfo.h"
 #include "Hedgehog/Graphics/ResMirageLight.h"
 #include "Hedgehog/Graphics/ResMirageLightField.h"
+#include "Hedgehog/Graphics/GOCVisual.h"
+#include "Hedgehog/Graphics/GOCVisualTransformed.h"
+#include "Hedgehog/Graphics/GOCVisualModel.h"
+#include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
+#include "Hedgehog/Graphics/VisualManager.h"
+#include "Hedgehog/Graphics/VisibilityManager.h"
+#include "Hedgehog/Graphics/FxParamEditor.h"
 
 #include "Hedgehog/Physics/ShapeHolder.h"
 #include "Hedgehog/Physics/EventQueue.h"
@@ -372,6 +372,8 @@
 #include "Hedgehog/Physics/BulletPhysicsModule.h"
 
 #include "Hedgehog/Effect/ResEffect.h"
+#include "Hedgehog/Effect/EffectManager.h"
+#include "Hedgehog/Effect/GOCEffect.h"
 
 #include "Hedgehog/Sound/ResAtomConfig.h"
 #include "Hedgehog/Sound/ResAtomCueSheet.h"
@@ -569,6 +571,8 @@
 #include "Application/Level/ResMasterLevel.h"
 #include "Application/Level/LevelManager.h"
 
+#include "Application/Sound/SoundDirector.h"
+#include "Application/Sound/BgmIdExtension.h"
 #include "Application/Sound/CustomSound.h"
 
 #include "Application/Text/AppTextListener.h"

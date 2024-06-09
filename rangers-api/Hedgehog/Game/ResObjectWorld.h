@@ -7,6 +7,7 @@ namespace hh::game {
         uint64_t size;
         void* data;
 
+        ComponentData(const char* type, void* data, size_t size) : type{ type }, size{ size }, data{ data } {}
         template<typename T>
         ComponentData(const char* type, T* data) : type{ type }, size{ sizeof(T) }, data{ data } {}
     };

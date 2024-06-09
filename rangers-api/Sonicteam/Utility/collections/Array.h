@@ -191,6 +191,23 @@ namespace csl::ut
 			new (&this->m_pBuffer[this->m_length - 1]) T(std::move(item));
 		}
 
+		void emplace_back()
+		{
+			if (this->m_length + 1 > this->capacity())
+			{
+				reserve((this->m_length + 1) * 2);
+			}
+
+			this->m_length++;
+			new (&this->m_pBuffer[this->m_length - 1]) T{};
+		}
+
+		void emplace_back_unchecked()
+		{
+			this->m_length++;
+			new (&this->m_pBuffer[this->m_length - 1]) T{};
+		}
+
 		void remove(S i)
 		{
 			if (i >= this->m_length)

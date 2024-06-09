@@ -46,7 +46,7 @@ namespace hh::fnd
 
 		struct Value : public RflEntity {
 			Type m_Type;
-			void* m_Value;
+			const void* m_Value;
 		};
 
 		struct alignas(8) Metadata

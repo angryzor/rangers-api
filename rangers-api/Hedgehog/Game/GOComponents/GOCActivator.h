@@ -10,11 +10,22 @@ namespace hh::game {
     public:
         bool enabled;
 
+        struct RangeSpawningConfig {
+            float m_distance;
+            float m_range;
+        };
+
+        struct SetupInfo {
+            RangeSpawningConfig rangeSpawningConfig;
+            bool unk1;
+        };
+
         GOCActivator(csl::fnd::IAllocator* allocator);
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;
 		virtual void OnGOCEvent(GOCEvent event, GameObject& ownerGameObject, void* data) override;
         virtual void HFrameUpdatedCallback(const fnd::HFrame* frame, bool unkParam) override;
+        void Setup(const SetupInfo& setupInfo);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCActivator)
     };

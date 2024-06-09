@@ -172,7 +172,15 @@ namespace hh::game
 		fnd::MessageAsyncHandler* SendMessageToGame(fnd::Message& message);
 		bool SendMessageImmToGame(fnd::Message& message);
 		fnd::MessageAsyncHandler* SendMessageToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
+		template<typename T>
+		fnd::MessageAsyncHandler* SendMessageToGameObject(const fnd::Handle<T, fnd::HandleManager<hh::fnd::Messenger>>& handle, fnd::Message& message) {
+			return SendMessageToGameObject(reinterpret_cast<const fnd::Handle<GameObject>&>(handle), message);
+		}
 		bool SendMessageImmToGameObject(const fnd::Handle<GameObject>& handle, fnd::Message& message);
+		template<typename T>
+		bool SendMessageImmToGameObject(const fnd::Handle<T, fnd::HandleManager<hh::fnd::Messenger>>& handle, fnd::Message& message) {
+			return SendMessageImmToGameObject(reinterpret_cast<const fnd::Handle<GameObject>&>(handle), message);
+		}
 
 		void SetLayer(char layer);
 
@@ -202,6 +210,14 @@ namespace hh::game
 		void SetEditorStatus(bool status);
 		bool GetEditorStatus() const;
 		void NotifyDestroy();
+		void Shutdown();
+		static GameObject* Create(GameObjectClass* gameObjectClass, csl::fnd::IAllocator* allocator);
+		template<typename T>
+		static T* Create(csl::fnd::IAllocator* allocator) {
+			return static_cast<T*>(Create(T::GetClass(), allocator));
+		}
+		void AddChild(GameObject* child);
+		void RemoveChild(GameObject* child);
 		
 		template<typename T>
 		const T* GetWorldDataByClass() const {

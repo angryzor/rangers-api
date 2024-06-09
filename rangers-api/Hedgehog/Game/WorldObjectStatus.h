@@ -7,7 +7,7 @@ namespace hh::game {
         enum class Flag : uint8_t {
             ENABLED,
             IS_ALIVE,
-            STARTED,
+            SHUTDOWN,
             NO_RESTART,
         };
 
@@ -17,8 +17,12 @@ namespace hh::game {
         int spawnPriority;
         virtual ~WorldObjectStatus() = default;
 
-        inline bool IsStarted() {
-            return flags.test(Flag::STARTED);
+        inline void Shutdown() {
+            return flags.set(Flag::SHUTDOWN);
+        }
+
+        inline bool IsShutdown() {
+            return flags.test(Flag::SHUTDOWN);
         }
 
         inline bool IsNoRestart() {
@@ -26,7 +30,7 @@ namespace hh::game {
         }
 
         inline void Restart() {
-            flags.reset(Flag::STARTED);
+            flags.reset(Flag::SHUTDOWN);
         }
 
         uint16_t GetObjectState(unsigned int stateId);

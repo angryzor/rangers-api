@@ -4,7 +4,8 @@ namespace hh::gfx {
     class GOCVisualTransformed : public GOCVisual, public fnd::HFrame::Listener {
     public:
         struct SetupInfo {
-            fnd::HFrame* frame;
+            fnd::HFrame* frame{};
+            bool visibilityEnabled{};
             uint8_t unk1;
         };
 

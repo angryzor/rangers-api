@@ -7,7 +7,7 @@ namespace hh::anim {
 namespace hh::gfx {
     // Actually called GOCVisualMode::Description but I'm not sure how to resolve the mutual dependency with Setup.
     // Assumed, some of these fields may not be part of this but of the GOCVisualModel instead
-    struct GOCVisualModelDescription {
+    struct GOCVisualModelDescription : public GOCVisualTransformed::SetupInfo {
         enum class Flag {
             SCENE_EDITOR_RENDER = 0x14,
             NO_CONTROL_RENDER_OPTION = 0x15,
@@ -21,28 +21,29 @@ namespace hh::gfx {
             IS_SHADOW_RECEIVE = 0x1D,
             IS_SHADOW_CASTER = 0x1E,
         };
-        uint64_t unk317;
-        uint16_t unk318;
-        uint64_t unk319;
-        uint64_t unk320;
-        uint64_t skeletalAnimationRelatedUnk;
+        gfx::ResModel* model;
+        uint64_t unk318;
+        fnd::ManagedResource* skeleton;
         csl::ut::Bitset<Flag> flags;
+        uint32_t unk320;
+        int skeletalAnimationRelatedUnk;
+        int skeletalAnimationRelatedUnk2;
+        uint32_t unk321;
         uint32_t unk322;
         int unk323;
         uint64_t unk324;
         fnd::ManagedResource* unk325;
-        fnd::ManagedResource* unk326;
-        fnd::ManagedResource* unk327;
         bool isSky;
         bool isOccluder;
         bool disableColorDraw;
         bool useGIPRT;
         bool useGISG;
-        uint32_t unk330;
-        uint32_t useSkeletalAnimRelated;
-        uint16_t unk331;
+        uint32_t nameHash;
+        uint32_t unk303;
+        bool unk304;
+        bool unk305;
 
-        GOCVisualModelDescription(csl::fnd::IAllocator* allocator);
+        GOCVisualModelDescription();
     };
 
     class GOCVisualModel;
@@ -85,8 +86,8 @@ namespace hh::gfx {
         GOCVisualModel* masterPoseComponent;
         csl::ut::InplaceMoveArray<GOCVisualModel*, 3> poseComponents;
         uint32_t unk303;
-        fnd::ManagedResource* unk304;
-        uint64_t unk305;
+        fnd::Reference<gfx::ResModel> model;
+        fnd::Reference<fnd::ManagedResource> skeleton;
         uint64_t unk306;
         uint64_t unk307;
         uint64_t unk308;
@@ -109,6 +110,8 @@ namespace hh::gfx {
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual void OnGOCVisualEvent(GOCVisualEvent unkParam1, unsigned int unkParam2, void* unkParam3) override;
         void SetMasterPoseComponent(GOCVisualModel* component);
+        int GetNodeIndex(const char* nodeName) const;
+        void Setup(const GOCVisualModelDescription& description);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCVisualModel)
     };
