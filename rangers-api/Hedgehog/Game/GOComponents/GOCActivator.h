@@ -2,12 +2,12 @@
 
 namespace hh::game {
     class GOCActivator : public hh::game::GOComponent, public hh::fnd::HFrame::Listener {
+    public:
         float range;
         float distance;
         bool unk101;
         csl::math::Vector3 z;
         float unk103;
-    public:
         bool enabled;
 
         struct RangeSpawningConfig {

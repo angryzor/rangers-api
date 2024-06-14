@@ -8,6 +8,9 @@ namespace app {
         uint32_t unk206;
         csl::fnd::Mutex mutex;
 
+		virtual bool ProcessMessage(hh::fnd::Message& message) override;
+		virtual void AddCallback(hh::game::GameManager* gameManager) override;
+
         GAMEOBJECT_CLASS_DECLARATION(ObjCamera)
     };
 }

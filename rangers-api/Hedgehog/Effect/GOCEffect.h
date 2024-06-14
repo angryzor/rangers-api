@@ -2,17 +2,27 @@
 
 namespace hh::eff {
     struct EffectCreateInfo {
-        char unk1[40];
-        unsigned int unkMode;
-        unsigned int unk1a;
+        uint8_t unk1;
+        uint8_t unk1a;
+        uint8_t unk2;
+        const char* resourceName;
+        float unk4;
+        uint32_t unk4a;
+        uint64_t unk5;
+        uint64_t unk6;
+        uint32_t unk7;
         fnd::WorldPosition position;
-        char unk2[16];
+        char unk8[16];
         gfx::GOCVisualModel* unkModel1;
-        const char* nodeName1;
-        int fallbackNodeId;
+        uint8_t unk9;
     };
 
-    class EffectHandle;
+    class EffectHandle {
+        int unk1;
+        void* unk2;
+        EffectHandle();
+    };
+
     class GOCEffect : public game::GOComponent {
     public:
         struct Description {
@@ -38,7 +48,7 @@ namespace hh::eff {
         };
 
         uint64_t qword80;
-        uint64_t qword88;
+        gfx::GOCVisualModel* unkModel1;
         float dword90;
         uint8_t byte94;
         int dword98;
@@ -59,7 +69,7 @@ namespace hh::eff {
         void SetupGlobalScale();
         csl::math::Matrix34 CalcEffectMatrix(const EffectTransInfo& transInfo);
         void SetupTransInfo(const EffectCreateInfo& createInfo, EffectTransInfo* transInfo);
-        void CreateEffectHandle(const char* resourceName, const csl::math::Matrix34& location, unsigned int unkParam1, float unkParam2, const float* unkParam3, const EffectCreateInfo* createInfo);
+        EffectHandle CreateEffectHandle(const char* resourceName, const csl::math::Matrix34& location, float unkParam2, const float* unkParam3, const EffectCreateInfo* createInfo);
         void CreateEffect(const char* resourceName, EffectHandle* handle);
         void CreateEffectEx(const EffectCreateInfo& createInfo, EffectHandle* handle);
         void CreateEffectLoop(const char* resourceName, EffectHandle* handle);

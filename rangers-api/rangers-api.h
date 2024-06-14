@@ -134,6 +134,7 @@
 #include "Hedgehog/Reflection/hhDataValue.h"
 // #include "Hedgehog/Reflection/hhVariantDataUtil.h"
 // #include "Hedgehog/Reflection/hhRflSerializeUtil.h"
+#include "Hedgehog/Reflection/DeepCopier.h"
 
 #include "Heuristics/Reflection.h"
 
@@ -378,6 +379,9 @@
 #include "Hedgehog/Sound/ResAtomConfig.h"
 #include "Hedgehog/Sound/ResAtomCueSheet.h"
 #include "Hedgehog/Sound/GOCSound.h"
+#include "Hedgehog/Sound/SoundHandle.h"
+#include "Hedgehog/Sound/SoundManager.h"
+#include "Hedgehog/Sound/SoundManagerCri.h"
 
 #include "Hedgehog/Text/ResText.h"
 #include "Hedgehog/Text/ResTextMeta.h"

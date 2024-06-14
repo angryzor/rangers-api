@@ -6,16 +6,7 @@ namespace hh::fnd
 	{
 		static RflTypeInfo* staticRflTypeInfos[2081];
 	public:
-		void* ConstructObject(csl::fnd::IAllocator* pAllocator, const char* pName) const
-		{
-			auto pTypeInfo = GetByName(pName);
-			if (!pTypeInfo || !pAllocator)
-				return nullptr;
-
-			auto* pInstance = pAllocator->Alloc(pTypeInfo->GetSize(), 16);
-			pTypeInfo->ConstructObject(pInstance, pAllocator);
-			return pInstance;
-		}
+		void* ConstructObject(csl::fnd::IAllocator* pAllocator, const char* pName) const;
 
 		void ConstructObject(csl::fnd::IAllocator* pAllocator, void* placement, const char* pName) const
 		{
@@ -35,14 +26,7 @@ namespace hh::fnd
 			pTypeInfo->FinishLoadedObject(pInstance);
 		}
 
-		void CleanupLoadedObject(void* pInstance, const char* pName) const
-		{
-			auto* pTypeInfo = GetByName(pName);
-			if (!pTypeInfo)
-				return;
-
-			pTypeInfo->CleanupLoadedObject(pInstance);
-		}
+		void CleanupLoadedObject(void* pInstance, const char* pName) const;
 	};
 }
 

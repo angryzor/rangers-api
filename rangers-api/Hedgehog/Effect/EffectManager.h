@@ -52,6 +52,29 @@ namespace hh::eff {
         //     _RTL_CRITICAL_SECTION rtl_critical_section178;
         // };
 
+        struct RenderableInfo {
+            unsigned int renderPass;
+            unsigned int unk1;
+        };
+
+        struct SetupInfo {
+            unsigned int cyanSystemSize;
+            unsigned int cyanRenderSize;
+            unsigned int cyanTagSize;
+            unsigned int cyanEffectSize;
+            unsigned int cyanEmitterSize;
+            unsigned int cyanElementSize;
+            unsigned int cyanAnimationSize;
+            unsigned int cyanMeshRenderSize;
+            unsigned int cyanDebugSize;
+            unsigned int renderWidth;
+            unsigned int renderHeight;
+            unsigned int numRenderables;
+            RenderableInfo* renderables;
+            unsigned int (*unk1)(uint8_t unkParam);
+            unsigned int (*unk2)(unsigned int unkParam);
+        };
+
         class Listener {
         public:
             virtual void UnkFunc1() {}
@@ -76,6 +99,8 @@ namespace hh::eff {
 		virtual void OnRemovedFromGame() override;
 		virtual void PreStepCallback(game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 		virtual void PostGameUpdateCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
+
+        void Setup(const SetupInfo& setupInfo);
 
         GAMESERVICE_CLASS_DECLARATION(EffectManager)
     };

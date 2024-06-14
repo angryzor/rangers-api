@@ -151,6 +151,8 @@ namespace hh::fnd
 			auto misalignment = size % alignment;
 			auto alignedSize = misalignment > 0 ? size + alignment - misalignment : size;
 
+			assert(size == alignedSize);
+
 			return alignedSize;
 		}
 	};

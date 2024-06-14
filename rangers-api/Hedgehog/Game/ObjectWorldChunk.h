@@ -74,7 +74,10 @@ namespace hh::game {
         GameObject* SpawnByObjectId(ObjectId id, ObjectAttribute filter);
         GameObject* SpawnByIndex(int index, ObjectAttribute filter);
         GameObject* SpawnByAttribute(ObjectAttribute filter);
+        GameObject* RespawnByObjectId(ObjectId id);
+        GameObject* RespawnByObjectId(ObjectId id, ObjectAttribute filter);
 
+        GameObject* GetActiveGameObjectByIndex(int index);
         GameObject* GetGameObjectByObjectId(ObjectId id) const;
         WorldObjectStatus GetWorldObjectStatusByObjectId(ObjectId id) const;
 
@@ -108,6 +111,11 @@ namespace hh::game {
             int idx = GetObjectIndexById(objData->id);
 
             DespawnByIndex(idx);
+        }
+
+        inline void Shutdown(int index) {
+            if (index >= 0 && index < objects.size())
+                objectStatuses[index].Shutdown();
         }
         
         inline void Restart(int index, bool force) {

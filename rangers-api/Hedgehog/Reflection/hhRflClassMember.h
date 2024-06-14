@@ -85,7 +85,7 @@ namespace hh::fnd
 			return m_pEnum;
 		}
 
-		[[nodiscard]] size_t GetCstyleArraySize() const
+		[[nodiscard]] unsigned int GetCstyleArraySize() const
 		{
 			return m_ArrayLength;
 		}

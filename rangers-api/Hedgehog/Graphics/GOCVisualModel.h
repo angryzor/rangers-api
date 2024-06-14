@@ -82,6 +82,7 @@ namespace hh::gfx {
     };
 
     class GOCVisualModel : public GOCVisualTransformed {
+    public:
         GOCVisualModelImpl* pImplementation;
         GOCVisualModel* masterPoseComponent;
         csl::ut::InplaceMoveArray<GOCVisualModel*, 3> poseComponents;
@@ -103,7 +104,6 @@ namespace hh::gfx {
         GOCVisualModelImpl implementation;
         uint64_t unk332;
 
-    public:
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void GetDebugInfoMaybe() override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;

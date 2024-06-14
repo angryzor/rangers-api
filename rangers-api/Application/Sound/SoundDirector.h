@@ -7,6 +7,60 @@ namespace app::snd {
 
     class SoundDirector : public hh::game::GameService, public hh::game::GameStepListener, hh::game::GameManagerListener {
     public:
+        struct Unk1 {
+            uint32_t unk1;
+            uint64_t unk2;
+
+            Unk1();
+        };
+
+        struct Unk2 {
+            uint32_t dword0;
+            uint32_t dword4;
+            float dword8;
+            float dwordC;
+            uint32_t dword10;
+            uint32_t dword14;
+            Unk2(float unkParam1, uint8_t unkParamDword14);
+        };
+
+        struct Unk3 {
+            hh::fnd::HandleBase handle;
+            char name[32];
+            Unk2 unk101a;
+            float unk102;
+            float unk103;
+            float unk104;
+            float unk105;
+            uint32_t unk106;
+            uint8_t unk107;
+            bool unk107b;
+            uint8_t unk107c;
+            uint8_t unk107d;
+
+            Unk3();
+        };
+
+        uint64_t qword80;
+        uint32_t dword88;
+        Unk1 unk90;
+        Unk3 unkA0[3];
+        csl::ut::MoveArray<Unk3> unk1A0;
+        csl::ut::MoveArray<void*> unk1C0[2];
+        csl::ut::MoveArray<void*> unk200[2];
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::SoundCommonParameter>> soundCommonParameter;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::BGMInfoParameter>> bgmInfoParameter;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::AmbSoundParameter>> ambSoundParameter;
+        hh::fnd::Reference<hh::fnd::ResReflectionT<heur::rfl::CustomMusicParameter>> customMusicParameter;
+        float dword260;
+        float qword264;
+        uint32_t qword268;
+        uint32_t qword26C;
+        uint32_t qword270;
+        uint8_t byte274;
+        csl::ut::MoveArray<hh::fnd::Reference<SoundDirectorExtension>> extensions;
+        int dword298;
+    
         struct PlayBgmInfo {
             const char* name;
             uint32_t unk1;
@@ -30,6 +84,7 @@ namespace app::snd {
         void RemoveExtension(SoundDirectorExtension* extension);
         SoundDirectorExtension* GetExtension(unsigned int nameHash);
         void PlayBgm(const PlayBgmInfo& playBgmInfo);
+        hh::snd::SoundHandle GetBgmSoundHandle(int index);
 
         template<typename T>
         T* GetExtension() {

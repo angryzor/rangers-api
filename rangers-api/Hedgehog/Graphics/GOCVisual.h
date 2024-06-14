@@ -19,7 +19,9 @@ namespace hh::gfx {
 		virtual void* GetRuntimeTypeInfo() override;
         virtual void OnGOCVisualEvent(GOCVisualEvent event, unsigned int unkParam2, void* unkParam3) = 0;
         void SetVisible(bool visible);
-        bool IsVisible() const;
+        inline bool IsVisible() const {
+            return visualFlags.test(Flag::VISIBLE);
+        }
 
         GOCOMPONENT_CLASS_DECLARATION(GOCVisual)
     };

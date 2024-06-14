@@ -86,6 +86,7 @@ namespace hh::game
 	public:
 		enum class StatusFlags : char {
 			KILLED,
+			ASLEEP,
 			EDITOR = 2,
 			UNK4 = 4,
 		};
@@ -211,6 +212,8 @@ namespace hh::game
 		bool GetEditorStatus() const;
 		void NotifyDestroy();
 		void Shutdown();
+		void Sleep();
+		void Resume();
 		static GameObject* Create(GameObjectClass* gameObjectClass, csl::fnd::IAllocator* allocator);
 		template<typename T>
 		static T* Create(csl::fnd::IAllocator* allocator) {
