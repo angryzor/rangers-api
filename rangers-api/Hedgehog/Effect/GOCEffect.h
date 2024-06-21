@@ -1,6 +1,69 @@
 #pragma once
 
 namespace hh::eff {
+    enum class EffectTransType : uint32_t {
+        FRAME,
+        NODE,
+        NODE_AND_FRAME,
+        NODE_POSITION,
+        MODEL,
+        MODEL_SPACE_NODE,
+        WORLD_POSITION,
+        FRAME_OVERRIDE_ROTATION_SCALE,
+        FRAME_POSITION,
+    };
+
+    struct EffectTransFrameInfo {
+        fnd::HFrame* frame;
+        bool scale;
+    };
+
+    struct EffectTransNodeInfo {
+        gfx::GOCVisualModel* model;
+        const char* nodeName;
+        int nodeIndex;
+        bool scale;
+    };
+
+    struct EffectTransNodeAndFrameInfo {
+        fnd::HFrame* frame;
+        gfx::GOCVisualModel* model;
+        const char* nodeName;
+        int nodeIndex;
+        bool scale;
+    };
+
+    struct EffectTransNodePositionInfo {
+        fnd::HFrame* frame;
+        gfx::GOCVisualModel* model;
+        const char* nodeName;
+        int nodeIndex;
+    };
+
+    struct EffectTransModelInfo {
+        gfx::GOCVisualModel* model;
+    };
+
+    struct EffectTransModelSpaceNodeInfo {
+        gfx::GOCVisualModel* model;
+        const char* nodeName;
+        int nodeIndex;
+    };
+
+    struct EffectTransWorldPositionInfo {
+        fnd::WorldPosition worldPosition;
+    };
+
+    struct EffectTransFrameOverrideRotationScaleInfo {
+        fnd::HFrame* positionFrame;
+        fnd::HFrame* rotationScaleFrame;
+        bool scale;
+    };
+
+    struct EffectTransFramePositionInfo {
+        fnd::HFrame* frame;
+    };
+
     struct EffectCreateInfo {
         uint8_t unk1;
         uint8_t unk1a;
@@ -10,11 +73,75 @@ namespace hh::eff {
         uint32_t unk4a;
         uint64_t unk5;
         uint64_t unk6;
-        uint32_t unk7;
-        fnd::WorldPosition position;
-        char unk8[16];
-        gfx::GOCVisualModel* unkModel1;
-        uint8_t unk9;
+        EffectTransType transType;
+        fnd::WorldPosition additionalWorldPos;
+        bool useAdditionalWorldPos;
+
+        EffectCreateInfo(EffectTransType transType, const char* resourceName)
+            : transType{ transType }
+            , unk1{ 1 }
+            , unk2{ 0 }
+            , resourceName{ resourceName }
+            , unk4{ 1.0f }
+            , unk5{ 0 }
+            , unk6{ 0 }
+            , additionalWorldPos{}
+            , useAdditionalWorldPos{ false }
+        {}
+    };
+
+    struct EffectTransFrameCreateInfo : EffectCreateInfo {
+        EffectTransFrameInfo transInfo;
+
+        EffectTransFrameCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::FRAME, resourceName } {}
+    };
+
+    struct EffectTransNodeCreateInfo : EffectCreateInfo {
+        EffectTransNodeInfo transInfo;
+
+        EffectTransNodeCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::NODE, resourceName } {}
+    };
+
+    struct EffectTransNodeAndFrameCreateInfo : EffectCreateInfo {
+        EffectTransNodeAndFrameInfo transInfo;
+
+        EffectTransNodeAndFrameCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::NODE_AND_FRAME, resourceName } {}
+    };
+
+    struct EffectTransNodePositionCreateInfo : EffectCreateInfo {
+        EffectTransNodePositionInfo transInfo;
+
+        EffectTransNodePositionCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::NODE_POSITION, resourceName } {}
+    };
+
+    struct EffectTransModelCreateInfo : EffectCreateInfo {
+        EffectTransModelInfo transInfo;
+
+        EffectTransModelCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::MODEL, resourceName } {}
+    };
+
+    struct EffectTransModelSpaceNodeCreateInfo : EffectCreateInfo {
+        EffectTransModelSpaceNodeInfo transInfo;
+
+        EffectTransModelSpaceNodeCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::MODEL_SPACE_NODE, resourceName } {}
+    };
+
+    struct EffectTransWorldPositionCreateInfo : EffectCreateInfo {
+        EffectTransWorldPositionInfo transInfo;
+
+        EffectTransWorldPositionCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::WORLD_POSITION, resourceName } {}
+    };
+
+    struct EffectTransFrameOverrideRotationScaleCreateInfo : EffectCreateInfo {
+        EffectTransFrameOverrideRotationScaleInfo transInfo;
+
+        EffectTransFrameOverrideRotationScaleCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::FRAME_OVERRIDE_ROTATION_SCALE, resourceName } {}
+    };
+
+    struct EffectTransFramePositionCreateInfo : EffectCreateInfo {
+        EffectTransFramePositionInfo transInfo;
+
+        EffectTransFramePositionCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::FRAME_POSITION, resourceName } {}
     };
 
     class EffectHandle {
@@ -37,18 +164,35 @@ namespace hh::eff {
         };
 
         struct EffectTransInfo {
-            uint8_t unk1;
-            uint8_t flags;
+            enum class TransType : uint8_t {
+                FRAME,
+                NODE,
+                NODE_AND_FRAME,
+                NODE_POSITION,
+                MODEL,
+                MODEL_SPACE_NODE,
+                WORLD_POSITION,
+                FRAME_OVERRIDE_ROTATION_SCALE,
+                FRAME_POSITION,
+            };
+
+            enum class Flag : uint8_t {
+                ADDITIONAL_MATRIX,
+                SCALE,
+            };
+
+            TransType transType;
+            csl::ut::Bitset<Flag> flags;
             unsigned short modelNodeIndex;
             gfx::GOCVisualModel* model;
-            fnd::Reference<gfx::GOCVisualModel> model1;
-            fnd::Reference<gfx::GOCVisualModel> model2;
+            fnd::Reference<fnd::HFrame> frame1;
+            fnd::Reference<fnd::HFrame> frame2;
             csl::math::Matrix34 transformationMatrix1;
-            csl::math::Matrix34 transformationMatrix2;
+            csl::math::Matrix34 additionalTransformationMatrix;
         };
 
         uint64_t qword80;
-        gfx::GOCVisualModel* unkModel1;
+        fnd::Reference<fnd::HFrame> frame;
         float dword90;
         uint8_t byte94;
         int dword98;
@@ -77,7 +221,7 @@ namespace hh::eff {
         void CreateEffectPlain(const char* resourceName, const csl::math::Matrix34& location);
         void CreateEffectWorld(const char* resourceName, const csl::math::Matrix34& location, EffectHandle* handle);
         void StopEffect(EffectHandle handle, bool unkParam);
-        void StopEffectAll(bool unkParam);
+        void StopEffectAll();
 
         GOCOMPONENT_CLASS_DECLARATION(GOCEffect)
     };

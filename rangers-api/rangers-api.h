@@ -41,8 +41,10 @@
 #include "Sonicteam/System/Singleton.h"
 #include "Sonicteam/System/Mutex.h"
 #include "Sonicteam/System/HeapBase.h"
-#include "Sonicteam/System/TlsfHeap.h"
+#include "Sonicteam/System/FreeListLikeHeapBase.h"
 #include "Sonicteam/System/FreeListHeap.h"
+#include "Sonicteam/System/OptimizedFreeListHeap.h"
+#include "Sonicteam/System/TlsfHeap.h"
 #include "Sonicteam/System/Delegate.h"
 
 #include "Hedgehog/Rsdx/hhMTSimpleJobJoint.h"
@@ -371,6 +373,7 @@
 #include "Hedgehog/Physics/PhysicsMousePickingViewer.h"
 #include "Hedgehog/Physics/PhysicsPickedObjectViewer.h"
 #include "Hedgehog/Physics/BulletPhysicsModule.h"
+#include "Hedgehog/Physics/Messages.h"
 
 #include "Hedgehog/Effect/ResEffect.h"
 #include "Hedgehog/Effect/EffectManager.h"
@@ -603,6 +606,7 @@
 #include "Application/Game/GOCEvent.h"
 #include "Application/Game/GOCEventCollision.h"
 #include "Application/Game/GOCActionNotifier.h"
+#include "Application/Game/GOCCyloopPoint.h"
 #include "Application/Game/Messages.h"
 
 #include "Application/Event/EventPlayer.h"

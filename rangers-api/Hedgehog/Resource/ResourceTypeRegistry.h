@@ -14,5 +14,13 @@ namespace hh::fnd {
         csl::ut::MoveArray<const ResourceTypeInfo*> GetTypeInfos();
         const char* GetExtensionByTypeInfo(const ResourceTypeInfo* typeInfo);
         const ResourceTypeInfo* GetTypeInfoByExtension(const char* extension);
+
+        inline void RegisterTypeInfo(const ResourceTypeInfo* typeInfo) {
+            typeInfosByName.Insert(typeInfo->pScopedName, typeInfo);
+        }
+
+        inline void RegisterExtension(const char* extension, const ResourceTypeInfo* typeInfo) {
+            typeInfosByExtension.Insert(extension, typeInfo);
+        }
     };
 }

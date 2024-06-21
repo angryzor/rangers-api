@@ -5,12 +5,28 @@ namespace csl::fnd {
 
     };
 
+    struct HeapInformation {
+        struct FreeSizeInformation {
+            size_t totalFreeSize;
+            size_t maxFreeSize;
+        };
+
+        unsigned int liveAllocations;
+        FreeSizeInformation freeSize;
+        size_t bufferSize;
+    };
+
     struct HeapStatistics {
         size_t bufferSize;
         size_t used;
         size_t allocated;
         unsigned int liveAllocations;
         unsigned int totalAllocations;
+    };
+
+    class MemoryBlockFunction {
+    public:
+        virtual void operator()(void* ptr, size_t size) = 0;
     };
 
     class alignas(8) HeapBase {
@@ -24,40 +40,42 @@ namespace csl::fnd {
         uint64_t unk9;
         bool initialized;
         uint32_t unk11;
-        uint32_t unk12;
-        bool unk13;
+        uint16_t unk12;
+        bool debugFillOnAlloc;
+        bool debugFillOnFree;
+        bool debugUnk;
         uint64_t unk14;
         uint64_t unk15;
         uint32_t unk16;
     public:
         HeapBase(const char* name);
+        virtual void* GetRuntimeTypeInfo() const;
         virtual ~HeapBase() = default;
         virtual void* Alloc(size_t in_size, size_t in_alignment) = 0;
         virtual void* AllocBottom(size_t in_size, size_t in_alignment) = 0;
         virtual void Free(void* in_pMemory) = 0;
-        virtual int64_t UnkFunc1() = 0;
-        virtual int64_t UnkFunc2() = 0;
-        virtual int64_t UnkFunc3() = 0;
-        virtual int64_t UnkFunc4() = 0;
-        virtual void UnkFunc5() {}
-        virtual void GetStatistics(HeapStatistics& statistics) = 0;
-        virtual size_t GetBufferStart() = 0;
-        virtual size_t GetBufferEnd() = 0;
-        virtual unsigned int GetLiveAllocations() = 0;
-        virtual unsigned int GetTotalAllocations() = 0;
+        virtual const char* GetHeapTypeName() const = 0;
+        virtual bool IsIn(void* ptr) const = 0;
+        virtual size_t GetBlockSize(void* ptr) const = 0;
+        virtual void CollectHeapInformation(HeapInformation& heapInformation) const {}
+        virtual void GetStatistics(HeapStatistics& statistics) const = 0;
+        virtual size_t GetBufferTop() const = 0;
+        virtual size_t GetBufferEnd() const = 0;
+        virtual unsigned int GetCurrentAllocateCount() const = 0;
+        virtual unsigned int GetTotalAllocateCount() const = 0;
         virtual bool UnkFunc11() { return true; }
         virtual void UnkFunc12() {}
         virtual int64_t UnkFunc13() = 0;
-        virtual int64_t UnkFunc14();
-        virtual int64_t UnkFunc15();
-        virtual int64_t UnkFunc16();
+        virtual void SetDebugFillOnAlloc(bool enabled);
+        virtual void SetDebugFillOnFree(bool enabled);
+        virtual void SetDebugUnk(bool enabled);
         virtual void UnkFunc17() {}
-        virtual bool UnkFunc18() { return false; }
-        virtual int UnkFunc19() { return -1; }
+        virtual bool ForEachAllocatedBlock(MemoryBlockFunction& func) { return false; }
+        virtual int GetBlockCount() const { return -1; }
         virtual int64_t UnkFunc20();
         virtual bool UnkFunc21() { return false; }
-        virtual void UnkFunc22();// {}
-        virtual void UnkFunc23();// {}
+        virtual void Lock();// {}
+        virtual void Unlock();// {}
         virtual bool UnkFunc24() { return false; }
         virtual void UnkFunc25() {}
 

@@ -341,9 +341,9 @@ namespace csl::math
 	class Transform
 	{
 	public:
-		Vector3 position;
-		Quaternion rotation;
-		Vector3 scale;
+		Vector3 position{ 0.0f, 0.0f, 0.0f };
+		Quaternion rotation{ 0.0f, 0.0f, 0.0f, 1.0f };
+		Vector3 scale{ 0.0f, 0.0f, 0.0f };
 
 		inline bool operator==(const Transform& other) const {
 			return position == other.position && rotation == other.rotation && scale == other.scale;

@@ -94,10 +94,15 @@ namespace hh::game {
         }
 
         inline GameObject* GetObjectByIndex(int i) const {
+            if (i < 0 && i >= objects.size())
+                return nullptr;
+
             return objects[i];
         }
 
         inline WorldObjectStatus GetWorldObjectStatusByIndex(int i) const {
+            assert(i >= 0 && i < objects.size());
+
             return objectStatuses[i];
         }
 
@@ -108,9 +113,10 @@ namespace hh::game {
         }
 
         inline void Despawn(ObjectData* objData) {
-            int idx = GetObjectIndexById(objData->id);
+            int index = GetObjectIndexById(objData->id);
 
-            DespawnByIndex(idx);
+            if (index >= 0 && index < objects.size())
+                DespawnByIndex(index);
         }
 
         inline void Shutdown(int index) {

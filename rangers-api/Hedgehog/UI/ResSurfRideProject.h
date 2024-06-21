@@ -6,7 +6,11 @@ namespace hh::ui {
         void* unk102;
         uint16_t unk103;
     public:
-        static const fnd::ResourceTypeInfo* GetTypeInfo();
-        static ResSurfRideProject* Load(const char* name);
+        virtual void Load(void* data, size_t size) override;
+        virtual void Unload() override;
+        virtual void Resolve(hh::fnd::ResourceResolver& resolver) override;
+        virtual void Reload(void* data, size_t size) override;
+        
+        MANAGED_RESOURCE_CLASS_DECLARATION(ResSurfRideProject);
     };
 }
