@@ -587,6 +587,11 @@
 
 #include "Application/UI/AppUITextInterface.h"
 #include "Application/UI/UIMusicSelect.h"
+#include "Application/UI/UIOverlayTextVariable.h"
+#include "Application/UI/RequestOverlayBegin.h"
+#include "Application/UI/RequestOverlayWindow.h"
+#include "Application/UI/RequestOverlayCaption.h"
+#include "Application/UI/UIOverlayService.h"
 #include "Application/UI/Messages.h"
 
 #include "Application/Game/GameCondition.h"

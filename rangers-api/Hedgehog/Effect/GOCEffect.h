@@ -70,7 +70,7 @@ namespace hh::eff {
         uint8_t unk2;
         const char* resourceName;
         float unk4;
-        uint32_t unk4a;
+        int unk4a;
         uint64_t unk5;
         uint64_t unk6;
         EffectTransType transType;
@@ -80,9 +80,11 @@ namespace hh::eff {
         EffectCreateInfo(EffectTransType transType, const char* resourceName)
             : transType{ transType }
             , unk1{ 1 }
+            , unk1a{ 0 }
             , unk2{ 0 }
             , resourceName{ resourceName }
             , unk4{ 1.0f }
+            , unk4a{ -1 }
             , unk5{ 0 }
             , unk6{ 0 }
             , additionalWorldPos{}
