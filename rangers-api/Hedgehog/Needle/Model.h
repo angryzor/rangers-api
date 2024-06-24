@@ -19,6 +19,7 @@ namespace hh::needle {
     };
 
     class Model : TNeedleRefcountUniqueObjectBase<TNeedleRefcountResource<NEEDLE_RESOURCE_MODEL_DATA, NeedleRefcountResource>> {
-        MeshResource* GetMeshResource(unsigned int unkParam) const;
+    public:
+        MeshResource* GetMeshResource(unsigned int idx) const;
     };
 }

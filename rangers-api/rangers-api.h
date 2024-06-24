@@ -159,6 +159,7 @@
 #include "Hedgehog/Needle/CNameIDObjectStatic.h"
 #include "Hedgehog/Needle/SRawImageInfo.h"
 #include "Hedgehog/Needle/ParameterValue.h"
+#include "Hedgehog/Needle/UserModelShaderParamter.h"
 #include "Hedgehog/Needle/MirageResource.h"
 #include "Hedgehog/Needle/SurfaceBase.h"
 #include "Hedgehog/Needle/Texture.h"
@@ -174,6 +175,8 @@
 #include "Hedgehog/Needle/MaterialResource.h"
 #include "Hedgehog/Needle/MeshResource.h"
 #include "Hedgehog/Needle/Model.h"
+#include "Hedgehog/Needle/ParameterValueObject.h"
+#include "Hedgehog/Needle/ParameterValueObjectContainer.h"
 #include "Hedgehog/Needle/ModelInstance.h"
 #include "Hedgehog/Needle/PBRModelInstance.h"
 #include "Hedgehog/Needle/RenderingCommandList.h"
@@ -185,7 +188,6 @@
 
 #include "Hedgehog/Needle/RenderingDeviceContext.h"
 #include "Hedgehog/Needle/RenderingDevice.h"
-#include "Hedgehog/Needle/ParameterValueObjectContainer.h"
 #include "Hedgehog/Needle/PrimitiveRenderer.h"
 #include "Hedgehog/Needle/Renderable.h"
 #include "Hedgehog/Needle/FxCamera.h"
@@ -354,6 +356,7 @@
 #include "Hedgehog/Graphics/GOCVisual.h"
 #include "Hedgehog/Graphics/GOCVisualTransformed.h"
 #include "Hedgehog/Graphics/GOCVisualModel.h"
+#include "Hedgehog/Graphics/GOCVisualUserModel.h"
 #include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
 #include "Hedgehog/Graphics/VisualManager.h"
 #include "Hedgehog/Graphics/VisibilityManager.h"
@@ -381,10 +384,10 @@
 
 #include "Hedgehog/Sound/ResAtomConfig.h"
 #include "Hedgehog/Sound/ResAtomCueSheet.h"
-#include "Hedgehog/Sound/GOCSound.h"
 #include "Hedgehog/Sound/SoundHandle.h"
 #include "Hedgehog/Sound/SoundManager.h"
 #include "Hedgehog/Sound/SoundManagerCri.h"
+#include "Hedgehog/Sound/GOCSound.h"
 
 #include "Hedgehog/Text/ResText.h"
 #include "Hedgehog/Text/ResTextMeta.h"
@@ -612,6 +615,8 @@
 #include "Application/Game/GOCEventCollision.h"
 #include "Application/Game/GOCActionNotifier.h"
 #include "Application/Game/GOCCyloopPoint.h"
+#include "Application/Game/GOCMotor.h"
+#include "Application/Game/GOCMotorConstant.h"
 #include "Application/Game/Messages.h"
 
 #include "Application/Event/EventPlayer.h"
@@ -629,3 +634,13 @@
 #include "Application/ObjSwitchVolume.h"
 #include "Application/ObjCamera.h"
 #include "Application/ObjCameraVolume.h"
+
+namespace hh::needle {
+    class StaticIDsTemp {
+    public:
+        static hh::needle::CNameIDObjectStatic diffuse;
+        static hh::needle::CNameIDObjectStatic diffuse1;
+        static hh::needle::CNameIDObjectStatic diffuse2;
+        static hh::needle::CNameIDObjectStatic diffuse3;
+    };
+}

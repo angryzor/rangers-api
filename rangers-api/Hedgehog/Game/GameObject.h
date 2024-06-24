@@ -115,7 +115,7 @@ namespace hh::game
 		Unk1 deferredComponentAdditions;
 
 		WorldObjectStatus* status;
-		GameObjectClass* objectClass;
+		const GameObjectClass* objectClass;
 		Unk2 unk70;
 		Unk2 unk71;
 		Unk2 unk72;
@@ -214,7 +214,7 @@ namespace hh::game
 		void Shutdown();
 		void Sleep();
 		void Resume();
-		static GameObject* Create(GameObjectClass* gameObjectClass, csl::fnd::IAllocator* allocator);
+		static GameObject* Create(const GameObjectClass* gameObjectClass, csl::fnd::IAllocator* allocator);
 		template<typename T>
 		static T* Create(csl::fnd::IAllocator* allocator) {
 			return static_cast<T*>(Create(T::GetClass(), allocator));

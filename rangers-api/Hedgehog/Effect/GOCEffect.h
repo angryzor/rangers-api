@@ -66,7 +66,7 @@ namespace hh::eff {
 
     struct EffectCreateInfo {
         uint8_t unk1;
-        uint8_t unk1a;
+        bool unk1a;
         uint8_t unk2;
         const char* resourceName;
         float unk4;

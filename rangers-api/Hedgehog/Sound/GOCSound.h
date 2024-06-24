@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef PlaySound
+#undef PlaySound
+#endif
+
 namespace hh::snd {
     class GOCSound : public game::GOComponent {
         uint64_t unk101;
@@ -9,15 +13,17 @@ namespace hh::snd {
         csl::ut::MoveArray<void*> unk105;
         csl::ut::MoveArray<void*> unk106;
     
-        static GOCSound* Create(csl::fnd::IAllocator* pAllocator);
     public:
-        struct alignas(8) Config {
+        struct SetupInfo {
             uint32_t unk1a;
             uint32_t unk1b;
             uint32_t unk2;
             bool unk3;
         };
 
-        void Initialize(const Config& config);
+        void Setup(const SetupInfo& setupInfo);
+        SoundHandle PlaySound(const char* resourceName, float time);
+
+        GOCOMPONENT_CLASS_DECLARATION(GOCSound);
     };
 }

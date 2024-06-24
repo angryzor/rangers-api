@@ -56,14 +56,14 @@ namespace hh::gfx {
             uint8_t unk4;
         };
 
-    private:
+    public:
         needle::PBRModelInstance* modelInstance;
         csl::fnd::IAllocator* allocator;
         uint16_t unk2;
         int unk3;
         uint32_t unk4;
         uint64_t unk5;
-        uint64_t unk6;
+        needle::Model model;
         uint64_t unk6b;
         uint64_t unk6c;
         uint64_t unk6d;
@@ -74,7 +74,6 @@ namespace hh::gfx {
         uint64_t unk11;
         uint64_t unkpad[67];
 
-    public:
         GOCVisualModelImpl(csl::fnd::IAllocator* allocator);
         uint64_t OnGOCVisualEvent(GOCVisualModel* visualModel, int unkParam1, unsigned int unkParam2, void* unkParam3);
         void Setup(GOCVisualModel& model, const GOCVisualModelDescription& description);

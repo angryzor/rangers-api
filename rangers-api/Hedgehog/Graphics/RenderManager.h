@@ -69,7 +69,7 @@ namespace hh::gfx {
             fnd::ManagedResource* unk325; // suspected
             fnd::ManagedResource* unk326; // suspected
             fnd::ManagedResource* unk327; // suspected
-            void* unk1;
+            needle::MeshResource* meshResource;
         };
 
         static RenderManager* instance;
