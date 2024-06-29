@@ -9,8 +9,9 @@
 // Common Sonicteam Library
 
 #ifndef EXPORTING_TYPES
-#include "Sonicteam/math/math.h"
+#include <cassert>
 #include <functional>
+#include "Sonicteam/math/math.h"
 #endif
 
 // Why does the Win32 API do this...

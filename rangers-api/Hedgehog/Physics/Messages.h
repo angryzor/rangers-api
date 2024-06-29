@@ -3,19 +3,19 @@
 namespace hh::physics {
     class MsgTriggerBase : public fnd::Message {
     public:
-        void* subject;
-        void* actor;
+        GOCCollider* subject;
+        GOCCollider* actor;
 
-        MsgTriggerBase(fnd::MessageID id, const void* subject, const void* actor);
+        MsgTriggerBase(fnd::MessageID id, GOCCollider* subject, GOCCollider* actor);
     };
     class MsgTriggerEnter : public MsgTriggerBase {
     public:
-        MsgTriggerEnter(const void* subject, const void* actor) : MsgTriggerBase{ fnd::MessageID::TRIGGER_ENTER, subject, actor } {}
+        MsgTriggerEnter(GOCCollider* subject, GOCCollider* actor) : MsgTriggerBase{ fnd::MessageID::TRIGGER_ENTER, subject, actor } {}
 		virtual fnd::MessageAsyncHandler* CreateAsyncHandler(csl::fnd::IAllocator* allocator) override;
     };
     class MsgTriggerStay : public MsgTriggerBase {
     public:
-        MsgTriggerStay(const void* subject, const void* actor) : MsgTriggerBase{ fnd::MessageID::TRIGGER_STAY, subject, actor } {}
+        MsgTriggerStay(GOCCollider* subject, GOCCollider* actor) : MsgTriggerBase{ fnd::MessageID::TRIGGER_STAY, subject, actor } {}
 		virtual fnd::MessageAsyncHandler* CreateAsyncHandler(csl::fnd::IAllocator* allocator) override;
     };
     class MsgTriggerLeave : public fnd::Message {
