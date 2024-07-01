@@ -61,6 +61,12 @@ namespace hh::game
 		virtual void GML_UnkFunc8() {}
 	};
 
+	class EditorStepListener {
+	public:
+		virtual ~EditorStepListener() = default;
+		virtual void ESL_UnkFunc1() {}
+	};
+
 	class GameManager;
 
 	struct GameManagerOperation {
@@ -136,7 +142,7 @@ namespace hh::game
 		csl::ut::MoveArray<GamePauseListener*> gamePauseListeners{ pAllocator };
 		csl::ut::MoveArray<GameStepListener*> gameStepListeners{ pAllocator };
 		csl::ut::MoveArray<GameUpdateListener*> gameUpdateListeners{ pAllocator };
-		csl::ut::MoveArray<void*> unk49{ pAllocator };
+		csl::ut::MoveArray<EditorStepListener*> editorStepListeners{ pAllocator };
 		uint32_t unk50; // See GameManagerCallbackUtil::FirePostShutdownObject
 		uint32_t unk50b;
 		uint32_t unk51;
@@ -247,6 +253,8 @@ namespace hh::game
 		void RemoveListener(GameManagerListener* listener);
 		void AddGameObjectListener(GameObjectListener* listener);
 		void RemoveGameObjectListener(GameObjectListener* listener);
+		void AddEditorStepListener(EditorStepListener* listener);
+		void RemoveEditorStepListener(EditorStepListener* listener);
 		void ReloadInputSettings(bool unkParam1);
 		void ShutdownPendingObjects();
 		void ClearAllGameObjects();

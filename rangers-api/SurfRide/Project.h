@@ -6,7 +6,7 @@ namespace SurfRide
     {
         const char* name{};
         short sceneCount{};
-        INSERT_PADDING(2) {};
+        short unk1{};
         short textureListCount{};
         short fontCount{};
         SRS_SCENE* scenes{};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "External/helpers.h"
+// #include "External/helpers.h"
 // #include "External/sigscan.h"
 
 // // Lua 5.4.1
@@ -608,7 +608,9 @@
 #include "Application/Game/GameModeStage.h"
 #include "Application/Game/GameModeExtension.h"
 #include "Application/Game/GameModeLayerStatusExtension.h"
+#include "Application/Game/Timestamp.h"
 #include "Application/Game/TimeService.h"
+#include "Application/Game/RespawnTimeManager.h"
 #include "Application/Game/ApplicationExtension.h"
 #include "Application/Game/ApplicationSequenceExtension.h"
 #include "Application/Game/MenuSelect.h"
