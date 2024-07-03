@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef EXPORTING_TYPES
-#include <new>
-#endif
-
 namespace csl::fnd
 {
 	class IAllocator

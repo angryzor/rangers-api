@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef EXPORTING_TYPES
-#include "synchapi.h"
-#endif
-
 namespace csl::fnd
 {	
 	class Mutex

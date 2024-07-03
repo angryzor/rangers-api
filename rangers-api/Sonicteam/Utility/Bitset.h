@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef EXPORTING_TYPES
-#include <type_traits>
-#endif
-
 namespace csl::ut
 {
 #ifdef EXPORTING_TYPES

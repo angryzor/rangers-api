@@ -121,6 +121,7 @@ namespace hh::fnd
 		static const RflClassMember::Metadata& GetTypeMetadata();
 	};
 
+#ifndef NO_METADATA
 #ifndef __CLR_VER
 #define DEFINE_METADATA_FULL(id, type, size, align) Metadata { id, type, (unsigned char)(size), (unsigned char)(align) }
 #define DEFINE_METADATA_WITH_NAME(id, name, type) Metadata { id, name, sizeof(type), alignof(type) }
@@ -163,6 +164,7 @@ namespace hh::fnd
 #undef DEFINE_DUMMY_METADATA
 #undef DEFINE_METADATA_FULL
 #undef DEFINE_METADATA
+#endif
 #endif
 }
 

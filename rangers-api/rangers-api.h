@@ -8,10 +8,15 @@
 
 // Common Sonicteam Library
 
+#include <cstdint>
+#include <d3d11.h>
+
 #ifndef EXPORTING_TYPES
+#include <new>
 #include <cassert>
-#include <functional>
-#include "Sonicteam/math/math.h"
+#include <cstring>
+#include <type_traits>
+#include <synchapi.h>
 #endif
 
 // Why does the Win32 API do this...
@@ -19,6 +24,7 @@
 #undef UpdateResource
 #endif
 
+#include "Sonicteam/math/math.h"
 #include "Sonicteam/System/IAllocator.h"
 
 #include "Sonicteam/Utility/collections/Array.h"
