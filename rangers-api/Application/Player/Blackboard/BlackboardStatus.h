@@ -37,6 +37,7 @@ namespace app::player {
             SIDE_STEP = 0x05,
             SLIDE = 0x0B,
             STOMP = 0x0C,
+            SIDE_STEP_AIR = 0x0E,
             PARRY = 0x0F,
             PERFECT_PARRY = 0x10,
             ATTACK1 = 0x14,
