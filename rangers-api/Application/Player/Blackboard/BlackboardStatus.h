@@ -31,6 +31,8 @@ namespace app::player {
 
         enum class CombatFlag : unsigned int
         {
+            JUMP = 0x00,
+            DOUBLE_JUMP = 0x01,
             BOOST = 0x03,
             SIDE_STEP = 0x05,
             SLIDE = 0x0B,
