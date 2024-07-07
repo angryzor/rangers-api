@@ -25,7 +25,7 @@ namespace csl::math {
 		static Vector4 RotateVector(const Quaternion& quaternion, const Vector4& vector);
 	};
 
-	class alignas(16) Matrix44 {
+	class alignas(16) Rotation {
 	public:
 		Vector4 t; Vector4 u; Vector4 v; Vector4 w;
 		static Matrix44 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
@@ -42,35 +42,66 @@ namespace csl::math {
 	public:
 		float x; float y; float z;
 	};
+
+	class Rotation {
+	public:
+		float x; float y; float z; float w;
+	};
 }
 
 #else
 
 #ifndef NO_EIGEN_MATH
-#include "Eigen/Eigen"
+
+#include <Eigen/Eigen>
+// #include <unsupported/Eigen/AlignedVector3>
+
+#define RANGERS_SDK_PACK(...) __VA_ARGS__
+#define RANGERS_SDK_NEWTYPE_WITH_ATTRS(ClassName, BaseClass, ConstructorName, Attrs) \
+	class Attrs ClassName : public BaseClass { \
+	public: \
+		using BaseClass::ConstructorName; \
+    \
+		inline ClassName(const BaseClass& other) : BaseClass{ other } {} \
+		inline ClassName(BaseClass& other) : BaseClass{ std::move(other) } {} \
+	}
+#define RANGERS_SDK_NEWTYPE(ClassName, BaseClass, ConstructorName) RANGERS_SDK_NEWTYPE_WITH_ATTRS(ClassName, BaseClass, ConstructorName,)
+#define RANGERS_SDK_NEWTYPE_ALIGNED(ClassName, BaseClass, ConstructorName, Alignment) RANGERS_SDK_NEWTYPE_WITH_ATTRS(ClassName, BaseClass, ConstructorName, alignas(Alignment))
+
 namespace csl::math {
-	typedef Eigen::Matrix<float, 2, 1, Eigen::DontAlign> Vector2;
-	typedef Eigen::Vector3f Vector3;
-	typedef Eigen::Vector4f Vector4;
-	typedef Eigen::Quaternionf Quaternion;
-	typedef Eigen::Affine3f Matrix34;
-	typedef Eigen::Matrix4f Matrix44;
-	typedef Eigen::Matrix<float, 3, 1, Eigen::DontAlign> Position;
-
-	inline bool operator==(const Quaternion& one, const Quaternion& other) {
-		return one.isApprox(other);
-	}
-
-	inline bool operator!=(const Quaternion& one, const Quaternion& other) {
-		return !(one == other);
-	}
+	RANGERS_SDK_NEWTYPE(Vector2, Eigen::Vector2f, Matrix);
+	// RANGERS_SDK_NEWTYPE(Vector3, Eigen::AlignedVector3<float>, AlignedVector3);
+	RANGERS_SDK_NEWTYPE_ALIGNED(Vector3, Eigen::Vector3f, Matrix, 16);
+	RANGERS_SDK_NEWTYPE(Vector4, Eigen::Vector4f, Matrix);
+	RANGERS_SDK_NEWTYPE(Quaternion, Eigen::Quaternionf, Quaternion);
+	RANGERS_SDK_NEWTYPE(Matrix34, Eigen::Affine3f, Transform);
+	RANGERS_SDK_NEWTYPE(Matrix44, Eigen::Matrix4f, Matrix);
+	RANGERS_SDK_NEWTYPE(Position, Eigen::Vector3f, Matrix);
+	RANGERS_SDK_NEWTYPE(Rotation, RANGERS_SDK_PACK(Eigen::Quaternion<float, Eigen::DontAlign>), Quaternion);
 }
-#endif
+
+inline bool operator==(const csl::math::Matrix34& one, const csl::math::Matrix34& other) {
+	return one.matrix() == other.matrix();
+}
+
+inline bool operator!=(const csl::math::Matrix34& one, const csl::math::Matrix34& other) {
+	return !(one == other);
+}
 
 #endif
 
-namespace csl::math 
-{
+#endif
+
+static_assert(alignof(csl::math::Vector2) == 4);
+static_assert(alignof(csl::math::Vector3) == 16);
+static_assert(alignof(csl::math::Vector4) == 16);
+static_assert(alignof(csl::math::Quaternion) == 16);
+static_assert(alignof(csl::math::Matrix34) == 16);
+static_assert(alignof(csl::math::Matrix44) == 16);
+static_assert(alignof(csl::math::Position) == 4);
+static_assert(alignof(csl::math::Rotation) == 4);
+
+namespace csl::math {
 	class Transform
 	{
 	public:
@@ -87,12 +118,13 @@ namespace csl::math
 		}
 	};
 
-	class CalculatedTransform
-	{
+	class Plane {
 	public:
-		Matrix34 m_Mtx;
-		Vector3 m_Scale;
-		size_t m_Flags;
+		Vector3 point;
+		Vector3 normal;
+
+		static Plane FromPointNormal(const Vector3 point, const Vector3 normal);
+		Vector3 ProjectOnNormal(const Vector3& point, float* signedDistance) const;
 	};
 }
 
@@ -100,24 +132,82 @@ namespace csl::geom {
 	class Aabb
 	{
 	public:
-		math::Vector3 m_Min{};
-		math::Vector3 m_Max{};
+		math::Vector3 min{};
+		math::Vector3 max{};
 
 		static Aabb Transform(const math::Matrix34& matrix, const Aabb& aabb);
 		math::Vector3 Center() const;
 		bool Intersect(const Aabb& aabb) const;
+		math::Vector3 Extent() const;
+		float DistanceSq(const math::Vector3& point, math::Vector3* distanceByAxis) const;
 
 		inline void AddPoint(const csl::math::Vector3& point) {
-			m_Min = m_Min.cwiseMin(point);
-			m_Max = m_Max.cwiseMax(point);
+			min = min.cwiseMin(point);
+			max = max.cwiseMax(point);
 		}
 	};
+
+	class Obb
+	{
+	public:
+		math::Vector3 min{};
+		math::Vector3 extentX{};
+		math::Vector3 extentY{};
+		math::Vector3 extentZ{};
+
+		void Set(const math::Vector3& position, const math::Vector3& halfExtents, const math::Quaternion& rotation);
+		float DistanceSq(const math::Vector3& point, math::Vector3* distanceByAxis) const;
+	};
+	
+	class Segment3
+	{
+	public:
+		math::Vector3 start{};
+		math::Vector3 end{};
+	};
+
+	class Sphere
+	{
+	public:
+		math::Vector3 position{};
+		float radius;
+	};
+
+	class Cylinder
+	{
+	public:
+		Segment3 segment;
+		float radius;
+
+		void Set(float radius, float halfHeight, const math::Vector3& center, const math::Quaternion& rotation);
+		float DistanceSq(const math::Vector3& point, float* scaledHeightFromBase) const;
+	};
+	
+	class Line3;
+	class Ray3;
 }
 
-namespace csl::math
-{
+namespace csl::math {
+	Vector3 Vector3Cross(const Vector3 x, const Vector3 y);
+	float Vector3Distance(const Vector3 x, const Vector3 y);
+	float Vector3DistanceSq(const Vector3 x, const Vector3 y);
+	float Vector3DistanceNormalized(const Vector3 x, const Vector3 y);
+	float Vector3Dot(const Vector3 x, const Vector3 y);
+	Vector3 Vector3NormalBetween(const Vector3 x, const Vector3 y);
+
 	Matrix34 Matrix34Multiply(const Matrix34& x, const Matrix34& y);
 	Matrix34 Matrix34AffineTransformation(const Vector3& position, const Quaternion& rotation);
 	void Matrix34Scale(const Matrix34& mat, const Vector3& scale, Matrix34* result);
-	bool Intersection(const Vector3& point, geom::Aabb aabb);
+	Matrix34 Matrix34Rotation(const Quaternion& rotation);
+
+	bool Intersection(const geom::Line3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Ray3& line, const geom::Aabb& aabb, float* unkParam);
+	bool Intersection(const geom::Ray3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Segment3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Sphere& sphere, const geom::Aabb& aabb);
+	bool Intersection(const geom::Sphere& sphere, const geom::Obb& obb);
+	bool Intersection(const Vector3& point, const geom::Aabb& aabb);
+	bool Intersection(const Vector3& point, const geom::Obb& obb);
+	bool Intersection(const Vector3& point, const geom::Sphere& sphere);
+	bool Intersection(const Vector3& point, const geom::Cylinder& sphere);
 }

@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef AddJob
+#undef AddJob
+#endif
+
 namespace app::gfx {
     class FxParamManager;
     class FxParamExtension : public hh::fnd::BaseObject {
@@ -222,6 +226,210 @@ namespace app::gfx {
             this->mutex.Unlock();
             // updated |= UpdateNeedleFxParameterInterpolators();
         }
+
+        void AddNeedleFxParameterInterpolatorJobById(unsigned int id, uint64_t ownerId, const void* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void UpdateNeedleFxParameterInterpolatorJobById(unsigned int id, uint64_t ownerId, const void* value);
+        void RemoveNeedleFxParameterInterpolatorJobById(unsigned int id, size_t ownerId, float interpolationTime);
+
+        void AddNeedleFxSceneConfigInterpolatorJobById(unsigned int id, uint64_t ownerId, const void* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void UpdateNeedleFxSceneConfigInterpolatorJobById(unsigned int id, uint64_t ownerId, const void* value);
+        void RemoveNeedleFxSceneConfigInterpolatorJobById(unsigned int id, size_t ownerId, float interpolationTime);
+
+        unsigned int GetBloomParameterId() const;
+        unsigned int GetDofParameterId() const;
+        unsigned int GetColorContrastParameterId() const;
+        unsigned int GetTonemapParameterId() const;
+        unsigned int GetCameraControlParameterId() const;
+        unsigned int GetShadowmapParameterId() const;
+        unsigned int GetShadowHeightMapParameterId() const;
+        unsigned int GetVolShadowParameterId() const;
+        unsigned int GetBlurParameterId() const;
+        unsigned int GetSsaoParameterId() const;
+        unsigned int GetShlightfieldParameterId() const;
+        unsigned int GetLightscatteringParameterId() const;
+        unsigned int GetRlrParameterId() const;
+        unsigned int GetSsgiParameterId() const;
+        unsigned int GetPlanarReflectionParameterId() const;
+        unsigned int GetOcclusionCapsuleParameterId() const;
+        unsigned int GetGodrayParameterId() const;
+        unsigned int GetSsGodrayParameterId() const;
+        unsigned int GetHeatHazeParameterId() const;
+        unsigned int GetSceneEnvParameterId() const;
+        unsigned int GetRenderOptionParameterId() const;
+        unsigned int GetSggiParameterId() const;
+        unsigned int GetTaaParameterId() const;
+        unsigned int GetEffectParameterId() const;
+        unsigned int GetAtmosphereParameterId() const;
+        unsigned int GetDensityParameterId() const;
+        unsigned int GetWindParameterId() const;
+        unsigned int GetGpuEnvironmentParameterId() const;
+        unsigned int GetInteractiveWaveParameterId() const;
+        unsigned int GetChromaticAberrationParameterId() const;
+        unsigned int GetVignetteParameterId() const;
+        unsigned int GetTerrainBlendParameterId() const;
+        unsigned int GetWeatherParameterId() const;
+        unsigned int GetColorAccessibilityParameterId() const;
+        unsigned int GetCyberNoiseParameterId() const;
+        unsigned int GetCyberStartNoiseParameterId() const;
+        unsigned int GetCyberNPCSSParameterId() const;
+        unsigned int GetDentParameterId() const;
+        unsigned int GetFieldScanParameterId() const;
+        unsigned int GetSsssParameterId() const;
+
+        void AddBloomParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxBloomParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddDofParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxDOFParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddColorContrastParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxColorContrastParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddTonemapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxToneMapParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddCameraControlParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCameraControlParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddShadowmapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxShadowMapParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddShadowHeightMapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxShadowHeightMapParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddVolShadowParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxVolumetricShadowParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddBlurParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxScreenBlurParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSsaoParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSSAOParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddShlightfieldParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSHLightFieldParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddLightscatteringParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxLightScatteringParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddRlrParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxRLRParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSsgiParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSSGIParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddPlanarReflectionParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxPlanarReflectionParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddOcclusionCapsuleParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxOcclusionCapsuleParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddGodrayParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxGodrayParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSsGodrayParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxScreenSpaceGodrayParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddHeatHazeParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxHeatHazeParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSceneEnvParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSceneEnvironmentParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddRenderOptionParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxRenderOption* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSggiParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSGGIParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddTaaParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxTAAParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddEffectParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxEffectParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddAtmosphereParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxAtmosphereParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddDensityParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxDensityParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddWindParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxWindComputeParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddGpuEnvironmentParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxGpuEnvironmentParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddInteractiveWaveParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxInteractiveWaveParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddChromaticAberrationParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxChromaticAberrationParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddVignetteParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxVignetteParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddTerrainBlendParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxTerrainMaterialBlendingParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddWeatherParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxWeatherParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddColorAccessibilityParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxColorAccessibilityFilterParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddCyberNoiseParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberNoiseEffectParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddCyberStartNoiseParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberSpaceStartNoiseParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddCyberNPCSSParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberNPCSSEffectRenderParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddDentParameterInterpolatorJob(uint64_t ownerId, const hh::gfx::FxDentParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddFieldScanParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxFieldScanEffectRenderParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddSsssParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSeparableSSSParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+
+        void UpdateBloomParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxBloomParameter* value);
+        void UpdateDofParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxDOFParameter* value);
+        void UpdateColorContrastParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxColorContrastParameter* value);
+        void UpdateTonemapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxToneMapParameter* value);
+        void UpdateCameraControlParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCameraControlParameter* value);
+        void UpdateShadowmapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxShadowMapParameter* value);
+        void UpdateShadowHeightMapParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxShadowHeightMapParameter* value);
+        void UpdateVolShadowParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxVolumetricShadowParameter* value);
+        void UpdateBlurParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxScreenBlurParameter* value);
+        void UpdateSsaoParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSSAOParameter* value);
+        void UpdateShlightfieldParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSHLightFieldParameter* value);
+        void UpdateLightscatteringParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxLightScatteringParameter* value);
+        void UpdateRlrParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxRLRParameter* value);
+        void UpdateSsgiParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSSGIParameter* value);
+        void UpdatePlanarReflectionParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxPlanarReflectionParameter* value);
+        void UpdateOcclusionCapsuleParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxOcclusionCapsuleParameter* value);
+        void UpdateGodrayParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxGodrayParameter* value);
+        void UpdateSsGodrayParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxScreenSpaceGodrayParameter* value);
+        void UpdateHeatHazeParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxHeatHazeParameter* value);
+        void UpdateSceneEnvParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSceneEnvironmentParameter* value);
+        void UpdateRenderOptionParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxRenderOption* value);
+        void UpdateSggiParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSGGIParameter* value);
+        void UpdateTaaParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxTAAParameter* value);
+        void UpdateEffectParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxEffectParameter* value);
+        void UpdateAtmosphereParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxAtmosphereParameter* value);
+        void UpdateDensityParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxDensityParameter* value);
+        void UpdateWindParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxWindComputeParameter* value);
+        void UpdateGpuEnvironmentParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxGpuEnvironmentParameter* value);
+        void UpdateInteractiveWaveParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxInteractiveWaveParameter* value);
+        void UpdateChromaticAberrationParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxChromaticAberrationParameter* value);
+        void UpdateVignetteParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxVignetteParameter* value);
+        void UpdateTerrainBlendParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxTerrainMaterialBlendingParameter* value);
+        void UpdateWeatherParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxWeatherParameter* value);
+        void UpdateColorAccessibilityParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxColorAccessibilityFilterParameter* value);
+        void UpdateCyberNoiseParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberNoiseEffectParameter* value);
+        void UpdateCyberStartNoiseParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberSpaceStartNoiseParameter* value);
+        void UpdateCyberNPCSSParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxCyberNPCSSEffectRenderParameter* value);
+        void UpdateDentParameterInterpolatorJob(uint64_t ownerId, const hh::gfx::FxDentParameter* value);
+        void UpdateFieldScanParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxFieldScanEffectRenderParameter* value);
+        void UpdateSsssParameterInterpolatorJob(uint64_t ownerId, const hh::needle::FxSeparableSSSParameter* value);
+
+        void RemoveBloomParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveDofParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveColorContrastParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveTonemapParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveCameraControlParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveShadowmapParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveShadowHeightMapParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveVolShadowParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveBlurParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSsaoParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveShlightfieldParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveLightscatteringParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveRlrParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSsgiParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemovePlanarReflectionParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveOcclusionCapsuleParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveGodrayParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSsGodrayParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveHeatHazeParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSceneEnvParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveRenderOptionParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSggiParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveTaaParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveEffectParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveAtmosphereParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveDensityParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveWindParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveGpuEnvironmentParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveInteractiveWaveParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveChromaticAberrationParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveVignetteParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveTerrainBlendParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveWeatherParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveColorAccessibilityParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveCyberNoiseParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveCyberStartNoiseParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveCyberNPCSSParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveDentParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveFieldScanParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveSsssParameterInterpolatorJob(size_t ownerId, float interpolationTime);
+
+        unsigned int GetFxRenderTargetSettingSceneConfigId() const;
+        unsigned int GetFxAntiAliasingSceneConfigId() const;
+        unsigned int GetStageCommonAtmosphereParameterSceneConfigId() const;
+        unsigned int GetFxLODParameterSceneConfigId() const;
+        unsigned int GetFxDetailParameterSceneConfigId() const;
+        unsigned int GetFxDynamicResolutionParameterSceneConfigId() const;
+        unsigned int GetStageCommonTimeProgressParameterSceneConfigId() const;
+
+        void AddFxRenderTargetSettingSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::FxRenderTargetSetting* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddFxAntiAliasingSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxAntiAliasing* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddStageCommonAtmosphereParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::StageCommonAtmosphereParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddFxLODParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxLODParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddFxDetailParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxDetailParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddFxDynamicResolutionParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxDynamicResolutionParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+        void AddStageCommonTimeProgressParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::StageCommonTimeProgressParameter* value, unsigned int interpolationGroupMemberBits, unsigned int priority, float interpolationTime);
+
+        void UpdateFxRenderTargetSettingSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::FxRenderTargetSetting* value);
+        void UpdateFxAntiAliasingSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxAntiAliasing* value);
+        void UpdateStageCommonAtmosphereParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::StageCommonAtmosphereParameter* value);
+        void UpdateFxLODParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxLODParameter* value);
+        void UpdateFxDetailParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxDetailParameter* value);
+        void UpdateFxDynamicResolutionParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::needle::FxDynamicResolutionParameter* value);
+        void UpdateStageCommonTimeProgressParameterSceneConfigInterpolatorJob(uint64_t ownerId, const hh::gfx::StageCommonTimeProgressParameter* value);
+
+        void RemoveFxRenderTargetSettingSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveFxAntiAliasingSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveStageCommonAtmosphereParameterSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveFxLODParameterSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveFxDetailParameterSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveFxDynamicResolutionParameterSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
+        void RemoveStageCommonTimeProgressParameterSceneConfigInterpolatorJob(size_t ownerId, float interpolationTime);
 
 		GAMESERVICE_CLASS_DECLARATION(FxParamManager)
     };

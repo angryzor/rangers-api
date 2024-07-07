@@ -75,7 +75,7 @@ namespace SurfRide {
 		Layer* layer;
 		Cast* cast;
 		uint64_t unk17;
-		Matrix44 transformationMatrix;
+		Matrix34 transformationMatrix;
 		
 		Transform(Layer* layer);
 		void Initialize2D(SRS_TRS2D* cell, Cast* cast);

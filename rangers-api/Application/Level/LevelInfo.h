@@ -30,6 +30,7 @@ namespace app::level {
         char GetPlayerIdFromPlayerObject(const hh::fnd::Handle<hh::fnd::Messenger>& playerObj);
         hh::fnd::Handle<hh::fnd::Messenger> GetPlayerObject(char playerId);
         csl::ut::MoveArray<hh::fnd::Handle<hh::fnd::Messenger>>& GetUIObjects();
+        const char* GetStageName();
 
         GAMESERVICE_CLASS_DECLARATION(LevelInfo)
     };

@@ -25,6 +25,7 @@
 #endif
 
 #include "Sonicteam/math/math.h"
+
 #include "Sonicteam/System/IAllocator.h"
 
 #include "Sonicteam/Utility/collections/Array.h"
@@ -88,6 +89,8 @@
 #include "Hedgehog/Utility/FSM/Hsm.h"
 #include "Hedgehog/Utility/BinaryFile.h"
 #include "Hedgehog/Utility/AabbTree.h"
+#include "Hedgehog/Utility/BvWorld.h"
+#include "Hedgehog/Utility/KdTree.h"
 
 #include "Hedgehog/Base/Type/hhBaseTypes.h"
 #include "Hedgehog/Base/Type/WorldPosition.h"
@@ -95,6 +98,7 @@
 #include "Hedgehog/Base/Type/Triangle.h"
 #include "Hedgehog/Base/Type/Geometry.h"
 #include "Hedgehog/Base/Type/WireGeometry.h"
+#include "Hedgehog/Base/Type/ResLightParameter.h"
 
 #include "Hedgehog/Cri/CriSystem.h"
 
@@ -360,6 +364,8 @@
 #include "Hedgehog/Graphics/ResMirageTerrainInstanceInfo.h"
 #include "Hedgehog/Graphics/ResMirageLight.h"
 #include "Hedgehog/Graphics/ResMirageLightField.h"
+#include "Hedgehog/Graphics/ResProbe.h"
+#include "Hedgehog/Graphics/ResDecal.h"
 #include "Hedgehog/Graphics/GOCVisual.h"
 #include "Hedgehog/Graphics/GOCVisualTransformed.h"
 #include "Hedgehog/Graphics/GOCVisualModel.h"
@@ -477,6 +483,10 @@
 #include "Hedgehog/UI/UIListViewElement.h"
 #include "Hedgehog/UI/UIListener.h"
 #include "Hedgehog/UI/UIManager.h"
+
+#include "Hedgehog/Dv/DiEventManager.h"
+#include "Hedgehog/Dv/DiEventPreviewManager.h"
+#include "Hedgehog/Dv/DvSceneControl.h"
 
 #include "Hedgehog/User/UserInfoEvent.h"
 
@@ -630,6 +640,7 @@
 
 #include "Application/Event/EventPlayer.h"
 
+#include "Application/Graphics/ResFxColFile2.h"
 #include "Application/Graphics/SceneParameters.h"
 #include "Application/Graphics/FxParamManager.h"
 #include "Application/Graphics/FxParamTimeProgressExtension.h"
