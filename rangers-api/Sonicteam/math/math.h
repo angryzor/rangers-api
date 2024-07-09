@@ -25,7 +25,7 @@ namespace csl::math {
 		static Vector4 RotateVector(const Quaternion& quaternion, const Vector4& vector);
 	};
 
-	class alignas(16) Rotation {
+	class alignas(16) Matrix44 {
 	public:
 		Vector4 t; Vector4 u; Vector4 v; Vector4 w;
 		static Matrix44 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
