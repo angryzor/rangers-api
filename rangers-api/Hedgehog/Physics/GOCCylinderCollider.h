@@ -4,7 +4,7 @@ namespace hh::physics {
     class GOCCylinderCollider : public GOCCollider {
     public:
         float radius;
-        float height;
+        float halfHeight;
         virtual void GetShape(ColliShape& shape) const override;
 
         void Setup(const SetupInfo& setupInfo);

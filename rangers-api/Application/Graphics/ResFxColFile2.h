@@ -18,29 +18,29 @@ namespace app::gfx {
 
         struct SphereExtents {
             float radius;
-            float innerRadius;
+            float borderThickness;
         };
 
         struct CylinderExtents {
             float radius;
             float halfHeight;
-            float innerRadius;
+            float borderThickness;
         };
 
         struct AnisotropicObbExtents {
             float depth;  // Z
             float width;  // X
             float height; // Y
-            float maybeInnerWidthAndHeight;
-            float innerDepthStart;
-            float innerDepthEnd;
+            float maybeWidthAndHeightBorderThickness;
+            float positiveDepthBorderThickness;
+            float negativeDepthBorderThickness;
         };
 
         struct IsotropicObbExtents {
             float depth;  // Z
             float width;  // X
             float height; // Y
-            float innerSize;
+            float borderThickness;
         };
 
         union Extents {
@@ -76,8 +76,8 @@ namespace app::gfx {
         };
 
         union Parameters {
-            SceneParameterIndexParameters sceneParameterIndexParameters;
-            LightParameterIndexParameters lightParameterIndexParameters;
+            SceneParameterIndexParameters sceneParameterIndex;
+            LightParameterIndexParameters lightParameterIndex;
             HeatHazeParameters heatHaze;
             CameraParameters camera;
         };
