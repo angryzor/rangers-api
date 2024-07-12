@@ -82,7 +82,7 @@ namespace app::gfx {
             CameraParameters camera;
         };
 
-        const char* ownerName;
+        const char* name;
         Shape shape;
         Type type;
         uint8_t unk1;

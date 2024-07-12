@@ -38,8 +38,8 @@ namespace hh::gfnd {
             FrustumProjectionParameters frustum;
         };
 
-        csl::math::Matrix44 viewMatrix;
-        csl::math::Matrix44 inverseViewMatrix;
+        csl::math::Matrix34 viewMatrix;
+        csl::math::Matrix34 inverseViewMatrix;
         ViewportDimensions viewportDimensions;
         csl::math::Matrix44 projMatrix;
         ProjectionType projectionType;
@@ -54,7 +54,7 @@ namespace hh::gfnd {
         void SetOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
         void GetClipPlanes(float* nearClip, float* farClip);
         void GetPerspectiveProjectionParameters(float* fov, float* aspectRatio, float* nearClip, float* farClip);
-        inline csl::math::Matrix44 GetInverseViewMatrix() {
+        inline csl::math::Matrix34 GetInverseViewMatrix() {
             return inverseViewMatrix;
         }
     };
