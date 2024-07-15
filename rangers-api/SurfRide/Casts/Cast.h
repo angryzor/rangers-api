@@ -31,6 +31,10 @@ namespace SurfRide {
 		short childIndex{};
 		short siblingIndex{};
 		SRS_USERDATA* userData{};
+
+        inline Type GetType() const {
+            return static_cast<Type>(flags & 0xF);
+        }
 	};
 
     class Scene;
@@ -48,7 +52,7 @@ namespace SurfRide {
         RefPtr<Reflect> reflectEffect;
         uint32_t unk4;
         uint64_t unk5;
-        const SRS_CASTNODE* castData;
+        SRS_CASTNODE* castData;
         Layer* layer;
         Cast* parentCast;
         csl::ut::MoveArray<SurfRide::Cast*> children;
@@ -85,4 +89,22 @@ namespace SurfRide {
         virtual void UpdateThis(float time, const Cast* parentCast);
         virtual uint64_t UnkFunc12();
     };
+
+    struct SRS_LAYER;
+	struct CastCollection {
+		SRS_LAYER* layer;
+		SRS_CASTNODE* current;
+		SRS_CASTNODE* end;
+	};
+
+	struct CastIterator {
+		SRS_LAYER* layer;
+		SRS_CASTNODE* cast;
+
+		void Next();
+		SRS_CASTNODE::Type GetType() const;
+		const char* GetName() const;
+		bool IsSysfCast() const;
+        UserData GetUserData() const;
+	};
 }

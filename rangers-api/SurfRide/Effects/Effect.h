@@ -13,4 +13,6 @@ namespace SurfRide {
         MODE2,
         MODE3,
     };
+
+    struct SRS_EFFECT {};
 }

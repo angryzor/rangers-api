@@ -14,7 +14,7 @@ namespace hh::fnd {
         virtual void* GetFamilyID() override;
         virtual ManagedResource* GetResourceByName(const char* name) const override;
         virtual int GetNumResources() const override;
-        virtual void UnkFunc1() override;
+        virtual void LoadResource(csl::fnd::IAllocator* resourceAllocator, const char* name) override;
         virtual ManagedResource* GetResourceByIndex(int index) const override;
     };
 }

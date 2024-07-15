@@ -9,8 +9,7 @@ namespace app::game {
         struct Unk1 {
             uint32_t unk1;
             uint32_t unk2;
-            const char* name;
-            uint64_t unk3;
+            csl::ut::VariableString name;
         };
         csl::ut::MoveArray<Unk1> resources;
 

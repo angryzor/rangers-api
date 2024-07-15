@@ -13,14 +13,25 @@ namespace hh::ut {
     // };
 
     class AabbTree : public fnd::ReferencedObject {
+    public:
         struct Unk1 {
             csl::ut::MoveArray<AabbTreeHandle*> handles;
         };
 
         struct InternalNode {
+        private:
             uint32_t itemCount; // sign bit is set if it is a leaf
+        public:
             unsigned short* items;
             csl::geom::Aabb aabb;
+
+            inline bool IsLeaf() const {
+                return itemCount & 0x80000000;
+            }
+
+            inline bool GetItemCount() const {
+                return itemCount & (~0x80000000);
+            }
         };
 
         struct InternalPlane {
@@ -32,22 +43,23 @@ namespace hh::ut {
             OBJECT_ADDED,
         };
 
-        volatile int spinLock;
+        volatile LONG spinLock;
         Flag flags;
         uint32_t maxDepth;
         uint32_t maxLeafObjects;
-        Unk1 unk4;
-        csl::ut::MoveArray<csl::geom::Aabb> unk5;
-        csl::ut::MoveArray<csl::math::Vector3> unk6;
-        csl::ut::MoveArray<InternalNode> nodes;
-        csl::ut::MoveArray<unsigned short> aabbIndices;
+        Unk1 handles;
+        csl::ut::MoveArray<csl::geom::Aabb> aabbs;
+        csl::ut::MoveArray<csl::math::Vector3> aabbCenters;
+        csl::ut::MoveArray<InternalNode> nodes; // root node is at index 1
+        csl::ut::MoveArray<unsigned short> objectIndices;
 
-        void BuildR(const csl::geom::Aabb& aabb, unsigned short* start, unsigned short* end, int unkParam3, unsigned int offset);
+    private:
+        void BuildR(const csl::geom::Aabb& aabb, unsigned short* start, unsigned short* end, int depth, unsigned int offset);
         void GetBestSplitter(const csl::geom::Aabb& aabb, unsigned short* start, unsigned short* end, InternalPlane* plane);
         
     public:
-        AabbTree(csl::fnd::IAllocator* allocator, int unkParam1, int maxDepth);
-        static AabbTree* Create(csl::fnd::IAllocator* allocator, int unkParam1, int maxDepth);
+        AabbTree(csl::fnd::IAllocator* allocator, int capacity, int maxDepth); // maxDepth does not include the leaf nodes
+        static AabbTree* Create(csl::fnd::IAllocator* allocator, int capacity, int maxDepth);
         void AddObject(hh::ut::AabbTreeHandle* handle, const csl::geom::Aabb& aabb);
         void UpdateObject(hh::ut::AabbTreeHandle* handle, const csl::geom::Aabb& aabb);
         void AddOrUpdateObject(hh::ut::AabbTreeHandle* handle, const csl::geom::Aabb& aabb);
@@ -62,5 +74,13 @@ namespace hh::ut {
         void Build();
         void Verify();
         bool IsRebuildRequired();
+
+        inline void Lock() {
+            InterlockedBitTestAndSet(&spinLock, 0);
+        }
+        
+        inline void Unlock() {
+            spinLock = 0;
+        }
     };
 }

@@ -5,13 +5,13 @@ namespace SurfRide
     struct SRS_PROJECT
     {
         const char* name{};
-        short sceneCount{};
+        unsigned short sceneCount{};
         short unk1{};
-        short textureListCount{};
+        unsigned short textureListCount{};
         short fontCount{};
         SRS_SCENE* scenes{};
-        void* textureLists{}; // SRS_TEXTURELIST
-        void* fonts{}; // SRS_FONT
+        SRS_TEXTURELIST* textureLists{}; // SRS_TEXTURELIST
+        SRS_FONT* fonts{}; // SRS_FONT
         SRS_CAMERA camera{};
         int startFrame{};
         int endFrame{};
@@ -19,13 +19,14 @@ namespace SurfRide
         void* userData{};
     };
 
+    class BinaryData;
     class Project : public ReferencedObject
     {
         void LoadTextureListChunk(void* data, BinaryData& binaryData);
         void LoadProjectChunk(void* data, BinaryData& binaryData, bool cloneBinaryData);
     public:
-        const SRS_PROJECT* projectData;
-        void* textureLists;
+        SRS_PROJECT* projectData;
+        TextureList** textureLists;
         uint32_t textureListCount;
         csl::ut::MoveArray<SurfRide::Scene*> scenes;
         BinaryData* binaryData;
@@ -35,5 +36,13 @@ namespace SurfRide
         static Project* Create(const BinaryData& binaryData, bool cloneBinaryData);
         SRS_CAMERA* GetCameraData();
         Scene* GetScene(const char* name);
+        void ApplyMemoryImageToTextureList(void* image, BinaryData* binaryData);
+        void ApplyMemoryImageToProject(void* image, BinaryData* binaryData, bool unkParam);
     };
+
+	struct ProjectIterator {
+		SRS_PROJECT* project;
+
+		SceneCollection GetScenes() const;
+	};
 }

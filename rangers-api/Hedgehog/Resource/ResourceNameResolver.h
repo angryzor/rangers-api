@@ -5,6 +5,6 @@ namespace hh::fnd {
     public:
         virtual ~ResourceNameResolver();
         virtual const char* RNR_UnkFunc1(const char* name);
-        virtual char* RNR_UnkFunc2(const char *a2, uint64_t a3, char *a4, size_t Count);
+        virtual char* ResolveName(const char *name, hh::fnd::ResourceTypeInfo* typeInfo, char* buffer, size_t bufferSize);
     };
 }

@@ -19,7 +19,7 @@ namespace SurfRide
 		int animationCount{};
 		SRS_ANIMATION* animations{};
 		int currentAnimationIndex{};
-		void* userData{};
+		SRS_USERDATA* userData{};
 	};
 
 	class Cast;
@@ -53,7 +53,7 @@ namespace SurfRide
 		};
 
 		csl::ut::MoveArray<void*> unk1;
-		const SRS_LAYER* layerData;
+		SRS_LAYER* layerData;
 		csl::ut::VariableString name;
 		Scene* scene;
 		ReferenceCast* referenceCast;
@@ -105,5 +105,17 @@ namespace SurfRide
 		void StartCurrentAnimation();
 		void InitializeAnimation(SRS_ANIMATION* animation);
 		void UpdateAnimation(float timestep);
+	};
+
+	struct LayerCollection {
+		SRS_LAYER* current;
+		SRS_LAYER* end;
+	};
+
+	struct LayerIterator {
+		SRS_LAYER* layer;
+		
+		void Next();
+		CastCollection GetCasts() const;
 	};
 }

@@ -3,9 +3,9 @@
 namespace hh::fnd {
     class ResourceLoader : public ReferencedObject, public FileInfoListener, public FileBindListener {
     public:
-        struct Unk1 {
-            uint32_t unk1{ 1 };
-            const char* unk2{ "" };
+        struct Locale {
+            uint32_t localeId{ 1 };
+            const char* localeName{ "" };
         };
 
         class Unk2 : public BaseObject {
@@ -52,6 +52,6 @@ namespace hh::fnd {
         }
 
         void LoadPackfile(const char* uri, uint32_t unk);
-        void LoadResource(const Uri& uri, const ResourceTypeInfo* resourceTypeInfo, int unk, uint32_t unk2, Unk1& locale);
+        void LoadResource(const Uri& uri, const ResourceTypeInfo* resourceTypeInfo, int unk, uint32_t unk2, Locale& locale);
     };
 }

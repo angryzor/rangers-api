@@ -18,7 +18,7 @@ namespace SurfRide {
 		uint32_t qword10;
 		SRS_CELLTEXTURE textures[2];
 		uint32_t qword3C;
-		Matrix44 transform;
+		Matrix34 transform;
 		uint32_t qword78a;
 
 		SRS_CELL3D();

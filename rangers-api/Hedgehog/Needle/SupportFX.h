@@ -54,7 +54,7 @@ namespace hh::needle {
         PixelShader* pixelShaders[3];
         void* unk9[3];
         uint64_t unk10_0;
-        uint64_t unk10_1;
+        DisplaySwapDevice* swapDevice;
         uint64_t unk10_2;
         PBRModelInstanceRenderer* modelInstanceRenderer;
         uint64_t unk10_4;

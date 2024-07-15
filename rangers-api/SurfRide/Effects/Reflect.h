@@ -1,7 +1,7 @@
 #pragma once
 
 namespace SurfRide {
-    struct SRS_REFLECT {
+    struct SRS_REFLECT : public SRS_EFFECT {
         uint32_t unk1;
         uint32_t unk2;
         uint32_t unk3;

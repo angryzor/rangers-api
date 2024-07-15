@@ -7,6 +7,7 @@ namespace SurfRide
 		const char* name{};
 		int id{};
 		int flags{};
+		bool loaded{};
 		int layerCount{};
 		SRS_LAYER* layers{};
 		short cameraCount;
@@ -31,5 +32,17 @@ namespace SurfRide
 		Scene(const SRS_SCENE& sceneData, Project* project);
 
 		Layer* GetLayer(const char* layers);
+	};
+
+	struct SceneCollection {
+		SRS_SCENE* current;
+		SRS_SCENE* end;
+	};
+
+	struct SceneIterator {
+		SRS_SCENE* scene;
+
+		void Next();
+		LayerCollection GetLayers() const;
 	};
 }

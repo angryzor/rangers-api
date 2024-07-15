@@ -51,22 +51,25 @@ namespace SurfRide
 		IlluminationColorA,
 	};
 
-	enum class SRE_TRACK_FLAG : uint16_t {
-		CONSTANT = 0x0,
-		LINEAR = 0x1,
-		HERMITE = 0x2,
-		INDIVIDUAL = 0x3,
+	enum class SRE_TRACK_INTERPOLATION_TYPE : uint16_t {
+		CONSTANT,
+		LINEAR,
+		HERMITE,
+		INDIVIDUAL,
+	};
 
-		FLOAT = 0x10,
-		INDEX = 0x20,
-		BOOL = 0x30,
-		INT = 0x40,
-		COLOR = 0x50,
+	enum class SRE_TRACK_DATA_TYPE : uint16_t {
+		UNKNOWN,
+		FLOAT,
+		INDEX,
+		BOOL,
+		INT,
+		COLOR,
 
 		// These are uncertain
-		UNK_FLOAT = 0x60,
-		UNK_DOUBLE = 0x70, // Types say double, but used for what? Won't interpolate linearly.
-		UNK_CHAR = 0x80, // Char? doubt
+		UNK_FLOAT,
+		UNK_DOUBLE, // Types say double, but used for what? Won't interpolate linearly.
+		UNK_CHAR, // Char? doubt
 	};
 
 	enum class SRE_INTERPOLATION_TYPE : uint32_t {
@@ -106,10 +109,18 @@ namespace SurfRide
 	{
 		SRE_CURVE_TYPE trackType{};
 		uint16_t keyCount{};
-		SRE_TRACK_FLAG flags{};
+		uint16_t flags{};
 		uint32_t firstFrame{};
 		uint32_t lastFrame{};
 		SRS_KEYFRAME* keyFrame{};
+
+		inline SRE_TRACK_INTERPOLATION_TYPE GetInterpolationType() const {
+			return static_cast<SRE_TRACK_INTERPOLATION_TYPE>(flags & 0xF);
+		}
+
+		inline SRE_TRACK_DATA_TYPE GetDataType() const {
+			return static_cast<SRE_TRACK_DATA_TYPE>((flags >> 8) & 0xF);
+		}
 	};
 
 	struct SRS_MOTION

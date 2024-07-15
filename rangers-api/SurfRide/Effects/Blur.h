@@ -1,7 +1,7 @@
 #pragma once
 
 namespace SurfRide {
-    struct SRS_BLUR {
+    struct SRS_BLUR : public SRS_EFFECT {
         uint32_t field00;
         uint32_t field04;
         uint32_t cropCount;
