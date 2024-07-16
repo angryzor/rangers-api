@@ -81,6 +81,10 @@ namespace hh::game {
         GameObject* GetGameObjectByObjectId(ObjectId id) const;
         WorldObjectStatus GetWorldObjectStatusByObjectId(ObjectId id) const;
 
+        inline GameObject* GetGameObject(ObjectData* objectData) const {
+            return GetGameObjectByObjectId(objectData->id);
+        }
+
         inline const csl::ut::MoveArray<WorldObjectStatus>& GetObjectStatuses() const {
             return objectStatuses;
         }

@@ -71,7 +71,8 @@ namespace hh::needle {
         csl::ut::MoveArray<void*> unk13_6;
         uint64_t unk13b[7];
         uint64_t unk14;
-        uint64_t unk15;
+        float unk15;
+        float unk15aa;
         uint64_t unk15a;
         uint32_t unk16;
         uint32_t unk16a;
@@ -105,6 +106,9 @@ namespace hh::needle {
         RenderingDeviceContext* GetRenderingContext() const;
         RenderingDeviceContext* GetRenderingContext2() const;
         SceneContextManager* GetSceneContextManager(const char* name) const;
+        VertexShader* GetVertexShader(unsigned int idx) const;
+        PixelShader* GetPixelShader(unsigned int idx) const;
+        ComputeShader* GetComputeShader(unsigned int idx) const;
         void AddSceneContextManager(SceneContextManager* sceneContextManager);
 
         static SupportFX* instance;
