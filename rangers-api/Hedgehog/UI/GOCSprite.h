@@ -22,6 +22,7 @@ namespace hh::ui {
             virtual void Render(const gfnd::RenderableParameter* renderableParameter) override;
         };
 
+    public:
         csl::fnd::Delegate<void (GOCSprite*)> OnProjectUnloaded;
         csl::fnd::Delegate<void (GOCSprite*)> OnProjectLoaded;
         csl::fnd::Delegate<void (GOCSprite*)> OnLayerControllerCreated;
@@ -50,7 +51,7 @@ namespace hh::ui {
         LayerController* GetLayerController(SurfRide::Layer* layer, uint16_t id);
         fnd::Handle<SurfRideCastHandle> GetCastHandle(SurfRide::Cast* cast);
         fnd::Handle<SurfRideLayerHandle> GetLayerHandle(SurfRide::Layer* layer);
-    public:
+
         struct alignas(8) SetupInfo {
             hh::ui::ResSurfRideProject* projectResource;
             const char* name;

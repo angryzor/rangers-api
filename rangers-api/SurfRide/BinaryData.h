@@ -6,41 +6,58 @@ namespace SurfRide
 	struct SRS_SCENE;
 	struct SRS_LAYER;
 	struct SRS_CASTNODE;
-	struct SRS_ADDRESS_RESOLUTION_HEADER {
-		uint32_t unk1;
-		uint32_t unk2;
-		uint32_t addressToResolveCount;
-		uint32_t isResolved; // 0 if not, 1 if yes
-		// uint32_t addressOffsets[];
-	};
 
 	struct SRS_CHUNK_HEADER {
 		uint32_t magic;
 		uint32_t chunkSize;
 	};
 
-	struct SRS_PROJECT_CHUNK {
-		SRS_CHUNK_HEADER header;
-		uint32_t startOffset;
-		uint32_t unk1;
+	struct SRS_ADDRESS_RESOLUTION_CHUNK_HEADER {
+		uint32_t addressToResolveCount;
+		uint32_t isResolved; // 0 if not, 1 if yes
 	};
 
-	struct SRS_TEXTURE_LIST_CHUNK {
-		SRS_CHUNK_HEADER header;
+	struct SRS_ADDRESS_RESOLUTION_CHUNK {
+		SRS_CHUNK_HEADER chunkHeader;
+		SRS_ADDRESS_RESOLUTION_CHUNK_HEADER header;
+	};
+
+	struct SRS_PROJECT_CHUNK_HEADER {
+		uint32_t startOffset;
+	};
+
+	struct SRS_PROJECT_CHUNK {
+		SRS_CHUNK_HEADER chunkHeader;
+		SRS_PROJECT_CHUNK_HEADER header;
+	};
+
+	struct SRS_TEXTURELIST_CHUNK_HEADER {
 		uint32_t startOffset;
 		uint32_t textureListCount;
 	};
 
+	struct SRS_TEXTURELIST_CHUNK {
+		SRS_CHUNK_HEADER chunkHeader;
+		SRS_TEXTURELIST_CHUNK_HEADER header;
+	};
+
+	struct SRS_BINARY_FILE_HEADER_CHUNK_HEADER {
+		uint32_t chunkCount;
+		uint32_t chunksStart;
+		uint32_t chunksSize;
+		uint32_t addressResolutionHeaderOffset;
+		uint32_t revision;
+	};
+
+	struct SRS_END_CHUNK_HEADER {};
+
 	struct SRS_BINARY_FILE_HEADER_CHUNK {
 		SRS_CHUNK_HEADER chunkHeader;
-		uint32_t unk2;
-		uint32_t unk3;
-		uint32_t unk4;
-		uint32_t addressResolutionHeaderOffset;
+		SRS_BINARY_FILE_HEADER_CHUNK_HEADER header;
 
 		struct ChunkInfo {
 			SRS_PROJECT_CHUNK* projectChunk;
-			SRS_TEXTURE_LIST_CHUNK* textureListChunk;
+			SRS_TEXTURELIST_CHUNK* textureListChunk;
 
 			unsigned int GetTextureListCount() const;
 			TextureListIterator GetTextureListIteratorBegin() const;

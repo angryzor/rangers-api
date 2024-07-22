@@ -73,9 +73,7 @@ namespace app::player {
             csl::math::Quaternion rotation;
             Unk8();
         };
-        csl::math::Vector3 position;
-        csl::math::Quaternion rotation;
-        csl::math::Vector3 scale;
+        csl::math::Transform transform;
         hh::fnd::WorldPosition worldPosition;
         csl::math::Vector4 velocity;
         csl::math::Vector4 unk1;
@@ -113,8 +111,10 @@ namespace app::player {
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
-        csl::math::Vector4& GetPosition();
+        const csl::math::Transform& GetTransform() const;
         void SetPosition(const csl::math::Vector4& position);
+        void SetRotation(const csl::math::Matrix34& rotation);
+        void SetRotation(const csl::math::Quaternion& rotation);
         void SetVelocity(const csl::math::Vector4& velocity);
         void SetGravityScale(float gravityScale);
 

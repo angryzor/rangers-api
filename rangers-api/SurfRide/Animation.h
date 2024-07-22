@@ -119,7 +119,7 @@ namespace SurfRide
 		}
 
 		inline SRE_TRACK_DATA_TYPE GetDataType() const {
-			return static_cast<SRE_TRACK_DATA_TYPE>((flags >> 8) & 0xF);
+			return static_cast<SRE_TRACK_DATA_TYPE>((flags >> 4) & 0xF);
 		}
 	};
 

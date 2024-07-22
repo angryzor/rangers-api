@@ -2,7 +2,28 @@
 
 namespace SurfRide {
     struct SRS_IMAGECAST {
-        uint32_t flags;
+        enum class PivotType {
+            TOP_LEFT,
+            TOP_CENTER,
+            TOP_RIGHT,
+            CENTER_LEFT,
+            CENTER_CENTER,
+            CENTER_RIGHT,
+            BOTTOM_LEFT,
+            BOTTOM_CENTER,
+            BOTTOM_RIGHT,
+            CUSTOM,
+        };
+
+        inline PivotType GetPivotType() const {
+            return static_cast<PivotType>((flags >> 4) & 0xF);
+        }
+
+        inline void SetPivotType(PivotType pivotType) {
+            flags = (flags & ~0xF0) | (static_cast<unsigned int>(pivotType) << 4);
+        }
+
+        unsigned int flags;
         csl::math::Vector2 size;
         csl::math::Vector2 pivot;
         Color vertexColorTopLeft;
@@ -13,8 +34,8 @@ namespace SurfRide {
         short cropIndex1;
         short cropRef0Count;
         short cropRef1Count;
-        size_t cropRef0Offset;
-        size_t cropRef1Offset;
+        SRS_CROPREF* cropRefs0;
+        SRS_CROPREF* cropRefs1;
         SRS_TEXTDATA* textData;
         uint32_t effectType;
         void* effectData;
@@ -23,6 +44,7 @@ namespace SurfRide {
     class Text;
     class ImageCast : public Cast {
     public:
+
         SRS_IMAGECAST* imageCastData;
         uint32_t flags;
         Text* text;
@@ -53,5 +75,9 @@ namespace SurfRide {
         virtual uint64_t UnkFunc12() override;
 
         void InitializeText();
+        void SetText(const char* str);
+        Vector2 GetSize() const;
+        static Vector2 CalcPivot(float width, float height, SRS_IMAGECAST::PivotType pivotType, const Vector2& customPivot);
+        static Vector2 CalcPivot(float width, float height, const SRS_IMAGECAST& imageCastData);
     };
 }

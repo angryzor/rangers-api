@@ -26,7 +26,7 @@ namespace SurfRide {
 
 		const char* name{};
 		int id{};
-		int flags{}; // 0xF mask -> Type
+		unsigned int flags{}; // 0xF mask -> Type
 		void* data{};
 		short childIndex{};
 		short siblingIndex{};
@@ -34,6 +34,10 @@ namespace SurfRide {
 
         inline Type GetType() const {
             return static_cast<Type>(flags & 0xF);
+        }
+
+        inline void SetType(Type type) {
+            flags = (flags & ~0xF) | static_cast<unsigned int>(flags & 0xF);
         }
 	};
 
@@ -74,7 +78,7 @@ namespace SurfRide {
         void InitializeTransform3D(Transform* transform, SRS_TRS3D* cell);
         Scene* GetScene();
         void CreateEffectCast(void* effectData);
-        void* GetTextureListData(int id) const;
+        SRS_TEXTURELIST* GetTextureListData(int index) const;
 
         virtual void* GetRuntimeTypeInfo() const;
         virtual bool UnkFunc2();

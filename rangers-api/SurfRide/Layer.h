@@ -6,8 +6,8 @@ namespace SurfRide
 	struct SRS_LAYER
 	{
 		union SRS_TRS_PTR {
-			SRS_TRS2D* cells2d;
-			SRS_TRS3D* cells3d;
+			SRS_TRS2D* transforms2d;
+			SRS_TRS3D* transforms3d;
 		};
 
 		const char* name{};
@@ -71,7 +71,7 @@ namespace SurfRide
 		float unk11a;
 		float currentFrame3;
 		uint32_t unk13;
-		csl::ut::Bitset<uint32_t> flags;
+		csl::ut::Bitset<Flag> flags;
 		bool atAnimationStart;
 		bool unk14b;
 		bool isLooping;

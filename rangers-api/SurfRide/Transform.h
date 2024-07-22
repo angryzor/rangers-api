@@ -11,7 +11,7 @@ namespace SurfRide {
 	struct SRS_TRS2D : public SRS_TRS_BASE
 	{
 		Vector2 position{};
-		uint32_t rotation{};
+		int rotation{};
 		Vector2 scale{};
 		uint32_t unkX;
 		uint32_t unkY;

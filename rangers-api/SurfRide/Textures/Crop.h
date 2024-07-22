@@ -7,4 +7,10 @@ namespace SurfRide {
         float right;
         float bottom;
     };
+
+    struct SRS_CROPREF {
+        short textureListIndex;
+        short textureIndex;
+        short cropIndex;
+    };
 }

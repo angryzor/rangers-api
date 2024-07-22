@@ -79,7 +79,7 @@ namespace hh::ui {
         void AddTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
         void RemoveTextObjectUpdater(TextObjectUpdater* textObjectUpdater);
 
-        void SetupSurfRideProject(ResSurfRideProject* resource, csl::fnd::IAllocator* allocator);
+        SurfRide::Project* SetupSurfRideProject(ResSurfRideProject* resource, csl::fnd::IAllocator* allocator);
         void RenderSurfRideProject(gfnd::RenderableParameter* renderableParameter, SurfRide::Project* project, const ViewportDimensions& viewportDimensions);
 
         GAMESERVICE_CLASS_DECLARATION(UIManager)
