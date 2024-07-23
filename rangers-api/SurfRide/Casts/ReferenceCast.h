@@ -18,7 +18,7 @@ namespace SurfRide
 		Layer* layer;
 		uint32_t animationId;
 		bool isFlag2Set;
-		uint32_t flags;
+		uint32_t referenceCastFlags;
 
 		ReferenceCast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
 

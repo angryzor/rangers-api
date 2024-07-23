@@ -2,23 +2,30 @@
 
 namespace SurfRide {
     struct SRS_TEXTDATA {
-        enum class Flag : uint32_t {
-            WRAP,
-            NO_LINE_HEIGHT,
-        };
-
         enum class VerticalAlignment {
             TOP,
             CENTER,
             BOTTOM,
         };
 
-        inline bool GetFlagState(Flag flag) const {
-            return flags & (1 << static_cast<unsigned int>(flag));
+        inline bool GetWrapFlag() const {
+            return flags & 0x1;
         }
 
-        inline void SetFlagState(Flag flag, bool state) {
-            unsigned int mask = 1 << static_cast<unsigned int>(flag);
+        inline void SetWrapFlag(bool state) {
+            unsigned int mask = 0x1;
+            if (state)
+                flags |= mask;
+            else
+                flags &= ~mask;
+        }
+
+        inline bool GetDisableLineHeightFlag() const {
+            return flags & 0x2;
+        }
+
+        inline void SetDisableLineHeightFlag(bool state) {
+            unsigned int mask = 0x2;
             if (state)
                 flags |= mask;
             else

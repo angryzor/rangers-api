@@ -13,4 +13,9 @@ namespace SurfRide {
         short textureIndex;
         short cropIndex;
     };
+
+    enum class ECropSurface {
+        SURFACE0,
+        SURFACE1,
+    };
 }

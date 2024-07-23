@@ -66,9 +66,9 @@ namespace SurfRide {
 		Rotation3 rotation;
 		Vector3 scale;
 		Color materialColor;
-		int32_t unk7;
+		Color fullMaterialColor;
 		Color illuminationColor;
-		int32_t unk8;
+		Color fullIlluminationColor;
 		bool display;
 		uint8_t unk9;
 		DirtyFlag dirtyFlag;

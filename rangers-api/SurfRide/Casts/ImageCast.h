@@ -2,27 +2,6 @@
 
 namespace SurfRide {
     struct SRS_IMAGECAST {
-        enum class PivotType {
-            TOP_LEFT,
-            TOP_CENTER,
-            TOP_RIGHT,
-            CENTER_LEFT,
-            CENTER_CENTER,
-            CENTER_RIGHT,
-            BOTTOM_LEFT,
-            BOTTOM_CENTER,
-            BOTTOM_RIGHT,
-            CUSTOM,
-        };
-
-        inline PivotType GetPivotType() const {
-            return static_cast<PivotType>((flags >> 4) & 0xF);
-        }
-
-        inline void SetPivotType(PivotType pivotType) {
-            flags = (flags & ~0xF0) | (static_cast<unsigned int>(pivotType) << 4);
-        }
-
         unsigned int flags;
         csl::math::Vector2 size;
         csl::math::Vector2 pivot;
@@ -39,6 +18,68 @@ namespace SurfRide {
         SRS_TEXTDATA* textData;
         uint32_t effectType;
         void* effectData;
+
+        // Apparently shifting 4 is some mirror flag
+
+        inline EPivotType GetPivotType() const {
+            return static_cast<EPivotType>((flags >> 19) & 0xF);
+        }
+
+        inline void SetPivotType(EPivotType pivotType) {
+            flags = (flags & ~(0xF << 19)) | ((static_cast<unsigned int>(pivotType) & 0xF) << 19);
+        }
+
+        inline bool GetMaterialColorFlag() const {
+            return flags & 0x10;
+        }
+
+        inline void SetMaterialColorFlag(bool enabled) {
+            if (enabled)
+                flags |= 0x10;
+            else
+                flags &= ~0x10;
+        }
+
+        inline bool GetIlluminationColorFlag() const {
+            return flags & 0x20;
+        }
+
+        inline void SetIlluminationColorFlag(bool enabled) {
+            if (enabled)
+                flags |= 0x20;
+            else
+                flags &= ~0x20;
+        }
+
+        inline EOrientation GetOrientation() const {
+            return static_cast<EOrientation>((flags >> 6) & 0x3);
+        }
+
+        inline void SetOrientation(EOrientation orientation) {
+            flags = (flags & ~(0x3 << 6)) | ((static_cast<unsigned int>(orientation) & 0x3) << 6);
+        }
+
+        inline bool GetDisableTextureFlag() const {
+            return flags & 0x100;
+        }
+
+        inline void SetDisableTextureFlag(bool enabled) {
+            if (enabled)
+                flags |= 0x100;
+            else
+                flags &= ~0x100;
+        }
+
+        inline bool GetUseCropSurface0Flag() const {
+            return flags & 0x20000;
+        }
+
+        inline void SetUseCropSurface0Flag(bool enabled) {
+            if (enabled)
+                flags |= 0x20000;
+            else
+                flags &= ~0x20000;
+        }
     };
 
     class Text;
@@ -46,7 +87,7 @@ namespace SurfRide {
     public:
 
         SRS_IMAGECAST* imageCastData;
-        uint32_t flags;
+        uint32_t imageCastFlags;
         Text* text;
         Vector2 size;
         Color vertexColorTopLeft;
@@ -56,8 +97,8 @@ namespace SurfRide {
         short cropIndex[2];
         SrTexCoord cropRectMin[2];
         SrTexCoord cropRectMax[2];
-        bool haveCropRect[2];
-        uint64_t unk106;
+        bool cropRectDirty[2];
+        SRS_CELL3D* cell;
 
         ImageCast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
         
@@ -77,7 +118,6 @@ namespace SurfRide {
         void InitializeText();
         void SetText(const char* str);
         Vector2 GetSize() const;
-        static Vector2 CalcPivot(float width, float height, SRS_IMAGECAST::PivotType pivotType, const Vector2& customPivot);
         static Vector2 CalcPivot(float width, float height, const SRS_IMAGECAST& imageCastData);
     };
 }

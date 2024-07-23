@@ -8,6 +8,8 @@ namespace SurfRide
 		unsigned char g{};
 		unsigned char b{};
 		unsigned char a{};
+
+		Color operator*(const Color&);
 	};
 
 	struct Colorf

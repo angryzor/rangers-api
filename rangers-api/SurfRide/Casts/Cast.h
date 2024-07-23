@@ -80,6 +80,8 @@ namespace SurfRide {
         void CreateEffectCast(void* effectData);
         SRS_TEXTURELIST* GetTextureListData(int index) const;
 
+        static Vector2 CalcPivot(float width, float height, EPivotType pivotType, const Vector2& customPivot);
+
         virtual void* GetRuntimeTypeInfo() const;
         virtual bool UnkFunc2();
         virtual uint64_t UnkFunc3() {}
