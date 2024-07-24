@@ -31,10 +31,23 @@ namespace app::player {
 
         enum class CombatFlag : unsigned int
         {
+            JUMP = 0x00,
+            DOUBLE_JUMP = 0x01,
+            BOOST = 0x03,
             SIDE_STEP = 0x05,
+            SLIDE = 0x0B,
+            STOMP = 0x0C,
+            SIDE_STEP_AIR = 0x0E,
             PARRY = 0x0F,
             PERFECT_PARRY = 0x10,
+            ATTACK1 = 0x14,
+            ATTACK2 = 0x15,
+            DROPDASH = 0x19,
             AIR_TRICK = 0x1A,
+            CYLOOP = 0x1E,
+            CAMERA_CONTROL = 0x1F,
+            MOVEMENT = 0x20,
+            HURT_IDLE = 0x21,
             GRAND_SLAM = 0x22,
             QUICK_CYLOOP = 0x28,
             PHANTOM_RUSH = 0x2A,
@@ -49,6 +62,7 @@ namespace app::player {
             CROSS_SLASH = 0x35,
             AUTO_COMBO = 0x39,
             SPIN_DASH = 0x3F,
+            AUTO_STOP = 0x40
         };
 
         enum class WorldFlag : unsigned int

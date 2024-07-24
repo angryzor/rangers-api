@@ -32,8 +32,8 @@ namespace hh::gfx {
             float unk5;
             uint32_t unk6;
             needle::SupportFX::FxRenderParam renderParam;
-            uint32_t maybeSupportFXWidth;
-            uint32_t maybeSupportFXHeight;
+            uint32_t UIWidth;
+            uint32_t UIHeight;
             uint64_t unk12;
             uint64_t unk13;
             float unk14;
