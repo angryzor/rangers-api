@@ -94,6 +94,15 @@ namespace SurfRide {
         virtual unsigned int GetCellCount() const { return 0; }
         virtual void UpdateThis(float time, const Cast* parentCast);
         virtual uint64_t UnkFunc12();
+
+        inline void SetPosition(const Vector3& pos) {
+			transform->position = pos;
+			transform->dirtyFlag.flags.m_dummy |= transform->dirtyFlag.transformAny.m_dummy;
+        }
+
+        inline csl::ut::MoveArray<SurfRide::Cast*> GetChildren() const {
+            return children;
+        }
     };
 
     struct SRS_LAYER;

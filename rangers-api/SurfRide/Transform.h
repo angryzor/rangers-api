@@ -56,6 +56,39 @@ namespace SurfRide {
 		csl::ut::Bitset<Flag> cellUnk;
 		csl::ut::Bitset<Flag> cellAny;
 		csl::ut::Bitset<Flag> flags;
+
+		inline void ClearCellAll() { flags.m_dummy &= ~cellAny.m_dummy; }
+		inline void ClearCellCropUV() { flags.m_dummy &= ~cellCropUV.m_dummy; }
+		inline void ClearCellIlluminationColor() { flags.m_dummy &= ~cellIlluminationColor.m_dummy; }
+		inline void ClearCellMaterialColor() { flags.m_dummy &= ~cellMaterialColor.m_dummy; }
+		inline void ClearCellVertexColor() { flags.m_dummy &= ~cellVertexColor.m_dummy; }
+		inline void ClearCellVertices() { flags.m_dummy &= ~cellVertices.m_dummy; }
+		inline void ClearTransformAll() { flags.m_dummy &= ~transformAny.m_dummy; }
+		inline void ClearTransformIlluminationColor() { flags.m_dummy &= ~transformIlluminationColor.m_dummy; }
+		inline void ClearTransformMaterialColor() { flags.m_dummy &= ~transformMaterialColor.m_dummy; }
+		inline void ClearTransformMatrix() { flags.m_dummy &= ~transformMatrix.m_dummy; }
+		inline bool IsCellAny() { return flags.m_dummy & cellAny.m_dummy; }
+		inline bool IsCellCropUV() { return flags.m_dummy & cellCropUV.m_dummy; }
+		inline bool IsCellIlluminationColor() { return flags.m_dummy & cellIlluminationColor.m_dummy; }
+		inline bool IsCellMaterialColor() { return flags.m_dummy & cellMaterialColor.m_dummy; }
+		inline bool IsCellVertexColor() { return flags.m_dummy & cellVertexColor.m_dummy; }
+		inline bool IsCellVertices() { return flags.m_dummy & cellVertices.m_dummy; }
+		inline bool IsTransformAny() { return flags.m_dummy & transformAny.m_dummy; }
+		inline bool IsTransformDisplayFlag() { return flags.m_dummy & transformDisplayFlag.m_dummy; }
+		inline bool IsTransformIlluminationColor() { return flags.m_dummy & transformIlluminationColor.m_dummy; }
+		inline bool IsTransformMaterialColor() { return flags.m_dummy & transformMaterialColor.m_dummy; }
+		inline bool IsTransformMatrix() { return flags.m_dummy & transformMatrix.m_dummy; }
+		inline void SetCellAll() { flags.m_dummy |= cellAny.m_dummy; }
+		inline void SetCellCropUV() { flags.m_dummy |= cellCropUV.m_dummy; }
+		inline void SetCellIlluminationColor() { flags.m_dummy |= cellIlluminationColor.m_dummy; }
+		inline void SetCellMaterialColor() { flags.m_dummy |= cellMaterialColor.m_dummy; }
+		inline void SetCellVertexColor() { flags.m_dummy |= cellVertexColor.m_dummy; }
+		inline void SetCellVertices() { flags.m_dummy |= cellVertices.m_dummy; }
+		inline void SetTransformAll() { flags.m_dummy |= transformAny.m_dummy; }
+		inline void SetTransformDisplayFlag() { flags.m_dummy |= transformDisplayFlag.m_dummy; }
+		inline void SetTransformIlluminationColor() { flags.m_dummy |= transformIlluminationColor.m_dummy; }
+		inline void SetTransformMaterialColor() { flags.m_dummy |= transformMaterialColor.m_dummy; }
+		inline void SetTransformMatrix() { flags.m_dummy |= transformMatrix.m_dummy; }
     };
 
 	class Layer;

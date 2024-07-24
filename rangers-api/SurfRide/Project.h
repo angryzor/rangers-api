@@ -38,6 +38,10 @@ namespace SurfRide
         Scene* GetScene(const char* name);
         void ApplyMemoryImageToTextureList(void* image, BinaryData* binaryData);
         void ApplyMemoryImageToProject(void* image, BinaryData* binaryData, bool unkParam);
+
+        inline csl::ut::MoveArray<SurfRide::Scene*> GetScenes() const {
+            return scenes;
+        }
     };
 
 	struct ProjectIterator {

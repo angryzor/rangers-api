@@ -10,8 +10,8 @@ namespace SurfRide
 		bool loaded{};
 		int layerCount{};
 		SRS_LAYER* layers{};
-		short cameraCount;
-		short currentCameraIndex{};
+		unsigned short cameraCount;
+		unsigned short currentCameraIndex{};
 		SRS_CAMERA* cameras{};
 		int backgroundColor{};
 		csl::math::Vector2 resolution{};
@@ -32,6 +32,11 @@ namespace SurfRide
 		Scene(const SRS_SCENE& sceneData, Project* project);
 
 		Layer* GetLayer(const char* layers);
+		
+
+        inline csl::ut::MoveArray<SurfRide::Layer*> GetLayers() const {
+            return layers;
+        }
 	};
 
 	struct SceneCollection {

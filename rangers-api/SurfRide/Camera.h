@@ -8,11 +8,12 @@ namespace SurfRide
 		int id{};
 		csl::math::Vector3 position{};
 		csl::math::Vector3 target{};
-		int flags{};
+		bool isOrthogonal{};
 		int fov;
 		float nearPlane{};
 		float farPlane{};
-		uint64_t unk;
+		float unk1{};
+		uint64_t unk2{};
 	};
 
 	class Camera
@@ -23,5 +24,7 @@ namespace SurfRide
 		csl::math::Matrix44 projectionMatrix;
 
 		Camera(const SRS_CAMERA& camera, float resolutionX, float resolutionY);
+
+		inline SRS_CAMERA& GetCameraData() { return camera; }
 	};
 }

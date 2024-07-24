@@ -28,9 +28,6 @@ namespace csl::math {
 	class alignas(16) Matrix44 {
 	public:
 		Vector4 t; Vector4 u; Vector4 v; Vector4 w;
-		static Matrix44 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
-		static Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
-		static Matrix44 CreatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClip, float farClip);
 	};
 
 	class alignas(16) Matrix34 {
@@ -75,9 +72,17 @@ namespace csl::math {
 	RANGERS_SDK_NEWTYPE(Vector4, Eigen::Vector4f, Matrix);
 	RANGERS_SDK_NEWTYPE(Quaternion, Eigen::Quaternionf, Quaternion);
 	RANGERS_SDK_NEWTYPE(Matrix34, Eigen::Affine3f, Transform);
-	RANGERS_SDK_NEWTYPE(Matrix44, Eigen::Matrix4f, Matrix);
+	RANGERS_SDK_NEWTYPE(Matrix44, Eigen::Projective3f, Transform);
 	RANGERS_SDK_NEWTYPE(Position, Eigen::Vector3f, Matrix);
 	RANGERS_SDK_NEWTYPE(Rotation, RANGERS_SDK_PACK(Eigen::Quaternion<float, Eigen::DontAlign>), Quaternion);
+}
+
+inline bool operator==(const csl::math::Matrix44& one, const csl::math::Matrix44& other) {
+	return one.matrix() == other.matrix();
+}
+
+inline bool operator!=(const csl::math::Matrix44& one, const csl::math::Matrix44& other) {
+	return !(one == other);
 }
 
 inline bool operator==(const csl::math::Matrix34& one, const csl::math::Matrix34& other) {
@@ -194,6 +199,10 @@ namespace csl::math {
 	float Vector3DistanceNormalized(const Vector3 x, const Vector3 y);
 	float Vector3Dot(const Vector3 x, const Vector3 y);
 	Vector3 Vector3NormalBetween(const Vector3 x, const Vector3 y);
+
+	Matrix34 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
+	Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
+	Matrix44 CreatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClip, float farClip);
 
 	Matrix34 Matrix34Multiply(const Matrix34& x, const Matrix34& y);
 	Matrix34 Matrix34AffineTransformation(const Vector3& position, const Quaternion& rotation);

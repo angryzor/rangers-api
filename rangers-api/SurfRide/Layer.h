@@ -100,6 +100,10 @@ namespace SurfRide
 		void SetAnimationFrame(float frame);
 		bool Is3D();
 
+        inline csl::ut::MoveArray<SurfRide::Cast*> GetCasts() const {
+            return topLevelCasts;
+        }
+
 	private:
 		void CreateCast(int index, Cast* parentCast);
 		void StartCurrentAnimation();
