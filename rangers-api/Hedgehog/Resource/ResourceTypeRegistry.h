@@ -7,7 +7,8 @@ namespace hh::fnd {
         csl::ut::StringMap<const ResourceTypeInfo*> typeInfosByExtension;
 
         static const ResourceTypeInfo* typeInfos[81];
-        static csl::ut::Pair<const char*, const ResourceTypeInfo*> typeInfoExtensionMap[44];
+        // If you uncomment this, cppsharp crashes.
+        // static csl::ut::Pair<const char*, const ResourceTypeInfo*> typeInfoExtensionMap[44];
     public:
         ResourceTypeRegistry();
         static ResourceTypeRegistry* Create();

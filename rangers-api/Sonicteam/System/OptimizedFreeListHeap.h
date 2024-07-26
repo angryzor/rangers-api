@@ -22,8 +22,8 @@ namespace csl::fnd {
             Unk2();
         };
 
-        uint64_t unk1;
-        Unk2 unk2[6];
+        uint64_t unk201;
+        Unk2 unk202[6];
         bool initialized;
 
     public:

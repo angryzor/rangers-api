@@ -77,4 +77,7 @@ namespace hh::needle {
         WRITE_DISCARD,
         WRITE_NO_OVERWRITE,
     };
+
+    void EntryUniqueElementControl(unsigned int uniqueElementHash);
+    void LeaveUniqueElementControl(unsigned int uniqueElementHash);
 }

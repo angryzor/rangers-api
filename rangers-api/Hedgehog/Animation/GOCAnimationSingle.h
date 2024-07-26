@@ -13,7 +13,7 @@ namespace hh::anim {
             HAS_UNK104 = 5,
             UNK6 = 6,
         };
-    private:
+
         Type unk101;
         uint8_t unk101a;
         csl::ut::Bitset<Flag> flags;

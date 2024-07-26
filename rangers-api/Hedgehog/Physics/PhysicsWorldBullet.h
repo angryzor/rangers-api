@@ -9,7 +9,7 @@ namespace hh::physics {
         // uint64_t unk205;
         // uint64_t unk206;
         // uint64_t unk207;
-
+    public:
         virtual uint64_t UnkFunc1() override;
         virtual uint64_t UnkFunc2() override;
         virtual uint64_t UnkFunc3() override;

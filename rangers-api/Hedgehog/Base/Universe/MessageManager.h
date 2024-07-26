@@ -14,6 +14,3 @@ namespace hh::fnd {
         static Messenger* GetMessengerByHandle(const Handle<Messenger>& messenger);
     };
 }
-
-template class hh::fnd::HandleManager<hh::fnd::Messenger>;
-template class hh::fnd::Handle<hh::fnd::Messenger>;

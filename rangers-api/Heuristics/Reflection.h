@@ -2,10 +2,10 @@
 
 namespace heur::rfl {
     struct DecoConfigParam {
-        csl::ut::Color<uint8_t> clientColor;
+        csl::ut::Color8 clientColor;
         uint8_t windowAlpha;
-        csl::ut::Color<uint8_t> startGradationGuideColor;
-        csl::ut::Color<uint8_t> endGradationGuideColor;
+        csl::ut::Color8 startGradationGuideColor;
+        csl::ut::Color8 endGradationGuideColor;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -43,8 +43,8 @@ namespace heur::rfl {
         int8_t srcPosY;
         int8_t dstPosX;
         int8_t dstPosY;
-        csl::ut::Color<uint8_t> srcColor;
-        csl::ut::Color<uint8_t> dstColor;
+        csl::ut::Color8 srcColor;
+        csl::ut::Color8 dstColor;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -57,7 +57,7 @@ namespace heur::rfl {
 
 namespace heur::rfl {
     struct DecoDropShadowParam {
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         uint8_t size;
         uint8_t spread;
         int8_t distanceX;
@@ -74,7 +74,7 @@ namespace heur::rfl {
 
 namespace heur::rfl {
     struct DecoRimParam {
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         int32_t thickness;
         int32_t offsetX;
         int32_t offsetY;
@@ -113,7 +113,7 @@ namespace heur::rfl {
         };
 
         csl::ut::VariableString name;
-        csl::ut::Color<uint8_t> fontColor;
+        csl::ut::Color8 fontColor;
         heur::rfl::DecoGradationParam fontGradParam;
         DecoLayerBlendOp layerBlendOp;
         int32_t numPasses;
@@ -473,7 +473,7 @@ namespace hh::needle {
         float lunarIntensityInCloud;
         float lunarIntensity;
         float skyIntensity;
-        csl::ut::Color<uint8_t> lunarLightColor;
+        csl::ut::Color8 lunarLightColor;
         csl::math::Vector4 lunarLightColorOffset;
         float lunarLightPower;
 
@@ -489,18 +489,18 @@ namespace hh::needle {
 namespace hh::needle {
     struct FxBrunetonSky {
         float illuminanceScale;
-        csl::ut::Color<uint8_t> rayleighColor;
-        csl::ut::Color<uint8_t> lightColorScale;
+        csl::ut::Color8 rayleighColor;
+        csl::ut::Color8 lightColorScale;
         float miePhaseFunctionG;
-        csl::ut::Color<uint8_t> mieScatteringColor;
+        csl::ut::Color8 mieScatteringColor;
         float mieScatteringScale;
-        csl::ut::Color<uint8_t> mieAbsorptionColor;
+        csl::ut::Color8 mieAbsorptionColor;
         float mieAbsorptionScale;
-        csl::ut::Color<uint8_t> rayleighScatteringColor;
+        csl::ut::Color8 rayleighScatteringColor;
         float rayleighScatteringScale;
-        csl::ut::Color<uint8_t> groundAlbedo;
-        csl::ut::Color<uint8_t> groundIrradianceScale;
-        csl::ut::Color<uint8_t> cubemapColorScale;
+        csl::ut::Color8 groundAlbedo;
+        csl::ut::Color8 groundIrradianceScale;
+        csl::ut::Color8 cubemapColorScale;
         float cubemapColorAngleRatio;
         bool enableScattering;
         float scatteringRatio;
@@ -520,16 +520,16 @@ namespace hh::needle {
 namespace hh::needle {
     struct FxSebastienSky {
         float miePhaseFunctionG;
-        csl::ut::Color<uint8_t> mieScatteringColor;
+        csl::ut::Color8 mieScatteringColor;
         csl::math::Vector4 mieScatteringColorOffset;
         float mieScatteringScale;
-        csl::ut::Color<uint8_t> mieAbsorptionColor;
+        csl::ut::Color8 mieAbsorptionColor;
         csl::math::Vector4 mieAbsorptionColorOffset;
         float mieAbsorptionScale;
-        csl::ut::Color<uint8_t> rayleighScatteringColor;
+        csl::ut::Color8 rayleighScatteringColor;
         csl::math::Vector4 rayleighScatteringColorOffset;
         float rayleighScatteringScale;
-        csl::ut::Color<uint8_t> groundAlbedo;
+        csl::ut::Color8 groundAlbedo;
         csl::math::Vector4 groundAlbedoOffset;
         bool enableGround;
         int32_t numScatteringOrder;
@@ -597,11 +597,11 @@ namespace heur::rfl {
         float scale;
         float density;
         float densityThreshold;
-        csl::ut::Color<uint8_t> cloudsExtinctionColor1;
+        csl::ut::Color8 cloudsExtinctionColor1;
         csl::math::Vector4 cloudsExtinctionColor1Offset;
-        csl::ut::Color<uint8_t> cloudsExtinctionColor2;
+        csl::ut::Color8 cloudsExtinctionColor2;
         csl::math::Vector4 cloudsExtinctionColor2Offset;
-        csl::ut::Color<uint8_t> cloudsExtinctionColor3;
+        csl::ut::Color8 cloudsExtinctionColor3;
         csl::math::Vector4 cloudsExtinctionColor3Offset;
         float cloudExtinctionBlend;
         bool enableShadow;
@@ -1820,14 +1820,14 @@ namespace hh::needle {
     struct FxOcclusionCapsuleParameter {
         bool enable;
         bool enableOcclusion;
-        csl::ut::Color<uint8_t> occlusionColor;
+        csl::ut::Color8 occlusionColor;
         float occlusionPower;
         bool enableSpecularOcclusion;
         float specularOcclusionAlpha;
         float specularOcclusionPower;
         float specularOcclusionConeAngle;
         bool enableShadow;
-        csl::ut::Color<uint8_t> shadowColor;
+        csl::ut::Color8 shadowColor;
         float shadowPower;
         float shadowConeAngle;
         float cullingDistance;
@@ -2496,7 +2496,7 @@ namespace hh::needle {
     struct FxFieldScanEffectRenderParameter {
         bool enable;
         csl::math::Vector3 centerPos;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         float radius1;
         float radius2;
         float radius3;
@@ -19512,7 +19512,7 @@ namespace heur::rfl {
         csl::math::Vector2 m_uvCell2Speed;
         csl::math::Vector2 m_uvLineScale;
         csl::math::Vector2 m_scale;
-        csl::ut::Color<float> m_color;
+        csl::ut::Colorf m_color;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -19526,8 +19526,8 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjCyloopSlashTestSpawner {
         float m_circleVertices;
-        csl::ut::Color<float> m_colorA;
-        csl::ut::Color<float> m_colorB;
+        csl::ut::Colorf m_colorA;
+        csl::ut::Colorf m_colorB;
         float m_flowLuminance;
         heur::rfl::WhiteFlow m_whiteFlow[3];
         heur::rfl::BlackFlow m_blackFlow;
@@ -21277,7 +21277,7 @@ namespace heur::rfl {
         float width;
         float height;
         float depth;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         bool visible;
         bool enemy;
         bool focusable;
@@ -28986,8 +28986,8 @@ namespace heur::rfl {
         float barricadeInterval;
         float emergencyDistance;
         csl::math::Vector3 barricadeSize;
-        csl::ut::Color<uint8_t> roadColor;
-        csl::ut::Color<uint8_t> barricadeColor;
+        csl::ut::Color8 roadColor;
+        csl::ut::Color8 barricadeColor;
         float cameraFovy;
         float cameraDistance;
         float cameraUpOffset;
@@ -31708,7 +31708,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjCGGAttachmentConfig {
         float radius;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -31722,7 +31722,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjCGGBulletNormalConfig {
         float radius;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         float speed;
         float waitFollowTime;
         float followTime;
@@ -31768,8 +31768,8 @@ namespace heur::rfl {
     struct ObjCGGRootConfig {
         float radius;
         csl::math::Vector3 offset;
-        csl::ut::Color<uint8_t> colorActive;
-        csl::ut::Color<uint8_t> colorDeactive;
+        csl::ut::Color8 colorActive;
+        csl::ut::Color8 colorDeactive;
         float timerHeightOffset;
         heur::rfl::RailCameraParam twoRailCamera;
         heur::rfl::RailCameraParam threeRailCamera;
@@ -31786,7 +31786,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjCGGResetBindConfig {
         float radius;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
         float timeToReachTimer;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -31802,7 +31802,7 @@ namespace heur::rfl {
     struct ObjCGGLaserConfig {
         float radius;
         float heightInterval;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -33923,9 +33923,9 @@ namespace heur::rfl {
         float fluctuationPeriod;
         float fluctuationAmplitude;
         float uvScrollSpeed;
-        csl::ut::Color<float> colorPrimary;
-        csl::ut::Color<uint8_t> colorVertexEdge;
-        csl::ut::Color<uint8_t> colorVertexCenter;
+        csl::ut::Colorf colorPrimary;
+        csl::ut::Color8 colorVertexEdge;
+        csl::ut::Color8 colorVertexCenter;
         float colorIntensity;
         float patternChangeIntervalTime;
         float edgeWidthScale;
@@ -34279,7 +34279,7 @@ namespace heur::rfl {
         float uvScrollSpeedMin;
         float uvScrollSpeedMax;
         int32_t reflectCountSpeedMax;
-        csl::ut::Color<uint8_t> colors[5];
+        csl::ut::Color8 colors[5];
         float colorIntensity;
         bool colorGradation;
         bool colorChangeAll;
@@ -34300,9 +34300,9 @@ namespace heur::rfl {
         float fluctuationPeriod;
         float fluctuationAmplitude;
         float uvScrollSpeed;
-        csl::ut::Color<float> colorPrimary;
-        csl::ut::Color<uint8_t> colorVertexEdge;
-        csl::ut::Color<uint8_t> colorVertexCenter;
+        csl::ut::Colorf colorPrimary;
+        csl::ut::Color8 colorVertexEdge;
+        csl::ut::Color8 colorVertexCenter;
         float colorIntensityAnimTime;
         float colorIntensityMin;
         float colorIntensityMax;
@@ -34491,7 +34491,7 @@ namespace heur::rfl {
         csl::ut::VariableString tag;
         ColliderProperty properties[2];
         bool debugDraw;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -37560,11 +37560,11 @@ namespace heur::rfl {
 
 namespace heur::rfl {
     struct CyloopTransparentLocusParameter : heur::rfl::CyloopSlashEffectBaseParameter {
-        csl::ut::Color<float> m_color0;
-        csl::ut::Color<float> m_color1;
+        csl::ut::Colorf m_color0;
+        csl::ut::Colorf m_color1;
         float m_luminance;
-        csl::ut::Color<float> m_flashColor0;
-        csl::ut::Color<float> m_flashColor1;
+        csl::ut::Colorf m_flashColor0;
+        csl::ut::Colorf m_flashColor1;
         float m_flashLuminance;
         float m_flashTime;
 
@@ -37594,12 +37594,12 @@ namespace heur::rfl {
 
 namespace heur::rfl {
     struct CyloopOpaqueLocusParameter : heur::rfl::CyloopSlashEffectBaseParameter {
-        csl::ut::Color<float> m_color;
+        csl::ut::Colorf m_color;
         float m_alphaThreshold;
         heur::rfl::OpaqueLineUvCell m_uvCells[2];
         float m_uvLineScaleX;
         float m_uvLineScaleY;
-        csl::ut::Color<float> m_flashColor;
+        csl::ut::Colorf m_flashColor;
         float m_flashTime;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -37615,12 +37615,12 @@ namespace heur::rfl {
     struct CyloopCrossLineParameter {
         csl::ut::VariableString m_textureNamePattern;
         csl::ut::VariableString m_textureNameDist;
-        csl::ut::Color<float> startColor;
-        csl::ut::Color<float> endColor;
+        csl::ut::Colorf startColor;
+        csl::ut::Colorf endColor;
         float startColorLuminance;
         float endColorLuminance;
-        csl::ut::Color<float> startColorFlash;
-        csl::ut::Color<float> endColorFlash;
+        csl::ut::Colorf startColorFlash;
+        csl::ut::Colorf endColorFlash;
         float startColorLuminanceFlash;
         float endColorLuminanceFlash;
         float flashTime;
@@ -37730,7 +37730,7 @@ namespace heur::rfl {
         heur::rfl::CyloopLocusParameter locusQuick;
         heur::rfl::CyloopLocusParameter locusSuperSonic;
         heur::rfl::CyloopLocusParameter locusSuperSonicQuick;
-        csl::ut::Color<float> auraColor;
+        csl::ut::Colorf auraColor;
         heur::rfl::CyloopDropItemParameter dropItem;
         float needSpeed;
         heur::rfl::CyloopShapeEffectParameter shapeEffect;
@@ -40299,7 +40299,7 @@ namespace heur::rfl {
         float decreaseSec;
         float inletRadius;
         float moveSoundSpeed;
-        csl::ut::Color<float> auraColor2;
+        csl::ut::Colorf auraColor2;
         heur::rfl::PlayerParamSuperSonicShapeAttackData shapeEffects[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -42223,7 +42223,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct IDColor {
         int32_t id;
-        csl::ut::Color<uint8_t> color;
+        csl::ut::Color8 color;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;

@@ -11,11 +11,12 @@ namespace hh::game {
     };
 
     class ObjInfo : public fnd::ReferencedObject {
-        enum class Flags {
+        enum class Flag {
             LOADED = 0,
             INITIALIZED = 1,
         };
-        csl::ut::Bitset<Flags> flags;
+
+        csl::ut::Bitset<Flag> flags;
         fnd::ResourceLoader* resourceLoader;
         void* unk7;
         GameManager* gameManager;

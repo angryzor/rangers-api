@@ -40,6 +40,3 @@ namespace hh::game {
         }
     };
 }
-
-template class hh::fnd::HandleManager<hh::game::GOComponent>;
-template class hh::fnd::Handle<hh::game::GOComponent>;

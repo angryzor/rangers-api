@@ -31,8 +31,6 @@ namespace hh::game {
             EDITOR,
         };
 
-        typedef bool (*ObjectAttribute)(const GameObjectClass* gameObjectClass, int* attributeFlags);
-
         ObjectWorld* objectWorld;
         GameManager* gameManager;
         csl::ut::Bitset<Flag> flags;
@@ -46,6 +44,8 @@ namespace hh::game {
         csl::ut::PointerMap<GameObjectClass*, csl::ut::MoveArray<GameObject*>*> objectsByClass;
         csl::ut::MoveArray<void*> unk11;
     public:
+        typedef bool (*ObjectAttribute)(const GameObjectClass* gameObjectClass, int* attributeFlags);
+
         ObjectWorldChunk(csl::fnd::IAllocator* allocator, GameManager* gameManager);
 		virtual void GameObjectRemovedCallback(GameManager* gameManager, GameObject* gameObject);
         void AddLayer(ObjectWorldChunkLayer* layer);
