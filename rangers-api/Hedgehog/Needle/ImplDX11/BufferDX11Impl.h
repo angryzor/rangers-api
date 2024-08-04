@@ -38,6 +38,6 @@ namespace hh::needle::ImplDX11 {
         // }
     };
 
-    typedef NeedleResourceContainer<Buffer, BufferDX11Impl<SBufferObject, NEEDLE_RESOURCE_DX11_CONSTANT_BUFFER_OBJECT>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeNotSupport> ConstantBuffer;
+    typedef NeedleResourceContainer<needle::ConstantBuffer, BufferDX11Impl<SBufferObject, NEEDLE_RESOURCE_DX11_CONSTANT_BUFFER_OBJECT>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeNotSupport> ConstantBuffer;
     typedef NeedleResourceContainer<Buffer, BufferDX11Impl<SBufferObject, NEEDLE_RESOURCE_DX11_VERTEX_BUFFER_OBJECT>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeNotSupport> VertexBuffer;
 }

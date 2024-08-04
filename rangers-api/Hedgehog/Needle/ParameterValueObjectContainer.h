@@ -5,5 +5,6 @@ namespace hh::needle {
     public:
         void SetShaderParameterFloat(unsigned int index, const float* value, unsigned int size);
         void SetTextureByName(CNameIDObject* name, Texture* texture);
+        static size_t Measure(const InstanceParameterContainerData& instanceParameterContainerData, void* unkParam);
     };
 }

@@ -34,6 +34,14 @@ namespace SurfRide {
         void* effectData;
         SRS_SLICE slices[1];
 
+        inline SRE_EFFECT_TYPE GetEffectType() const {
+            return static_cast<SRE_EFFECT_TYPE>(effectType & 0xF);
+        }
+
+        inline void SetEffectType(SRE_EFFECT_TYPE type) {
+            effectType = (effectType & ~0xF) | static_cast<unsigned int>(type & 0xF);
+        }
+
         inline EPivotType GetPivotType() const {
             return static_cast<EPivotType>((flags >> 19) & 0xF);
         }

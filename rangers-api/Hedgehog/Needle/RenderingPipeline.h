@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef AddJob
+#undef AddJob
+#endif
+
 namespace hh::needle {
     class GlobalParameterBuilder;
     class PipelineInfo : public NeedleObject {
@@ -28,28 +32,35 @@ namespace hh::needle {
         PipelineInfo(CNameIDObject* renderUnitNameId);
 
         virtual uint64_t UnkFunc1();
+
+        FxRenderOption* GetFxRenderOption() const;
+        SceneContextManager* GetSceneContextManager() const;
     };
 
     class RenderingPipeline : public NeedleRefcountObject {
     public:
-        csl::ut::MoveArray<void*> renderJobs;
+        csl::ut::MoveArray<RenderJob*> renderJobs;
         csl::fnd::IAllocator* allocator;
         const char* name;
-        uint16_t unk2;
+        bool initialized;
+        bool jobsRunning;
 
         RenderingPipeline(csl::fnd::IAllocator* allocator, const char* name);
 
         virtual uint64_t UnkFunc1();
-        virtual uint64_t UnkFunc2();
-        virtual uint64_t UnkFunc3() {}
-        virtual uint64_t UnkFunc4();
-        virtual uint64_t UnkFunc5();
-        virtual uint64_t UnkFunc6();
-        virtual uint64_t UnkFunc7();
-        virtual uint64_t UnkFunc8();
+        virtual void UnkFunc2(PipelineInfo* pipelineInfo);
+        virtual void UnkFunc3(PipelineInfo* pipelineInfo) {}
+        virtual void RenderMatchingJobs(PipelineInfo* pipelineInfo, uint64_t mask, bool renderNonMatching);
+        virtual void Initialize();
+        virtual void Deinitialize();
+        virtual void StartJobs();
+        virtual void StopJobs();
         virtual uint64_t UnkFunc9() {}
         virtual uint64_t UnkFunc10();
-        virtual uint64_t UnkFunc11() {}
-        virtual uint64_t UnkFunc12() {}
+        virtual void InitializeJobs() {}
+        virtual void DeinitializeJobs() {}
+
+        void AddJob(RenderJob* job);
+        void RemoveJob(RenderJob* job);
     };
 }

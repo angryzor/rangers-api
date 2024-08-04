@@ -11,6 +11,7 @@ namespace hh::needle::ImplDX11 {
 
         void* unk;
         DeviceObjectDX11* deviceObject;
+        void* unk2; // see 0x155DFD450
 
         virtual void* QueryResource(size_t id) override;
         virtual const void* QueryResource(size_t id) const override;
@@ -18,31 +19,31 @@ namespace hh::needle::ImplDX11 {
         virtual void* UnkFunc9() override;
         virtual void OtherCreateDeviceContext() override; // CreateDeviceDispatch?
         virtual Texture* CreateTexture(const TextureCreationInfo& creationInfo) override;
-        virtual void CreateTextureView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
-        virtual void UnkFunc12() override;
-        virtual void UnkFunc13() override;
-        virtual void UnkFunc14() override;
-        virtual void UnkFunc15() override;
-        virtual void UnkFunc16() override;
-        virtual void UnkFunc17() override;
-        virtual void UnkFunc18() override;
-        virtual void CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) override;
+        virtual Texture* CreateTextureView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
+        virtual RenderTarget* CreateRenderTarget(const TextureCreationInfo& creationInfo) override;
+        virtual RenderTarget* CreateRenderTargetView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
+        virtual DepthStencil* CreateDepthStencil(const TextureCreationInfo& creationInfo) override;
+        virtual DepthStencil* CreateDepthStencilView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
+        virtual DepthStencil* CreateUnorderedAccessView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
+        virtual Buffer* CreateVertexBuffer(const BufferCreationInfo& creationInfo) override;
+        virtual Buffer* CreateIndexBuffer(const BufferCreationInfo& creationInfo) override;
+        virtual bool CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) override;
         virtual void UnkFunc20() override {}
-        virtual void UnkFunc21() override;
+        virtual void UnkFunc21() override {}
         virtual VertexShader* CreateVertexShader(const void* data, size_t size) override;
         virtual PixelShader* CreatePixelShader(const void* data, size_t size) override;
-        virtual void UnkFunc24() override;
-        virtual void UnkFunc25() override;
-        virtual void UnkFunc26() override;
-        virtual void UnkFunc27() override;
-        virtual void UnkFunc28() override;
-        virtual void UnkFunc29() override;
-        virtual void UnkFunc30() override;
-        virtual void UnkFunc31() override;
-        virtual void UnkFunc32() override;
-        virtual void UnkFunc33() override;
-        virtual void UnkFunc34() override;
-        virtual void UnkFunc35() override;
+        virtual ComputeShader* CreateComputeShader(const void* data, size_t size) override;
+        virtual PredicationObjectContainer* CreateOcclusionPredicate(unsigned int count, PredicationQueryType type) override;
+        virtual PredicationObjectContainer* CreateOcclusionQuery(unsigned int count, PredicationQueryType type) override;
+        virtual ConstantBuffer* CreateConstantBuffer(const BufferCreationInfo& creationInfo) override;
+        virtual ShaderObject* CreateShaderObject(const ShaderObjectCreationInfo& creationInfo) override;
+        virtual bool CreateShaderMaterialContainer(const ShaderMaterialContainerCreationInfo& creationInfo, ShaderMaterialContainer** shaderMaterialContainer) override;
+        virtual void* GetDeviceBaseInstanceParameterContainerData() const override;
+        virtual void BeginGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
+        virtual void EndGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
+        virtual ParameterProcessQueueHandle* SetupParameterProcessQueue(CScratchMemoryContext* memCtx) const override;
+        virtual void FlushParameterProcessQueueSegment(ParameterProcessQueueHandle* queue, CScratchMemoryContext* memCtx, void* unkParam, unsigned int start, unsigned int size) const override;
+        virtual void SamplerObjectClearForExtended() override;
         virtual void UnkFunc36() override {}
         virtual void UnkFunc37() override {}
         virtual void UnkFunc38() override;

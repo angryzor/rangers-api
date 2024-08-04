@@ -19,6 +19,14 @@ namespace SurfRide {
         uint32_t effectType;
         void* effectData;
 
+        inline SRE_EFFECT_TYPE GetEffectType() const {
+            return static_cast<SRE_EFFECT_TYPE>(effectType & 0xF);
+        }
+
+        inline void SetEffectType(SRE_EFFECT_TYPE type) {
+            effectType = (effectType & ~0xF) | static_cast<unsigned int>(type & 0xF);
+        }
+
         // Apparently shifting 4 is some mirror flag
 
         inline EPivotType GetPivotType() const {

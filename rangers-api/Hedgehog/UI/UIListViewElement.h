@@ -241,6 +241,11 @@ namespace hh::ui {
             fnd::Reference<UIListViewCursor> cursorElement;
         };
 
+        struct CursorBinding {
+            SurfRide::ReferenceCast* cast;
+            Cursor* cursor;
+        };
+
         csl::fnd::Delegate<void ()> unk15;
         csl::fnd::Delegate<void (UIListViewElement*, ListViewEventArg&)> onHighlightItem; // guessed at the moment
         csl::fnd::Delegate<void ()> unk17;
@@ -253,7 +258,7 @@ namespace hh::ui {
         float unk24;
         UIListViewLayout layout;
         csl::ut::MoveArray<UIListViewItemView*> listViewItemViews;
-        csl::ut::MoveArray<csl::ut::Pair<SurfRide::ReferenceCast*, Cursor*>> cursorCasts; // casts that have a name that starts with "cursor"
+        csl::ut::MoveArray<CursorBinding> cursorCasts; // casts that have a name that starts with "cursor"
         csl::ut::MoveArray<fnd::Reference<Cursor>> cursors;
         csl::math::Vector4 unk29;
         csl::math::Vector4 unk30;

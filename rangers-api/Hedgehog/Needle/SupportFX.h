@@ -55,7 +55,7 @@ namespace hh::needle {
         void* unk9[3];
         uint64_t unk10_0;
         DisplaySwapDevice* swapDevice;
-        uint64_t unk10_2;
+        intrusive_ptr<RenderManager> renderManager;
         PBRModelInstanceRenderer* modelInstanceRenderer;
         uint64_t unk10_4;
         uint64_t unk10_5;
@@ -106,6 +106,7 @@ namespace hh::needle {
         RenderingDeviceContext* GetRenderingContext() const;
         RenderingDeviceContext* GetRenderingContext2() const;
         SceneContextManager* GetSceneContextManager(const char* name) const;
+        SceneContextManager* GetSceneContextManager(const CNameIDObject* name) const;
         VertexShader* GetVertexShader(unsigned int idx) const;
         PixelShader* GetPixelShader(unsigned int idx) const;
         ComputeShader* GetComputeShader(unsigned int idx) const;
@@ -115,7 +116,7 @@ namespace hh::needle {
 
         SupportFX();
         virtual ~SupportFX();
-        virtual uint64_t UnkFunc1() = 0;
+        virtual void UnkFunc1(RenderManager* renderManager) = 0;
         virtual bool UnkFunc2() { return true; }
         virtual bool UnkFunc3();
         virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras);
@@ -138,7 +139,7 @@ namespace hh::needle {
 
         SupportFXAll();
 
-        virtual uint64_t UnkFunc1() override;
+        virtual void UnkFunc1(RenderManager* renderManager) override;
         virtual bool UnkFunc2() override;
         virtual bool UnkFunc3() override;
         virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras) override;

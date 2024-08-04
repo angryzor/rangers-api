@@ -67,9 +67,6 @@ namespace hh::needle::ImplDX11 {
         SResourceContext* resourceContext;
         Unk2* parameterSlots;
         ID3D11Buffer* constantBuffers[14];
-        uint64_t unk0a;
-        uint32_t constantBufferDirtyBits;
-        uint32_t samplerDirtyBits;
-        uint32_t shaderResourceDirtyBits;
+        uint64_t unk0a; // possibly padding?
     };
 }

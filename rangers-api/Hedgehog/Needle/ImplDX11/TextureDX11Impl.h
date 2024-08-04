@@ -50,6 +50,9 @@ namespace hh::needle::ImplDX11 {
     class TextureDX11Impl {
         TextureBuffer buffer;
         TextureView view;
+        char unk1[0x30];
+        void* streamingUnk2;
+        uint32_t unk3;
 
     public:
         static constexpr size_t resourceId = MyResourceId;

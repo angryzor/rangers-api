@@ -52,7 +52,7 @@ namespace hh::needle::ImplDX11 {
             ID3D11InputLayout* inputLayout;
             SResourceContext resourceContexts[3];
             SShaderContext shaderContext;
-            SFlushParameterContext flushParameterContexts[3];
+            StatusCacheOneStage flushParameterContexts[3];
             Unk4 unk3;
             uint32_t qword7AC;
             uint32_t qword7B0;
@@ -73,6 +73,9 @@ namespace hh::needle::ImplDX11 {
 
             void Setup();
             void InvalidateStatus();
+            void FlushVertexShaderStage(ID3D11DeviceContext* deviceContext);
+            void FlushPixelShaderStage(ID3D11DeviceContext* deviceContext);
+            void FlushComputeShaderStage(ID3D11DeviceContext* deviceContext);
         };
 
         ID3D11DeviceContext* deviceContext;

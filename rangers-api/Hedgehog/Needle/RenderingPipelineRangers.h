@@ -25,7 +25,9 @@ namespace hh::needle {
 
         RenderingPipelineRangers(csl::fnd::IAllocator* allocator, PBRModelInstanceRenderer* renderer);
 
-        virtual uint64_t UnkFunc11() override;
-        virtual uint64_t UnkFunc12() override;
+        virtual uint64_t UnkFunc1() override;
+        virtual void UnkFunc3(PipelineInfo* pipelineInfo) override;
+        virtual void InitializeJobs() override;
+        virtual void DeinitializeJobs() override;
     };
 }

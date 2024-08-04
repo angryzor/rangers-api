@@ -11,9 +11,10 @@ namespace SurfRide {
 
     class BinaryData;
     class TextureList {
+    public:
         SRS_TEXTURELIST* textureListData;
         RefPtr<TextureData> textureData;
-    public:
+
         TextureList(SRS_TEXTURELIST* textureListData);
         void SetTextureData(TextureData* textureData);
     };

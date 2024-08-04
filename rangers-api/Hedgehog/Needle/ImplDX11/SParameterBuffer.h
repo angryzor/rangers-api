@@ -57,6 +57,12 @@ namespace hh::needle::ImplDX11 {
         template<> void SetFlushParameter<SVSTypeDX11>(ID3D11DeviceContext* deviceContext, SFlushParameterContext& flushParameterContext);
         template<> void SetFlushParameter<SPSTypeDX11>(ID3D11DeviceContext* deviceContext, SFlushParameterContext& flushParameterContext);
         template<> void SetFlushParameter<SCSTypeDX11>(ID3D11DeviceContext* deviceContext, SFlushParameterContext& flushParameterContext);
+
+        template<typename T, typename U>
+        void Flush(ID3D11DeviceContext* deviceContext, const ShaderMaterialContainerObjectDX11Impl* materialContainerObject, unsigned int materialIndex, const InstanceParametersBuildParameter& instanceParametersBuildParameter, ID3D11InputLayout** inputLayout, U** shader, StatusCacheOneStage* statusCache);
+        template<> void Flush<SVSTypeDX11, ID3D11VertexShader>(ID3D11DeviceContext* deviceContext, const ShaderMaterialContainerObjectDX11Impl* materialContainerObject, unsigned int materialIndex, const InstanceParametersBuildParameter& instanceParametersBuildParameter, ID3D11InputLayout** inputLayout, ID3D11VertexShader** shader, StatusCacheOneStage* statusCache);
+        template<> void Flush<SPSTypeDX11, ID3D11PixelShader>(ID3D11DeviceContext* deviceContext, const ShaderMaterialContainerObjectDX11Impl* materialContainerObject, unsigned int materialIndex, const InstanceParametersBuildParameter& instanceParametersBuildParameter, ID3D11InputLayout** inputLayout, ID3D11PixelShader** shader, StatusCacheOneStage* statusCache);
+        template<> void Flush<SCSTypeDX11, ID3D11ComputeShader>(ID3D11DeviceContext* deviceContext, const ShaderMaterialContainerObjectDX11Impl* materialContainerObject, unsigned int materialIndex, const InstanceParametersBuildParameter& instanceParametersBuildParameter, ID3D11InputLayout** inputLayout, ID3D11ComputeShader** shader, StatusCacheOneStage* statusCache);
     };
 
     template<typename T, typename Target, typename FlushParameterContext>

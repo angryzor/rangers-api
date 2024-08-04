@@ -13,7 +13,8 @@ namespace hh::needle {
         uint64_t unk106;
         uint64_t unk107;
         uint64_t unk108;
-        uint64_t unk109;
+        uint32_t enableOcclusionCullingView;
+        uint32_t unk109;
         uint64_t unk110;
         uint8_t unk111;
         csl::ut::MoveArray<void*> unk112;
@@ -26,12 +27,12 @@ namespace hh::needle {
         WorldRenderingPipelineExecContext* CreateExecContext(unsigned int unkParam);
 
         virtual uint64_t UnkFunc1() override;
-        virtual uint64_t UnkFunc2() override;
-        virtual uint64_t UnkFunc8() override;
-        virtual uint64_t UnkFunc13();
-        virtual uint64_t UnkFunc14() {}
-        virtual uint64_t UnkFunc15() {}
-        virtual uint64_t UnkFunc16() {}
-        virtual uint64_t UnkFunc17() {}
+        virtual void UnkFunc2(PipelineInfo* pipelineInfo) override;
+        virtual void StopJobs() override;
+        virtual void Execute(PipelineInfo* pipelineInfo, WorldRenderingPipelineExecContext* execContext);
+        virtual void UnkFunc14() {}
+        virtual void UnkFunc15() {}
+        virtual void UnkFunc16() {}
+        virtual void UnkFunc17() {}
     };
 }

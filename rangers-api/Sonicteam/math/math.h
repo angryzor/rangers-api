@@ -146,10 +146,10 @@ namespace csl::geom {
 		math::Vector3 Extent() const;
 		float DistanceSq(const math::Vector3& point, math::Vector3* distanceByAxis) const;
 
-		//inline void AddPoint(const csl::math::Vector3& point) {
-		//	min = min.cwiseMin(point);
-		//	max = max.cwiseMax(point);
-		//}
+		inline void AddPoint(const csl::math::Vector3& point) {
+			min = min.cwiseMin(point);
+			max = max.cwiseMax(point);
+		}
 	};
 
 	class Obb
@@ -193,12 +193,12 @@ namespace csl::geom {
 }
 
 namespace csl::math {
-	Vector3 Vector3Cross(const Vector3 x, const Vector3 y);
-	float Vector3Distance(const Vector3 x, const Vector3 y);
-	float Vector3DistanceSq(const Vector3 x, const Vector3 y);
-	float Vector3DistanceNormalized(const Vector3 x, const Vector3 y);
-	float Vector3Dot(const Vector3 x, const Vector3 y);
-	Vector3 Vector3NormalBetween(const Vector3 x, const Vector3 y);
+	Vector3 Vector3Cross(const Vector3& x, const Vector3& y);
+	float Vector3Distance(const Vector3& x, const Vector3& y);
+	float Vector3DistanceSq(const Vector3& x, const Vector3& y);
+	float Vector3DistanceNormalized(const Vector3& x, const Vector3& y);
+	float Vector3Dot(const Vector3& x, const Vector3& y);
+	Vector3 Vector3NormalBetween(const Vector3& x, const Vector3& y);
 
 	Matrix34 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
 	Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);

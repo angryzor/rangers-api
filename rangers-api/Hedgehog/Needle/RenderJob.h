@@ -1,0 +1,40 @@
+#pragma once
+
+namespace hh::needle {
+    // rsdx_noncopyable...
+    class PipelineInfo;
+    struct RenderJobCallback {
+        typedef void (Function)(PipelineInfo* pipelineInfo, unsigned int viewportId, void* userData);
+
+        Function* function;
+        void* userData;
+    };
+
+    class RenderJob : public NeedleRefcountObject {
+    public:
+        uint32_t unk1;
+        uint64_t unk2;
+        uint32_t unk3;
+        uint64_t unk4;
+        uint64_t unk5;
+        unsigned int enabledBits;
+        uint64_t otherBits;
+
+        virtual unsigned int GetUnk3();
+        virtual void SetUnk3(unsigned int newUnk3);
+        virtual unsigned int UnkFunc6();
+        virtual void UnkFunc7(void* unkParam) = 0;
+        virtual void UnkFunc8() = 0;
+        virtual void UnkFunc9() {}
+        virtual void Render(PipelineInfo* pipelineInfo) {}
+        virtual void CallRender(PipelineInfo* pipelineInfo);
+        virtual bool IsEnabled(unsigned int bit);
+        virtual bool IsAnyEnabled();
+        virtual void SetAllEnabled(bool enabled);
+        virtual unsigned int GetNameHash() = 0;
+        virtual const char* GetName() = 0;
+        virtual unsigned int UnkFunc16() = 0;
+        virtual unsigned int UnkFunc17();
+        virtual void SetUnk7(uint64_t newUnk7);
+    };
+}

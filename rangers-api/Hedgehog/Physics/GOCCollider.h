@@ -118,17 +118,17 @@ namespace hh::physics {
         void RemoveListener(GOCColliderListener* listener);
         void SetEnabled(bool enabled);
 
-        //inline csl::math::Matrix34 GetWorldTransform() const {
-        //    csl::math::Matrix34 matrix;
-        //    matrix.fromPositionOrientationScale(transformedWorldPosition.m_Position, transformedWorldPosition.m_Rotation, scale);
-        //    return matrix;
-        //};
+        inline csl::math::Matrix34 GetWorldTransform() const {
+           csl::math::Matrix34 matrix;
+           matrix.fromPositionOrientationScale(transformedWorldPosition.m_Position, transformedWorldPosition.m_Rotation, scale);
+           return matrix;
+        };
 
-        //inline csl::math::Matrix34 GetLocalTransform() const {
-        //    csl::math::Matrix34 matrix;
-        //    matrix.fromPositionOrientationScale(localWorldPosition.m_Position, localWorldPosition.m_Rotation, scale);
-        //    return matrix;
-        //};
+        inline csl::math::Matrix34 GetLocalTransform() const {
+           csl::math::Matrix34 matrix;
+           matrix.fromPositionOrientationScale(localWorldPosition.m_Position, localWorldPosition.m_Rotation, scale);
+           return matrix;
+        };
 
         GOCOMPONENT_CLASS_DECLARATION(GOCCollider);
     };
