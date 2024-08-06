@@ -8,7 +8,7 @@ namespace hh::needle {
         RenderProperty* renderProperty;
         uint64_t unk3;
         intrusive_ptr<NeedleResContainer> resourceContainer;
-        float unk5;
+        float worldScale;
 
         RenderManager(unsigned int x, unsigned int y, unsigned int width, unsigned int height, csl::fnd::IAllocator* allocator);
 

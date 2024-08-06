@@ -16,8 +16,8 @@ namespace hh::needle {
         Unk1 qwordE0;
 
         PostEffectRenderJob(void* unk1Param);
-        virtual void UnkFunc7(void* unkParam) override;
-        virtual void UnkFunc8() override;
+        virtual void Start(const RenderJobContext* context) override;
+        virtual void Stop() override;
         virtual void UnkFunc20(unsigned int index, void* obj);
         virtual void UnkFunc21(unsigned int index, void* obj);
         virtual void UnkFunc22();

@@ -60,7 +60,7 @@ namespace hh::needle {
         uint64_t unk10_4;
         uint64_t unk10_5;
         csl::ut::MoveArray<intrusive_ptr<SceneContextManager>> sceneContextManagers;
-        float unk11;
+        float worldScale;
         Texture* textures[13];
         uint64_t unk13_0;
         uint64_t unk13_1;
@@ -105,12 +105,14 @@ namespace hh::needle {
         RenderingDevice* GetRenderingDevice() const;
         RenderingDeviceContext* GetRenderingContext() const;
         RenderingDeviceContext* GetRenderingContext2() const;
+        RenderManager* GetRenderManager() const;
         SceneContextManager* GetSceneContextManager(const char* name) const;
         SceneContextManager* GetSceneContextManager(const CNameIDObject* name) const;
         VertexShader* GetVertexShader(unsigned int idx) const;
         PixelShader* GetPixelShader(unsigned int idx) const;
         ComputeShader* GetComputeShader(unsigned int idx) const;
         void AddSceneContextManager(SceneContextManager* sceneContextManager);
+        void SetWorldScale(float scale);
 
         static SupportFX* instance;
 

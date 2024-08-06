@@ -4,19 +4,29 @@ namespace hh::needle {
     class WorldRenderingPipelineExecContext;
     class WorldRenderingPipeline : public RenderingPipeline {
     public:
+        struct RenderParameters {
+            SDrawPassSceneSetting* drawPassSettings;
+            unsigned int parameterCount;
+            unsigned int unk104;
+            unsigned int parameterSize;
+            unsigned int cullingGroupCount;
+            SCullGroupSetting* cullingGroups;
+            uint64_t unk107;
+            uint32_t occlusionCullingViewIndex; // dunno
+            uint32_t unk108a;
+            uint32_t enableOcclusionCullingView; // or maybe occlusion culling view type? dunno
+            uint32_t unk109;
+            uint64_t unk110;
+        };
+        struct SetupInfo {
+            PBRModelInstanceRenderer* modelInstanceRenderer;
+            uint32_t drawPassCount;
+            RenderParameters renderParameters;
+            uint8_t unk111;
+        };
+
         csl::fnd::Mutex mutex;
-        uint64_t unk101;
-        uint32_t unk102;
-        uint64_t unk103;
-        uint64_t unk104;
-        uint64_t unk105;
-        uint64_t unk106;
-        uint64_t unk107;
-        uint64_t unk108;
-        uint32_t enableOcclusionCullingView;
-        uint32_t unk109;
-        uint64_t unk110;
-        uint8_t unk111;
+        SetupInfo settings;
         csl::ut::MoveArray<void*> unk112;
         csl::ut::MoveArray<void*> unk113;
         int unk114;
@@ -25,6 +35,7 @@ namespace hh::needle {
         WorldRenderingPipeline(csl::fnd::IAllocator* allocator);
 
         WorldRenderingPipelineExecContext* CreateExecContext(unsigned int unkParam);
+        void Setup(const SetupInfo& setupInfo);
 
         virtual uint64_t UnkFunc1() override;
         virtual void UnkFunc2(PipelineInfo* pipelineInfo) override;

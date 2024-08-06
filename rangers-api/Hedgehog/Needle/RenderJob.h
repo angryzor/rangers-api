@@ -10,6 +10,16 @@ namespace hh::needle {
         void* userData;
     };
 
+    class RenderingPipeline;
+    class SupportFX;
+    struct RenderJobContext {
+        RenderingDevice* renderingDevice;
+        RenderManager* renderManager;
+        RenderingPipeline* renderingPipeline;
+        SupportFX* supportFX;
+        csl::fnd::IAllocator* allocator;
+    };
+
     class RenderJob : public NeedleRefcountObject {
     public:
         uint32_t unk1;
@@ -23,8 +33,8 @@ namespace hh::needle {
         virtual unsigned int GetUnk3();
         virtual void SetUnk3(unsigned int newUnk3);
         virtual unsigned int UnkFunc6();
-        virtual void UnkFunc7(void* unkParam) = 0;
-        virtual void UnkFunc8() = 0;
+        virtual void Start(const RenderJobContext* context) = 0;
+        virtual void Stop() = 0;
         virtual void UnkFunc9() {}
         virtual void Render(PipelineInfo* pipelineInfo) {}
         virtual void CallRender(PipelineInfo* pipelineInfo);

@@ -78,6 +78,14 @@ namespace hh::needle {
         WRITE_NO_OVERWRITE,
     };
 
+    struct DebugVisualizeParameter {
+        uint8_t unk1;
+        uint8_t unk2;
+        float unk3;
+        float unk4;
+        uint32_t unk5;
+    };
+
     void EntryUniqueElementControl(unsigned int uniqueElementHash);
     void LeaveUniqueElementControl(unsigned int uniqueElementHash);
 }

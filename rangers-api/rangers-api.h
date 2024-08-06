@@ -11,12 +11,22 @@
 #include <cstdint>
 #include <d3d11.h>
 
-#ifndef EXPORTING_TYPES
+#ifdef EXPORTING_TYPES
+
+struct SLIST_HEADER_SHIM {
+    unsigned long long Alignment;
+    unsigned long long Region;
+};
+#define SLIST_HEADER SLIST_HEADER_SHIM
+
+#else
+
 #include <new>
 #include <cassert>
 #include <cstring>
 #include <type_traits>
 #include <synchapi.h>
+
 #endif
 
 // Why does the Win32 API do this...
@@ -56,8 +66,20 @@
 #include "Sonicteam/System/TlsfHeap.h"
 #include "Sonicteam/System/Delegate.h"
 
-#include "Hedgehog/Rsdx/hhMTSimpleJobJoint.h"
-#include "Hedgehog/Rsdx/hhmtjobdispatchfunctions.h"
+#include "Hedgehog/rsdx/rsdx_noncopyable.h"
+#include "Hedgehog/rsdx/core/algo/hhrsdxalgomutex.h"
+#include "Hedgehog/rsdx/heapmemory/algo/memory_template_fixpool.hpp"
+#include "Hedgehog/rsdx/heapmemory/algo/memory_template_tiny.hpp"
+#include "Hedgehog/rsdx/heapmemory/allocator/hhrsdxmemoryallocatorcache.h"
+#include "Hedgehog/rsdx/heapmemory/allocator/hhrsdxmemorymain_systemmemory_allocatormapper.hpp"
+#include "Hedgehog/rsdx/heapmemory/allocator/hhrsdxmemorymain.h"
+#include "Hedgehog/rsdx/heapmemory/allocator/hhrsdxmemorysystemmemory.h"
+#include "Hedgehog/rsdx/heapmemory/util/hhrsdxmemorymapperutil.h"
+#include "Hedgehog/rsdx/mtbase/util/hhmtjobmemoryutilities.h"
+#include "Hedgehog/rsdx/mtbase/util/hhmtjobdispatchfunctions.h"
+#include "Hedgehog/rsdx/os/system/hhrsdxsystemglobal.hpp"
+#include "Hedgehog/rsdx/os/thread/hhrsdxservicethread.hpp"
+#include "Hedgehog/rsdx/os/thread/hhrsdxthread.hpp"
 
 #include "Hedgehog/System/hhAllocator.h"
 #include "Hedgehog/System/SingletonInitNode.h"
@@ -152,7 +174,6 @@
 
 #include "Heuristics/Reflection.h"
 
-#include "Hedgehog/Rsdx/rsdx_noncopyable.h"
 #include "Hedgehog/Needle/Utility/Binhash.h"
 #include "Hedgehog/Needle/Types.h"
 #include "Hedgehog/Needle/Rectangle.h"
@@ -189,11 +210,18 @@
 #include "Hedgehog/Needle/MaterialResource.h"
 #include "Hedgehog/Needle/MeshResource.h"
 #include "Hedgehog/Needle/Model.h"
+#include "Hedgehog/Needle/ViewportSetting.h"
+#include "Hedgehog/Needle/UnorderedAccessViewsSetting.h"
+#include "Hedgehog/Needle/RenderTargetsSetting.h"
+#include "Hedgehog/Needle/SamplerStateSetting.h"
+#include "Hedgehog/Needle/SDrawPassSceneSetting.h"
+#include "Hedgehog/Needle/SGlobalParameterSceneSetting.h"
+#include "Hedgehog/Needle/SCullGroupSetting.h"
 #include "Hedgehog/Needle/InstanceParametersBuildParameter.h"
 #include "Hedgehog/Needle/InstanceParameterContainerData.h"
 #include "Hedgehog/Needle/InstanceParameterCounterUtil.h"
-#include "Hedgehog/Needle/ParameterValueObject.h"
 #include "Hedgehog/Needle/ParameterValueObjectContainer.h"
+#include "Hedgehog/Needle/ParameterValueObject.h"
 #include "Hedgehog/Needle/ShaderMeshMaterialBuilder.h"
 #include "Hedgehog/Needle/ShaderObject.h"
 #include "Hedgehog/Needle/ShaderMaterialContainer.h"
@@ -203,11 +231,6 @@
 #include "Hedgehog/Needle/PBRModelInstance.h"
 #include "Hedgehog/Needle/RenderingCommandList.h"
 #include "Hedgehog/Needle/DisplaySwapDevice.h"
-
-#include "Hedgehog/Needle/ViewportSetting.h"
-#include "Hedgehog/Needle/UnorderedAccessViewsSetting.h"
-#include "Hedgehog/Needle/RenderTargetsSetting.h"
-#include "Hedgehog/Needle/SamplerStateSetting.h"
 
 #include "Hedgehog/Needle/NeedleResContainer.h"
 #include "Hedgehog/Needle/RenderProperty.h"
@@ -233,8 +256,9 @@
 #include "Hedgehog/Needle/SceneParamContainer.h"
 #include "Hedgehog/Needle/RenderingPipeline.h"
 #include "Hedgehog/Needle/GatherRenderingPassContext.h"
-#include "Hedgehog/Needle/WorldRenderingPipelineExecContext.h"
+#include "Hedgehog/Needle/GlobalParameterBuilder.h"
 #include "Hedgehog/Needle/WorldRenderingPipeline.h"
+#include "Hedgehog/Needle/WorldRenderingPipelineExecContext.h"
 #include "Hedgehog/Needle/RenderTexturePipeline.h"
 #include "Hedgehog/Needle/RenderingPipelineRangers.h"
 #include "Hedgehog/Needle/RenderUnit.h"

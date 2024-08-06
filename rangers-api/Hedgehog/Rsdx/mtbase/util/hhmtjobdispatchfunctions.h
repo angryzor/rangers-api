@@ -4,8 +4,8 @@ namespace hh::rsdx {
     template<typename JobDesc, typename JobDispatcher, typename JobInitializer>
     class CSimpleJobDispatcher {
     public:
-        rsdx::hhMTSimpleJobJoint* unk1;
-        rsdx::hhMTSimpleJobJoint* unk2;
+        rsdx::SJobJoint* unk1;
+        rsdx::SJobJoint* unk2;
         JobDesc* desc;
         JobDispatcher* dispatcher;
         uint32_t m_currDispatchCount;
@@ -13,8 +13,8 @@ namespace hh::rsdx {
         uint32_t unk4b;
         uint32_t unk4c;
         uint32_t unk4d;
-        rsdx::hhMTSimpleJobJoint* unk5;
-        rsdx::hhMTSimpleJobJoint* unk6;
+        rsdx::SJobJoint* unk5;
+        rsdx::SJobJoint* unk6;
         JobInitializer* initializer;
         const char** name;
     };
