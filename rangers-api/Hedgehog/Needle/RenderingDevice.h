@@ -42,7 +42,7 @@ namespace hh::needle {
         virtual void BeginGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const = 0;
         virtual void EndGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const = 0;
         virtual ParameterProcessQueueHandle* SetupParameterProcessQueue(CScratchMemoryContext* memCtx) const = 0;
-        virtual void FlushParameterProcessQueueSegment(ParameterProcessQueueHandle* queue, CScratchMemoryContext* memCtx, void* unkParam, unsigned int start, unsigned int size) const = 0;
+        virtual void FlushParameterProcessQueueSegment(ParameterProcessQueueHandle* queue, CScratchMemoryContext* memCtx, void* unkParam, size_t maybeUnkParamSize, unsigned int size) const = 0;
         virtual void SamplerObjectClearForExtended() = 0;
         virtual void UnkFunc36() = 0;
         virtual void UnkFunc37() = 0;

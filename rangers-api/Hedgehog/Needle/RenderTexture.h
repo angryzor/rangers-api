@@ -56,12 +56,12 @@ namespace hh::needle {
         uint64_t unk120;
         uint64_t unk121;
 
-        RenderTextureHandle(const RenderTextureCreateArgs& createArgs, SupportFXAll* supportFX, bool unkParam);
+        RenderTextureHandle(const RenderTextureCreateArgs& createArgs, SupportFXAll* supportFX, RenderManager* renderManager);
         RenderTextureHandle(const RenderTextureCreateArgs& createArgs, SupportFXAll* supportFX);
         
-        virtual bool UnkFunc3() override;
-        virtual void UnkFunc4() override;
+        virtual bool IsEnabled(const RenderInfo& renderInfo) override;
+        virtual void SetRenderDimensions(const RenderInfo& renderInfo) override;
         virtual void UnkFunc5() override;
-        virtual uint64_t UnkFunc6() override;
+        virtual void LoadRenderParams(const RenderInfo& renderInfo) override;
     };
 }

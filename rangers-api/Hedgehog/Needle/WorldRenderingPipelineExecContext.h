@@ -6,11 +6,11 @@ namespace hh::needle {
         struct Unk1 {
             uint8_t byte470;
             bool byte471;
-            uint32_t dword474;
+            uint32_t drawPassCount;
             WorldRenderingPipeline::SetupInfo pipelineSetupInfo;
         };
 
-        uint8_t byte8;
+        bool shouldDraw;
         GatherRenderingPassContext gatherRenderingPassContext;
         uint64_t qword258;
         GatherRenderingPassContext* pGatherRenderingPassContext;

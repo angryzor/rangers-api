@@ -18,9 +18,9 @@ namespace hh::needle {
         uint64_t unk1;
         uint64_t unk2;
         SupportFXAll* supportFX;
-        CNameIDObject* nameId;
-        CNameIDObject* sceneNameId;
-        WorldRenderingPipeline* pipeline;
+        intrusive_ptr<CNameIDObject> nameId;
+        intrusive_ptr<CNameIDObject> sceneNameId;
+        intrusive_ptr<WorldRenderingPipeline> pipeline;
         PipelineInfo* pipelineInfo;
         uint64_t unk6;
         uint64_t unk7;
@@ -31,7 +31,7 @@ namespace hh::needle {
         uint32_t unk10b;
         uint64_t unk11;
         intrusive_ptr<SceneParamContainer> sceneParamContainer;
-        bool unk12;
+        uint8_t priority;
         bool paramsInitialized;
         bool createSceneParamListeners;
         Unk1 unk14;
@@ -41,18 +41,29 @@ namespace hh::needle {
         uint32_t unk18;
         uint32_t flags;
 
-        RenderUnit(const char* name, SupportFXAll* supportFX, bool unk12Param);
-        RenderUnit(const char* name, SupportFXAll* supportFX, bool unk12Param, uint32_t flags);
+        struct RenderInfo {
+            SupportFX::FxRenderParam renderParam;
+            RenderTarget* renderTarget;
+        };
+
+        RenderUnit(const char* name, SupportFXAll* supportFX, uint8_t priority);
+        RenderUnit(const char* name, SupportFXAll* supportFX, uint8_t priority, uint32_t flags);
+        ~RenderUnit() {
+            delete renderingPipelineExecContext;
+            delete pipelineInfo;
+        }
+
         void LoadGlobalParams();
         void SetPipeline(RenderingPipeline* pipeline);
         void SetSceneName(const char* name);
+        bool HasHigherPriority(const RenderUnit* other) const;
 
-        virtual uint64_t UnkFunc1();
-        virtual uint64_t UnkFunc2();
-        virtual bool UnkFunc3() { return true; }
-        virtual void UnkFunc4() {}
+        virtual void Initialize();
+        virtual void Deinitialize();
+        virtual bool IsEnabled(const RenderInfo& renderInfo) { return true; }
+        virtual void SetRenderDimensions(const RenderInfo& renderInfo) {}
         virtual void UnkFunc5() {}
-        virtual uint64_t UnkFunc6();
-        virtual uint64_t UnkFunc7();
+        virtual void LoadRenderParams(const RenderInfo& renderInfo);
+        virtual void Render();
     };
 }

@@ -50,9 +50,15 @@ namespace hh::needle {
         void* unk6[128];
         void* unk6a[5];
         RenderingDevice* renderingDevice;
-        VertexShader* vertexShaders[3];
-        PixelShader* pixelShaders[3];
-        void* unk9[3];
+        VertexShader* commonVertexShader;
+        VertexShader* zPrepassSimpleVertexShader;
+        VertexShader* zPrepassSimplePTVertexShader;
+        PixelShader* commonPixelShader;
+        PixelShader* unkPixelShader; // not filled in? zPrepassSimplePixelShader?
+        PixelShader* zPrepassSimplePTPixelShader;
+        ShaderObject* commonShaderObject;
+        ShaderObject* zPrepassSimpleShaderObject;
+        ShaderObject* zPrepassSimplePTShaderObject;
         uint64_t unk10_0;
         DisplaySwapDevice* swapDevice;
         intrusive_ptr<RenderManager> renderManager;
@@ -86,10 +92,10 @@ namespace hh::needle {
         uint64_t unk22;
         int32_t unk23;
         uint64_t unk24;
-        RenderingDeviceContext* renderingDeviceContext1;
-        RenderingDeviceContext* renderingDeviceContext2;
-        uint64_t unk27;
-        PrimitiveRenderer* primitiveRenderer;
+        intrusive_ptr<RenderingDeviceContext> renderingDeviceContextTLS;
+        intrusive_ptr<RenderingDeviceContext> renderingDeviceContext;
+        intrusive_ptr<RenderingContextManager> renderingContextManager;
+        intrusive_ptr<PrimitiveRenderer> primitiveRenderer;
         SupportFX* unkBackRef;
         uint32_t unk29;
         uint64_t unk30;
@@ -102,9 +108,12 @@ namespace hh::needle {
             virtual void CIL_UnkFunc2();
         };
 
+        bool CreateDevice(int unkParam1, int unkParam2, void* unkParam3, intrusive_ptr<RenderingDevice>& renderingDevice, bool unkParam4, void* unkParam5, void* unkParam6);
+        void CreateRenderManager(int unkParam1, int unkParam2, unsigned int unkParam3, unsigned int unkParam4, intrusive_ptr<RenderingDevice>& renderingDevice, void* unkParam5);
         RenderingDevice* GetRenderingDevice() const;
         RenderingDeviceContext* GetRenderingContext() const;
         RenderingDeviceContext* GetRenderingContext2() const;
+        RenderingContextManager* GetRenderingContextManager() const;
         RenderManager* GetRenderManager() const;
         SceneContextManager* GetSceneContextManager(const char* name) const;
         SceneContextManager* GetSceneContextManager(const CNameIDObject* name) const;
@@ -113,13 +122,14 @@ namespace hh::needle {
         ComputeShader* GetComputeShader(unsigned int idx) const;
         void AddSceneContextManager(SceneContextManager* sceneContextManager);
         void SetWorldScale(float scale);
+        void AddRenderUnit(RenderUnit* unit);
 
         static SupportFX* instance;
 
         SupportFX();
         virtual ~SupportFX();
         virtual void UnkFunc1(RenderManager* renderManager) = 0;
-        virtual bool UnkFunc2() { return true; }
+        virtual bool Render(const FxRenderParam& renderParam, RenderTarget* renderTarget) { return true; }
         virtual bool UnkFunc3();
         virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras);
     };
@@ -142,7 +152,7 @@ namespace hh::needle {
         SupportFXAll();
 
         virtual void UnkFunc1(RenderManager* renderManager) override;
-        virtual bool UnkFunc2() override;
+        virtual bool Render(const FxRenderParam& renderParam, RenderTarget* renderTarget) override;
         virtual bool UnkFunc3() override;
         virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras) override;
 

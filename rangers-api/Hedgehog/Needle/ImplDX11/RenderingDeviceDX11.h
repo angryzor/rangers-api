@@ -42,7 +42,7 @@ namespace hh::needle::ImplDX11 {
         virtual void BeginGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
         virtual void EndGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
         virtual ParameterProcessQueueHandle* SetupParameterProcessQueue(CScratchMemoryContext* memCtx) const override;
-        virtual void FlushParameterProcessQueueSegment(ParameterProcessQueueHandle* queue, CScratchMemoryContext* memCtx, void* unkParam, unsigned int start, unsigned int size) const override;
+        virtual void FlushParameterProcessQueueSegment(ParameterProcessQueueHandle* queue, CScratchMemoryContext* memCtx, void* unkParam, size_t maybeUnkParamSize, unsigned int size) const override;
         virtual void SamplerObjectClearForExtended() override;
         virtual void UnkFunc36() override {}
         virtual void UnkFunc37() override {}

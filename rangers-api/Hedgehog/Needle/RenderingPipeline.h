@@ -16,8 +16,8 @@ namespace hh::needle {
         SupportFXAll* supportFX;
         uint64_t qword138;
         GlobalParameterBuilder* globalParameterBuilder;
-        uint64_t qword148;
-        uint64_t qword150;
+        RenderTarget* renderTarget;
+        RenderingContextManager* renderingContextManager;
         CNameIDObject* renderUnitNameId;
         CNameIDObject* sceneNameId;
         uint32_t cameraId;

@@ -5,9 +5,10 @@ namespace hh::needle {
     public:
         struct ParamData {
             void* data;
+            size_t count;
         };
         CNameIDObject*** names;
-        ParamData* data;
+        ParamData** data;
         uint32_t* counts;
         uint32_t unk4;
         void* memorySpan2;

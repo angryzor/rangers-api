@@ -5,7 +5,7 @@ namespace hh::needle {
     class ParamBuildJob : public NeedleRefcountObject {
     public:
         // guessed
-        virtual void Build() = 0;
+        virtual void Run() = 0;
         virtual void OnSetEnable(bool enabled) = 0;
     };
 }

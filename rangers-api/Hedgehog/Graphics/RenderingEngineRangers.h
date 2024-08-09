@@ -4,8 +4,8 @@ namespace hh::gfx {
     class RenderingEngineRangers : public RenderingEngineNeedle {
     public:
         needle::SupportFXAll supportFX;
-        needle::RenderUnit* mainRenderUnit;
-        needle::RenderingPipelineRangers* mainRenderingPipeline;
+        needle::intrusive_ptr<needle::RenderUnit> mainRenderUnit;
+        needle::intrusive_ptr<needle::RenderingPipelineRangers> mainRenderingPipeline;
         uint64_t unk203;
 
         RenderingEngineRangers(csl::fnd::IAllocator* allocator);

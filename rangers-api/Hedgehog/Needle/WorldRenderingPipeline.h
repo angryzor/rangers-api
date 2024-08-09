@@ -6,11 +6,11 @@ namespace hh::needle {
     public:
         struct RenderParameters {
             SDrawPassSceneSetting* drawPassSettings;
-            unsigned int parameterCount;
+            unsigned int parameterCount; // possibly viewport count?
             unsigned int unk104;
             unsigned int parameterSize;
             unsigned int cullingGroupCount;
-            SCullGroupSetting* cullingGroups;
+            SCullGroupSetting* cullingGroupSettings;
             uint64_t unk107;
             uint32_t occlusionCullingViewIndex; // dunno
             uint32_t unk108a;
@@ -27,8 +27,8 @@ namespace hh::needle {
 
         csl::fnd::Mutex mutex;
         SetupInfo settings;
-        csl::ut::MoveArray<void*> unk112;
-        csl::ut::MoveArray<void*> unk113;
+        csl::ut::MoveArray<GatherDrawPassInfoJob*> gatherDrawPassInfoJobs;
+        csl::ut::MoveArray<ParamBuildJob*> paramBuildJobs;
         int unk114;
         uint32_t unk115;
 
@@ -36,6 +36,10 @@ namespace hh::needle {
 
         WorldRenderingPipelineExecContext* CreateExecContext(unsigned int unkParam);
         void Setup(const SetupInfo& setupInfo);
+        void AddGatherDrawPassInfoJob(GatherDrawPassInfoJob* gatherDrawPassInfoJob);
+        void RemoveGatherDrawPassInfoJob(GatherDrawPassInfoJob* gatherDrawPassInfoJob);
+        void AddParamBuildJob(ParamBuildJob* gatherDrawPassInfoJob);
+        void RemoveParamBuildJob(ParamBuildJob* gatherDrawPassInfoJob);
 
         virtual uint64_t UnkFunc1() override;
         virtual void UnkFunc2(PipelineInfo* pipelineInfo) override;
