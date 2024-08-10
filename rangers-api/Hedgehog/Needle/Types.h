@@ -86,6 +86,18 @@ namespace hh::needle {
         uint32_t unk5;
     };
 
+    struct PickColorParameter {
+        uint8_t unk1;
+        uint64_t unk2;
+        uint64_t unk3;
+        uint32_t unk4;
+    };
+
+    struct SmoothnessParameter {
+        float unk1;
+        float unk2;
+    };
+
     void EntryUniqueElementControl(unsigned int uniqueElementHash);
     void LeaveUniqueElementControl(unsigned int uniqueElementHash);
 }

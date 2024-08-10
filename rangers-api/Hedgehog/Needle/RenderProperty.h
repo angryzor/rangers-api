@@ -4,7 +4,8 @@ namespace hh::needle {
     class SceneParamContainer;
     class RenderProperty : public NeedleObject {
     public:
-        uint16_t unk1;
+        bool renderTargetMustBeRecreated;
+        uint8_t unka1;
         uint32_t unk2;
         uint32_t unk3;
         uint64_t unk4;

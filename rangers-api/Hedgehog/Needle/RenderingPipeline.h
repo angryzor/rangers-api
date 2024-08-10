@@ -6,12 +6,17 @@
 
 namespace hh::needle {
     class GlobalParameterBuilder;
+    struct GatherRenderingPassContext;
+    struct DrawPassIdToIndexMap;
+    struct DrawPassInfo {
+        DrawPassIdToIndexMap* drawPassIdToIndexMap;
+        GatherRenderingPassContext* pGatherRenderingPassContext;
+        uint8_t byte268;
+    };
     class PipelineInfo : public NeedleObject {
     public:
         uint32_t dword8;
-        uint64_t qword10;
-        uint64_t qword18;
-        uint64_t qword20;
+        DrawPassInfo drawPassInfo;
         SupportFX::FxRenderParam renderParam;
         SupportFXAll* supportFX;
         uint64_t qword138;
@@ -22,57 +27,63 @@ namespace hh::needle {
         CNameIDObject* sceneNameId;
         uint32_t cameraId;
         SceneParamContainer* sceneParamContainer;
-        uint64_t qword178;
+        uint32_t drawPassCount;
+        uint32_t currentPass;
         uint64_t qword180;
         uint32_t dword188;
         RenderUnit* renderUnit;
         uint64_t qword198;
-        uint64_t qword1A0;
+        CScratchMemoryContext* scratchMemoryContext;
 
         PipelineInfo(CNameIDObject* renderUnitNameId);
         PipelineInfo(const PipelineInfo& other);
+        PipelineInfo& operator=(const PipelineInfo& other);
 
         virtual uint64_t UnkFunc1();
 
-        NeedleType<FxBloomParameter>* GetFxBloomParameter() const;
-        NeedleType<FxDOFParameter>* GetFxDOFParameter() const;
-        NeedleType<FxColorContrastParameter>* GetFxColorContrastParameter() const;
-        NeedleType<FxToneMapParameter>* GetFxToneMapParameter() const;
-        NeedleType<FxCameraControlParameter>* GetFxCameraControlParameter() const;
-        NeedleType<FxShadowMapParameter>* GetFxShadowMapParameter() const;
-        NeedleType<FxShadowHeightMapParameter>* GetFxShadowHeightMapParameter() const;
-        NeedleType<FxVolumetricShadowParameter>* GetFxVolumetricShadowParameter() const;
-        NeedleType<FxScreenBlurParameter>* GetFxScreenBlurParameter() const;
-        NeedleType<FxSSAOParameter>* GetFxSSAOParameter() const;
-        NeedleType<FxSHLightFieldParameter>* GetFxSHLightFieldParameter() const;
-        NeedleType<FxLightScatteringParameter>* GetFxLightScatteringParameter() const;
-        NeedleType<FxRLRParameter>* GetFxRLRParameter() const;
-        NeedleType<FxSSGIParameter>* GetFxSSGIParameter() const;
-        NeedleType<FxPlanarReflectionParameter>* GetFxPlanarReflectionParameter() const;
-        NeedleType<FxOcclusionCapsuleParameter>* GetFxOcclusionCapsuleParameter() const;
-        NeedleType<FxGodrayParameter>* GetFxGodrayParameter() const;
-        NeedleType<FxScreenSpaceGodrayParameter>* GetFxScreenSpaceGodrayParameter() const;
-        NeedleType<FxHeatHazeParameter>* GetFxHeatHazeParameter() const;
-        NeedleType<FxSceneEnvironmentParameter>* GetFxSceneEnvironmentParameter() const;
-        NeedleType<FxRenderOption>* GetFxRenderOption() const;
-        NeedleType<FxSGGIParameter>* GetFxSGGIParameter() const;
-        NeedleType<FxTAAParameter>* GetFxTAAParameter() const;
-        NeedleType<FxEffectParameter>* GetFxEffectParameter() const;
-        NeedleType<FxAtmosphereParameter>* GetFxAtmosphereParameter() const;
-        NeedleType<FxDensityParameter>* GetFxDensityParameter() const;
-        NeedleType<FxWindComputeParameter>* GetFxWindComputeParameter() const;
-        NeedleType<FxGpuEnvironmentParameter>* GetFxGpuEnvironmentParameter() const;
-        NeedleType<FxInteractiveWaveParameter>* GetFxInteractiveWaveParameter() const;
-        NeedleType<FxChromaticAberrationParameter>* GetFxChromaticAberrationParameter() const;
-        NeedleType<FxVignetteParameter>* GetFxVignetteParameter() const;
-        NeedleType<FxTerrainMaterialBlendingParameter>* GetFxTerrainMaterialBlendingParameter() const;
-        NeedleType<FxWeatherParameter>* GetFxWeatherParameter() const;
-        NeedleType<FxColorAccessibilityFilterParameter>* GetFxColorAccessibilityFilterParameter() const;
-        NeedleType<FxCyberNoiseEffectParameter>* GetFxCyberNoiseEffectParameter() const;
-        NeedleType<FxCyberSpaceStartNoiseParameter>* GetFxCyberSpaceStartNoiseParameter() const;
-        NeedleType<FxCyberNPCSSEffectRenderParameter>* GetFxCyberNPCSSEffectRenderParameter() const;
-        NeedleType<FxFieldScanEffectRenderParameter>* GetFxFieldScanEffectRenderParameter() const;
-        NeedleType<FxSeparableSSSParameter>* GetFxSeparableSSSParameter() const;
+        void SetDrawPassInfo(const DrawPassInfo& drawPassInfo);
+        const DrawPassInfo& GetDrawPassInfo() const;
+
+        template<typename T> SceneParamContainer::ParamHolder<T>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxBloomParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxDOFParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxColorContrastParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxToneMapParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxCameraControlParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxShadowMapParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxShadowHeightMapParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxVolumetricShadowParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxScreenBlurParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSSAOParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSHLightFieldParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxLightScatteringParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxRLRParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSSGIParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxPlanarReflectionParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxOcclusionCapsuleParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxGodrayParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxScreenSpaceGodrayParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxHeatHazeParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSceneEnvironmentParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxRenderOption>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSGGIParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxTAAParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxEffectParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxAtmosphereParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxDensityParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxWindComputeParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxGpuEnvironmentParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxInteractiveWaveParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxChromaticAberrationParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxVignetteParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxTerrainMaterialBlendingParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxWeatherParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxColorAccessibilityFilterParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxCyberNoiseEffectParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxCyberSpaceStartNoiseParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxCyberNPCSSEffectRenderParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxFieldScanEffectRenderParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxSeparableSSSParameter>* GetSceneParam();
 
         SceneContextManager* GetSceneContextManager() const;
     };
@@ -90,7 +101,7 @@ namespace hh::needle {
         virtual uint64_t UnkFunc1();
         virtual void UnkFunc2(PipelineInfo* pipelineInfo);
         virtual void UnkFunc3(PipelineInfo* pipelineInfo) {}
-        virtual void RenderMatchingJobs(PipelineInfo* pipelineInfo, uint64_t mask, bool renderNonMatching);
+        virtual void RenderMatchingJobs(PipelineInfo* pipelineInfo, uint64_t mask, bool renderNonMatching); // mask bits seem to correspond to render passes, renderNonMatching inverts the mask
         virtual void Initialize();
         virtual void Deinitialize();
         virtual void StartJobs(const RenderJobContext& context);

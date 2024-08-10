@@ -1,7 +1,7 @@
 #pragma once
 
 namespace hh::needle {
-    void NeedleAllocateDefaultMemory(size_t size, unsigned int alignment);
+    void* NeedleAllocateDefaultMemory(size_t size, unsigned int alignment);
     void NeedleFreeDefaultMemory(void* ptr);
 
     class NeedleObject {

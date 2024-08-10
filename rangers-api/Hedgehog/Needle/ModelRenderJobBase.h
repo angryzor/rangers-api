@@ -4,9 +4,11 @@ namespace hh::needle {
     class ModelRenderJobBase : public RenderJob {
     public:
         struct Unk1 {
-            int64_t unk1;
-            int64_t unk2;
-            uint64_t unk3;
+            int32_t unk1;
+            int32_t unk1a;
+            int32_t unk2;
+            int32_t unk2a;
+            CNameIDObject* name;
             uint32_t unk4;
             int unk5;
 

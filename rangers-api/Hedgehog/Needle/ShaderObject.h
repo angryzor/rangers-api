@@ -8,9 +8,9 @@ namespace hh::needle {
         ComputeShader* computeShader;
         InstanceParameterContainerData* vertexShaderParameterValues; // tt
         InstanceParameterContainerData* pixelShaderParameterValues; // tt
-        InstanceParameterContainerData* computeShaderParameterValues[4];
-        unsigned int someComputeShaderParams[4];
-        unsigned int someCount;
+        InstanceParameterContainerData* instanceParameterContainers[4];
+        unsigned int instanceParameterContainerSizes[4]; //tt, maybe container type
+        unsigned int instanceParameterContainerCount;
         // uint32_t unk9; // no reference seen yet, possibly padding.
     };
 

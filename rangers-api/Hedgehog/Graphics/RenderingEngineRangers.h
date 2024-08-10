@@ -17,8 +17,8 @@ namespace hh::gfx {
         virtual void GetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) override;
         virtual uint64_t CreateRenderTextureHandle(const needle::RenderTextureCreateArgs& createArgs, csl::fnd::IAllocator* allocator) override;
         virtual void AddRenderableToRenderTextureHandle(needle::RenderTextureHandle* handle, gfnd::Renderable* renderable) override;
-        virtual void UnkFunc19() override;
-        virtual unsigned int UnkFunc23() override;
+        virtual void SetDebugViewType(unsigned int debugViewType) override;
+        virtual needle::RenderingPipeline* GetMainRenderingPipeline() const override;
         virtual void SetupMainRenderUnit() override;
     };
 }

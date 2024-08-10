@@ -5,9 +5,10 @@ namespace hh::needle {
     public:
         RenderingDeviceContext* deviceContext;
         uint64_t unk2;
-        uint64_t unk3;
-        uint16_t unk4;
-        uint64_t unk5;
+        intrusive_ptr<RenderingCommandList> commandList;
+        bool isRendering;
+        bool finished;
+        SyncDrawContext* next;
 
         SyncDrawContext();
     };

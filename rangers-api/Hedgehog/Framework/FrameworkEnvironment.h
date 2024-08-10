@@ -14,7 +14,7 @@ namespace hh::fw {
         bool unk1;
         fnd::SUpdateInfo updateInfo;
         Window* window;
-        uint64_t unk6;
+        FrameworkOptions* options;
         uint64_t unk7;
         uint32_t unk8;
         uint32_t unk8b;

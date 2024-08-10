@@ -37,7 +37,7 @@ namespace hh::needle {
         Unk1 unk14;
         uint32_t cameraId;
         WorldRenderingPipelineExecContext* renderingPipelineExecContext;
-        uint8_t unk17;
+        bool renders;
         uint32_t unk18;
         uint32_t flags;
 
@@ -49,8 +49,8 @@ namespace hh::needle {
         RenderUnit(const char* name, SupportFXAll* supportFX, uint8_t priority);
         RenderUnit(const char* name, SupportFXAll* supportFX, uint8_t priority, uint32_t flags);
         ~RenderUnit() {
-            delete renderingPipelineExecContext;
-            delete pipelineInfo;
+            if (renderingPipelineExecContext) delete renderingPipelineExecContext;
+            if (pipelineInfo) delete pipelineInfo;
         }
 
         void LoadGlobalParams();

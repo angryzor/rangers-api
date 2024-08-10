@@ -72,7 +72,7 @@ namespace hh::needle {
         uint64_t unk13_1;
         CopyColor* copyColor1;
         CopyColor* copyColor2;
-        uint64_t unk13_4;
+        RenderTarget* renderTarget;
         uint64_t unk13_5;
         csl::ut::MoveArray<void*> unk13_6;
         uint64_t unk13b[7];
@@ -108,8 +108,8 @@ namespace hh::needle {
             virtual void CIL_UnkFunc2();
         };
 
-        bool CreateDevice(int unkParam1, int unkParam2, void* unkParam3, intrusive_ptr<RenderingDevice>& renderingDevice, bool unkParam4, void* unkParam5, void* unkParam6);
-        void CreateRenderManager(int unkParam1, int unkParam2, unsigned int unkParam3, unsigned int unkParam4, intrusive_ptr<RenderingDevice>& renderingDevice, void* unkParam5);
+        bool CreateDevice(unsigned int resX, unsigned int resY, void* unkParam3, intrusive_ptr<RenderingDevice>& renderingDevice, bool unkParam4, void* unkParam5, void* unkParam6);
+        void CreateRenderManager(unsigned int resX, unsigned int resY, unsigned int renderResX, unsigned int renderResY, intrusive_ptr<RenderingDevice>& renderingDevice, void* unkParam5);
         RenderingDevice* GetRenderingDevice() const;
         RenderingDeviceContext* GetRenderingContext() const;
         RenderingDeviceContext* GetRenderingContext2() const;

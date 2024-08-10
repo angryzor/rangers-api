@@ -2,10 +2,10 @@
 
 namespace hh::needle {
     // rsdx_noncopyable...
+    class PipelineInfo;
     class ParamBuildJob : public NeedleRefcountObject {
     public:
-        // guessed
-        virtual void Run() = 0;
-        virtual void OnSetEnable(bool enabled) = 0;
+        virtual void Prepare(ParameterValueObject* parameters, PipelineInfo* pipelineInfo) = 0;
+        virtual void Run(void* params, PipelineInfo* pipelineInfo, unsigned int viewportId, unsigned int parameterId) = 0;
     };
 }

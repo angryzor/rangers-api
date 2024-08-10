@@ -32,9 +32,9 @@ namespace hh::gfx {
 
     public:
         RenderingEngineNeedle(csl::fnd::IAllocator* allocator);
-        virtual void CreateRenderingDevice(void* unkParam1) override;
+        virtual bool Setup(const gfnd::RenderManagerBase::SetupInfo& setupInfo) override;
         virtual void UnkFunc2() override {}
-        virtual uint64_t UnkFunc3(uint64_t unkParam1) override;
+        virtual bool Render(const needle::SupportFX::FxRenderParam& renderParam) override;
         virtual uint64_t UnkFunc4() override {}
         virtual ID3D11Device* GetNativeDevice() override;
         virtual uint64_t Startup() override;
@@ -51,11 +51,11 @@ namespace hh::gfx {
         virtual uint64_t DestroyRenderTextureHandle(needle::RenderTextureHandle* handle);
         virtual void AddRenderableToRenderTextureHandle(needle::RenderTextureHandle* handle, gfnd::Renderable* renderable) {}
         virtual unsigned int UnkFunc18() { return 0; }
-        virtual void UnkFunc19() {}
-        virtual uint64_t UnkFunc20();
+        virtual void SetDebugViewType(unsigned int debugViewType) {}
+        virtual void* GetWorld() const;
         virtual void UnkFunc21() {}
         virtual void UnkFunc22() {}
-        virtual unsigned int UnkFunc23() { return 0; }
+        virtual needle::RenderingPipeline* GetMainRenderingPipeline() const { return 0; }
         virtual void SetupMainRenderUnit() {}
 
         void AddComponent(RenderingComponent* component);

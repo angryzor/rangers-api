@@ -1,6 +1,14 @@
 #pragma once
 
 namespace hh::needle {
+    struct RenderTargetReference {
+        uint32_t unk1;
+        uint32_t index;
+        intrusive_ptr<NeedleRefcountObject> unk2;
+
+        RenderTargetReference(unsigned int index);
+    };
+
     class RenderTargetManager : public NeedleObject {
     public:
         struct Unk1 {
@@ -23,10 +31,10 @@ namespace hh::needle {
 
         int unk9;
         csl::ut::StringMap<void*> unk10;
-        unsigned int x;
-        unsigned int y;
-        unsigned int width;
-        unsigned int height;
+        unsigned int renderResX;
+        unsigned int renderResY;
+        unsigned int resX;
+        unsigned int resY;
         uint8_t unk10a; // set in RenderManager::InitializeMainRenderTarget
         uint32_t unk11;
         uint32_t unk11a;
@@ -42,5 +50,6 @@ namespace hh::needle {
         virtual ~RenderTargetManager();
 
         void Initialize(RenderingDevice* renderingDevice, RenderingDeviceContext* renderingDeviceContext, unsigned int x, unsigned int y, unsigned int width, unsigned int height);
+        void ClearDepthStencil(const RenderTargetReference& renderTargetReference, bool unkParam);
     };
 }

@@ -12,9 +12,13 @@ namespace hh::needle {
 
     template<typename T, typename Impl = SRefCountAddReleaseNeedleObject, bool TUnk = true>
     class intrusive_ptr {
-        T* ptr;
+        T* ptr{ nullptr };
     
     public:
+		intrusive_ptr() {
+
+		}
+
 		intrusive_ptr(intrusive_ptr<T, Impl, TUnk>& other) {
 			*this = other;
 		}

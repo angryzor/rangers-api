@@ -35,20 +35,9 @@ namespace hh::gfx {
             uint32_t maybeSupportFXWidth;
             uint32_t maybeSupportFXHeight;
             uint64_t unk12;
-            uint64_t unk13;
-            float unk14;
-            uint64_t unk15;
-            uint32_t width;
-            uint32_t height;
-            uint32_t maybeRenderWidth;
-            uint32_t maybeRenderHeight;
-            uint64_t unk18;
-            uint64_t unk19;
-            uint64_t unk20;
-            uint64_t unk21;
-            uint8_t unk22;
+            SetupInfo setupInfo;
             RenderingEngineNeedle* renderingEngine;
-            uint64_t unk24;
+            fnd::Reference<RenderingWorld> renderingWorld;
             csl::math::Vector4 unk25;
             RenderManager* renderManager;
             uint64_t unk26;
@@ -60,6 +49,7 @@ namespace hh::gfx {
 
             static Impl* Create(csl::fnd::IAllocator* allocator);
             Impl(csl::fnd::IAllocator* allocator, RenderManager* renderManager);
+            bool Setup(const SetupInfo& setupInfo);
         };
 
         Impl* implementation;
@@ -78,7 +68,7 @@ namespace hh::gfx {
 
         RenderManager(csl::fnd::IAllocator* allocator);
 
-        virtual uint64_t UnkFunc1() override;
+        virtual bool Setup(const SetupInfo& setupInfo) override;
         virtual uint64_t UnkFunc2() override;
         virtual uint64_t UnkFunc3() override;
         virtual void UnkFunc4() override;
@@ -87,5 +77,6 @@ namespace hh::gfx {
         void CreateModelFromResource2(needle::Model** model, const SModelCreationInfo& modelCreationInfo);
         needle::ModelInstance* CreateModelInstance(needle::Model* model, const SModelCreationInfo& modelCreationInfo) const;
         gfx::RenderingEngineNeedle* GetNeedleResourceDevice();
+        void SetRenderingWorld(RenderingWorld* renderingWorld);
     };
 }

@@ -13,7 +13,7 @@ namespace hh::needle::ImplDX11 {
         virtual void* QueryResource(size_t id) override;
         virtual const void* QueryResource(size_t id) const override;
         virtual void BeginRendering() override;
-        virtual void* EndRendering() override;
+        virtual RenderingCommandList* EndRendering() override;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) override;
         virtual bool UnkFunc1() override { return true; }
         virtual bool UnkFunc2() override { return true; }

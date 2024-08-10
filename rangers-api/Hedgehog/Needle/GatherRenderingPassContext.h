@@ -7,6 +7,11 @@ namespace hh::needle {
         uint32_t otherDataCount; // context unk2
     };
 
+    // Maps draw pass ids to sequential indices that skip disabled passes.
+    struct DrawPassIdToIndexMap {
+        int indicesByPassId[128];
+    };
+
     struct GatherRenderingPassContextImpl {
         class CResourceParseContextHolder {
             struct Unk1 {
@@ -134,7 +139,8 @@ namespace hh::needle {
         GatherRenderingPassContextImpl* implementation;
         CScratchMemoryContext memCtx;
         uint32_t unk2;
-        int unk3[128];
+        uint16_t unk3;
+        DrawPassIdToIndexMap drawPassIdToIndexMap;
 
         virtual ~GatherRenderingPassContext();
 
