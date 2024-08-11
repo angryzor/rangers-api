@@ -26,13 +26,13 @@ namespace hh::needle {
         uint64_t unk2;
         uint32_t unk3;
         uint64_t unk4;
-        uint64_t unk5;
+        intrusive_ptr<CNameIDObject> name;
         unsigned int enabledBits;
-        uint64_t otherBits;
+        uint64_t renderMaskBits;
 
         virtual unsigned int GetUnk3();
         virtual void SetUnk3(unsigned int newUnk3);
-        virtual unsigned int UnkFunc6();
+        virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo);
         virtual void Start(const RenderJobContext* context) = 0;
         virtual void Stop() = 0;
         virtual void UnkFunc9() {}

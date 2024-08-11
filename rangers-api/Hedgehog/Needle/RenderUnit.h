@@ -22,14 +22,7 @@ namespace hh::needle {
         intrusive_ptr<CNameIDObject> sceneNameId;
         intrusive_ptr<WorldRenderingPipeline> pipeline;
         PipelineInfo* pipelineInfo;
-        uint64_t unk6;
-        uint64_t unk7;
-        uint32_t unk8;
-        uint32_t unk8b;
-        uint64_t unk9;
-        uint32_t unk10;
-        uint32_t unk10b;
-        uint64_t unk11;
+        SupportFX::FxViewport renderUnitViewport;
         intrusive_ptr<SceneParamContainer> sceneParamContainer;
         uint8_t priority;
         bool paramsInitialized;

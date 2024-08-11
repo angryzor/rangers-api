@@ -3,7 +3,12 @@
 namespace hh::needle {
     class Renderable : public NeedleRefcountObject {
     public:
-        virtual void UnkFunc1() = 0;
-        virtual void UnkFunc2() = 0;
+        struct RenderInfo {
+            RenderingDeviceContext* deviceContext;
+            FxCamera* camera;
+        };
+
+        virtual unsigned int UnkFunc1(void* unkParam1, void* unkParam2) { return 0; }
+        virtual void Render(const RenderInfo& renderInfo) = 0;
     };
 }

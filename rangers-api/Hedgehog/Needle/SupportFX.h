@@ -12,12 +12,12 @@ namespace hh::needle {
             FxCamera* camera;
             uint32_t x;
             uint32_t y;
-            uint32_t width;
-            uint32_t height;
-            uint32_t prevRenderWidth;
-            uint32_t prevRenderHeight;
-            uint32_t renderWidth;
-            uint32_t renderHeight;
+            uint32_t resX;
+            uint32_t resY;
+            uint32_t prevRenderResX;
+            uint32_t prevRenderResY;
+            uint32_t renderResX;
+            uint32_t renderResY;
             uint32_t unk7;
         };
 
@@ -30,9 +30,9 @@ namespace hh::needle {
             // uint32_t unk6;
             FxViewport viewports[5];
             uint32_t numViewports;
-            uint32_t unk32;
-            uint32_t unk33;
-            uint32_t unk34;
+            float unk32;
+            float unk33;
+            float unk34;
             float unk35;
         };
     
@@ -73,15 +73,13 @@ namespace hh::needle {
         CopyColor* copyColor1;
         CopyColor* copyColor2;
         RenderTarget* renderTarget;
-        uint64_t unk13_5;
+        Texture* renderTargetTextureView;
         csl::ut::MoveArray<void*> unk13_6;
         uint64_t unk13b[7];
         uint64_t unk14;
-        float unk15;
-        float unk15aa;
-        uint64_t unk15a;
-        uint32_t unk16;
-        uint32_t unk16a;
+        float deltaTime;
+        float totalTime[4];
+        uint32_t frameCount;
         uint32_t unk16b;
         uint8_t unk17;
         uint32_t unk18;

@@ -33,9 +33,9 @@ namespace hh::gfx {
     public:
         RenderingEngineNeedle(csl::fnd::IAllocator* allocator);
         virtual bool Setup(const gfnd::RenderManagerBase::SetupInfo& setupInfo) override;
-        virtual void UnkFunc2() override {}
+        virtual void BeforeRender(const needle::SupportFX::FxRenderParam& renderParam) override {}
         virtual bool Render(const needle::SupportFX::FxRenderParam& renderParam) override;
-        virtual uint64_t UnkFunc4() override {}
+        virtual void AfterRender(const needle::SupportFX::FxRenderParam& renderParam) override {}
         virtual ID3D11Device* GetNativeDevice() override;
         virtual uint64_t Startup() override;
         virtual uint64_t Shutdown() override;

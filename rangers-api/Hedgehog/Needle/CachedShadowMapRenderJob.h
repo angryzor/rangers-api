@@ -47,7 +47,7 @@ namespace hh::needle {
         CachedShadowMapRenderJob(csl::fnd::IAllocator* allocator, unsigned int viewportId, bool unk105Param);
         virtual ~CachedShadowMapRenderJob();
 
-        virtual unsigned int UnkFunc6() override;
+        virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo) override;
         virtual void Start(const RenderJobContext* context) override;
         virtual void Stop() override;
         virtual void UnkFunc9() override;

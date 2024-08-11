@@ -4,10 +4,10 @@ namespace hh::gfnd {
     struct ViewportDimensions {
         float x;
         float y;
-        float width;
-        float height;
-        float maybeRenderWidth;
-        float maybeRenderHeight;
+        float resX;
+        float resY;
+        float renderResX;
+        float renderResY;
     };
 
     struct alignas(16) ViewportData {

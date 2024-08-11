@@ -12,8 +12,8 @@ namespace hh::needle {
         virtual void BeginRendering() = 0;
         virtual RenderingCommandList* EndRendering() = 0;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) = 0;
-        virtual bool UnkFunc1() = 0;
-        virtual bool UnkFunc2() = 0;
+        virtual bool UnkFunc1() = 0; // before render
+        virtual bool UnkFunc2() = 0; // after render
         virtual uint32_t UnkFunc3() = 0;
         virtual uint64_t UnkFunc4() = 0;
         virtual uint64_t UnkFunc5() = 0;

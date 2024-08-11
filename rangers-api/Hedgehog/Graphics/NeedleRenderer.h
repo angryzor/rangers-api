@@ -4,7 +4,7 @@ namespace hh::gfx {
     class NeedleRenderer : public needle::Renderable {
         fnd::Reference<gfnd::RenderableContainer> renderableContainer;
     public:
-        virtual void UnkFunc1() override;
-        virtual void UnkFunc2() override;
+        virtual unsigned int UnkFunc1(void* unkParam1, void* unkParam2) override;
+        virtual void Render(const RenderInfo& renderInfo) override;
     };
 }

@@ -51,5 +51,9 @@ namespace hh::needle {
 
         void Initialize(RenderingDevice* renderingDevice, RenderingDeviceContext* renderingDeviceContext, unsigned int x, unsigned int y, unsigned int width, unsigned int height);
         void ClearDepthStencil(const RenderTargetReference& renderTargetReference, bool unkParam);
+        unsigned int GetRenderTargetWidth(const RenderTargetReference& renderTargetReference) const;
+        unsigned int GetRenderTargetHeight(const RenderTargetReference& renderTargetReference) const;
+        unsigned int GetDepthStencilWidth(const RenderTargetReference& renderTargetReference) const;
+        unsigned int GetDepthStencilHeight(const RenderTargetReference& renderTargetReference) const;
     };
 }

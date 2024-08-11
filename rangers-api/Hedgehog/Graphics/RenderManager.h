@@ -34,7 +34,7 @@ namespace hh::gfx {
             needle::SupportFX::FxRenderParam renderParam;
             uint32_t maybeSupportFXWidth;
             uint32_t maybeSupportFXHeight;
-            uint64_t unk12;
+            fnd::Reference<DynamicResolutionController> unk12;
             SetupInfo setupInfo;
             RenderingEngineNeedle* renderingEngine;
             fnd::Reference<RenderingWorld> renderingWorld;

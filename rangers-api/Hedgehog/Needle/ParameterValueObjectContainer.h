@@ -3,12 +3,23 @@
 namespace hh::needle {
     struct ParameterValueObjectContainer {
     public:
-        struct ParamData {
-            void* data;
+        template<typename T>
+        struct ArrayParamData {
+            T* data;
             size_t count;
         };
+
+        union ParamData {
+            unsigned int* boolData;
+            ArrayParamData<unsigned int[4]>* uintData;
+            ArrayParamData<csl::math::Vector4>* floatData;
+            Texture** textureData;
+            SamplerStateSetting** samplerData;
+            ConstantBuffer** constantBufferData;
+        };
+
         CNameIDObject*** names;
-        ParamData** data;
+        ParamData* data;
         uint32_t* counts;
         uint32_t unk4;
         void* memorySpan2;
