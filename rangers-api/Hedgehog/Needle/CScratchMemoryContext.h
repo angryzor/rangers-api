@@ -3,11 +3,16 @@
 namespace hh::needle {
     class CScratchMemoryContext {
     public:
+        enum class Flag : uint32_t {
+            UNKPARAM,
+            IS_CHILD,
+        };
+
         void* memory;
         size_t usedSize;
         size_t allocatedSize;
-        size_t unk2;
-        size_t unk3;
+        CScratchMemoryContext* parent;
+        void* data; // skipping header
         uint32_t unk4;
         uint32_t flags;
 

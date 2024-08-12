@@ -62,9 +62,9 @@ namespace hh::needle {
         uint64_t unk10_0;
         DisplaySwapDevice* swapDevice;
         intrusive_ptr<RenderManager> renderManager;
-        PBRModelInstanceRenderer* modelInstanceRenderer;
+        intrusive_ptr<PBRModelInstanceRenderer> modelInstanceRenderer;
         uint64_t unk10_4;
-        uint64_t unk10_5;
+        intrusive_ptr<ParameterValueObject> globalParameters;
         csl::ut::MoveArray<intrusive_ptr<SceneContextManager>> sceneContextManagers;
         float worldScale;
         Texture* textures[13];

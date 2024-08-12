@@ -19,7 +19,7 @@ namespace app_cmn::camera {
             app_cmn::camera::CameraFrame* cameraFrame;
 
             virtual void CFL_UnkFunc1(const FrustumParameter& frustumParameter) {}
-            virtual void CFL_UnkFunc2(const FrustumParameter& frustumParameter) {}
+            virtual void CFL_UnkFunc2(const csl::math::Matrix34& viewMatrix, const app_cmn::camera::FrustumParameter& frustumParameter) {}
             virtual ~Listener() = default;
         };
 

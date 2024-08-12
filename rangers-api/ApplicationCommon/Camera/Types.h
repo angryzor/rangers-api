@@ -33,7 +33,7 @@ namespace app_cmn::camera {
     };
 
     struct CameraPose {
-        csl::math::Vector4 unk1;
+        csl::math::Vector3 lookAtPos;
         csl::math::Vector3 position;
         csl::math::Vector4 unk3;
         CameraPose();

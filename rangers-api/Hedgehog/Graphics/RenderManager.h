@@ -78,5 +78,6 @@ namespace hh::gfx {
         needle::ModelInstance* CreateModelInstance(needle::Model* model, const SModelCreationInfo& modelCreationInfo) const;
         gfx::RenderingEngineNeedle* GetNeedleResourceDevice();
         void SetRenderingWorld(RenderingWorld* renderingWorld);
+        void GetResolution(unsigned int& resX, unsigned int& resY);
     };
 }

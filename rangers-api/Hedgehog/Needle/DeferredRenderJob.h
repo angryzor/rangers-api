@@ -31,8 +31,8 @@ namespace hh::needle {
         uint64_t qword108;
         uint64_t enabledBitsCopy;
         uint64_t qword118;
-        uint64_t qword120;
-        uint64_t qword128;
+        void (*getRenderResolutionOverride)(void* userData, float& renderResX, float& renderResY);
+        void* getRenderResolutionOverrideUserData;
         uint64_t qword130;
 
         DeferredRenderJob(csl::fnd::IAllocator* allocator, unsigned int viewportId);

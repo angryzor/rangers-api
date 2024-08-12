@@ -7,7 +7,7 @@ namespace app::camera {
 
         CameraBridge();
         virtual void CFL_UnkFunc1(const app_cmn::camera::FrustumParameter& frustumParameter) override;
-        virtual void CFL_UnkFunc2(const app_cmn::camera::FrustumParameter& frustumParameter) override;
+        virtual void CFL_UnkFunc2(const csl::math::Matrix34& viewMatrix, const app_cmn::camera::FrustumParameter& frustumParameter) override;
 
         void SetCameraComponent(hh::game::CameraComponent* component);
     };

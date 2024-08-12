@@ -4,6 +4,8 @@ namespace hh::needle::ImplDX11 {
     class DisplaySwapDeviceDX11 : public DisplaySwapDevice {
     public:
         IDXGISwapChain* swapChain;
+        intrusive_ptr<RenderTarget> backBuffers[1];
+
         DisplaySwapDeviceDX11(ID3D11Device* d3dDevice);
 
         virtual uint64_t UnkFunc0() override;
@@ -20,7 +22,7 @@ namespace hh::needle::ImplDX11 {
         virtual uint64_t UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
         virtual uint64_t UnkFunc12() override;
-        virtual uint64_t UnkFunc13() override;
+        virtual RenderTarget* GetBackBuffer(unsigned int id) override;
         virtual uint64_t UnkFunc14() override;
         virtual uint64_t UnkFunc15() override;
         virtual uint64_t UnkFunc16() override {}

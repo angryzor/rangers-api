@@ -2,8 +2,8 @@
 
 namespace hh::needle {
     struct ViewportSetting {
-        int unk1;
-        int unk2;
+        int x;
+        int y;
         int renderResX;
         int renderResY;
         int unk3;

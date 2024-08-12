@@ -5,5 +5,7 @@ namespace hh::needle {
         DepthStencil* depthStencil;
         RenderTarget* renderTargets[8];
         uint32_t renderTargetCount;
+
+        RenderTargetsSetting(RenderTarget* renderTarget, DepthStencil* depthStencil);
     };
 }

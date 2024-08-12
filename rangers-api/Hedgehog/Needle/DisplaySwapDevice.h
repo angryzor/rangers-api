@@ -17,7 +17,7 @@ namespace hh::needle {
         virtual uint64_t UnkFunc10() = 0;
         virtual uint64_t UnkFunc11() = 0;
         virtual uint64_t UnkFunc12() = 0;
-        virtual uint64_t UnkFunc13() = 0;
+        virtual RenderTarget* GetBackBuffer(unsigned int id) = 0;
         virtual uint64_t UnkFunc14() = 0;
         virtual uint64_t UnkFunc15() = 0;
         virtual uint64_t UnkFunc16() = 0;
