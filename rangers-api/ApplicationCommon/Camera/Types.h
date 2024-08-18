@@ -28,7 +28,7 @@ namespace app_cmn::camera {
         Target target;
         Offset offset;
         Orientation orientation;
-        FrustumParameter unk10;
+        FrustumParameter frustum;
         CameraParameter();
     };
 
