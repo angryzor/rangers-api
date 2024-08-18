@@ -15,10 +15,10 @@ namespace app::gfx {
         virtual void Initialize() = 0;
         virtual void Destroy() = 0;
         virtual void UnkFunc1() {}
-        virtual void UnkFunc2() {}
-        virtual void UnkFunc3() {}
-        virtual void UnkFunc4() {}
-        virtual void UnkFunc5() {}
+        virtual void BeforeUpdate(hh::fnd::SUpdateInfo* updateInfo) {}
+        virtual void BeforeSetParameter(hh::fnd::SUpdateInfo* updateInfo, hh::needle::NeedleFxParameter* needleFxParameter) {}
+        virtual void AfterSetParameter(hh::fnd::SUpdateInfo* updateInfo) {}
+        virtual void AfterUpdate(hh::fnd::SUpdateInfo* updateInfo) {}
     };
 
     class FxParamManager
@@ -124,9 +124,9 @@ namespace app::gfx {
         csl::ut::MoveArray<FxParamExtension*> extensions;
         int currentSceneParameters;
         csl::fnd::Mutex mutex;
-        uint8_t unk107;
-        bool updated;
-        uint8_t unk108;
+        bool paramsDirty;
+        bool sceneConfigDirty;
+        bool dirty;
     protected:
         bool UpdateNeedleFxSceneConfigInterpolators();
         bool UpdateNeedleFxParameterInterpolators();
@@ -148,7 +148,7 @@ namespace app::gfx {
             sceneConfigInterpolators.fxDynamicResolutionParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->dynamicResolution, -1, priority, interpolationTime, -1);
             sceneConfigInterpolators.stageCommonTimeProgressParameterInterpolator->AddJob(ownerId, &needleFxSceneConfig->timeProgress, -1, priority, interpolationTime, -1);
             this->mutex.Unlock();
-            updated |= UpdateNeedleFxSceneConfigInterpolators();
+            sceneConfigDirty |= UpdateNeedleFxSceneConfigInterpolators();
         }
         void AddDefaultNeedleFxSceneConfigInterpolationJob(hh::needle::NeedleFxSceneConfig* needleFxParameter, unsigned int priority);
         inline void UpdateNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, hh::needle::NeedleFxSceneConfig* needleFxSceneConfig) {
@@ -161,7 +161,7 @@ namespace app::gfx {
             sceneConfigInterpolators.fxDynamicResolutionParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->dynamicResolution);
             sceneConfigInterpolators.stageCommonTimeProgressParameterInterpolator->UpdateJob(ownerId, &needleFxSceneConfig->timeProgress);
             this->mutex.Unlock();
-            updated |= UpdateNeedleFxSceneConfigInterpolators();
+            sceneConfigDirty |= UpdateNeedleFxSceneConfigInterpolators();
         }
         void UpdateDefaultNeedleFxSceneConfigInterpolationJob(hh::needle::NeedleFxSceneConfig* needleFxParameter);
         inline void RemoveNeedleFxSceneConfigInterpolationJob(uint64_t ownerId, float interpolationTime) {

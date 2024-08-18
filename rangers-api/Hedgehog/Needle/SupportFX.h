@@ -35,19 +35,36 @@ namespace hh::needle {
             float unk34;
             float unk35;
         };
+
+        class SFXAllocator {
+        public:
+            uint64_t unk1;
+            uint8_t unk2;
+            uint32_t unk2a[36];
+            csl::ut::MoveArray<void*> unk3;
+            csl::ut::MoveArray<void*> unk4;
+            csl::ut::MoveArray<void*> unk5;
+            uint64_t unk6;
+
+            SFXAllocator();
+            virtual ~SFXAllocator();
+            
+            virtual void* Alloc(size_t in_size, size_t in_alignment);
+            virtual void Free(void* in_pMemory);
+        };
     
-        uint32_t unk1Count;
-        void* unk1[128];
-        void* unk1a[128];
-        uint32_t unk2Count;
-        void* unk2[128];
-        void* unk2a[128];
-        uint32_t unk3Count;
-        void* unk3[128];
-        void* unk3a[128];
-        void* unk4[128];
-        void* unk5[128];
-        void* unk6[128];
+        uint32_t vertexShaderCount;
+        void* vertexShaderData[128];
+        size_t vertexShaderSizes[128];
+        uint32_t pixelShaderCount;
+        void* pixelShaderData[128];
+        size_t pixelShaderSizes[128];
+        uint32_t computeShaderCount;
+        void* computeShaderData[128];
+        size_t computeShaderSizes[128];
+        VertexShader* vertexShaders[128];
+        PixelShader* pixelShaders[128];
+        ComputeShader* computeShaders[128];
         void* unk6a[5];
         RenderingDevice* renderingDevice;
         VertexShader* commonVertexShader;
@@ -59,17 +76,17 @@ namespace hh::needle {
         ShaderObject* commonShaderObject;
         ShaderObject* zPrepassSimpleShaderObject;
         ShaderObject* zPrepassSimplePTShaderObject;
-        uint64_t unk10_0;
+        ShaderListInfo* shaderListInfo;
         DisplaySwapDevice* swapDevice;
         intrusive_ptr<RenderManager> renderManager;
         intrusive_ptr<PBRModelInstanceRenderer> modelInstanceRenderer;
-        uint64_t unk10_4;
+        void* unk10_4;
         intrusive_ptr<ParameterValueObject> globalParameters;
         csl::ut::MoveArray<intrusive_ptr<SceneContextManager>> sceneContextManagers;
         float worldScale;
         Texture* textures[13];
-        uint64_t unk13_0;
-        uint64_t unk13_1;
+        void* unk13_0;
+        void* unk13_1;
         CopyColor* copyColor1;
         CopyColor* copyColor2;
         RenderTarget* renderTarget;
@@ -84,8 +101,8 @@ namespace hh::needle {
         uint8_t unk17;
         uint32_t unk18;
         uint32_t unk19;
-        uint64_t unk20;
-        uint64_t unkVtbl1;
+        void* unk20;
+        void* unkVtbl1;
         uint64_t unk21;
         uint64_t unk22;
         int32_t unk23;
@@ -96,8 +113,8 @@ namespace hh::needle {
         intrusive_ptr<PrimitiveRenderer> primitiveRenderer;
         SupportFX* unkBackRef;
         uint32_t unk29;
-        uint64_t unk30;
-        uint32_t unk31;
+        void* unk30;
+        void* unk31;
 
         class CaptureIBLListener {
         public:
@@ -121,6 +138,14 @@ namespace hh::needle {
         void AddSceneContextManager(SceneContextManager* sceneContextManager);
         void SetWorldScale(float scale);
         void AddRenderUnit(RenderUnit* unit);
+        RenderTarget* GetRenderTarget(unsigned int index) const;
+        Texture* GetRenderTargetView(unsigned int index) const;
+        RenderTarget* GetDepthStencil(unsigned int index) const;
+        Texture* GetDepthStencilView(unsigned int index) const;
+        void GetRenderTargetDimensions(unsigned int index, unsigned int& width, unsigned int& height) const;
+        VertexShader* GetVertexShader(void* data, size_t size);
+        PixelShader* GetPixelShader(void* data, size_t size);
+        ComputeShader* GetComputeShader(void* data, size_t size);
 
         static SupportFX* instance;
 
@@ -134,9 +159,9 @@ namespace hh::needle {
 
     class SupportFXAll : public SupportFX {
     public:
-        uint64_t unk101;
-        uint64_t unk102;
-        uint64_t unk103;
+        void* unk101;
+        void* unk102;
+        void* unk103;
         uint64_t unk104;
         uint64_t unk105;
         uint64_t unk106;
@@ -144,8 +169,8 @@ namespace hh::needle {
         csl::ut::LinkList<RenderUnit> renderUnits;
         const char* mainSceneName;
         csl::ut::MoveArray<void*> unk112;
-        uint32_t globalUserParams[4][4];
-        NeedleRefcountObject* unk114[3];
+        float globalUserParams[4][4];
+        needle::Texture* unk114[3];
 
         SupportFXAll();
 

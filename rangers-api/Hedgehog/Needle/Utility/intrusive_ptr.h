@@ -30,7 +30,7 @@ namespace hh::needle {
 
 		intrusive_ptr(T* rawPtr) {
 			if (rawPtr != nullptr)
-				Impl::AddRef(rawPtr->Acquire);
+				Impl::AddRef(rawPtr);
 
 			ptr = rawPtr;
 		}

@@ -38,7 +38,7 @@ namespace hh::needle {
         DeferredRenderJob(csl::fnd::IAllocator* allocator, unsigned int viewportId);
 
         virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo) override;
-        virtual void Start(const RenderJobContext* context) override;
+        virtual void Start(const RenderJobContext& context) override;
         virtual void Stop() override;
         virtual void UnkFunc9() override;
         virtual void Render(PipelineInfo* pipelineInfo) override;

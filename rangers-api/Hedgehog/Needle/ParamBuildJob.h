@@ -6,6 +6,6 @@ namespace hh::needle {
     class ParamBuildJob : public NeedleRefcountObject {
     public:
         virtual void Prepare(ParameterValueObject* parameters, PipelineInfo* pipelineInfo) = 0;
-        virtual void Run(void* params, PipelineInfo* pipelineInfo, unsigned int viewportId, unsigned int parameterId) = 0;
+        virtual void Run(ParamValueOverrideHelper* paramOverrides, PipelineInfo* pipelineInfo, unsigned int viewportId, unsigned int parameterId) = 0;
     };
 }

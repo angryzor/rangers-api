@@ -12,7 +12,7 @@ namespace hh::needle::ImplDX11 {
         virtual ~RenderingDeviceContextDX11();
         virtual void* QueryResource(size_t id) override;
         virtual const void* QueryResource(size_t id) const override;
-        virtual void BeginRendering() override;
+        virtual void BeginRendering(unsigned int unkParam) override;
         virtual RenderingCommandList* EndRendering() override;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) override;
         virtual bool UnkFunc1() override { return true; }
@@ -122,7 +122,7 @@ namespace hh::needle::ImplDX11 {
         virtual void ResetUnlockSampler(ShaderStage shaderStage, unsigned int slot) override;
         virtual uint32_t DoNothing5() override { return 0; }
         virtual uint64_t UnkFunc106() override;
-        virtual uint64_t UnkFunc107() override;
+        virtual InstanceParameterContainerData* GetInstanceParameterContainerData() const override;
         virtual bool DoNothing6() override { return false; }
         virtual uint64_t UnkFunc109() override;
         virtual bool DoNothing7() override { return false; }

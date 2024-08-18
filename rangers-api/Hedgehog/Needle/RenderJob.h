@@ -33,7 +33,7 @@ namespace hh::needle {
         virtual unsigned int GetUnk3();
         virtual void SetUnk3(unsigned int newUnk3);
         virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo);
-        virtual void Start(const RenderJobContext* context) = 0;
+        virtual void Start(const RenderJobContext& context) = 0;
         virtual void Stop() = 0;
         virtual void UnkFunc9() {}
         virtual void Render(PipelineInfo* pipelineInfo) {}

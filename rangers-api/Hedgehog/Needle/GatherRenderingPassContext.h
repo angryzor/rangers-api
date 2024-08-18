@@ -4,7 +4,8 @@ namespace hh::needle {
     struct GatherRenderingPassContext_ModelContainer {
         void* data;
         void* otherData;
-        uint32_t otherDataCount; // context unk2
+        unsigned int otherDataCount; // context unk2
+        unsigned int unk1;
     };
 
     // Maps draw pass ids to sequential indices that skip disabled passes.
@@ -113,7 +114,9 @@ namespace hh::needle {
             uint8_t pad7[36];
             void* unk8; // 256 bytes long
             uint32_t unk9;
-            uint8_t pad[20];
+            uint32_t unk10;
+            rsdx::SJobJoint* modelJoint1;
+            rsdx::SJobJoint* modelJoint2;
             ParameterProcessQueueHandle* parameterProcessQueueHandle;
         };
         CResourceParseContextHolder resourceParseContextHolder;

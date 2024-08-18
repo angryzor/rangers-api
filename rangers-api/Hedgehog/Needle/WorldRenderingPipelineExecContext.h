@@ -4,7 +4,7 @@ namespace hh::needle {
     class WorldRenderingPipelineExecContext : public NeedleObject {
     public:
         struct Unk1 {
-            uint8_t byte470;
+            bool byte470;
             bool byte471;
             uint32_t drawPassCount;
             WorldRenderingPipeline::SetupInfo pipelineSetupInfo;
@@ -21,7 +21,8 @@ namespace hh::needle {
             uint32_t flags;
             uint16_t unk2Count; // like, the object itself? it's wierd
             uint16_t maybeType;
-            uint64_t unk9;
+            uint32_t unk9;
+            uint32_t unk10; // unsure if this exists
         };
 
         struct Unk3 {

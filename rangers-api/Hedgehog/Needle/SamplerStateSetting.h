@@ -11,5 +11,6 @@ namespace hh::needle {
         uint8_t byte18;
         uint32_t dword1C;
         uint32_t dword20;
+        uint32_t dword24;
     };
 }

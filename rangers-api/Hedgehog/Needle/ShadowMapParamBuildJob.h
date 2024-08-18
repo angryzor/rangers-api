@@ -7,6 +7,6 @@ namespace hh::needle {
     public:
         ShadowMapParamBuildJob(CachedShadowMapRenderJob* renderJob);
         virtual void Prepare(ParameterValueObject* parameters, PipelineInfo* pipelineInfo) override;
-        virtual void Run(void* params, PipelineInfo* pipelineInfo, unsigned int viewportId, unsigned int parameterId) override;
+        virtual void Run(ParamValueOverrideHelper* paramOverrides, PipelineInfo* pipelineInfo, unsigned int viewportId, unsigned int parameterId) override;
     };
 }

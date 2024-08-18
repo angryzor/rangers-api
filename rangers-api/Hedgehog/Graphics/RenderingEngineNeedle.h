@@ -9,9 +9,12 @@ namespace hh::gfx {
                 csl::ut::MoveArray<void*> unk1;
             };
 
-            class NeedleShaderListInfo : public fnd::ReferencedObject {
-                csl::ut::PointerMap<void*, void*> unk1;
-                csl::ut::PointerMap<void*, void*> unk2;
+            class NeedleShaderListInfo : public needle::ShaderListInfo {
+                csl::ut::PointerMap<void*, void*> vertexShaders;
+                csl::ut::PointerMap<void*, void*> pixelShaders;
+            public:
+                virtual needle::VertexShader* GetVertexShader(const char* name) override;
+                virtual needle::PixelShader* GetPixelShader(const char* name) override;
             };
         
         private:
@@ -43,7 +46,7 @@ namespace hh::gfx {
         virtual needle::RenderingDeviceContext* GetRenderingDeviceContext();
         virtual void SetSupportFX(needle::SupportFX* supportFX);
         virtual needle::SupportFX* GetSupportFX();
-        virtual void SetFXParameter(hh::needle::NeedleFxParameter* parameter, unsigned int unkParam1) {}
+        virtual void SetFXParameter(hh::needle::NeedleFxParameter* parameter, needle::CNameIDObject* renderUnitName) {}
         virtual void GetFXParameter(hh::needle::NeedleFxParameter* parameter) {}
         virtual void SetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) {}
         virtual void GetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) {}

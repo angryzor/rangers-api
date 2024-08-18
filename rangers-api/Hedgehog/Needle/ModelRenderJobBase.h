@@ -20,7 +20,7 @@ namespace hh::needle {
         Unk1 unk103[12];
 
         ModelRenderJobBase(unsigned int viewportId);
-        virtual void Start(const RenderJobContext* context) override {}
+        virtual void Start(const RenderJobContext& context) override {}
         virtual void Stop() override {}
         virtual void SetUnk103(unsigned int index, const Unk1& newUnk103);
     };

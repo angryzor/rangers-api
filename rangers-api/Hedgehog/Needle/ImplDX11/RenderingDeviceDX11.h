@@ -9,7 +9,7 @@ namespace hh::needle::ImplDX11 {
     public:
         static constexpr size_t resourceId = NEEDLE_RESOURCE_RENDERING_DEVICE_DX11;
 
-        void* unk;
+        InstanceParameterContainerData* baseIpcd;
         DeviceObjectDX11* deviceObject;
         void* unk2; // see 0x155DFD450
 
@@ -38,7 +38,7 @@ namespace hh::needle::ImplDX11 {
         virtual ConstantBuffer* CreateConstantBuffer(const BufferCreationInfo& creationInfo) override;
         virtual ShaderObject* CreateShaderObject(const ShaderObjectCreationInfo& creationInfo) override;
         virtual bool CreateShaderMaterialContainer(const ShaderMaterialContainerCreationInfo& creationInfo, ShaderMaterialContainer** shaderMaterialContainer) override;
-        virtual void* GetDeviceBaseInstanceParameterContainerData() const override;
+        virtual InstanceParameterContainerData* GetDeviceBaseInstanceParameterContainerData() const override;
         virtual void BeginGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
         virtual void EndGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const override;
         virtual ParameterProcessQueueHandle* SetupParameterProcessQueue(CScratchMemoryContext* memCtx) const override;

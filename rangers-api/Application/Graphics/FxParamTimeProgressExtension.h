@@ -15,7 +15,7 @@ namespace app::gfx {
         FxParamTimeProgressExtension(csl::fnd::IAllocator* allocator);
         virtual void Initialize() override;
         virtual void Destroy() override;
-        virtual void UnkFunc2() override;
+        virtual void BeforeUpdate(hh::fnd::SUpdateInfo* updateInfo) override;
         virtual void GameServiceAddedCallback(hh::game::GameService* gameService) override;
         virtual void GameServiceRemovedCallback(hh::game::GameService* gameService) override;
     };

@@ -4,10 +4,10 @@ namespace hh::needle {
     class SyncDrawContext : public NeedleRefcountObject {
     public:
         RenderingDeviceContext* deviceContext;
-        uint64_t unk2;
+        rsdx::SJobJoint* finishedRenderingJoint;
         intrusive_ptr<RenderingCommandList> commandList;
         bool isRendering;
-        bool finished;
+        bool shouldDraw; // previous finished, should check why
         SyncDrawContext* next;
 
         SyncDrawContext();

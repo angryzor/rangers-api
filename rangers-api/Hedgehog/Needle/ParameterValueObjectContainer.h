@@ -3,24 +3,7 @@
 namespace hh::needle {
     struct ParameterValueObjectContainer {
     public:
-        template<typename T>
-        struct ArrayParamData {
-            T* data;
-            size_t count;
-        };
-
-        union ParamData {
-            unsigned int* boolData;
-            ArrayParamData<unsigned int[4]>* uintData;
-            ArrayParamData<csl::math::Vector4>* floatData;
-            Texture** textureData;
-            SamplerStateSetting** samplerData;
-            ConstantBuffer** constantBufferData;
-        };
-
-        CNameIDObject*** names;
-        ParamData* data;
-        uint32_t* counts;
+        InstanceParameterContainerData ipcd;
         uint32_t unk4;
         void* memorySpan2;
         uint32_t flagsAlways1; // 0x1 does something when parameters are loaded

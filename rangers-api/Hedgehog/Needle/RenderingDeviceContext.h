@@ -9,7 +9,7 @@ namespace hh::needle {
     class InstanceParameterContainerData;
     class RenderingDeviceContext : public TNeedleRefcountResource<NEEDLE_RESOURCE_RENDERING_DEVICE_CONTEXT, NeedleRefcountResource> {
     public:
-        virtual void BeginRendering() = 0;
+        virtual void BeginRendering(unsigned int unkParam) = 0;
         virtual RenderingCommandList* EndRendering() = 0;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) = 0;
         virtual bool UnkFunc1() = 0; // before render
@@ -119,7 +119,7 @@ namespace hh::needle {
         virtual void ResetUnlockSampler(ShaderStage shaderStage, unsigned int slot) = 0;
         virtual uint32_t DoNothing5() = 0;
         virtual uint64_t UnkFunc106() = 0;
-        virtual uint64_t UnkFunc107() = 0;
+        virtual InstanceParameterContainerData* GetInstanceParameterContainerData() const = 0;
         virtual bool DoNothing6() = 0;
         virtual uint64_t UnkFunc109() = 0;
         virtual bool DoNothing7() = 0;

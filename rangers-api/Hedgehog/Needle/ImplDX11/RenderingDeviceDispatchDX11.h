@@ -60,9 +60,7 @@ namespace hh::needle::ImplDX11 {
             uint64_t unk4;
             uint64_t unk5;
             uint64_t unk6;
-            uint64_t unk7;
-            void* unk8;
-            void* unk9;
+            InstanceParameterContainerData ipcd;
             RenderTargetsSetting renderTargetsSetting;
             ViewportSetting viewports[8];
             uint32_t viewportCount;

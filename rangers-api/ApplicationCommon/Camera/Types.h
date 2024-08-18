@@ -10,14 +10,14 @@ namespace app_cmn::camera {
 
     struct CameraParameter {
         struct Target {
-            csl::math::Vector4 unk1;
-            csl::math::Vector4 unk2;
+            csl::math::Vector3 position;
+            csl::math::Vector3 offset;
             csl::math::Vector4 unk3;
         };
         struct Offset {
-            float unk1;
-            float unk2;
-            float unk3;
+            float angleX;
+            float angleY;
+            float distance;
         };
         struct Orientation {
             csl::math::Vector4 unk7;

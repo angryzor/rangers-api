@@ -23,9 +23,35 @@ namespace hh::rsdx {
         SJobJoint* JobJoint;
     };
 
+    // template<typename T, typename R, typename... Args>
+    // struct SJobMemberDelegateAdapter {
+    //     struct Delegate {
+    //         void* memberPtr;
+    //         uint32_t memberPtrOffset;
+
+    //     };
+    //     void* 
+    // };
+
     // size 256
     struct SJobType256 {
         SJobExecParam ExecContext;
+        uint64_t unk1;
+        uint64_t unk2;
+        uint64_t unk3;
+        uint64_t unk4;
+        uint64_t unk5;
+        uint64_t unk6;
+        uint64_t unk7;
+        uint64_t unk8;
+        uint64_t unk9;
+        uint64_t unk10;
+        uint64_t unk11;
+        uint64_t unk12;
+        uint64_t unk13;
+        uint64_t unk14;
+        uint64_t unk15;
+        uint64_t unk16;
     };
 
     void RsdxSetEvent(HANDLE event);

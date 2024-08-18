@@ -12,8 +12,7 @@ namespace hh::needle {
             unsigned int cullingGroupCount;
             SCullGroupSetting* cullingGroupSettings;
             uint64_t unk107;
-            uint32_t occlusionCullingViewIndex; // dunno
-            uint32_t unk108a;
+            unsigned int* occlusionCullingIndices; // dunno
             uint32_t enableOcclusionCullingView; // or maybe occlusion culling view type? dunno
             uint32_t unk109;
             uint64_t unk110;

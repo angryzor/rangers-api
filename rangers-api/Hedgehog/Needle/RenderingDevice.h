@@ -38,7 +38,7 @@ namespace hh::needle {
         virtual ConstantBuffer* CreateConstantBuffer(const BufferCreationInfo& creationInfo) = 0;
         virtual ShaderObject* CreateShaderObject(const ShaderObjectCreationInfo& creationInfo) = 0;
         virtual bool CreateShaderMaterialContainer(const ShaderMaterialContainerCreationInfo& creationInfo, ShaderMaterialContainer** shaderMaterialContainer) = 0;
-        virtual void* GetDeviceBaseInstanceParameterContainerData() const = 0;
+        virtual InstanceParameterContainerData* GetDeviceBaseInstanceParameterContainerData() const = 0;
         virtual void BeginGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const = 0;
         virtual void EndGatherMaterialBuildLocal(GatherMaterialBuildLocalData& gatherMaterialBuildLocalData) const = 0;
         virtual ParameterProcessQueueHandle* SetupParameterProcessQueue(CScratchMemoryContext* memCtx) const = 0;

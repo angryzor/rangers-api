@@ -11,7 +11,7 @@ namespace hh::gfx {
         RenderingEngineRangers(csl::fnd::IAllocator* allocator);
         
         virtual uint64_t Startup() override;
-        virtual void SetFXParameter(hh::needle::NeedleFxParameter* parameter, unsigned int unkParam1) override;
+        virtual void SetFXParameter(hh::needle::NeedleFxParameter* parameter, needle::CNameIDObject* renderUnitName) override;
         virtual void GetFXParameter(hh::needle::NeedleFxParameter* parameter) override;
         virtual void SetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) override;
         virtual void GetSceneConfig(hh::needle::NeedleFxSceneConfig* sceneConfig) override;

@@ -2,11 +2,18 @@
 
 namespace hh::needle {
     struct RenderTargetReference {
-        uint32_t unk1;
+        enum class Type {
+            NONE,
+            INDEX,
+            POINTER,
+        };
+
+        Type type;
         uint32_t index;
-        intrusive_ptr<NeedleRefcountObject> unk2;
+        intrusive_ptr<RenderTarget> pointer;
 
         RenderTargetReference(unsigned int index);
+        RenderTargetReference(RenderTarget* renderTarget);
     };
 
     class RenderTargetManager : public NeedleObject {
@@ -19,10 +26,10 @@ namespace hh::needle {
         RenderingDeviceContext* renderingDeviceContext;
         RenderProperty* renderProperty;
 
-        intrusive_ptr<RenderTarget> unk2[65];
-        intrusive_ptr<Texture> unk3[65];
-        intrusive_ptr<RenderTarget> unk4[24];
-        intrusive_ptr<Texture> unk5[24];
+        intrusive_ptr<RenderTarget> renderTargets[65]; // 17 = luminance
+        intrusive_ptr<Texture> renderTargetViews[65];
+        intrusive_ptr<RenderTarget> depthStencils[24];
+        intrusive_ptr<Texture> depthStencilViews[24];
         uint64_t pad1;
         uint64_t pad2;
         intrusive_ptr<RenderTarget> unk6[4];
@@ -55,5 +62,9 @@ namespace hh::needle {
         unsigned int GetRenderTargetHeight(const RenderTargetReference& renderTargetReference) const;
         unsigned int GetDepthStencilWidth(const RenderTargetReference& renderTargetReference) const;
         unsigned int GetDepthStencilHeight(const RenderTargetReference& renderTargetReference) const;
+        RenderTarget* GetRenderTarget(const RenderTargetReference& renderTargetReference) const;
+        Texture* GetRenderTargetView(const RenderTargetReference& renderTargetReference) const;
+        RenderTarget* GetDepthStencil(const RenderTargetReference& renderTargetReference) const;
+        Texture* GetDepthStencilView(const RenderTargetReference& renderTargetReference) const;
     };
 }

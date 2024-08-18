@@ -9,7 +9,7 @@ namespace hh::needle {
 
         PostEffectLitePipelineJob();
         virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo) override;
-        virtual void Start(const RenderJobContext* context) override;
+        virtual void Start(const RenderJobContext& context) override;
         virtual void Stop() override;
         virtual void UnkFunc9() override;
         virtual void Render(PipelineInfo* pipelineInfo) override;

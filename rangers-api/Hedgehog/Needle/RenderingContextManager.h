@@ -5,13 +5,17 @@ namespace hh::needle {
     public:
         csl::fnd::IAllocator* allocator;
         RenderingDevice* renderingDevice;
-        uint32_t unk1;
-        uint64_t unk2;
-        csl::ut::MoveArray<intrusive_ptr<SyncDrawContext>> drawContexts;
-        csl::ut::MoveArray<void*> unk3;
-        bool unk4;
+        volatile int nextDrawContextIndex;
+        SyncDrawContext* nextDrawContext;
+        csl::ut::MoveArray<intrusive_ptr<SyncDrawContext>> drawContextQueue;
+        csl::ut::MoveArray<intrusive_ptr<SyncDrawContext>> renderingDrawContexts;
+        char unk4;
         bool unk5;
 
         RenderingContextManager(RenderingDevice* renderingDevice, csl::fnd::IAllocator* allocator, unsigned int drawContextCount);
+        void EnterNextDrawContext();
+        void ResetDrawContexts();
+        SyncDrawContext* GetNextDrawContext();
+        void AddDrawContext(SyncDrawContext* drawContext);
     };
 }
