@@ -38,6 +38,8 @@ namespace hh::needle {
 		~intrusive_ptr() {
 			if (ptr != nullptr)
 				Impl::Release(ptr);
+
+			ptr = nullptr;
 		}
 
 		inline intrusive_ptr<T, Impl, TUnk>& operator=(T* const other) {

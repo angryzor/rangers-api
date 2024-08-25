@@ -37,10 +37,10 @@ namespace SurfRide
 			SliceCast sliceCast;
 		};
 
-		csl::fnd::IAllocator* allocator;
+		size_t size;
 		CastInstance* buffer;
 
-		CastInstanceBuffer(csl::fnd::IAllocator* allocator);
+		CastInstanceBuffer(size_t size);
 
 		CastInstance* GetCastInstance(unsigned int idx);
 	};

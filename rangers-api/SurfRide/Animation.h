@@ -115,7 +115,7 @@ namespace SurfRide
 		SRS_KEYFRAME* keyFrame{};
 
 		inline SRE_TRACK_INTERPOLATION_TYPE GetInterpolationType() const {
-			return static_cast<SRE_TRACK_INTERPOLATION_TYPE>(flags & 0xF);
+			return static_cast<SRE_TRACK_INTERPOLATION_TYPE>(flags & 0x3);
 		}
 
 		inline SRE_TRACK_DATA_TYPE GetDataType() const {

@@ -28,6 +28,8 @@ namespace hh::fnd
 		~Reference() {
 			if (ptr != nullptr)
 				ptr->Free();
+
+			ptr = nullptr;
 		}
 
 		inline Reference<T>& operator=(T* const other) {

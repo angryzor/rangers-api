@@ -29,7 +29,7 @@ namespace SurfRide {
         short verticalFixedCount;
         short cropRef0Count;
         short cropRef1Count;
-        size_t cropRef0Offset;
+        SRS_CROPREF* cropRefs0;
         uint32_t effectType;
         void* effectData;
         SRS_SLICE slices[1];

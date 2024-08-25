@@ -9,9 +9,9 @@ namespace SurfRide {
     };
 
     struct SRS_CROPREF {
-        short textureListIndex;
-        short textureIndex;
-        short cropIndex;
+        short textureListIndex{};
+        short textureIndex{};
+        short cropIndex{};
     };
 
     enum class ECropSurface {

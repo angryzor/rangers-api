@@ -36,6 +36,8 @@ namespace SurfRide {
 		~RefPtr() {
 			if (ptr != nullptr)
 				ptr->Free();
+
+			ptr = nullptr;
 		}
 
 		inline RefPtr<T>& operator=(T* const other) {
