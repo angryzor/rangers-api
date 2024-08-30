@@ -193,6 +193,7 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Needle/CNameIDObject.h"
 #include "Hedgehog/Needle/CNameIDObjectStatic.h"
 #include "Hedgehog/Needle/NeedleType.h"
+#include "Hedgehog/Needle/GraphicsMemoryLayout.h"
 #include "Hedgehog/Needle/SRawImageInfo.h"
 #include "Hedgehog/Needle/ParameterValue.h"
 #include "Hedgehog/Needle/UserModelShaderParamter.h"

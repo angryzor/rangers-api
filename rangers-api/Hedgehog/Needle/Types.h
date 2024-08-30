@@ -18,6 +18,10 @@ namespace hh::needle {
         float w;
     };
 
+    enum class MemoryType {
+        UNK0,
+    };
+
     enum class PrimitiveTopology {
         POINT_LIST,
         LINE_LIST,

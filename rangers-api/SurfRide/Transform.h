@@ -12,7 +12,7 @@ namespace SurfRide {
 	{
 		Vector2 position{};
 		int rotation{};
-		Vector2 scale{};
+		Vector2 scale{ 1.0f, 1.0f };
 		uint32_t unkX;
 		uint32_t unkY;
 	};
@@ -21,7 +21,7 @@ namespace SurfRide {
 	{
 		Vector3 position{};
 		Rotation3 rotation{};
-		Vector3 scale{};
+		Vector3 scale{ 1.0f, 1.0f, 1.0f };
 	};
 
     struct DirtyFlag {

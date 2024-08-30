@@ -28,8 +28,8 @@ namespace SurfRide {
 		int id{};
 		unsigned int flags{}; // 0xF mask -> Type
 		void* data{};
-		short childIndex{};
-		short siblingIndex{};
+		short childIndex{ -1 };
+		short siblingIndex{ -1 };
 		SRS_USERDATA* userData{};
 
         inline Type GetType() const {
@@ -37,7 +37,7 @@ namespace SurfRide {
         }
 
         inline void SetType(Type type) {
-            flags = (flags & ~0xF) | static_cast<unsigned int>(flags & 0xF);
+            flags = (flags & ~0xF) | (static_cast<unsigned int>(type) & 0xF);
         }
 	};
 

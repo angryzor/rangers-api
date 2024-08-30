@@ -9,7 +9,7 @@ namespace hh::needle {
         uint32_t refCount;
     protected:
         virtual void ReleasePostDestroyInternal();
-        virtual void GetDependRefcountObject();
+        virtual NeedleRefcountObject* GetDependRefcountObject();
         virtual ~NeedleRefcountObject();
         void AddRef();
         void Release();

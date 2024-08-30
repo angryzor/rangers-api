@@ -5,5 +5,6 @@ namespace hh::gfx {
     public:
         MANAGED_RESOURCE_CLASS_DECLARATION(ResModel)
         needle::MeshResource* GetMeshResource();
+        bool IsLodModel() const;
     };
 }

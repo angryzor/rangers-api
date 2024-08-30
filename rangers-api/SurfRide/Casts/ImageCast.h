@@ -2,22 +2,22 @@
 
 namespace SurfRide {
     struct SRS_IMAGECAST {
-        unsigned int flags;
-        csl::math::Vector2 size;
-        csl::math::Vector2 pivot;
-        Color vertexColorTopLeft;
-        Color vertexColorBottomLeft;
-        Color vertexColorTopRight;
-        Color vertexColorBottomRight;
-        short cropIndex0;
-        short cropIndex1;
-        short cropRef0Count;
-        short cropRef1Count;
-        SRS_CROPREF* cropRefs0;
-        SRS_CROPREF* cropRefs1;
-        SRS_TEXTDATA* textData;
-        uint32_t effectType;
-        void* effectData;
+        unsigned int flags{};
+        csl::math::Vector2 size{};
+        csl::math::Vector2 pivot{};
+        Color vertexColorTopLeft{};
+        Color vertexColorBottomLeft{};
+        Color vertexColorTopRight{};
+        Color vertexColorBottomRight{};
+        short cropIndex0{};
+        short cropIndex1{};
+        short cropRef0Count{};
+        short cropRef1Count{};
+        SRS_CROPREF* cropRefs0{};
+        SRS_CROPREF* cropRefs1{};
+        SRS_TEXTDATA* textData{};
+        uint32_t effectType{};
+        void* effectData{};
 
         inline SRE_EFFECT_TYPE GetEffectType() const {
             return static_cast<SRE_EFFECT_TYPE>(effectType & 0xF);

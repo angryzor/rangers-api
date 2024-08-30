@@ -34,7 +34,7 @@ namespace SurfRide
 		Layer* GetLayer(const char* layers);
 		
 
-        inline csl::ut::MoveArray<SurfRide::Layer*> GetLayers() const {
+        inline csl::ut::MoveArray<SurfRide::Layer*>& GetLayers() {
             return layers;
         }
 	};
