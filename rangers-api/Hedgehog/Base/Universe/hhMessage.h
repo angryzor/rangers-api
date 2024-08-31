@@ -70,7 +70,7 @@ namespace hh::fnd
 
 	public:
 		MessageAsyncHandler(csl::fnd::IAllocator* allocator, Message& message) : ReferencedObject{ allocator, true }, message{ message } {}
-		virtual ~MessageAsyncHandler() = default;
+
 		inline Message& GetMessage() const {
 			return message;
 		}

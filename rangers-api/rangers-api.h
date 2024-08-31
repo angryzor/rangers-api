@@ -33,6 +33,9 @@ struct SLIST_HEADER_SHIM {
 #ifdef UpdateResource
 #undef UpdateResource
 #endif
+#ifdef SendMessage
+#undef SendMessage
+#endif
 
 #include "Sonicteam/math/math.h"
 

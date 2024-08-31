@@ -86,6 +86,11 @@ namespace csl::ut
 		//	return c_str();
 		//}
 		
+		VariableString& operator=(const VariableString& str)
+		{
+			return operator=(str.c_str());
+		}
+
 		VariableString& operator=(const char* pStr)
 		{
 			Set(pStr);
