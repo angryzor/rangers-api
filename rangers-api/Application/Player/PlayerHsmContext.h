@@ -6,6 +6,8 @@ namespace app::player {
     class GOCPlayerPosture;
     class GOCPlayerKinematicParams;
     class GOCPlayerBlackboard;
+    class BlackboardStatus;
+    class BlackboardItem;
     class PlayerHsmContext : public hh::fnd::ReferencedObject, public app::save::SaveManagerListener {
         class OutOfControlTimerList : public PlayerCounterTimer {
             PlayerHsmContext* pPlayerHsmContext;
@@ -21,8 +23,8 @@ namespace app::player {
 
     public:
         Player* playerObject;
-        uint64_t unk2; // need to reverse blackboard first, see setup
-        uint64_t unk3;
+        BlackboardStatus* blackboardStatus;
+        BlackboardItem* blackboardItem;
         GOCPlayerHsm* gocPlayerHsm;
         GOCPlayerPosture* gocPlayerPosture;
         GOCPlayerKinematicParams* gocPlayerKinematicParams;

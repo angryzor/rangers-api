@@ -1,12 +1,14 @@
 #pragma once
 
-namespace app::game {
+namespace app {
     class MyApplication;
+}
+
+namespace app::game {
     class ApplicationExtension
         : public hh::fnd::BaseObject
-        , public hh::game::GameManagerListener
     {
-        MyApplication* application;
+        app::MyApplication* application;
     
     public:
         virtual uint64_t GetNameHash() = 0;

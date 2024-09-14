@@ -712,8 +712,12 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Level/ResMasterLevel.h"
 #include "Application/Level/LevelManager.h"
 
+#include "Application/Event/EventPlayer.h"
+
 #include "Application/Sound/SoundDirector.h"
 #include "Application/Sound/BgmIdExtension.h"
+#include "Application/Sound/AmbSoundCoordinator.h"
+#include "Application/Sound/AmbientSoundExtension.h"
 #include "Application/Sound/CustomSound.h"
 
 #include "Application/Text/AppTextListener.h"
@@ -740,7 +744,10 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Game/GameModeLayerStatusExtension.h"
 #include "Application/Game/Timestamp.h"
 #include "Application/Game/TimeService.h"
+#include "Application/Game/WeatherService.h"
 #include "Application/Game/RespawnTimeManager.h"
+#include "Application/Game/MonologueService.h"
+#include "Application/Game/IslandRangeSpawningManager.h"
 #include "Application/Game/ApplicationExtension.h"
 #include "Application/Game/ApplicationSequenceExtension.h"
 #include "Application/Game/MenuSelect.h"
@@ -751,8 +758,6 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Game/GOCMotor.h"
 #include "Application/Game/GOCMotorConstant.h"
 #include "Application/Game/Messages.h"
-
-#include "Application/Event/EventPlayer.h"
 
 #include "Application/Graphics/ResFxColFile2.h"
 #include "Application/Graphics/SceneParameters.h"
@@ -768,6 +773,7 @@ struct SLIST_HEADER_SHIM {
 #include "Application/ObjSwitchVolume.h"
 #include "Application/ObjCamera.h"
 #include "Application/ObjCameraVolume.h"
+#include "Application/MeteorShowerEffect.h"
 
 namespace hh::needle {
     class StaticIDsTemp {
@@ -777,4 +783,8 @@ namespace hh::needle {
         static hh::needle::CNameIDObjectStatic diffuse2;
         static hh::needle::CNameIDObjectStatic diffuse3;
     };
+}
+
+namespace heur {
+    float RandomBetween(float min, float max);
 }

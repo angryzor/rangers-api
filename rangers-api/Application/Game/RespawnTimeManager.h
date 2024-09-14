@@ -1,7 +1,7 @@
 #pragma once
 
 namespace app::game {
-    class RespawnTimeManager : public hh::game::GameService, public hh::game::GameManagerListener, hh::game::GameStepListener, hh::game::EditorStepListener {
+    class RespawnTimeManager : public hh::game::GameService, public hh::game::GameManagerListener, public hh::game::GameStepListener, hh::game::EditorStepListener {
     public:
         enum class RespawnTimeType : uint8_t {
             TIME_SERVICE_MINUTES,

@@ -9,10 +9,10 @@ namespace hh::game {
     };
 
     class ObjectWorld : public GameService, public GameStepListener {
+    public:
         csl::ut::MoveArray<ObjectWorldChunk*> worldChunks;
         csl::ut::MoveArray<ObjectWorldListener*> listeners;
         csl::ut::MoveArray<ObjectWorldExtension*> extensions;
-    public:
         fnd::Packfile* packFile;
         uint8_t flags; // 0 = LEVEL_STARTED, 1 = EDITOR_STARTED
 

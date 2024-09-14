@@ -121,6 +121,7 @@ namespace hh::game
 		Unk2 unk72;
 		
 	public:
+		virtual ~GameObject();
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual bool ProcessMessage(fnd::Message& message) override;
 		virtual bool ReceiveMessage(fnd::Message& message) override;

@@ -1,8 +1,19 @@
 #pragma once
 
 namespace app::snd {
-    class SoundDirectorExtension {
+    class SoundDirector;
+    class SoundDirectorExtension : public hh::fnd::BaseObject {
+    public:
+        SoundDirector* soundDirector;
 
+        SoundDirectorExtension(csl::fnd::IAllocator* allocator);
+        virtual ~SoundDirectorExtension();
+
+        virtual unsigned int GetNameHash() const = 0;
+        virtual void UnkFunc2() = 0;
+        virtual void UnkFunc3() = 0;
+        virtual void Update(hh::fnd::SUpdateInfo updateInfo) {}
+        virtual bool ProcessMessage(hh::fnd::Message& message) {} 
     };
 
     class SoundDirector : public hh::game::GameService, public hh::game::GameStepListener, hh::game::GameManagerListener {
@@ -58,7 +69,7 @@ namespace app::snd {
         uint32_t qword26C;
         uint32_t qword270;
         uint8_t byte274;
-        csl::ut::MoveArray<hh::fnd::Reference<SoundDirectorExtension>> extensions;
+        csl::ut::MoveArray<SoundDirectorExtension*> extensions;
         int dword298;
     
         struct PlayBgmInfo {

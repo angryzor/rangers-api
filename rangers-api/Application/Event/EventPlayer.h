@@ -11,6 +11,7 @@ namespace app::evt {
         virtual void EPL_UnkFunc6() {}
         virtual void EPL_UnkFunc7() {}
         virtual void EPL_UnkFunc8() {}
+        virtual void EPL_UnkFunc9() {}
     };
 
     class EventPlayer {

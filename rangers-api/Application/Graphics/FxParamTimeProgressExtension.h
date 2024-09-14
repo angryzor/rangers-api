@@ -18,5 +18,7 @@ namespace app::gfx {
         virtual void BeforeUpdate(hh::fnd::SUpdateInfo* updateInfo) override;
         virtual void GameServiceAddedCallback(hh::game::GameService* gameService) override;
         virtual void GameServiceRemovedCallback(hh::game::GameService* gameService) override;
+        virtual void EPL_UnkFunc2() override;
+        virtual void EPL_UnkFunc5() override;
     };
 }
