@@ -1,57 +1,24 @@
 #pragma once
 
 namespace hh::eff {
+    class EffectHandle {
+    public:
+        int unk1;
+        void* unk2;
+        EffectHandle();
+        EffectHandle(const EffectHandle& other);
+
+        const csl::math::Vector3& GetScale() const;
+        const csl::ut::Color8& GetColor() const;
+        uint8_t GetAlpha() const;
+
+        void SetScale(const csl::math::Vector3& scale);
+        void SetColor(const csl::ut::Color8& color);
+        void SetAlpha(uint8_t alpha);
+    };
+
     class EffectManager : public game::GameService, public game::GameStepListener, public game::GameUpdateListener {
     public:
-        class Impl;// {
-        // public:
-        //     rsdx::hhMTSimpleJobJoint* jobJoint1;
-        //     rsdx::hhMTSimpleJobJoint* jobJoint2;
-        //     rsdx::hhMTSimpleJobJoint* jobJoint3;
-        //     rsdx::hhMTSimpleJobJoint* jobJoint4;
-        //     rsdx::hhMTSimpleJobJoint* jobJoint5;
-        //     csl::fnd::IAllocator* allocator;
-        //     void* unk1;
-        //     csl::ut::MoveArray<void*> unk2;
-        //     uint64_t unk3;
-        //     uint32_t unk4;
-        //     float unk5;
-        //     _BYTE gap68[16];
-        //     _DWORD dword78;
-        //     _QWORD qword80;
-        //     _QWORD qword88;
-        //     _QWORD qword90;
-        //     _QWORD qword98;
-        //     _QWORD qwordA0;
-        //     _QWORD qwordA8;
-        //     _QWORD qwordB0;
-        //     _QWORD qwordB8;
-        //     _WORD wordC0;
-        //     _QWORD qwordC8;
-        //     _DWORD dwordD0;
-        //     _QWORD qwordD8;
-        //     _DWORD dwordE0;
-        //     _QWORD qwordE8;
-        //     _QWORD qwordF0;
-        //     _QWORD qwordF8;
-        //     _QWORD qword100;
-        //     _QWORD qword108;
-        //     _DWORD dword110;
-        //     _QWORD qword118;
-        //     _QWORD qword120;
-        //     _BYTE byte128;
-        //     __unaligned __declspec(align(4)) _QWORD qword12C;
-        //     __unaligned __declspec(align(1)) _QWORD qword134;
-        //     __unaligned __declspec(align(1)) _QWORD qword13C;
-        //     __unaligned __declspec(align(1)) _QWORD qword144;
-        //     __unaligned __declspec(align(1)) _QWORD qword14C;
-        //     _QWORD qword158;
-        //     _QWORD qword160;
-        //     _QWORD qword168;
-        //     _WORD word170;
-        //     _RTL_CRITICAL_SECTION rtl_critical_section178;
-        // };
-
         struct RenderableInfo {
             unsigned int renderPass;
             unsigned int unk1;
@@ -73,6 +40,78 @@ namespace hh::eff {
             RenderableInfo* renderables;
             unsigned int (*unk1)(uint8_t unkParam);
             unsigned int (*unk2)(unsigned int unkParam);
+        };
+
+        class Impl {
+        public:
+            class ResourceListener : public fnd::ResourceManager::ResourceListener {
+                Impl* effectManagerImpl;
+
+            public:
+                virtual void ResourceUnloadedCallback(fnd::ManagedResource* resource) override;
+            };
+
+            class CyanAllocator : public Cyan::System::IAllocator {
+            public:
+                void* unk1;
+                csl::fnd::IAllocator* allocator;
+                uint16_t word170;
+                csl::fnd::Mutex mutex;
+
+                virtual void* Alloc(size_t size, size_t alignment) override;
+                virtual void* Alloc2(size_t size, size_t alignment) override;
+                virtual void Free(void* ptr) override;
+                virtual void UnkFunc4() override;
+                virtual void SetUnk1(void* unkParam1) override;
+                virtual void* GetUnk1() const override;
+                virtual void* Alloc3(size_t size, size_t alignment);
+                virtual void* Alloc4(size_t size, size_t alignment);
+            };
+
+            struct Unk1 {
+                struct Unk2 {
+                    uint64_t unk1;
+                    uint64_t unk2;
+                    uint64_t unk3;
+                    int unk4;
+
+                    Unk2();
+                };
+
+                uint64_t unk1;
+                uint64_t unk2;
+                uint32_t unk3;
+                char pad4[0x2000];
+                Unk2 unk5[8];
+            };
+
+            rsdx::SJobJoint* jobJoint1;
+            rsdx::SJobJoint* jobJoint2;
+            rsdx::SJobJoint* jobJoint3;
+            rsdx::SJobJoint* jobJoint4;
+            rsdx::SJobJoint* jobJoint5;
+            csl::fnd::IAllocator* allocator;
+            Cyan::Manager* cyanManager;
+            csl::ut::MoveArray<void*> unk2;
+            uint64_t unk3;
+            uint32_t unk4;
+            float unk5;
+            uint8_t gap68[16];
+            float dword78;
+            ResourceListener resourceListener1;
+            ResourceListener resourceListener2;
+            csl::ut::MoveArray<void*> unkA0;
+            uint16_t wordC0;
+            csl::fnd::IAllocator* unkAllocator;
+            uint32_t dwordD0;
+            Unk1* unkD8;
+            uint32_t dwordE0;
+            csl::ut::PointerMap<void*, void*>* unkE8;
+            csl::fnd::IAllocator* unkAllocator2;
+            CyanRenderHandler cyanRenderHandler;
+            CyanAllocator cyanAllocator;
+
+            CREATE_FUNC(Impl, const SetupInfo& setupInfo);
         };
 
         class Listener {
@@ -101,6 +140,7 @@ namespace hh::eff {
 		virtual void PostGameUpdateCallback(game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
 
         void Setup(const SetupInfo& setupInfo);
+        EffectHandle CreateEffect(char const* resourceName, const csl::math::Matrix34& location, const game::GameObject* object, unsigned int layer, uint32_t unkParam1, uint32_t unkParam2, float unkParam3, void* node);
 
         GAMESERVICE_CLASS_DECLARATION(EffectManager)
     };

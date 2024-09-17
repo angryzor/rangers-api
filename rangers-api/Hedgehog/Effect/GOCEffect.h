@@ -69,9 +69,10 @@ namespace hh::eff {
         bool unk1a;
         uint8_t unk2;
         const char* resourceName;
-        float unk4;
+        float scale;
         int unk4a;
-        uint64_t unk5;
+        float unk5;
+        uint32_t unk5a;
         uint64_t unk6;
         EffectTransType transType;
         fnd::WorldPosition additionalWorldPos;
@@ -83,9 +84,10 @@ namespace hh::eff {
             , unk1a{ 0 }
             , unk2{ 0 }
             , resourceName{ resourceName }
-            , unk4{ 1.0f }
+            , scale{ 1.0f }
             , unk4a{ -1 }
-            , unk5{ 0 }
+            , unk5{ 0.0f }
+            , unk5a{ 0 }
             , unk6{ 0 }
             , additionalWorldPos{}
             , useAdditionalWorldPos{ false }
@@ -146,12 +148,6 @@ namespace hh::eff {
         EffectTransFramePositionCreateInfo(const char* resourceName) : EffectCreateInfo{ EffectTransType::FRAME_POSITION, resourceName } {}
     };
 
-    class EffectHandle {
-        int unk1;
-        void* unk2;
-        EffectHandle();
-    };
-
     class GOCEffect : public game::GOComponent {
     public:
         struct Description {
@@ -193,18 +189,18 @@ namespace hh::eff {
             csl::math::Matrix34 additionalTransformationMatrix;
         };
 
-        uint64_t qword80;
+        hh::eff::EffectManager* effectManager;
         fnd::Reference<fnd::HFrame> frame;
-        float dword90;
+        float scale;
         uint8_t byte94;
-        int dword98;
+        csl::ut::Color8 color;
         float dword9C;
         uint32_t dwordA0;
         gfx::GOCVisualModel* model;
         csl::ut::MoveArray<void*> unkB0;
         csl::ut::MoveArray<void*> unkD0;
-        csl::ut::InplaceMoveArray<void*, 1> unkF0;
-        uint32_t dword118;
+        csl::ut::InplaceMoveArray<void*, 1> listeners;
+        uint32_t modelNameHash;
 
 		virtual void* GetRuntimeTypeInfo() override;
 		virtual void GetDebugInfoMaybe() override;
@@ -214,8 +210,8 @@ namespace hh::eff {
         void Setup(const Description& description);
         void SetupGlobalScale();
         csl::math::Matrix34 CalcEffectMatrix(const EffectTransInfo& transInfo);
-        void SetupTransInfo(const EffectCreateInfo& createInfo, EffectTransInfo* transInfo);
-        EffectHandle CreateEffectHandle(const char* resourceName, const csl::math::Matrix34& location, float unkParam2, const float* unkParam3, const EffectCreateInfo* createInfo);
+        bool SetupTransInfo(const EffectCreateInfo& createInfo, EffectTransInfo* transInfo);
+        EffectHandle CreateEffectHandle(const char* resourceName, const csl::math::Matrix34& location, float unkParam2, float scale, const EffectCreateInfo* createInfo);
         void CreateEffect(const char* resourceName, EffectHandle* handle);
         void CreateEffectEx(const EffectCreateInfo& createInfo, EffectHandle* handle);
         void CreateEffectLoop(const char* resourceName, EffectHandle* handle);

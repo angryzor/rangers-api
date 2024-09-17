@@ -5,7 +5,7 @@ namespace hh::anim {
     public:
         AnimationStateMachine* animationStateMachine;
         AsmResourceManager* asmResourceManager;
-        uint32_t unk203;
+        uint32_t activeTriggerBits;
         char flags;
         char unk204b;
         uint64_t unk205;
@@ -31,6 +31,8 @@ namespace hh::anim {
         bool ChangeState(const char* stateName);
         bool ChangeStateWithoutTransition(const char* stateName);
         bool ChangeToNull(int unkParam);
+        bool Transit(const char* eventName, int layer);
+        void SetTriggerEnabled(const char* name, bool enabled);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCAnimator)
     };

@@ -13,8 +13,8 @@ namespace hh::anim {
 
         BlendNodeType type;
         bool hasTargetNodeInTree; // hasTargetNode? see SetTargetNode
-        csl::ut::Bitset<Flag> flags; // unsure if exists
-        uint32_t unk3; // unsure if exists
+        csl::ut::Bitset<Flag> flags;
+        float unk3;
         BlendNodeBase* parent;
         BlendNodeBase* hierarchyRoot;
         csl::ut::InplaceMoveArray<BlendNodeBase*, 2> children;
@@ -63,7 +63,14 @@ namespace hh::anim {
     };
 
     class ClipNode : public BlendNodeBase {
+    public:
+        uint8_t unk101;
+        short clipIndex;
+        uint32_t unk103;
+        fnd::Reference<AnimationControl> animationControl;
+        void* someResource;
 
+        CREATE_FUNC(ClipNode, const AsmResourceManager& resourceManager, int clipIndex, bool multiCycle);
     };
 
     class BranchBlendNode : public BlendNodeBase {

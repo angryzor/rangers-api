@@ -137,8 +137,8 @@ namespace csl::geom {
 	class Aabb
 	{
 	public:
-		math::Vector3 min{};
-		math::Vector3 max{};
+		math::Vector3 min{ 0.0f, 0.0f, 0.0f };
+		math::Vector3 max{ 0.0f, 0.0f, 0.0f };
 
 		static Aabb Transform(const math::Matrix34& matrix, const Aabb& aabb);
 		math::Vector3 Center() const;

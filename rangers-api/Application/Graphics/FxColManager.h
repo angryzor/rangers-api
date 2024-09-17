@@ -81,6 +81,7 @@ namespace app::gfx {
 
 		void StartLevel(const char* stageName);
 		void EndLevel();
+		hh::ut::KdTree* CreateKdTree(ResFxColFile2* resource);
 
 		GAMESERVICE_CLASS_DECLARATION(FxColManager)
     };

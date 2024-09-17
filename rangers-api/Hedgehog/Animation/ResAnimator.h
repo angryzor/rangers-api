@@ -1,13 +1,13 @@
 #pragma once
 
 namespace hh::anim {
-    struct AnimationData {
+    struct ClipData {
         const char* name;
         const char* resourceName;
         float unk1;
         float unk2;
         float speed;
-        uint8_t unk4;
+        uint8_t flags;
         bool isLoop;
         uint16_t padding;
         uint16_t unk7;
@@ -19,26 +19,32 @@ namespace hh::anim {
         uint32_t unk11;
     };
 
+    enum class StateType : uint8_t {
+        CLIP,
+        BLEND_TREE,
+        SPEED,
+    };
+
     struct StateData {
         const char* name;
-        char isbool1;
+        StateType type;
         uint8_t unk1;
-        bool isLoop;
-        uint8_t unk2222;
-        int16_t animReference;
+        uint8_t flags;
+        uint8_t defaultLayerIndex;
+        int16_t rootBlendNodeIndex;
         int16_t maxCycles;
         float speed;
-        int16_t unk4444;
-        int16_t isbool2;
-        int16_t unk6;
-        int16_t currentState;
+        int16_t speedVariableIndex;
+        int16_t eventCount;
+        int16_t eventOffset;
+        int16_t transitionArrayIndex;
         int16_t unk88888;
         int16_t nextState;
         float unk10;
         int16_t unk11;
         int16_t unk12;
-        int16_t isbool3;
-        int16_t unk14;
+        int16_t flagIndexCount;
+        int16_t flagIndexOffset;
         uint32_t unk15;
     };
 
@@ -61,20 +67,10 @@ namespace hh::anim {
         int16_t unk5;
         float unk6;
         // Points back into the blendNode array to specify this node's children.
-        // This value are weird for LAYER type blend nodes: the childNodeArraySize is then
+        // This value is weird for LAYER type blend nodes: the childNodeArraySize is then
         // expected to be 1, and the childNodeArrayOffset is the layer ID.
         int16_t childNodeArraySize;
         int16_t childNodeArrayOffset;
-    };
-
-    struct Unk2Data {
-        const char* name;
-        int16_t stateRef1;
-        int16_t stateRef2;                         
-        float unk3;
-        int16_t unk4;
-        int16_t unk5;
-        uint32_t unk6;
     };
 
     // An array of transitions, defined as a slice of the large transition array in the top level struct.
@@ -85,13 +81,38 @@ namespace hh::anim {
         int size;
     };
 
+    enum class TransitionType : uint8_t {
+        UNK0,
+        UNK1,
+        UNK2,
+        UNK3,
+        UNK4,
+        UNK5,
+        UNK6,
+        UNK7,
+    };
+
     struct TransitionData {
-        uint8_t unk1;
-        uint8_t unk2;
-        uint16_t stateId;
-        float transitionTime;
-        int16_t unk4;
-        uint16_t unk5;
+        struct TransitionInfo {
+            TransitionType type;
+            uint8_t unk2;
+            short targetStateIndex;
+            float transitionTime;
+        };
+
+        struct VariableInfo {
+            int16_t transitionTimeVariableIndex;
+            uint16_t unk5; // may not exist
+        };
+
+        TransitionInfo transitionInfo;
+        VariableInfo variableInfo;
+    };
+
+    struct EventData {
+        const char* name;
+        TransitionData transition;
+        uint32_t unk6; // may not exist
     };
 
     struct LayerData {
@@ -108,11 +129,11 @@ namespace hh::anim {
         uint32_t unknown3;
     };
 
-    struct Unk11Data {
+    struct TriggerData {
         uint32_t unknown1;
         float unknown2;
         float unknown3;
-        uint16_t unknown4;
+        unsigned short triggerTypeIndex;
         int16_t unknown5;
         const char* name;
     };
@@ -141,41 +162,37 @@ namespace hh::anim {
     struct AnimatorData {
         char magic[4];
         int version;
-        int animationCount;
-        AnimationData* animations;
+        int clipCount;
+        ClipData* clips;
         int stateCount;
         StateData* states;
         int blendNodeCount;
         BlendNodeData* blendNodes;
-        int unk2Count;
-        Unk2Data* unk2;
+        int eventCount;
+        EventData* events;
         int transitionArrayCount;
         TransitionArrayData* transitionArrays;
         int transitionCount;
         TransitionData* transitions;
-        uint16_t u5;
-        int16_t u6;
-        float u7;
-        int16_t u8;
-        uint16_t u9;
-        int u10Count;
-        uint16_t* u10;
-        int u11Count;
-        const char** u11;
+        TransitionData nullTransition;
+        int flagIndexCount;
+        uint16_t* flagIndices;
+        int flagCount;
+        const char** flags;
         int variableCount;
         const char** variables;
         int layerCount;
         LayerData* layers;
         int u14Count;
         Unk9Data* u14;
-        int layerBoneCount;
-        const char** layerBones;
-        int u16Count;
-        Unk11Data* u16;
-        int u17Count;
-        const char** u17;
-        int u18Count;
-        const char** u18;
+        int nodeCount;
+        const char** nodes;
+        int triggerCount;
+        TriggerData* triggers;
+        int triggerTypeCount;
+        const char** triggerTypes;
+        int colliderCount;
+        const char** colliders;
         uint32_t blendTreeRootNodeId;
         int u20Count;
         Unk14Data* u20;
@@ -193,7 +210,7 @@ namespace hh::anim {
         void* unk2;
         csl::ut::StringMap<int> stateIdsByName;
         csl::ut::StringMap<int> variableIdsByName;
-        csl::ut::MoveArray<void*> states;
+        csl::ut::MoveArray<EventArray> eventArrays;
         csl::ut::MoveArray<TransitionArray> transitionArrays;
 
         MANAGED_RESOURCE_CLASS_DECLARATION(ResAnimator)
