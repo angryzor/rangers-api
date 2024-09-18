@@ -4,14 +4,15 @@ namespace hh::anim {
     class AsmResourceManager : public fnd::ReferencedObject {
     public:
         struct ClipBindInfo {
-            uint64_t unk1;
+            float unk1;
             float unk2;
+            float duration;
             fnd::Reference<ResAnimation> resource;
         };
 
         struct StateBindInfo {
-            float unk1;
-            uint8_t unk2;
+            float duration;
+            bool unk2; // whether it loops or something, check CalcStateDuration
         };
 
         struct BlendMaskInfo {
@@ -21,10 +22,16 @@ namespace hh::anim {
         struct BindInfo {
             ResAnimator* animatorResource;
             ResSkeleton* skeletonResource;
+            fnd::ResourceNameResolver* resourceNameResolver;
+        };
+
+        struct Unk1 {
+            csl::ut::InplaceMoveArray<size_t, 4>* clipCounts;
+            size_t unk1;
         };
 
         fnd::Reference<ResAnimator> animatorResource;
-        uint64_t unk0b;
+        fnd::Reference<ResSkeleton> skeletonResource;
         csl::ut::MoveArray<ClipBindInfo> clipBindInfos;
         csl::ut::MoveArray<StateBindInfo> stateBindInfos; // index is state ID, see AnimationState ctor
         csl::ut::MoveArray<BlendMaskInfo> blendMaskInfos;
@@ -40,5 +47,6 @@ namespace hh::anim {
         void Bind(const BindInfo& bindInfo, fnd::ResourceResolver& resourceResolver);
         bool ShouldReloadResource(fnd::ManagedResource* resource);
         unsigned int GetNumBones() const;
+        bool CalcStateDuration(const StateData& stateData, const BlendNodeData& blendNodeData, float* duration, unsigned char* flags) const;
     };
 }

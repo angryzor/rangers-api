@@ -11,14 +11,14 @@ namespace SurfRide {
             STRING,
         };
 
-        const char* name;
-        Type type;
-        uint64_t value;
+        const char* name{};
+        Type type{};
+        void* value{};
     };
 
     struct SRS_USERDATA {
-        uint32_t count;
-        SRS_DATA* items;
+        uint32_t count{};
+        SRS_DATA* items{};
     };
 
     class UserData {

@@ -23,14 +23,14 @@ namespace hh::anim {
 
         virtual void* GetRuntimeTypeInfo() const;
         virtual bool Accept() { return true; }
-        virtual bool always_false() { return false; }
+        virtual bool UnkFunc3() { return false; }
         virtual uint64_t UnkFunc4();
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
         virtual uint64_t GetLocalBlendMaskImpl() const = 0;
         virtual unsigned int SyncLocalBlendMask() const {}
         virtual void ResetBlendMask(const char* mask);
-        virtual uint64_t UnkFunc10() { return false; }
+        virtual bool UnkFunc10() { return false; }
         virtual uint64_t UnkFunc11();
         virtual void UnkFunc12() {}
         virtual void UnkFunc13() {}
@@ -50,18 +50,6 @@ namespace hh::anim {
         void RemoveChild(BlendNodeBase* child);
     };
 
-    class LayerBlendNode : public BlendNodeBase {
-        BlendNodeBase* targetNode;
-        void* unk5; // unk3 in asmresourcemgr indexed by unknown2 of the LayerData
-        csl::ut::MoveArray<void*>* unk6; // -> refers to unk5 in asmresourcemanager
-        csl::ut::MoveArray<void*> unk7; // sized by bone count
-
-    public:
-        CREATE_FUNC(LayerBlendNode, const AsmResourceManager& resourceManager, LayerData* layer)
-
-        void SetTargetNode(BlendNodeBase* node);
-    };
-
     class ClipNode : public BlendNodeBase {
     public:
         uint8_t unk101;
@@ -71,35 +59,140 @@ namespace hh::anim {
         void* someResource;
 
         CREATE_FUNC(ClipNode, const AsmResourceManager& resourceManager, int clipIndex, bool multiCycle);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual bool Accept() override;
+        virtual bool UnkFunc3() override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual void ResetBlendMask(const char* mask) override;
+        virtual void UnkFunc13() override;
+    };
+
+    class LayerBlendNode : public BlendNodeBase {
+        BlendNodeBase* targetNode;
+        void* unk5; // unk3 in asmresourcemgr indexed by unknown2 of the LayerData
+        csl::ut::MoveArray<void*>* unk6; // -> refers to unk5 in asmresourcemanager
+        csl::ut::MoveArray<void*> unk7; // sized by bone count
+
+    public:
+        CREATE_FUNC(LayerBlendNode, const AsmResourceManager& resourceManager, LayerData* layer)
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual bool Accept() override;
+        virtual bool UnkFunc3() override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual unsigned int SyncLocalBlendMask() const override;
+        void SetTargetNode(BlendNodeBase* node);
     };
 
     class BranchBlendNode : public BlendNodeBase {
+    public:
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual bool Accept() override;
+        virtual bool UnkFunc3() override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
 
     };
 
     class LerpBlendNode : public BranchBlendNode {
+    public:
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual uint64_t UnkFunc4() override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual bool UnkFunc10() override;
+        virtual uint64_t UnkFunc11() override;
+        virtual void UnkFunc12() override;
 
     };
 
     class AdditiveBlendNode : public BranchBlendNode {
     public:
-        CREATE_FUNC(AdditiveBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam)
+        CREATE_FUNC(AdditiveBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual bool UnkFunc10() override;
+        virtual uint64_t UnkFunc11() override;
+        virtual void UnkFunc12() override;
     };
 
     class OverrideBlendNode : public BranchBlendNode {
     public:
-        CREATE_FUNC(OverrideBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam)
+        CREATE_FUNC(OverrideBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual bool UnkFunc10() override;
+        virtual uint64_t UnkFunc11() override;
+        virtual void UnkFunc12() override;
     };
 
     class TwoPointLerpBlendNode : public BranchBlendNode {
-
+    public:
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void UnkFunc12() override;
     };
 
     class MulBlendNode : public BranchBlendNode {
+    public:
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void UnkFunc12() override;
+    };
 
+    class BlendNodeParameter : public Bindable {
+    public:
+        BlendNodeBase* blendNode;
+        short unk101;
+        short unk102;
+        float value;
+
+        virtual void Bind(float value, void* unkParam) override;
     };
 
     class BlendSpaceNode : public BranchBlendNode {
+    public:
+        BlendSpaceData* blendSpaceData;
+        csl::ut::MoveArray<void*> unk1;
+        BlendNodeParameter xParam;
+        BlendNodeParameter yParam;
+        char unk2;
+        short containingTriangleIndex;
+        csl::math::Vector2 position;
+        float blendFactor[3];
 
+        BlendSpaceNode(csl::fnd::IAllocator* allocator, AsmResourceManager* asmResourceManager, BlendSpaceData* blendSpaceData);
+
+        static BlendSpaceNode* Create(csl::fnd::IAllocator* allocator, const csl::ut::MoveArray<BlendNodeBase*> children, AsmResourceManager* asmResourceManager, int blendSpaceIndex);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual uint64_t UnkFunc4() override;
+        virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
+        virtual uint64_t GetLocalBlendMaskImpl() const override;
+        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual bool UnkFunc10() override;
+        virtual uint64_t UnkFunc11() override;
+        virtual void UnkFunc12() override;
+
+        int GetContainingTriangleIndex(const csl::math::Vector2& point) const;
     };
 }

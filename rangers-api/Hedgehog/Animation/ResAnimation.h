@@ -3,15 +3,19 @@
 namespace hh::anim {
     class ResAnimation : public fnd::ManagedResource {
     public:
-        uint64_t qword78;
-        uint64_t qword80;
-        uint64_t qword88;
-        uint64_t qword90;
-        uint64_t qword98;
-        uint64_t qwordA0;
-        uint64_t qwordA8;
-        uint64_t qwordB0;
-        uint64_t qwordB8;
-        MANAGED_RESOURCE_CLASS_DECLARATION(ResAnimation)
+        ResAnimation(csl::fnd::IAllocator* allocator);
+
+        virtual void Load(void* data, size_t size) override;
+        virtual void Unload() override;
+        virtual void Reload(void* data, size_t size) override;
+        virtual uint64_t UnkFunc1() = 0;
+        virtual uint64_t UnkFunc2() = 0;
+        virtual uint64_t UnkFunc3() = 0;
+        virtual uint64_t UnkFunc4() = 0;
+        virtual uint64_t UnkFunc5() = 0;
+        virtual uint64_t UnkFunc6() = 0;
+        virtual uint64_t UnkFunc7() = 0;
+        virtual bool UnkFunc8() = 0;
+        virtual uint64_t UnkFunc9() = 0;
     };
 }

@@ -9,12 +9,12 @@ namespace hh::anim {
         float speed;
         uint8_t flags;
         bool isLoop;
-        uint16_t padding;
+        uint16_t unk6;
         uint16_t unk7;
         uint16_t unk8;
         uint16_t unk9;
-        uint16_t padding2;
-        uint16_t unk10;
+        uint16_t childClipIndexCount;
+        uint16_t childClipIndexOffset;
         uint16_t padding3;
         uint32_t unk11;
     };
@@ -62,13 +62,14 @@ namespace hh::anim {
     struct BlendNodeData {
         BlendNodeType type;
         uint8_t unk2;
-        int16_t unk3;
-        int16_t unk4;
+        int16_t blendSpaceIndex;
+        int16_t variableIndex;
         int16_t unk5;
         float unk6;
         // Points back into the blendNode array to specify this node's children.
         // This value is weird for LAYER type blend nodes: the childNodeArraySize is then
         // expected to be 1, and the childNodeArrayOffset is the layer ID.
+        // For CLIP blend nodes it is the clip index.
         int16_t childNodeArraySize;
         int16_t childNodeArrayOffset;
     };
@@ -122,10 +123,10 @@ namespace hh::anim {
         uint32_t unknown3;
     };
 
-    struct Unk9Data {
+    struct BlendMaskData {
         const char* name;
-        uint16_t unknown1;
-        int16_t unknown2;
+        uint16_t maskBoneCount;
+        int16_t maskBoneOffset;
         uint32_t unknown3;
     };
 
@@ -138,28 +139,26 @@ namespace hh::anim {
         const char* name;
     };
 
-    struct Unk17Data {
-        uint16_t unknown1;
-        uint16_t unknown2;
-        uint16_t unknown3;
-        uint16_t unknown4;
+    struct BlendSpaceTriangleData {
+        short nodeIndices[3];
+        short unused;
     };
 
-    struct Unk14Data {
-        uint16_t unknown1;
-        uint16_t unknown2;
-        float unknown3;            
-        float unknown4;
-        float unknown5;
-        float unknown6;
-        uint16_t unk9And10Count;
-        uint16_t unk17Count;
-        csl::math::Vector2* unknown9;
-        uint16_t* unknown10;
-        Unk17Data* unknown11;
+    struct BlendSpaceData {
+        short xVariableIndex;
+        short yVariableIndex;
+        float xMin;            
+        float xMax;
+        float yMin;
+        float yMax;
+        uint16_t nodeCount;
+        uint16_t triangleCount;
+        csl::math::Vector2* nodes;
+        uint16_t* clipIndices;
+        BlendSpaceTriangleData* triangles;
     };
 
-    struct AnimatorData {
+    struct AsmData {
         char magic[4];
         int version;
         int clipCount;
@@ -183,19 +182,21 @@ namespace hh::anim {
         const char** variables;
         int layerCount;
         LayerData* layers;
-        int u14Count;
-        Unk9Data* u14;
-        int nodeCount;
-        const char** nodes;
+        int blendMaskCount;
+        BlendMaskData* blendMasks;
+        int maskBoneCount;
+        const char** maskBones;
         int triggerCount;
         TriggerData* triggers;
         int triggerTypeCount;
         const char** triggerTypes;
         int colliderCount;
         const char** colliders;
-        uint32_t blendTreeRootNodeId;
-        int u20Count;
-        Unk14Data* u20;
+        short blendTreeRootNodeId;
+        int blendSpaceCount;
+        BlendSpaceData* blendSpaces;
+        int childClipIndexCount;
+        uint16_t* childClipIndices;
     };
 
     // A map of state id -> TransitionData
@@ -206,7 +207,7 @@ namespace hh::anim {
 
     class ResAnimator : public fnd::ManagedResource {
     public:
-        AnimatorData* binaryData;
+        AsmData* binaryData;
         void* unk2;
         csl::ut::StringMap<int> stateIdsByName;
         csl::ut::StringMap<int> variableIdsByName;

@@ -15,13 +15,10 @@ namespace hh::anim {
             struct Unk1 {
                 csl::ut::InplaceMoveArray<Unk2, 6> unk1;
             };
-            uint64_t unk1;
-            uint64_t unk2;
-            uint64_t unk3;
             AnimationState* animationState;
             Unk1 unk4;
 
-            virtual void Bind(float value) override;
+            virtual void Bind(float value, void* unkParam) override;
         };
 
         struct Unk1 {

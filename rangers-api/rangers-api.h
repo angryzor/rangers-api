@@ -519,6 +519,7 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Animation/SkeletalMeshBinding.h"
 #include "Hedgehog/Animation/SkeletonBlender.h"
 #include "Hedgehog/Animation/ResAnimation.h"
+#include "Hedgehog/Animation/ResAnimationPxd.h"
 #include "Hedgehog/Animation/ResSkeleton.h"
 #include "Hedgehog/Animation/ResSkeletonPxd.h"
 #include "Hedgehog/Animation/EventArray.h"
