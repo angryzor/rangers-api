@@ -21,50 +21,47 @@ namespace hh::anim {
             virtual void Bind(float value, void* unkParam) override;
         };
 
-        struct Unk1 {
-            uint32_t unk1;
+        struct Animation {
+            float duration;
             float speed;
-            float unk3;
-            uint32_t unk4;
-
-            float unk5;
-            float unk6;
-            uint32_t unk7;
-            uint32_t unk8;
-
-            uint32_t unk9;
-            uint32_t unk10;
+            float maybeAnimationStart;
+            float maybeAnimationEnd;
+            float maybeAnimationCurrent;
+            float maybeAnimationCurrent2;
+            TriggerData* triggersStart;
+            TriggerData* triggersEnd;
             bool loops;
-            uint16_t unk12;
-    
-            uint64_t unk13;
-
-            csl::ut::MoveArray<void*> unk14;
-            uint64_t unk15;
-            void* unk16[1];
+            short clipIndex;
+            AnimationControl* animationControl;
+            csl::ut::InplaceBitArray<1> triggerFlags;
 
         };
+
+        class Impl {
+            const char* name;
+            short stateId;
+            csl::ut::Bitset<StateData::Flag> flags;
+            uint16_t sequenceNumber;
+            uint16_t word36; // may not exist
+            float duration;
+            float speed;
+            float currentTime;
+            float controlSpeed;
+            uint32_t cycles;
+            uint32_t maxCycles;
+            EventArray* eventArray;
+            TransitionArray* transitionArray;
+            csl::ut::InplaceMoveArray<Animation, 3> animations;
+            uint8_t stateBindInfoUnk2;
+            uint16_t* flagIndicesStart;
+            uint16_t* flagIndicesEnd;
+            fnd::Reference<BlendNodeBase> blendTree;
+            SpeedBindable speedBindable;
+        };
+
         AsmResourceManager* asmResourceManager;
         StateData* stateData;
-        const char* name;
-        short stateId;
-        bool loops;
-        uint16_t sequenceNumber;
-        uint16_t word36; // may not exist
-        float duration;
-        float speed;
-        float durationScaledByFloat44;
-        float float44;
-        uint32_t dword48;
-        uint32_t maxCycles;
-        EventArray* eventArray;
-        TransitionArray* transitionArray;
-        csl::ut::InplaceMoveArray<Unk1, 3> unk60;
-        uint8_t byte1B8;
-        uint64_t qword1C0;
-        uint64_t qword1C8;
-        fnd::Reference<BlendNodeBase> blendTree;
-        SpeedBindable speedBindable;
+        Impl implementation;
 
         CREATE_FUNC(AnimationState, AsmResourceManager* asmResourceManager, int stateId);
 

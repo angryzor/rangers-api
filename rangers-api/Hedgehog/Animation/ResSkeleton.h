@@ -11,7 +11,7 @@ namespace hh::anim {
         virtual void SetBoneGroup(int boneIndex, int groupId) = 0;
         virtual csl::math::Transform GetBoneTransform(int boneIndex) const = 0;
         virtual void SetBoneTransform(int boneIndex, const csl::math::Transform& transform) = 0;
-        virtual void MarkDescendants(int boneIndex, csl::ut::MoveArray<size_t>* marks) const = 0;
+        virtual void MarkDescendants(int boneIndex, csl::ut::BitArray& marks) const = 0;
         virtual uint64_t UnkFunc15() = 0;
         virtual uint64_t UnkFunc16() = 0;
         virtual uint64_t UnkFunc17() = 0;

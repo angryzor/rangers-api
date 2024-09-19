@@ -21,7 +21,7 @@ namespace hh::anim {
         virtual void SetBoneGroup(int boneIndex, int groupId) override;
         virtual csl::math::Transform GetBoneTransform(int boneIndex) const override;
         virtual void SetBoneTransform(int boneIndex, const csl::math::Transform& transform) override;
-        virtual void MarkDescendants(int boneIndex, csl::ut::MoveArray<size_t>* marks) const override;
+        virtual void MarkDescendants(int boneIndex, csl::ut::BitArray& marks) const override;
         virtual uint64_t UnkFunc15() override;
         virtual uint64_t UnkFunc16() override;
         virtual uint64_t UnkFunc17() override;

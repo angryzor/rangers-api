@@ -48,7 +48,7 @@ namespace hh::anim {
             uint8_t unk3;
             uint16_t nextSequenceNumber;
             uint8_t unk5;
-            float unk6;
+            float speed;
             uint16_t transitionId;
             fnd::Reference<LayerStateBase> layerState;
             fnd::Reference<LayerBlendNode> blendNode;

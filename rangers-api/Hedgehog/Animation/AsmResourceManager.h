@@ -16,7 +16,7 @@ namespace hh::anim {
         };
 
         struct BlendMaskInfo {
-            csl::ut::MoveArray<char> masks;
+            csl::ut::MoveArray<char> boneMasks;
         };
 
         struct BindInfo {
@@ -25,17 +25,12 @@ namespace hh::anim {
             fnd::ResourceNameResolver* resourceNameResolver;
         };
 
-        struct Unk1 {
-            csl::ut::InplaceMoveArray<size_t, 4>* clipCounts;
-            size_t unk1;
-        };
-
         fnd::Reference<ResAnimator> animatorResource;
         fnd::Reference<ResSkeleton> skeletonResource;
         csl::ut::MoveArray<ClipBindInfo> clipBindInfos;
         csl::ut::MoveArray<StateBindInfo> stateBindInfos; // index is state ID, see AnimationState ctor
         csl::ut::MoveArray<BlendMaskInfo> blendMaskInfos;
-        csl::ut::MoveArray<void*> unk4;
+        BlendMaskInfo defaultBlendMaskInfo;
         csl::ut::MoveArray<void*> unk5;
         float unk6;
         uint8_t unk7;

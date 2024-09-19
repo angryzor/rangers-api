@@ -22,7 +22,7 @@ namespace hh::anim {
         virtual uint64_t UnkFunc2() override;
         virtual uint64_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
-        virtual uint64_t UnkFunc5() override;
+        virtual ResAnimationPxd* CreateMirrorAnimation(csl::fnd::IAllocator* allocator, ResSkeleton* skeleton, ResAnimation* resolvedAnimation) override;
         virtual uint64_t UnkFunc6() override;
         virtual uint64_t UnkFunc7() override;
         virtual bool UnkFunc8() override;

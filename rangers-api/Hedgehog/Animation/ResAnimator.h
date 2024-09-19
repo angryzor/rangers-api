@@ -2,50 +2,82 @@
 
 namespace hh::anim {
     struct ClipData {
+        struct AnimationSettings {
+            enum class Flag : uint8_t {
+                MIRROR, // create a mirror animation.
+                PLAY_UNTIL_ANIMATION_END, // play until the end of the animation. ignore the `end` property.
+                NO_ANIMATION_RESOLUTION, // don't look up the animation resource in resource manager?
+            };
+
+            const char* resourceName;
+            float start;
+            float end;
+            float speed;
+            csl::ut::Bitset<Flag> flags;
+            bool loops;
+        };
+
         const char* name;
-        const char* resourceName;
-        float unk1;
-        float unk2;
-        float speed;
-        uint8_t flags;
-        bool isLoop;
-        uint16_t unk6;
-        uint16_t unk7;
-        uint16_t unk8;
-        uint16_t unk9;
-        uint16_t childClipIndexCount;
-        uint16_t childClipIndexOffset;
-        uint16_t padding3;
-        uint32_t unk11;
+        AnimationSettings animationSettings;
+        unsigned short triggerCount;
+        short triggerOffset;
+        short blendMaskIndex;
+        unsigned short childClipIndexCount;
+        short childClipIndexOffset;
     };
 
-    enum class StateType : uint8_t {
+    // They're different easings and I don't feel like doing reverse math right now.
+    enum class TransitionType : uint8_t {
+        UNK0,
+        UNK1,
+        UNK2,
+        UNK3,
+        UNK4,
+        UNK5,
+        UNK6,
+        UNK7,
+    };
+
+    struct TransitionData {
+        struct TransitionInfo {
+            TransitionType type;
+            bool applyEasing;
+            short targetStateIndex;
+            float transitionTime;
+        };
+
+        TransitionInfo transitionInfo;
+        short transitionTimeVariableIndex;
+    };
+
+    enum class StateType : char {
+        NULL_STATE = -1,
         CLIP,
         BLEND_TREE,
-        SPEED,
+        NONE,
     };
 
     struct StateData {
+        enum class Flag : uint8_t {
+            LOOPS,
+            UNK1,
+        };
+
         const char* name;
         StateType type;
-        uint8_t unk1;
-        uint8_t flags;
-        uint8_t defaultLayerIndex;
-        int16_t rootBlendNodeIndex;
-        int16_t maxCycles;
+        bool transitImmediately;
+        csl::ut::Bitset<Flag> flags;
+        char defaultLayerIndex;
+        short rootBlendNodeIndex;
+        short maxCycles;
         float speed;
-        int16_t speedVariableIndex;
-        int16_t eventCount;
-        int16_t eventOffset;
-        int16_t transitionArrayIndex;
-        int16_t unk88888;
-        int16_t nextState;
-        float unk10;
-        int16_t unk11;
-        int16_t unk12;
-        int16_t flagIndexCount;
-        int16_t flagIndexOffset;
-        uint32_t unk15;
+        short speedVariableIndex;
+        unsigned short eventCount;
+        short eventOffset;
+        short transitionArrayIndex;
+        TransitionData stateEndTransition;
+        unsigned short flagIndexCount;
+        short flagIndexOffset;
     };
 
     enum class BlendNodeType : uint8_t {
@@ -61,17 +93,15 @@ namespace hh::anim {
 
     struct BlendNodeData {
         BlendNodeType type;
-        uint8_t unk2;
-        int16_t blendSpaceIndex;
-        int16_t variableIndex;
-        int16_t unk5;
-        float unk6;
+        short blendSpaceIndex;
+        short variableIndex;
+        float blendFactor;
         // Points back into the blendNode array to specify this node's children.
         // This value is weird for LAYER type blend nodes: the childNodeArraySize is then
         // expected to be 1, and the childNodeArrayOffset is the layer ID.
         // For CLIP blend nodes it is the clip index.
-        int16_t childNodeArraySize;
-        int16_t childNodeArrayOffset;
+        unsigned short childNodeArraySize;
+        short childNodeArrayOffset;
     };
 
     // An array of transitions, defined as a slice of the large transition array in the top level struct.
@@ -82,60 +112,34 @@ namespace hh::anim {
         int size;
     };
 
-    enum class TransitionType : uint8_t {
-        UNK0,
-        UNK1,
-        UNK2,
-        UNK3,
-        UNK4,
-        UNK5,
-        UNK6,
-        UNK7,
-    };
-
-    struct TransitionData {
-        struct TransitionInfo {
-            TransitionType type;
-            uint8_t unk2;
-            short targetStateIndex;
-            float transitionTime;
-        };
-
-        struct VariableInfo {
-            int16_t transitionTimeVariableIndex;
-            uint16_t unk5; // may not exist
-        };
-
-        TransitionInfo transitionInfo;
-        VariableInfo variableInfo;
-    };
-
     struct EventData {
         const char* name;
         TransitionData transition;
-        uint32_t unk6; // may not exist
     };
 
     struct LayerData {
         const char* name;
-        uint16_t unknown1;
-        int16_t unknown2;
-        uint32_t unknown3;
+        unsigned short probablyLayerId;
+        short blendMaskIndex;
     };
 
     struct BlendMaskData {
         const char* name;
-        uint16_t maskBoneCount;
-        int16_t maskBoneOffset;
-        uint32_t unknown3;
+        unsigned short maskBoneCount;
+        short maskBoneOffset;
+    };
+
+    enum class TriggerType : uint8_t {
+        HIT,
+        ENTER_LEAVE,
     };
 
     struct TriggerData {
-        uint32_t unknown1;
+        TriggerType type;
         float unknown2;
         float unknown3;
         unsigned short triggerTypeIndex;
-        int16_t unknown5;
+        short colliderIndex;
         const char* name;
     };
 
@@ -151,10 +155,10 @@ namespace hh::anim {
         float xMax;
         float yMin;
         float yMax;
-        uint16_t nodeCount;
-        uint16_t triangleCount;
+        unsigned short nodeCount;
+        unsigned short triangleCount;
         csl::math::Vector2* nodes;
-        uint16_t* clipIndices;
+        short* clipIndices;
         BlendSpaceTriangleData* triangles;
     };
 
@@ -196,7 +200,7 @@ namespace hh::anim {
         int blendSpaceCount;
         BlendSpaceData* blendSpaces;
         int childClipIndexCount;
-        uint16_t* childClipIndices;
+        short* childClipIndices;
     };
 
     // A map of state id -> TransitionData

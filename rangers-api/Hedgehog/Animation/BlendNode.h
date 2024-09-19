@@ -14,7 +14,7 @@ namespace hh::anim {
         BlendNodeType type;
         bool hasTargetNodeInTree; // hasTargetNode? see SetTargetNode
         csl::ut::Bitset<Flag> flags;
-        float unk3;
+        float blendFactor;
         BlendNodeBase* parent;
         BlendNodeBase* hierarchyRoot;
         csl::ut::InplaceMoveArray<BlendNodeBase*, 2> children;
@@ -54,9 +54,9 @@ namespace hh::anim {
     public:
         uint8_t unk101;
         short clipIndex;
-        uint32_t unk103;
+        float weight;
         fnd::Reference<AnimationControl> animationControl;
-        void* someResource;
+        AsmResourceManager::BlendMaskInfo* blendMask;
 
         CREATE_FUNC(ClipNode, const AsmResourceManager& resourceManager, int clipIndex, bool multiCycle);
 
@@ -72,7 +72,7 @@ namespace hh::anim {
 
     class LayerBlendNode : public BlendNodeBase {
         BlendNodeBase* targetNode;
-        void* unk5; // unk3 in asmresourcemgr indexed by unknown2 of the LayerData
+        AsmResourceManager::BlendMaskInfo* blendMaskInfo;
         csl::ut::MoveArray<void*>* unk6; // -> refers to unk5 in asmresourcemanager
         csl::ut::MoveArray<void*> unk7; // sized by bone count
 
