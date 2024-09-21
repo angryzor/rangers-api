@@ -68,7 +68,7 @@ namespace hh::anim {
         bool transitImmediately;
         csl::ut::Bitset<Flag> flags;
         char defaultLayerIndex;
-        short rootBlendNodeIndex;
+        short rootBlendNodeOrClipIndex;
         short maxCycles;
         float speed;
         short speedVariableIndex;
@@ -106,10 +106,10 @@ namespace hh::anim {
 
     // An array of transitions, defined as a slice of the large transition array in the top level struct.
     struct TransitionArrayData {
-        // Where this array starts in the large array of transitions.
-        int offset;
         // How many transitions this array contains.
         int size;
+        // Where this array starts in the large array of transitions.
+        int offset;
     };
 
     struct EventData {

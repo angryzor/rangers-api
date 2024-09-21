@@ -38,6 +38,7 @@ namespace hh::anim {
         };
 
         class Impl {
+        public:
             const char* name;
             short stateId;
             csl::ut::Bitset<StateData::Flag> flags;
