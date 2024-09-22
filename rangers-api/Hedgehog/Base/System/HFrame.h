@@ -26,6 +26,14 @@ namespace hh::fnd {
     //     csl::math::Vector4 unk17;
     //     HFrame(csl::fnd::IAllocator* allocator);
     // };
+    class HFrame;
+
+    class HFrameListener {
+    public:
+        virtual ~HFrameListener() = default;
+        virtual void HFrameUpdatedCallback(const HFrame* frame, bool unkParam);
+    };
+
     class HFrame : public ReferencedObject {
     public:
         class Listener {

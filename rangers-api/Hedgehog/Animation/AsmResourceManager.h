@@ -4,8 +4,8 @@ namespace hh::anim {
     class AsmResourceManager : public fnd::ReferencedObject {
     public:
         struct ClipBindInfo {
-            float unk1;
-            float unk2;
+            float startTime;
+            float endTime;
             float duration;
             fnd::Reference<ResAnimation> resource;
         };

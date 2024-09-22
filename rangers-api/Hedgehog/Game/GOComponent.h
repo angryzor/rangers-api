@@ -84,7 +84,7 @@ namespace hh::game
 
 		virtual void* GetRuntimeTypeInfo();
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) {}
-		virtual void GetDebugInfoMaybe();
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam);
 		virtual bool ProcessMessage(fnd::Message& msg) { return false; }
 		virtual bool fUnk5() { return false; }
 		virtual void LoadReflection(const fnd::RflClass& rflClass) {}

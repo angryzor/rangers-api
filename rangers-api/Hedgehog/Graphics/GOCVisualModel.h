@@ -104,7 +104,7 @@ namespace hh::gfx {
         uint64_t unk332;
 
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void GetDebugInfoMaybe() override;
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void LoadReflection(const fnd::RflClass& rflClass) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual void OnGOCVisualEvent(GOCVisualEvent unkParam1, unsigned int unkParam2, void* unkParam3) override;

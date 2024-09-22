@@ -112,6 +112,7 @@ namespace app::player {
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
         const csl::math::Transform& GetTransform() const;
+        csl::math::Matrix34 GetWorldMatrix() const;
         void SetPosition(const csl::math::Vector4& position);
         void SetRotation(const csl::math::Matrix34& rotation);
         void SetRotation(const csl::math::Quaternion& rotation);

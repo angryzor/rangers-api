@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef SYNCHRONIZE
+#undef SYNCHRONIZE
+#endif
+
 namespace hh::anim {
     struct ClipData {
         struct AnimationSettings {
@@ -26,22 +30,29 @@ namespace hh::anim {
         short childClipIndexOffset;
     };
 
-    // They're different easings and I don't feel like doing reverse math right now.
+    enum class TransitionEasingType : uint8_t {
+        LINEAR,
+        CUBIC,
+    };
+
     enum class TransitionType : uint8_t {
-        UNK0,
-        UNK1,
-        UNK2,
-        UNK3,
-        UNK4,
-        UNK5,
-        UNK6,
-        UNK7,
+        IMMEDIATE,
+        FROZEN,
+        SMOOTH,
+        SYNCHRONIZE,
+        HOLD_TO,
+        HOLD_BOTH,
+        WAIT_FROM,
+        WAIT_FROM_HOLD_TO,
+        USER_0,
+        USER_1,
+        USER_2,
     };
 
     struct TransitionData {
         struct TransitionInfo {
             TransitionType type;
-            bool applyEasing;
+            TransitionEasingType easingType;
             short targetStateIndex;
             float transitionTime;
         };

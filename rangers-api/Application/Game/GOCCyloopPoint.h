@@ -20,7 +20,7 @@ namespace app::game {
         };
 
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void GetDebugInfoMaybe() override;
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual bool fUnk5() override { return true; }
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 

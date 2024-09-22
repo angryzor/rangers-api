@@ -23,7 +23,7 @@ namespace hh::game {
 
         GOCTransform(csl::fnd::IAllocator* pAllocator);
 		virtual void* GetRuntimeTypeInfo() override;
-		virtual void GetDebugInfoMaybe() override;
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 
         void Initialize(const Config& config);

@@ -492,6 +492,8 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Physics/GOCCylinderCollider.h"
 #include "Hedgehog/Physics/PhysicsWorld.h"
 #include "Hedgehog/Physics/PhysicsWorldBullet.h"
+#include "Hedgehog/Physics/PhysicsQueryJob.h"
+#include "Hedgehog/Physics/PhysicsRaycastJob.h"
 #include "Hedgehog/Physics/PhysicsViewerContext.h"
 #include "Hedgehog/Physics/PhysicsViewerBase.h"
 #include "Hedgehog/Physics/PhysicsMousePickingViewer.h"
@@ -704,6 +706,9 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Player/GOCPlayerState.h"
 #include "Application/Player/GOCPlayerParameter.h"
 #include "Application/Player/GOCPlayerKinematicParams.h"
+#include "Application/Player/PlayerCollision.h"
+#include "Application/Player/PlayerController.h"
+#include "Application/Player/GOCPlayerCollider.h"
 #include "Application/Player/ComponentCollector.h"
 #include "Application/Player/VisualLocator.h"
 #include "Application/Player/VisualLocatorNormal.h"
@@ -777,6 +782,9 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Game/GOCMotor.h"
 #include "Application/Game/GOCMotorConstant.h"
 #include "Application/Game/Messages.h"
+
+#include "Application/Physics/GOCColliderQuery.h"
+#include "Application/Physics/GOCMoveSphereColliderQuery.h"
 
 #include "Application/Graphics/ResFxColFile2.h"
 #include "Application/Graphics/SceneParameters.h"
