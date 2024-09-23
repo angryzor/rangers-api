@@ -782,6 +782,7 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Game/GOCMotor.h"
 #include "Application/Game/GOCMotorConstant.h"
 #include "Application/Game/Messages.h"
+#include "Application/Game/Posture.h"
 
 #include "Application/Physics/GOCColliderQuery.h"
 #include "Application/Physics/GOCMoveSphereColliderQuery.h"
@@ -793,6 +794,9 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Graphics/FxColManager.h"
 
 #include "Application/Terrain/TerrainManager.h"
+
+#include "Application/Player/PlayerPosture.h"
+#include "Application/Player/Postures/PostureSliding.h"
 
 #include "Application/VolumeTrigger.h"
 #include "Application/MyApplication.h"

@@ -89,9 +89,7 @@ namespace app::gfx {
         uint8_t priority;
         Extents extents;
         Parameters parameters;
-        uint32_t unk11;
-        uint32_t unk12;
-        uint32_t unk13;
+        const char* unk2;
         csl::math::Position position;
         csl::math::Rotation rotation;
     };
@@ -103,12 +101,20 @@ namespace app::gfx {
         csl::math::Position aabbMax;
     };
 
+    struct FxColUnk1 {
+        int unk1;
+        int unk2;
+    };
+
     struct FxColData {
-        uint64_t unk1;
+        char magic[4];
+        unsigned int version;
         unsigned int collisionShapeCount;
         FxColCollisionShape* collisionShapes;
         unsigned int boundingVolumeCount;
         FxColBoundingVolume* boundingVolumes;
+        unsigned int unk1Count;
+        FxColUnk1* unk1s;
     };
 
     class ResFxColFile2 : public hh::fnd::ManagedResource {
