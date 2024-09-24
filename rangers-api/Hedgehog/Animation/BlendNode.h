@@ -50,6 +50,16 @@ namespace hh::anim {
         void RemoveChild(BlendNodeBase* child);
     };
 
+    class BlendNodeParameter : public Bindable {
+    public:
+        BlendNodeBase* blendNode;
+        short variableIndex;
+        short unk102;
+        float value;
+
+        virtual void Bind(float value, void* unkParam) override;
+    };
+
     class ClipNode : public BlendNodeBase {
     public:
         uint8_t unk101;
@@ -100,6 +110,13 @@ namespace hh::anim {
 
     class LerpBlendNode : public BranchBlendNode {
     public:
+        csl::ut::MoveArray<BlendNodeBase*> blendChildren;
+        BlendNodeParameter blendFactor;
+        int currentChild;
+        float unk102;
+
+        CREATE_FUNC(LerpBlendNode, csl::ut::MoveArray<BlendNodeBase*>& children, AsmResourceManager* asmResourceManager, short variableIndex);
+
         virtual void* GetRuntimeTypeInfo() const override;
         virtual uint64_t UnkFunc4() override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
@@ -109,7 +126,6 @@ namespace hh::anim {
         virtual bool UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
         virtual void UnkFunc12() override;
-
     };
 
     class AdditiveBlendNode : public BranchBlendNode {
@@ -156,16 +172,6 @@ namespace hh::anim {
         virtual uint64_t GetLocalBlendMaskImpl() const override;
         virtual unsigned int SyncLocalBlendMask() const override;
         virtual void UnkFunc12() override;
-    };
-
-    class BlendNodeParameter : public Bindable {
-    public:
-        BlendNodeBase* blendNode;
-        short unk101;
-        short unk102;
-        float value;
-
-        virtual void Bind(float value, void* unkParam) override;
     };
 
     class BlendSpaceNode : public BranchBlendNode {

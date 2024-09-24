@@ -105,11 +105,11 @@ namespace hh::anim {
     struct BlendNodeData {
         BlendNodeType type;
         short blendSpaceIndex;
-        short variableIndex;
-        float blendFactor;
+        short blendFactorVariableIndex;
+        float blendFactorTarget;
         // Points back into the blendNode array to specify this node's children.
         // This value is weird for LAYER type blend nodes: the childNodeArraySize is then
-        // expected to be 1, and the childNodeArrayOffset is the layer ID.
+        // expected to be 0, and the childNodeArrayOffset is the layer ID.
         // For CLIP blend nodes it is the clip index.
         unsigned short childNodeArraySize;
         short childNodeArrayOffset;
@@ -154,15 +154,15 @@ namespace hh::anim {
         const char* name;
     };
 
-    struct BlendSpaceTriangleData {
-        short nodeIndices[3];
-        short unused;
-    };
-
     struct BlendSpaceData {
+        struct Triangle {
+            short nodeIndices[3];
+            short unused;
+        };
+
         short xVariableIndex;
         short yVariableIndex;
-        float xMin;            
+        float xMin;
         float xMax;
         float yMin;
         float yMax;
@@ -170,7 +170,7 @@ namespace hh::anim {
         unsigned short triangleCount;
         csl::math::Vector2* nodes;
         short* clipIndices;
-        BlendSpaceTriangleData* triangles;
+        Triangle* triangles;
     };
 
     struct AsmData {
@@ -190,7 +190,7 @@ namespace hh::anim {
         TransitionData* transitions;
         TransitionData nullTransition;
         int flagIndexCount;
-        uint16_t* flagIndices;
+        short* flagIndices;
         int flagCount;
         const char** flags;
         int variableCount;
