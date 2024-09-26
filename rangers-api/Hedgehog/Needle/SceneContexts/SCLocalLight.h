@@ -4,6 +4,7 @@ namespace hh::needle {
     class SCLocalLight : public SceneContext {
     public:
         class Impl : public NeedleRefcountObject {
+        public:
             struct Unk1 {
                 int unk1;
                 uint64_t unk2;
@@ -11,8 +12,8 @@ namespace hh::needle {
 
             SCLocalLight& sceneContext;
             char unk1[64000];
-            unsigned int unk2;
-            unsigned int unk3;
+            unsigned int numLights;
+            unsigned int maxLights;
             Unk1 unk4[1000];
             unsigned int unk5;
             csl::math::Vector4 unk6;
@@ -20,7 +21,6 @@ namespace hh::needle {
             int unk8;
             csl::fnd::Mutex mutex;
 
-        public:
             Impl(SCLocalLight& sceneContext);
         };
 

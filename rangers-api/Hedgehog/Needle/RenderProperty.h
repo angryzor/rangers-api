@@ -57,6 +57,10 @@ namespace hh::needle {
         template<> SceneParamContainer::ParamHolder<FxSeparableSSSParameter>* GetSceneParam();
         template<> SceneParamContainer::ParamHolder<FxAntiAliasing>* GetSceneParam();
         template<> SceneParamContainer::ParamHolder<gfx::FxDentParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxDynamicResolutionParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxLODParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxDetailParameter>* GetSceneParam();
+        template<> SceneParamContainer::ParamHolder<FxModelParameter>* GetSceneParam();
     
         template<typename T> bool HasSceneParam() const;
         template<> bool HasSceneParam<FxBloomParameter>() const;
@@ -100,5 +104,9 @@ namespace hh::needle {
         template<> bool HasSceneParam<FxSeparableSSSParameter>() const;
         template<> bool HasSceneParam<FxAntiAliasing>() const;
         template<> bool HasSceneParam<gfx::FxDentParameter>() const;
+        template<> bool HasSceneParam<FxDynamicResolutionParameter>() const;
+        template<> bool HasSceneParam<FxLODParameter>() const;
+        template<> bool HasSceneParam<FxDetailParameter>() const;
+        template<> bool HasSceneParam<FxModelParameter>() const;
     };
 }

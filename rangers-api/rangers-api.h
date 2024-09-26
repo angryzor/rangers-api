@@ -334,6 +334,8 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Needle/ImplDX11/SParameterQueue.h"
 #include "Hedgehog/Needle/ImplDX11/SParameterBuffer.h"
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceDispatchDX11.h"
+#include "Hedgehog/Needle/ImplDX11/GpuTimer.h"
+#include "Hedgehog/Needle/ImplDX11/PerfDiagnostics.h"
 #include "Hedgehog/Needle/ImplDX11/DeviceObjectDX11.h"
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceContextDX11.h"
 #include "Hedgehog/Needle/ImplDX11/RenderingDeviceDX11.h"

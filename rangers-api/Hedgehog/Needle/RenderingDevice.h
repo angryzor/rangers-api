@@ -46,7 +46,7 @@ namespace hh::needle {
         virtual void SamplerObjectClearForExtended() = 0;
         virtual void UnkFunc36() = 0;
         virtual void UnkFunc37() = 0;
-        virtual void UnkFunc38() = 0;
+        virtual float GetGpuTime() const = 0;
         virtual void UnkFunc39() = 0;
         virtual void UnkFunc40() = 0;
         virtual void UnkFunc41() = 0;

@@ -34,7 +34,7 @@ namespace hh::gfx {
             needle::SupportFX::FxRenderParam renderParam;
             uint32_t maybeSupportFXWidth;
             uint32_t maybeSupportFXHeight;
-            fnd::Reference<DynamicResolutionController> unk12;
+            fnd::Reference<DynamicResolutionController> dynamicResolutionController;
             SetupInfo setupInfo;
             RenderingEngineNeedle* renderingEngine;
             fnd::Reference<RenderingWorld> renderingWorld;
@@ -79,5 +79,7 @@ namespace hh::gfx {
         gfx::RenderingEngineNeedle* GetNeedleResourceDevice();
         void SetRenderingWorld(RenderingWorld* renderingWorld);
         void GetResolution(unsigned int& resX, unsigned int& resY);
+        void SetDynamicResolutionController(DynamicResolutionController dynamicResolutionController);
+        DynamicResolutionController* GetDynamicResolutionController() const;
     };
 }

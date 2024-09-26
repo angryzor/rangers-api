@@ -46,7 +46,7 @@ namespace hh::needle::ImplDX11 {
         virtual void SamplerObjectClearForExtended() override;
         virtual void UnkFunc36() override {}
         virtual void UnkFunc37() override {}
-        virtual void UnkFunc38() override;
+        virtual float GetGpuTime() const override;
         virtual void UnkFunc39() override;
         virtual void UnkFunc40() override;
         virtual void UnkFunc41() override;
