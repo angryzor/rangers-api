@@ -8,29 +8,32 @@ namespace hh::game {
         void* data;
 
 private:
-        template<typename T>
-        ComponentData(const char* type, T* data) : type{ type }, size{ sizeof(T) }, data{ data } {}
+        ComponentData(const hh::fnd::RflTypeInfo* rflTypeInfo, void* data) : type{ rflTypeInfo->GetName() }, size{ rflTypeInfo->GetSize() }, data{ data } {}
 
 public:
+        ComponentData(const char* type, const hh::fnd::RflTypeInfo* rflTypeInfo, void* data) : type{ type }, size{ rflTypeInfo->GetSize() }, data{ data } {}
+
+    public:
+        static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type, const hh::fnd::RflTypeInfo* rflTypeInfo) {
+            void* buffer = allocator->Alloc(rflTypeInfo->GetSize() + sizeof(ComponentData), 16);
+            void* data = reinterpret_cast<void*>(reinterpret_cast<size_t>(buffer) + sizeof(ComponentData));
+            
+            rflTypeInfo->ConstructObject(data, allocator);
+
+            return new (buffer) ComponentData{ type, rflTypeInfo, data };
+        }
+
         template<typename T>
         static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type) {
-            void* buffer = allocator->Alloc(sizeof(T) + sizeof(ComponentData), 16);
-            T* data = new (reinterpret_cast<void*>(reinterpret_cast<size_t>(buffer) + sizeof(ComponentData))) T{};
-            return new (buffer) ComponentData{ type, data };
+            return Create(allocator, type, &T::rflTypeInfo);
         }
 
-        template<typename T>
-        static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type, const T& value) {
-            void* buffer = allocator->Alloc(sizeof(T) + sizeof(ComponentData), 16);
-            T* data = new (reinterpret_cast<void*>(reinterpret_cast<size_t>(buffer) + sizeof(ComponentData))) T{ value };
-            return new (buffer) ComponentData{ type, data };
+        static ComponentData* Create(csl::fnd::IAllocator* allocator, const hh::game::GOComponentRegistry::GOComponentRegistryItem* goComponentRegistryItem) {
+            return Create(allocator, goComponentRegistryItem->name, hh::fnd::BuiltinTypeRegistry::GetTypeInfoRegistry()->GetByName(goComponentRegistryItem->rflClass->GetName()));
         }
 
-        template<typename T>
-        static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type, T&& value) {
-            void* buffer = allocator->Alloc(sizeof(T) + sizeof(ComponentData), 16);
-            T* data = new (reinterpret_cast<void*>(reinterpret_cast<size_t>(buffer) + sizeof(ComponentData))) T{ std::move(value) };
-            return new (buffer) ComponentData{ type, data };
+        static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type) {
+            return Create(allocator, hh::game::GameObjectSystem::GetInstance()->goComponentRegistry->GetComponentInformationByName(type));
         }
 
         template<typename T>

@@ -66,6 +66,12 @@ namespace hh::game
 			int64_t unk40;
 		};
 
+		struct LoadReflectionInfo {
+			void* data;
+			const fnd::RflClass* rflClass;
+			fnd::Packfile* packFile;
+		};
+
 		uint32_t flags;
 		int32_t unk45;
 		GameObject* owner{};
@@ -87,7 +93,7 @@ namespace hh::game
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam);
 		virtual bool ProcessMessage(fnd::Message& msg) { return false; }
 		virtual bool fUnk5() { return false; }
-		virtual void LoadReflection(const fnd::RflClass& rflClass) {}
+		virtual void LoadReflection(const LoadReflectionInfo& loadReflectionInfo) {}
 
 		/*
 		 * data contains data dependent on the event:

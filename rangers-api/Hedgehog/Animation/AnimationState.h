@@ -69,5 +69,6 @@ namespace hh::anim {
         ClipNode* CreateClipNode(int clipIndex);
         BlendNodeBase* BuildBlendTree(BlendNodeData* rootBlendNode);
         void Update();
+        bool IsFlagContained(int flagId) const;
     };
 }

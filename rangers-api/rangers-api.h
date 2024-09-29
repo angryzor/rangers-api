@@ -667,6 +667,10 @@ struct SLIST_HEADER_SHIM {
 #include "ApplicationCommon/Camera/GOCCamera.h"
 #include "ApplicationCommon/Camera/Messages.h"
 
+#include "ApplicationCommon/Game/GOCMotor.h"
+#include "ApplicationCommon/Game/GOCMotorConstant.h"
+#include "ApplicationCommon/Game/GOCMotorRotate.h"
+
 #include "Application/Utilities/PriorityList.h"
 #include "Application/Utilities/SendMessage.h"
 
@@ -781,8 +785,6 @@ struct SLIST_HEADER_SHIM {
 #include "Application/Game/GOCEventCollision.h"
 #include "Application/Game/GOCActionNotifier.h"
 #include "Application/Game/GOCCyloopPoint.h"
-#include "Application/Game/GOCMotor.h"
-#include "Application/Game/GOCMotorConstant.h"
 #include "Application/Game/Messages.h"
 #include "Application/Game/Posture.h"
 

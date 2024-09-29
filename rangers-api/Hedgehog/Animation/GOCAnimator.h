@@ -33,6 +33,20 @@ namespace hh::anim {
         bool ChangeToNull(int unkParam);
         bool Transit(const char* eventName, int layer);
         void SetTriggerEnabled(const char* name, bool enabled);
+        bool IsFlagContained(const char* flag, int layer) const;
+        bool IsInTransition(int layer) const;
+        const char* GetCurrentAnimationName(int layer) const;
+        float GetPlaybackSpeed() const;
+        void SetPlaybackSpeed(float speed);
+        float GetPlaybackSpeed(int layer) const;
+        void SetPlaybackSpeed(int layer, float speed);
+        bool SetFloat(const char* variableName, float value);
+        bool GetFloat(const char* variableName, float* value);
+        AsmResourceManager* GetResourceManager() const;
+        AnimationState::Impl* GetActiveState(int layer) const;
+        AnimationState::Impl* GetCurrentState(int layer) const;
+        AnimationState::Impl* GetPreviousState(int layer) const;
+        bool IsFinished(int layer) const;
 
         GOCOMPONENT_CLASS_DECLARATION(GOCAnimator)
     };

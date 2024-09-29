@@ -1,6 +1,6 @@
 #pragma once
 
-namespace app::game {
+namespace app_cmn::game {
     class GOCMotorConstant : public GOCMotor {
     public:
         struct SetupInfo : GOCMotor::SetupInfo {
@@ -20,6 +20,7 @@ namespace app::game {
         int unk212;
 
         GOCMotorConstant(csl::fnd::IAllocator* allocator);
+		virtual void* GetRuntimeTypeInfo() override;
         virtual void UpdateSetEditor() override;
         virtual void InitConfig() override;
         virtual void UpdateTransform(float time, csl::math::Transform& transform) override;

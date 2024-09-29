@@ -1,6 +1,6 @@
 #pragma once
 
-namespace app::game {
+namespace app_cmn::game {
     class GOCMotor : public hh::game::GOComponent {
     public:
         enum class TimeType : uint32_t {

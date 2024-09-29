@@ -30,9 +30,9 @@ namespace hh::anim {
 
             virtual void* GetRuntimeTypeInfo() const = 0;
             virtual BlendNodeBase* GetStateBlendTree() const = 0;
-            virtual AnimationState* GetNextAnimationState() const = 0;
+            virtual AnimationState* GetCurrentAnimationState() const = 0;
             virtual AnimationState* GetPreviousAnimationState() const = 0;
-            virtual AnimationState* GetAnimationState() const = 0;
+            virtual AnimationState* GetActiveAnimationState() const = 0;
             virtual bool IsTransitioning() = 0;
             virtual const TransitionType& GetTransitionType() const = 0;
             virtual TransitionEffect* GetTransitionEffect() const = 0;
@@ -61,9 +61,9 @@ namespace hh::anim {
 
             virtual void* GetRuntimeTypeInfo() const override;
             virtual BlendNodeBase* GetStateBlendTree() const override;
-            virtual AnimationState* GetNextAnimationState() const override;
+            virtual AnimationState* GetCurrentAnimationState() const override;
             virtual AnimationState* GetPreviousAnimationState() const override;
-            virtual AnimationState* GetAnimationState() const override;
+            virtual AnimationState* GetActiveAnimationState() const override;
             virtual bool IsTransitioning() override;
             virtual const TransitionType& GetTransitionType() const override;
             virtual TransitionEffect* GetTransitionEffect() const override;
@@ -90,9 +90,9 @@ namespace hh::anim {
 
             virtual void* GetRuntimeTypeInfo() const override;
             virtual BlendNodeBase* GetStateBlendTree() const override;
-            virtual AnimationState* GetNextAnimationState() const override;
+            virtual AnimationState* GetCurrentAnimationState() const override;
             virtual AnimationState* GetPreviousAnimationState() const override;
-            virtual AnimationState* GetAnimationState() const override;
+            virtual AnimationState* GetActiveAnimationState() const override;
             virtual bool IsTransitioning() override;
             virtual const TransitionType& GetTransitionType() const override;
             virtual TransitionEffect* GetTransitionEffect() const override;
@@ -144,14 +144,17 @@ namespace hh::anim {
         bool Transit(const char* eventName, int layer);
         bool DoTransit(const TransitionData& transitionData, int layer);
         int GetActiveInternalState(int layer) const;
-        int GetActiveState(int layer) const;
-        int GetCurrentState(int layer) const;
+        AnimationState::Impl* GetActiveState(int layer) const;
+        AnimationState::Impl* GetCurrentState(int layer) const;
+        AnimationState::Impl* GetPreviousState(int layer) const;
         int GetTriggerTypeIndexFromName(const char* name) const;
         bool GetDeltaMotion(csl::math::Transform* transform) const;
         bool GetFloat(const char* variableId, float* value) const;
         bool SetFloat(const char* variableId, float value);
         void GetInternalState(AnimationInternalState* internalState) const;
         void SetSkeletonBlender(SkeletonBlender* skeletonBlender);
+        bool IsFlagContained(const char* flag, int layer) const;
+        bool IsInTransition(int layer) const;
 
         BlendNodeBase* BuildLayerBlendTree(const BlendNodeData& blendNodeData);
         void UpdateTrigger(AnimationState& animationState, int layerId, float unkParam1, bool unkParam2, bool unkParam3);
