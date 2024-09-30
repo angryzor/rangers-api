@@ -503,6 +503,11 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Physics/BulletPhysicsModule.h"
 #include "Hedgehog/Physics/Messages.h"
 
+#include "Hedgehog/Path/ResPathObject.h"
+#include "Hedgehog/Path/PathComponent.h"
+#include "Hedgehog/Path/PathCollisionHandler.h"
+#include "Hedgehog/Path/PathManager.h"
+
 #include "Hedgehog/Effect/CyanRenderHandler.h"
 #include "Hedgehog/Effect/ResEffect.h"
 #include "Hedgehog/Effect/EffectManager.h"
@@ -670,6 +675,7 @@ struct SLIST_HEADER_SHIM {
 #include "ApplicationCommon/Game/GOCMotor.h"
 #include "ApplicationCommon/Game/GOCMotorConstant.h"
 #include "ApplicationCommon/Game/GOCMotorRotate.h"
+#include "ApplicationCommon/Game/GOCMotorOnPath.h"
 
 #include "Application/Utilities/PriorityList.h"
 #include "Application/Utilities/SendMessage.h"

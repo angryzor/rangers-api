@@ -8,9 +8,14 @@ namespace app_cmn::game {
             LOCAL,
         };
 
+        enum class Flag : uint8_t {
+            TRANSFORM_TRANSLATION,
+            TRANSFORM_ROTATION,
+        };
+
         csl::math::Transform transform;
         hh::fnd::HFrame* frame;
-        uint8_t flags;
+        csl::ut::Bitset<Flag> flags;
         TimeType timeType;
         float maybeLoopTime;
         float time;
@@ -32,6 +37,7 @@ namespace app_cmn::game {
         virtual void UpdateTransform(float time, csl::math::Transform& transform) = 0;
 
         void Setup(const SetupInfo& setupInfo);
+        void UpdateFrameWithTransform(const csl::math::Transform& transform);
 
         GOCOMPONENT_CLASS_DECLARATION(GOCMotor);
     };
