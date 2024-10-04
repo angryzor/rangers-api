@@ -128,7 +128,7 @@ namespace csl::math {
 		Vector3 point;
 		Vector3 normal;
 
-		static Plane FromPointNormal(const Vector3 point, const Vector3 normal);
+		static Plane FromPointNormal(const Vector3& point, const Vector3& normal);
 		Vector3 ProjectOnNormal(const Vector3& point, float* signedDistance) const;
 	};
 }
@@ -147,8 +147,8 @@ namespace csl::geom {
 		float DistanceSq(const math::Vector3& point, math::Vector3* distanceByAxis) const;
 
 		inline void AddPoint(const csl::math::Vector3& point) {
-			min = min.cwiseMin(point);
-			max = max.cwiseMax(point);
+			// min = min.cwiseMin(point);
+			// max = max.cwiseMax(point);
 		}
 	};
 
@@ -200,7 +200,7 @@ namespace csl::math {
 	float Vector3Dot(const Vector3& x, const Vector3& y);
 	Vector3 Vector3NormalBetween(const Vector3& x, const Vector3& y);
 
-	Matrix34 CreateViewMatrix(Vector3 position, Vector3 up, Vector3 target);
+	Matrix34 CreateViewMatrix(const Vector3& position, const Vector3& up, const Vector3& target);
 	Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
 	Matrix44 CreatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClip, float farClip);
 
@@ -209,10 +209,10 @@ namespace csl::math {
 	void Matrix34Scale(const Matrix34& mat, const Vector3& scale, Matrix34* result);
 	Matrix34 Matrix34Rotation(const Quaternion& rotation);
 
-	bool Intersection(const geom::Line3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Line3& line, const Plane& plane, Vector3* intersectionPoint, float* unkParam);
 	bool Intersection(const geom::Ray3& line, const geom::Aabb& aabb, float* unkParam);
-	bool Intersection(const geom::Ray3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
-	bool Intersection(const geom::Segment3& line, const Plane& plane, Vector3 intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Ray3& line, const Plane& plane, Vector3* intersectionPoint, float* unkParam);
+	bool Intersection(const geom::Segment3& line, const Plane& plane, Vector3* intersectionPoint, float* unkParam);
 	bool Intersection(const geom::Sphere& sphere, const geom::Aabb& aabb);
 	bool Intersection(const geom::Sphere& sphere, const geom::Obb& obb);
 	bool Intersection(const Vector3& point, const geom::Aabb& aabb);
