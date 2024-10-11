@@ -61,7 +61,7 @@ namespace hh::eff {
                 virtual void* Alloc(size_t size, size_t alignment) override;
                 virtual void* Alloc2(size_t size, size_t alignment) override;
                 virtual void Free(void* ptr) override;
-                virtual void UnkFunc4() override;
+                virtual void UnkFunc4() override {}
                 virtual void SetUnk1(void* unkParam1) override;
                 virtual void* GetUnk1() const override;
                 virtual void* Alloc3(size_t size, size_t alignment);
@@ -75,7 +75,7 @@ namespace hh::eff {
                     uint64_t unk3;
                     int unk4;
 
-                    Unk2();
+                    // Unk2();
                 };
 
                 uint64_t unk1;

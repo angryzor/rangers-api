@@ -128,7 +128,7 @@ namespace hh::game
 		uint32_t unk34;
 		float globalTime;
 		uint32_t unk36;
-		csl::ut::FixedArray<GameObjectLayer*, 32> gameObjectLayers{};
+		GameObjectLayer* gameObjectLayers[32]{};
 		csl::ut::MoveArray<GameObject*> objects{ pAllocator };
 		csl::ut::MoveArray<GameService*> services{ pAllocator };
 		csl::ut::PointerMap<GameServiceClass*, GameService*> servicesByClass{ pAllocator };

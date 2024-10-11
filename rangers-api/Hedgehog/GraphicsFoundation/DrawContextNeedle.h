@@ -42,7 +42,7 @@ namespace hh::gfnd {
         virtual int64_t DrawCylinder(const csl::math::Matrix34& transform, float radius, float halfHeight, const csl::ut::Color8& color) override;
         virtual int64_t DrawCircle(const csl::math::Matrix34& transform, float radius, const csl::ut::Color8& color) override;
         virtual int64_t DrawPlane(const csl::math::Matrix34& transform, float width, float height, const csl::ut::Color8& color) override;
-        virtual int64_t SetWireframeMode() override;
+        virtual void SetWireframeMode() override {}
         virtual int64_t SetZTestEnable(bool enabled) override;
         virtual int64_t SetZWriteEnable(bool enabled) override;
         virtual int64_t SetCullingMode(unsigned int idx) override;

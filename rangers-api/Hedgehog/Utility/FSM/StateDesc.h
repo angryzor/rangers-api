@@ -12,8 +12,7 @@ namespace hh::ut {
             Instantiator instantiator;
             int32_t unk;
 
-            StateDescImpl(const char* name, Instantiator instantiator, int32_t unk)
-                : name { name }, instantiator { instantiator }, unk { unk } {}
+            StateDescImpl(const char* name, Instantiator instantiator, int32_t unk);
         };
     };
 

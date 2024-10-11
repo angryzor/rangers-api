@@ -21,6 +21,8 @@ namespace hh::path {
         fnd::Reference<PathCollisionHandler> pathCollisionHandler;
 
 		virtual void* GetRuntimeTypeInfo() override;
+		virtual void OnAddedToGame() override;
+		virtual void OnRemovedFromGame() override;
 		virtual void UpdateCallback(game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
         
         void Setup(const SetupInfo& setupInfo);

@@ -9,7 +9,7 @@ namespace hh::gfx {
             fnd::Geometry* geometry;
             uint64_t unk3;
             uint64_t unk4;
-            csl::ut::Color<uint8_t> color;
+            csl::ut::Color8 color;
             uint8_t unk6;
         };
 

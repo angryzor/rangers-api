@@ -32,7 +32,7 @@ namespace hh::fw {
     public:
         WindowD3D11(csl::fnd::IAllocator* allocator);
         virtual uint64_t UnkFunc1() override;
-        virtual uint64_t UnkFunc2() override {}
+        virtual void UnkFunc2() override {}
         virtual uint64_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
         virtual void UnkFunc5() override;

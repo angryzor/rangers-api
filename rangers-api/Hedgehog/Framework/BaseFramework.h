@@ -13,9 +13,9 @@ namespace hh::fw {
     public:
         BaseFramework(csl::fnd::IAllocator* allocator);
         virtual ~BaseFramework() = default;
-        virtual uint64_t UnkFunc1() {}
+        virtual void UnkFunc1() {}
         virtual void UnkFunc2(const FrameworkConfig& config, FrameworkOptions* options) {}
-        virtual uint64_t UnkFunc3() {}
+        virtual void UnkFunc3() {}
         virtual uint64_t UnkFunc4(FrameworkEnvironment& frameworkEnvironment) = 0;
         virtual uint64_t UnkFunc5() = 0;
         unsigned int Main(const FrameworkConfig& config, FrameworkOptions* options);

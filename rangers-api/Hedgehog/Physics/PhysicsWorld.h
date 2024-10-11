@@ -42,6 +42,9 @@ namespace hh::physics {
         uint64_t unk113;
     public:
         PhysicsWorld(csl::fnd::IAllocator* allocator);
+        virtual void* GetRuntimeTypeInfo() override;
+		virtual void OnAddedToGame() override;
+		virtual void OnRemovedFromGame() override;
         virtual uint64_t UnkFunc1() = 0;
         virtual uint64_t UnkFunc2() = 0;
         virtual uint64_t UnkFunc3() = 0;

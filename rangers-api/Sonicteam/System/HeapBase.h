@@ -71,11 +71,11 @@ namespace csl::fnd {
         virtual void SetDebugUnk(bool enabled);
         virtual void UnkFunc17() {}
         virtual bool ForEachAllocatedBlock(MemoryBlockFunction& func) { return false; }
-        virtual int GetBlockCount() const { return -1; }
+        virtual int GetBlockCount() const;
         virtual int64_t UnkFunc20();
         virtual bool UnkFunc21() { return false; }
-        virtual void Lock();// {}
-        virtual void Unlock();// {}
+        virtual void Lock() {}
+        virtual void Unlock() {}
         virtual bool UnkFunc24() { return false; }
         virtual void UnkFunc25() {}
 

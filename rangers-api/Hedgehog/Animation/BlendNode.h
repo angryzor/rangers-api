@@ -28,7 +28,7 @@ namespace hh::anim {
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) = 0;
         virtual uint64_t GetLocalBlendMaskImpl() const = 0;
-        virtual unsigned int SyncLocalBlendMask() const {}
+        virtual void SyncLocalBlendMask() {}
         virtual void ResetBlendMask(const char* mask);
         virtual bool UnkFunc10() { return false; }
         virtual uint64_t UnkFunc11();
@@ -90,12 +90,11 @@ namespace hh::anim {
         CREATE_FUNC(LayerBlendNode, const AsmResourceManager& resourceManager, LayerData* layer)
 
         virtual void* GetRuntimeTypeInfo() const override;
-        virtual bool Accept() override;
         virtual bool UnkFunc3() override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual uint64_t GetLocalBlendMaskImpl() const override;
-        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void SyncLocalBlendMask() override;
         void SetTargetNode(BlendNodeBase* node);
     };
 
@@ -103,7 +102,7 @@ namespace hh::anim {
     public:
         virtual void* GetRuntimeTypeInfo() const override;
         virtual bool Accept() override;
-        virtual bool UnkFunc3() override;
+        virtual bool UnkFunc3() override { return false; }
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
 
     };
@@ -122,7 +121,7 @@ namespace hh::anim {
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual uint64_t GetLocalBlendMaskImpl() const override;
-        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void SyncLocalBlendMask() override;
         virtual bool UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
         virtual void UnkFunc12() override;
@@ -160,7 +159,7 @@ namespace hh::anim {
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual uint64_t GetLocalBlendMaskImpl() const override;
-        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void SyncLocalBlendMask() override;
         virtual void UnkFunc12() override;
     };
 
@@ -170,7 +169,7 @@ namespace hh::anim {
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual uint64_t GetLocalBlendMaskImpl() const override;
-        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void SyncLocalBlendMask() override;
         virtual void UnkFunc12() override;
     };
 
@@ -194,7 +193,7 @@ namespace hh::anim {
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual uint64_t GetLocalBlendMaskImpl() const override;
-        virtual unsigned int SyncLocalBlendMask() const override;
+        virtual void SyncLocalBlendMask() override;
         virtual bool UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;
         virtual void UnkFunc12() override;

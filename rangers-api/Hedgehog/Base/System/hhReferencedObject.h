@@ -9,7 +9,7 @@ namespace hh::fnd
 		Reference() {
 		}
 
-		Reference(Reference& other) {
+		Reference(const Reference& other) {
 			*this = other;
 		}
 

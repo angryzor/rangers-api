@@ -1,7 +1,7 @@
 #pragma once
 
 namespace hh::anim {
-    class AnimationInterface {
+    class AnimationInterface : public hh::fnd::ReferencedObject {
 
     };
 }

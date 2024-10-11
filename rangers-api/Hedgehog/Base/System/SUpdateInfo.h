@@ -6,7 +6,5 @@ namespace hh::fnd {
         uint32_t currentFrame;
         uint16_t unk2;
         uint32_t unk3;
-    public:
-        SUpdateInfo();
     };
 }

@@ -10,9 +10,9 @@ namespace hh::gfnd {
     };
 
     class Renderable : public fnd::ReferencedObject {
-    public:
         RenderableContainer* renderableContainer;
         csl::ut::LinkListNode renderableContainerNode;
+    public:
         uint8_t preferredContainer;
         uint8_t priority;
         uint16_t unk5;

@@ -51,7 +51,7 @@ namespace csl::ut
 			// Copy buffers
 			// memcpy(new_buffer, this->m_pBuffer, sizeof(T) * this->m_length);
 			for (S i = 0; i < this->m_length; i++) {
-				new (&new_buffer[i]) T(std::move(this->m_pBuffer[i]));
+				new (&new_buffer[i]) T{ std::move(this->m_pBuffer[i]) };
 				this->m_pBuffer[i].~T();
 			}
 
@@ -78,7 +78,7 @@ namespace csl::ut
 			{
 				//memcpy(new_buffer, this->m_pBuffer, sizeof(T) * this->m_length);
 				for (S i = 0; i < this->m_length; i++) {
-					new (&new_buffer[i]) T(std::move(this->m_pBuffer[i]));
+					new (&new_buffer[i]) T{ std::move(this->m_pBuffer[i]) };
 					this->m_pBuffer[i].~T();
 				}
 			}
@@ -165,7 +165,7 @@ namespace csl::ut
 			}
 
 			this->m_length++;
-			new (&this->m_pBuffer[this->m_length - 1]) T(item);
+			new (&this->m_pBuffer[this->m_length - 1]) T{ item };
 		}
 
 		void push_back(T&& item)
@@ -176,19 +176,19 @@ namespace csl::ut
 			}
 
 			this->m_length++;
-			new (&this->m_pBuffer[this->m_length - 1]) T(std::move(item));
+			new (&this->m_pBuffer[this->m_length - 1]) T{ std::move(item) };
 		}
 
 		void push_back_unchecked(const T& item)
 		{
 			this->m_length++;
-			new (&this->m_pBuffer[this->m_length - 1]) T(item);
+			new (&this->m_pBuffer[this->m_length - 1]) T{ item };
 		}
 
 		void push_back_unchecked(T&& item)
 		{
 			this->m_length++;
-			new (&this->m_pBuffer[this->m_length - 1]) T(std::move(item));
+			new (&this->m_pBuffer[this->m_length - 1]) T{ std::move(item) };
 		}
 
 		void emplace_back()

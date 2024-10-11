@@ -218,7 +218,7 @@ namespace app_cmn::fsm {
         }
 
         union Data_t {
-            Delegate_t delegate;
+            Delegate_t delegateFunc;
             Unk1 unk;
         };
         Data_t data;
@@ -284,7 +284,7 @@ namespace app_cmn::fsm {
             type = other.type;
 
             if (other.signal == 1)
-                data.delegate = other.data.delegate;
+                data.delegateFunc = other.data.delegateFunc;
             else
             {
                 data.unk.fst = 0;

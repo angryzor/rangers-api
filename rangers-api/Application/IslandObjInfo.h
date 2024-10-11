@@ -6,5 +6,8 @@ namespace app {
 
     public:
         IslandObjInfo(csl::fnd::IAllocator* allocator);
+
+        virtual void Initialize(hh::game::GameManager* gameManager) override;
+        virtual const char* GetInfoName() override;
     };
 }

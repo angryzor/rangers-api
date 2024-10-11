@@ -84,14 +84,14 @@ namespace SurfRide {
 
         virtual void* GetRuntimeTypeInfo() const;
         virtual bool UnkFunc2();
-        virtual uint64_t UnkFunc3() {}
+        virtual void UnkFunc3() {}
         virtual void CalcTrackTypeWidth(float time, const SRS_TRACK* track) {}
         virtual void CalcTrackTypeHeight(float time, const SRS_TRACK* track) {}
         virtual void CalcTrackTypeCropIndex0(float time, const SRS_TRACK* track) {}
         virtual void CalcTrackTypeCropIndex1(float time, const SRS_TRACK* track) {}
-        virtual void* GetCellProbably() const { return nullptr; }
+        virtual void* GetCellProbably() const;
         virtual void SetCellProbably(void* cell) {}
-        virtual unsigned int GetCellCount() const { return 0; }
+        virtual unsigned int GetCellCount() const;
         virtual void UpdateThis(float time, const Cast* parentCast);
         virtual uint64_t UnkFunc12();
 

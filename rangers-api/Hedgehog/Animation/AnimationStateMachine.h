@@ -38,7 +38,7 @@ namespace hh::anim {
             virtual TransitionEffect* GetTransitionEffect() const = 0;
             virtual void* UnkFunc9(void* unkParam1) const = 0;
             virtual void* UnkFunc10(csl::ut::MoveArray<void*>& unkParam1) const = 0;
-            virtual void* UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const = 0;
+            virtual void UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const = 0;
             virtual BlendNodeBase* GetStateBlendTreeForState(AnimationState* state) const = 0;
         };
 
@@ -64,12 +64,12 @@ namespace hh::anim {
             virtual AnimationState* GetCurrentAnimationState() const override;
             virtual AnimationState* GetPreviousAnimationState() const override;
             virtual AnimationState* GetActiveAnimationState() const override;
-            virtual bool IsTransitioning() override;
+            virtual bool IsTransitioning() override { return false; }
             virtual const TransitionType& GetTransitionType() const override;
             virtual TransitionEffect* GetTransitionEffect() const override;
             virtual void* UnkFunc9(void* unkParam1) const override;
             virtual void* UnkFunc10(csl::ut::MoveArray<void*>& unkParam1) const override;
-            virtual void* UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const override;
+            virtual void UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const override {}
             virtual BlendNodeBase* GetStateBlendTreeForState(AnimationState* state) const override;
         };
 
@@ -98,7 +98,7 @@ namespace hh::anim {
             virtual TransitionEffect* GetTransitionEffect() const override;
             virtual void* UnkFunc9(void* unkParam1) const override;
             virtual void* UnkFunc10(csl::ut::MoveArray<void*>& unkParam1) const override;
-            virtual void* UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const override;
+            virtual void UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const override;
             virtual BlendNodeBase* GetStateBlendTreeForState(AnimationState* state) const override;
 
             void CreateBlender();

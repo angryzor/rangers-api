@@ -14,8 +14,8 @@ namespace hh::game {
         virtual uint64_t Initialize(const csl::ut::MoveArray<fnd::Reference<ViewerContext>>& viewerContexts) override;
         virtual uint64_t OnCreated() override;
         virtual uint64_t OnDestroyed() override;
-        virtual uint64_t UnkFunc4() {}
-        virtual uint64_t UnkFunc5() {}
+        virtual void UnkFunc4() {}
+        virtual void UnkFunc5() {}
         virtual void GVCL_UnkFunc1() override;
         virtual void GVCL_UnkFunc2() override;
 		virtual void GameServiceAddedCallback(GameService* gameService) override;

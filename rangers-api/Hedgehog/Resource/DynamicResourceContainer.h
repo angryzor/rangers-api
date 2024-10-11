@@ -18,7 +18,7 @@ namespace hh::fnd {
             return typeInfo;
         }
 
-        virtual void* GetFamilyID() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual ManagedResource* GetResourceByName(const char* name) const override;
         virtual int GetNumResources() const override;
         virtual void LoadResource(csl::fnd::IAllocator* resourceAllocator, const char* name) override;

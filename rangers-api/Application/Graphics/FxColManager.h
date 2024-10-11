@@ -8,7 +8,7 @@ namespace app::gfx {
 		, public hh::game::GameStepListener
 		, public hh::dv::DvSceneControlListener {
     public:
-		class ReloaderListener : public hh::fnd::ReloaderListener {
+		class ReloaderListener : public hh::fnd::ReferencedObject, public hh::fnd::ReloaderListener {
 		public:
         	virtual void PostResourceReloadCallback(hh::fnd::ManagedResource* resource) override;
 		};

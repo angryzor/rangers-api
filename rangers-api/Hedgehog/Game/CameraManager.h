@@ -3,7 +3,7 @@
 namespace hh::game {
 	class CameraManagerListener {
 	public:
-		virtual ~CameraManagerListener();
+		virtual ~CameraManagerListener() = default;
 	};
 
 	class InternalCameraStack : public fnd::ReferencedObject {
@@ -44,6 +44,7 @@ namespace hh::game {
 			return components;
 		}
 
+		virtual void* GetRuntimeTypeInfo() override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
 		

@@ -3,7 +3,7 @@
 namespace hh::fnd {
     class FileBindListener {
     public:
-        virtual ~FileBindListener();
+        virtual ~FileBindListener() = default;
         void FBL_UnkFunc1() {}
     };
 }

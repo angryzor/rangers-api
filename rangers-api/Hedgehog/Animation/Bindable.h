@@ -7,6 +7,6 @@ namespace hh::anim {
         uint64_t unk2;
         uint64_t unk3;
 
-        virtual void Bind(float value, void* unkParam);
+        virtual void Bind(float value, void* unkParam) = 0;
     };
 }

@@ -7,6 +7,10 @@ namespace app::level {
 		csl::ut::MoveArray<hh::fnd::Reference<StageData>> stages;
 		csl::ut::MoveArray<void*> unk1;
 
+		virtual void* GetRuntimeTypeInfo() override;
+		virtual void OnAddedToGame() override;
+		virtual void OnRemovedFromGame() override;
+
 		StageData* GetStageData(const char* stageName);
 
         GAMESERVICE_CLASS_DECLARATION(StageInfo)

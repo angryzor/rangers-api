@@ -55,7 +55,7 @@ namespace hh::fnd
 		virtual ~Message() = default;
 
 		inline static void* operator new(size_t count) {
-			AllocateObjectGlobalMemory(count);
+			return AllocateObjectGlobalMemory(count);
 		}
 		
 		inline static void operator delete(void* ptr) noexcept {

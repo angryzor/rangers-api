@@ -2,11 +2,13 @@
 
 namespace hh::hid {
     class ActionMapping : public fnd::ReferencedObject {
+    public:
         struct Binding {
             uint32_t inputId;
             int unk; 
         };
 
+    private:
         uint8_t unk1;
         bool unk2;
         csl::ut::VariableString name;
@@ -17,13 +19,14 @@ namespace hh::hid {
     };
 
     class AxisMapping : public fnd::ReferencedObject {
+    public:
         struct Binding {
             uint32_t inputId;
             float limit;
             float treshold;
             int unk;
         };
-
+    private:
         uint8_t unk1;
         csl::ut::VariableString name;
         csl::ut::MoveArray<Binding> bindings;

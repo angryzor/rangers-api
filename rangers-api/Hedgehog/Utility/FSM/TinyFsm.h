@@ -35,7 +35,7 @@ namespace hh::ut {
         typedef TinyFsmState (*Callback_t)(T* obj, const TinyFsmState& currentState, const TEvent& e);
 
         union Data_t {
-            Delegate_t delegate;
+            Delegate_t delegateFunc;
             void* unk[2];
         };
         Data_t data;
@@ -102,7 +102,7 @@ namespace hh::ut {
             type = other.type;
 
             if (other.type == TinyFsmStateType::DELEGATE)
-                data.delegate = other.data.delegate;
+                data.delegateFunc = other.data.delegateFunc;
             else
             {
                 data.unk[0] = 0;
@@ -126,13 +126,13 @@ namespace hh::ut {
             return { TinyFsmStateType::INVALID };
         }
 
-        static TinyFsmState CreateDelegate(Delegate_t delegate) {
+        static TinyFsmState CreateDelegate(Delegate_t delegateFunc) {
             return {
                 TinyFsmStateType::DELEGATE,
                 [](T* obj, const TinyFsmState& currentState, const TEvent& e) {
-                    return (obj->*(currentState.data.delegate))(e);
+                    return (obj->*(currentState.data.delegateFunc))(e);
                 },
-                Data_t{ delegate },
+                Data_t{ delegateFunc },
             };
         }
 

@@ -13,7 +13,7 @@ namespace hh::fw {
         csl::ut::VariableString unk8;
         Window(csl::fnd::IAllocator* allocator);
         virtual uint64_t UnkFunc1() = 0;
-        virtual uint64_t UnkFunc2() = 0;
+        virtual void UnkFunc2() = 0;
         virtual uint64_t UnkFunc3() = 0;
         virtual uint64_t UnkFunc4();
         virtual void UnkFunc5() {}

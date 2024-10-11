@@ -7,9 +7,8 @@ namespace hh::fnd
 	class RflClass;
 	class RflClassEnum;
 	
-	class RflClassMember : public RflEntity
+	class RflClassMember
 	{
-		
 	public:
 		enum Type : unsigned char
 		{
@@ -44,9 +43,15 @@ namespace hh::fnd
 			TYPE_COLOR_FLOAT,
 		};
 
-		struct Value : public RflEntity {
+		struct Value {
+			const char* m_pName{};
 			Type m_Type;
 			const void* m_Value;
+
+			const char* GetName() const
+			{
+				return m_pName;
+			}
 		};
 
 		struct alignas(8) Metadata
@@ -61,6 +66,7 @@ namespace hh::fnd
 		
 	protected:
 	public:
+		const char* m_pName{};
 		const RflClass* m_pClass{};
 		const RflClassEnum* m_pEnum{};
 		Type m_Type{};
@@ -69,6 +75,11 @@ namespace hh::fnd
 		uint32_t m_Flags{};
 		uint32_t m_Offset{};
 		const RflCustomAttributes* m_pAttributes{};
+
+        const char* GetName() const
+		{
+			return m_pName;
+		}
 
 		[[nodiscard]] const RflClass* GetClass() const
 		{
@@ -156,8 +167,8 @@ namespace hh::fnd
 		DEFINE_METADATA_WITH_NAME(TYPE_STRING, "string", csl::ut::VariableString),
 		DEFINE_METADATA_WITH_NAME(TYPE_OBJECT_ID, "csetobjectid", hh::game::ObjectId),
 		DEFINE_METADATA_FULL(TYPE_POSITION, "position", 0xC, 4),
-		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_BYTE, "color8", csl::ut::Color<uint8_t>),
-		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_FLOAT, "colorf", csl::ut::Color<float>),
+		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_BYTE, "color8", csl::ut::Color8),
+		DEFINE_METADATA_WITH_NAME(TYPE_COLOR_FLOAT, "colorf", csl::ut::Colorf),
 	};
 
 #undef DEFINE_METADATA_WITH_NAME

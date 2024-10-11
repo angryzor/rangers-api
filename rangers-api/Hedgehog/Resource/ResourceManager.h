@@ -1,7 +1,7 @@
 #pragma once
 
 namespace hh::fnd {
-    class ResourceManager : public fnd::BaseObject, public ResourceManagerRelatedUnk1Listener, public csl::fnd::Singleton<ResourceManager> {
+    class ResourceManager : public fnd::BaseObject, public TagResourceContainerListener, public csl::fnd::Singleton<ResourceManager> {
     public:
         class Listener {
         public:
@@ -21,14 +21,14 @@ namespace hh::fnd {
 
     private:
         csl::ut::MoveArray<DynamicResourceContainer*> resourceContainers;
-        ResourceLoader::Unk2 unk2;
+        UnpackedResourceContainer unpackedResourceContainer;
         csl::ut::PointerMap<const ResourceTypeInfo*, uint32_t> resourceContainerIndexByTypeInfo;
-        ResourceManagerRelatedUnk1 unk4;
+        TagResourceContainer tagResourceContainer;
         csl::ut::MoveArray<Listener*> listeners;
         csl::ut::MoveArray<ResourceListener*> resourceListeners;
         void* unk7;
         void* unk8;
-        SimpleResourceContainer* simpleContainer;
+        ResourceCriticalSection* resourceCriticalSection;
         csl::ut::MoveArray<ManagedResource*> addedResources;
         csl::fnd::Mutex mutex;
 
@@ -39,7 +39,8 @@ namespace hh::fnd {
         void FireResourceRemoved(hh::fnd::ManagedResource* resource);
         ManagedResource* GetResource(const char* name, const hh::fnd::ResourceTypeInfo* resourceTypeInfo);
         ResourceManager();
-        void Setup();
+        void Initialize();
+        void InitializeFilePathResolvers();
         inline void AddListener(Listener* listener) {
             listeners.push_back(listener);
         }

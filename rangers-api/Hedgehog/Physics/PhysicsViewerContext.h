@@ -33,8 +33,8 @@ namespace hh::physics {
         csl::ut::VariableString unk210[32];
         uint64_t unk211;
     
-        virtual uint64_t UnkFunc4() override;
-        virtual uint64_t UnkFunc5() override;
+        virtual void UnkFunc4() override;
+        virtual void UnkFunc5() override;
         virtual void ColliderRemovedCallback(GOCCollider* collider) override;
 
         void AddListener(PhysicsViewerContextListener* listener);

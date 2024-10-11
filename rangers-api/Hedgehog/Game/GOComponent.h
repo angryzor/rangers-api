@@ -120,6 +120,13 @@ namespace hh::game
 			GetComponentByClass(T::GetClass());
 		}
 
+		GameService* GetService(const GameServiceClass* gameServiceClass) const;
+
+		template<typename T>
+		GameService* GetService() const {
+			GetService(T::GetClass());
+		}
+
 		void SetNameHash(const char* name);
 		void SetUpdateFlag(hh::fnd::UpdatingPhase updatingPhase, bool enabled);
 		void SetUpdatePriority(hh::fnd::UpdatingPhase updatingPhase, uint8_t priority);

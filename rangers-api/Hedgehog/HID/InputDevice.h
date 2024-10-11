@@ -8,10 +8,10 @@ namespace hh::hid {
         virtual void* GetRuntimeTypeInfo() const;
         virtual unsigned int GetDeviceId() const;
         virtual float GetInputValue(unsigned int inputId) const;
-        virtual csl::math::Vector4 GetTarget1() const;
-        virtual csl::math::Vector4 GetTarget2() const;
-        virtual void Update(float unkParam);
-        virtual bool HasUpdated() { return true; }
-        virtual bool UnkFunc7() { return false; } 
+        virtual csl::math::Vector4 GetTarget1(unsigned int inputId) const;
+        virtual csl::math::Vector4 GetTarget2(unsigned int inputId) const;
+        virtual void Update(float unkParam) {}
+        virtual bool HasUpdated() const { return true; }
+        virtual bool UnkFunc7() const { return false; }
     };
 }

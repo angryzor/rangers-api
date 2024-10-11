@@ -29,6 +29,14 @@ namespace hh::hid {
         bool unk122;
     public:
         GamepadSteam(csl::fnd::IAllocator* pAllocator, unsigned int deviceIndex);
+
+        virtual void* GetRuntimeTypeInfo() const override;
+        virtual void Update(float unkParam) override;
+        virtual int UnkFunc11() override;
+        virtual bool UnkFunc12() override;
+        virtual bool UnkFunc13() override;
+        virtual uint64_t UnkFunc14() override;
+
         static GamepadSteam* CreateDevice(unsigned int deviceIndex, csl::fnd::IAllocator* pAllocator);
     };
 }

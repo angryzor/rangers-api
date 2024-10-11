@@ -46,11 +46,13 @@ namespace hh::game
 
 	class GameObjectClass {
 	public:
+		typedef GameObject* CreateFunction(csl::fnd::IAllocator* allocator);
+
 		const char* name{};
 		const char* scopedName{};
 		uint64_t unk12{};
 		size_t objectSize{};
-		GameObject* (*instantiator)(csl::fnd::IAllocator* allocator) {};
+		CreateFunction* instantiator{};
 		uint64_t unk15{};
 		uint64_t unk16{};
 		uint64_t unk17{};
@@ -60,6 +62,7 @@ namespace hh::game
 	private:
 		GameObject* Create(csl::fnd::IAllocator* pAllocator) const;
 	public:
+		GameObjectClass() {}
 		GameObjectClass(const char* name, const char* scopedName, size_t objectSize, GameObject* (*instantiator)(csl::fnd::IAllocator* allocator), uint32_t attributeCount, const hh::fnd::RflClassMember::Value* attributes, const hh::fnd::RflClass* spawnerDataRflClass)
 			: name{ name }, scopedName{ scopedName }, objectSize{ objectSize }, instantiator{ instantiator }, attributeCount{ attributeCount }, attributes{ attributes }, spawnerDataRflClass{ spawnerDataRflClass } {}
 		template<typename T>
@@ -110,7 +113,9 @@ namespace hh::game
 		csl::ut::InplaceMoveArray<hh::fnd::Property, 2> properties;
 		csl::ut::MoveArray<GameObjectListener*> listeners;
 		uint32_t componentsMessageMask{};
+	private:
 		csl::ut::MoveArray<GOComponent*> componentsByUpdatingPhase[3];
+	public:
 		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
 		Unk1 deferredComponentAdditions;
 
@@ -135,6 +140,7 @@ namespace hh::game
 
 	private:
 		void SetUpdateFlags(fnd::UpdatingPhase phase);
+	protected:
 		// template <typename T>
 		// T* GetGOC()
 		// {
@@ -158,7 +164,6 @@ namespace hh::game
 
 		hh::game::GOComponent* CreateComponent(const GOComponentClass* gocClass);
 
-		GOComponent* GetComponent(const GOComponentClass* componentClass);
 	protected:
 		template<typename T>
 		T* CreateComponent() {
@@ -202,6 +207,7 @@ namespace hh::game
 		inline void UNSAFE_SetComponentLengths(fnd::UpdatingPhase phase) {
 			SetComponentLengths(phase);
 		}
+		GOComponent* GetComponent(const GOComponentClass* componentClass);
 		template<typename T>
 		T* GetComponent() {
 			return static_cast<T*>(GetComponent(T::GetClass()));

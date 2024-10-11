@@ -14,6 +14,7 @@ namespace app::text {
         void* unk104;
 
     public:
+        virtual void* GetRuntimeTypeInfo() override;
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
 

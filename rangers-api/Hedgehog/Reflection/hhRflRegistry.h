@@ -2,22 +2,26 @@
 
 namespace hh::fnd
 {
-	class RflRegistryBase : public BaseObject
-	{
-	protected:
-		csl::ut::StringMap<const RflEntity*> m_Items{ GetAllocator() };
+	template<typename T>
+	class RflRegistryTemplate : public BaseObject {
+	public:
+		csl::ut::StringMap<const T*> items{ GetAllocator() };
 
-		const RflEntity* GetByName(const char* pName) const
+		RflRegistryTemplate(csl::fnd::IAllocator* pAllocator) : BaseObject{ pAllocator }
 		{
-			return m_Items.GetValueOrFallback(pName, nullptr);
+		}
+
+		const T* GetByName(const char* pName) const
+		{
+			return items.GetValueOrFallback(pName, nullptr);
 		}
 		
-		void Register(const RflEntity* pInfo)
+		void Register(const T* pInfo)
 		{
-			m_Items.Insert(pInfo->GetName(), pInfo);
+			items.Insert(pInfo->GetName(), pInfo);
 		}
 
-		void RegisterList(const RflEntity** pInfoList)
+		void RegisterList(const T** pInfoList)
 		{
 			size_t i = 0;
 			while (pInfoList[i])
@@ -27,35 +31,8 @@ namespace hh::fnd
 			}
 		}
 
-	public:
-		RflRegistryBase(csl::fnd::IAllocator* pAllocator) : BaseObject{ pAllocator }
-		{
-
-		}
-	};
-
-	template<typename T>
-	class RflRegistryTemplate : public RflRegistryBase {
-	public:
-		inline const T* GetByName(const char* pName) const
-		{
-			return reinterpret_cast<const T*>(RflRegistryBase::GetByName(pName));
-		}
-		
-		inline void Register(const T* pInfo)
-		{
-			RflRegistryBase::Register(pInfo);
-		}
-
-		inline void RegisterList(const T** pInfoList)
-		{
-			RflRegistryBase::RegisterList(pInfoList);
-		}
-
-		inline const csl::ut::StringMap<const T*>& GetItems() const {
-			const csl::ut::StringMap<const RflEntity*>& items = m_Items;
-
-			return reinterpret_cast<const csl::ut::StringMap<const T*>&>(items);
+		const csl::ut::StringMap<const T*>& GetItems() const {
+			return items;
 		}
 	};
 }

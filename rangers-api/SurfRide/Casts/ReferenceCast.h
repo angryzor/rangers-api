@@ -23,7 +23,7 @@ namespace SurfRide
 		ReferenceCast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
 
 		virtual void* GetRuntimeTypeInfo() const override;
-        virtual uint64_t UnkFunc3() override;
+        virtual void UnkFunc3() override;
         virtual void UpdateThis(float time, const Cast* parentCast) override;
 	};
 }

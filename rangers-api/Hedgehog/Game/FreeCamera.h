@@ -4,9 +4,9 @@ namespace hh::game {
     class FreeCameraListener {
     public:
         virtual ~FreeCameraListener() = default;
-        virtual void FCL_UnkFunc1();
-        virtual void FCL_UnkFunc2();
-        virtual void FCL_UnkFunc3();
+        virtual void FCL_UnkFunc1() {}
+        virtual void FCL_UnkFunc2() {}
+        virtual void FCL_UnkFunc3() {}
     };
 
     class FreeCameraControllerBase;

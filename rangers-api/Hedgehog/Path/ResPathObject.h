@@ -1,5 +1,7 @@
 #pragma once
 
 namespace hh::path {
-    class ResPathObject;
+    class ResPathObject : public hh::fnd::ReferencedObject {
+
+    };
 }

@@ -18,9 +18,9 @@ namespace hh::dbg {
         Viewer(csl::fnd::IAllocator* allocator);
 
         virtual void* GetFamilyID();
-        virtual int64_t UnkFunc2() {}
-        virtual int64_t UnkFunc3() {}
-        virtual int64_t UnkFunc4() {}
+        virtual void UnkFunc2() {}
+        virtual void UnkFunc3() {}
+        virtual void UnkFunc4() {}
         virtual int OnLifeCycleChange(bool created);
 
         ViewerContext* GetViewerContext(ViewerContextClass* viewerContextClass);

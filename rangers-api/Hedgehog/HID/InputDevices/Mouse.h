@@ -48,16 +48,17 @@ namespace hh::hid {
 
         csl::ut::Bitset<Flag> flags;
         MouseState state;
-        uint8_t unk7;
+        uint8_t unk1;
         csl::ut::InplaceMoveArray<InputId, 13> buttonInputIds;
 
         Mouse(csl::fnd::IAllocator* pAllocator);
         virtual void* GetRuntimeTypeInfo() const override;
         virtual unsigned int GetDeviceId() const override;
         virtual float GetInputValue(unsigned int inputId) const override;
-        virtual csl::math::Vector4 GetTarget1() const override;
-        virtual csl::math::Vector4 GetTarget2() const override;
+        virtual csl::math::Vector4 GetTarget1(unsigned int inputId) const override;
+        virtual csl::math::Vector4 GetTarget2(unsigned int inputId) const override;
         virtual void Update(float unkParam) override;
+        virtual bool UnkFunc7() const override;
         virtual void UpdateMouseState(MouseState& state) const = 0;
         virtual void SetCursorPosition(unsigned int x, unsigned int y) {}
         virtual bool GetCursorPosition(unsigned int* x, unsigned int* y) const;

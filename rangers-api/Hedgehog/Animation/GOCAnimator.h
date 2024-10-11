@@ -18,6 +18,7 @@ namespace hh::anim {
         };
 
         virtual void* GetRuntimeTypeInfo() override;
+		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual bool GetDeltaMotion(csl::math::Transform* transform) override;

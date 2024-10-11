@@ -3,7 +3,7 @@
 namespace hh::fnd {
     class FileInfoListener {
     public:
-        virtual ~FileInfoListener();
+        virtual ~FileInfoListener() = default;
         void FIL_UnkFunc2() {}
         void FIL_UnkFunc1() {}
     };

@@ -31,7 +31,7 @@ namespace hh::fnd {
     class HFrameListener {
     public:
         virtual ~HFrameListener() = default;
-        virtual void HFrameUpdatedCallback(const HFrame* frame, bool unkParam);
+        virtual void HFrameUpdatedCallback(const HFrame* frame, bool unkParam) {}
     };
 
     class HFrame : public ReferencedObject {
@@ -39,7 +39,7 @@ namespace hh::fnd {
         class Listener {
         public:
             virtual ~Listener() = default;
-            virtual void HFrameUpdatedCallback(const HFrame* frame, bool unkParam);
+            virtual void HFrameUpdatedCallback(const HFrame* frame, bool unkParam) {}
         };
 
         enum class Flag : uint32_t {
@@ -54,7 +54,10 @@ namespace hh::fnd {
             CHILD_NEEDS_UPDATE = 256, // unsure. see AddChild, need to know what unk5 is first
         };
 
+    private:
         csl::ut::LinkListNode linkListNode;
+
+    public:
         HFrame* parent;
         HFrame* hierarchyRoot;
         hh::game::GOCTransform* gocTransform;
@@ -84,10 +87,10 @@ namespace hh::fnd {
 
         // The boolean here is `isDirty`
         // I'm pretty sure this pair is actually `ListenerInfo`
-        void Sync(csl::ut::InplaceMoveArray<csl::ut::Pair<hh::fnd::HFrame*, bool>, 10>& updatedFrames, bool ifRequested);
-        void SyncRecursive(csl::ut::InplaceMoveArray<csl::ut::Pair<hh::fnd::HFrame*, bool>, 10>& updatedFrames, Flag propagatingFlags, csl::math::Transform* targetTransform);
+        void Sync(csl::ut::MoveArray<csl::ut::Pair<hh::fnd::HFrame*, bool>>& updatedFrames, bool ifRequested);
+        void SyncRecursive(csl::ut::MoveArray<csl::ut::Pair<hh::fnd::HFrame*, bool>>& updatedFrames, Flag propagatingFlags, csl::math::Transform* targetTransform);
 
-        virtual void GetFamilyID();
+        virtual void* GetRuntimeTypeInfo() const;
         virtual void OnSync(const csl::math::Transform& parentTransform, csl::math::Transform* targetTransform);
 
         static csl::math::Transform CalculateTransform(const csl::math::Transform& parent, const csl::math::Transform& child, bool transformPosition, bool transformRotation);

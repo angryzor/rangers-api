@@ -1,7 +1,7 @@
 #pragma once
 
 namespace hh::anim {
-    class SkeletonBlender {
+    class SkeletonBlender : public hh::fnd::ReferencedObject {
 
     };
 }

@@ -31,10 +31,10 @@ namespace hh::fnd
 		Messenger(csl::fnd::IAllocator* pAllocator);
 
 		virtual void* GetRuntimeTypeInfo();
-		virtual bool ProcessMessage(Message& message) { return !fUnk3(); }
+		virtual bool ProcessMessage(Message& message);
 		virtual bool fUnk3() { return false; }
 		virtual bool ReceiveMessage(Message& message);
-		virtual bool IsAcceptingMessages() { return 1; }
+		virtual bool IsAcceptingMessages() { return true; }
 		
 		bool SendMessageImm(Message& message);
 	};

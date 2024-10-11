@@ -111,7 +111,7 @@ namespace SurfRide {
 
         virtual void* GetRuntimeTypeInfo() const override;
         virtual bool UnkFunc2() override;
-        virtual uint64_t UnkFunc3() override;
+        virtual void UnkFunc3() override;
         virtual void CalcTrackTypeWidth(float time, const SRS_TRACK* track) override;
         virtual void CalcTrackTypeHeight(float time, const SRS_TRACK* track) override;
         virtual void* GetCellProbably() const override;

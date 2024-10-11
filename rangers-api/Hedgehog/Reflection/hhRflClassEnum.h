@@ -33,13 +33,19 @@ namespace hh::fnd
 		}
 	};
 	
-	class RflClassEnum : public RflEntity
+	class RflClassEnum
 	{
-	protected:
-		const RflArray<RflClassEnumMember> m_pValues{ nullptr, 0 };
-
 	public:
-		RflClassEnum(const char* name, const RflClassEnumMember* values, uint32_t valueCount) : RflEntity{ name }, m_pValues{ values, valueCount } {}
+		const char* m_pName{};
+		RflArray<const RflClassEnumMember> m_pValues{ nullptr, 0 };
+
+		RflClassEnum(const char* name, const RflClassEnumMember* values, uint32_t valueCount) : m_pName{ name }, m_pValues{ values, valueCount } {}
+
+        const char* GetName() const
+		{
+			return m_pName;
+		}
+
 		const RflClassEnumMember* GetValues() const
 		{
 			return m_pValues.items;

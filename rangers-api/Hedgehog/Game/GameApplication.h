@@ -19,6 +19,8 @@ namespace hh::game {
             return gameUpdater;
         }
 
+        virtual void Reset() override;
+        virtual void Shutdown() override;
         virtual uint64_t UnkFunc9() override;
         virtual void UnkFunc10() {}
     };

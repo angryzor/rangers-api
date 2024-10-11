@@ -5,7 +5,7 @@ namespace hh::game {
     class ObjectWorldExtension : public fnd::ReferencedObject {
         ObjectWorld* objectWorld;
     public:
-        virtual void* GetRuntimeTypeInfo() const;
+        virtual void* GetRuntimeTypeInfo() const = 0;
         virtual void Initialize() = 0;
         virtual void Deinitialize() = 0;
         virtual void UnkFunc4() {}

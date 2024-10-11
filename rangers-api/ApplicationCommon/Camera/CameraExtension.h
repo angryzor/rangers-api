@@ -2,7 +2,7 @@
 
 namespace app_cmn::camera {
     class CameraFrame;
-    class CameraExtension : hh::fnd::ReferencedObject {
+    class CameraExtension : public hh::fnd::ReferencedObject {
     public:
         CameraFrame* cameraFrame;
     };

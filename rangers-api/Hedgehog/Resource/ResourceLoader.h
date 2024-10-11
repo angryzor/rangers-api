@@ -8,26 +8,6 @@ namespace hh::fnd {
             const char* localeName{ "" };
         };
 
-        class Unk2 : public BaseObject {
-            class Unk1 : public ReferencedObject {
-                csl::ut::MoveArray<ManagedResource*> onceAddedResources; // I don't quite get it yet -- see AddResource
-                csl::ut::MoveArray<ManagedResource*> twiceAddedResources;
-                csl::ut::StringMap<ManagedResource*> addedResourcesByName;
-            public:
-                Unk1(csl::fnd::IAllocator* allocator);
-            };
-
-            csl::ut::MoveArray<Unk1*> unk1s;
-            csl::ut::PointerMap<const ResourceTypeInfo*, Unk1*> unk1sByTypeInfo;
-            SimpleResourceContainer* simpleResourceContainer;
-        public:
-            Unk2(csl::fnd::IAllocator* allocator);
-            Unk1* LoadTypeInfo(const ResourceTypeInfo* typeInfo);
-            const csl::ut::MoveArray<ManagedResource*>& GetResourcesByTypeInfo(const ResourceTypeInfo* typeInfo);
-            void SetSimpleResourceContainer(SimpleResourceContainer* simpleResourceContainer); 
-            void Clear();
-        };
-
         struct Unk3 {
             uint64_t unk1;
             bool unk2;
@@ -36,7 +16,7 @@ namespace hh::fnd {
             Unk3(csl::fnd::IAllocator* allocator);
         };
 
-        Unk2 unk1;
+        UnpackedResourceContainer unpackedResourceContainer;
         csl::ut::MoveArray<void*> unk2;
         csl::ut::MoveArray<void*> unk3;
         csl::ut::MoveArray<void*> unk4;

@@ -47,11 +47,11 @@ namespace hh::fnd
 			return *this;
 		}
 
-		HandleBase& operator=(const HandleBase& hObj)
-		{
-			handle = hObj.handle;
-			return *this;
-		}
+		HandleBase& operator=(const HandleBase& hObj);
+		// {
+		// 	handle = hObj.handle;
+		// 	return *this;
+		// }
 	};
 
 	template<typename T, typename M = typename T::HandleManager>

@@ -3,7 +3,7 @@
 namespace hh::game {
     class InputListener {
 	public:
-		virtual ~InputListener();
+		virtual ~InputListener() = default;
         virtual void IL_UnkFunc1() {};
         virtual void IL_UnkFunc2() {};
     };
@@ -14,7 +14,6 @@ namespace hh::game {
             LISTENING = 0,
             CAPTURE_INPUTS = 1,
         };
-    private:
         // enum class ActionState : uint16_t {
         //     PRESSED
         // }
@@ -28,6 +27,11 @@ namespace hh::game {
             T state;
         };
 
+        struct ActionMonitor : InputMonitor<uint16_t> {};
+        struct AxisMonitor : InputMonitor<uint32_t> {};
+        struct UnkMonitor : InputMonitor<csl::math::Vector4> {};
+
+    private:
         char internalPlayerInputIndex;
         char objectLayer;
         char priority;
@@ -41,9 +45,9 @@ namespace hh::game {
         csl::ut::VariableString objectName;
         csl::ut::InplaceMoveArray<InputListener*, 2> inputListeners;
     public:
-        csl::ut::MoveArray<InputMonitor<uint16_t>> actionMonitors;
-        csl::ut::MoveArray<InputMonitor<uint32_t>> axisMonitors;
-        csl::ut::MoveArray<InputMonitor<csl::math::Vector4>> unkMonitors; // probably not a vector but it takes the same space and alignment
+        csl::ut::MoveArray<ActionMonitor> actionMonitors;
+        csl::ut::MoveArray<AxisMonitor> axisMonitors;
+        csl::ut::MoveArray<UnkMonitor> unkMonitors; // probably not a vector but it takes the same space and alignment
 
         struct Config {
             uint32_t internalPlayerInputIndex;

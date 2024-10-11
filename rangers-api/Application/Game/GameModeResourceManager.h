@@ -20,6 +20,10 @@ namespace app::game {
         csl::ut::MoveArray<GameModeResourceCollectionCacheEntry> cachedResourceCollections; // first of pair is name hash
         hh::ut::TinyFsm<GameModeResourceManager> fsm;
 
+        virtual void* GetRuntimeTypeInfo() override;
+		virtual void OnAddedToGame() override;
+		virtual void OnRemovedFromGame() override;
+
         GameModeResourceCollection* CreateResourceCollection(GameModeResourceModule* module);
         void AddModule(GameModeResourceModule* module);
         void RemoveModule(GameModeResourceModule* module);

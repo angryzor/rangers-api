@@ -18,12 +18,13 @@ namespace hh::hid {
     };
 
     class ActiveDeviceManager : public fnd::ReferencedObject, public UnknownListener {
+    public:
         struct Unk1 {
             char unk1;
             char unk2;
             char unk3;
         };
-
+    private:
         uint32_t flags;
         csl::ut::InplaceMoveArray<Unk1, 8> unk1;
         csl::ut::InplaceMoveArray<ActiveDeviceManagerListener*, 4> activeDeviceManagerListeners;

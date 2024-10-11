@@ -32,8 +32,8 @@ namespace hh::dbg {
             return static_cast<T*>(Create(allocator, T::GetClass()));
         }
 
-        virtual uint64_t Initialize(const csl::ut::MoveArray<fnd::Reference<ViewerContext>>& viewerContexts) {}
-        virtual uint64_t OnCreated() {}
-        virtual uint64_t OnDestroyed() {}
+        virtual uint64_t Initialize(const csl::ut::MoveArray<fnd::Reference<ViewerContext>>& viewerContexts);
+        virtual uint64_t OnCreated();
+        virtual uint64_t OnDestroyed();
     };
 }

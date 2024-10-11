@@ -4,14 +4,21 @@ namespace hh::fnd
 {
 	class RflClass;
 
-	class RflCustomAttribute : public RflEntity
+	class RflCustomAttribute
 	{
 	protected:
+		const char* m_pName{};
 		const void* m_pData{};
 		const RflClass* m_pType{};
 
 	public:
-		RflCustomAttribute(const char* name, const void* data, const RflClass* rflClass) : RflEntity{ name }, m_pData{ data }, m_pType{ rflClass } {}
+		RflCustomAttribute(const char* name, const void* data, const RflClass* rflClass) : m_pName{ name }, m_pData{ data }, m_pType{ rflClass } {}
+
+        const char* GetName() const
+		{
+			return m_pName;
+		}
+
 		[[nodiscard]] const void* GetData() const
 		{
 			return m_pData;
@@ -35,10 +42,10 @@ namespace hh::fnd
 	// 	}
 	// }
 	
-	class RflCustomAttributes : public RflArray<RflCustomAttribute>
+	class RflCustomAttributes : public RflArray<const RflCustomAttribute>
 	{
 	public:
-		RflCustomAttributes(const RflCustomAttribute* attributes, uint32_t count) : RflArray<RflCustomAttribute>{ attributes, count } {}
+		RflCustomAttributes(const RflCustomAttribute* attributes, uint32_t count) : RflArray<const RflCustomAttribute>{ attributes, count } {}
 		[[nodiscard]] const RflCustomAttribute* GetAttribute(const char* name) const
 		{
 			for (size_t i = 0; i < count; i++)

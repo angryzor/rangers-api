@@ -4,15 +4,18 @@ namespace hh::fnd
 {
 	class RflClassMember;
 	
-	class RflClass : public RflEntity
+	class RflClass
 	{
 	protected:
 	public:
+		const char* m_pName{};
 		const RflClass* m_pParent{};
 		uint32_t m_ClassSize{};
-		const RflArray<RflClassEnum> m_pEnums{ nullptr, 0 };
-		const RflArray<RflClassMember> m_pMembers{ nullptr, 0 };
+		RflArray<const RflClassEnum> m_pEnums{ nullptr, 0 };
+		RflArray<const RflClassMember> m_pMembers{ nullptr, 0 };
 		const RflCustomAttributes* m_pAttributes{};
+
+		RflClass() {}
 
 		RflClass(const char* pName, 
 			const RflClass* pParent,
@@ -21,11 +24,16 @@ namespace hh::fnd
 			uint32_t declaredEnumsNum,
 			const RflClassMember* pDeclaredMembers,
 			uint32_t declaredMembersNum,
-			const RflCustomAttributes* pAttributes) : RflEntity{ pName }, m_pEnums{ pDeclaredEnums, declaredEnumsNum }, m_pMembers{ pDeclaredMembers, declaredMembersNum }
+			const RflCustomAttributes* pAttributes) : m_pName{ pName }, m_pEnums{ pDeclaredEnums, declaredEnumsNum }, m_pMembers{ pDeclaredMembers, declaredMembersNum }
 		{
 			m_pParent = pParent;
 			m_ClassSize = objectSizeInBytes;
 			m_pAttributes = pAttributes;
+		}
+
+        const char* GetName() const
+		{
+			return m_pName;
 		}
 
 		[[nodiscard]] const RflClass* GetBaseType() const

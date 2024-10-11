@@ -28,7 +28,7 @@ namespace hh::fw {
     public:
         FrameworkWin32(csl::fnd::IAllocator* allocator);
         virtual void UnkFunc2(const FrameworkConfig& config, FrameworkOptions* options) override;
-        virtual uint64_t UnkFunc3() override;
+        virtual void UnkFunc3() override;
         virtual uint64_t UnkFunc4(FrameworkEnvironment& frameworkEnvironment) override;
         virtual uint64_t UnkFunc5() override;
         virtual void FFL_UnkFunc1() override;

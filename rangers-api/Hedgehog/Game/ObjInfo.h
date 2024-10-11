@@ -25,7 +25,7 @@ namespace hh::game {
         virtual void Load() {}
         virtual void Initialize(GameManager* gameManager) {}
         virtual void Finalize() {}
-        virtual const char* GetInfoName() { return ""; }
+        virtual const char* GetInfoName();
         virtual void RegistCallback(ObjInfoContainer* container) {}
     };
 }
