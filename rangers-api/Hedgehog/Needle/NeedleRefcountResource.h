@@ -6,8 +6,8 @@ namespace hh::needle {
         virtual void* QueryResource(size_t id) = 0;
         virtual const void* QueryResource(size_t id) const = 0;
         virtual void SetDebugObjectName(char const* name) {}
-        virtual NeedleSStr* GetNeedleSStr() { return 0; }
-        virtual bool SetDuplicate(const NeedleRefcountResource* resource) { return false; }
+        virtual NeedleSStr* GetNeedleSStr();
+        virtual bool SetDuplicate(const NeedleRefcountResource* resource);
 
         template<typename T>
         inline T* QueryResource(size_t id) {

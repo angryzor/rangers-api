@@ -4,8 +4,8 @@ namespace hh::gfx {
     class VisualModelListener {
     public:
         virtual ~VisualModelListener() = default;
-        virtual void OnModelAdded(GOCVisualModel* model);
-        virtual void OnModelRemoved(GOCVisualModel* model);
+        virtual void OnModelAdded(GOCVisualModel* model) {}
+        virtual void OnModelRemoved(GOCVisualModel* model) {}
     };
 
     class VisualModelUpdaterBase {

@@ -2,7 +2,7 @@
 
 namespace hh::gfx {
     class CriComponent : public RenderingComponent {
-        fnd::Reference<hh::cri::CriSystem> criSystem;
+        hh::cri::CriSystem* criSystem;
 
     public:
         CriComponent(csl::fnd::IAllocator* allocator);
