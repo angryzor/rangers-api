@@ -28,7 +28,7 @@ namespace hh::game {
         };
 
         struct ActionMonitor : InputMonitor<uint16_t> {};
-        struct AxisMonitor : InputMonitor<uint32_t> {};
+        struct AxisMonitor : InputMonitor<float> {};
         struct UnkMonitor : InputMonitor<csl::math::Vector4> {};
 
     private:

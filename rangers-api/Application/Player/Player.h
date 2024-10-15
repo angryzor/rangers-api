@@ -39,6 +39,9 @@ namespace app::player {
 		virtual void AddCallback(hh::game::GameManager* gameManager) override;
 		virtual void RemoveCallback(hh::game::GameManager* gameManager) override;
 
+        virtual void InitializePlayer() = 0;
+        virtual void DeinitializePlayer() = 0;
+
         void Setup(const PlayerSetupInfo& setupInfo);
 		static void Kill(hh::game::GameManager* gameManager, uint8_t playerId);
         static Player* Spawn(hh::game::GameManager* gameManager, const PlayerSetupInfo& playerSetupInfo);

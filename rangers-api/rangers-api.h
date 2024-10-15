@@ -200,6 +200,7 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Needle/TNeedleRefcountResource.h"
 #include "Hedgehog/Needle/TNeedleRefcountUniqueObjectBase.h"
 #include "Hedgehog/Needle/NeedleObjectWithParameterBuffer.h"
+#include "Hedgehog/Needle/NeedleBlob.h"
 #include "Hedgehog/Needle/CNameIDObject.h"
 #include "Hedgehog/Needle/CNameIDObjectStatic.h"
 #include "Hedgehog/Needle/NeedleType.h"
@@ -824,6 +825,17 @@ namespace hh::needle {
         static hh::needle::CNameIDObjectStatic diffuse1;
         static hh::needle::CNameIDObjectStatic diffuse2;
         static hh::needle::CNameIDObjectStatic diffuse3;
+
+        static hh::needle::CNameIDObjectStatic ignoreLightDiffuse;
+        static hh::needle::CNameIDObjectStatic ignoreLightDiffuseColor;
+        static hh::needle::CNameIDObjectStatic ignoreLightAmbientColor;
+        static hh::needle::CNameIDObjectStatic ignoreLightEmissiveColor;
+        static hh::needle::CNameIDObjectStatic ignoreLightLuminance;
+
+        static hh::needle::CNameIDObjectStatic commonDDiffuse;
+        static hh::needle::CNameIDObjectStatic commonDDiffuseColor;
+        static hh::needle::CNameIDObjectStatic commonDAmbientColor;
+        static hh::needle::CNameIDObjectStatic commonDEmissiveColor;
     };
 }
 

@@ -51,7 +51,7 @@ namespace hh::needle::ImplDX11 {
         TextureBuffer buffer;
         TextureView view;
         char unk1[0x30];
-        void* streamingUnk2;
+        void* textureStreamingImpl;
         uint32_t unk3;
 
     public:
@@ -78,6 +78,7 @@ namespace hh::needle::ImplDX11 {
         // }
     };
 
+    // I think these actually end in Impl, like TextureImpl etc.
     typedef NeedleResourceContainer<Texture, TextureDX11Impl<SBufferTexture2D, SViewTexture2D, NEEDLE_RESOURCE_DX11_TEXTURE_VIEW>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeSupport> Texture2DView;
     typedef NeedleResourceContainer<RenderTarget, TextureDX11Impl<SBufferTexture2D, SViewRenderTarget, NEEDLE_RESOURCE_DX11_RENDER_TARGET_VIEW>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeNotSupport> RenderTargetView;
     typedef NeedleResourceContainer<UnorderedAccessView, TextureDX11Impl<SBufferTexture2D, SViewUnorderedAccess, NEEDLE_RESOURCE_DX11_UNORDERED_ACCESS_VIEW>, NEEDLE_RESOURCE_CONTAINER, SQueryTypeOwn, SDupTypeNotSupport> UnorderedAccessView;

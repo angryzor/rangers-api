@@ -47,9 +47,33 @@ namespace hh::needle {
                 NO_INITIALIZE_UNK1 = 2,
             };
 
+            struct TextureFormatMapping {
+                uint32_t unk1;
+                uint32_t unk2;
+                DXGI_FORMAT format;
+                uint32_t unk3;
+                uint32_t unk4;
+                uint32_t unk5;
+                uint32_t unk6;
+                uint32_t unk7;
+            };
+
+            struct TextureBufferCreationInfo {
+                TextureCreationInfo textureCreationInfo;
+                uint32_t unk1;
+                SurfaceDescription* surfaceFormat;
+                void* unk2; // unk2 from renderingdevice
+            };
+
+            static TextureFormatMapping formatMap[41];
+            static DXGI_USAGE usageMap[6];
+
             DeviceObjectDX11(ID3D11Device* d3dDevice);
 
+            static TextureFormatMapping* GetTextureFormatMapping(uint8_t format);
+
             RenderingDeviceDispatchDX11Impl* CreateDispatch(ID3D11DeviceContext* deviceContext, CreateDispatchFlags flags);
+            Texture2DView* CreateTexture(struct TextureBufferCreationInfo& creationInfo);
         };
     }
 }

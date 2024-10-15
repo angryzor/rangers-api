@@ -34,7 +34,7 @@ namespace app::level {
             uint64_t unk2;
         };
 
-        Unk1<hh::fnd::Handle<hh::fnd::Messenger>> playerObject;
+        Unk1<hh::fnd::Handle<app::player::Player>> playerObject;
         Unk1<player::CharacterIdU8> characterId;
         Unk1<csl::math::Vector3> position;
         Unk1<csl::math::Vector3> vector440;
