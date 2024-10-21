@@ -1,10 +1,5 @@
 #pragma once
 
-namespace app
-{
-	class GameManager;
-}
-
 namespace hh::fnd
 {
 	class Message;

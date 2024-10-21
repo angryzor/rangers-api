@@ -278,6 +278,7 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Needle/GatherDrawPassShadowMapJob.h"
 #include "Hedgehog/Needle/ShadowMapParamBuildJob.h"
 #include "Hedgehog/Needle/CachedShadowMapRenderJob.h"
+#include "Hedgehog/Needle/SebastienSky.h"
 #include "Hedgehog/Needle/SceneContext.h"
 #include "Hedgehog/Needle/SceneContextManager.h"
 #include "Hedgehog/Needle/SupportFX.h"
@@ -365,6 +366,8 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Font/TextListener.h"
 #include "Hedgehog/Font/FontContainer.h"
 
+#include "Hedgehog/User/UserInfoEvent.h"
+
 // Hedgehog Framework
 #include "Hedgehog/Framework/FrameworkConfig.h"
 #include "Hedgehog/Framework/FrameworkOptions.h"
@@ -378,6 +381,7 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Framework/Framework.h"
 #include "Hedgehog/Framework/AppModule.h"
 #include "Hedgehog/Framework/Application.h"
+#include "Hedgehog/Framework/SaveManagerInterface.h"
 
 // HID
 #include "Hedgehog/HID/InputDevice.h"
@@ -450,6 +454,8 @@ struct SLIST_HEADER_SHIM {
 
 #include "Hedgehog/Game/DevMenu/Menu.h"
 #include "Hedgehog/Game/FreeCamera.h"
+
+#include "Hedgehog/Game/Stats/StatsListener.h"
 
 #include "Hedgehog/GraphicsFoundation/RenderManagerBase.h"
 
@@ -628,8 +634,6 @@ struct SLIST_HEADER_SHIM {
 #include "Hedgehog/Dv/DiEventPreviewManager.h"
 #include "Hedgehog/Dv/DvSceneControl.h"
 
-#include "Hedgehog/User/UserInfoEvent.h"
-
 // #include "System/Player/PlayerInformation.h"
 // #include "System/Player/Blackboard.h"
 // #include "System/Player/BlackboardBattle.h"
@@ -689,9 +693,13 @@ struct SLIST_HEADER_SHIM {
 
 #include "Application/Resource/AppResourceManager.h"
 
+#include "Application/Save/SaveDataLock.h"
 #include "Application/Save/SaveDataAccessor.h"
+#include "Application/Save/Accessors.h"
+#include "Application/Save/UserElement.h"
+#include "Application/Save/SaveDataLockImpl.h"
+#include "Application/Save/SaveInterface.h"
 #include "Application/Save/SaveManager.h"
-#include "Application/Save/Accessors/OptionData.h"
 
 #include "Application/Camera/CameraBridge.h"
 #include "Application/Camera/CameraService.h"

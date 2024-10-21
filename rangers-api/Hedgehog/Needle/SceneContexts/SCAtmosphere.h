@@ -17,7 +17,7 @@ namespace hh::needle {
             SCAtmosphere& sceneContext;
             intrusive_ptr<Texture> renderTargetViews[2];
             intrusive_ptr<RenderTarget> renderTargets[2];
-            uint64_t unk12;
+            intrusive_ptr<Texture> unk12;
             uint64_t unk13;
             uint64_t unk14;
             uint64_t unk15;
@@ -30,8 +30,8 @@ namespace hh::needle {
             uint64_t unk22;
             uint64_t unk23;
             intrusive_ptr<NeedleRefcountObject> unk24[2];
-            uint64_t unk25;
-            uint64_t unk26;
+            intrusive_ptr<Texture> unk25;
+            intrusive_ptr<Texture> unk26;
             uint64_t unk27;
             uint64_t unk28;
             uint64_t unk29;

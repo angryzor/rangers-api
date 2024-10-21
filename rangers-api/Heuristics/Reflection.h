@@ -42261,7 +42261,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayLog {
         csl::ut::VariableString stagecode;
         csl::ut::VariableString play;
@@ -42278,7 +42278,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayStatsSummary {
         csl::ut::VariableString stagecode;
         int32_t highTime;
@@ -42293,14 +42293,14 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayStatsData {
         int32_t enemies;
         int32_t damages;
         int32_t misses;
         int32_t retry;
         int32_t restart;
-        csl::ut::MoveArray<heur::rfl::PlayLog> logs;
+        csl::ut::MoveArray<app::save::PlayLog> logs;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42311,12 +42311,12 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayStats {
         csl::ut::VariableString username;
         csl::ut::VariableString time;
-        csl::ut::MoveArray<heur::rfl::PlayStatsSummary> summaries;
-        heur::rfl::PlayStatsData playLog;
+        csl::ut::MoveArray<app::save::PlayStatsSummary> summaries;
+        app::save::PlayStatsData playLog;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42327,7 +42327,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ScoreAndRnakData {
         uint32_t hightScore;
         uint16_t rank;
@@ -42343,9 +42343,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ActionChainStruct {
-        heur::rfl::ScoreAndRnakData hightState[200];
+        app::save::ScoreAndRnakData hightState[200];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42356,7 +42356,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct HeaderData {
         enum class Status : int8_t {
             STATUS_ZERO_FILL = 0,
@@ -42414,7 +42414,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct CyberStageData {
         uint16_t flags;
         uint32_t bestTime;
@@ -42430,9 +42430,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct CyberStageContainerData {
-        heur::rfl::CyberStageData actStages[32];
+        app::save::CyberStageData actStages[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42443,11 +42443,11 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ArcadeData {
-        heur::rfl::HeaderData header;
+        app::save::HeaderData header;
         bool unlocked;
-        heur::rfl::CyberStageContainerData stages;
+        app::save::CyberStageContainerData stages;
         uint32_t reserved[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -42459,7 +42459,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeBattleRushScoreData {
         uint32_t bestTime;
         uint32_t reserved0;
@@ -42476,10 +42476,10 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeBattleRushData {
         uint32_t status;
-        heur::rfl::ChallengeBattleRushScoreData scores[16];
+        app::save::ChallengeBattleRushScoreData scores[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42490,9 +42490,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeBattleRushContainerData {
-        heur::rfl::ChallengeBattleRushData stages[4];
+        app::save::ChallengeBattleRushData stages[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42503,7 +42503,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeCyberStageData {
         enum class Value : int8_t {
             S = 0,
@@ -42517,7 +42517,7 @@ namespace heur::rfl {
         uint32_t status;
         uint32_t totalBestTime;
         Value totalBestRank;
-        heur::rfl::CyberStageContainerData stages;
+        app::save::CyberStageContainerData stages;
         int32_t stageNos[32];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -42529,9 +42529,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeCyberStageContainerData {
-        heur::rfl::ChallengeCyberStageData stages[5];
+        app::save::ChallengeCyberStageData stages[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42542,13 +42542,13 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ChallengeData {
-        heur::rfl::HeaderData header;
+        app::save::HeaderData header;
         uint32_t status;
-        heur::rfl::ChallengeCyberStageContainerData cyberStage;
-        heur::rfl::ChallengeBattleRushContainerData battleRush;
-        heur::rfl::ChallengeBattleRushContainerData battleRushAll;
+        app::save::ChallengeCyberStageContainerData cyberStage;
+        app::save::ChallengeBattleRushContainerData battleRush;
+        app::save::ChallengeBattleRushContainerData battleRushAll;
         uint32_t reserved0;
         uint32_t reserved1;
         uint32_t reserved2;
@@ -42563,7 +42563,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct CharacterData {
         uint16_t numRings;
         uint8_t ringLevel;
@@ -42603,7 +42603,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraCharacterData {
         uint32_t bossRushNumRings;
         float bossRushQuickCyloopGauge;
@@ -42635,10 +42635,10 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraCharacterContainerData {
-        heur::rfl::CharacterData characters[3];
-        heur::rfl::ExtraCharacterData extras[4];
+        app::save::CharacterData characters[3];
+        app::save::ExtraCharacterData extras[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42649,9 +42649,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraCyberStageContainerData {
-        heur::rfl::CyberStageData actStages[16];
+        app::save::CyberStageData actStages[16];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42662,7 +42662,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct WorldFlagData {
         uint32_t bitFlags[1024];
         int8_t byteFlags[1024];
@@ -42677,7 +42677,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraFlagData {
         uint32_t bitFlags[512];
         int8_t byteFlags[512];
@@ -42692,10 +42692,10 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraFlagContainerData {
-        heur::rfl::WorldFlagData worldData;
-        heur::rfl::ExtraFlagData extraData;
+        app::save::WorldFlagData worldData;
+        app::save::ExtraFlagData extraData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42706,7 +42706,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct IslandMapGridData {
         uint8_t x;
         uint8_t y;
@@ -42720,9 +42720,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct IslandMapData {
-        heur::rfl::IslandMapGridData grid[136];
+        app::save::IslandMapGridData grid[136];
         uint16_t numReleaseGrids;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -42734,11 +42734,11 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct IslandStageData {
         csl::math::Vector3 destination;
         uint32_t flags;
-        heur::rfl::IslandMapData map;
+        app::save::IslandMapData map;
         uint32_t reserved[4];
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -42750,9 +42750,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ExtraIslandStageContainerData {
-        heur::rfl::IslandStageData islands[1];
+        app::save::IslandStageData islands[1];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42763,7 +42763,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct FlagContainerData {
         uint32_t bitFlags[24];
         int8_t byteFlags[128];
@@ -42778,7 +42778,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct GamePlayData {
         enum class Status : int8_t {
             STATUS_NEWGAME = 0,
@@ -42819,9 +42819,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct IslandStageContainerData {
-        heur::rfl::IslandStageData islands[5];
+        app::save::IslandStageData islands[5];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42832,10 +42832,10 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct WorldFlagContainerData {
-        heur::rfl::WorldFlagData worldDatas[5];
-        heur::rfl::WorldFlagData debugWorldData;
+        app::save::WorldFlagData worldDatas[5];
+        app::save::WorldFlagData debugWorldData;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42846,7 +42846,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct ReservedData {
         uint8_t reserved[601552];
 
@@ -42859,7 +42859,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct StatValue {
         int32_t value;
         bool assigned;
@@ -42873,9 +42873,9 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct StatsContainerData {
-        heur::rfl::StatValue stats[3393];
+        app::save::StatValue stats[3393];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42886,7 +42886,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct WeatherTimerData {
         float duration;
         float time;
@@ -42900,7 +42900,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct WeatherBlockData {
         enum class Type : int8_t {
             Sunny = 0,
@@ -42933,7 +42933,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct WeatherData {
         enum class Type : int8_t {
             Sunny = 0,
@@ -42946,8 +42946,8 @@ namespace heur::rfl {
 
         Type currentWeather;
         Type prevWeather;
-        heur::rfl::WeatherTimerData timer;
-        heur::rfl::WeatherBlockData block;
+        app::save::WeatherTimerData timer;
+        app::save::WeatherBlockData block;
         int32_t stageNo;
         uint32_t reserved[4];
 
@@ -42960,23 +42960,23 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct GameData {
-        heur::rfl::HeaderData header;
-        heur::rfl::GamePlayData gameplay;
-        heur::rfl::CharacterData character;
-        heur::rfl::IslandStageContainerData islands;
-        heur::rfl::CyberStageContainerData stages;
-        heur::rfl::FlagContainerData flags;
-        heur::rfl::WorldFlagContainerData worldFlags;
-        heur::rfl::ExtraFlagContainerData extraFlags;
-        heur::rfl::ActionChainStruct actionChain;
-        heur::rfl::ExtraCharacterContainerData extraCharacters;
-        heur::rfl::ExtraCyberStageContainerData extraStages;
-        heur::rfl::ExtraIslandStageContainerData extraIslands;
-        heur::rfl::ReservedData reserved;
-        heur::rfl::StatsContainerData stats;
-        heur::rfl::WeatherData weather;
+        app::save::HeaderData header;
+        app::save::GamePlayData gameplay;
+        app::save::CharacterData character;
+        app::save::IslandStageContainerData islands;
+        app::save::CyberStageContainerData stages;
+        app::save::FlagContainerData flags;
+        app::save::WorldFlagContainerData worldFlags;
+        app::save::ExtraFlagContainerData extraFlags;
+        app::save::ActionChainStruct actionChain;
+        app::save::ExtraCharacterContainerData extraCharacters;
+        app::save::ExtraCyberStageContainerData extraStages;
+        app::save::ExtraIslandStageContainerData extraIslands;
+        app::save::ReservedData reserved;
+        app::save::StatsContainerData stats;
+        app::save::WeatherData weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -42987,7 +42987,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayLogCoordData {
         uint16_t time;
         uint16_t x;
@@ -43002,7 +43002,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayLogEventData {
         enum class EventType : int8_t {
             InvalidEvent = -1,
@@ -43022,7 +43022,7 @@ namespace heur::rfl {
             AccessRingSensor = 13,
         };
 
-        heur::rfl::PlayLogCoordData coord;
+        app::save::PlayLogCoordData coord;
         EventType eventType;
         int8_t option;
 
@@ -43035,14 +43035,14 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct PlayLogData {
         uint32_t numFootMarks;
         uint32_t footMarksIndex;
-        heur::rfl::PlayLogCoordData footmarks[36000];
+        app::save::PlayLogCoordData footmarks[36000];
         uint32_t numEvents;
         uint32_t eventsIndex;
-        heur::rfl::PlayLogEventData events[50000];
+        app::save::PlayLogEventData events[50000];
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -43053,18 +43053,18 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct GameDataInPlayLog {
-        heur::rfl::HeaderData header;
-        heur::rfl::GamePlayData gameplay;
-        heur::rfl::CharacterData character;
-        heur::rfl::IslandStageContainerData islands;
-        heur::rfl::CyberStageContainerData stages;
-        heur::rfl::FlagContainerData flags;
-        heur::rfl::WorldFlagContainerData worldFlags;
-        heur::rfl::PlayLogData playlog;
-        heur::rfl::StatsContainerData stats;
-        heur::rfl::WeatherData weather;
+        app::save::HeaderData header;
+        app::save::GamePlayData gameplay;
+        app::save::CharacterData character;
+        app::save::IslandStageContainerData islands;
+        app::save::CyberStageContainerData stages;
+        app::save::FlagContainerData flags;
+        app::save::WorldFlagContainerData worldFlags;
+        app::save::PlayLogData playlog;
+        app::save::StatsContainerData stats;
+        app::save::WeatherData weather;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -43075,7 +43075,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionAudioData {
         enum class MusicSelect : int8_t {
             MUSIC_SELECT_ON = 0,
@@ -43107,7 +43107,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionCameraData {
         enum class MovementStyle : int8_t {
             PadSimulate = 0,
@@ -43136,7 +43136,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionControlsData {
         enum class InputKey : int32_t {
             Invalid = -1,
@@ -43306,7 +43306,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionGamePlayData {
         enum class VoiceLanguageType : int8_t {
             VOICE_LANGUAGE_ENGLISH = 0,
@@ -43386,7 +43386,7 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionGraphicsData {
         enum class Resolution : int8_t {
             Reso3840x2160 = 0,
@@ -43476,14 +43476,14 @@ namespace heur::rfl {
     };
 }
 
-namespace heur::rfl {
+namespace app::save {
     struct OptionData {
-        heur::rfl::HeaderData header;
-        heur::rfl::OptionGamePlayData gameplay;
-        heur::rfl::OptionControlsData controls;
-        heur::rfl::OptionCameraData camera;
-        heur::rfl::OptionAudioData audio;
-        heur::rfl::OptionGraphicsData graphics;
+        app::save::HeaderData header;
+        app::save::OptionGamePlayData gameplay;
+        app::save::OptionControlsData controls;
+        app::save::OptionCameraData camera;
+        app::save::OptionAudioData audio;
+        app::save::OptionGraphicsData graphics;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;

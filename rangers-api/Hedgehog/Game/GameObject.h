@@ -113,9 +113,7 @@ namespace hh::game
 		csl::ut::InplaceMoveArray<hh::fnd::Property, 2> properties;
 		csl::ut::MoveArray<GameObjectListener*> listeners;
 		uint32_t componentsMessageMask{};
-	private:
 		csl::ut::MoveArray<GOComponent*> componentsByUpdatingPhase[3];
-	public:
 		csl::ut::MoveArray<fnd::Handle<GameObject>> children;
 		Unk1 deferredComponentAdditions;
 
