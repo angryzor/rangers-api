@@ -72,6 +72,7 @@ namespace hh::anim {
         enum class Flag : uint8_t {
             LOOPS,
             UNK1,
+            DISABLE_PBA,
         };
 
         const char* name;

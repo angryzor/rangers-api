@@ -7,6 +7,7 @@ namespace hh::ut {
         char endianFlag;
         unsigned int fileSize;
         unsigned short nodeCount;
+        unsigned short flags;
     };
 
     class BinaryFile {

@@ -1,7 +1,7 @@
 #pragma once
 
 #define GOCOMPONENT_CLASS_DECLARATION(ClassName) private:\
-		static const hh::game::GOComponentClass instance;\
+		static const hh::game::GOComponentClass componentClass;\
 		static hh::game::GOComponent* Create(csl::fnd::IAllocator* allocator);\
 	public:\
 		static const hh::game::GOComponentClass* GetClass();
