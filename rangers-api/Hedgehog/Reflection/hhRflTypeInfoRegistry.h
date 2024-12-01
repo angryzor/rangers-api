@@ -12,7 +12,7 @@ namespace hh::fnd
 		{
 		}
 
-		const RflTypeInfo* GetByName(const char* pName) const
+		const RflTypeInfo* GetTypeInfo(const char* pName) const
 		{
 			return items.GetValueOrFallback(pName, nullptr);
 		}
@@ -40,7 +40,7 @@ namespace hh::fnd
 
 		void ConstructObject(csl::fnd::IAllocator* pAllocator, void* placement, const char* pName) const
 		{
-			auto* pTypeInfo = GetByName(pName);
+			auto* pTypeInfo = GetTypeInfo(pName);
 			if (!pTypeInfo)
 				return;
 
@@ -49,7 +49,7 @@ namespace hh::fnd
 
 		void FinishLoadedObject(void* pInstance, const char* pName) const
 		{
-			auto* pTypeInfo = GetByName(pName);
+			auto* pTypeInfo = GetTypeInfo(pName);
 			if (!pTypeInfo)
 				return;
 

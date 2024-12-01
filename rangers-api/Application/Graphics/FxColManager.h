@@ -59,7 +59,7 @@ namespace app::gfx {
 		void HandleLightParamCollisionShapesLight();
 		void HandleLightParamCollisionShapesIBL();
 
-		static float InterpolateCollisionShape(FxColCollisionShape* shape, const csl::math::Vector3& position);
+		static float InterpolateCollisionShape(FxColCollisionShapeData* shape, const csl::math::Vector3& position);
 		static float InterpolateSphere(const csl::math::Vector3& cameraPosition, const csl::math::Vector3& position, float radius, float borderThickness);
 		static float InterpolateCylinder(const csl::math::Vector3& cameraPosition, const csl::math::Vector3& position, const csl::math::Quaternion, float halfHeight, float radius, float borderThickness);
 		static float InterpolateAnisotropicObb(const csl::math::Vector3& cameraPosition, const csl::math::Vector3& position, const csl::math::Quaternion, float halfWidth, float halfHeight, float halfDepth, float positiveDepthBorderThickness, float negativeDepthBorderThickness);

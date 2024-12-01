@@ -7,10 +7,10 @@ namespace hh::game {
         uint64_t size;
         void* data;
 
-private:
+    private:
         ComponentData(const hh::fnd::RflTypeInfo* rflTypeInfo, void* data) : type{ rflTypeInfo->GetName() }, size{ rflTypeInfo->GetSize() }, data{ data } {}
 
-public:
+    public:
         ComponentData(const char* type, const hh::fnd::RflTypeInfo* rflTypeInfo, void* data) : type{ type }, size{ rflTypeInfo->GetSize() }, data{ data } {}
 
     public:
@@ -25,11 +25,11 @@ public:
 
         template<typename T>
         static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type) {
-            return Create(allocator, type, &T::rflTypeInfo);
+            return Create(allocator, type, &T::typeInfo);
         }
 
         static ComponentData* Create(csl::fnd::IAllocator* allocator, const hh::game::GOComponentRegistry::GOComponentRegistryItem* goComponentRegistryItem) {
-            return Create(allocator, goComponentRegistryItem->name, hh::fnd::BuiltinTypeRegistry::GetTypeInfoRegistry()->GetByName(goComponentRegistryItem->rflClass->GetName()));
+            return Create(allocator, goComponentRegistryItem->GetName(), hh::fnd::BuiltinTypeRegistry::GetTypeInfoRegistry()->GetTypeInfo(goComponentRegistryItem->GetSpawnerDataClass()->GetName()));
         }
 
         static ComponentData* Create(csl::fnd::IAllocator* allocator, const char* type) {
@@ -72,7 +72,7 @@ public:
 
         ObjectData(csl::fnd::IAllocator* allocator, const GameObjectClass* gameObjectClass, ObjectId id, const char* name, ObjectData* parent, const ObjectTransformData& localTransform)
             : name{ name, allocator }
-            , gameObjectClass{ gameObjectClass->name }
+            , gameObjectClass{ gameObjectClass->GetName() }
             , flags {}
             , localTransform { localTransform }
             , componentData{ allocator }
@@ -86,7 +86,7 @@ public:
                 transform = localTransform;
             }
 
-            auto* spawnerRfl = gameObjectClass->spawnerDataRflClass;
+            auto* spawnerRfl = gameObjectClass->GetSpawnerDataClass();
             if (spawnerRfl == nullptr) {
                 spawnerData = nullptr;
             } else {
@@ -113,7 +113,7 @@ public:
             , parentID{ other.parentID } {
             flags.set(Flag::COMPONENT_DATA_NEEDS_TERMINATION);
             
-            auto* spawnerRfl = GameObjectSystem::GetInstance()->gameObjectRegistry->GetGameObjectClassByName(gameObjectClass)->spawnerDataRflClass;
+            auto* spawnerRfl = GameObjectSystem::GetInstance()->gameObjectRegistry->GetGameObjectClassByName(gameObjectClass)->GetSpawnerDataClass();
             if (spawnerRfl == nullptr) {
                 spawnerData = nullptr;
             } else {

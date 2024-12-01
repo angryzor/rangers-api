@@ -46,6 +46,33 @@ namespace hh::gfx {
         GOCVisualModelDescription();
     };
 
+    struct GOCVisualModelSpawner {
+        csl::ut::VariableString resModel;
+
+        static const hh::fnd::RflTypeInfo typeInfo;
+        static const hh::fnd::RflClass rflClass;
+    private:
+        static void Construct(GOCVisualModelSpawner* pInstance, csl::fnd::IAllocator* pAllocator);
+        static void Finish(GOCVisualModelSpawner* pInstance);
+        static void Clean(GOCVisualModelSpawner* pInstance);
+    };
+
+    inline const hh::fnd::RflTypeInfo GOCVisualModelSpawner::typeInfo{
+        "GOCVisualModelSpawner",
+        "GOCVisualModelSpawner",
+        [](void* instance, csl::fnd::IAllocator* allocator) {
+            auto* inst = static_cast<GOCVisualModelSpawner*>(instance);
+            new (&inst->resModel) csl::ut::VariableString{ allocator };
+            return instance;
+        },
+        [](void* instance) {},
+        [](void* instance) {
+            auto* inst = static_cast<GOCVisualModelSpawner*>(instance);
+            inst->resModel.~VariableString();
+        },
+        sizeof(GOCVisualModelSpawner),
+    };
+
     class GOCVisualModel;
     class GOCVisualModelImpl {
     public:
