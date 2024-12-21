@@ -3,10 +3,11 @@
 namespace hh::eff {
     class ResEffect : public fnd::ManagedResource {
     public:
-        uint8_t unk101;
-        csl::ut::MoveArray<void*> unk102;
-        csl::ut::MoveArray<void*> unk103;
-        uint64_t unk104;
+        bool offsetsFixed;
+        csl::ut::StringMap<ResEffect*> childEffects;
+        csl::ut::MoveArray<char*> childEffectNames;
+        csl::ut::StringMap<gfnd::ResTexture*> textures;
+        csl::ut::StringMap<gfx::ResModel*> models;
 
         virtual void Load(void* data, size_t size) override;
         virtual void Unload() override;
