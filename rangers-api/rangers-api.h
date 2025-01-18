@@ -452,6 +452,10 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Game/ObjectWorldChunk.def.h"
 #include "Hedgehog/Game/ObjectWorldExtension.h"
 #include "Hedgehog/Game/ObjectWorld.h"
+#include "Hedgehog/Game/ResLevel.h"
+#include "Hedgehog/Game/Level.h"
+#include "Hedgehog/Game/MasterLevel.h"
+#include "Hedgehog/Game/LevelManager.h"
 
 #include "Hedgehog/Game/GOComponents/GOCInput.h"
 #include "Hedgehog/Game/GOComponents/GOCTransform.h"
@@ -496,6 +500,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Graphics/GOCVisualModel.h"
 #include "Hedgehog/Graphics/GOCVisualUserModel.h"
 #include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
+#include "Hedgehog/Graphics/GOCOcclusionCapsule.h"
 #include "Hedgehog/Graphics/ModelNodeHFrame.h"
 #include "Hedgehog/Graphics/VisualManager.h"
 #include "Hedgehog/Graphics/VisibilityManager.h"
@@ -523,6 +528,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Path/PathComponent.h"
 #include "Hedgehog/Path/PathCollisionHandler.h"
 #include "Hedgehog/Path/PathManager.h"
+#include "Hedgehog/Path/PathEvaluator.h"
 
 #include "Hedgehog/Effect/CyanRenderHandler.h"
 #include "Hedgehog/Effect/ResEffect.h"
@@ -756,9 +762,7 @@ namespace rangerssdk::ucsl {
 #include "Application/Level/StageData.h"
 #include "Application/Level/StageInfo.h"
 #include "Application/Level/LevelInfo.h"
-#include "Application/Level/ResLevel.h"
 #include "Application/Level/ResMasterLevel.h"
-#include "Application/Level/LevelManager.h"
 
 #include "Application/Event/EventPlayer.h"
 
@@ -815,7 +819,11 @@ namespace rangerssdk::ucsl {
 #include "Application/Graphics/FxParamTimeProgressExtension.h"
 #include "Application/Graphics/FxColManager.h"
 
+#include "Application/ResSvCol2.h"
+#include "Application/Terrain/TerrainLoad.h"
+#include "Application/Terrain/TerrainLoaderDynamic.h"
 #include "Application/Terrain/TerrainManager.h"
+#include "Application/Terrain/TerrainWorld.h"
 
 #include "Application/Player/PlayerPosture.h"
 #include "Application/Player/Postures/PostureSliding.h"

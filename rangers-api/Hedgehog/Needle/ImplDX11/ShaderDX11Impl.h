@@ -24,6 +24,12 @@ namespace hh::needle::ImplDX11 {
         uint16_t unk2;
     };
 
+    struct ShaderOptionDefinition {
+        CNameIDObject* name;
+        unsigned int index;
+        unsigned int unk1;
+    };
+
     typedef NeedleResourceContainer<VertexShader, SShaderContext2, NEEDLE_RESOURCE_DX11_VERTEX_SHADER_OBJECT, SQueryTypeSelf, SDupTypeNotSupport> VertexShader;
     typedef NeedleResourceContainer<PixelShader, SShaderContext2, NEEDLE_RESOURCE_DX11_PIXEL_SHADER_OBJECT, SQueryTypeSelf, SDupTypeNotSupport> PixelShader;
     typedef NeedleResourceContainer<ComputeShader, SShaderContext2, NEEDLE_RESOURCE_DX11_COMPUTE_SHADER_OBJECT, SQueryTypeSelf, SDupTypeNotSupport> ComputeShader;
