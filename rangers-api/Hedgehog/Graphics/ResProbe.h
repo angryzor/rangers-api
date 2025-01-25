@@ -1,23 +1,14 @@
 #pragma once
+//#include <ucsl/resources/probe/v2.h>
 
 namespace hh::gfx {
-    struct ProbeData {
-        char pad1[0x50];
-        const char* textureName;
-        uint64_t unk1;
-        needle::Texture* texture; // loaded at runtime
-        char pad2[0x10];
-    };
-
-    struct ResProbeData {
-        uint64_t unk1;
-        ProbeData* probes;
-        unsigned int probeCount;
-    };
+    //UCSL_NEWTYPE_SIMPLE(ProbeData, ucsl::resources::probe::v2::ProbeData);
+    //UCSL_NEWTYPE_SIMPLE(ResProbeData, ucsl::resources::probe::v2::ResProbeData);
 
     class ResProbe : public fnd::ManagedResource {
     public:
-        ResProbeData* probeData;
+        //ResProbeData* probeData;
+        void* probeData;
         void* reloadedPackedBinaryData;
 
         virtual void Load(void* data, size_t size) override;

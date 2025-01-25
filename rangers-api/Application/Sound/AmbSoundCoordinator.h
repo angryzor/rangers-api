@@ -11,7 +11,7 @@ namespace app::snd {
         uint64_t unk6;
 
 		virtual void AddCallback(hh::game::GameManager* gameManager) override;
-		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) override;
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 
         GAMEOBJECT_CLASS_DECLARATION(AmbSoundCoordinator);
     };

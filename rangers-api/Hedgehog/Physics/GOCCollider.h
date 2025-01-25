@@ -124,6 +124,7 @@ namespace hh::physics {
         void RemoveListener(GOCColliderListener* listener);
         void SetEnabled(bool enabled);
 
+#ifndef NO_EIGEN_MATH
         inline csl::math::Matrix34 GetWorldTransform() const {
            csl::math::Matrix34 matrix;
            matrix.fromPositionOrientationScale(transformedWorldPosition.m_Position, transformedWorldPosition.m_Rotation, scale);
@@ -135,6 +136,7 @@ namespace hh::physics {
            matrix.fromPositionOrientationScale(localWorldPosition.m_Position, localWorldPosition.m_Rotation, scale);
            return matrix;
         };
+#endif
 
         GOCOMPONENT_CLASS_DECLARATION(GOCCollider);
     };

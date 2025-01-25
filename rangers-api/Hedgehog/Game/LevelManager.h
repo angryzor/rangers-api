@@ -32,6 +32,8 @@ namespace hh::game {
         virtual void ResourceUnloadedCallback(hh::fnd::ManagedResource* resource) override;
         virtual void FFL_UnkFunc1() override;
 
+        Level* GetLevelByName(const char* name) const;
+
         GAMESERVICE_CLASS_DECLARATION(LevelManager);
     };
 }

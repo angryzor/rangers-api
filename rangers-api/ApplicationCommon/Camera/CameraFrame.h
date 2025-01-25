@@ -71,7 +71,7 @@ namespace app_cmn::camera {
 		virtual void AddCallback(hh::game::GameManager* gameManager) override;
 		virtual void RemoveCallback(hh::game::GameManager* gameManager) override;
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
-		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) override;
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 
         void Setup(const SetupInfo& setupInfo);
         void SetListener(Listener* listener);

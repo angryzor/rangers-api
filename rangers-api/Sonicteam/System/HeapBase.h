@@ -36,8 +36,7 @@ namespace csl::fnd {
         uint64_t unk2;
         HeapBase* parent;
         csl::ut::LinkList<HeapBase> children;
-        uint64_t unk8;
-        uint64_t unk9;
+        csl::ut::LinkListNode childrenNode;
         bool initialized;
         uint32_t unk11;
         uint16_t unk12;

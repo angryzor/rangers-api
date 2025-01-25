@@ -138,7 +138,7 @@ namespace hh::game
 		virtual void Update(fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) {}
 		virtual void UnkFunc9() {}
 		virtual void UnkFunc10() {}
-		virtual void UnkFunc11(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4);
+		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam);
 
 	private:
 		void SetUpdateFlags(fnd::UpdatingPhase phase);

@@ -482,6 +482,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Graphics/DefaultDynamicResolutionController.h"
 #include "Hedgehog/Graphics/RenderManager.h"
 #include "Hedgehog/Graphics/VertexAnimationTextureController.h"
+#include "Hedgehog/Graphics/ResDensitySetting.h"
 #include "Hedgehog/Graphics/ResMaterial.h"
 #include "Hedgehog/Graphics/ResModelParameterInterface.h"
 #include "Hedgehog/Graphics/ResModelBase.h"
@@ -820,10 +821,14 @@ namespace rangerssdk::ucsl {
 #include "Application/Graphics/FxColManager.h"
 
 #include "Application/ResSvCol2.h"
-#include "Application/Terrain/TerrainLoad.h"
 #include "Application/Terrain/TerrainLoaderDynamic.h"
 #include "Application/Terrain/TerrainManager.h"
 #include "Application/Terrain/TerrainWorld.h"
+#include "Application/Terrain/TerrainVisualResourceBinder.h"
+#include "Application/Terrain/TerrainVisualObject.h"
+#include "Application/Terrain/TerrainVisualCreator.h"
+#include "Application/Terrain/TerrainGround.h"
+#include "Application/Terrain/TerrainSky.h"
 
 #include "Application/Player/PlayerPosture.h"
 #include "Application/Player/Postures/PostureSliding.h"
