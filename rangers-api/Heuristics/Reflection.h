@@ -3284,6 +3284,58 @@ namespace heur::rfl {
 }
 
 namespace heur::rfl {
+    struct SwayParamNode {
+        bool enable;
+        float gravity;
+        float resist;
+        float resist_decay;
+        float recover;
+        float recover_decay;
+        float spring;
+        float radius;
+        float transmit;
+        float inertia;
+        float angle_limit;
+        csl::ut::VariableString nodeName;
+
+        static const hh::fnd::RflTypeInfo typeInfo;
+        static const hh::fnd::RflClass rflClass;
+    private:
+        static void Construct(SwayParamNode* pInstance, csl::fnd::IAllocator* pAllocator);
+        static void Finish(SwayParamNode* pInstance);
+        static void Clean(SwayParamNode* pInstance);
+    };
+}
+
+namespace heur::rfl {
+    struct SwayParamNodeCollision {
+        heur::rfl::SwayParamCollision collisionParam[8];
+
+        static const hh::fnd::RflTypeInfo typeInfo;
+        static const hh::fnd::RflClass rflClass;
+    private:
+        static void Construct(SwayParamNodeCollision* pInstance, csl::fnd::IAllocator* pAllocator);
+        static void Finish(SwayParamNodeCollision* pInstance);
+        static void Clean(SwayParamNodeCollision* pInstance);
+    };
+}
+
+namespace heur::rfl {
+    struct SwayParamIndivisual {
+        csl::ut::VariableString idName;
+        heur::rfl::SwayParamNode nodeParam[16];
+        heur::rfl::SwayParamNodeCollision collisionParam[16];
+
+        static const hh::fnd::RflTypeInfo typeInfo;
+        static const hh::fnd::RflClass rflClass;
+    private:
+        static void Construct(SwayParamIndivisual* pInstance, csl::fnd::IAllocator* pAllocator);
+        static void Finish(SwayParamIndivisual* pInstance);
+        static void Clean(SwayParamIndivisual* pInstance);
+    };
+}
+
+namespace heur::rfl {
     struct ObjDarumaDropSpawner {
         int8_t partCount;
         bool isEnableHoming;
@@ -5191,7 +5243,7 @@ namespace heur::rfl {
     struct ObjBlockColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            S = 1,
+            Sphere = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -5564,7 +5616,7 @@ namespace heur::rfl {
     struct ObjCannonTypeSpawner {
         enum class AimingType : int8_t {
             Direction = 0,
-            P = 1,
+            Player = 1,
         };
 
         AimingType aimingType;
@@ -8156,7 +8208,7 @@ namespace heur::rfl {
 
         enum class RestartType : int8_t {
             Standard = 0,
-            B = 1,
+            Boarding = 1,
         };
 
         float Width;
@@ -9143,7 +9195,7 @@ namespace heur::rfl {
     struct ObjSequenceColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            S = 1,
+            Sphere = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -11724,7 +11776,7 @@ namespace heur::rfl {
     struct ObjJumpSelectorSpawner {
         enum class JumpSelectorType : uint8_t {
             JUMP = 0,
-            A = 1,
+            ATTACK = 1,
             SELECT = 2,
         };
 
@@ -11948,7 +12000,7 @@ namespace heur::rfl {
     struct ObjOperationGuideVolumeSpawner {
         enum class GuideType : int32_t {
             SideStep = 0,
-            B = 1,
+            Boarding = 1,
             Diving = 2,
             Drift = 3,
         };
@@ -14801,7 +14853,7 @@ namespace heur::rfl {
         enum class AttachmentType : int8_t {
             Normal = 0,
             HA = 1,
-            S = 2,
+            Spring = 2,
         };
 
         heur::rfl::TimerTrigger trigger;
@@ -16165,7 +16217,7 @@ namespace heur::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            S = 2,
+            Sphere = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -16269,7 +16321,7 @@ namespace heur::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            S = 2,
+            Sphere = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -16784,7 +16836,7 @@ namespace heur::rfl {
         enum class AdditionalColliderShape : int8_t {
             Cylinder = 0,
             Box = 1,
-            S = 2,
+            Sphere = 2,
             Capsule = 3,
             NumShapes = 4,
         };
@@ -17602,7 +17654,7 @@ namespace heur::rfl {
     struct ObjBossNestColliderSpawner {
         enum class Shape : int8_t {
             Box = 0,
-            S = 1,
+            Sphere = 1,
             Capsule = 2,
             NumShapes = 3,
         };
@@ -18196,7 +18248,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct OrbMountParam {
         heur::rfl::CraneGrid pos;
-        float r;
+        float rotate;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -18392,7 +18444,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjDrawBridgeSpawner {
         int32_t no;
-        float r;
+        float rotate;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -20348,7 +20400,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjLevitateTestSpawner {
         enum class Shape : int8_t {
-            S = 0,
+            Sphere = 0,
             Box = 1,
         };
 
@@ -21089,7 +21141,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjSearchPathSpawner {
         enum class Shape : int8_t {
-            S = 0,
+            Sphere = 0,
             Aabb = 1,
             Raycast = 2,
             Plane = 3,
@@ -21239,7 +21291,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjTargetSearchTestSpawner {
         enum class ViewShapeType : int8_t {
-            S = 0,
+            Sphere = 0,
             Frustum = 1,
             Cone = 2,
         };
@@ -21770,7 +21822,7 @@ namespace heur::rfl {
     struct StandardCameraConfig {
         heur::rfl::StandardCameraCommonParameter common;
         heur::rfl::StandardCameraDashParameter dash;
-        heur::rfl::StandardCameraCyloopParameter c;
+        heur::rfl::StandardCameraCyloopParameter cyloop;
         heur::rfl::StandardCameraCyloopParameter cyloopSnipe;
         heur::rfl::StandardCameraLockonParameter lockon;
         heur::rfl::StandardCameraLockonParameter lockonCharger;
@@ -26751,7 +26803,7 @@ namespace heur::rfl {
         csl::ut::VariableString landingVibrationName;
         csl::math::Vector3 landingPlayerOffSet;
         heur::rfl::BossRifleBeastBattleCyloopBlowOffCamera camera;
-        heur::rfl::BossRifleBeastBattleCyloopBlowOffLaser l;
+        heur::rfl::BossRifleBeastBattleCyloopBlowOffLaser laser;
         heur::rfl::BossRifleBeastBattleCyloopEffectPos EffectPos;
         heur::rfl::BossRifleBeastParrySlowParam slowSetting;
 
@@ -26766,7 +26818,7 @@ namespace heur::rfl {
 
 namespace heur::rfl {
     struct BossRifleBeastBattleCyloopState {
-        heur::rfl::BossRifleBeastBattleCyloop c;
+        heur::rfl::BossRifleBeastBattleCyloop cyloop;
         heur::rfl::BossRifleBeastBattleCyloopBlowOff blowOff;
         float cyloopDamageRate;
         float waitTime;
@@ -28428,7 +28480,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjHackingPlayerMachineConfig {
         heur::rfl::PlayerMachineConfig machine;
-        heur::rfl::HomingLaserConfig l;
+        heur::rfl::HomingLaserConfig laser;
         heur::rfl::ElementBulletConfig bullet;
         heur::rfl::HackingConfig hacking;
 
@@ -28459,7 +28511,7 @@ namespace heur::rfl {
 namespace heur::rfl {
     struct ObjTheEndPlayerMachineConfig {
         heur::rfl::PlayerMachineConfig machine;
-        heur::rfl::HomingLaserConfig l;
+        heur::rfl::HomingLaserConfig laser;
         heur::rfl::ElementBulletConfig bullet;
         heur::rfl::TheEndConfig TheEnd;
 
@@ -31818,7 +31870,7 @@ namespace heur::rfl {
         heur::rfl::ObjCGGRootConfig root;
         heur::rfl::ObjCGGBulletNormalConfig bulletNormal;
         heur::rfl::ObjCGGResetBindConfig resetBind;
-        heur::rfl::ObjCGGLaserConfig l;
+        heur::rfl::ObjCGGLaserConfig laser;
         heur::rfl::ObjCGGAttachmentConfig attachment;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -32718,7 +32770,7 @@ namespace heur::rfl {
         float minSpeed;
         float maxSpeed;
         heur::rfl::MiniBossDarumaDebrisBodySmallParam body;
-        heur::rfl::MiniBossDarumaDebrisBodySmallParam c;
+        heur::rfl::MiniBossDarumaDebrisBodySmallParam cyloop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -34507,7 +34559,7 @@ namespace heur::rfl {
         heur::rfl::MiniBossSumoColliderParam damaged[6];
         heur::rfl::MiniBossSumoColliderParam damage[2];
         heur::rfl::MiniBossSumoColliderParam detectPuck;
-        heur::rfl::MiniBossSumoColliderParam c;
+        heur::rfl::MiniBossSumoColliderParam cyloop;
         heur::rfl::MiniBossSumoColliderParam pressBlow[3];
         heur::rfl::MiniBossSumoColliderParam sensorArm[2];
         heur::rfl::MiniBossSumoColliderParam simpleBody;
@@ -34732,7 +34784,7 @@ namespace heur::rfl {
         heur::rfl::MiniBossSumoThrowPuckParam throwPuck;
         heur::rfl::MiniBossSumoSlingshotComboParam combo;
         heur::rfl::MiniBossSumoIKParam ik;
-        heur::rfl::MiniBossSumoCyloopConfig c;
+        heur::rfl::MiniBossSumoCyloopConfig cyloop;
         heur::rfl::MiniBossSumoLockonConfig lockon;
 
         static const hh::fnd::RflTypeInfo typeInfo;
@@ -35280,7 +35332,7 @@ namespace heur::rfl {
         heur::rfl::MiniBossTyrantAttackSpinParam spin;
         heur::rfl::MiniBossTyrantAttackAirSpinParam airSpin;
         heur::rfl::MiniBossTyrantAttackRouletteParam roulette;
-        heur::rfl::MiniBossTyrantAttackLaserParam l;
+        heur::rfl::MiniBossTyrantAttackLaserParam laser;
         float rotSpeed;
         heur::rfl::MiniBossTyrantBarrageParam barrage[16];
         heur::rfl::MiniBossTyrantShotgunBullet shotgunBullet;
@@ -37900,7 +37952,7 @@ namespace heur::rfl {
         heur::rfl::PlayerParamAttackData homingShot;
         heur::rfl::PlayerParamAttackData chargeAttack;
         heur::rfl::PlayerParamAttackData chargeAttackLast;
-        heur::rfl::PlayerParamAttackData c;
+        heur::rfl::PlayerParamAttackData cyloop;
         heur::rfl::PlayerParamAttackData cyloopQuick;
         heur::rfl::PlayerParamAttackData cyloopAerial;
         heur::rfl::PlayerParamAttackData accele1;
@@ -38141,7 +38193,7 @@ namespace heur::rfl {
     struct CommonPackageAmy : heur::rfl::CommonPackage {
         heur::rfl::PlayerParamCombo combo;
         heur::rfl::AmyParamParryDebuff parryDebuff;
-        heur::rfl::PlayerParamCyloop c;
+        heur::rfl::PlayerParamCyloop cyloop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -38210,7 +38262,7 @@ namespace heur::rfl {
         };
 
         enum class Shape : int8_t {
-            S = 0,
+            Sphere = 0,
             Cylinder = 1,
             Box = 2,
         };
@@ -39808,7 +39860,7 @@ namespace heur::rfl {
         heur::rfl::KnucklesParamComboPunch2 comboPunch2;
         heur::rfl::KnucklesParamComboUppercut comboUppercut;
         heur::rfl::KnucklesParamParryDebuff parryDebuff;
-        heur::rfl::PlayerParamCyloop c;
+        heur::rfl::PlayerParamCyloop cyloop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;
@@ -40441,7 +40493,7 @@ namespace heur::rfl {
         heur::rfl::PlayerParamSmashSet smashSet;
         heur::rfl::PlayerParamBehind behind;
         heur::rfl::PlayerParamCombo combo;
-        heur::rfl::PlayerParamCyloop c;
+        heur::rfl::PlayerParamCyloop cyloop;
         heur::rfl::PlayerParamSuperSonic supersonic;
         heur::rfl::PlayerParamSandSki sandski;
         heur::rfl::PlayerParamSlingshot slingshot;
@@ -40476,7 +40528,7 @@ namespace heur::rfl {
     struct CommonPackageTails : heur::rfl::CommonPackage {
         heur::rfl::PlayerParamCombo combo;
         heur::rfl::TailsParamParryDebuff parryDebuff;
-        heur::rfl::PlayerParamCyloop c;
+        heur::rfl::PlayerParamCyloop cyloop;
 
         static const hh::fnd::RflTypeInfo typeInfo;
         static const hh::fnd::RflClass rflClass;

@@ -10,6 +10,8 @@ namespace hh::anim {
         csl::ut::PointerMap<void*, void*> unk105;
         uint64_t unk106;
 
+        MANAGED_RESOURCE_CLASS_DECLARATION(ResSkeletonPxd)
+
         virtual void Load(void* data, size_t size) override;
         virtual void Unload() override;
         virtual void Reload(void* data, size_t size) override;
