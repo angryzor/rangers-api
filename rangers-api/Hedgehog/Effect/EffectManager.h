@@ -61,9 +61,9 @@ namespace hh::eff {
                 virtual void* Alloc(size_t size, size_t alignment) override;
                 virtual void* Alloc2(size_t size, size_t alignment) override;
                 virtual void Free(void* ptr) override;
-                virtual void UnkFunc4() override {}
-                virtual void SetUnk1(void* unkParam1) override;
-                virtual void* GetUnk1() const override;
+                virtual void SetupMemory(void* ptr, size_t size) override {}
+                virtual void SetName(const char* name) override;
+                virtual const char* GetName() const override;
                 virtual void* Alloc3(size_t size, size_t alignment);
                 virtual void* Alloc4(size_t size, size_t alignment);
             };

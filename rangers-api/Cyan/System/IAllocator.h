@@ -6,8 +6,8 @@ namespace Cyan::System {
         virtual void* Alloc(size_t size, size_t alignment) = 0;
         virtual void* Alloc2(size_t size, size_t alignment) = 0;
         virtual void Free(void* ptr) = 0;
-        virtual void UnkFunc4() = 0;
-        virtual void SetUnk1(void* unkParam1) = 0;
-        virtual void* GetUnk1() const = 0;
+        virtual void SetupMemory(void* ptr, size_t size) = 0;
+        virtual void SetName(const char* name) = 0;
+        virtual const char* GetName() const = 0;
     };
 }

@@ -16,7 +16,6 @@ namespace csl::fnd {
             uint64_t unk3;
             uint64_t unk4;
             ut::LinkList<Unk1> list1;
-            uint64_t unk5;
             ut::LinkList<Unk2> list2;
 
             Unk2();
