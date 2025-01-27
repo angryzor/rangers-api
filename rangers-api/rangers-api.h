@@ -367,6 +367,8 @@ namespace rangerssdk::ucsl {
 #include "Cyan/Graphics/Renderer.h"
 #include "Cyan/Graphics/MeshRenderer.h"
 #include "Cyan/Graphics/ExternalMeshRenderer.h"
+#include "Cyan/GPUTextureBuilder.h"
+#include "Cyan/Utilities.h"
 #include "Cyan/InheritChildParam.h"
 #include "Cyan/NotifyData.h"
 #include "Cyan/Effect.h"

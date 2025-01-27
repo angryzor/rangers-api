@@ -98,7 +98,7 @@ namespace Cyan {
         typedef void NotifyCallback(void* userData, EffectHandle effect, NotifyData notifyData);
 
         template<typename T>
-        using RequestResourceHandler = bool (Resource::ResObject<T>* resource, void* userData);
+        using RequestResourceHandler = bool (Effect* effect, Resource::ResObject<T>* resource, void* userData);
 
         virtual EffectHandle CreateEffect(void* unkParam4, uint32_t* unkParam5, bool unkParam6, int unkParam7, int unkParam8) = 0;
         virtual int UnkFunc2(const char* unkParam1, void* unkParam2) = 0;
