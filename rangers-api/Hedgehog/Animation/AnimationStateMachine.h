@@ -53,6 +53,9 @@ namespace hh::anim {
             fnd::Reference<LayerStateBase> layerState;
             fnd::Reference<LayerBlendNode> blendNode;
             AnimationStateMachine* animStateMachine;
+
+            void StartTransition(const TransitionData* transitionData, AnimationState* animationState);
+            void StartSimpleState(AnimationState* animationState);
         };
 
         class LayerStateSimple : public LayerStateBase {
@@ -78,7 +81,7 @@ namespace hh::anim {
             TransitionType transitionType;
             uint8_t transitionUnk2;
             unsigned short transitionId;
-            uint32_t unk2;
+            float currentTransitionTime;
             float transitionTime;
             const char* targetAnimationName;
             fnd::Reference<LayerStateBase> prevLayerState;
@@ -101,7 +104,7 @@ namespace hh::anim {
             virtual void UnkFunc11(csl::ut::MoveArray<void*>& unkParam1) const override;
             virtual BlendNodeBase* GetStateBlendTreeForState(AnimationState* state) const override;
 
-            void CreateBlender();
+            void BuildTransitionBlendTree();
         };
 
     // private:
@@ -119,7 +122,7 @@ namespace hh::anim {
         fnd::Reference<BlendNodeBase> layerBlendTree;
         csl::ut::MoveArray<csl::ut::MoveArray<TriggerListener*>> triggerListeners;
         unsigned int totalTriggerListenerCount;
-        float unk13;
+        float playbackSpeed;
         csl::math::Transform deltaMotion;
         bool hasDeltaMotion;
         bool initialized;
@@ -142,7 +145,7 @@ namespace hh::anim {
         bool ChangeStateWithoutTransition(const char* stateName);
         bool ChangeToNull(int layer);
         bool Transit(const char* eventName, int layer);
-        bool DoTransit(const TransitionData& transitionData, int layer);
+        bool DoTransit(const TransitionData& transitionData, int layer, float unkParam);
         int GetActiveInternalState(int layer) const;
         AnimationState::Impl* GetActiveState(int layer) const;
         AnimationState::Impl* GetCurrentState(int layer) const;
@@ -155,6 +158,13 @@ namespace hh::anim {
         void SetSkeletonBlender(SkeletonBlender* skeletonBlender);
         bool IsFlagContained(const char* flag, int layer) const;
         bool IsInTransition(int layer) const;
+        inline void SetPlaybackSpeed(float speed) {
+            playbackSpeed = speed;
+        }
+        void SetPlaybackSpeedForAllLayers(float speed);
+        void SetPlaybackSpeed(int layer, float speed);
+        void SetTime(float time, int layer);
+        void SetLocalTime(float time, int layer);
 
         BlendNodeBase* BuildLayerBlendTree(const BlendNodeData& blendNodeData);
         void UpdateTrigger(AnimationState& animationState, int layerId, float unkParam1, bool unkParam2, bool unkParam3);

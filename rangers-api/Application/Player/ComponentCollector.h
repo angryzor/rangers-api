@@ -6,7 +6,9 @@ namespace app::player {
     public:
         struct Unk1 {
             struct Unk2 {
-                uint64_t unk1[12];
+                uint64_t unk1[6];
+                hh::anim::GOCAnimator* animator;
+                uint64_t unk2[5];
             };
             csl::ut::MoveArray<Unk2> unk1;
             ComponentCollector* componentCollector;

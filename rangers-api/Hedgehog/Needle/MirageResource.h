@@ -34,6 +34,17 @@ namespace hh::needle {
         static void* materialTextureNameType;
     }
 
+    struct SResourceBinaryImageHelper {
+    public:
+        void* data;
+        size_t offset;
+        size_t fileSize;
+
+        bool GetUint(unsigned int& value);
+        bool GetString(const char*& value);
+        bool GetBlockSize(size_t& value);
+    };
+
     bool ResolveMirageResourceBinary(void* binaryData);
     bool UnResolveMirageResourceBinary(void* binaryData);
 }

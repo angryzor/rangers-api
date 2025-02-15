@@ -2,6 +2,11 @@
 
 namespace SurfRide
 {
+    struct SrScreenResolution {
+        unsigned int width;
+        unsigned int height;
+    };
+
 	class Camera
 	{
 	public:
@@ -13,4 +18,6 @@ namespace SurfRide
 
 		inline SRS_CAMERA& GetCameraData() { return camera; }
 	};
+
+	SrScreenResolution GetScreenResolution();
 }

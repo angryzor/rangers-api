@@ -89,8 +89,7 @@ namespace hh::needle {
             uint32_t unk3c;
             SDrawPassSceneSetting drawPassSettings[64];
             unsigned int drawPassSettingIndices[64];
-            uint8_t pad3b[128];
-            uint8_t pad3[128];
+            unsigned int sortedDrawPassSettingIndices[64];
             uint32_t drawPassCount;
             uint32_t unk4;
             Unk3 unk4a;

@@ -6,7 +6,7 @@ namespace SurfRide {
     public:
 
         SRS_IMAGECAST* imageCastData;
-        uint32_t imageCastFlags;
+        EPivotType pivotType;
         Text* text;
         Vector2 size;
         Color vertexColorTopLeft;

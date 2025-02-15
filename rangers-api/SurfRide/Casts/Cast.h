@@ -25,6 +25,11 @@ namespace SurfRide {
 			Unk1(csl::fnd::IAllocator* allocator);
 		};
 
+        enum class Flag {
+            ENABLE_CROP_INDEX_0 = 14,
+            ENABLE_CROP_INDEX_1 = 15,
+        };
+
         Transform* transform;
         RefPtr<Blur> blurEffect;
         RefPtr<Reflect> reflectEffect;
@@ -47,7 +52,7 @@ namespace SurfRide {
 
         Cast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
         UserData GetUserData();
-        void SetFlag1000(bool enabled);
+        void SetHideFlag(bool enabled);
         void InitializeTransform2D(Transform* transform, SRS_TRS2D* cell);
         void InitializeTransform3D(Transform* transform, SRS_TRS3D* cell);
         Scene* GetScene();

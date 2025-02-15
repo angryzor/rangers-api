@@ -17,6 +17,7 @@ namespace hh::needle {
 
         void Setup();
         void AddSceneContext(SceneContext* sceneContext);
+        SceneContext* GetSceneContext(unsigned int nameHash) const;
     };
 
     class SceneContextManagerNeedle : public SceneContextManager {

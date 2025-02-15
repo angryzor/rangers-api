@@ -30,7 +30,7 @@ namespace hh::fnd {
         void* originalBinaryData;
         void* unpackedBinaryData;
         size_t size;
-        File* structContainingFileData;
+        FileResource* file;
 
         ManagedResource(csl::fnd::IAllocator* pAllocator);
 
@@ -48,7 +48,7 @@ namespace hh::fnd {
             return resourceAllocator;
         }
 
-        static ManagedResource* Create(csl::fnd::IAllocator* allocator, File* file, const char* name, ResourceTypeInfo* resourceTypeInfo);
+        static ManagedResource* Create(csl::fnd::IAllocator* allocator, FileResource* file, const char* name, ResourceTypeInfo* resourceTypeInfo);
         static ManagedResource* Create(csl::fnd::IAllocator* allocator, csl::fnd::IAllocator* resourceAllocator, const char* unkStrParam, const char* name, void* data, size_t size, ResourceTypeInfo* resourceTypeInfo);
 
         // This is only guessed from a similar function in rio, but there this and the following function are swapped.

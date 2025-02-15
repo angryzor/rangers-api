@@ -54,6 +54,7 @@ namespace hh::needle {
             if (pipelineInfo) delete pipelineInfo;
         }
 
+        void Initialize();
         void LoadGlobalParams();
         void SetPipeline(RenderingPipeline* pipeline);
         void SetSceneName(const char* name);

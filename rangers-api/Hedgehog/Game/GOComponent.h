@@ -116,15 +116,15 @@ namespace hh::game
 		GOComponent* GetComponentByClass(const GOComponentClass& componentClass) const;
 
 		template<typename T>
-		GOComponent* GetComponent() const {
-			GetComponentByClass(T::GetClass());
+		T* GetComponent() const {
+			return (T*)GetComponentByClass(*T::GetClass());
 		}
 
 		GameService* GetService(const GameServiceClass* gameServiceClass) const;
 
 		template<typename T>
-		GameService* GetService() const {
-			GetService(T::GetClass());
+		T* GetService() const {
+			return (T*)GetService(T::GetClass());
 		}
 
 		void SetNameHash(const char* name);

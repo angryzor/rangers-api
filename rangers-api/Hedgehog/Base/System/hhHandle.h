@@ -21,22 +21,22 @@ namespace hh::fnd
 			Set(pObj);
 		}
 
-		bool operator==(const HandleBase& other)
+		bool operator==(const HandleBase& other) const
 		{
 			return handle == other.handle;
 		}
 
-		bool operator!=(const HandleBase& other)
+		bool operator!=(const HandleBase& other) const
 		{
 			return !operator==(other);
 		}
 
-		bool operator==(const RefByHandleObject* pObj)
+		bool operator==(const RefByHandleObject* pObj) const
 		{
 			return pObj == nullptr ? handle == 0 : handle == pObj->handle;
 		}
 
-		bool operator!=(const RefByHandleObject* pObj)
+		bool operator!=(const RefByHandleObject* pObj) const
 		{
 			return !operator==(pObj);
 		}
@@ -84,11 +84,6 @@ namespace hh::fnd
 		T* operator*() const
 		{
 			return reinterpret_cast<T*>(HandleBase::Get(RESOLVE_STATIC_VARIABLE(M::instance)));
-		}
-
-		operator T*() const
-		{
-			return operator*();
 		}
 
 		T* operator->() const

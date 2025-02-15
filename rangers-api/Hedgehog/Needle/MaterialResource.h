@@ -115,7 +115,7 @@ namespace hh::needle {
         void SetShaderName(const char* name);
         void SetTexture(const char* type, const char* name);
         void SetParameterHintValue(const ParameterHintValue* value);
-        void SetParameterHintValueUint(const void* nameType, CNameIDObject* name, const uint_vector4& data);
+        void SetParameterHintValueUint(CNameIDObject* type, CNameIDObject* name, const uint_vector4& data);
 
         void AfterTraverseSetupMemory(RenderingDevice* renderingDevice, MaterialResource* elementData);
         MaterialResource* Finish(bool recreate);

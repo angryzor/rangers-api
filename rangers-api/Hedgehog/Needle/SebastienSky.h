@@ -20,21 +20,21 @@ namespace hh::needle {
         intrusive_ptr<RenderTarget> renderTarget1;
         intrusive_ptr<Texture> renderTargetView1;
         intrusive_ptr<ShaderObject> multipleScatteringShader;
-        intrusive_ptr<Texture> qwordA8;
-        void* unorderedAccessView1;
+        intrusive_ptr<Texture> texture1;
+        intrusive_ptr<UnorderedAccessView> unorderedAccessView1;
         intrusive_ptr<ShaderObject> viewLUTShader;
-        uint64_t qwordC0;
-        intrusive_ptr<Texture> qwordC8;
+        intrusive_ptr<RenderTarget> renderTarget2;
+        intrusive_ptr<Texture> renderTargetView2;
         intrusive_ptr<ShaderObject> cameraVolumeShader;
         intrusive_ptr<ShaderObject> cameraVolumeComputeShader;
-        uint64_t qwordE0[32];
-        intrusive_ptr<Texture> qword1E0;
-        uint64_t qword1E8;
+        intrusive_ptr<Texture> renderTargetViews3[32];
+        intrusive_ptr<Texture> texture2;
+        intrusive_ptr<UnorderedAccessView> unorderedAccessView2;
         intrusive_ptr<ShaderObject> raymarchingShader;
         intrusive_ptr<ShaderObject> sunIrradianceShader;
         intrusive_ptr<ShaderObject> raymarchingComputeShader;
-        intrusive_ptr<Texture> qword208;
-        void* unorderedAccessView2;
+        intrusive_ptr<Texture> texture3;
+        intrusive_ptr<UnorderedAccessView> unorderedAccessView3;
         intrusive_ptr<ShaderObject> postEffectShader;
         uint64_t qword220;
         uint64_t qword228;
@@ -45,7 +45,7 @@ namespace hh::needle {
         uint64_t qword250;
         uint64_t qword258;
         uint64_t qword260;
-        uint64_t qword268;
+        SupportFX* supportFX;
         uint8_t byte270;
 
         SebastienSky(csl::fnd::IAllocator* allocator, unsigned int unkParam1, unsigned int unkParam2);
@@ -60,5 +60,8 @@ namespace hh::needle {
         void LoadDaySkyParameters(PipelineInfo* pipelineInfo, ParameterValueObject* daySkyParameters);
         void LoadNightSkyParameters(PipelineInfo* pipelineInfo, ParameterValueObject* nightSkyParameters);
         void LoadHeightFogParameters(PipelineInfo* pipelineInfo, ParameterValueObject* heightFogParameters);
+
+        void CreateShaders(RenderingDevice* renderingDevice);
+        void CreateRenderTargets(RenderingDevice* renderingDevice);
     };
 }

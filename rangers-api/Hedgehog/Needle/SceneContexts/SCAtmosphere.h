@@ -51,5 +51,7 @@ namespace hh::needle {
         virtual void UnkFunc1();
         virtual unsigned int GetNameHash();
         virtual const char* GetName();
+        
+        RenderTarget* GetRenderTarget(unsigned int id) const;
     };
 }

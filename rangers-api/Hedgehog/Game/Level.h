@@ -29,7 +29,7 @@ namespace hh::game {
         csl::ut::VariableString unk2;
 
         CREATE_FUNC(Level, const char* name, MasterLevel* masterLevel);
-        void Setup();
+        void Setup(); // not correct, extra parameter
 
         void AddListener(LevelListener* listener);
         void RemoveListener(LevelListener* listener);

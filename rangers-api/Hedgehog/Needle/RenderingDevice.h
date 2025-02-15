@@ -24,7 +24,7 @@ namespace hh::needle {
         virtual RenderTarget* CreateRenderTargetView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) = 0;
         virtual DepthStencil* CreateDepthStencil(const TextureCreationInfo& creationInfo) = 0;
         virtual DepthStencil* CreateDepthStencilView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) = 0;
-        virtual DepthStencil* CreateUnorderedAccessView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) = 0;
+        virtual UnorderedAccessView* CreateUnorderedAccessView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) = 0;
         virtual Buffer* CreateVertexBuffer(const BufferCreationInfo& creationInfo) = 0;
         virtual Buffer* CreateIndexBuffer(const BufferCreationInfo& creationInfo) = 0;
         virtual bool CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) = 0;

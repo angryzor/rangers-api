@@ -5,7 +5,9 @@ namespace app::player {
     public:
         struct Unk1 {
             int unk1;
-            uint32_t unk2;
+            uint8_t unk2;
+
+            Unk1();
         };
     
     private:

@@ -4,9 +4,9 @@ namespace hh::needle {
     class ShaderMeshMaterialBuilder;
 
     struct ComputeShaderCreationInfo {
-        InstanceParameterContainerData** computeShaderSettings;
-        unsigned int** computeShaderParams;
-        unsigned int someCount;
+        InstanceParameterContainerData** instanceParameterContainers;
+        unsigned int* instanceParameterContainerSizes;
+        unsigned int instanceParameterContainerCount;
         unsigned int unk1;
         unsigned int unk2;
         unsigned int unk3;

@@ -15,7 +15,7 @@ namespace SurfRide {
     class SliceCast : public Cast {
     public:
         SRS_SLICECAST* sliceCastData;
-        uint32_t type; // (data.flags >> 19) & 0xF
+        EPivotType pivotType;
         uint64_t qwordE0;
         Vector2 size;
         Color vertexColorTopLeft;

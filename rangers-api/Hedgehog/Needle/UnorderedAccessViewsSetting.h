@@ -6,5 +6,7 @@ namespace hh::needle {
         uint32_t numUAVs;
         UnorderedAccessView* unorderedAccessViews[8];
         uint32_t uavInitialCounts[8];
+
+        UnorderedAccessViewsSetting();
     };
 }

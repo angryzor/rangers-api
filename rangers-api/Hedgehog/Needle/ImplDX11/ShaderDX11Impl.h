@@ -12,6 +12,14 @@ namespace hh::needle::ImplDX11 {
         uint16_t optionsBits;
     };
 
+    struct SShaderContextSetup;
+    struct Shader2InitializeInfo {
+        CScratchMemoryContext* memCtx;
+        void* unk1;
+        SShaderContextSetup* shaderContextSetup;
+        DeviceObjectDX11* deviceObject;
+    };
+
     class SShaderContext2 {
         char filename[256];
         void** parameterDeclarations;
@@ -22,12 +30,27 @@ namespace hh::needle::ImplDX11 {
         uint16_t* optionHashToCachedShaderOffsetMap;
         uint64_t unk1;
         uint16_t unk2;
+
+        static void MeasureMemory(MemoryLayoutContext* memLayoutCtx, const Shader2InitializeInfo& initializeInfo);
+        bool Initialize(MemoryLayoutContext* memLayoutCtx, const Shader2InitializeInfo& initializeInfo);
+    };
+
+    struct ShaderDefinition {
+        void* data;
+        const char* name;
+        unsigned int unk1;
     };
 
     struct ShaderOptionDefinition {
         CNameIDObject* name;
         unsigned int index;
         unsigned int unk1;
+    };
+
+    class SShaderContextSetup {
+    public:
+        void Setup(const Shader2InitializeInfo& shaderInitializeInfo);
+        void Setup(SShaderContext2& shaderContext, void* data);
     };
 
     typedef NeedleResourceContainer<VertexShader, SShaderContext2, NEEDLE_RESOURCE_DX11_VERTEX_SHADER_OBJECT, SQueryTypeSelf, SDupTypeNotSupport> VertexShader;

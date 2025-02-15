@@ -84,7 +84,7 @@ namespace hh::anim {
         BlendNodeBase* targetNode;
         AsmResourceManager::BlendMaskInfo* blendMaskInfo;
         csl::ut::MoveArray<void*>* unk6; // -> refers to unk5 in asmresourcemanager
-        csl::ut::MoveArray<void*> unk7; // sized by bone count
+        AsmResourceManager::BlendMaskInfo localBlendMask;
 
     public:
         CREATE_FUNC(LayerBlendNode, const AsmResourceManager& resourceManager, LayerData* layer)
@@ -109,7 +109,7 @@ namespace hh::anim {
 
     class LerpBlendNode : public BranchBlendNode {
     public:
-        csl::ut::MoveArray<BlendNodeBase*> blendChildren;
+        AsmResourceManager::BlendMaskInfo localBlendMask;
         BlendNodeParameter blendFactor;
         int currentChild;
         float unk102;
@@ -129,7 +129,9 @@ namespace hh::anim {
 
     class AdditiveBlendNode : public BranchBlendNode {
     public:
-        CREATE_FUNC(AdditiveBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam);
+        BlendNodeParameter blendFactor;
+
+        CREATE_FUNC(AdditiveBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, short variableIndex);
 
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
@@ -142,7 +144,9 @@ namespace hh::anim {
 
     class OverrideBlendNode : public BranchBlendNode {
     public:
-        CREATE_FUNC(OverrideBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, int unkParam);
+        BlendNodeParameter blendFactor;
+
+        CREATE_FUNC(OverrideBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, short variableIndex);
 
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
@@ -155,6 +159,10 @@ namespace hh::anim {
 
     class TwoPointLerpBlendNode : public BranchBlendNode {
     public:
+        AsmResourceManager::BlendMaskInfo localBlendMask;
+
+        CREATE_FUNC(TwoPointLerpBlendNode, BlendNodeBase* node1, BlendNodeBase* node2, AsmResourceManager* asmResourceManager);
+
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
@@ -165,6 +173,12 @@ namespace hh::anim {
 
     class MulBlendNode : public BranchBlendNode {
     public:
+        bool unk1;
+        AsmResourceManager::BlendMaskInfo localBlendMask;
+        uint32_t unk2;
+
+        CREATE_FUNC(MulBlendNode, bool unk1Param, BlendNodeBase* node2, AsmResourceManager* asmResourceManager);
+
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateWeight(BlendTreeSyncContext& syncContext, float weight) override;
         virtual void UpdateMotionWeight(BlendTreeSyncContext& syncContext, float weight) override;
@@ -176,7 +190,7 @@ namespace hh::anim {
     class BlendSpaceNode : public BranchBlendNode {
     public:
         BlendSpaceData* blendSpaceData;
-        csl::ut::MoveArray<void*> unk1;
+        AsmResourceManager::BlendMaskInfo localBlendMask;
         BlendNodeParameter xParam;
         BlendNodeParameter yParam;
         char unk2;

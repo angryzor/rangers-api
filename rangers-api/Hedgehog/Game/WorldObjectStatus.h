@@ -15,6 +15,8 @@ namespace hh::game {
         csl::ut::Bitset<Flag> flags;
         uint32_t state;
         int spawnPriority;
+
+        WorldObjectStatus();
         virtual ~WorldObjectStatus() = default;
 
         inline void Shutdown() {

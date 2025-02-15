@@ -65,6 +65,10 @@ namespace hh::needle {
                 void* unk2; // unk2 from renderingdevice
             };
 
+            struct VertexShaderCreationInfo {
+                Shader2InitializeInfo shaderInitializeInfo;
+            };
+
             static TextureFormatMapping formatMap[41];
             static DXGI_USAGE usageMap[6];
 
@@ -73,7 +77,8 @@ namespace hh::needle {
             static TextureFormatMapping* GetTextureFormatMapping(uint8_t format);
 
             RenderingDeviceDispatchDX11Impl* CreateDispatch(ID3D11DeviceContext* deviceContext, CreateDispatchFlags flags);
-            Texture2DView* CreateTexture(struct TextureBufferCreationInfo& creationInfo);
+            Texture2DView* CreateTexture(TextureBufferCreationInfo& creationInfo);
+            VertexShader* CreateVertexShader(VertexShaderCreationInfo& creationInfo);
         };
     }
 }

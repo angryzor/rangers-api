@@ -196,9 +196,20 @@ namespace hh::game
 		void LinkActionToUIKey(ui::LayerController* layerController, const char* uiPath, const char* actionName, void* unkParam);
 		const void* GetWorldDataByClass(const fnd::RflClass& rflClass) const;
 		void KillChildren();
+
+		
+		GameService* GetService(const GameServiceClass* componentClass);
+		template<typename T>
+		T* GetService() {
+			return static_cast<T*>(GetService(T::GetClass()));
+		}
 	public:
 		inline void UNSAFE_SetUpdateFlags(fnd::UpdatingPhase phase) {
 			SetUpdateFlags(phase);
+		}
+		template<typename T>
+		inline T* UNSAFE_CreateComponent() {
+			return CreateComponent<T>();
 		}
 		inline void UNSAFE_AddComponent(GOComponent* component) {
 			AddComponent(component);

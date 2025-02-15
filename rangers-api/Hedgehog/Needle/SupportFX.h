@@ -180,5 +180,6 @@ namespace hh::needle {
         virtual void UnkFunc4(float unkParam1, uint32_t numCameras, FxCamera** cameras) override;
 
         RenderTextureHandle* CreateRenderTextureHandle(const RenderTextureCreateArgs& createArgs);
+        RenderUnit* GetRenderUnitByName(const CNameIDObject* name) const;
     };
 }

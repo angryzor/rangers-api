@@ -13,7 +13,8 @@ namespace hh::needle {
         RenderProperty(csl::fnd::IAllocator* allocator);
         virtual ~RenderProperty();
 
-        void AddSceneParamContainer(SceneParamContainer* container);
+        void PushSceneParamContainer(SceneParamContainer* container);
+        void PopSceneParamContainer(SceneParamContainer* container);
 
         template<typename T> SceneParamContainer::ParamHolder<T>* GetSceneParam();
         template<> SceneParamContainer::ParamHolder<FxBloomParameter>* GetSceneParam();

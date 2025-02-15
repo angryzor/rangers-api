@@ -4,25 +4,25 @@
 #undef SYNCHRONIZE
 #endif
 
-#include <ucsl/resources/asm/v103.h>
+#include <ucsl/resources/asm/v103-rangers.h>
 
 namespace hh::anim {
-    using ucsl::resources::animation_state_machine::v103::ClipData;
-    using ucsl::resources::animation_state_machine::v103::TransitionEasingType;
-    using ucsl::resources::animation_state_machine::v103::TransitionType;
-    using ucsl::resources::animation_state_machine::v103::TransitionData;
-    using ucsl::resources::animation_state_machine::v103::StateType;
-    using ucsl::resources::animation_state_machine::v103::StateData;
-    using ucsl::resources::animation_state_machine::v103::BlendNodeType;
-    using ucsl::resources::animation_state_machine::v103::BlendNodeData;
-    using ucsl::resources::animation_state_machine::v103::TransitionArrayData;
-    using ucsl::resources::animation_state_machine::v103::EventData;
-    using ucsl::resources::animation_state_machine::v103::LayerData;
-    using ucsl::resources::animation_state_machine::v103::BlendMaskData;
-    using ucsl::resources::animation_state_machine::v103::TriggerType;
-    using ucsl::resources::animation_state_machine::v103::TriggerData;
-    using ucsl::resources::animation_state_machine::v103::BlendSpaceData;
-    UCSL_NEWTYPE_STRUCT_SIMPLE(AsmData, ucsl::resources::animation_state_machine::v103::AsmData);
+    using ucsl::resources::animation_state_machine::v103_rangers::ClipData;
+    using ucsl::resources::animation_state_machine::v103_rangers::TransitionEasingType;
+    using ucsl::resources::animation_state_machine::v103_rangers::TransitionType;
+    using ucsl::resources::animation_state_machine::v103_rangers::TransitionData;
+    using ucsl::resources::animation_state_machine::v103_rangers::StateType;
+    using ucsl::resources::animation_state_machine::v103_rangers::StateData;
+    using ucsl::resources::animation_state_machine::v103_rangers::BlendNodeType;
+    using ucsl::resources::animation_state_machine::v103_rangers::BlendNodeData;
+    using ucsl::resources::animation_state_machine::v103_rangers::TransitionArrayData;
+    using ucsl::resources::animation_state_machine::v103_rangers::EventData;
+    using ucsl::resources::animation_state_machine::v103_rangers::LayerData;
+    using ucsl::resources::animation_state_machine::v103_rangers::BlendMaskData;
+    using ucsl::resources::animation_state_machine::v103_rangers::TriggerType;
+    using ucsl::resources::animation_state_machine::v103_rangers::TriggerData;
+    using ucsl::resources::animation_state_machine::v103_rangers::BlendSpaceData;
+    UCSL_NEWTYPE_STRUCT_SIMPLE(AsmData, ucsl::resources::animation_state_machine::v103_rangers::AsmData);
 
     class EventArray {
     public:
@@ -47,6 +47,13 @@ namespace hh::anim {
         csl::ut::MoveArray<TransitionArray> transitionArrays;
 
         MANAGED_RESOURCE_CLASS_DECLARATION(ResAnimator)
+
+        virtual void Load(void* data, size_t size) override;
+        virtual void Unload() override;
+        virtual void Reload(void* data, size_t size) override;
+
+        void LoadBinaryImage(AsmData* binaryData);
+
         int GetStateId(const char* stateName);
         int GetVariableId(const char* variableName);
         int GetLayerId(const char* layerName);

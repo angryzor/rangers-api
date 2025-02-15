@@ -1,15 +1,14 @@
 #pragma once
-//#include <ucsl/resources/master-level/v0.h>
+#include <ucsl/resources/master-level/v0.h>
 
 namespace app::level {
-    //using ucsl::resources::master_level::v0::DependencyData;
-    //using ucsl::resources::master_level::v0::FileData;
-    //using ucsl::resources::master_level::v0::LevelData;
-    //using ucsl::resources::master_level::v0::MasterLevelData;
+    using ucsl::resources::master_level::v0::DependencyData;
+    using ucsl::resources::master_level::v0::ResourceData;
+    using ucsl::resources::master_level::v0::LevelData;
+    using ucsl::resources::master_level::v0::MasterLevelData;
 
     class ResMasterLevel : public hh::fnd::ManagedResource {
-        //MasterLevelData* masterLevelData;
-        void* masterLevelData;
+        MasterLevelData* masterLevelData;
 
         MANAGED_RESOURCE_CLASS_DECLARATION(ResMasterLevel)    
 

@@ -24,7 +24,7 @@ namespace hh::needle::ImplDX11 {
         virtual RenderTarget* CreateRenderTargetView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
         virtual DepthStencil* CreateDepthStencil(const TextureCreationInfo& creationInfo) override;
         virtual DepthStencil* CreateDepthStencilView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
-        virtual DepthStencil* CreateUnorderedAccessView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
+        virtual UnorderedAccessView* CreateUnorderedAccessView(const TextureViewCreationInfo& creationInfo, NeedleRefcountResource* resource) override;
         virtual Buffer* CreateVertexBuffer(const BufferCreationInfo& creationInfo) override;
         virtual Buffer* CreateIndexBuffer(const BufferCreationInfo& creationInfo) override;
         virtual bool CreateVertexLayout(const SInputElement* inputElement, uint32_t unkParam, VertexLayout** vertexLayout) override;

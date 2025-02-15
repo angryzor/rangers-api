@@ -5,10 +5,10 @@ namespace SurfRide
 	class ReferenceCast : public Cast {
 	public:
 		SRS_REFERENCECAST* referenceCastData;
-		Layer* layer;
+		Layer* refLayer;
 		uint32_t animationId;
 		bool isFlag2Set;
-		uint32_t referenceCastFlags;
+		EBlendMode blendMode;
 
 		ReferenceCast(SRS_CASTNODE* castData, Cast* parentCast, Layer* layer);
 

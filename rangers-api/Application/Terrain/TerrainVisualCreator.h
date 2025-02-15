@@ -17,6 +17,9 @@ namespace app::trr {
 
             class CreateTerrainModelInstance : public hh::ut::StateBase<TerrainVisualCreator> {
             public:
+                csl::ut::MoveArray<void*> resources;
+                unsigned int currentResourceIndex;
+
                 virtual void Enter(TerrainVisualCreator& context, int previousState) override;
                 virtual bool Step(TerrainVisualCreator& context, float deltaTime) override;
             };

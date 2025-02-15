@@ -86,7 +86,7 @@ namespace hh::needle {
     };
 
     struct ParameterHintValue {
-        void* type;
+        intrusive_ptr<CNameIDObject> type;
         intrusive_ptr<CNameIDObject> name;
         ParameterHintData data;
         unsigned int unk1;
