@@ -4,7 +4,14 @@ namespace hh::dv{
     class DvNodeCharacterMotion : public DvNodeBase {
     public:
         struct Data {
-            int flags;
+        public:
+            enum class Flags : unsigned int {
+                UNK0,
+                UPDATE_TRANSFORM,
+                USE_ROOT_BONE
+            };
+
+            csl::ut::Bitset<Flags> flags;
             int start;
             int end;
             int field0c;

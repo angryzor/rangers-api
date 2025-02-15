@@ -4,7 +4,13 @@ namespace hh::dv{
     class DvNodeCameraMotion : public DvNodeBase {
     public:
         struct Data {
-            int flags;
+        public:
+            enum class Flags : unsigned int {
+                UNK0,
+                USE_NEAR_FAR_CLIP
+            };
+
+            csl::ut::Bitset<Flags> flags;
             int start;
             int end;
             int field0c;

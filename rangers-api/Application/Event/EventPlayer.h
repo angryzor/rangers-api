@@ -226,7 +226,7 @@ namespace app::evt {
         virtual bool DSCL_UnkFunc1(void* unk0, void* unk1) override;
         virtual bool DSCL_UnkFunc2(void* unk0, void* unk1) override;
         virtual bool DSCL_UnkFunc3() override;
-        virtual void DSCL_UnkFunc7() override;
+        virtual void OnCutsceneEnd() override;
         virtual bool DSCL_UnkFunc13(void* unk0) override;
         virtual bool DSCL_UnkFunc14() override;
 
