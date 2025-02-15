@@ -125,6 +125,17 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Base/Universe/MessageQueue.h"
 #include "Hedgehog/Base/Universe/MessageManager.h"
 
+#include "Gindows/Object.h"
+#include "Gindows/TreeNode.h"
+#include "Gindows/ListViewSubItemCollection.h"
+#include "Gindows/ListViewItemBase.h"
+#include "Gindows/Component.h"
+#include "Gindows/Control.h"
+#include "Gindows/ScrollableControl.h"
+#include "Gindows/Button.h"
+#include "Gindows/ContainerControl.h"
+#include "Gindows/Form.h"
+
 #include "Gindows/WindowManager.h"
 
 #include "Hedgehog/Utility/TempString.h"

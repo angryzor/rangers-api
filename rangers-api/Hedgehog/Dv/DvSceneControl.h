@@ -27,7 +27,7 @@ namespace hh::dv {
 		virtual void RemoveCallback(hh::game::GameManager* gameManager) override;
         virtual void PreStepCallback(hh::game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 		virtual void PostStepCallback(hh::game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
-        virtual void PreObjectUpdateCallback(hh::game::GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) override;
+        virtual void PreObjectUpdateCallback(game::GameManager* gameManager, fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) override;
 
         const char* GetCutsceneName();
 

@@ -3,10 +3,8 @@
 namespace hh::dv {
     class DiEventManager : public hh::game::GameService, DvSceneControlListener {
     public:
-        class ScenePlaybackInfo : public hh::fnd::BaseObject{
+        class ScenePlaybackInfo : public hh::fnd::ReferencedObject{
         public:
-            int loaded;
-            int unk0;
             hh::fnd::Handle<DvSceneControl> dvSceneControl;
         };
 

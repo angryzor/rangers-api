@@ -1,10 +1,8 @@
 #pragma once
 
 namespace hh::dv{
-    class DvSceneNodeTree : public hh::fnd::BaseObject{
+    class DvSceneNodeTree : public fnd::ReferencedObject{
     public:
-        uint8_t isLoaded; //always 1 it seems
-        int unk1;
         DvNodeBase* mainNode;
         DvParamUpdater* paramUpdater;
         DvSceneControl* parent;
