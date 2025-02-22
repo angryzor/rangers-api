@@ -8,8 +8,6 @@ namespace hh::dv{
             csl::math::Matrix44 matrix;
         };
 
-        float unk0;
-        float unk1;
         Data binaryData;
         csl::math::Matrix44 worldMat;
         csl::math::Transform transform;

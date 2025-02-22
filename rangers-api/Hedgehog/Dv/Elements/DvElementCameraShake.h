@@ -5,8 +5,13 @@ namespace hh::dv{
     public:
         struct Data {
         public:
+            enum class Flags : unsigned int {
+                ENABLED,
+                UNK0
+            };
+
             int unk0;
-            bool enabled;
+            csl::ut::Bitset<Flags> flags;
             float intensity;
             float frequency;
             int unk2;

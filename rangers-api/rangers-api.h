@@ -528,6 +528,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Graphics/DefaultDynamicResolutionController.h"
 #include "Hedgehog/Graphics/RenderManager.h"
 #include "Hedgehog/Graphics/VertexAnimationTextureController.h"
+#include "Hedgehog/Graphics/ResAnimCameraContainer.h"
 #include "Hedgehog/Graphics/ResDensitySetting.h"
 #include "Hedgehog/Graphics/ResMaterial.h"
 #include "Hedgehog/Graphics/ResModelParameterInterface.h"
@@ -694,6 +695,7 @@ namespace rangerssdk::ucsl {
 
 #include "Hedgehog/Dv/DvNodeBase.h"
 #include "Hedgehog/Dv/DvPage.h"
+#include "Hedgehog/Dv/DvPageConditionEnd.h"
 #include "Hedgehog/Dv/DvParamController.h"
 #include "Hedgehog/Dv/DvDirectionalLightParamController.h"
 #include "Hedgehog/Dv/DvParamUpdater.h"

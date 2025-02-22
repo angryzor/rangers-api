@@ -204,7 +204,7 @@ namespace app::evt {
         hh::fnd::Handle<hh::game::GameObject> fadeObject;
         int unk2;
         hh::fnd::Handle<hh::game::GameObject> eventLayerChecker;
-        char unk4;
+        bool unk4;
         int unk5;
         csl::ut::Bitset<Flag> flags;
 

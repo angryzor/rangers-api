@@ -3,6 +3,12 @@
 namespace hh::dv{
     class DvSceneTimeline : public fnd::ReferencedObject {
     public:
+        struct DisableFrame {
+        public:
+            float start;
+            float end;
+        };
+
         int currentFrame0;
         int currentFrame1;
         int frameStart;
@@ -12,8 +18,8 @@ namespace hh::dv{
         bool looping;
         int unk3;
         csl::ut::MoveArray<float> cuts;
-        csl::ut::MoveArray<void*> unkArray0;
-        csl::ut::MoveArray<DvPage*> authPages;
+        csl::ut::MoveArray<DisableFrame> disableFrames;
+        csl::ut::MoveArray<DvPage*> pages;
         int64_t unk4;
         int64_t unk5;
         int64_t unk6;

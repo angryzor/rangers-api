@@ -8,19 +8,34 @@ namespace hh::dv {
 
     class DvSceneControl : public game::GameObject, game::GameStepListener, game::ObjectUpdateListener{
     public:
+        enum class Flags : char {
+            UNK0, // pauses qte, i think
+            UNK1,
+            UNK2,
+            UNK3,
+            UNK4,
+            UNK5,
+            UNK6,
+            UNK7
+        };
+
         DiEventManager* diEvtMgr;
         csl::ut::MoveArray<DvSceneControlListener*> listeners;
         DvSceneNodeTree* nodeTree;
         DvSceneTimeline* timeline;
         ut::TinyFsm<DvSceneControl, ut::TinyFsmEvent> fsm;
         csl::ut::VariableString cutsceneName;
-        int64_t unk2;
+        int dvsceneDvCommon34;
+        int unk3;
         int64_t state;
         ResDvScene* resource;
-        int32_t unk6;
+        bool updateNodeTransforms;
         float speed;
-        int32_t unk7;
-        int32_t unk9;
+        bool update;
+        bool unkBool0;
+        bool play;
+        csl::ut::Bitset<Flags> flags;
+        bool unkBool1;
 
         virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void AddCallback(hh::game::GameManager* gameManager) override;

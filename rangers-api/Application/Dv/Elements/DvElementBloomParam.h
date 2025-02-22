@@ -12,9 +12,9 @@ namespace app::dv{
                 float blurQuality;
             };
 
-            bool enabled;
-            Parameters minParams;
-            Parameters maxParams;
+            bool curveEnabled;
+            Parameters params;
+            Parameters finishParams;
             float unk5[4];
             float curveData[32];
         };

@@ -1,5 +1,8 @@
 #pragma once
 
+#define APP_DV_PAGE_CONDITION_DECLARATION_BASE(ClassName)public:\
+		static DvPageConditionBase* Create(DvPageConditionBase* self, csl::fnd::IAllocator* allocator);
+
 namespace app::dv {
     class DvPageConditionQTE : public hh::dv::DvPageConditionBase {
     public:
@@ -13,11 +16,11 @@ namespace app::dv {
 
         Data binaryData;
         evt::EventPlayer* evtPlayer;
-        char unk0;
+        bool unk0;
 
         virtual void Setup(void* setupInfo) override;
         virtual bool UnkFunc5() override;
 
-        static DvPageConditionQTE* Create(csl::fnd::IAllocator* allocator);
+        APP_DV_PAGE_CONDITION_DECLARATION_BASE(DvPageConditionQTE)
     };
 }

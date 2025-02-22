@@ -17,7 +17,7 @@ namespace app::dv{
                 USE_FOCUS_LOOK_AT,
                 ENABLE_CIRCLE_DOF,
                 DRAW_FOCAL_PLANE,
-                UNK0
+                CURVE_ENABLED
             };
 
             csl::ut::Bitset<Flags> flags;
