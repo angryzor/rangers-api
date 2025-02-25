@@ -19,11 +19,11 @@ namespace app::dv{
         int unk4;
         int unk5;
 
-        virtual void Setup(void* unk) override;
-        virtual bool UnkFunc1() override;
-        virtual void* UnkFunc2() override;
-        virtual void AppUnkFunc0() override;
-        virtual void AppUnkFunc1() override;
+        virtual void Update(int currentFrame, csl::math::Transform transform) override;
+        virtual bool AddCallback(int currentFrame, csl::math::Transform transform) override;
+        virtual void* RemoveCallback() override;
+        virtual void OnDataUpdated() override;
+        virtual void OnDataDeleted() override;
 
         APP_DV_ELEMENT_DECLARATION_BASE(DvElementQTEAccel)
     };

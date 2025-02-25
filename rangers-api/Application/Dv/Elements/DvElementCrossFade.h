@@ -15,10 +15,10 @@ namespace app::dv{
         void* unk1;
         void* unk2;
 
-        virtual void Setup(void* unk) override;
-        virtual bool UnkFunc1() override;
-        virtual void AppUnkFunc0() override;
-        virtual void AppUnkFunc1() override;
+        virtual void Update(int currentFrame, csl::math::Transform transform) override;
+        virtual bool AddCallback(int currentFrame, csl::math::Transform transform) override;
+        virtual void OnDataUpdated() override;
+        virtual void OnDataDeleted() override;
 
         APP_DV_ELEMENT_DECLARATION_BASE(DvElementCrossFade)
     };

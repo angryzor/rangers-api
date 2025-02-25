@@ -9,14 +9,18 @@
 namespace app::dv{
     class AppDvElementBase : public hh::dv::DvElementBase{
     public:
+        enum class Flags : unsigned char {
+            HAS_DATA
+        };
+
         long elementBinaryDataSize;
         void* elementBinaryData;
-        char flags;
+        csl::ut::Bitset<Flags> flags;
 
         virtual void SetData(void* data) override;
-        virtual void UnkFunc4() override;
-        virtual void AppUnkFunc0() {};
-        virtual void AppUnkFunc1() {};
+        virtual void DeleteData() override;
+        virtual void OnDataUpdated() {};
+        virtual void OnDataDeleted() {};
         virtual void AppUnkFunc2() {};
         virtual void* AppUnkFunc3(void* unk0, unsigned int unk1) {};
 

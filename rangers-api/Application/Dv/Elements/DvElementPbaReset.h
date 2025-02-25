@@ -7,7 +7,7 @@ namespace app::dv{
 
         hh::dv::DvNodeBaseAnimationModel* dvMdl;
 
-        virtual bool UnkFunc1() override;
+        virtual bool AddCallback(int currentFrame, csl::math::Transform transform) override;
 
         APP_DV_ELEMENT_DECLARATION_BASE(DvElementPbaReset)
     };
