@@ -20,28 +20,25 @@ namespace app::evt {
     public:
         struct UnkStr {
         public:
-            long long qword0;
-            int dword8;
-            long long qwordC;
-            long long qword14;
-            long long qword1C;
-            long long qword24;
-            long long qword2C;
-            long long qword34;
-            long long qword3C;
-            int dword44;
-            int dword48;
-            int dword4C;
-            char byte50;
+            float dword0;
+            int64_t qword4;
+            int dwordC;
+            int64_t qword10;
+            int64_t qword18;
+            int64_t qword20;
+            int64_t qword28;
+            int64_t qword30;
+            int64_t qword38;
+            int64_t qword40;
+            int64_t qword48;
+            int dword50;
+            char unk7;
+            int64_t unk8;
         };
 
         struct UnkStr1 {
         public:
             long long unk7;
-            bool unk9Toggle;
-            csl::math::Vector3 unk9;
-
-            void SetUnk9(csl::math::Vector3* unk9Value);
         };
 
         enum class PlayFlag : unsigned int {
@@ -90,28 +87,23 @@ namespace app::evt {
 
     class EventScene : public hh::fnd::BaseObject, hh::dv::DvSceneControlListener {
     public:
-        struct UnkStr0 {
-        public:
-            struct UnkStr1 {
-            public:
-                void* unkFnc0;
-                void* unkFnc1;
-                void* unkFnc2;
-                char unk0;
-            };
-            UnkStr1 unkStrs[2];
-            char unk0;
+        enum class Flags : int {
+            UNK0 = 0x20000
         };
 
         EventPlayer* evtPlayer;
-        UnkStr0 unkStr;
+        hh::ut::TinyFsm<EventScene, hh::ut::TinyFsmEvent> fsm;
         hh::dv::DiEventManager* diEvtMgr;
         EventSetupData setupData;
         void* resourceCollection;
-        int unk0;
-        int unk1;
+        bool update;
+        bool unkBool0;
+        bool play;
+        char unkFlags0;
+        bool unkBool1;
         long long unk2;
         float unk3;
+        csl::ut::Bitset<Flags> flags;
     };
 
     class EventSceneManager : public hh::fnd::BaseObject {
