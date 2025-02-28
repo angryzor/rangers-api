@@ -63,17 +63,69 @@ namespace hh::fmv{
         public:
             int framesRunning;
             int currentFrame;
+            int width0;
+            int height0;
+            int width1;
+            int height1;
+            int rawFps;
+            int framerateN; //see usm keys
+            int framerateD; //see usm keys
+            int totalFrames;
+            int unk1; //related to current frame
+        };
+
+        struct UnkStr2{
+        public:
+            void* unk0;
+            char unk1;
+            void* unk2;
+            char unk3;
+        };
+
+        struct TextureInfo{
+        public:
+            int width;
+            int height;
+            char unk0;
+            int unk1;
+            char unk2;
+            int unk3;
+            size_t unk4;
+            size_t unk5;
         };
 
         void* unk3;
         int unk4[2];
         void* unk5;
-        csl::ut::MoveArray<void*> unk6;
+        csl::ut::MoveArray<TextureInfo> textureInfos;
         FrameStr* frameStr0;
         int* unk7;
         FrameStr* frameStr1;
         FrameStr* frameStr2;
-        bool unk8;
+        char unk8;
+        csl::fnd::IAllocator* unkAllocator1;
+        UnkStr2 unkStr2[2];
+        char unk9;
+        float unk95;
+        char unk10;
+        char unk11;
+        char unk12;
+        char unk13;
+        char unk14;
+        char unk15;
+        char unk16;
+        int unk17[8];
+        char unk18;
+        char unk19;
+        char unk20;
+        char unk21;
+        int unk22;
+        char unk23;
+        char unk24;
+        char unk25;
+        char unk26;
+        int unk27;
+        int unk28;
 
         virtual void* UnkFunc0() override;
         virtual void* UnkFunc1() override;

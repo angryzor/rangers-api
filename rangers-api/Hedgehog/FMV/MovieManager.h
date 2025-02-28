@@ -34,8 +34,8 @@ namespace hh::fmv{
 
         csl::ut::MoveArray<void*> unkArray;
         csl::ut::MoveArray<fnd::Handle<MovieHandleObj>> movies;
-        csl::ut::MoveArray<char> randomString;
-        int64_t qwordB8;
+        csl::ut::MoveArray<const char*> shaderNames;
+        const char* shaderName;
         bool paused;
 
         virtual void* GetRuntimeTypeInfo() override;
