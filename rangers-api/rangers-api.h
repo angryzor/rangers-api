@@ -879,6 +879,8 @@ namespace rangerssdk::ucsl {
 #include "Application/Event/EventPreviewHelper.h"
 #include "Application/Event/DevEventInfo.h"
 
+#include "Application/Event/EventEnvironmentPause.h"
+
 #include "Application/Sound/SoundDirector.h"
 #include "Application/Sound/BgmIdExtension.h"
 #include "Application/Sound/AmbSoundCoordinator.h"

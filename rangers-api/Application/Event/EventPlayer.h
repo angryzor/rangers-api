@@ -45,9 +45,10 @@ namespace app::evt {
             USE_SETUP_TRANSFORM, // uses the position, rotation and scale variables instead of the ones in the file
             STOP_FADE_OUT,       // whetever the cutscene should end or it should be in a limbo
             CANT_SKIP,           // whetever the cutscene is unskippable or not
-            UNK0,                // unknown
+            UNK0,                // pausable?
             UNK1,                // unknown
             ENABLE_HUD,          // whetever the cockpit ui will show up
+            CAPPED_FPS = 0x4000
         };
 
         enum class PlayerFlag : unsigned char {
@@ -119,22 +120,26 @@ namespace app::evt {
     public:
         EventEnvironmentContext* evtEnvCtx;
 
-        virtual bool EE_UnkFunc1() {}
-        virtual bool EE_UnkFunc2() {}
+        virtual int64_t GetID() const { return 0; }
+        virtual bool EE_UnkFunc2() { return false; }
         virtual void EE_UnkFunc3() {}
         virtual void EE_UnkFunc4() {}
         virtual void EE_UnkFunc5() {}
         virtual void EE_UnkFunc6() {}
         virtual void EE_UnkFunc7() {}
-        virtual void EE_UnkFunc8() {}
-        virtual void EE_UnkFunc9() {}
+        virtual void AddCallback() {}
+        virtual void RemoveCallback() {}
         virtual void EE_UnkFunc10() {}
         virtual void EE_UnkFunc11() {}
         virtual void EE_UnkFunc12() {}
         virtual void EE_UnkFunc13() {}
-        virtual int EE_UnkFunc14() {}
+        virtual int EE_UnkFunc14() { return 0; }
         virtual void EE_UnkFunc15() {}
         virtual void EE_UnkFunc16() {}
+
+        EventEnvironment(csl::fnd::IAllocator* allocator);
+
+        EventEnvironmentContext* GetContext();
     };
 
     class EventEnvironmentContext : public hh::fnd::BaseObject {
@@ -143,6 +148,9 @@ namespace app::evt {
         EventSetupData setupData[2];
         app_cmn::camera::CameraParameter camParam;
         bool isPlaying;
+
+        EventSetupData* GetSetupData();
+        hh::game::GameManager* GetGameManager();
     };
 
     class EventEnvironmentManager : public hh::fnd::BaseObject {
@@ -221,6 +229,9 @@ namespace app::evt {
         virtual void OnCutsceneEnd() override;
         virtual bool DSCL_UnkFunc13(void* unk0) override;
         virtual bool DSCL_UnkFunc14() override;
+
+        bool PauseCutscene();
+        bool UnPauseCutscene();
 
         GAMESERVICE_CLASS_DECLARATION(EventPlayer)
     };

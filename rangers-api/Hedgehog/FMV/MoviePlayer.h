@@ -42,17 +42,17 @@ namespace hh::fmv{
         int64_t qword98;
         int dwordA0;
 
-        virtual void* UnkFunc0() {}
+        virtual void* UnkFunc0(float deltaTime) {}
         virtual void* UnkFunc1() {}
         virtual void* UnkFunc2() {}
         virtual void UnkFunc3(char a2) {}
-        virtual void* UnkFunc4(char a2) {}
+        virtual int SetPause(bool paused) {}
         virtual void* UnkFunc5(int a2, double a3); //denuvo infested
         virtual void* UnkFunc6(int a2, int a3);
         virtual void* UnkFunc7(char a2);
         virtual void UnkFunc8() {}
-        virtual void* UnkFunc9(void* a2);
-        virtual void* UnkFunc10() {}
+        virtual int SetFilename(const char* filename);
+        virtual void* UnkFunc10(float deltaTime) {}
 
         MoviePlayer(csl::fnd::IAllocator* allocator);
     };
@@ -127,17 +127,17 @@ namespace hh::fmv{
         int unk27;
         int unk28;
 
-        virtual void* UnkFunc0() override;
+        virtual void* UnkFunc0(float deltaTime) override;
         virtual void* UnkFunc1() override;
         virtual void* UnkFunc2() override;
         virtual void UnkFunc3(char a2) override;
-        virtual void* UnkFunc4(char a2) override;
+        virtual int SetPause(bool paused) override;
         virtual void* UnkFunc5(int a2, double a3) override;
         virtual void* UnkFunc6(int a2, int a3) override;
         virtual void* UnkFunc7(char a2) override;
         virtual void UnkFunc8() override;
-        virtual void* UnkFunc9(void* a2) override;
-        virtual void* UnkFunc10() override;
+        virtual int SetFilename(const char* filename) override;
+        virtual void* UnkFunc10(float deltaTime) override;
         
         MoviePlayerCri(csl::fnd::IAllocator* allocator);
     };

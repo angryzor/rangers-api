@@ -24,7 +24,6 @@ namespace hh::dv{
         char guid[16];
         char padding[16];
         csl::ut::String nodeName;
-        csl::fnd::IAllocator* idkallocator;
         csl::math::Transform transform;
         csl::math::Matrix44 matrix;
         DvResource* dvResource;
