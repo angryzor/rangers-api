@@ -545,6 +545,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Physics/GOCBoxCollider.h"
 #include "Hedgehog/Physics/GOCCapsuleCollider.h"
 #include "Hedgehog/Physics/GOCCylinderCollider.h"
+#include "Hedgehog/Physics/GOCMeshCollider.h"
 #include "Hedgehog/Physics/PhysicsWorld.h"
 #include "Hedgehog/Physics/PhysicsWorldBullet.h"
 #include "Hedgehog/Physics/PhysicsQueryJob.h"
@@ -841,6 +842,8 @@ namespace rangerssdk::ucsl {
 #include "Application/Game/GOCActionNotifier.h"
 #include "Application/Game/GOCCyloopPoint.h"
 #include "Application/Game/GOCAI.h"
+#include "Application/Game/GrindModelUpdater.h"
+#include "Application/Game/GOCGrind.h"
 #include "Application/Game/Messages.h"
 #include "Application/Game/Posture.h"
 
