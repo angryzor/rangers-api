@@ -38,7 +38,7 @@ namespace hh::fmv{
         int framesRunning;
         int dword8C;
         short word90;
-        short word92;
+        short word92; //0x128 is paused
         int64_t qword98;
         int dwordA0;
 
@@ -102,7 +102,7 @@ namespace hh::fmv{
         int* unk7;
         FrameStr* frameStr1;
         FrameStr* frameStr2;
-        char unk8;
+        bool isPlaying;
         csl::fnd::IAllocator* unkAllocator1;
         UnkStr2 unkStr2[2];
         char unk9;
