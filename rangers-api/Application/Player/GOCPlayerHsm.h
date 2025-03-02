@@ -9,8 +9,8 @@ namespace app::player {
         };
         struct SetupInfo {
             const StateDescRef* stateDescs;
-            uint32_t stateDescCount;
-            uint32_t unk1;
+            unsigned int stateDescCount;
+            unsigned int maxStateDescCount;
             uint32_t unk105bConfig;
             PlayerHsmContext* hsmContext;
             bool enablePreAnimUpdates;
@@ -22,8 +22,8 @@ namespace app::player {
         };
 
     public:
-        hh::ut::HsmBase* hsm;
-        hh::ut::HsmBase hsm2;
+        hh::fnd::Reference<hh::ut::StateManager> stateManager;
+        hh::ut::HsmBase hsm;
         hh::fnd::Reference<PlayerHsmContext> hsmContext;
         hh::fnd::Reference<PlayerStateParameter> playerStateParameter;
         hh::fnd::Reference<StatePluginManager<PlayerHsmContext>> statePluginManager;
