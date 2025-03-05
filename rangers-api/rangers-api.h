@@ -591,9 +591,9 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Sound/ResAtomConfig.h"
 #include "Hedgehog/Sound/ResAtomCueSheet.h"
 #include "Hedgehog/Sound/SoundHandle.h"
+#include "Hedgehog/Sound/GOCSound.h"
 #include "Hedgehog/Sound/SoundManager.h"
 #include "Hedgehog/Sound/SoundManagerCri.h"
-#include "Hedgehog/Sound/GOCSound.h"
 
 #include "Hedgehog/Text/ResText.h"
 #include "Hedgehog/Text/ResTextMeta.h"
@@ -628,6 +628,8 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Animation/GOCAnimator.h"
 #include "Hedgehog/Animation/AnimationManager.h"
 #include "Hedgehog/Animation/AnimationInterface.h"
+
+#include "Hedgehog/Lua/ResLuaData.h"
 
 #include "SurfRide/Types.h"
 #include "SurfRide/Allocator.h"
@@ -929,6 +931,7 @@ namespace rangerssdk::ucsl {
 #include "Application/Game/GOCGrind.h"
 #include "Application/Game/Messages.h"
 #include "Application/Game/Posture.h"
+#include "Application/Game/Script.h"
 
 #include "Application/Physics/GOCColliderQuery.h"
 #include "Application/Physics/GOCMoveSphereColliderQuery.h"
