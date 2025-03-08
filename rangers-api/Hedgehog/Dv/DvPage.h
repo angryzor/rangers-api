@@ -14,13 +14,13 @@ namespace hh::dv{
         DvPageTransition* transition;
         int idx;
         int unk3;
-        DvPageConditionBase* unkCondition;
+        DvPageConditionBase* childCondition;
 
         virtual void Setup(void* setupInfo) {};
         virtual void UnkFunc1() {};
         virtual void UnkFunc2() {};
-        virtual void UnkFunc3() {};
-        virtual void UnkFunc4() {};
+        virtual int UnkFunc3() {}; // is playing?
+        virtual int UnkFunc4() {}; // is playing?
         virtual bool UnkFunc5() { return false; };
 
         game::GameManager* GetGameManager();

@@ -115,7 +115,7 @@ namespace hh::fmv{
         };
 
         void* criManaPlayer; // criware sdk
-        int64_t criManaPlayerStatus;
+        int criManaPlayerStatus;
         FrameInfo::ImageBufferInfo* imageBuffers;
         csl::ut::MoveArray<TextureInfo> textureInfos;
         FrameInfo* frameInfo;
