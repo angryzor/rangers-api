@@ -4,15 +4,16 @@
 
 namespace hh::needle::ImplDX11 {
     class RenderingDeviceContextDX11 : public RenderingDeviceContext {
+    public:
         RenderingDeviceDispatchDX11Impl* renderingDeviceDispatch;
         uint64_t unk2;
         DeviceObjectDX11* deviceObject;
-    public:
+
         RenderingDeviceContextDX11();
         virtual ~RenderingDeviceContextDX11();
         virtual void* QueryResource(size_t id) override;
         virtual const void* QueryResource(size_t id) const override;
-        virtual void BeginRendering(unsigned int unkParam) override;
+        virtual void BeginRendering() override;
         virtual RenderingCommandList* EndRendering() override;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) override;
         virtual bool UnkFunc1() override { return true; }

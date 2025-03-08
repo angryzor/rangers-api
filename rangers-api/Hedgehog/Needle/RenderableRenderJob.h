@@ -5,14 +5,14 @@ namespace hh::needle {
     public:
         typedef void Callback(RenderManager* renderManager, RenderingDeviceContext* deviceContext);
 
-        unsigned int renderableId;
+        RenderTextureHandle::RenderStage renderStage;
         int viewportId;
         const char* name;
         Callback* onBeforeRender;
         Callback* onAfterRender;
         uint64_t unk103;
 
-        RenderableRenderJob(unsigned int renderableId, int viewportId, const char* name);
+        RenderableRenderJob(RenderTextureHandle::RenderStage renderStage, int viewportId, const char* name);
         
         virtual unsigned int UnkFunc6(PipelineInfo* pipelineInfo) override;
         virtual void Start(const RenderJobContext& context) override;

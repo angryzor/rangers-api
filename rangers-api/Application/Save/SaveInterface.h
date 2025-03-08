@@ -25,7 +25,7 @@ namespace app::save {
         uint8_t byteCC;
         uint32_t dwordD0[4];
         csl::ut::MoveArray<void*> unkE0;
-        csl::ut::InplaceMoveArray<Unk1, 32> unk100;
+        hh::fnd::FileSet unk100;
         uint64_t qword320;
         uint16_t word328;
         uint32_t dword32C;

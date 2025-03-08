@@ -6,7 +6,7 @@ namespace app::player {
         uint64_t unk201;
 
         virtual unsigned int GetNameHash() const override;
-        virtual uint64_t UnkFunc2() override;
+        virtual void Initialize(hh::game::GameObject* gameObject, ComponentCollection* componentCollection) override;
         virtual uint64_t UnkFunc6() override;
         virtual uint64_t UnkFunc10() override;
         virtual uint64_t UnkFunc11() override;

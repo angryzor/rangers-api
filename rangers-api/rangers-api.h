@@ -42,6 +42,9 @@ struct SLIST_HEADER_SHIM {
 #ifdef VOID
 #undef VOID
 #endif
+#ifdef CreateDirectory
+#undef CreateDirectory
+#endif
 
 #include <ucsl/newtype.h>
 
@@ -273,7 +276,6 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Needle/DeferredRenderJob.h"
 #include "Hedgehog/Needle/DefaultDeferredRenderJob.h"
 #include "Hedgehog/Needle/ModifiedCamera.h"
-#include "Hedgehog/Needle/RenderableRenderJob.h"
 #include "Hedgehog/Needle/PostEffectRenderJob.h"
 #include "Hedgehog/Needle/PostEffectPipelineJob.h"
 #include "Hedgehog/Needle/PostEffectLitePipelineJob.h"
@@ -293,10 +295,11 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Needle/ModelRenderMeshHelper.h"
 #include "Hedgehog/Needle/WorldRenderingPipeline.h"
 #include "Hedgehog/Needle/WorldRenderingPipelineExecContext.h"
-#include "Hedgehog/Needle/RenderTexturePipeline.h"
 #include "Hedgehog/Needle/RenderingPipelineRangers.h"
 #include "Hedgehog/Needle/RenderUnit.h"
+#include "Hedgehog/Needle/RenderTexturePipeline.h"
 #include "Hedgehog/Needle/RenderTexture.h"
+#include "Hedgehog/Needle/RenderableRenderJob.h"
 #include "Hedgehog/Needle/SceneContexts/SCAtmosphere.h"
 #include "Hedgehog/Needle/SceneContexts/SCAtmosphericFog.h"
 #include "Hedgehog/Needle/SceneContexts/SCColorGradingLUT.h"
@@ -527,11 +530,13 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Graphics/ResProbe.h"
 #include "Hedgehog/Graphics/ResDecal.h"
 #include "Hedgehog/Graphics/ResVertexAnimationTexture.h"
+#include "Hedgehog/Graphics/ResPointcloud.h"
 #include "Hedgehog/Graphics/GOCVisual.h"
 #include "Hedgehog/Graphics/GOCVisualTransformed.h"
 #include "Hedgehog/Graphics/GOCVisualModel.h"
 #include "Hedgehog/Graphics/GOCVisualUserModel.h"
 #include "Hedgehog/Graphics/GOCVisualDebugDraw.h"
+#include "Hedgehog/Graphics/GOCRenderTexture.h"
 #include "Hedgehog/Graphics/GOCOcclusionCapsule.h"
 #include "Hedgehog/Graphics/ModelNodeHFrame.h"
 #include "Hedgehog/Graphics/VisualManager.h"
