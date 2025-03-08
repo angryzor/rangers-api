@@ -432,6 +432,8 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Framework/Application.h"
 #include "Hedgehog/Framework/SaveManagerInterface.h"
 
+#include "Hedgehog/Cri/CriMana.h"
+
 // HID
 #include "Hedgehog/HID/InputDevice.h"
 #include "Hedgehog/HID/InputDeviceFactory.h"

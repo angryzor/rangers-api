@@ -16,19 +16,21 @@ namespace hh::fmv{
                 UNK0,
                 UNK1,
                 UNK2,
-                UNK3,
+                USE_RENDER_SETTINGS,
                 UNK4,
                 LOOP,
-                UNK6,
+                USE_AUDIO,
                 UNK7,
             };
 
-            csl::math::Vector3 unkvector;
+            int unk0a[3];
+            int unk0;
             int unk1[5];
             int pass;
             short priority;
             csl::ut::Bitset<Flags> flags;
-            int64_t unk3[2];
+            MovieRenderObject* movieRenderObj;
+            int64_t unk3;
             float unk4;
         };
 
