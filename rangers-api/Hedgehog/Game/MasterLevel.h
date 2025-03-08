@@ -26,6 +26,12 @@ namespace hh::game {
         virtual void LL_UnkFunc2(void* unkParam1) override;
         virtual void LL_UnkFunc3(void* unkParam1) override;
 
+        struct Unk1 {
+            bool unk1;
+        };
+
         Level* GetLevel(const char* name) const;
+        void LoadLevel(const char* name);
+        Unk1 UnloadLevel(const char* name);
     };
 }

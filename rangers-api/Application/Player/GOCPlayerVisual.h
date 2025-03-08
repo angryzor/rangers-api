@@ -12,8 +12,8 @@ namespace app::player {
     
     private:
         hh::fnd::Reference<ComponentCollector> componentCollector;
-        csl::ut::MoveArray<void*> unk2;
-        csl::ut::InplaceMoveArray<void*, 8> unk3; // has no allocator?
+        csl::ut::MoveArray<PlayerVisualClass*> visualClasses;
+        csl::ut::InplaceMoveArray<PlayerVisual*, 8> visuals; // has no allocator?
         PlayerVisual* playerVisual;
         uint64_t unk5;
         uint64_t unk6;
@@ -25,8 +25,8 @@ namespace app::player {
         uint16_t flags;
 
     public:
-        struct Config {
-            int unk2Count;
+        struct SetupInfo {
+            unsigned int visualCount;
         };
 
         GOCPlayerVisual(csl::fnd::IAllocator* allocator);
@@ -35,7 +35,11 @@ namespace app::player {
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 
-        void Initialize(const Config& config);
+        void Setup(const SetupInfo& setupInfo);
+
+        void AddVisual(PlayerVisualClass* playerVisualClass, char id, int unk7Unk1Param);
+
+        PlayerVisual* GetPlayerVisual() const;
 
         GOCOMPONENT_CLASS_DECLARATION(GOCPlayerVisual)
     };

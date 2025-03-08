@@ -20,33 +20,60 @@ namespace hh::needle {
     };
 
     struct RenderTextureCreateArgs {
-        uint32_t unk1;
-        uint32_t unk2;
-        uint32_t unk3;
-        uint32_t unk4;
-        uint64_t unk5;
-        uint64_t unk6;
+        enum Flag {
+            UNK0 = 1,
+            UNK1 = 2, // decides some even/odd logic in setrenderdimensions... backbuffer?
+            UNK2 = 4,
+            UNK3 = 8,
+            COPIED = 0x10,
+        };
+
+        struct TextureSettings {
+            SurfaceFormat format{};
+            unsigned int mipLevels{};
+        };
+
+        unsigned int width;
+        unsigned int height;
+        Flag flags;
+        unsigned int clearedTextureCount;
+        TextureSettings* textureSettings;
+        csl::fnd::IAllocator* allocator;
         RenderTexturePipeline* pipeline;
         const char* name;
         const char* sceneName;
+        bool unk6;
     };
 
     class RenderTextureHandle : public RenderUnit {
     public:
+        enum RenderStage : unsigned int {
+            UNK0,
+            UNK1,
+            UNK2,
+            UNK3,
+            UNK4,
+            UNK5,
+            UNK6,
+            UNK7,
+            UNK8,
+            UNK9,
+        };
+
         uint8_t unk101;
-        intrusive_ptr<NeedleRefcountObject> unk102[4];
-        intrusive_ptr<NeedleRefcountObject> unk103[4];
-        intrusive_ptr<NeedleRefcountObject> unk104[4];
-        intrusive_ptr<NeedleRefcountObject> unk105[4];
-        uint64_t unk106;
-        uint64_t unk107;
-        uint64_t unk108;
-        uint64_t unk109;
-        uint32_t unk110;
-        uint32_t unk111;
+        intrusive_ptr<RenderTarget> renderTargets1[4];
+        intrusive_ptr<Texture> renderTargetTextures1[4];
+        intrusive_ptr<RenderTarget> renderTargets2[4];
+        intrusive_ptr<Texture> renderTargetTextures2[4];
+        intrusive_ptr<DepthStencil> depthStencil;
+        intrusive_ptr<Texture> depthStencilTexture;
+        intrusive_ptr<RenderTarget> renderTarget3;
+        intrusive_ptr<Texture> renderTargetTexture3;
+        unsigned int width;
+        unsigned int height;
         csl::math::Vector4 unk112;
-        uint32_t unk113;
-        uint32_t unk114;
+        unsigned int clearedTextureCount;
+        RenderTextureCreateArgs::Flag flags;
         FxRenderTextureCamera* camera;
         uint32_t unk115;
         int unk116;
@@ -63,5 +90,12 @@ namespace hh::needle {
         virtual void SetRenderDimensions(const RenderInfo& renderInfo) override;
         virtual void UnkFunc5() override;
         virtual void LoadRenderParams(const RenderInfo& renderInfo) override;
+
+        Renderable* GetRenderable(RenderStage renderStage) const;
+        void SetCameraParameter(const csl::math::Matrix34& viewMatrix, const csl::math::Matrix44& projectionMatrix);
+        void SetRenderResolution(unsigned int width, unsigned int height);
+        void ChangePipeline(RenderingPipeline* pipeline);
+        bool IsFlagSet(RenderTextureCreateArgs::Flag flag) const;
+        Texture* GetTexture(unsigned int id) const;
     };
 }

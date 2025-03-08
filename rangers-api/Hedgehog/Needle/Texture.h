@@ -14,29 +14,33 @@ namespace hh::needle {
         };
 
         enum class BindFlag {
-            UNK0,
-            UNK1,
-            UNK2,
-            UNK3,
-            UNK4,
-            UNK5,
-            UNK6,
-            UNK7,
+            SHADER_RESOURCE,
+            RENDER_TARGET,
+            DEPTH_STENCIL,
+            VERTEX_BUFFER,
+            INDEX_BUFFER,
+            CONSTANT_BUFFER,
+            STREAM_OUTPUT,
+            UNORDERED_ACCESS,
         };
 
         enum class MiscFlag {
-            UNK0,
-            UNK1,
-            UNK2,
+            GENERATE_MIPS,
+            SHARED,
+            TEXTURECUBE,
             UNK3,
             UNK4,
-            UNK5,
+            BUFFER_STRUCTURED,
             UNK6,
             UNK7,
             UNK8,
             UNK9,
-            UNK10,
-            UNK11,
+            DRAWINDIRECT_ARGS,
+            BUFFER_ALLOW_RAW_VIEWS,
+            UNK12,
+            UNK13,
+            CPU_ACCESS_READ,
+            CPU_ACCESS_WRITE,
         };
 
         struct SubresourceData {
@@ -67,6 +71,16 @@ namespace hh::needle {
     };
 
     struct TextureViewCreationInfo {
+        SurfaceFormat format{};
+        uint8_t unk1{};
+        uint8_t unk2{};
+        uint8_t unk2a{};
+        uint32_t unk3{};
+        uint32_t unk4{};
+        unsigned int mipLevels{};
+        uint32_t unk5{};
+        uint32_t unk6{};
+        uint32_t unk7{};
     };
 
     class Texture : public SurfaceBase {

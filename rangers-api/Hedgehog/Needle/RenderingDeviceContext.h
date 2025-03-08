@@ -9,7 +9,7 @@ namespace hh::needle {
     class InstanceParameterContainerData;
     class RenderingDeviceContext : public TNeedleRefcountResource<NEEDLE_RESOURCE_RENDERING_DEVICE_CONTEXT, NeedleRefcountResource> {
     public:
-        virtual void BeginRendering(unsigned int unkParam) = 0;
+        virtual void BeginRendering() = 0;
         virtual RenderingCommandList* EndRendering() = 0;
         virtual bool ExecuteRendering(RenderingCommandList* commandList) = 0;
         virtual bool UnkFunc1() = 0; // before render

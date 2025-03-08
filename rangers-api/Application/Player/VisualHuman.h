@@ -5,10 +5,10 @@ namespace app::player {
     public:
         uint64_t unk101;
         uint32_t unk102;
-        hh::fnd::HFrame* unkFrames[22];
+        hh::fnd::HFrame* attachPointFrames[22];
         uint8_t unk104;
 
-        VisualHuman(csl::fnd::IAllocator* allocator);
+        VisualHuman(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, ComponentCollection* unkParam1);
         
         
         virtual uint64_t UnkFunc3() override;
@@ -19,5 +19,8 @@ namespace app::player {
         virtual uint64_t UnkFunc11() {}
         virtual uint64_t UnkFunc12() {}
         virtual void TL_MaybeOnTrigger() override;
+
+        hh::fnd::HFrame* GetAttachPointFrame(unsigned int attachPointId) const;
+        void AttachComponent(char componentId, unsigned char attachPointId);
     };
 }
