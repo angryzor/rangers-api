@@ -3,9 +3,12 @@
 namespace hh::dv{
     class DvElementControllerVibration : public DvElementBase {
     public:
-        struct Data {
+    struct Data {
+            char unused[68];
         public:
-            char unk0[0x90];
+            char vibrationName[64];
+        private:
+            int unk0[3];
         };
 
         Data binaryData;

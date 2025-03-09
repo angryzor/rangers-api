@@ -27,7 +27,7 @@ namespace hh::dv{
             csl::ut::Bitset<Flags> flags;
             Camera camera;
             Camera finishCamera;
-            float unk1[5];
+            float unk1[5]; //unused
             float curveData[256];
         };
 

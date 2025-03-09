@@ -13,7 +13,7 @@ namespace hh::dv{
             csl::ut::Bitset<Flags> flags;
             float nearClip;
             float farClip;
-            int unk1[5];
+            int unk1[5]; //unused
         };
 
         Data binaryData;

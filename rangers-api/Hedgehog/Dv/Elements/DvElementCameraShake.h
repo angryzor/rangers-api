@@ -10,14 +10,11 @@ namespace hh::dv{
                 UNK0
             };
 
-            int unk0;
+            int unk0; //unused
             csl::ut::Bitset<Flags> flags;
             float intensity;
             float frequency;
-            int unk2;
-            int unk3;
-            int unk4;
-            int unk5;
+            int unk2[4]; //unused
         };
 
         Data binaryData;

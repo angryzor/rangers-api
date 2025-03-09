@@ -457,6 +457,9 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/HID/DeviceManager.h"
 #include "Hedgehog/HID/DeviceManagerWin32.h"
 
+#include "Hedgehog/HID/VibrationDataContainer.h"
+#include "Hedgehog/HID/VibrationContainer.h"
+
 // // // System Messages
 // // #include "System/Messages/MsgRobChaosEmerald.h"
 
@@ -507,6 +510,8 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Game/Level.h"
 #include "Hedgehog/Game/MasterLevel.h"
 #include "Hedgehog/Game/LevelManager.h"
+#include "Hedgehog/Game/GOCVibration.h"
+#include "Hedgehog/Game/VibrationManager.h"
 
 #include "Hedgehog/Game/GOComponents/GOCInput.h"
 #include "Hedgehog/Game/GOComponents/GOCTransform.h"
