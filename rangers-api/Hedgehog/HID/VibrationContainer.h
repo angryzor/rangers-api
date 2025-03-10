@@ -11,7 +11,7 @@ namespace hh::hid{
         int unk0;
         short flags;
         csl::ut::MoveArray<VibrationDataContainer*> dataContainers;
-        csl::ut::MoveArray<int> unkArray0;
+        csl::ut::PointerMap<int, VibrationDataContainer*> hashDataContainers;
         csl::ut::MoveArray<void*> unkArray1;
         void* unk1;
         void* unk2;

@@ -1,9 +1,10 @@
 #pragma once
+#include <ucsl/resources/vibration/v21.h>
 
 namespace hh::hid{
     class VibrationDataContainer : public fnd::ReferencedObject{
     public:
-        void* unk0;
+        ucsl::resources::vibration::v21::Vibration* vibrationData;
         int unk1;
         float unk2;
         float unk3;

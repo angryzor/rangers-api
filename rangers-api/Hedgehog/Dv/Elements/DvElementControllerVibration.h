@@ -4,15 +4,20 @@ namespace hh::dv{
     class DvElementControllerVibration : public DvElementBase {
     public:
     struct Data {
-            char unused[68];
         public:
+            enum class Flags : unsigned int {
+                IGNORE_END = 2
+            };
+
+            csl::ut::Bitset<Flags> flags;
+            char groupName[64];
             char vibrationName[64];
         private:
             int unk0[3];
         };
 
         Data binaryData;
-        void* unk0;
+        hh::hid::VibrationContainer* vibrationContainer;
         void* unk1;
         void* unk2;
 

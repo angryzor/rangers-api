@@ -454,11 +454,13 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/HID/InputDevices/Vibration.h"
 #include "Hedgehog/HID/InputDevices/VibrationWin32.h"
 
-#include "Hedgehog/HID/DeviceManager.h"
-#include "Hedgehog/HID/DeviceManagerWin32.h"
-
+#include "Hedgehog/HID/ResVibration.h"
 #include "Hedgehog/HID/VibrationDataContainer.h"
 #include "Hedgehog/HID/VibrationContainer.h"
+#include "Hedgehog/HID/VibrationManager.h"
+
+#include "Hedgehog/HID/DeviceManager.h"
+#include "Hedgehog/HID/DeviceManagerWin32.h"
 
 // // // System Messages
 // // #include "System/Messages/MsgRobChaosEmerald.h"
