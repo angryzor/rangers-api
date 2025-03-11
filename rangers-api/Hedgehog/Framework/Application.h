@@ -29,7 +29,12 @@ namespace hh::fw {
         void AddMouseEventHandler(MouseEventHandler* handler, uint32_t unkParam1);
         void RemoveMouseEventHandler(MouseEventHandler* handler);
 
-        AppModule* GetModuleByClass(AppModuleClass* moduleClass);
+        AppModule* GetModuleByClass(const AppModuleClass* moduleClass);
+
+        template<typename T>
+		T* GetModule() {
+			return static_cast<T*>(GetModuleByClass(T::GetClass()));
+		}
 
         virtual void Startup() {}
         virtual void UnkFunc2() {}
