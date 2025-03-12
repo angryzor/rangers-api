@@ -32,6 +32,7 @@ namespace hh::game {
 
         Level* GetLevel(const char* name) const;
         void LoadLevel(const char* name);
+        Unk1 LoadLevel(const char* name, const Level::LoadInfo& loadInfo);
         Unk1 UnloadLevel(const char* name);
     };
 }

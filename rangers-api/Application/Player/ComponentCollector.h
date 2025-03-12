@@ -1,11 +1,17 @@
 #pragma once
 
 namespace app::player {
+    struct ComponentCollection;
     struct Component {
-        uint64_t unk1[5];
-        hh::gfx::GOCVisualModel* visual;
-        hh::anim::GOCAnimator* animator;
-        uint64_t unk2[5];
+        ComponentCollection* collection;
+        csl::ut::MoveArray<hh::fnd::Reference<hh::game::GOComponent>> components;
+        hh::fnd::Reference<hh::gfx::GOCVisualModel> visual;
+        hh::fnd::Reference<hh::anim::GOCAnimator> animator;
+        csl::ut::MoveArray<hh::eff::EffectHandle> effects;
+        uint64_t unk3;
+
+        void AddComponent(hh::game::GOComponent* component);
+        void RemoveComponent(hh::game::GOComponent* component);
     };
 
     class ComponentCollector;
@@ -16,7 +22,9 @@ namespace app::player {
         uint8_t unk4;
 
         ComponentCollection();
+        void Initialize(hh::game::GameObject* gameObject, unsigned int componentCount);
         Component& GetComponent(int id);
+        hh::fnd::HFrame* GetFrame() const;
     };
 
     class GOCPlayerVisual;
