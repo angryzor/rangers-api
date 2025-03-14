@@ -12,7 +12,7 @@ namespace app::dv{
             };
 
             csl::ut::Bitset<Flags> flags;
-            float unk0;
+            float contrast;
             float dynamicRange;
             float crushShadows;
             float crushHighlights;
@@ -25,6 +25,7 @@ namespace app::dv{
         struct UnkData {
         public:
             float unk0;
+            float contrast;
             float dynamicRange;
             float crushShadows;
             float crushHighlights;

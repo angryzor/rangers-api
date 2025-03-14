@@ -43,10 +43,11 @@ namespace app::dv{
             float redCircleOutlineThickness;
             float whiteLineOutlineThickness;
             int failCount;
-            int unk0;
-            char qteName[64];
-            float unk1;
-            float unk2;
+            int mashCount;
+            char asmVarName[64];
+            float start;
+            float end;
+            float speedMultiplier;
             csl::math::Vector2 offset;
             float unk5;
             char unk6[192];
@@ -54,7 +55,7 @@ namespace app::dv{
         };
 
         char unk0[256];
-        int unk1;
+        int currentFrame;
         int unk2;
 
         virtual void Update(int currentFrame, csl::math::Transform transform) override;
