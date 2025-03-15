@@ -103,5 +103,7 @@ namespace app::level {
         inline const char* GetName() const {
             return name.c_str();
         }
+
+        bool IsNonBossStage() const;
     };
 }

@@ -16,7 +16,7 @@ namespace app::trr {
         csl::ut::InplaceMoveArray<uint8_t, 100> staticSectors;
         csl::ut::InplaceMoveArray<uint8_t, 100> dynamicSectors;
         bool initialized;
-        hh::fnd::Reference<game::GameModeResourceCollection> resourceCollection;
+        hh::fnd::Reference<hh::game::LevelLoader> levelLoader;
         uint8_t byte1C0;
 
         TerrainLoader(csl::fnd::IAllocator* allocator);

@@ -7,6 +7,7 @@ namespace hh::gfx {
         int nodeIndex;
         
         CREATE_FUNC(ModelNodeHFrame, GOCVisualModel* gocVisualModel, const char* nodeName);
+        ModelNodeHFrame(csl::fnd::IAllocator* allocator, GOCVisualModel* gocVisualModel, int nodeIndex);
         virtual void* GetRuntimeTypeInfo() const;
         virtual void OnSync(const csl::math::Transform& parentTransform, csl::math::Transform* targetTransform);
     };

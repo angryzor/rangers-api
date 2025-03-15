@@ -19,6 +19,12 @@
 namespace app::player {
     class PlayerVisual;
 
+    class PlayerVisualListener {
+    public:
+        virtual void PVL_UnkFunc1(void* unkParam1, void* unkParam2) = 0;
+        virtual void PVL_UnkFunc2(void* unkParam1, void* unkParam2) = 0;
+    };
+
     struct PlayerVisualClass {
         unsigned int nameHash;
         PlayerVisual* (*instantiator)(csl::fnd::IAllocator* allocator);
@@ -29,19 +35,19 @@ namespace app::player {
         hh::game::GameObject* gameObject;
         GOCPlayerVisual* gocPlayerVisual;
         ComponentCollection* componentCollection;
-        uint64_t unk1;
+        hh::fnd::Reference<EffectList> effectList;
         uint16_t unk2;
     public:
         PlayerVisual(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, ComponentCollection* componentCollection);
 
         virtual unsigned int GetNameHash() const = 0;
         virtual void Initialize(hh::game::GameObject* gameObject, ComponentCollection* componentCollection) = 0;
-        virtual uint64_t UnkFunc3() {}
-        virtual uint64_t UnkFunc4() {}
-        virtual uint64_t UnkFunc5();
-        virtual uint64_t UnkFunc6();
-        virtual uint64_t UnkFunc7() = 0;
-        virtual uint64_t UnkFunc8() = 0;
+        virtual void SetupEffects() {}
+        virtual void UnkFunc4() {}
+        virtual void UnkFunc5();
+        virtual void UnkFunc6();
+        virtual void Init() = 0;
+        virtual void Deinit() = 0;
 
         Component& GetComponent(int id) const;
         hh::anim::GOCAnimator* GetComponentAnimator(char componentId) const;
@@ -57,5 +63,7 @@ namespace app::player {
         // bool SetDefaultComponentAnimatorFloat(const char* variableName, float value);
         void AttachComponent(char componentId, hh::fnd::HFrame* frame);
         void DetachComponent(char componentId);
+
+        void SetupEffectList(unsigned int effectCount);
     };
 }

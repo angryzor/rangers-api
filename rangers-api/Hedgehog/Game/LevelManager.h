@@ -35,6 +35,7 @@ namespace hh::game {
 
         Level* GetLevelByName(const char* name) const;
         void LoadLevel(const char* name);
+        void LoadLevel(const char* name, const Level::LoadInfo& loadInfo);
         void UnloadLevel(const char* name);
 
         GAMESERVICE_CLASS_DECLARATION(LevelManager);
