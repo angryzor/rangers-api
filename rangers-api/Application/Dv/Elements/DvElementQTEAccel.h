@@ -5,11 +5,18 @@ namespace app::dv{
     public:
         struct Data {
         public:
-            int unk0;
-            int unk1;
+            enum class Button : unsigned int {
+                A,
+                B,
+                X,
+                Y
+            };
+
+            Button button;
+            float unk1;
             int dword8;
             int dwordC;
-            char byte10;
+            char soundName[64];
         };
 
         void* unk0;
