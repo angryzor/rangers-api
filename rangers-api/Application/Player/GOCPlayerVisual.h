@@ -10,7 +10,7 @@ namespace app::player {
             Unk1();
         };
     
-    private:
+    public:
         hh::fnd::Reference<ComponentCollector> componentCollector;
         csl::ut::MoveArray<PlayerVisualClass*> visualClasses;
         csl::ut::InplaceMoveArray<PlayerVisual*, 8> visuals; // has no allocator?
@@ -24,7 +24,6 @@ namespace app::player {
         csl::ut::MoveArray<void*> unk11;
         uint16_t flags;
 
-    public:
         struct SetupInfo {
             unsigned int visualCount;
         };

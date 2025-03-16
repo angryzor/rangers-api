@@ -8,7 +8,8 @@ namespace hh::anim {
         uint32_t activeTriggerBits;
         char flags;
         char unk204b;
-        uint64_t unk205;
+        uint32_t unk205;
+        float unk206;
     
         struct SetupInfo : public GOCAnimationSingle::SetupInfo {
             AsmResourceManager* asmResourceManager;

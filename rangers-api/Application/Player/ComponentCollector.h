@@ -41,5 +41,6 @@ namespace app::player {
 
     public:
         ComponentCollector(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, GOCPlayerVisual* gocPlayerVisual);
+        void AttachFrames();
     };
 }
