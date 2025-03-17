@@ -11,7 +11,7 @@ namespace app::dv {
         void* unk3;
         short unk4;
 
-        virtual void UnkFunc0(void* a2) override;
+        virtual void SetModelResource(hh::gfx::ResModel* resource) override;
         virtual void* VisualModelRelated3(void* a2, float a3, bool a4) override;
         virtual void* VisualModelRelated7(void* a2) override;
 

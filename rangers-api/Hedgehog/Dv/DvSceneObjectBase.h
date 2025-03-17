@@ -5,11 +5,11 @@ namespace hh::dv {
     public:
         fnd::Handle<DvStandardCharacter> dvStandardChar;
         void* unk0;
-        int unk1;
+        int visualModelNameHash;
         int unk2;
 
         virtual void* ReturnA2(void* a2);
-        virtual void UnkFunc0(void* a2) {};
+        virtual void SetModelResource(hh::gfx::ResModel* resource) {};
         virtual void* VisualModelRelated0(gfx::ResVertexAnimationTexture* resVAT, void* a3, bool a4);
         virtual void* VisualModelRelated1(void* a2, float a3, bool a4);
         virtual void* VisualModelRelated2(void* a2, float a3, bool a4);
