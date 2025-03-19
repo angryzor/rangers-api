@@ -32,6 +32,7 @@ namespace hh::fnd {
         }
 
         void LoadPackfile(const char* uri, uint32_t unk);
+        inline void LoadPackfile(const char* uri) { LoadPackfile(uri, 0); }
         void LoadResource(const Uri& uri, const ResourceTypeInfo* resourceTypeInfo, int unk, uint32_t unk2, Locale& locale);
     };
 }

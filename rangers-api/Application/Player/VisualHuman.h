@@ -37,8 +37,8 @@ namespace app::player {
         VisualHuman(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, ComponentCollection* unkParam1);
         
         virtual void SetupEffects() override;
-        virtual void Init() override;
-        virtual void Deinit() override;
+        virtual void OnStart() override;
+        virtual void OnEnd() override;
         virtual void SetupFacialAnimation() {}
         virtual void CreateEffects() {}
         virtual void BindEffects() {}

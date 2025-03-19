@@ -54,7 +54,7 @@ namespace app::trr {
 
         void Setup(const SetupInfo& setupInfo);
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;

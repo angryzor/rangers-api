@@ -38,7 +38,7 @@ namespace app::game {
         float timeUntilNextUpdate;
         csl::fnd::Mutex mutex;
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
         virtual void PreStepCallback(hh::game::GameManager* gameManager, const hh::game::GameStepInfo& gameStepInfo) override;

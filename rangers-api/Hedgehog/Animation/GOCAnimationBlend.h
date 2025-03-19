@@ -13,7 +13,7 @@ namespace hh::anim {
         uint64_t unk204;
         csl::ut::MoveArray<void*> unk205;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
         virtual uint64_t UnkFunc4() override;
 

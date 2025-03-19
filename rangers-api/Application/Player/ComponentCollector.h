@@ -12,35 +12,41 @@ namespace app::player {
 
         void AddComponent(hh::game::GOComponent* component);
         void RemoveComponent(hh::game::GOComponent* component);
+        void UpdateVisibility();
     };
 
     class ComponentCollector;
     struct ComponentCollection {
+        enum class Flag {
+            UNK0,
+            VISIBLE,
+        };
+
         csl::ut::MoveArray<Component> components;
         ComponentCollector* componentCollector;
         uint64_t unk3;
-        uint8_t unk4;
+        csl::ut::Bitset<Flag> flags;
 
         ComponentCollection();
         void Initialize(hh::game::GameObject* gameObject, unsigned int componentCount);
         Component& GetComponent(int id);
         hh::fnd::HFrame* GetFrame() const;
+        void SetVisibility(bool visible);
     };
 
     class GOCPlayerVisual;
     class ComponentCollector : public hh::fnd::ReferencedObject {
     public:
-
-    private:
         hh::game::GameObject* gameObject;
         GOCPlayerVisual* gocPlayerVisual;
         ComponentCollection componentCollections[4];
         hh::fnd::Reference<hh::fnd::HFrame> frame;
-        uint64_t unk2;
-        bool unk3;
+        int currentPlayerVisual;
+        int unk3;
+        bool unk4;
 
-    public:
         ComponentCollector(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, GOCPlayerVisual* gocPlayerVisual);
         void AttachFrames();
+        void SetCurrentPlayerVisual(int id, bool unk4Param);
     };
 }

@@ -17,7 +17,7 @@ namespace app::player {
         uint32_t unk205;
         uint8_t unk206;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
         virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
         virtual void PVL_UnkFunc1(void* unkParam1, void* unkParam2) override;

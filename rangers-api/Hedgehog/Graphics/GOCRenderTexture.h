@@ -52,7 +52,7 @@ namespace hh::gfx {
         uint64_t unk230[16];
 
         GOCRenderTexture(csl::fnd::IAllocator* allocator);
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
 
         void Setup(const SetupInfo& setupInfo);

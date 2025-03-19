@@ -25,7 +25,7 @@ namespace hh::game {
         csl::ut::InplaceMoveArray<LevelManagerListener*, 1> listeners;
         bool unk104;
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void MLL_UnkFunc1(uint64_t unkParam1, uint64_t unkParam2, uint64_t unkParam3) override;
         virtual void MLL_UnkFunc2() override;
         virtual void MLL_UnkFunc3() override;

@@ -24,8 +24,9 @@ namespace hh::fnd
 		uint32_t unk3;
 
 		Messenger(csl::fnd::IAllocator* pAllocator);
+		virtual ~Messenger();
 
-		virtual void* GetRuntimeTypeInfo();
+		virtual void* GetRuntimeTypeInfo() const;
 		virtual bool ProcessMessage(Message& message);
 		virtual bool fUnk3() { return false; }
 		virtual bool ReceiveMessage(Message& message);

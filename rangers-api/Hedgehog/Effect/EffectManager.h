@@ -4,17 +4,40 @@ namespace hh::eff {
     class EffectHandle {
     public:
         int unk1;
-        void* unk2;
+        Cyan::EffectHandle* cyanEffectHandle;
         EffectHandle();
         EffectHandle(const EffectHandle& other);
 
-        const csl::math::Vector3& GetScale() const;
         const csl::ut::Color8& GetColor() const;
-        uint8_t GetAlpha() const;
 
-        void SetScale(const csl::math::Vector3& scale);
-        void SetColor(const csl::ut::Color8& color);
+        uint8_t GetAlpha() const;
+        csl::math::Matrix34 GetMatrix() const;
+        const char* GetName() const;
+        const csl::math::Vector3& GetScale() const;
+        const csl::math::Matrix34& GetWorldMatrix() const;
+        bool GetUnk6() const;
+        bool GetUnk5() const;
+        bool IsPaused() const;
+        bool IsValid() const;
+        bool IsAlive() const; // same as IsValid
+        bool IsVisible() const;
+
         void SetAlpha(uint8_t alpha);
+        void SetBillboard();
+        void SetColor(const csl::ut::Color8& color);
+        void SetEmitRatio(float emitRatio);
+        void SetUnk2(unsigned int value);
+        void SetMatrix(const csl::math::Matrix34& matrix);
+        void SetUnk4(float value);
+        void SetPause(bool paused);
+        void SetUnk3(float value);
+        void SetScale(const csl::math::Vector3& scale);
+        void SetScale(float scale);
+        void SetViewMask(unsigned int mask);
+        void SetVisible(bool enabled);
+        void SetWorldMatrix(const csl::math::Matrix34& matrix);
+
+        void Stop();
     };
 
     class EffectManager : public game::GameService, public game::GameStepListener, public game::GameUpdateListener {
@@ -133,7 +156,7 @@ namespace hh::eff {
         Resolver resolver;
         csl::ut::MoveArray<void*> unk2;
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
 		virtual void PreStepCallback(game::GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;

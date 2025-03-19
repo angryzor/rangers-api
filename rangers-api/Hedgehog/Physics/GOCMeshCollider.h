@@ -11,7 +11,7 @@ namespace hh::physics {
 
         fnd::Reference<hh::fnd::ReferencedObject> meshResource;
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void GetShape(ColliShape& shape) const override;
 
         void Setup(const SetupInfo& setupInfo);

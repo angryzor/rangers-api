@@ -29,7 +29,7 @@ namespace hh::gfx {
         csl::ut::MoveArray<Capsule> capsules;
         int unk3;
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual void HFrameUpdatedCallback(const fnd::HFrame* frame, bool unkParam) override;
 

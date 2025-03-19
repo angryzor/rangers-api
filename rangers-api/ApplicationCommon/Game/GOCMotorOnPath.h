@@ -32,7 +32,7 @@ namespace app_cmn::game {
 
         GOCMotorOnPath(csl::fnd::IAllocator* allocator);
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void InitTransform(csl::math::Transform& transform) override;
         virtual void UpdateSetEditor() override;
         virtual void InitConfig() override;

@@ -16,7 +16,7 @@ namespace hh::game {
         fnd::Packfile* packFile;
         uint8_t flags; // 0 = LEVEL_STARTED, 1 = EDITOR_STARTED
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
 		virtual void UpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;

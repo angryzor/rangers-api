@@ -4,7 +4,7 @@ namespace SurfRide {
     class CastListener {
     public:
         virtual ~CastListener();
-        virtual void* GetRuntimeTypeInfo();
+        virtual void* GetRuntimeTypeInfo() const;
         virtual int64_t Unk1();
         virtual int64_t Unk2();
         virtual int64_t Unk3();

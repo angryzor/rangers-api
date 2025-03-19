@@ -132,7 +132,7 @@ namespace app::gfx {
         bool UpdateNeedleFxParameterInterpolators();
 
     public:
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
 		virtual void PostStepCallback(hh::game::GameManager* gameManager, const hh::game::GameStepInfo& gameStepInfo) override;

@@ -48,7 +48,7 @@ namespace hh::anim {
         csl::ut::MoveArray<void*> unk306;
         csl::ut::MoveArray<void*> unk307;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void LoadReflection(const LoadReflectionInfo& loadReflectionInfo) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual void UnkFunc3() override;

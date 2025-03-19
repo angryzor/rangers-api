@@ -45,6 +45,9 @@ struct SLIST_HEADER_SHIM {
 #ifdef CreateDirectory
 #undef CreateDirectory
 #endif
+#ifdef GetUserName
+#undef GetUserName
+#endif
 
 #include <ucsl/newtype.h>
 
@@ -407,6 +410,7 @@ namespace rangerssdk::ucsl {
 #include "Hedgehog/Font/FontContainer.h"
 
 #include "Hedgehog/User/UserInfoEvent.h"
+#include "Hedgehog/User/UserService.h"
 
 // Hedgehog Framework
 #include "Hedgehog/Framework/FrameworkConfig.h"

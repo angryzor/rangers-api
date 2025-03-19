@@ -20,7 +20,7 @@ namespace app::game {
         csl::ut::MoveArray<LevelLoaderEntry> levelLoaders; // first of pair is name hash
         hh::ut::TinyFsm<GameModeResourceManager> fsm;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
 
