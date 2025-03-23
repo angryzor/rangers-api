@@ -6,8 +6,21 @@ namespace app::dv{
         struct Data {
         public:
             enum class Flags : unsigned int {
-                ENABLED,
+                DEPTH_ENABLED,
                 CURVE_ENABLED
+            };
+
+            enum class GradationType : unsigned int {
+                GRADATION_MODE_CIRCLE,
+                GRADATION_MODE_LINE
+            };
+
+            enum class BlendMode : unsigned int {
+                BLEND_MODE_ALPHA_BLEND,
+                BLEND_MODE_ADD,
+                BLEND_MODE_MUL,
+                BLEND_MODE_SCREEN,
+                BLEND_MODE_OVERLAY,
             };
 
             struct VignetteParam {
@@ -15,15 +28,15 @@ namespace app::dv{
                 csl::math::Vector2 position;
                 csl::math::Vector2 size;
                 float scale;
+                csl::math::Vector2 lineDirection;
+                int opacity;
+                unsigned int color[3];
+                float penumbraScale;
+                float intensity;
                 float rotation;
-                float unk0;
-                int alpha;
-                float unk1;
-                float unk2;
-                float unk3;
             };
 
-            struct MinMaxParam {
+            struct DepthParam {
             public:
                 float minMaxPenumbraScale[2];
                 float bokehScale;
@@ -33,17 +46,15 @@ namespace app::dv{
             };
 
             csl::ut::Bitset<Flags> flags;
-            int unk1;
-            VignetteParam param0;
-            csl::math::Vector2 center;
-            csl::math::Vector2 direction;
-            float penumbraScale0;
-            MinMaxParam mmParam0;
-            VignetteParam param1;
-            float unk2;
-            float penumbraScale1;
-            float unk3;
-            MinMaxParam mmParam1;
+            GradationType gradationType;
+            VignetteParam vignetteParams;
+        private:
+            int unused0;
+        public:
+            BlendMode blendMode;
+            DepthParam depthParams;
+            VignetteParam finishVignetteParams;
+            DepthParam finishDepthParams;
             float curveData[32];
         };
 
