@@ -166,14 +166,14 @@ namespace hh::eff {
         };
 
         struct Description {
-            uint32_t unk1;
-            uint32_t unk2;
-            float unk3;
-            uint32_t unk4;
-            int unk5;
-            uint32_t unk6;
-            uint8_t unk7;
-            bool unk8;
+            uint32_t unkB0Count{};
+            uint32_t unk2{ 1 };
+            float scale{ 1.0f };
+            uint32_t unk4{};
+            int unk5{ -1 };
+            unsigned int modelNameHash{};
+            uint8_t unk7{};
+            bool unk8{};
         };
 
         struct EffectTransInfo {
