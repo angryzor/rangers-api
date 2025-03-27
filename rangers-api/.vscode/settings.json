@@ -1,7 +1,0 @@
-{
-  "files.associations": {
-    "*.hson": "json",
-    "xmemory0": "cpp",
-    "xiosbase": "cpp"
-  }
-}
