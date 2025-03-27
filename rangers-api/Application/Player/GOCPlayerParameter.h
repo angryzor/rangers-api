@@ -92,7 +92,7 @@ namespace app::player {
         //     return reinterpret_cast<T*>(GetPlayerParameter(rflClass));
         // }
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(hh::game::GOComponent::GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 

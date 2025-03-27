@@ -34,7 +34,7 @@ namespace hh::game
 
 		GameService(csl::fnd::IAllocator* allocator);
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnAddedToGame() {}
 		virtual void OnRemovedFromGame() {}
 	};

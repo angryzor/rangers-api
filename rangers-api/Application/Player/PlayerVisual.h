@@ -32,11 +32,23 @@ namespace app::player {
 
     class GOCPlayerVisual;
     class PlayerVisual : public hh::fnd::ReferencedObject {
+    public:
+        enum class Flag : unsigned char {
+            UNK0,
+        };
+
+        enum class StateFlag : unsigned char {
+            IS_CURRENT,
+        };
+
+    private:
         hh::game::GameObject* gameObject;
         GOCPlayerVisual* gocPlayerVisual;
         ComponentCollection* componentCollection;
         hh::fnd::Reference<EffectList> effectList;
-        uint16_t unk2;
+        csl::ut::Bitset<Flag> flags;
+        csl::ut::Bitset<StateFlag> stateFlags;
+
     public:
         PlayerVisual(csl::fnd::IAllocator* allocator, hh::game::GameObject* gameObject, ComponentCollection* componentCollection);
 
@@ -46,8 +58,8 @@ namespace app::player {
         virtual void UnkFunc4() {}
         virtual void UnkFunc5();
         virtual void UnkFunc6();
-        virtual void Init() = 0;
-        virtual void Deinit() = 0;
+        virtual void OnStart() = 0;
+        virtual void OnEnd() = 0;
 
         Component& GetComponent(int id) const;
         hh::anim::GOCAnimator* GetComponentAnimator(char componentId) const;
@@ -65,5 +77,10 @@ namespace app::player {
         void DetachComponent(char componentId);
 
         void SetupEffectList(unsigned int effectCount);
+        void SetFlag0();
+        void SetFlag(Flag flag, bool enabled);
+        void Start();
+        void End();
+        void SetVisibility(bool visible);
     };
 }

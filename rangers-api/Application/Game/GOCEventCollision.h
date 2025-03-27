@@ -38,7 +38,7 @@ namespace app::game {
             SetupInfo();
         };
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void OnGOCEvent(hh::game::GOComponent::GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 

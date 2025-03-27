@@ -15,7 +15,7 @@ namespace app::save {
             uint64_t unk4;
         };
 
-        uint64_t qword90;
+        hh::fnd::UserId userId;
         csl::ut::MoveArray<hh::fnd::Reference<UserElement>> userElements;
         uint32_t dwordB8;
         uint32_t qwordBC;
@@ -33,7 +33,7 @@ namespace app::save {
 
         SaveInterface(csl::fnd::IAllocator* allocator);
 
-        void AddUserElement(UserElement* userElement);
+        UserElement* AddUserElement(const hh::fnd::UserId& userId);
 
         GameDataAc GetGameDataAccessor();
         ArcadeDataAc GetArcadeDataAccessor();

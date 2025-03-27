@@ -129,7 +129,7 @@ namespace hh::game
 		
 	public:
 		virtual ~GameObject();
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual bool ProcessMessage(fnd::Message& message) override;
 		virtual bool ReceiveMessage(fnd::Message& message) override;
 		virtual bool IsAcceptingMessages() override;

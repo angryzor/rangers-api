@@ -58,7 +58,7 @@ namespace hh::anim {
 
         GOCCharacterIk(csl::fnd::IAllocator* allocator);
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(GOCEvent event, game::GameObject& ownerGameObject, void* data) override;
         virtual iksolver::SolverBase* CreateSolver(SolverType solverType);

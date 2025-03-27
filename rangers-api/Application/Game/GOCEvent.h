@@ -24,7 +24,7 @@ namespace app::game {
         csl::ut::MoveArray<GOCEventListener*> listeners;
         csl::ut::Bitset<Flag> flags;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 
         void Setup(const SetupInfo& setupInfo);
         void AddListener(GOCEventListener* listener);

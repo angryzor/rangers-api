@@ -20,7 +20,7 @@ namespace app_cmn::game {
         int unk212;
 
         GOCMotorConstant(csl::fnd::IAllocator* allocator);
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateSetEditor() override;
         virtual void InitConfig() override;
         virtual void UpdateTransform(float time, csl::math::Transform& transform) override;

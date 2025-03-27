@@ -16,7 +16,7 @@ namespace app_cmn::game {
         uint8_t byte110;
 
         GOCMotorRotate(csl::fnd::IAllocator* allocator);
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateSetEditor() override;
         virtual void InitConfig() override;
         virtual void UpdateTransform(float time, csl::math::Transform& transform) override;

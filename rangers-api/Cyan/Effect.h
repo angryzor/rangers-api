@@ -1,10 +1,11 @@
 #pragma once
 
 namespace Cyan {
+    class Effect;
     class EffectHandle {
     public:
         int unk1;
-        void* unk2;
+        Effect* effect;
         EffectHandle();
         EffectHandle(const EffectHandle& other);
 

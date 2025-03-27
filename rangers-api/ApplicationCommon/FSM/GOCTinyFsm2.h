@@ -90,7 +90,7 @@ namespace app_cmn::fsm {
             reinterpret_cast<GOCTinyFsm2<hh::game::GameObject>*>(this)->Initialize(reinterpret_cast<const GOCTinyFsm2<hh::game::GameObject>::Config&>(config));
         }
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual bool ProcessMessage(hh::fnd::Message& msg) override;

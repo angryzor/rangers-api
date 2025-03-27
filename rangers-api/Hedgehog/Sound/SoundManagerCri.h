@@ -5,8 +5,9 @@ namespace hh::snd {
     public:
         ResAtomConfig* atomConfig;
         csl::ut::MoveArray<hh::fnd::Reference<hh::snd::ResAtomCueSheet>> cueSheets;
+        csl::ut::MoveArray<void*> debugUnk202;
         
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual void ResourceLoadedCallback(fnd::ManagedResource* resource) override;
         virtual void ResourceUnloadedCallback(fnd::ManagedResource* resource) override;
 

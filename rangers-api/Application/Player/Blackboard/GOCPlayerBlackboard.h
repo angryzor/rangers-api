@@ -7,7 +7,7 @@ namespace app::player {
 
         GOCPlayerBlackboard(csl::fnd::IAllocator* allocator);
 
-		virtual void* GetRuntimeTypeInfo();
+		virtual void* GetRuntimeTypeInfo() const;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) {}
 
         GOCOMPONENT_CLASS_DECLARATION(GOCPlayerBlackboard)

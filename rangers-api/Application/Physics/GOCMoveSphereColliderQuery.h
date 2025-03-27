@@ -9,7 +9,7 @@ namespace app::physics {
         uint8_t unk204;
 
         GOCMoveSphereColliderQuery(csl::fnd::IAllocator* allocator);
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
         virtual bool UnkFunc101(void* unkParam1, void* unkParam2) override;
 
         GOCOMPONENT_CLASS_DECLARATION(GOCMoveSphereColliderQuery);

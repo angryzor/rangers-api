@@ -66,7 +66,7 @@ namespace app::gfx {
 		static float InterpolateIsotropicObb(const csl::math::Vector3& cameraPosition, const csl::math::Vector3& position, const csl::math::Quaternion, float halfWidth, float halfHeight, float halfDepth, float borderThickness);
 
 	public:
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;

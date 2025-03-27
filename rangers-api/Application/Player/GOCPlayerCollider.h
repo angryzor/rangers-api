@@ -3,6 +3,10 @@
 namespace app::player {
     class GOCPlayerCollider : public hh::game::GOComponent {
     public:
+        struct SetupInfo {
+            bool unk1;
+        };
+
         csl::ut::MoveArray<void*> unk201;
         csl::ut::MoveArray<void*> unk202;
         hh::fnd::Reference<hh::physics::PhysicsRaycastJob> physicsRaycastJob;
@@ -17,10 +21,11 @@ namespace app::player {
 
         GOCPlayerCollider(csl::fnd::IAllocator* allocator);
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
 
+        void Setup(const SetupInfo& setupInfo);
         PlayerCollision* GetPlayerCollision() const;
         PlayerController* GetPlayerController() const;
 

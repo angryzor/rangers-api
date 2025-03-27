@@ -28,7 +28,7 @@ namespace app::camera {
         bool word1ACb;
         uint16_t unk5[2];
 
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;

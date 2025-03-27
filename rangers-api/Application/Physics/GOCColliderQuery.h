@@ -17,7 +17,7 @@ namespace app::physics {
         uint16_t word160;
 
         GOCColliderQuery(csl::fnd::IAllocator* allocator);
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
         virtual bool UnkFunc101(void* unkParam1, void* unkParam2);
         virtual void HFrameUpdatedCallback(const hh::fnd::HFrame* frame, bool unkParam) override;

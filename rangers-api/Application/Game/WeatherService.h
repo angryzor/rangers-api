@@ -42,7 +42,7 @@ namespace app::game {
         uint64_t unk17;
         uint8_t unk18;
     
-		virtual void* GetRuntimeTypeInfo() override;
+		virtual void* GetRuntimeTypeInfo() const override;
 		virtual bool ProcessMessage(hh::fnd::Message& message) override;
 		virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
