@@ -15,7 +15,7 @@ namespace hh::ui {
         void* unk1;
         char unk2;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 
         GAMESERVICE_CLASS_DECLARATION(SurfRideViewerManager)
     };

@@ -13,7 +13,7 @@ namespace app::evt {
         csl::ut::VariableString unk6;
         int unk7;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
         virtual void GameServiceAddedCallback(hh::game::GameService* gameService) override;

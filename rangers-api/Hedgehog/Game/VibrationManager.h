@@ -7,7 +7,7 @@ namespace hh::game{
         csl::ut::MoveArray<void*> unkArray0;
         csl::ut::PointerMap<int, void*> unkPtrMap0;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual void OnAddedToGame() override;
 		virtual void OnRemovedFromGame() override;
 

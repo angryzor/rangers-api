@@ -3,7 +3,7 @@
 namespace hh::dv {
     class DiEventPreviewManager : public DiEventManager {
     public:
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
 
         GAMESERVICE_CLASS_DECLARATION(DiEventPreviewManager)
     };

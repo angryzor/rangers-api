@@ -17,7 +17,7 @@ namespace hh::dv {
         int currentScenePlaybackInfoId;
         char unk4;
 
-        virtual void* GetRuntimeTypeInfo() override;
+        virtual void* GetRuntimeTypeInfo() const override;
         virtual bool ProcessMessage(hh::fnd::Message& message) override;
         virtual bool ReceiveMessage(hh::fnd::Message& message) override;
         virtual void OnAddedToGame() override;
