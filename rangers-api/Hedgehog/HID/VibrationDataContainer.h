@@ -2,6 +2,17 @@
 #include <ucsl/resources/vibration/v21.h>
 
 namespace hh::hid{
+    class VibrationData : public fnd::ReferencedObject {
+    public:
+        int unk0;
+        int unk1;
+        int unk2;
+        int unk3;
+        float unk4;
+        int unk5;
+        int64_t unk6;
+    };
+
     class VibrationDataContainer : public fnd::ReferencedObject{
     public:
         ucsl::resources::vibration::v21::Vibration* vibrationData;
