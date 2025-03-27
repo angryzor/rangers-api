@@ -3,8 +3,8 @@
 #define VIEWER_CLASS_DECLARATION(ClassName) private:\
         ClassName(csl::fnd::IAllocator* allocator);\
 	public:\
-		static const hh::dbg::ViewerClass viewerClass;\
 		static ClassName* Create(csl::fnd::IAllocator* allocator);
+		static const hh::dbg::ViewerContextClass* GetClass();
 
 namespace hh::dbg {
     class ViewerManager;

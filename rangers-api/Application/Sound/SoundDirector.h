@@ -20,7 +20,7 @@ namespace app::snd {
     public:
         struct Unk1 {
             uint32_t unk1;
-            uint64_t unk2;
+            uint64_t sndPlyCri;
 
             Unk1();
         };
@@ -52,7 +52,7 @@ namespace app::snd {
             Unk3();
         };
 
-        uint64_t qword80;
+        hh::snd::SoundManagerCri sndMgrCri;
         uint32_t dword88;
         Unk1 unk90;
         Unk3 unkA0[3];

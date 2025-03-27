@@ -36,15 +36,15 @@ namespace app::snd {
         void SetBgmId(unsigned int id, bool autoRemoveRequest);
 
         virtual ~BgmIdExtension();
-        virtual unsigned int GetNameHash() const;
-        virtual void UnkFunc2();
-        virtual void UnkFunc3();
-        virtual void Update(hh::fnd::SUpdateInfo updateInfo);
-        virtual bool ProcessMessage(hh::fnd::Message& message);
+        virtual unsigned int GetNameHash() const override;
+        virtual void UnkFunc2() override;
+        virtual void UnkFunc3() override;
+        virtual void Update(hh::fnd::SUpdateInfo updateInfo) override;
+        virtual bool ProcessMessage(hh::fnd::Message& message) override;
 
-        virtual void EPL_UnkFunc2() {}
-        virtual void EPL_UnkFunc4() {}
-        virtual void EPL_UnkFunc5() {}
-        virtual void EPL_UnkFunc7() {}
+        virtual void EPL_UnkFunc2() override;
+        virtual void EPL_UnkFunc4() override;
+        virtual void EPL_UnkFunc5() override;
+        virtual void OnMessage(hh::fnd::Message* msg) override;
     };
 }
