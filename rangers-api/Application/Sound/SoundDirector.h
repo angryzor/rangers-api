@@ -52,7 +52,7 @@ namespace app::snd {
             Unk3();
         };
 
-        hh::snd::SoundManagerCri sndMgrCri;
+        hh::snd::SoundManagerCri* sndMgrCri;
         uint32_t dword88;
         Unk1 unk90;
         Unk3 unkA0[3];
