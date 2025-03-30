@@ -1,12 +1,22 @@
 #pragma once
 
 namespace app::ui {
+    enum class OverlayType {
+        TOAST,
+        WINDOW,
+        CAPTION,
+        CAPTION_SELECT_BOX,
+        OBJECTIVE,
+        OPERATION_GUIDE,
+        PRACTICE_NOTIFIER,
+        CELEBRATION,
+    };
+
     class RequestOverlayBegin : public hh::fnd::ReferencedObject {
     public:
-        uint32_t unk1;
-        uint8_t unk2;
+        OverlayType type;
+        bool block;
         uint8_t unk3;
-        OverlayTextVariableCollection textVariables;
 
         RequestOverlayBegin(csl::fnd::IAllocator* allocator);
     };

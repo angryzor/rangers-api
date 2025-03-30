@@ -19,6 +19,14 @@ struct SLIST_HEADER_SHIM {
 };
 #define SLIST_HEADER SLIST_HEADER_SHIM
 
+namespace std {
+    template<typename T>
+    class optional {
+        T value;
+        bool hasValue;
+    };
+}
+
 #else
 
 #include <new>
@@ -838,7 +846,7 @@ namespace rangerssdk::ucsl {
 
 #include "Application/UI/AppUITextInterface.h"
 #include "Application/UI/UIMusicSelect.h"
-#include "Application/UI/UIOverlayTextVariable.h"
+#include "Application/UI/RequestOverlayTagReplace.h"
 #include "Application/UI/RequestOverlayBegin.h"
 #include "Application/UI/RequestOverlayWindow.h"
 #include "Application/UI/RequestOverlayCaption.h"

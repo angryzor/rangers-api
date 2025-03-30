@@ -3,12 +3,6 @@
 namespace app::level {
     class PlayerInformation : public hh::fnd::BaseObject {
     public:
-        template<typename T>
-        struct Unk1 {
-            T value{};
-            bool isSet{};
-        };
-
         struct Unk2 {
             hh::fnd::Handle<hh::fnd::Messenger> unk1;
             uint16_t unk2;
@@ -34,46 +28,46 @@ namespace app::level {
             uint64_t unk2;
         };
 
-        Unk1<hh::fnd::Handle<app::player::Player>> playerObject;
-        Unk1<player::CharacterIdU8> characterId;
-        Unk1<csl::math::Vector3> position;
-        Unk1<csl::math::Vector3> vector440;
-        Unk1<csl::math::Quaternion> rotation;
-        Unk1<float> dword80;
-        Unk1<csl::math::Vector3> vector490;
-        Unk1<csl::math::Vector3> vector4B0;
-        Unk1<csl::math::Vector3> vector4D0;
-        Unk1<csl::math::Vector3> vector4F0;
-        Unk1<csl::math::Vector3> vector4110;
-        Unk1<csl::math::Vector3> vector4130;
-        Unk1<csl::math::Vector3> vector4150;
-        Unk1<csl::math::Vector3> vector4170;
-        Unk1<csl::math::Vector3> vector4190;
-        Unk1<csl::math::Vector3> vector41B0;
-        Unk1<csl::math::Vector3> vector41D0;
-        Unk1<csl::math::Vector3> vector41F0;
-        Unk1<csl::math::Vector3> vector4210;
-        Unk1<csl::math::Vector3> vector4230;
-        Unk1<csl::math::Vector3> vector4250;
-        Unk1<csl::math::Vector3> vector4270;
-        Unk1<bool> word290;
-        Unk1<Unk3> qword294;
-        Unk1<Unk3> qword2A0;
-        Unk1<uint32_t> boostGaugeCount;
-        Unk1<float> stamina;
-        Unk1<float> dword2BC;
-        Unk1<uint8_t> word2C4;
-        Unk1<float> dword2C8;
-        Unk1<float> quickCyloopAmount;
-        Unk1<uint64_t> qword2D8;
-        Unk1<int> dword2E4;
+        std::optional<hh::fnd::Handle<app::player::Player>> playerObject;
+        std::optional<player::CharacterIdU8> characterId;
+        std::optional<csl::math::Vector3> position;
+        std::optional<csl::math::Vector3> vector440;
+        std::optional<csl::math::Quaternion> rotation;
+        std::optional<float> dword80;
+        std::optional<csl::math::Vector3> vector490;
+        std::optional<csl::math::Vector3> vector4B0;
+        std::optional<csl::math::Vector3> vector4D0;
+        std::optional<csl::math::Vector3> vector4F0;
+        std::optional<csl::math::Vector3> vector4110;
+        std::optional<csl::math::Vector3> vector4130;
+        std::optional<csl::math::Vector3> vector4150;
+        std::optional<csl::math::Vector3> vector4170;
+        std::optional<csl::math::Vector3> vector4190;
+        std::optional<csl::math::Vector3> vector41B0;
+        std::optional<csl::math::Vector3> vector41D0;
+        std::optional<csl::math::Vector3> vector41F0;
+        std::optional<csl::math::Vector3> vector4210;
+        std::optional<csl::math::Vector3> vector4230;
+        std::optional<csl::math::Vector3> vector4250;
+        std::optional<csl::math::Vector3> vector4270;
+        std::optional<bool> word290;
+        std::optional<Unk3> qword294;
+        std::optional<Unk3> qword2A0;
+        std::optional<uint32_t> boostGaugeCount;
+        std::optional<float> stamina;
+        std::optional<float> dword2BC;
+        std::optional<uint8_t> word2C4;
+        std::optional<float> dword2C8;
+        std::optional<float> quickCyloopAmount;
+        std::optional<uint64_t> qword2D8;
+        std::optional<int> dword2E4;
         uint32_t dword2EC;
         uint32_t dword2F0;
-        Unk1<csl::math::Vector3> groundNormal;
-        Unk1<float> altitude;
-        Unk1<csl::math::Vector3> vector4330;
-        Unk1<uint32_t> dword350;
-        Unk1<uint32_t> dword358;
+        std::optional<csl::math::Vector3> groundNormal;
+        std::optional<float> altitude;
+        std::optional<csl::math::Vector3> vector4330;
+        std::optional<uint32_t> dword350;
+        std::optional<uint32_t> dword358;
         uint32_t dword360;
         uint32_t dword364;
         uint32_t dword368;
@@ -97,18 +91,18 @@ namespace app::level {
         uint32_t dword3B4;
         uint32_t dword3B8;
         uint32_t dword3BC;
-        Unk1<Unk3> qword3C0;
-        Unk1<uint32_t> maxRings;
+        std::optional<Unk3> qword3C0;
+        std::optional<uint32_t> maxRings;
         uint32_t dword3D4;
         uint32_t dword3D8;
-        Unk1<Unk2> unk13241;
-        Unk1<csl::math::Vector3> vector4480;
-        Unk1<Unk3> qword4A0;
-        Unk1<uint32_t> dword4AC;
-        Unk1<uint8_t> word4B4;
-        Unk1<uint32_t> dword4B8;
-        Unk1<float> dword4C0;
-        Unk1<csl::math::Transform> transform44F0;
+        std::optional<Unk2> unk13241;
+        std::optional<csl::math::Vector3> vector4480;
+        std::optional<Unk3> qword4A0;
+        std::optional<uint32_t> dword4AC;
+        std::optional<uint8_t> word4B4;
+        std::optional<uint32_t> dword4B8;
+        std::optional<float> dword4C0;
+        std::optional<csl::math::Transform> transform44F0;
         Unk4 qword510[3];
 
         PlayerInformation(csl::fnd::IAllocator* allocator);

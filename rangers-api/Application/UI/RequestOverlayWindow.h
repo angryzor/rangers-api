@@ -1,7 +1,7 @@
 #pragma once
 
 namespace app::ui {
-    class RequestOverlayWindow : public RequestOverlayBegin {
+    class RequestOverlayWindow : public RequestOverlayBegin, public RequestOverlayTagReplace {
     public:
         uint8_t unk101;
         uint8_t unk102;

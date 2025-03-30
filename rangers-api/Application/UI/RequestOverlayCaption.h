@@ -1,9 +1,26 @@
 #pragma once
 
 namespace app::ui {
-    class RequestOverlayCaption : public RequestOverlayBegin {
-    public:
-        csl::ut::MoveArray<void*> unk201;
+    struct CaptionCollection {
+        struct Caption {
+            csl::ut::String label;
+            csl::ut::String cue;
+            float duration;
+            unsigned int unk1;
+        };
+
+        struct AddInfo {
+            csl::fnd::IAllocator* allocator;
+        };
+
+        csl::ut::MoveArray<Caption> items;
+
+        CaptionCollection(csl::fnd::IAllocator* allocator) : items{ allocator } {}
+        Caption* Add(const AddInfo& addInfo);
+    };
+
+    struct CaptionInfo {
+        CaptionCollection captions;
         uint8_t unk202;
         uint8_t unk203;
         uint8_t unk204;
@@ -14,8 +31,12 @@ namespace app::ui {
         uint8_t unk209;
         uint8_t unk210;
         uint8_t unk211;
+    };
+
+    class RequestOverlayCaption : public RequestOverlayBegin, public RequestOverlayTagReplace, public CaptionInfo {
+    public:
+        CaptionInfo captionInfo;
 
         DEFAULT_CREATE_FUNC(RequestOverlayCaption);
-        void Setup(const char* line1, const char* line2, float time);
     };
 }
