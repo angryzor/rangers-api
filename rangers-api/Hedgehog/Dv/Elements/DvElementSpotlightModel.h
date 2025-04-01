@@ -24,9 +24,9 @@ namespace hh::dv{
         csl::math::Vector4 unk1;
         void* unk2;
         
-        virtual void Update(int currentFrame, csl::math::Transform transform) override;
-        virtual bool AddCallback(int currentFrame, csl::math::Transform transform) override;
-        virtual void* RemoveCallback() override;
+        virtual void Update(int currentFrame, csl::math::Transform* transform) override;
+        virtual bool AddCallback(int currentFrame, csl::math::Transform* transform) override;
+        virtual void RemoveCallback() override;
         virtual void SetData(void* data) override;
         virtual void DeleteData() override;
         virtual void UnkFunc6(int currentFrame, csl::math::Transform transform) override;

@@ -48,11 +48,5 @@ namespace app::evt{
         static const hh::game::GameServiceClass gameServiceClass;
         EventPreviewHelper(csl::fnd::IAllocator* allocator);
         static hh::game::GameService* Create(csl::fnd::IAllocator* allocator);
-
-    public:
-        static const hh::game::GameServiceClass* GetClass() {
-            hh::game::GameServiceClass y{ (const char*)0x141419270, (hh::game::GameServiceClass::CreateFunction*)0x14013C800, 0 };
-            return (hh::game::GameServiceClass*)0x143DAF650;
-        }
     };
 }
