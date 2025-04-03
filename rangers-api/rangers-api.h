@@ -887,6 +887,7 @@ namespace rangerssdk::ucsl {
 #include "Application/Player/StatePlugin/StatePluginManager.h"
 #include "Application/Player/StatePlugin/StatePluginBoost.h"
 #include "Application/Player/StatePlugin/StatePluginCyberStart.h"
+#include "Application/Player/HomingTargetInfo.h"
 #include "Application/Player/GravityController.h"
 #include "Application/Player/GOCPlayerHsm.h"
 #include "Application/Player/GOCPlayerState.h"
@@ -1054,6 +1055,7 @@ namespace rangerssdk::ucsl {
 #include "Application/Dv/Elements/DvElementRifleBeastLighting.h"
 #include "Application/Dv/DvPageConditionQTE.h"
 
+#include "Application/Messages.h"
 #include "Application/VolumeTrigger.h"
 #include "Application/MyApplication.h"
 #include "Application/IslandObjInfo.h"

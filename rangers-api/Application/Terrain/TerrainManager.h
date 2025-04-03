@@ -25,7 +25,7 @@ namespace app::trr {
             uint32_t dynamicSectorCount;
         };
 
-        enum class Flag {
+        enum class Flag : unsigned char {
             LOADED,
             UNK1,
             UNK2,
@@ -41,7 +41,7 @@ namespace app::trr {
         uint64_t unk7;
         uint32_t unk8;
         csl::ut::InplaceMoveArray<csl::math::Vector3, 1> playerPositions;
-        csl::ut::MoveArray<TerrainWorld*> terrains;
+        csl::ut::MoveArray<hh::fnd::Reference<TerrainWorld>> terrains;
         int currentTerrain;
         ReloaderListener* reloaderListener;
         csl::ut::StringMap<void*> unk13;
