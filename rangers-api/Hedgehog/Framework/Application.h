@@ -11,7 +11,7 @@ namespace hh::fw {
     public:
         FrameworkEnvironment* frameworkEnvironment;
         csl::ut::MoveArray<ApplicationListener*> listeners;
-        csl::ut::MoveArray<void*> unk3;
+        csl::ut::MoveArray<AppModule*> modules;
 
         static Application* instance;
         Application(csl::fnd::IAllocator* pAllocator, FrameworkEnvironment* frameworkEnvironment);
@@ -28,6 +28,13 @@ namespace hh::fw {
         }
         void AddMouseEventHandler(MouseEventHandler* handler, uint32_t unkParam1);
         void RemoveMouseEventHandler(MouseEventHandler* handler);
+
+        AppModule* GetModuleByClass(const AppModuleClass* moduleClass);
+
+        template<typename T>
+		T* GetModule() {
+			return static_cast<T*>(GetModuleByClass(T::GetClass()));
+		}
 
         virtual void Startup() {}
         virtual void UnkFunc2() {}
