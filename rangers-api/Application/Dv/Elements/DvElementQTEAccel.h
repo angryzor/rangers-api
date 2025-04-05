@@ -3,7 +3,7 @@
 namespace app::dv{
     class DvElementQTEAccel : public AppDvElementBase{
     public:
-        struct Data {
+        struct Description : hh::dv::DvElementBase::Description {
         public:
             enum class Button : unsigned int {
                 A,

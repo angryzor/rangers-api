@@ -3,7 +3,7 @@
 namespace hh::dv{
     class DvElementSpotlightModel : public DvElementBase {
     public:
-        struct Data {
+        struct Description : DvElementBase::Description {
         public:
             bool curveEnabled;
             csl::math::Position position;
@@ -18,7 +18,7 @@ namespace hh::dv{
             float curveData[64];
         };
 
-        Data binaryData;
+        Description binaryData;
         hh::fnd::Reference<hh::game::GameObject> light;
         csl::math::Vector4 unk0;
         csl::math::Vector4 unk1;

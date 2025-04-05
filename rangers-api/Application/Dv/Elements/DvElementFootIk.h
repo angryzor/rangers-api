@@ -3,7 +3,7 @@
 namespace app::dv{
     class DvElementFootIk : public AppDvElementBase{
     public:
-        struct Data {}; // unknown
+        struct Description : hh::dv::DvElementBase::Description {}; // unknown
 
         void* unk0;
 
