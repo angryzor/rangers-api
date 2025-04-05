@@ -3,7 +3,7 @@
 namespace app::dv{
     class DvElementTheEndCableObject : public AppDvElementBase{
     public:
-        struct Data {
+        struct Description : hh::dv::DvElementBase::Description {
         public:
             int unk0;
             int unk1;
