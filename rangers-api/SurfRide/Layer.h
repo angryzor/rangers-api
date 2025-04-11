@@ -85,6 +85,7 @@ namespace SurfRide
 		void SetHideFlag(bool enabled);
 		void SetRepeatFlag(bool enabled);
 		bool Is3D();
+		Layer* Copy();
 
 		inline Cast* GetCast(unsigned int id) {
 			for (auto* cast : casts)
