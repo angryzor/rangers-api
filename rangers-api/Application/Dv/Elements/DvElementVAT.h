@@ -3,7 +3,7 @@
 namespace app::dv{
     class DvElementVAT : public AppDvElementBase {
     public:
-        struct Data {
+        struct Description : hh::dv::DvElementBase::Description {
         public:
             enum class Flags : unsigned int {
                 UNK0,
