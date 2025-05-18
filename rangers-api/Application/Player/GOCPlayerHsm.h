@@ -1,6 +1,13 @@
 #pragma once
 
 namespace app::player {
+    class PlayerHsmListener {
+    public:
+        virtual void PlayerHsmInitialized(GOCPlayerHsm* gocPlayerHsm, int initialStateId) {}
+        virtual void PlayerHsmEnteredState(GOCPlayerHsm* gocPlayerHsm, int stateId) {}
+        virtual void PlayerHsmUpdated(GOCPlayerHsm* gocPlayerHsm, float deltaTime) {}
+    };
+
     class GOCPlayerHsm : public hh::game::GOComponent {
     public:
         struct StateDescRef {
@@ -18,8 +25,16 @@ namespace app::player {
             bool enableFinalUpdates;
         };
         enum class Flag : uint8_t {
-
+            UNK0,
+            UNK1,
+            UNK2,
+            UNK3,
+            STATE_CHANGE_PENDING,
+            STATE_CHANGE_RESTART_PENDING,
         };
+
+        void ExecuteStateChange(int stateId);
+        void ExecuteStateChangeRestart(int stateId);
 
     public:
         hh::fnd::Reference<hh::ut::StateManager> stateManager;
@@ -27,13 +42,12 @@ namespace app::player {
         hh::fnd::Reference<PlayerHsmContext> hsmContext;
         hh::fnd::Reference<PlayerStateParameter> playerStateParameter;
         hh::fnd::Reference<StatePluginManager<PlayerHsmContext>> statePluginManager;
-        uint32_t unk105;
-        uint32_t unk105b;
-        uint32_t unk106;
+        int initialState;
+        int nextState;
+        unsigned int priority;
         csl::ut::Bitset<Flag> flags;
-        csl::ut::InplaceMoveArray<void*, 1> unk108;
+        csl::ut::InplaceMoveArray<PlayerHsmListener*, 1> listeners;
         SetupInfo setupInfo;
-
 
         GOCPlayerHsm(csl::fnd::IAllocator* pAllocator);
 		virtual void* GetRuntimeTypeInfo() const override;
@@ -42,7 +56,11 @@ namespace app::player {
 		virtual bool ProcessMessage(hh::fnd::Message& msg) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
         void Setup(const SetupInfo& setupInfo);
-        void SetState(uint32_t stateId, uint32_t unkParam1);
+        void ChangeToNull();
+        void ChangeState(int stateId, unsigned int priority);
+        void ChangeStateRestart(int stateId, unsigned int priority);
+        int GetCurrentState() const;
+        int GetNextState() const;
 
         GOCOMPONENT_CLASS_DECLARATION(GOCPlayerHsm);
     };

@@ -7,7 +7,7 @@ namespace hh::physics {
             float radius{};
             float halfHeight{};
 
-            SetupInfo() : GOCCollider::SetupInfo{ ColliShape::Type::CYLINDER } {}
+            inline SetupInfo() : GOCCollider::SetupInfo{ ColliShape::Type::CYLINDER } {}
         };
 
         float radius{};

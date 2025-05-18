@@ -6,8 +6,27 @@ namespace csl::math {
 	class alignas(16) Vector3 { public: float x; float y; float z; };
 	class alignas(16) Vector4 { public: float x; float y; float z; float w; };
 	class alignas(16) Quaternion { public: float x; float y; float z; float w; };
-	class alignas(16) Matrix44 { public: Vector4 t; Vector4 u; Vector4 v; Vector4 w; };
-	class alignas(16) Matrix34 { public: Vector4 t; Vector4 u; Vector4 v; Vector4 w; };
+	class alignas(16) Matrix44 {
+	public:
+		Vector4 t; Vector4 u; Vector4 v; Vector4 w;
+
+		Matrix44(const Matrix44& other);
+		Matrix44(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44);
+		Vector4 GetRow(int idx) const;
+		Vector4 GetColumn(int idx) const;
+		bool operator==(const Matrix44& other) const;
+	};
+	class alignas(16) Matrix34 {
+	public:
+		Vector4 t; Vector4 u; Vector4 v; Vector4 w;
+
+		Matrix34(const Matrix34& other);
+		Matrix34(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34);
+		Vector3 GetTransVector() const;
+		Vector3 GetRow(int idx) const;
+		Vector3 GetColumn(int idx) const;
+		bool operator==(const Matrix34& other) const;
+	};
 	class Position { public: float x; float y; float z; };
 	class Rotation { public: float x; float y; float z; float w; };
 }
@@ -127,20 +146,47 @@ namespace csl::geom {
 
 namespace csl::math {
 	Vector3 Vector3Cross(const Vector3& x, const Vector3& y);
+	Vector3 Vector3NormalBetween(const Vector3& x, const Vector3& y);
+	Vector3 Vector3Rotate(const Quaternion& rotation, const Vector3& vec);
+	Vector3 Vector3MulAdd(const Vector3 x, const Vector3 y, float scale);
 	float Vector3Distance(const Vector3& x, const Vector3& y);
 	float Vector3DistanceSq(const Vector3& x, const Vector3& y);
 	float Vector3DistanceNormalized(const Vector3& x, const Vector3& y);
 	float Vector3Dot(const Vector3& x, const Vector3& y);
-	Vector3 Vector3NormalBetween(const Vector3& x, const Vector3& y);
+	float Vector3Length(const Vector3& x);
+	float Vector3LengthSq(const Vector3& x);
+	bool Vector3DistanceLessThan(const Vector3& x, const Vector3& y, float threshold);
+	
+	Quaternion QuaternionRotationBetweenNormals(const Vector3& from, const Vector3& to);
+	Quaternion QuaternionRotationBetweenNormalsAxis(const Vector3& from, const Vector3& to, const Vector3& axis);
+	Quaternion QuaternionRotationAxis(const Vector3& position, const Vector3& lookAt, const Vector3& axis);
+	void QuaternionToEulerAngleZXY(const Quaternion& quat, Vector3* result);
 
-	Matrix34 CreateViewMatrix(const Vector3& position, const Vector3& up, const Vector3& target);
-	Matrix44 CreateOrthogonalProjectionMatrix(float top, float bottom, float left, float right, float nearClip, float farClip);
-	Matrix44 CreatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClip, float farClip);
+	bool QuaternionsCloserThan(const Quaternion& quat1, const Quaternion& quat2, float distance);
 
+	Matrix34 Matrix34Transpose(const Matrix34& mat);
+	Matrix34 Matrix34Inverse(const Matrix34& mat, Vector3* maybeDeterminant);
+	bool Matrix34Inverse(const Matrix34& mat, Matrix34* result);
+	Matrix34 Matrix34LookAt(const Vector3& position, const Vector3& up, const Vector3& target);
 	Matrix34 Matrix34Multiply(const Matrix34& x, const Matrix34& y);
 	Matrix34 Matrix34AffineTransformation(const Vector3& position, const Quaternion& rotation);
-	void Matrix34Scale(const Matrix34& mat, const Vector3& scale, Matrix34* result);
 	Matrix34 Matrix34Rotation(const Quaternion& rotation);
+	Matrix34 Matrix34Scaling(float scale);
+	Matrix34 Matrix34Scaling(float x, float y, float z);
+	void Matrix34Scale(const Matrix34& mat, const Vector3& scale, Matrix34* result);
+	void Matrix34Rotate(const Matrix34& mat, const Quaternion& rotation, Matrix34* result);
+	void Matrix34RotateX(const Matrix34& mat, float angle, Matrix34* result);
+	void Matrix34RotateY(const Matrix34& mat, float angle, Matrix34* result);
+	void Matrix34RotateZ(const Matrix34& mat, float angle, Matrix34* result);
+	void Matrix34RotationRollPitchYaw(Matrix34* mat, const Vector3& rotation);
+	void Matrix34ToEulerAngleZXY(const Matrix34& mat, Vector3* result);
+
+	Matrix44 Matrix44Convert(const Matrix34& mat);
+	Matrix44 Matrix44Perspective(float fov, float aspectRatio, float nearClip, float farClip);
+	Matrix44 Matrix44Orthogonal(float top, float bottom, float left, float right, float nearClip, float farClip);
+	Matrix44 Matrix44Scaling(float scale);
+	Matrix44 Matrix44Scaling(float x, float y, float z);
+	Matrix44 Matrix44Multiply(const Matrix44& x, const Matrix44& y);
 
 	bool Intersection(const geom::Line3& line, const Plane& plane, Vector3* intersectionPoint, float* unkParam);
 	bool Intersection(const geom::Ray3& line, const geom::Aabb& aabb, float* unkParam);

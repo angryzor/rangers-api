@@ -18,6 +18,7 @@ namespace app::player {
         uint32_t unk9;
 
         HomingTargetInfo();
+        void SetUnk1(const csl::math::Vector3& position, const csl::math::Vector3& normal, float height);
         void SetUnk2(bool unk2Param);
         void SetSize(float radius, float height);
         void SetWorldPosition(const hh::fnd::WorldPosition& position);

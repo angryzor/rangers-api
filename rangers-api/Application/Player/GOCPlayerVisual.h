@@ -1,6 +1,14 @@
 #pragma once
 
 namespace app::player {
+    class GOCPlayerVisual;
+
+    class PlayerVisualListener {
+    public:
+        virtual void VisualActivatedCallback(GOCPlayerVisual* gocPlayerVisual, PlayerVisual* visual) {}
+        virtual void VisualDeactivatedCallback(GOCPlayerVisual* gocPlayerVisual, PlayerVisual* visual) {}
+    };
+
     class GOCPlayerVisual : public hh::game::GOComponent {
     public:
         struct Unk1 {
@@ -21,7 +29,7 @@ namespace app::player {
         char currentPlayerVisualId;
         hh::fnd::Reference<VisualLocatorManager> visualLocatorManager;
         uint32_t unk10;
-        csl::ut::MoveArray<void*> unk11;
+        csl::ut::MoveArray<PlayerVisualListener*> listeners;
         uint16_t flags;
 
         struct SetupInfo {

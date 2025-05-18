@@ -1,6 +1,12 @@
 #pragma once
 
 namespace app_cmn::fsm {
+    class GOCHsm2;
+    class GOCHsmContext : public hh::fnd::ReferencedObject {
+    public:
+        GOCHsm2* gocHsm2;
+    };
+
     class GOCHsm2 : public hh::game::GOComponent {
         uint64_t unk101;
         hh::ut::HsmBase hsm;

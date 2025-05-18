@@ -2,6 +2,7 @@
 
 namespace app {
     class MsgDamage : public fnd::AppMessage<MsgDamage> {
+    public:
         uint32_t dword20;
         size_t qword28;
         uint32_t dword30;
@@ -31,12 +32,29 @@ namespace app {
     public:
         hh::fnd::Handle<hh::game::GOComponent> unk1{};
         csl::math::Vector3 position{ 0.0f, 0.0f, 0.0f };
-        csl::math::Quaternion rotation{ 0.0f, 0.0f, 0.0f, 1.0f };
+        csl::math::Vector3 normal{ 0.0f, 0.0f, 0.0f };
         float radius{};
         uint32_t unk2{};
         uint32_t unk3{};
         uint8_t unk4{};
 
         MsgGetCyloopPoint() : fnd::AppMessage<MsgGetCyloopPoint>{ hh::fnd::MessageID::GET_CYLOOP_POINT } {}
+    };
+
+    class MsgLossRing : public fnd::AppMessage<MsgLossRing> {
+    public:
+        enum class Type : unsigned int {
+            NORMAL,
+            TRACKER_TENTACLE,
+            TRACKER_BLACKHOLE,
+        };
+
+        int amount{};
+        bool all{};
+        Type type{};
+        int ringsLostAmount{};
+        bool ringsLost{};
+
+        MsgLossRing() : fnd::AppMessage<MsgLossRing>{ hh::fnd::MessageID::LOSS_RING } {}
     };
 }

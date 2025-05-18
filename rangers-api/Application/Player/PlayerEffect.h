@@ -11,7 +11,8 @@ namespace app::player {
         GOCPlayerVisual* gocPlayerVisual;
         GOCPlayerKinematicParams* gocPlayerKinematicParams;
         GOCPlayerBlackboard* gocPlayerBlackboard;
-        uint16_t unk1;
+        uint8_t unk1;
+        uint8_t unk2;
 
         CREATE_FUNC(PlayerEffect, hh::game::GameObject* playerObject, PlayerVisual* playerVisual);
 

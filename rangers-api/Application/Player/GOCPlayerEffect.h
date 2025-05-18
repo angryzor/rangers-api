@@ -20,8 +20,8 @@ namespace app::player {
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void UpdateAsync(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo, void* unkParam) override;
         virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
-        virtual void PVL_UnkFunc1(void* unkParam1, void* unkParam2) override;
-        virtual void PVL_UnkFunc2(void* unkParam1, void* unkParam2) override;
+        virtual void VisualActivatedCallback(GOCPlayerVisual* gocPlayerVisual, PlayerVisual* visual) override;
+        virtual void VisualDeactivatedCallback(GOCPlayerVisual* gocPlayerVisual, PlayerVisual* visual) override;
 
         GOCOMPONENT_CLASS_DECLARATION(GOCPlayerEffect);
         void Setup(const SetupInfo& setupInfo);

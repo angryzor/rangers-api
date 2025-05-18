@@ -16,5 +16,6 @@ namespace app::player {
         inline T* GetPlugin() {
             return static_cast<T*>(GetPlugin(csl::ut::HashString(T::name)));
         }
+        void Update(hh::fnd::UpdatingPhase phase, float deltaTime);
     };
 }

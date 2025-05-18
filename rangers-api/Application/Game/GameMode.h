@@ -28,5 +28,13 @@ namespace app::game {
         virtual bool UnkFunc11() {}
         virtual bool UnkFunc12() {}
         virtual bool UnkFunc13() {}
+
+        hh::game::GameService* GetService(hh::game::GameServiceClass* gameServiceClass) const;
+        template<typename T>
+        T* GetService() const {
+            return (T*)GetService(T::GetClass());
+        }
+
+        GameModeExtension* GetExtension(unsigned int name) const;
     };
 }

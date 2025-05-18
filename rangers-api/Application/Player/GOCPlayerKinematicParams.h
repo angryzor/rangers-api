@@ -4,21 +4,32 @@ namespace app::player {
     class GOCPlayerKinematicParams : public hh::game::GOComponent {
     public:
         struct Unk1 {
-            csl::math::Vector4 unk1;
-            csl::math::Vector4 unk2;
-            uint64_t unk3;
+            enum class Flag : unsigned char {
+                UNK0,
+                UNK1,
+            };
+
+            csl::math::Vector3 unk1;
+            csl::math::Vector3 unk2;
+            uint32_t unk3;
+            uint32_t unk3a;
             uint32_t unk4;
-            uint32_t unk5;
+            hh::fnd::Handle<hh::game::GOComponent> unk5;
             int unk6;
-            uint16_t unk7;
+            bool unk7;
+            csl::ut::Bitset<Flag> flags;
 
             Unk1();
+            Unk1(bool unk7Param, uint8_t unk8Param, const csl::math::Vector3& unk1Param, const csl::math::Vector3& unk2Param, uint32_t unk3aParam, uint32_t unk4Param, const hh::fnd::Handle<hh::game::GOComponent>& unk5Param, int unk6Param);
+            hh::game::GOComponent* GetUnk5() const;
         };
         struct Unk2 {
-            uint64_t unk1;
+            uint32_t unk1;
+            hh::fnd::Handle<hh::game::GOComponent> unk1a;
             csl::math::Matrix44 unk2;
             csl::math::Vector4 unk3;
             Unk2();
+            void Reset();
         };
         struct Unk3 {
             struct Unk1 {
@@ -39,9 +50,9 @@ namespace app::player {
             Unk3();
         };
         struct Unk4 {
-            csl::math::Vector4 unk1;
-            csl::math::Vector4 unk2;
-            csl::math::Vector4 unk3;
+            csl::math::Vector3 unk1;
+            csl::math::Vector3 unk2;
+            csl::math::Vector3 unk3;
             uint32_t unk4;
             uint32_t unk5;
             uint64_t unk6;
@@ -67,12 +78,13 @@ namespace app::player {
             csl::ut::MoveArray<csl::math::Vector4> unk1;
             Unk7();
         };
-        struct Unk8 {
-            uint32_t unk1;
+
+        struct SetupInfo {
+            unsigned int unk1;
             csl::math::Vector3 position;
             csl::math::Quaternion rotation;
-            Unk8();
         };
+
         csl::math::Transform transform;
         hh::fnd::WorldPosition worldPosition;
         csl::math::Vector4 velocity;
@@ -105,12 +117,14 @@ namespace app::player {
         csl::fnd::IAllocator* allocator;
         uint16_t unk27;
         uint8_t unk28;
-        Unk8 unk29;
-
+        SetupInfo setupInfo;
 
 		virtual void* GetRuntimeTypeInfo() const override;
 		virtual void Update(hh::fnd::UpdatingPhase phase, const hh::fnd::SUpdateInfo& updateInfo) override;
 		virtual void OnGOCEvent(GOCEvent event, hh::game::GameObject& ownerGameObject, void* data) override;
+
+        void Setup(const SetupInfo& setupInfo);
+
         const csl::math::Transform& GetTransform() const;
         csl::math::Matrix34 GetWorldMatrix() const;
         void SetPosition(const csl::math::Vector4& position);

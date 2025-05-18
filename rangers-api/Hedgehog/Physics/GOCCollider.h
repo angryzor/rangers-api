@@ -123,6 +123,8 @@ namespace hh::physics {
         void AddListener(GOCColliderListener* listener);
         void RemoveListener(GOCColliderListener* listener);
         void SetEnabled(bool enabled);
+        void SetFrame(fnd::HFrame* frame);
+        void SetRotation(const csl::math::Quaternion& rotation);
 
 #ifndef NO_EIGEN_MATH
         inline csl::math::Matrix34 GetWorldTransform() const {

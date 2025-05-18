@@ -2,6 +2,8 @@
 
 namespace hh::ui {
     class ResSurfRideProject : public fnd::ManagedResource {
+        void Resolve(hh::fnd::ResourceResolver& resolver, bool unkParam1);
+
     public:
         csl::ut::MoveArray<fnd::Reference<surfride::SurfRideTextureDataMIRAGE>> textureDatas;
         void* reloadedData;

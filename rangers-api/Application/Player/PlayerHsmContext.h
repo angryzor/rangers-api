@@ -37,5 +37,7 @@ namespace app::player {
         ~PlayerHsmContext();
 
         void Setup(GOCPlayerHsm* gocPlayerHsm);
+
+        app::player::Player* GetPlayerObject() const;
     };
 }

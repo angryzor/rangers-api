@@ -89,7 +89,7 @@ namespace app::save {
 
     class GameDataAc : public SaveDataAccessor<GameData> {
     public:
-
+        FlagContainerAc GetFlagContainerAc();
     };
 
     class GamePlayAc : public SaveDataAccessor<GamePlayData> {
@@ -112,14 +112,15 @@ namespace app::save {
 
     };
 
-    class OptionAc : public SaveDataAccessor<OptionData> {
-    public:
-
-    };
-
     class OptionAudioAc : public SaveDataAccessor<OptionAudioData> {
     public:
-
+        unsigned char GetMasterVolume() const;
+        unsigned char GetSfxVolume() const;
+        unsigned char GetMusicVolume() const;
+        unsigned char GetVoiceVolume() const;
+        app::save::OptionAudioData::MusicSelect GetMusicSelectEnable() const;
+        app::save::OptionAudioData::MusicSelectType GetMusicSelectType() const;
+        bool GetBoostAisac() const; // == flag 0
     };
 
     class OptionCameraAc : public SaveDataAccessor<OptionCameraData> {
@@ -140,6 +141,15 @@ namespace app::save {
     class OptionGraphicsAc : public SaveDataAccessor<OptionGraphicsData> {
     public:
 
+    };
+
+    class OptionAc : public SaveDataAccessor<OptionData> {
+    public:
+        OptionAudioAc GetOptionAudioAc();
+        OptionCameraAc GetOptionCameraAc();
+        OptionControlsAc GetOptionControlsAc();
+        OptionGamePlayAc GetOptionGamePlayAc();
+        OptionGraphicsAc GetOptionGraphicsAc();
     };
 
     class PlayLogAc : public SaveDataAccessor<PlayLogData> {

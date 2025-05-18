@@ -14,5 +14,6 @@ namespace app::player {
 
         void SetGOCPlayerEffect(GOCPlayerEffect* gocPlayerEffect);
         void AddEffect(PlayerEffect* effect);
+        PlayerEffect* GetEffect(unsigned int namehash) const;
     };
 }

@@ -18,27 +18,10 @@ namespace app::snd {
 
     class SoundDirector : public hh::game::GameService, public hh::game::GameStepListener, hh::game::GameManagerListener {
     public:
-        struct Unk1 {
-            uint32_t unk1;
-            uint64_t sndPlyCri;
-
-            Unk1();
-        };
-
-        struct Unk2 {
-            uint32_t dword0;
-            uint32_t dword4;
-            float dword8;
-            float dwordC;
-            uint32_t dword10;
-            uint32_t dword14;
-            Unk2(float unkParam1, uint8_t unkParamDword14);
-        };
-
         struct Unk3 {
             hh::fnd::HandleBase handle;
             char name[32];
-            Unk2 unk101a;
+            hh::snd::SoundTween tween;
             float unk102;
             float unk103;
             float unk104;
@@ -54,7 +37,7 @@ namespace app::snd {
 
         hh::snd::SoundManagerCri* sndMgrCri;
         uint32_t dword88;
-        Unk1 unk90;
+        hh::snd::SoundListenerHandle soundListener;
         Unk3 unkA0[3];
         csl::ut::MoveArray<Unk3> unk1A0;
         csl::ut::MoveArray<void*> unk1C0[2];
