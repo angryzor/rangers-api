@@ -32,8 +32,8 @@ namespace hh::game {
         float range;
         float distance;
         bool unk101;
-        csl::math::Vector3 z;
-        float unk103;
+        csl::math::Vector3 position;
+        float rangePlusDistanceSquared;
         bool enabled;
 
         struct RangeSpawningConfig {

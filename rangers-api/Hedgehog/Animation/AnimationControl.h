@@ -9,21 +9,21 @@ namespace hh::anim {
 
         AnimationControl(csl::fnd::IAllocator* allocator);
         virtual void Update(float unkParam1) = 0;
-        virtual void UnkFunc2(float unkParam1) = 0;
-        virtual float UnkFunc3() const = 0;
-        virtual void SetLocalTime(float unkParam1) = 0;
+        virtual void SetWeight(float weight) = 0;
+        virtual float GetWeight() const = 0;
+        virtual void SetLocalTime(float time) = 0;
         virtual float GetLocalTime() const = 0;
         virtual void UnkFunc6() = 0;
-        virtual void SetPlaybackSpeed(float unkParam1) = 0;
+        virtual void SetPlaybackSpeed(float speed) = 0;
         virtual float GetPlaybackSpeed() const = 0;
-        virtual void SetStartTime(float unkParam1) = 0;
+        virtual void SetStartTime(float time) = 0;
         virtual float GetStartTime() const = 0;
-        virtual void SetEndTime(float unkParam1) = 0;
+        virtual void SetEndTime(float time) = 0;
         virtual float GetEndTime() const = 0;
         virtual void UnkFunc14(uint8_t* unkParam1) = 0;
         virtual void UnkFunc15(float unkParam1) = 0;
         virtual bool UnkFunc16() const = 0;
-        virtual bool IsPaused() const = 0;
-        virtual void UnkFunc18(bool unkParam1) = 0;
+        virtual bool IsPlaying() const = 0;
+        virtual void Play(bool enabled) = 0;
     };
 }

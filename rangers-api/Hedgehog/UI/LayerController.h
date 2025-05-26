@@ -43,6 +43,7 @@ namespace hh::ui {
         void PlayReservedAnimation();
         bool PlayAnimation(const char* name);
         void SetCastText(const char* name, const char* text);
+        bool GetCastPosition(const char* name, csl::math::Vector3& position);
         void SetCastPosition(const char* name, const csl::math::Vector3& position);
         bool SetAnimationFinishedDelegate(const char* animation, const csl::fnd::Delegate<void (hh::ui::LayerController *, char const *)>& delegate);
         void CopyedFlag(bool enabled);

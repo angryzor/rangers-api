@@ -34,7 +34,7 @@ namespace hh::game {
         virtual void* GetRuntimeTypeInfo() const override;
         virtual void OnAddedToGame() override;
         virtual void OnRemovedFromGame() override;
-        virtual void GPL_UnkFunc2() override;
+        virtual void DebugPauseUpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
         virtual void PreStepCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) override;
 
         GAMESERVICE_CLASS_DECLARATION(InputManager)

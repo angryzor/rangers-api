@@ -2,7 +2,7 @@
 
 namespace hh::ui {
     class UITextElement : public UIElement, public TextObjectUpdaterListener {
-        csl::ut::MoveArray<void*> unk1a;
+        csl::ut::MoveArray<void*> unk1;
         csl::ut::MoveArray<void*> unk2;
         csl::ut::MoveArray<void*> unk3;
         csl::ut::MoveArray<void*> unk4;

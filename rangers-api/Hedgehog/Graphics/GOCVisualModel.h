@@ -106,22 +106,45 @@ namespace hh::gfx {
         uint64_t OnGOCVisualEvent(GOCVisualModel* visualModel, int unkParam1, unsigned int unkParam2, void* unkParam3);
         void Setup(GOCVisualModel& model, const GOCVisualModelDescription& description);
         void GetModelSpaceAabb(csl::geom::Aabb* aabb) const;
+
+        // TexSrtControl* SetTexSrtAnimation(hh::gfx::TexSrtDesc& description);
+        TexSrtBlender* SetTexSrtBlender(hh::gfx::TexSrtBlenderDesc& description);
+        // void ResetTexSrtAnimation();
+
+        // TexPatControl* SetTexPatAnimation(hh::gfx::TexPatDesc& description);
+        TexPatBlender* SetTexPatBlender(hh::gfx::TexPatBlenderDesc& description);
+        // void ResetTexPatAnimation();
+
+        // MatAnimControl* SetMaterialAnimation(hh::gfx::MatAnimDesc& description);
+        MatAnimBlender* SetMatAnimBlender(hh::gfx::MatAnimBlenderDesc& description);
+        // void ResetMaterialAnimation();
+
+        // VisAnimControl* SetVisibilityAnimation(hh::gfx::VisAnimDesc& description);
+        VisAnimBlender* SetVisAnimBlender(hh::gfx::VisAnimBlenderDesc& description);
+        // void ResetVisibilityAnimation();
     };
 
     class GOCVisualModel : public GOCVisualTransformed {
     public:
+        enum class AnimFlag : unsigned int {
+            HAS_MAT_ANIM_BLENDER,
+            HAS_TEX_PAT_BLENDER,
+            HAS_TEX_SRT_BLENDER,
+            UNK0,
+            HAS_VIS_ANIM_BLENDER,
+        };
         GOCVisualModelImpl* pImplementation;
         GOCVisualModel* masterPoseComponent;
         csl::ut::InplaceMoveArray<GOCVisualModel*, 3> poseComponents;
         unsigned int masterPoseComponentNameHash;
         fnd::Reference<gfx::ResModel> model;
         fnd::Reference<anim::ResSkeleton> skeleton;
+        fnd::Reference<TexSrtBlender> texSrtBlender;
+        fnd::Reference<TexPatBlender> texPatBlender;
+        fnd::Reference<MatAnimBlender> matAnimBlender;
+        fnd::Reference<VisAnimBlender> visAnimBlender;
         uint64_t unk306;
-        uint64_t unk307;
-        uint64_t unk308;
-        uint64_t unk309;
-        uint64_t unk310;
-        uint32_t unk311;
+        csl::ut::Bitset<AnimFlag> animFlags;
         uint8_t unk312;
         uint64_t unk313;
         uint64_t unk314;
@@ -142,6 +165,32 @@ namespace hh::gfx {
         void SetRootNode(int nodeIndex);
         void SetVisibility(const char* sceneRenderPass, bool visible);
 
+        // TexSrtControl* SetTexSrtAnimation(hh::gfx::TexSrtDesc& description);
+        TexSrtBlender* SetTexSrtBlender(hh::gfx::TexSrtBlenderDesc& description);
+        TexSrtBlender* GetTexSrtBlender() const;
+        // void ResetTexSrtAnimation();
+
+        // TexPatControl* SetTexPatAnimation(hh::gfx::TexPatDesc& description);
+        TexPatBlender* SetTexPatBlender(hh::gfx::TexPatBlenderDesc& description);
+        TexPatBlender* GetTexPatBlender() const;
+        // void ResetTexPatAnimation();
+
+        // MatAnimControl* SetMaterialAnimation(hh::gfx::MatAnimDesc& description);
+        MatAnimBlender* SetMatAnimBlender(hh::gfx::MatAnimBlenderDesc& description);
+        MatAnimBlender* GetMatAnimBlender() const;
+        // void ResetMaterialAnimation();
+
+        // VisAnimControl* SetVisibilityAnimation(hh::gfx::VisAnimDesc& description);
+        VisAnimBlender* SetVisAnimBlender(hh::gfx::VisAnimBlenderDesc& description);
+        VisAnimBlender* GetVisAnimBlender() const;
+        // void ResetVisibilityAnimation();
+
         GOCOMPONENT_CLASS_DECLARATION(GOCVisualModel)
+
+    private:
+        void SetTexSrtBlender(TexSrtBlender* blender);
+        void SetTexPatBlender(TexPatBlender* blender);
+        void SetMatAnimBlender(MatAnimBlender* blender);
+        void SetVisAnimBlender(VisAnimBlender* blender);
     };
 }

@@ -5,9 +5,11 @@ namespace hh::game
     struct GameStepInfo {
         uint32_t layerUpdateMask;
         fnd::SUpdateInfo updateInfo;
+		const float* layerTimeScales;
+		bool paused;
     };
 
-	class alignas(8) GameStepListener
+	class GameStepListener
 	{
 	public:
 		virtual ~GameStepListener() = default;
@@ -16,14 +18,14 @@ namespace hh::game
 		virtual void UpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) {}
 	};
 	
-    class alignas(8) GamePauseListener {
+    class GamePauseListener {
 	public:
 		virtual ~GamePauseListener() = default;
         virtual void GPL_UnkFunc1() {}
-        virtual void GPL_UnkFunc2() {}
+        virtual void DebugPauseUpdateCallback(GameManager* gameManager, const game::GameStepInfo& gameStepInfo) {}
     };
 
-	class alignas(8) GameUpdateListener
+	class GameUpdateListener
 	{
 	public:
 		virtual ~GameUpdateListener() = default;
@@ -31,15 +33,23 @@ namespace hh::game
 		virtual void PostGameUpdateCallback(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo) {}
 	};
     
-	class alignas(8) ObjectUpdateListener
+	class ObjectUpdateListener
 	{
 	public:
 		virtual ~ObjectUpdateListener() = default;
 		virtual void PreObjectUpdateCallback(GameManager* gameManager, fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) {}
 		virtual void PostObjectUpdateCallback(GameManager* gameManager, fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo) {}
 	};
+    
+	class ObjectOperationListener
+	{
+	public:
+		virtual ~ObjectOperationListener() = default;
+		virtual void BeginObjectOperationCallback(GameManager* gameManager) {}
+		virtual void EndObjectOperationCallback(GameManager* gameManager) {}
+	};
 
-	class alignas(8) ComponentListener
+	class ComponentListener
 	{
 	public:
 		virtual ~ComponentListener() = default;
@@ -47,7 +57,7 @@ namespace hh::game
 		virtual void ComponentRemovedCallback(GOComponent* component) {}
 	};
 
-	class alignas(8) GameManagerListener
+	class GameManagerListener
 	{
 	public:
 		virtual ~GameManagerListener() = default;
@@ -111,10 +121,13 @@ namespace hh::game
         static void FirePostGameUpdate(GameManager* gameManager, const fnd::SUpdateInfo& updateInfo);
 		static void FirePreObjectUpdate(GameManager* gameManager, fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo);
 		static void FirePostObjectUpdate(GameManager* gameManager, fnd::UpdatingPhase phase, const fnd::SUpdateInfo& updateInfo);
+		static void FireBeginObjectOperation(GameManager* gameManager);
+		static void FireEndObjectOperation(GameManager* gameManager);
 		static void FirePreStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
 		static void FirePostStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
-		static void FireEditorStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
 		static void FireUpdate(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
+		static void FireEditorStep(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
+		static void FireDebugPauseUpdate(GameManager* gameManager, const game::GameStepInfo& gameStepInfo);
 	};
 
 	class GameApplication;
@@ -140,7 +153,7 @@ namespace hh::game
 		// not sure if this is a layer listener or a gameobject listener, but 0x20 is called when object added to layer
 		csl::ut::MoveArray<GameObjectListener*> gameObjectListeners;
 		csl::ut::MoveArray<ComponentListener*> componentListeners;
-		csl::ut::MoveArray<void*> unk44;
+		csl::ut::MoveArray<ObjectOperationListener*> objectOperationListeners;
 		csl::ut::MoveArray<ObjectUpdateListener*> objectUpdateListeners{ pAllocator };
 		csl::ut::MoveArray<GamePauseListener*> gamePauseListeners{ pAllocator };
 		csl::ut::MoveArray<GameStepListener*> gameStepListeners{ pAllocator };
@@ -269,6 +282,8 @@ namespace hh::game
 		void RemoveGameObjectListener(GameObjectListener* listener);
 		void AddObjectUpdateListener(ObjectUpdateListener* listener);
 		void RemoveObjectUpdateListener(ObjectUpdateListener* listener);
+		void AddObjectOperationListener(ObjectOperationListener* listener);
+		void RemoveObjectOperationListener(ObjectOperationListener* listener);
 		void AddEditorStepListener(EditorStepListener* listener);
 		void RemoveEditorStepListener(EditorStepListener* listener);
 		void ReloadInputSettings(bool unkParam1);

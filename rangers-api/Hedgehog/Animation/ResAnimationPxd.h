@@ -18,7 +18,7 @@ namespace hh::anim {
         virtual void Load(void* data, size_t size) override;
         virtual void Unload() override;
         virtual void Reload(void* data, size_t size) override;
-        virtual uint64_t UnkFunc1() override;
+        virtual float GetDuration() const override;
         virtual uint64_t UnkFunc2() override;
         virtual uint64_t UnkFunc3() override;
         virtual uint64_t UnkFunc4() override;
