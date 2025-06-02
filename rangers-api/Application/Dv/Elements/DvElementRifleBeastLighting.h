@@ -3,7 +3,7 @@
 namespace app::dv{
     class DvElementRifleBeastLighting : public AppDvElementBase{
     public:
-        struct Data {};
+        struct Description : hh::dv::DvElementBase::Description {};
 
         char unk0;
 
